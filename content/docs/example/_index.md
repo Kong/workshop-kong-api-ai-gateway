@@ -1,71 +1,44 @@
 ---
-weight: 1
-bookFlatSection: true
-title: "Example Site"
+title: "API Management with Kong Konnect"
+weight: 0
 ---
 
-# IntroductionABC
+# Introduction
 
-## Ferre hinnitibus erat accipitrem dixi Troiae tollens
+Kong Konnect is an API lifecycle management platform delivered as a service. The management plane is hosted in the cloud by Kong, while the runtime environments are deployed in your AWS accounts. Management plane enables customers to securely execute API management activities such as create API routes, define services etc. Runtime environments connect with the management plane using mutual transport layer authentication (mTLS), receive the updates and take customer facing API traffic.
 
-Lorem markdownum, a quoque nutu est *quodcumque mandasset* veluti. Passim
-inportuna totidemque nympha fert; repetens pendent, poenarum guttura sed vacet
-non, mortali undas. Omnis pharetramque gramen portentificisque membris servatum
-novabis fallit de nubibus atque silvas mihi. **Dixit repetitaque Quid**; verrit
-longa; sententia [mandat](http://pastor-ad.io/questussilvas) quascumque nescio
-solebat [litore](http://lacrimas-ab.net/); noctes. *Hostem haerentem* circuit
-[plenaque tamen](http://www.sine.io/in).
+# Learning Objectives
 
-- Pedum ne indigenae finire invergens carpebat
-- Velit posses summoque
-- De fumos illa foret
+In this workshop, you will:
 
-## Est simul fameque tauri qua ad
+* Get an architectural overview of Kong Konnect platform.
+* Set up Konnect runtime on Amazon Elastic Kubernetes Service (EKS).
+* Learn what are services, routes and plugin.
+* Deploy a sample microservice and access the application using the defined route.
+* Use the platform to address the following API Gateway use cases
+    * Authentication and Authorization
+    * Rate limiting
+    * Response Transformer
+    <!-- * Invoke AWS Lambda -->
+    * Proxy caching
+<!-- * Learn how to do observability -->
 
-Locum nullus nisi vomentes. Ab Persea sermone vela, miratur aratro; eandem
-Argolicas gener.
+* And the following AI Gateway use cases
+    * Prompt Engineering
+    * LLM-based Request and Reponse transformation
+    * Semantic Caching
+    * Token-based Rate Limiting
+    * Semantic Routing
+    * RAG - Retrieval-Augmented Generation
 
-## Me sol
+# Expected Duration
 
-Nec dis certa fuit socer, Nonacria **dies** manet tacitaque sibi? Sucis est
-iactata Castrumque iudex, et iactato quoque terraeque es tandem et maternos
-vittis. Lumina litus bene poenamque animos callem ne tuas in leones illam dea
-cadunt genus, et pleno nunc in quod. Anumque crescentesque sanguinis
-[progenies](http://www.late.net/alimentavirides) nuribus rustica tinguet. Pater
-omnes liquido creditis noctem.
+* Pre-Requisite Environment Setup (20 minutes)
+* Architectural Walkthrough (10 minutes)
+* Sample Application and addressing the use cases (60 minutes)
+<!-- * Observability (20 minutes) -->
+* Next Steps and Cleanup (5 min)
 
-    if (mirrored(icmp_dvd_pim, 3, smbMirroredHard) != lion(clickImportQueue,
-            viralItunesBalancing, bankruptcy_file_pptp)) {
-        file += ip_cybercrime_suffix;
-    }
-    if (runtimeSmartRom == netMarketingWord) {
-        virusBalancingWin *= scriptPromptBespoke + raster(post_drive,
-                windowsSli);
-        cd = address_hertz_trojan;
-        soap_ccd.pcbServerGigahertz(asp_hardware_isa, offlinePeopleware, nui);
-    } else {
-        megabyte.api = modem_flowchart - web + syntaxHalftoneAddress;
-    }
-    if (3 < mebibyteNetworkAnimated) {
-        pharming_regular_error *= jsp_ribbon + algorithm * recycleMediaKindle(
-                dvrSyntax, cdma);
-        adf_sla *= hoverCropDrive;
-        templateNtfs = -1 - vertical;
-    } else {
-        expressionCompressionVariable.bootMulti = white_eup_javascript(
-                table_suffix);
-        guidPpiPram.tracerouteLinux += rtfTerabyteQuicktime(1,
-                managementRosetta(webcamActivex), 740874);
-    }
-    var virusTweetSsl = nullGigo;
+:::alert{header="Important" type="warning"}
 
-## Trepident sitimque
-
-Sentiet et ferali errorem fessam, coercet superbus, Ascaniumque in pennis
-mediis; dolor? Vidit imi **Aeacon** perfida propositos adde, tua Somni Fluctibus
-errante lustrat non.
-
-Tamen inde, vos videt e flammis Scythica parantem rupisque pectora umbras. Haec
-ficta canistris repercusso simul ego aris Dixit! Esse Fama trepidare hunc
-crescendo vigor ululasse vertice *exspatiantur* celer tepidique petita aversata
-oculis iussa est me ferro.
+Running this workshop in your own AWS account will incur ~ $1 per hour charges. Please ensure to cleanup, once you fulfill your learning objectives.
