@@ -1,5 +1,4 @@
 # workshop-kong-api-ai-gateway
 
 
-
-asdads
+https://gohugo.io/host-and-deploy/host-on-aws-amplify/
