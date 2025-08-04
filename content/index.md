@@ -40,5 +40,3 @@ In this workshop, you will:
 * Next Steps and Cleanup (5 min)
 
 :::alert{header="Important" type="warning"}
-
-Running this workshop in your own AWS account will incur ~ $1 per hour charges. Please ensure to cleanup, once you fulfill your learning objectives.
