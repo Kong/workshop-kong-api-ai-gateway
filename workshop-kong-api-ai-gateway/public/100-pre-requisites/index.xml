@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pre-Requisites :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/100-pre-requisites/index.html</link>
+    <description>This chapter will walk you through the pre-requisites.&#xA;Podman or Docker and Minikube installed Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Command Line Utilities In this workshop, we will use the following command line utilities&#xA;kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/100-pre-requisites/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kong Subscription</title>
+      <link>http://localhost:1313/100-pre-requisites/kong-subscription/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/100-pre-requisites/kong-subscription/index.html</guid>
+      <description>You will need a Konnect subscription. Follow the steps below to obtain a Konnect Plus subscription. Initially $500 of credits are provided for up to 30 days, after the credits have expired or the time has finished Konnect Plus will charge based on Konnect Plus pricing. Following the workshop instructions will use less than $500 credits. After the workshop has finished the Konnect Plus environment can be deleted.&#xA;Click on the Registration link and present your credentials.</description>
+    </item>
+    <item>
+      <title>OpenAI</title>
+      <link>http://localhost:1313/100-pre-requisites/openai-access/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/100-pre-requisites/openai-access/index.html</guid>
+      <description>Tanto oblite Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.&#xA;Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque. Exul Laurenti orantem modo, per densum missisque labor manibus non colla unum, obiectat. Tu pervia collo, fessus quae Cretenque Myconon crate! Tegumenque quae invisi sudore per vocari quaque plus ventis fluidos. Nodo perque, fugisse pectora sorores.</description>
+    </item>
+  </channel>
+</rss>

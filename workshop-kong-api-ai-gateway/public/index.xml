@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>API Management with Kong Konnect</title>
     <link>http://localhost:1313/index.html</link>
-    <description></description>
+    <description>Introduction Kong Konnect is an API lifecycle management platform delivered as a service. The management plane is hosted in the cloud by Kong, while the runtime environments are deployed in your AWS accounts. Management plane enables customers to securely execute API management activities such as create API routes, define services etc. Runtime environments connect with the management plane using mutual transport layer authentication (mTLS), receive the updates and take customer facing API traffic.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kong Konnect Architectural Overview</title>
+      <link>http://localhost:1313/architectural/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/architectural/index.html</guid>
+      <description>The Kong Konnect platform provides a cloud control plane (CP), which manages all service configurations. It propagates those configurations to all Runtime control planes, which use in-memory storage. These nodes can be installed anywhere, on-premise or in AWS.&#xA;For today workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs. While routing requests and providing responses, policies can be applied with plugins as necessary.</description>
+    </item>
+    <item>
+      <title>Pre-Requisites</title>
+      <link>http://localhost:1313/100-pre-requisites/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/100-pre-requisites/index.html</guid>
+      <description>This chapter will walk you through the pre-requisites.&#xA;Podman or Docker and Minikube installed Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Command Line Utilities In this workshop, we will use the following command line utilities&#xA;kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)</description>
+    </item>
+    <item>
+      <title>Konnect Setup</title>
+      <link>http://localhost:1313/konnect-setup/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/konnect-setup/index.html</guid>
+      <description>Konnect Setup This chapter will walk you through&#xA;Konnect Control Plane and Data Plane creation using Kong Gateway Operator (KGO). Scale Kong data plane nodes on EKS using horizontal pod Autoscaler. Access Kong data plane through an AWS Load Balancer Here’s a Reference Architecture that will be implemented in this workshop:&#xA;Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak or Observability with Prometheus. On the right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your application micros surfaces or services. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:</description>
+    </item>
   </channel>
 </rss>

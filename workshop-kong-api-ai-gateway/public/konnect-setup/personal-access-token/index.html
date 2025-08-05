@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="PAT (Personal Access Token) KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on &#43; Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Personal Access Token :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="PAT (Personal Access Token) KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on &#43; Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.">
+    <meta property="og:url" content="http://localhost:1313/konnect-setup/personal-access-token/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Personal Access Token :: API Management with Kong Konnect">
+    <meta property="og:description" content="PAT (Personal Access Token) KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on &#43; Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Konnect Setup">
+    <meta itemprop="name" content="Personal Access Token :: API Management with Kong Konnect">
+    <meta itemprop="description" content="PAT (Personal Access Token) KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on &#43; Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.">
+    <meta itemprop="wordCount" content="250">
+    <title>Personal Access Token :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754423866" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754423866" defer></script>
+    <script src="/js/search-lunr.js?1754423866" defer></script>
+    <script src="/js/search.js?1754423866" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754423866";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754423866" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754423866" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754423866" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754423866" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754423866" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754423866" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754423866" rel="stylesheet">
+    <link href="/css/theme.css?1754423866" rel="stylesheet">
+    <link href="/css/format-html.css?1754423866" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/konnect-setup\/personal-access-token\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/konnect-setup/personal-access-token/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pat-personal-access-token">PAT (Personal Access Token)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/konnect-setup/index.html"><span itemprop="name">Konnect Setup</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Personal Access Token</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/konnect-setup/index.html" title="Konnect Setup (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/konnect-setup/openai-access/index.html" title="OpenAI (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable konnect-setup" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="personal-access-token">Personal Access Token</h1>
+
+<h3 id="pat-personal-access-token">PAT (Personal Access Token)</h3>
+<p>KGO requires a <a href="https://docs.konghq.com/konnect/org-management/access-tokens/" rel="external" target="_blank">Konnect Personal Access Token (PAT)</a> for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select <code>Personal Access Tokens</code>. Click on <code>+ Generate Token</code>, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.</p>
+<p><a href="#R-image-d06baac334e19df65b843d02b9dc47b7" class="lightbox-link"><img alt="pat" class="lazy lightbox figure-image" loading="lazy" src="/images/pat.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d06baac334e19df65b843d02b9dc47b7"><img alt="pat" class="lazy lightbox lightbox-image" loading="lazy" src="/images/pat.png"></a></p>
+<p>::alert[Be sure to copy and save PAT, as Konnect won’t display it again.]</p>
+<h4 id="konnect-pat-secret">Konnect PAT secret</h4>
+<p>Create a Kubernetes (K8) Secret with your PAT in the <code>kong</code> namespace. KGO requires the secret to be labeled.</p>
+<ul>
+<li>Save PAT in your CloudShell environment variables</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo &#34;export PAT=PASTE_THE_CONTENTS_OF_COPIED_PAT&#34; &gt;&gt; ~/.bashrc
+bash</code></pre></div>
+
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+echo &ldquo;export PAT=PASTE_THE_CONTENTS_OF_COPIED_PAT&rdquo; &raquo; ~/.bashrc
+bash
+:::</p>
+<p>::alert[Pls don’t forget to replace <code>PASTE_THE_CONTENTS_OF_COPIED_PAT</code> in the below command with the copied PAT from Kong UI. ]</p>
+<ul>
+<li>Create the namespace and Kubernetes Service Account</li>
+</ul>
+<p>The Kubernetes Service Account will be used to deploy the Kong Data Plane.
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+kubectl create namespace kong
+kubectl create sa kaigateway-podid-sa -n kong
+:::</p>
+<p>::alert[Pls <strong>DO NOT</strong> modify the service account name. Pod Identities and the respective IAM permissions are specfically associated with this name. ]</p>
+<ul>
+<li>Create K8 Secret with PAT</li>
+</ul>
+<p>::alert[Pls don’t forget to replace <code>PASTE_THE_CONTENTS_OF_COPIED_PAT</code> in the below command with the copied PAT from Kong UI. ]</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+kubectl create secret generic konnect-pat -n kong &ndash;from-literal=token=$(echo $PAT)
+kubectl label secret konnect-pat -n kong &ldquo;konghq.com/credential=konnect&rdquo;
+:::</p>
+<p>You can now click Next to install the operator.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architectural/index.html"><a class="padding" href="/architectural/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/100-pre-requisites/index.html"><a class="padding" href="/100-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-e0c49b3c22baaf47ee264f05ca467f90" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/konnect-setup/index.html"><a class="padding" href="/konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-7c15ec82b9ecd00f7e6c77604f6a8935" class="collapsible-menu">
+            <li class="active " data-nav-id="/konnect-setup/personal-access-token/index.html"><a class="padding" href="/konnect-setup/personal-access-token/index.html">Personal Access Token</a></li>
+            <li class="" data-nav-id="/konnect-setup/openai-access/index.html"><a class="padding" href="/konnect-setup/openai-access/index.html">OpenAI</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754423866" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754423866" defer></script>
+    <script src="/js/theme.js?1754423866" defer></script>
+  </body>
+</html>
