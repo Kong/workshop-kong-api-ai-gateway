@@ -1,6 +1,7 @@
 ---
-title: "API Management with Kong Konnect"
 weight: 0
+bookFlatSection: true
+title: "API Management with Kong Konnect"
 ---
 
 # Introduction
@@ -39,4 +40,4 @@ In this workshop, you will:
 <!-- * Observability (20 minutes) -->
 * Next Steps and Cleanup (5 min)
 
-:::alert{header="Important" type="warning"}
+
