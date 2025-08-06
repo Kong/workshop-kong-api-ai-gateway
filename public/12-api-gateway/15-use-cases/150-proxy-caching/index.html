@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Proxy Caching :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Proxy Caching :: API Management with Kong Konnect">
+    <meta property="og:description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="Proxy Caching :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
+    <meta itemprop="wordCount" content="1154">
+    <title>Proxy Caching :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488581" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488581" defer></script>
+    <script src="/js/search-lunr.js?1754488581" defer></script>
+    <script src="/js/search.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488581";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488581" rel="stylesheet">
+    <link href="/css/theme.css?1754488581" rel="stylesheet">
+    <link href="/css/format-html.css?1754488581" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/150-proxy-caching\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#kong-gateway-plugin-list">Kong Gateway Plugin list</a></li>
+        <li><a href="#enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</a></li>
+        <li><a href="#enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</a></li>
+        <li><a href="#enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Proxy Caching</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/index.html" title="Use Cases (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html" title="API Key Authentication (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="proxy-caching">Proxy Caching</h1>
+
+<p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">Proxy Caching</a> provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</p>
+<h3 id="kong-gateway-plugin-list">Kong Gateway Plugin list</h3>
+<p>Before enabling the <strong>Proxy Caching</strong>, let&rsquo;s check the list of plugins Konnect provides. Inside the <code>kong-aws</code> Control Plane, click on <strong>Plugins</strong> menu option and <strong>+ New plugin</strong>. You should the following page with all plugins available:</p>
+<p><a href="#R-image-893f7dc4bfd90e29ff48650e821efe76" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-893f7dc4bfd90e29ff48650e821efe76"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<h3 id="enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</h3>
+<p>Create another declaration with <code>plugins</code> option. With this option you can enable and configure the plugin on your Kong Service.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+tags:
+<ul>
+<li>httpbin-service-route
+host: httpbin.kong.svc.cluster.local
+port: 8000
+plugins:</li>
+<li>name: proxy-cache
+instance_name: proxy-cache1
+config:
+strategy: memory
+cache_ttl: 30
+routes:</li>
+<li>name: httpbin-route
+tags:
+<ul>
+<li>httpbin-service-route
+paths:</li>
+<li>/httpbin-route
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>For the plugin configuration we used the following settings:</p>
+<ul>
+<li><strong>strategy</strong> with <code>memory</code>. The plugin will use the Runtime Instance&rsquo;s memory to implement to cache.</li>
+<li><strong>cache_ttl</strong> with <code>30</code>, which means the plugin will clear all data that reached this time limit.</li>
+</ul>
+<p>All plugin configuration paramenters are described inside <strong><a href="https://docs.konghq.com/hub/" rel="external" target="_blank">Kong Plugin Hub</a></strong> portal, in its specific <a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">documentation page</a>.</p>
+<h4 id="submit-the-new-declaration">Submit the new declaration</h4>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
+:::</p>
+<p><strong>Expected Output</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>creating plugin proxy-cache for service httpbin-service
+Summary:
+  Created: 1
+  Updated: 0
+  Deleted: 0</code></pre></div>
+<h4 id="consume-the-service">Consume the Service</h4>
+<p>If you consume the service again, you&rsquo;ll see some new headers describing the caching status:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/httpbin-route/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 3.12.182.158, 18.216.117.235
+*   Trying 3.12.182.158:80...
+* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+&gt; GET /httpbin-route/get HTTP/1.1
+&gt; Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+&gt; User-Agent: curl/8.7.1
+&gt; Accept: */*
+&gt; 
+* Request completely sent off
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 443
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn
+&lt; Date: Tue, 27 May 2025 22:37:06 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 1
+&lt; Via: 1.1 kong/3.10.0.1-enterprise-edition
+&lt; X-Kong-Request-Id: eda0954efb9dc903147b4325b0a73563
+&lt; 
+{&#34;args&#34;:{},&#34;headers&#34;:{&#34;Accept&#34;:&#34;*/*&#34;,&#34;Connection&#34;:&#34;keep-alive&#34;,&#34;Host&#34;:&#34;httpbin.kong.svc.cluster.local:8000&#34;,&#34;User-Agent&#34;:&#34;curl/8.7.1&#34;,&#34;X-Forwarded-Host&#34;:&#34;a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com&#34;,&#34;X-Forwarded-Path&#34;:&#34;/httpbin-route/get&#34;,&#34;X-Forwarded-Prefix&#34;:&#34;/httpbin-route&#34;,&#34;X-Kong-Request-Id&#34;:&#34;eda0954efb9dc903147b4325b0a73563&#34;},&#34;origin&#34;:&#34;192.168.61.217&#34;,&#34;url&#34;:&#34;http://httpbin.kong.svc.cluster.local:8000/get&#34;}
+* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact</code></pre></div>
+<p>Notice that, for the first request we get <strong>Miss</strong> for the <strong>X-Cache-Status</strong> header, meaning that the Runtime Instance didn&rsquo;t have any data avaialble in the cache and had to connect to the Upstream Service, <code>httpbin.org</code>.</p>
+<p>If we send a new request, the Runtime Instance has all it needs to satify the request, therefore the status is <strong>Hit</strong>. Note that the latency time has dropped considerably.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl -v $DATA_PLANE_LB/httpbin-route/get
+* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 18.216.117.235, 3.12.182.158
+*   Trying 18.216.117.235:80...
+* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (18.216.117.235) port 80
+&gt; GET /httpbin-route/get HTTP/1.1
+&gt; Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+&gt; User-Agent: curl/8.7.1
+&gt; Accept: */*
+&gt; 
+* Request completely sent off
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+&lt; Access-Control-Allow-Credentials: true
+&lt; age: 2
+&lt; X-Cache-Status: Hit
+&lt; Access-Control-Allow-Origin: *
+&lt; Server: gunicorn
+&lt; Date: Tue, 27 May 2025 22:37:06 GMT
+&lt; Content-Length: 443
+&lt; X-Kong-Upstream-Latency: 0
+&lt; X-Kong-Proxy-Latency: 1
+&lt; Via: 1.1 kong/3.10.0.1-enterprise-edition
+&lt; X-Kong-Request-Id: d148241a9c5e904a0b68235008315038
+&lt; 
+{&#34;args&#34;:{},&#34;headers&#34;:{&#34;Accept&#34;:&#34;*/*&#34;,&#34;Connection&#34;:&#34;keep-alive&#34;,&#34;Host&#34;:&#34;httpbin.kong.svc.cluster.local:8000&#34;,&#34;User-Agent&#34;:&#34;curl/8.7.1&#34;,&#34;X-Forwarded-Host&#34;:&#34;a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com&#34;,&#34;X-Forwarded-Path&#34;:&#34;/httpbin-route/get&#34;,&#34;X-Forwarded-Prefix&#34;:&#34;/httpbin-route&#34;,&#34;X-Kong-Request-Id&#34;:&#34;eda0954efb9dc903147b4325b0a73563&#34;},&#34;origin&#34;:&#34;192.168.61.217&#34;,&#34;url&#34;:&#34;http://httpbin.kong.svc.cluster.local:8000/get&#34;}
+* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact</code></pre></div>
+<h3 id="enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</h3>
+<p>Now, we are going to define a Rate Limiting policy for our Service. This time, you are going to enable the <strong>Rate Limiting</strong> plugin to the Kong Route, not to the Kong Gateway Service. In this sense, new Routes defined for the Service will not have the Rate Limiting plugin enabled, only the Proxy Caching.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+tags:
+<ul>
+<li>httpbin-service-route
+host: httpbin.kong.svc.cluster.local
+port: 8000
+plugins:</li>
+<li>name: proxy-cache
+config:
+strategy: memory
+cache_ttl: 30
+routes:</li>
+<li>name: httpbin-route
+tags:
+<ul>
+<li>httpbin-service-route
+paths:</li>
+<li>/httpbin-route
+plugins:</li>
+<li>name: rate-limiting
+instance_name: rate-limiting1
+config:
+minute: 3
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The configuration includes:</p>
+<ul>
+<li><strong>minute</strong> as <code>3</code>, which means the Route can be consumed only 3 times a given minute.</li>
+</ul>
+<h4 id="submit-the-declaration">Submit the declaration</h4>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
+:::</p>
+<h4 id="consume-the-service-1">Consume the Service</h4>
+<p>If you consume the service again, you&rsquo;ll see, besides the caching related headers, new ones describing the status of current rate limiting policy:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/httpbin-route/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 3.12.182.158, 18.216.117.235
+*   Trying 3.12.182.158:80...
+* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+&gt; GET /httpbin-route/get HTTP/1.1
+&gt; Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+&gt; User-Agent: curl/8.7.1
+&gt; Accept: */*
+&gt; 
+* Request completely sent off
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 443
+&lt; Connection: keep-alive
+&lt; RateLimit-Limit: 3
+&lt; RateLimit-Reset: 51
+&lt; X-RateLimit-Remaining-Minute: 2
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; RateLimit-Remaining: 2
+&lt; X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn
+&lt; Date: Tue, 27 May 2025 22:39:09 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 2
+&lt; Via: 1.1 kong/3.10.0.1-enterprise-edition
+&lt; X-Kong-Request-Id: de0e817681d25556c8cfd01fcbaf1645
+&lt; 
+{&#34;args&#34;:{},&#34;headers&#34;:{&#34;Accept&#34;:&#34;*/*&#34;,&#34;Connection&#34;:&#34;keep-alive&#34;,&#34;Host&#34;:&#34;httpbin.kong.svc.cluster.local:8000&#34;,&#34;User-Agent&#34;:&#34;curl/8.7.1&#34;,&#34;X-Forwarded-Host&#34;:&#34;a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com&#34;,&#34;X-Forwarded-Path&#34;:&#34;/httpbin-route/get&#34;,&#34;X-Forwarded-Prefix&#34;:&#34;/httpbin-route&#34;,&#34;X-Kong-Request-Id&#34;:&#34;de0e817681d25556c8cfd01fcbaf1645&#34;},&#34;origin&#34;:&#34;192.168.61.217&#34;,&#34;url&#34;:&#34;http://httpbin.kong.svc.cluster.local:8000/get&#34;}
+* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact</code></pre></div>
+<p>If you keep sending new requests to the Runtime Instance, eventually, you&rsquo;ll get a <strong>429</strong> error code, meaning you have reached the consumption rate limiting policy for this Route.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get
+* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 3.12.182.158, 18.216.117.235
+*   Trying 3.12.182.158:80...
+* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+&gt; GET /httpbin-route/get HTTP/1.1
+&gt; Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+&gt; User-Agent: curl/8.7.1
+&gt; Accept: */*
+&gt; 
+* Request completely sent off
+&lt; HTTP/1.1 429 Too Many Requests
+&lt; Date: Tue, 27 May 2025 22:39:15 GMT
+&lt; Content-Type: application/json; charset=utf-8
+&lt; Connection: keep-alive
+&lt; RateLimit-Limit: 3
+&lt; Retry-After: 45
+&lt; RateLimit-Reset: 45
+&lt; RateLimit-Remaining: 0
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; X-RateLimit-Remaining-Minute: 0
+&lt; Content-Length: 92
+&lt; X-Kong-Response-Latency: 0
+&lt; Server: kong/3.10.0.1-enterprise-edition
+&lt; X-Kong-Request-Id: 78a9a40f86bf6f7856ea932ce3bf2029
+&lt; 
+{
+  &#34;message&#34;:&#34;API rate limit exceeded&#34;,
+  &#34;request_id&#34;:&#34;78a9a40f86bf6f7856ea932ce3bf2029&#34;
+* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact
+}</code></pre></div>
+<h3 id="enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</h3>
+<p>Besides scoping a plugin to a Kong Service or Route, we can apply it globally also. When we do it so, all Services ans Routes will enforce the police described by the plugin.</p>
+<p>For example, let&rsquo;s apply the Proxy Caching plugin globally.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+plugins:</li>
+<li>name: proxy-cache
+config:
+strategy: memory
+cache_ttl: 30
+services:</li>
+<li>name: httpbin-service
+tags:
+<ul>
+<li>httpbin-service-route
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:</li>
+<li>name: httpbin-route
+tags:
+<ul>
+<li>httpbin-service-route
+paths:</li>
+<li>/httpbin-route
+plugins:</li>
+<li>name: rate-limiting
+instance_name: rate-limiting1
+config:
+minute: 3
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="submit-the-declaration-1">Submit the declaration</h4>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
+:::</p>
+<p>After testing the configuration reset the Control Plane:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+:::</p>
+<p>Kong-gratulations! have now reached the end of this module by caching API responses. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488581" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488581" defer></script>
+    <script src="/js/theme.js?1754488581" defer></script>
+  </body>
+</html>

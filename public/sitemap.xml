@@ -28,22 +28,70 @@
     <loc>http://localhost:1313/11-konnect-setup/114-elasticity/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/12-api-gateway/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/index.ja/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/index.zh-cn/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/index.zh-tw/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/159-ai-gateway-bedrock/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</loc>

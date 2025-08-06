@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="代理缓存 为 Kong 提供了一个反向代理缓存实现。它根据可配置的响应代码和内容类型以及请求方法缓存响应实体。它可以按消费者或按应用程序接口进行缓存。缓存实体会存储一段可配置的时间，之后对同一资源的后续请求将重新获取并重新存储该资源。缓存实体也可以在过期前通过管理 API 强制清除。
+实施 进入Gateway Service，选择我们之前创建的 Kong Gateway 服务service1。单击Plugins选项卡和 &#43; New Plugin 按钮。在 Select a Plugin 页面，单击 View more，选择 Traffic control插件集合：
+点击 Proxy Caching 插件图标。对于
+Cache Ttl 设置为 30，这意味着插件将清除达到此时间限制的所有数据。 Strategy 选择 memory。插件将使用runtime instance的内存来实现缓存。 点击 Save
+访问 Service 如果再次访问该服务，就会看到一些描述缓存状态的新Header：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::
+* Trying 13.57.65.227:80... * Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0) &gt; GET /route1/get HTTP/1.1 &gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com &gt; User-Agent: curl/7.88.1 &gt; Accept: */* &gt; &lt; HTTP/1.1 200 OK &lt; Content-Type: application/json &lt; Content-Length: 480 &lt; Connection: keep-alive &lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38 &lt; X-Cache-Status: Miss &lt; Server: gunicorn/19.9.0 &lt; Date: Mon, 05 Jun 2023 20:20:08 GMT &lt; Access-Control-Allow-Origin: * &lt; Access-Control-Allow-Credentials: true &lt; X-Kong-Upstream-Latency: 2 &lt; X-Kong-Proxy-Latency: 549 &lt; Via: kong/3.3.0.0-enterprise-edition &lt; { &#34;args&#34;: {}, &#34;headers&#34;: { &#34;Accept&#34;: &#34;*/*&#34;, &#34;Connection&#34;: &#34;keep-alive&#34;, &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34; }, &#34;origin&#34;: &#34;192.168.55.204&#34;, &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34; } * Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact 请注意，第一个请求的X-Cache-Status Header为 Miss，这意味着data plane的缓存中没有任何可用数据，因此必须连接到上游服务httpbin.org。">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="代理缓存 :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="代理缓存 为 Kong 提供了一个反向代理缓存实现。它根据可配置的响应代码和内容类型以及请求方法缓存响应实体。它可以按消费者或按应用程序接口进行缓存。缓存实体会存储一段可配置的时间，之后对同一资源的后续请求将重新获取并重新存储该资源。缓存实体也可以在过期前通过管理 API 强制清除。
+实施 进入Gateway Service，选择我们之前创建的 Kong Gateway 服务service1。单击Plugins选项卡和 &#43; New Plugin 按钮。在 Select a Plugin 页面，单击 View more，选择 Traffic control插件集合：
+点击 Proxy Caching 插件图标。对于
+Cache Ttl 设置为 30，这意味着插件将清除达到此时间限制的所有数据。 Strategy 选择 memory。插件将使用runtime instance的内存来实现缓存。 点击 Save
+访问 Service 如果再次访问该服务，就会看到一些描述缓存状态的新Header：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::
+* Trying 13.57.65.227:80... * Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0) &gt; GET /route1/get HTTP/1.1 &gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com &gt; User-Agent: curl/7.88.1 &gt; Accept: */* &gt; &lt; HTTP/1.1 200 OK &lt; Content-Type: application/json &lt; Content-Length: 480 &lt; Connection: keep-alive &lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38 &lt; X-Cache-Status: Miss &lt; Server: gunicorn/19.9.0 &lt; Date: Mon, 05 Jun 2023 20:20:08 GMT &lt; Access-Control-Allow-Origin: * &lt; Access-Control-Allow-Credentials: true &lt; X-Kong-Upstream-Latency: 2 &lt; X-Kong-Proxy-Latency: 549 &lt; Via: kong/3.3.0.0-enterprise-edition &lt; { &#34;args&#34;: {}, &#34;headers&#34;: { &#34;Accept&#34;: &#34;*/*&#34;, &#34;Connection&#34;: &#34;keep-alive&#34;, &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34; }, &#34;origin&#34;: &#34;192.168.55.204&#34;, &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34; } * Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact 请注意，第一个请求的X-Cache-Status Header为 Miss，这意味着data plane的缓存中没有任何可用数据，因此必须连接到上游服务httpbin.org。">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="代理缓存 :: API Management with Kong Konnect">
+    <meta property="og:description" content="代理缓存 为 Kong 提供了一个反向代理缓存实现。它根据可配置的响应代码和内容类型以及请求方法缓存响应实体。它可以按消费者或按应用程序接口进行缓存。缓存实体会存储一段可配置的时间，之后对同一资源的后续请求将重新获取并重新存储该资源。缓存实体也可以在过期前通过管理 API 强制清除。
+实施 进入Gateway Service，选择我们之前创建的 Kong Gateway 服务service1。单击Plugins选项卡和 &#43; New Plugin 按钮。在 Select a Plugin 页面，单击 View more，选择 Traffic control插件集合：
+点击 Proxy Caching 插件图标。对于
+Cache Ttl 设置为 30，这意味着插件将清除达到此时间限制的所有数据。 Strategy 选择 memory。插件将使用runtime instance的内存来实现缓存。 点击 Save
+访问 Service 如果再次访问该服务，就会看到一些描述缓存状态的新Header：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::
+* Trying 13.57.65.227:80... * Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0) &gt; GET /route1/get HTTP/1.1 &gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com &gt; User-Agent: curl/7.88.1 &gt; Accept: */* &gt; &lt; HTTP/1.1 200 OK &lt; Content-Type: application/json &lt; Content-Length: 480 &lt; Connection: keep-alive &lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38 &lt; X-Cache-Status: Miss &lt; Server: gunicorn/19.9.0 &lt; Date: Mon, 05 Jun 2023 20:20:08 GMT &lt; Access-Control-Allow-Origin: * &lt; Access-Control-Allow-Credentials: true &lt; X-Kong-Upstream-Latency: 2 &lt; X-Kong-Proxy-Latency: 549 &lt; Via: kong/3.3.0.0-enterprise-edition &lt; { &#34;args&#34;: {}, &#34;headers&#34;: { &#34;Accept&#34;: &#34;*/*&#34;, &#34;Connection&#34;: &#34;keep-alive&#34;, &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34; }, &#34;origin&#34;: &#34;192.168.55.204&#34;, &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34; } * Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact 请注意，第一个请求的X-Cache-Status Header为 Miss，这意味着data plane的缓存中没有任何可用数据，因此必须连接到上游服务httpbin.org。">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="代理缓存 :: API Management with Kong Konnect">
+    <meta itemprop="description" content="代理缓存 为 Kong 提供了一个反向代理缓存实现。它根据可配置的响应代码和内容类型以及请求方法缓存响应实体。它可以按消费者或按应用程序接口进行缓存。缓存实体会存储一段可配置的时间，之后对同一资源的后续请求将重新获取并重新存储该资源。缓存实体也可以在过期前通过管理 API 强制清除。
+实施 进入Gateway Service，选择我们之前创建的 Kong Gateway 服务service1。单击Plugins选项卡和 &#43; New Plugin 按钮。在 Select a Plugin 页面，单击 View more，选择 Traffic control插件集合：
+点击 Proxy Caching 插件图标。对于
+Cache Ttl 设置为 30，这意味着插件将清除达到此时间限制的所有数据。 Strategy 选择 memory。插件将使用runtime instance的内存来实现缓存。 点击 Save
+访问 Service 如果再次访问该服务，就会看到一些描述缓存状态的新Header：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::
+* Trying 13.57.65.227:80... * Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0) &gt; GET /route1/get HTTP/1.1 &gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com &gt; User-Agent: curl/7.88.1 &gt; Accept: */* &gt; &lt; HTTP/1.1 200 OK &lt; Content-Type: application/json &lt; Content-Length: 480 &lt; Connection: keep-alive &lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38 &lt; X-Cache-Status: Miss &lt; Server: gunicorn/19.9.0 &lt; Date: Mon, 05 Jun 2023 20:20:08 GMT &lt; Access-Control-Allow-Origin: * &lt; Access-Control-Allow-Credentials: true &lt; X-Kong-Upstream-Latency: 2 &lt; X-Kong-Proxy-Latency: 549 &lt; Via: kong/3.3.0.0-enterprise-edition &lt; { &#34;args&#34;: {}, &#34;headers&#34;: { &#34;Accept&#34;: &#34;*/*&#34;, &#34;Connection&#34;: &#34;keep-alive&#34;, &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34; }, &#34;origin&#34;: &#34;192.168.55.204&#34;, &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34; } * Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact 请注意，第一个请求的X-Cache-Status Header为 Miss，这意味着data plane的缓存中没有任何可用数据，因此必须连接到上游服务httpbin.org。">
+    <meta itemprop="wordCount" content="554">
+    <title>代理缓存 :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488521" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488521" defer></script>
+    <script src="/js/search-lunr.js?1754488521" defer></script>
+    <script src="/js/search.js?1754488521" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488521";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488521" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488521" rel="stylesheet">
+    <link href="/css/theme.css?1754488521" rel="stylesheet">
+    <link href="/css/format-html.css?1754488521" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/150-proxy-caching.zh-cn\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#全局启用-kong-插件">全局启用 Kong 插件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">代理缓存</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html" title="代理快取 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/index.zh-cn/index.html" title="使用案例 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="代理缓存">代理缓存</h1>
+
+<p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">代理缓存</a> 为 Kong 提供了一个反向代理缓存实现。它根据可配置的响应代码和内容类型以及请求方法缓存响应实体。它可以按消费者或按应用程序接口进行缓存。缓存实体会存储一段可配置的时间，之后对同一资源的后续请求将重新获取并重新存储该资源。缓存实体也可以在过期前通过管理 API 强制清除。</p>
+<h4 id="实施">实施</h4>
+<p>进入<strong>Gateway Service</strong>，选择我们之前创建的 Kong Gateway 服务<code>service1</code>。单击<strong>Plugins</strong>选项卡和 <strong>+ New Plugin</strong> 按钮。在 <strong>Select a Plugin</strong> 页面，单击 <strong>View more</strong>，选择 <strong>Traffic control</strong>插件集合：</p>
+<p><a href="#R-image-c3f72259267008c80fb0dcd12de419d6" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c3f72259267008c80fb0dcd12de419d6"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<p>点击 <strong>Proxy Caching</strong> 插件图标。对于</p>
+<ul>
+<li><strong>Cache Ttl</strong> 设置为 <code>30</code>，这意味着插件将清除达到此时间限制的所有数据。</li>
+<li><strong>Strategy</strong> 选择 <code>memory</code>。插件将使用runtime instance的内存来实现缓存。</li>
+</ul>
+<p><a href="#R-image-19f54e968de44206906b3ce1cea3b3d2" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/proxy_cache.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-19f54e968de44206906b3ce1cea3b3d2"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/proxy_cache.png"></a></p>
+<p>点击 <strong>Save</strong></p>
+<h4 id="访问-service">访问 Service</h4>
+<p>如果再次访问该服务，就会看到一些描述缓存状态的新Header：</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/route1/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 480
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn/19.9.0
+&lt; Date: Mon, 05 Jun 2023 20:20:08 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 549
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<p>请注意，第一个请求的<strong>X-Cache-Status</strong> Header为 <strong>Miss</strong>，这意味着data plane的缓存中没有任何可用数据，因此必须连接到上游服务<code>httpbin.org</code>。</p>
+<p>如果我们发送一个新请求，data plane就能满足该请求的所有需求，因此状态为 <strong>Hit</strong>。请注意，延迟时间已大大减少。</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl -v $DATA_PLANE_LB/route1/get
+*   Trying 54.183.108.128:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (54.183.108.128) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; Date: Mon, 05 Jun 2023 20:20:08 GMT
+&lt; X-Cache-Status: Hit
+&lt; Access-Control-Allow-Credentials: true
+&lt; Server: gunicorn/19.9.0
+&lt; Age: 9
+&lt; Access-Control-Allow-Origin: *
+&lt; Content-Length: 480
+&lt; X-Kong-Upstream-Latency: 0
+&lt; X-Kong-Proxy-Latency: 0
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<h4 id="在-kong-route-上启用-kong-插件">在 Kong Route 上启用 Kong 插件</h4>
+<p>现在，我们将为我们的服务定义一个速率限制策略。这次，您将启用<strong>Rate Limiting</strong>插件到Kong Route，而不是到Kong Gateway Service。在这种情况下，为服务定义的新Route将不会启用速率限制插件，除非启用了代理缓存插件。</p>
+<p>返回<strong>Gateway Manager</strong>，选择您的<code>service1</code>。单击<strong>Routes</strong>选项卡并选择<code>route1</code> Route。在<strong>Plugins</strong>选项卡下点击 <strong>+ New Plugin</strong>。</p>
+<p><strong>Rate Limiting</strong> 插件在同一个 <strong>Traffic control</strong> 插件部分。</p>
+<p>在 <strong>Configure plugin: rate limiting</strong> 页面：</p>
+<ul>
+<li><strong>Minute</strong> 设置为 <code>3</code>，这意味着Route每分钟只能被消费3次。</li>
+</ul>
+<p><a href="#R-image-c6b742562d9215dc26388e760557af46" class="lightbox-link"><img alt="rate_limiting" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rate_limiting.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c6b742562d9215dc26388e760557af46"><img alt="rate_limiting" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rate_limiting.png"></a></p>
+<p>点击 <strong>Save</strong></p>
+<h4 id="访问-service-1">访问 Service</h4>
+<p>如果再次访问该服务，您将看到，除了缓存相关的Header，还有描述当前速率限制策略的新Header：</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/route1/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ curl -v $DATA_PLANE_LB/route1/get
+*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 480
+&lt; Connection: keep-alive
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; RateLimit-Limit: 3
+&lt; X-RateLimit-Remaining-Minute: 2
+&lt; RateLimit-Remaining: 2
+&lt; RateLimit-Reset: 57
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn/19.9.0
+&lt; Date: Mon, 05 Jun 2023 20:28:03 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 187
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<p>如果持续向Runtime Instance发送新请求，最终您将收到<strong>429</strong>错误代码，这意味着您已达到该Route的消费速率限制策略。</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ curl -v $DATA_PLANE_LB/route1/get
+*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 429 Too Many Requests
+&lt; Date: Mon, 05 Jun 2023 20:28:15 GMT
+&lt; Content-Type: application/json; charset=utf-8
+&lt; Connection: keep-alive
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; RateLimit-Limit: 3
+&lt; X-RateLimit-Remaining-Minute: 0
+&lt; RateLimit-Remaining: 0
+&lt; Retry-After: 45
+&lt; RateLimit-Reset: 45
+&lt; Content-Length: 41
+&lt; X-Kong-Response-Latency: 0
+&lt; Server: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;message&#34;:&#34;API rate limit exceeded&#34;
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact
+}</code></pre></div>
+<h3 id="全局启用-kong-插件">全局启用 Kong 插件</h3>
+<p>除了将插件作用域限制为Kong Service或Route，我们还可以全局应用它。当我们这样做时，所有服务和Route都将强制执行插件描述的策略。</p>
+<p>例如，让我们全局应用<strong>Proxy Caching</strong>插件。进入<strong>Gateway Manager</strong>菜单选项，选择<code>default</code>运行时组。单击 <strong>Plugins</strong> 菜单选项。您应该会看到我们之前设置的两个插件。注意 <strong>Applied To</strong> 列中每个插件的作用域。</p>
+<p>点击<strong>Proxy Caching</strong>插件的<strong>Actions</strong>并将其删除。</p>
+<p>点击 <strong>+ New Plugin</strong>。再次选择<strong>Proxy Caching</strong>，然后像之前一样进行配置。你应该会看到范围不同的相同插件：</p>
+<p><a href="#R-image-4cf487595f83888c7656b5e5a2834311" class="lightbox-link"><img alt="proxy_cache_global" class="lazy lightbox figure-image" loading="lazy" src="/static/images/proxy_cache_global.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4cf487595f83888c7656b5e5a2834311"><img alt="proxy_cache_global" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/proxy_cache_global.png"></a></p>
+<p>恭喜！本模块已通过缓存 API 响应结束。现在您可以点击<strong>Next</strong>，继续下一个模块。</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html">プロキシキャッシュ</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.ja/index.html">ユースケース</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html">代理快取</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html">代理缓存</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-cn/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-tw/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html">API キー認証</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html">API 密鑰認證</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html">API 密钥认证</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html">レスポンス変換</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488521" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488521" defer></script>
+    <script src="/js/theme.js?1754488521" defer></script>
+  </body>
+</html>

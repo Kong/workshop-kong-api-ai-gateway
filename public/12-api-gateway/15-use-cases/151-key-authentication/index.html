@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="API Key Authentication :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="API Key Authentication :: API Management with Kong Konnect">
+    <meta property="og:description" content="To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="API Key Authentication :: API Management with Kong Konnect">
+    <meta itemprop="description" content="To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.">
+    <meta itemprop="wordCount" content="1310">
+    <title>API Key Authentication :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488581" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488581" defer></script>
+    <script src="/js/search-lunr.js?1754488581" defer></script>
+    <script src="/js/search.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488581";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488581" rel="stylesheet">
+    <link href="/css/theme.css?1754488581" rel="stylesheet">
+    <link href="/css/format-html.css?1754488581" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/151-key-authentication\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/151-key-authentication/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#enable-the-key-authentication-plugin-on-the-kong-route">Enable the Key Authentication Plugin on the Kong Route</a></li>
+        <li><a href="#kong-consumer-policies">Kong Consumer Policies</a></li>
+        <li><a href="#optional-reading">Optional Reading</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">API Key Authentication</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html" title="Proxy Caching (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html" title="Response-Transformer Plugin (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="api-key-authentication">API Key Authentication</h1>
+
+<p>To get started with API Authentication, let&rsquo;s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.</p>
+<p>A Kong Consumer represents a consumer (user or application) of a Service. A Kong Consumer is tightly coupled to an Authentication mechanism the Kong Gateway provides.</p>
+<p><a href="#R-image-bbb950ac3f4933d2014e12b0953ede65" class="lightbox-link"><img alt="kong_consumer" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_consumer.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bbb950ac3f4933d2014e12b0953ede65"><img alt="kong_consumer" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_consumer.png"></a></p>
+<p>Please, check the <a href="https://docs.konghq.com/hub/kong-inc/key-auth/" rel="external" target="_blank"><strong>Key-Auth</strong> plugin</a> plugin and <a href="https://docs.konghq.com/gateway/latest/key-concepts/consumers/" rel="external" target="_blank"><strong>Kong Consumer</strong></a> documentation pages to learn more about them.</p>
+<h3 id="enable-the-key-authentication-plugin-on-the-kong-route">Enable the Key Authentication Plugin on the Kong Route</h3>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; key-auth.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:
+<ul>
+<li>name: httpbin-route
+paths:
+<ul>
+<li>/key-auth-route
+plugins:</li>
+</ul>
+</li>
+<li>name: key-auth
+instance_name: key-auth1
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT key-auth.yaml
+:::</p>
+<h4 id="consume-the-route">Consume the Route</h4>
+<p>Now, if you try the Route, you&rsquo;ll get a specific <strong>401</strong> error code meaning that, since you don&rsquo;t have any API Key injected in your request, you are not allowd to consume it.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -i $DATA_PLANE_LB/key-auth-route/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 401 Unauthorized
+Date: Wed, 28 May 2025 12:05:25 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: Key
+Content-Length: 96
+X-Kong-Response-Latency: 0
+Server: kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: 3bdc0f233664705be8414e1b29ace607
+
+{
+  &#34;message&#34;:&#34;No API key found in request&#34;,
+  &#34;request_id&#34;:&#34;3bdc0f233664705be8414e1b29ace607&#34;
+}</code></pre></div>
+<h4 id="create-a-kong-consumer">Create a Kong Consumer</h4>
+<p>In order to consume the Route we need to create a Kong Consumer. Here&rsquo;s its declaration:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; key-auth.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:
+<ul>
+<li>name: httpbin-route
+paths:
+<ul>
+<li>/key-auth-route
+plugins:</li>
+</ul>
+</li>
+<li>name: key-auth
+instance_name: key-auth1
+consumers:</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;123456&rdquo;
+username: consumer1
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+<p>Submit the declaration
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT key-auth.yaml
+:::</p>
+<h4 id="consume-the-route-with-the-api-key">Consume the Route with the API Key</h4>
+<p>Now, you need to inject the Key you&rsquo;ve just created, as a header, in your requests. Using HTTPie, you can do it easily like this:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 617
+Connection: keep-alive
+Server: gunicorn
+Date: Wed, 28 May 2025 12:07:57 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 5
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: 4b58c81d7e6d937ec596a22f2635834e</code></pre></div>
+<p>Of course, if you inject a wrong key, you get a specific error like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:12&#39;
+HTTP/1.1 401 Unauthorized
+Date: Wed, 28 May 2025 12:08:38 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: Key
+Content-Length: 81
+X-Kong-Response-Latency: 1
+Server: kong/3.10.0.2-enterprise-edition
+X-Kong-Request-Id: 325bee25eda87c5358c3e06334f07d74</code></pre></div>
+<p><strong>NOTE</strong></p>
+<ul>
+<li>The header has to have the API Key name, which is, in our case, <code>apikey</code>. That was the default name provided by Konnect when you enabled the <strong>Key Authentication</strong> on the Kong Route. You can change the plugin configuration, if you will.</li>
+</ul>
+<h3 id="kong-consumer-policies">Kong Consumer Policies</h3>
+<p>With the API Key policy in place, we can control the incoming requests. However, the policies implemented by the other plugins are the same regardless the consumer.</p>
+<p>It&rsquo;s important then to be able to define specific policies for each one of these consumers. For example, it would be great to define Rate Limiting policies for different consumers like this:</p>
+<ul>
+<li>consumer1:
+<ul>
+<li>apikey = 123456</li>
+<li>rate limiting policy = 5 rpm</li>
+</ul>
+</li>
+<li>consumer2:
+<ul>
+<li>apikey = 987654</li>
+<li>rate limiting policy = 8 rpm</li>
+</ul>
+</li>
+</ul>
+<p>Doing that, the Data Plane is capable to not just protect the Route but to identify the consumer based on the key injected to enforce specific policies to the consumer.</p>
+<p>For this section we&rsquo;re implementing a Rate Limiting policy. Keep in mind that a Consumer might have other plugins also enabled such as <a href="https://docs.konghq.com/hub/kong-inc/request-transformer/" rel="external" target="_blank">Request Transformer</a>, <a href="https://docs.konghq.com/hub/kong-inc/tcp-log/" rel="external" target="_blank">TCP Log</a>, etc.</p>
+<h4 id="new-consumer">New Consumer</h4>
+<p>Create the second <code>consumer2</code>, just like you did with the first one, with the <code>987654</code> key.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; key-auth.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:
+<ul>
+<li>name: httpbin-route
+paths:
+<ul>
+<li>/key-auth-route
+plugins:</li>
+</ul>
+</li>
+<li>name: key-auth
+instance_name: key-auth1
+consumers:</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;123456&rdquo;
+username: consumer1</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;987654&rdquo;
+username: consumer2
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+<p>Submit the declaration
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT key-auth.yaml
+:::</p>
+<p>If you will, you can inject both keys to your requests.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<p>or</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:987654&rsquo;
+:::</p>
+<h4 id="consumers-policy">Consumers&rsquo; Policy</h4>
+<p>Now let&rsquo;s enhance the plugins declaration enabling the Rate Limiting plugin to each one of our consumers.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; key-auth.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:
+<ul>
+<li>name: httpbin-route
+paths:
+<ul>
+<li>/key-auth-route
+plugins:</li>
+</ul>
+</li>
+<li>name: key-auth
+instance_name: key-auth1
+consumers:</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;123456&rdquo;
+username: consumer1
+plugins:</li>
+<li>name: rate-limiting
+instance_name: rate-limiting1
+config:
+minute: 5</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;987654&rdquo;
+username: consumer2
+plugins:</li>
+<li>name: rate-limiting
+instance_name: rate-limiting2
+config:
+minute: 8
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+<p>Submit the declaration
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT key-auth.yaml
+:::</p>
+<h4 id="consumer-the-route-using-different-api-keys">Consumer the Route using different API Keys.</h4>
+<p>First of all let&rsquo;s consume the Route with the Consumer1&rsquo;s API Key:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<p><strong>Expected Output</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 601
+Connection: keep-alive
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 4
+RateLimit-Reset: 35
+RateLimit-Remaining: 4
+RateLimit-Limit: 5
+Server: gunicorn
+Date: Fri, 09 May 2025 13:04:25 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: 7b9f662e2e0d2f562b12535227ff024b</code></pre></div>
+<p>Now, let&rsquo;s consume it with the Consumer2&rsquo;s API Key. As you can see the Data Plane is processing the Rate Limiting processes independently.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<p><strong>Expected Output</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 617
+Connection: keep-alive
+RateLimit-Limit: 5
+RateLimit-Reset: 50
+RateLimit-Remaining: 4
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 4
+Server: gunicorn
+Date: Wed, 28 May 2025 12:15:10 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: d927f9253a57be7775bdd67e0e8f0328</code></pre></div>
+<p>If we keep sending requests using the first API Key, eventually, as expected, we&rsquo;ll get an error code:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<p><strong>Expected Output</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 429 Too Many Requests
+Date: Wed, 28 May 2025 12:15:28 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+RateLimit-Limit: 5
+Retry-After: 32
+RateLimit-Reset: 32
+RateLimit-Remaining: 0
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 0
+Content-Length: 92
+X-Kong-Response-Latency: 0
+Server: kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: cf9e1a060a3d68737a805a732922ac19</code></pre></div>
+<p>However, the second API Key is still allowed to consume the Kong Route:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/key-auth-route/get -H &lsquo;apikey:987654&rsquo;
+:::</p>
+<p><strong>Expected Output</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 617
+Connection: keep-alive
+RateLimit-Limit: 8
+RateLimit-Reset: 26
+RateLimit-Remaining: 6
+X-RateLimit-Limit-Minute: 8
+X-RateLimit-Remaining-Minute: 6
+Server: gunicorn
+Date: Wed, 28 May 2025 12:15:34 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: aaa3c84c4226d21e1c178e598cfb791e</code></pre></div>
+<p>Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click <strong>Next</strong> to proceed with the next module.</p>
+<h3 id="optional-reading">Optional Reading</h3>
+<p>Applying Kong Plugins on Services, Routes or Globally helps us to implement an extensive list of policies in the API Gateway layer. However, so far, we are not controlling who is sending the requests to the Data Plane. That is, anyone who has the Runtime Instance ELB address is capable to send requests to it and consumer the Services.</p>
+<p>API Gateway Authentication is an important way to control the data that is allowed to be transmitted using your APIs. Basically, it checks that a particular consumer has permission to access the API, using a predefined set of credentials.</p>
+<p>Kong Gateway has a library of plugins that provide simple ways to implement the best known and most widely used methods of API gateway authentication. Here are some of the commonly used ones:</p>
+<ul>
+<li>Basic Authentication</li>
+<li>Key Authentication</li>
+<li>OAuth 2.0 Authentication</li>
+<li>LDAP Authentication</li>
+<li>OpenID Connect</li>
+</ul>
+<p>Kong Plugin Hub provides documentation about all <a href="https://docs.konghq.com/hub/#authentication" rel="external" target="_blank">Authentication</a> based plugins. Refer to the following link to read more about <a href="https://konghq.com/learning-center/api-gateway/api-gateway-authentication" rel="external" target="_blank">API Gateway Authentication</a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488581" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488581" defer></script>
+    <script src="/js/theme.js?1754488581" defer></script>
+  </body>
+</html>

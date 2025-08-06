@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
+When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AI Semantic Cache plugin :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
+When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="AI Semantic Cache plugin :: API Management with Kong Konnect">
+    <meta property="og:description" content="Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
+When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong AI Gateway">
+    <meta itemprop="name" content="AI Semantic Cache plugin :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
+When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
+    <meta itemprop="wordCount" content="2026">
+    <title>AI Semantic Cache plugin :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488678" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488678" defer></script>
+    <script src="/js/search-lunr.js?1754488678" defer></script>
+    <script src="/js/search.js?1754488678" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488678";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488678" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488678" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488678" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488678" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488678" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488678" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488678" rel="stylesheet">
+    <link href="/css/theme.css?1754488678" rel="stylesheet">
+    <link href="/css/format-html.css?1754488678" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/16-ai-gateway\/17-use-cases\/156-semantic-cache\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#redis-as-a-vector-database">Redis as a Vector database</a></li>
+        <li><a href="#apply-the-semantic-cache-plugin">Apply the Semantic Cache plugin</a></li>
+        <li><a href="#check-redis">Check Redis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Semantic Cache plugin</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html" title="AI Request and Response Transfomer plugins (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/157-apikey/index.html" title="Key Auth Plugin (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 16-ai-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ai-semantic-cache-plugin">AI Semantic Cache plugin</h1>
+
+<p>Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.</p>
+<p>When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.</p>
+<p>For example, if a user asks, “how to integrate our API with a mobile app” and later asks, “what are the steps for connecting our API to a smartphone application?”, the system understands that both questions are asking for the same information. It can then retrieve and reuse previously cached responses, even if the wording is different. This approach reduces processing time and speeds up responses.</p>
+<p>The <strong>AI Semantic Cache</strong> plugin may not be ideal for you if:</p>
+<ul>
+<li>If you have limited hardware or budget. Storing semantic vectors and running similarity searches require a lot of storage and computing power, which could be an issue.</li>
+<li>If your data doesn’t rely on semantics, or exact matches work fine, semantic caching may offer little benefit. Traditional or keyword-based caching might be more efficient.</li>
+</ul>
+<h3 id="how-it-works">How it works</h3>
+<p>The diagram below illustrates the semantic caching mechanism implemented by the <strong>AI Semantic Cache</strong> plugin.</p>
+<p><a href="#R-image-66d0641d521ca8da056109e30fa21ed0" class="lightbox-link"><img alt="semantic_cache_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_cache_plugin.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-66d0641d521ca8da056109e30fa21ed0"><img alt="semantic_cache_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_cache_plugin.png"></a></p>
+<p>The process involves three parts: request handling, embedding generation, and response caching.</p>
+<ul>
+<li>First, a user starts a chat request with the LLM. The <strong>AI Semantic Cache</strong> plugin queries the vector database to see if there are any semantically similar requests that have already been cached. If there is a match, the vector database returns the cached response to the user.</li>
+<li>If there isn’t a match, the <strong>AI Semantic Cache</strong> plugin prompts the embeddings LLM to generate an embedding for the response.</li>
+<li>The <strong>AI Semantic Cache</strong> plugin uses a vector database and cache to store responses to requests. The plugin can then retrieve a cached response if a new request matches the semantics of a previous request, or it can tell the vector database to store a new response if there are no matches.</li>
+</ul>
+<p>With the <strong>AI Semantic Cache plugin</strong>, you can configure a cache of your choice to store the responses from the LLM. Currently, the plugin supports <strong>Redis</strong> as a cache.</p>
+<h3 id="redis-as-a-vector-database">Redis as a Vector database</h3>
+<p>We are going to configure the <strong>AI Semantic Cache</strong> to consume the Redis deployment available in the EKS Cluster. Redis, this time, will play the Vector database role.</p>
+<h3 id="apply-the-semantic-cache-plugin">Apply the Semantic Cache plugin</h3>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; ai-semantic-cache.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_info:
+select_tags:</p>
+<ul>
+<li>semantic-cache
+_info:
+select_tags:</li>
+<li>bedrock
+_konnect:
+control_plane_name: kong-aws
+services:</li>
+<li>name: service1
+host: localhost
+port: 32000
+routes:
+<ul>
+<li>name: route1
+paths:
+<ul>
+<li>/bedrock-route
+plugins:</li>
+<li>name: ai-proxy
+instance_name: ai-proxy-bedrock-route
+enabled: true
+config:
+auth:
+param_name: &ldquo;allow_override&rdquo;
+param_value: &ldquo;false&rdquo;
+param_location: &ldquo;body&rdquo;
+route_type: llm/v1/chat
+model:
+provider: bedrock
+options:
+bedrock:
+aws_region: us-west-2</li>
+<li>name: ai-semantic-cache
+instance_name: ai-semantic-cache-bedrock
+enabled: true
+config:
+embeddings:
+auth:
+param_name: &ldquo;allow_override&rdquo;
+param_value: &ldquo;false&rdquo;
+param_location: &ldquo;body&rdquo;
+model:
+provider: bedrock
+name: &ldquo;amazon.titan-embed-text-v2:0&rdquo;
+options:
+bedrock:
+aws_region: us-west-2
+vectordb:
+dimensions: 1024
+distance_metric: cosine
+strategy: redis
+threshold: 0.2
+redis:
+host: &ldquo;redis-stack.redis.svc.cluster.local&rdquo;
+port: 6379
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Apply the declaration with decK:
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+deck gateway sync &ndash;konnect-token $PAT ai-semantic-cache.yaml
+:::</p>
+<h3 id="check-redis">Check Redis</h3>
+<p>Before sending request, you can scan the Redis database:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
+:::</p>
+<h5 id="1st-request">1st Request</h5>
+<p>Since we don&rsquo;t have any cached data, the first request is going to return &ldquo;Miss&rdquo;:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -i -X POST <br>
+&ndash;url $DATA_PLANE_LB/bedrock-route <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;data &lsquo;{
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;Who is Jimi Hendrix?&rdquo;
+}
+],
+&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
+}&rsquo;
+:::</p>
+<ul>
+<li>Expected response</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Connection: keep-alive
+X-Cache-Status: Miss
+Date: Fri, 18 Apr 2025 14:41:32 GMT
+Content-Length: 2703
+x-amzn-RequestId: 08a965e0-60b4-457f-aacd-273cb6940988
+X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
+X-Kong-Upstream-Latency: 3440
+X-Kong-Proxy-Latency: 97
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+Server: kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: 80eeaf284d891a588e55fb22b95f814b
+
+{&#34;usage&#34;:{&#34;completion_tokens&#34;:557,&#34;prompt_tokens&#34;:5,&#34;total_tokens&#34;:562},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Jimi Hendrix was an American rock guitarist, singer, and songwriter widely regarded as one of the greatest and most influential guitarists in the history of popular music. Born on November 27, 1942, in Seattle, Washington, he became a pivotal figure in the 1960s psychedelic and hard rock movements.\n\n### Early Life and Career\nHendrix&#39;s interest in music began at a young age. He started playing guitar at 15 and later served in the U.S. Army, where he was a member of the Army band. After leaving the Army, he moved to Nashville, Tennessee, and then to New York City, where he played in various R&amp;B bands.\n\n### Breakthrough\nHendrix moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell. The band quickly gained popularity in Europe, and their debut album, \&#34;Are You Experienced,\&#34; released in 1967, brought them international acclaim.\n\n### Musical Innovation\nHendrix was known for his innovative and highly influential guitar playing. He used feedback, distortion, and other effects to create a new sound that pushed the boundaries of rock music. His performances were characterized by his virtuosic technique, including playing the guitar behind his back, between his legs, and with his teeth.\n\n### Notable Works\n- **\&#34;Are You Experienced\&#34; (1967)**: The band&#39;s debut album, featuring hits like \&#34;Purple Haze\&#34; and \&#34;Hey Joe.\&#34;\n- **\&#34;Axis: Bold as Love\&#34; (1967)**: Known for its complex compositions and innovative use of studio effects.\n- **\&#34;Electric Ladyland\&#34; (1968)**: A double album that showcased the band&#39;s experimental approach and included the iconic track \&#34;Voodoo Child (Slight Return).\&#34;\n- **Woodstock (1969)**: His performance at the Woodstock Festival, particularly his rendition of \&#34;The Star-Spangled Banner,\&#34; is considered one of the most legendary moments in rock history.\n\n### Legacy\nHendrix&#39;s influence extends far beyond his lifetime. He has inspired countless musicians across various genres, and his innovative approach to the guitar has left a lasting impact on rock music. He died on September 18, 1970, at the age of 27, but his music continues to be celebrated and studied.\n\n### Honors and Recognition\nHendrix has been inducted into multiple halls of fame, including the Rock and Roll Hall of Fame and the UK Music Hall of Fame. He has received numerous awards and accolades, including Grammy Awards, and is often ranked among the greatest guitarists of all time by various music publications.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;}</code></pre></div>
+<h5 id="check-redis-again">Check Redis again</h5>
+<p>The Redis database has an entry now:
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
+:::</p>
+<ul>
+<li>Expected response</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf&#34;</code></pre></div>
+<h5 id="2nd-request">2nd Request</h5>
+<p>The Semantic Cache plugin will use the cached data for similar requests:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -i -X POST <br>
+&ndash;url $DATA_PLANE_LB/bedrock-route <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;data &lsquo;{
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;Tell me more about Jimi Hendrix&rdquo;
+}
+],
+&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
+}&rsquo;
+:::</p>
+<ul>
+<li>Expected response</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Date: Fri, 18 Apr 2025 14:44:21 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+X-Cache-Status: Hit
+Age: 3
+X-Cache-Key: kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d
+X-Cache-Ttl: 297
+Content-Length: 3653
+X-Kong-Response-Latency: 73
+Server: kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: deab9b016f23907e1b737a0d8fea6a5d
+
+{&#34;usage&#34;:{&#34;completion_tokens&#34;:731,&#34;prompt_tokens&#34;:6,&#34;total_tokens&#34;:737},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Jimi Hendrix was an iconic American rock guitarist, singer, and songwriter, widely regarded as one of the greatest musicians in the history of rock music. Born on November 27, 1942, in Seattle, Washington, Hendrix became a pivotal figure in the 1960s counterculture and is celebrated for his groundbreaking guitar techniques and innovative approach to music.\n\n### Early Life and Career\nHendrix&#39;s early years were marked by a deep interest in music, which he pursued despite facing racial discrimination. He began playing in local bands in the mid-1960s before moving to New York City, where he played in various R&amp;B and soul bands. His big break came when he moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell.\n\n### The Jimi Hendrix Experience\nThe Jimi Hendrix Experience quickly gained a reputation for their electrifying live performances. Their debut album, \&#34;Are You Experienced,\&#34; released in 1967, showcased Hendrix&#39;s innovative guitar playing, characterized by his use of feedback, distortion, and other effects to create a unique sound. Tracks like \&#34;Purple Haze\&#34; and \&#34;Hey Joe\&#34; became instant classics.\n\n### Iconic Performances\nHendrix&#39;s performances at major music festivals, such as the Monterey Pop Festival (1967) and Woodstock (1969), are legendary. His rendition of \&#34;The Star-Spangled Banner\&#34; at Monterey, where he played the song with feedback and distortion, remains one of the most iconic moments in rock history. At Woodstock, his performance was a highlight, featuring songs like \&#34;Voodoo Child (Slight Return)\&#34; and \&#34;Purple Haze.\&#34;\n\n### Innovations and Techniques\nHendrix revolutionized the role of the electric guitar in rock music. He was a master of using the guitar as a percussive and melodic instrument, often incorporating elements of blues, jazz, and psychedelic rock. His techniques included playing with his teeth and behind his back, using the guitar as a percussive instrument, and employing innovative studio effects.\n\n### Studio Albums\nHendrix released several influential albums during his career, including:\n- **\&#34;Are You Experienced\&#34; (1967)**: The debut album that introduced his innovative sound.\n- **\&#34;Axis: Bold as Love\&#34; (1967)**: Featuring hits like \&#34;Castles Made of Sand\&#34; and \&#34;Little Wing.\&#34;\n- **\&#34;Electric Ladyland\&#34; (1968)**: A double album that showcased the band&#39;s studio experimentation and live performances.\n- **\&#34;Band of Gypsys\&#34; (1969)**: Recorded with Billy Cox and Buddy Miles, it featured a more raw and powerful sound.\n\n### Legacy\nHendrix&#39;s influence extends far beyond his lifetime. His innovative approach to guitar playing has inspired countless musicians across genres. He was inducted into the Rock and Roll Hall of Fame in 1990 and the UK Music Hall of Fame in 2005. His life and music continue to be celebrated, with numerous documentaries, biographies, and compilations dedicated to his work.\n\n### Personal Life and Death\nHendrix&#39;s personal life was marked by struggles with addiction and mental health issues. He died on September 18, 1970, in London, at the age of 27. His death was ruled an accidental overdose, but it remains a subject of much speculation and debate.\n\nJimi Hendrix&#39;s legacy as a musical innovator and cultural icon endures, and his contributions to rock music continue to be celebrated and studied.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;,&#34;id&#34;:&#34;7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d&#34;}</code></pre></div>
+<h5 id="3rd-request">3rd Request</h5>
+<p>As expected, for a non-related request, the AI Gateway will hit the LLM to satisfy the query:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -i -X POST <br>
+&ndash;url $DATA_PLANE_LB/bedrock-route <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;data &lsquo;{
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;Who was Joseph Conrad?&rdquo;
+}
+],
+&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
+}&rsquo;
+:::</p>
+<ul>
+<li>Expected response</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Connection: keep-alive
+X-Cache-Status: Miss
+Date: Fri, 18 Apr 2025 14:45:30 GMT
+Content-Length: 1465
+x-amzn-RequestId: e23f122b-b4d7-4164-a417-1d9f20e82289
+X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
+X-Kong-Upstream-Latency: 1647
+X-Kong-Proxy-Latency: 143
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+Server: kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: 6025a75733a29f47b2c7fd56c0c4771f
+
+{&#34;usage&#34;:{&#34;completion_tokens&#34;:296,&#34;prompt_tokens&#34;:5,&#34;total_tokens&#34;:301},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Joseph Conrad (born Józef Teodor Konrad Korzeniowski) was a renowned Polish-British writer born on December 3, 1857, in Berdichev, then part of the Russian Empire (now Ukraine), and died on August 3, 1924, in Bishopsbourne, England. \n\nConrad is best known for his novels and short stories that explore themes of imperialism, existentialism, and the complexities of the human psyche. His works often feature seafaring settings and characters, reflecting his own experiences as a sailor. Some of his most famous works include:\n\n1. **\&#34;Heart of Darkness\&#34;** (1899) - A novella that critiques the brutal realities of colonialism in the Congo Free State.\n2. **\&#34;Lord Jim\&#34;** (1900) - A novel that delves into themes of honor, failure, and redemption.\n3. **\&#34;Nostromo\&#34;** (1904) - A novel set in the fictional South American country of Costaguana, exploring themes of imperialism and the corrupting influence of power.\n4. **\&#34;The Secret Agent\&#34;** (1907) - A novel that examines the nature of terrorism and the psychology of the individual.\n\nConrad&#39;s writing is characterized by its complex narrative structures, rich symbolism, and deep psychological insight. He is considered one of the greatest novelists in the English language and a precursor to modernist literature.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;}</code></pre></div>
+<h5 id="check-redis-again-1">Check Redis again</h5>
+<p>Redis database has two entries now:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
+:::</p>
+<ul>
+<li>Expected response</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf&#34;
+&#34;kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:60afd78b21ec82cf4d2264efd0b6faf081edd85c287f272e41508e5ddcd7dc50&#34;</code></pre></div>
+<p>Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway-bedrock/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway-bedrock/index.html">AI with Amazon Bedrock</a></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomer plugins</a></li>
+            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache plugin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth Plugin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced plugin</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/170-rag/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/170-rag/index.html">RAG - Retrieval-Augmented Generation</a></li></ul></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488678" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488678" defer></script>
+    <script src="/js/theme.js?1754488678" defer></script>
+  </body>
+</html>

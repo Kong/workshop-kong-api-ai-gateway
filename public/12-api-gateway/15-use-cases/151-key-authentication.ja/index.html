@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Kong Consumer は API にアクセスするユーザーまたはアプリケーションを表します。Kong Consumer は、Kong Gateway が提供する認証メカニズムと緊密に連携しています。
+API 認証と Kong Consumer を利用するために、まずは基本的な Key Authentication の仕組みを実装してみましょう。API キーは Konnect が提供する基本的なセキュリティメカニズムの1つです。API を利用するには、Consumer はリクエストのヘッダーに事前に作成した API Key を挿入する必要があります。Kong Gateway が API キーを認識すると、API の利用が許可されます。
+Kong Route で Key Authentication プラグインを有効化する 簡単かつ具体的に試せるように、Route レベルで Key Authentication プラグインを有効にしてみましょう。
+Gateway Manager から、route1 Route の設定画面に移動します。Plugins タブで、&#43; New Plugin ボタンをクリックし、Authentication セクション内の View more をクリックします。
+Key Authentication プラグインをクリックします。デフォルトの Key Names の設定は apikey になっていることに注意してください。すべてデフォルト値のまま、Save をクリックします。
+既存の Rate Limiting と新しい Key Authentication の2つのプラグインが有効になったと表示されるはずです：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="API キー認証 :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Kong Consumer は API にアクセスするユーザーまたはアプリケーションを表します。Kong Consumer は、Kong Gateway が提供する認証メカニズムと緊密に連携しています。
+API 認証と Kong Consumer を利用するために、まずは基本的な Key Authentication の仕組みを実装してみましょう。API キーは Konnect が提供する基本的なセキュリティメカニズムの1つです。API を利用するには、Consumer はリクエストのヘッダーに事前に作成した API Key を挿入する必要があります。Kong Gateway が API キーを認識すると、API の利用が許可されます。
+Kong Route で Key Authentication プラグインを有効化する 簡単かつ具体的に試せるように、Route レベルで Key Authentication プラグインを有効にしてみましょう。
+Gateway Manager から、route1 Route の設定画面に移動します。Plugins タブで、&#43; New Plugin ボタンをクリックし、Authentication セクション内の View more をクリックします。
+Key Authentication プラグインをクリックします。デフォルトの Key Names の設定は apikey になっていることに注意してください。すべてデフォルト値のまま、Save をクリックします。
+既存の Rate Limiting と新しい Key Authentication の2つのプラグインが有効になったと表示されるはずです：">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="API キー認証 :: API Management with Kong Konnect">
+    <meta property="og:description" content="Kong Consumer は API にアクセスするユーザーまたはアプリケーションを表します。Kong Consumer は、Kong Gateway が提供する認証メカニズムと緊密に連携しています。
+API 認証と Kong Consumer を利用するために、まずは基本的な Key Authentication の仕組みを実装してみましょう。API キーは Konnect が提供する基本的なセキュリティメカニズムの1つです。API を利用するには、Consumer はリクエストのヘッダーに事前に作成した API Key を挿入する必要があります。Kong Gateway が API キーを認識すると、API の利用が許可されます。
+Kong Route で Key Authentication プラグインを有効化する 簡単かつ具体的に試せるように、Route レベルで Key Authentication プラグインを有効にしてみましょう。
+Gateway Manager から、route1 Route の設定画面に移動します。Plugins タブで、&#43; New Plugin ボタンをクリックし、Authentication セクション内の View more をクリックします。
+Key Authentication プラグインをクリックします。デフォルトの Key Names の設定は apikey になっていることに注意してください。すべてデフォルト値のまま、Save をクリックします。
+既存の Rate Limiting と新しい Key Authentication の2つのプラグインが有効になったと表示されるはずです：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="API キー認証 :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Kong Consumer は API にアクセスするユーザーまたはアプリケーションを表します。Kong Consumer は、Kong Gateway が提供する認証メカニズムと緊密に連携しています。
+API 認証と Kong Consumer を利用するために、まずは基本的な Key Authentication の仕組みを実装してみましょう。API キーは Konnect が提供する基本的なセキュリティメカニズムの1つです。API を利用するには、Consumer はリクエストのヘッダーに事前に作成した API Key を挿入する必要があります。Kong Gateway が API キーを認識すると、API の利用が許可されます。
+Kong Route で Key Authentication プラグインを有効化する 簡単かつ具体的に試せるように、Route レベルで Key Authentication プラグインを有効にしてみましょう。
+Gateway Manager から、route1 Route の設定画面に移動します。Plugins タブで、&#43; New Plugin ボタンをクリックし、Authentication セクション内の View more をクリックします。
+Key Authentication プラグインをクリックします。デフォルトの Key Names の設定は apikey になっていることに注意してください。すべてデフォルト値のまま、Save をクリックします。
+既存の Rate Limiting と新しい Key Authentication の2つのプラグインが有効になったと表示されるはずです：">
+    <meta itemprop="wordCount" content="645">
+    <title>API キー認証 :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488529" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488529" defer></script>
+    <script src="/js/search-lunr.js?1754488529" defer></script>
+    <script src="/js/search.js?1754488529" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488529";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488529" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488529" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488529" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488529" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488529" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488529" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488529" rel="stylesheet">
+    <link href="/css/theme.css?1754488529" rel="stylesheet">
+    <link href="/css/format-html.css?1754488529" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/151-key-authentication.ja\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#kong-consumer-ポリシー">Kong Consumer ポリシー</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">API キー認証</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html" title="API Key Authentication (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html" title="API 密鑰認證 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="api-キー認証">API キー認証</h1>
+
+<p>Kong Consumer は API にアクセスするユーザーまたはアプリケーションを表します。Kong Consumer は、Kong Gateway が提供する認証メカニズムと緊密に連携しています。</p>
+<p>API 認証と Kong Consumer を利用するために、まずは基本的な Key Authentication の仕組みを実装してみましょう。API キーは Konnect が提供する基本的なセキュリティメカニズムの1つです。API を利用するには、Consumer はリクエストのヘッダーに事前に作成した API Key を挿入する必要があります。Kong Gateway が API キーを認識すると、API の利用が許可されます。</p>
+<h4 id="kong-route-で-key-authentication-プラグインを有効化する">Kong Route で Key Authentication プラグインを有効化する</h4>
+<p>簡単かつ具体的に試せるように、Route レベルで Key Authentication プラグインを有効にしてみましょう。</p>
+<p><strong>Gateway Manager</strong> から、<code>route1</code> Route の設定画面に移動します。<strong>Plugins</strong> タブで、<strong>+ New Plugin</strong> ボタンをクリックし、<strong>Authentication</strong> セクション内の <strong>View more</strong> をクリックします。</p>
+<p><strong>Key Authentication</strong> プラグインをクリックします。デフォルトの <strong>Key Names</strong> の設定は <code>apikey</code> になっていることに注意してください。すべてデフォルト値のまま、<strong>Save</strong> をクリックします。</p>
+<p>既存の <strong>Rate Limiting</strong> と新しい <strong>Key Authentication</strong> の2つのプラグインが有効になったと表示されるはずです：</p>
+<p><a href="#R-image-60d6ae52f566fac93ec8a4b75b6b7070" class="lightbox-link"><img alt="key_authentication" class="lazy lightbox figure-image" loading="lazy" src="/static/images/key_authentication.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-60d6ae52f566fac93ec8a4b75b6b7070"><img alt="key_authentication" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/key_authentication.png"></a></p>
+<h4 id="route-にアクセスする">Route にアクセスする</h4>
+<p>再度 Route にアクセスしてみると、<strong>401</strong>エラーコードが表示されます。これは、リクエストに API キーが挿入されていないため、API の利用が許可されていない状態です。</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl $DATA_PLANE_LB/route1/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 401 Unauthorized
+Date: Mon, 05 Jun 2023 20:41:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+WWW-Authenticate: Key realm=&#34;kong&#34;
+Content-Length: 45
+X-Kong-Response-Latency: 1
+Server: kong/3.3.0.0-enterprise-edition</code></pre></div>
+<h4 id="kong-consumer-の作成">Kong Consumer の作成</h4>
+<p><strong>Gateway Manager</strong> に移動し、<code>default</code> Runtime Group を選択します。<strong>Consumers</strong> サブメニューをクリックし、<strong>+ New Consumer</strong> ボタンをクリックします。</p>
+<p><strong>Username</strong> に <strong>consumer1</strong> と入力します。これは認証情報ではなく、Kong Gateway 管理者が特定の Kong Consumer を参照するために利用するものです。</p>
+<p><a href="#R-image-9415eb77c65a444b52645b87aee45e04" class="lightbox-link"><img alt="consumer" class="lazy lightbox figure-image" loading="lazy" src="/static/images/consumer.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9415eb77c65a444b52645b87aee45e04"><img alt="consumer" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/consumer.png"></a></p>
+<p>保存してください。<strong>Consumer</strong> ページにリダイレクトされたら、先ほど作成した <code>consumer1</code> をクリックし、<strong>Credentials</strong> タブを開きます。タブ内で、<strong>Key Authentication</strong> を選択し、<strong>+ New Key Auth Credential</strong> ボタンをクリックします。</p>
+<p><strong>Create Key Auth Credential</strong> ページで、任意のキーを入力できます。<strong>Key</strong> フィールドを空にすると、Konnect がランダムなキーを生成します。今回はキーに <code>123456</code> と入力し、保存します。</p>
+<p><strong>Key Authentication</strong> オプションをもう一度クリックすると、最初の認証情報を持つ Consumer が表示されるはずです。</p>
+<p><a href="#R-image-f90c8745682e5a53bfa0ca74e30818b5" class="lightbox-link"><img alt="consumer_key" class="lazy lightbox figure-image" loading="lazy" src="/static/images/consumer_key.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f90c8745682e5a53bfa0ca74e30818b5"><img alt="consumer_key" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/consumer_key.png"></a></p>
+<h4 id="api-キーを利用して-route-にアクセスする">API キーを利用して Route にアクセスする</h4>
+<p>さて、先ほど作成した Key をヘッダーとしてリクエストに挿入してみましょう。cURL を使えば、次のように簡単にできます：</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/route1/get &ndash;head -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 705
+Connection: keep-alive
+X-RateLimit-Remaining-Minute: 2
+RateLimit-Remaining: 2
+RateLimit-Limit: 3
+RateLimit-Reset: 41
+X-RateLimit-Limit-Minute: 3
+X-Cache-Key: 1789b8a51c844bebf5989ee69ef91f7311e467bdd517e60dd97a451982d2b2bc
+X-Cache-Status: Miss
+Date: Mon, 06 Feb 2023 13:46:20 GMT
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 305
+Via: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p>もちろん、不正なキーを使用すると、次のようなエラーが発生します：</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/route1/get --head -H &#39;apikey:12&#39;
+HTTP/1.1 401 Unauthorized
+Date: Mon, 06 Feb 2023 13:47:34 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Content-Length: 52
+X-Kong-Response-Latency: 0
+Server: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p><strong>注意</strong></p>
+<ul>
+<li>ヘッダーには API キーの名前を指定する必要があり、デフォルトは <code>apikey</code> となります。これは、Kong Route で <strong>Key Authentication</strong> を有効にしたときに Konnect が提供したデフォルトの名前です。プラグインの設定でこのキーの名前を変更することができます。</li>
+<li>すでにお気づきかもしれませんが、既存の <strong>Proxy Cache</strong> および <strong>Rate Limiting</strong> プラグインによって実装された他のポリシーは、まだ有効になっている点に注目してください。</li>
+</ul>
+<h3 id="kong-consumer-ポリシー">Kong Consumer ポリシー</h3>
+<p>API Key ポリシーを利用すると、受信するリクエストを制御することができます。ただし、他のプラグインによって実装されたポリシーは、Consumer に関係なく同じままです。</p>
+<p>そのため、Consumer ごとに特定のポリシーを定義できるという点が重要です。例えば、以下のように異なる Consumer に対して流量制限ポリシーが定義できると便利です：</p>
+<ul>
+<li>consumer1:
+<ul>
+<li>apikey = 123456</li>
+<li>rate limiting policy = 5 rpm</li>
+</ul>
+</li>
+<li>consumer2:
+<ul>
+<li>apikey = 987654</li>
+<li>rate limiting policy = 8 rpm</li>
+</ul>
+</li>
+</ul>
+<p>これで、Data Planeは Route を保護するだけでなく、使われている API キーに基づいて Consumer を特定し、Consumer 固有のポリシーを適用することができます。</p>
+<p>このセクションでは、流量制限ポリシーを実装します。Consumer には <a href="https://docs.konghq.com/hub/kong-inc/request-transformer/" rel="external" target="_blank">Request Transformer</a> や <a href="https://docs.konghq.com/hub/kong-inc/tcp-log/" rel="external" target="_blank">TCP Log</a> などの他のプラグインも有効になっている可能性があることを覚えておいてください。</p>
+<h4 id="新規-consumer-の作成">新規 Consumer の作成</h4>
+<p>ポリシーを導入するために、既存の Rate Limiting プラグインを削除しましょう。一番簡単な方法は、<code>default</code> <strong>Runtime Group</strong> に移動して、<strong>Rate Limiting</strong> プラグインを削除することです。</p>
+<p>次に、2つ目の <code>consumer2</code> を作成し、1つ目の時と同じように <code>987654</code> キーも作成します。</p>
+<p>これで、2つのキーをリクエストに挿入することができる用になりました。
+　　　　　　　　　　　　　　
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/route1/get -H &lsquo;apikey:123456&rsquo;
+:::</p>
+<p>または</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/route1/get -H &lsquo;apikey:987654&rsquo;
+:::</p>
+<h4 id="consumer1-用のポリシー">Consumer1 用のポリシー</h4>
+<p>それでは、それぞれの Consumer に流量制限ポリシーを作成しましょう。<strong>Consumers</strong> メニューに移動し、<code>consumer1</code> を選択します。<strong>Plugins</strong> をクリックし、<strong>+ New Plugin</strong> をクリックします。</p>
+<p><strong>Traffic control</strong> セクションで <strong>Rate Limiting</strong> を選択します：</p>
+<p><a href="#R-image-baf005e7d732c3cf26c4a303c8733b7b" class="lightbox-link"><img alt="rate_limiting2" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rate_limiting2.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-baf005e7d732c3cf26c4a303c8733b7b"><img alt="rate_limiting2" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rate_limiting2.png"></a></p>
+<p>Konnect は、このコンテキストで利用可能なプラグインのみを表示することに注意してください。<strong>Minute</strong> に5を設定し、ポリシーを実装します。内容を保存して、<strong>Plugins</strong> タブをクリックすると、<code>consumer1</code> のプラグインが表示されます。</p>
+<p><a href="#R-image-344b6dc6e9d6192169eb2cdb64074194" class="lightbox-link"><img alt="consumer_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/consumer_plugin.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-344b6dc6e9d6192169eb2cdb64074194"><img alt="consumer_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/consumer_plugin.png"></a></p>
+<h4 id="consumer2-用のポリシー">Consumer2 用のポリシー</h4>
+<p>次に <code>consumer2</code> 用に、<strong>Minute</strong> を <code>8</code> に設定して新しいプラグインを作成します。</p>
+<h4 id="それぞれの-api-キーを利用して-route-にアクセスする">それぞれの API キーを利用して Route にアクセスする</h4>
+<p>まず、Consumer1 の API Key で Route にアクセスします：</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl --head $DATA_PLANE_LB/route1/get -H &#39;apikey:123456&#39;
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 705
+Connection: keep-alive
+X-RateLimit-Limit-Minute: 5
+X-RateLimit-Remaining-Minute: 4
+RateLimit-Reset: 45
+RateLimit-Remaining: 4
+RateLimit-Limit: 5
+X-Cache-Key: 1789b8a51c844bebf5989ee69ef91f7311e467bdd517e60dd97a451982d2b2bc
+X-Cache-Status: Miss
+Date: Mon, 06 Feb 2023 15:48:15 GMT
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 6
+X-Kong-Proxy-Latency: 57
+Via: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p>次に、Consumer2 の API Key を使って、Route にアクセスしてみます。以下の通り、Data Planeはそれぞれの Consumer に対して独立した Rate Limiting の処理を適用しています。</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/route1/get -H &#39;apikey:987654&#39;
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 705
+Connection: keep-alive
+X-RateLimit-Limit-Minute: 8
+X-RateLimit-Remaining-Minute: 7
+RateLimit-Reset: 37
+RateLimit-Remaining: 7
+RateLimit-Limit: 8
+X-Cache-Key: 416fddbc351fdc6f904699fb6ddb58760678e92e246f506d3c83a266bdfa4311
+X-Cache-Status: Miss
+Date: Mon, 06 Feb 2023 15:48:24 GMT
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 1197
+X-Kong-Proxy-Latency: 1
+Via: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p>最初の API Key を使ってリクエストを送り続けると、想定通りエラーコードが返ってきます：</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/route1/get -H &#39;apikey:123456&#39;
+HTTP/1.1 429 Too Many Requests
+Date: Mon, 06 Feb 2023 15:48:38 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+X-RateLimit-Limit-Minute: 5
+Retry-After: 22
+X-RateLimit-Remaining-Minute: 0
+RateLimit-Reset: 22
+RateLimit-Remaining: 0
+RateLimit-Limit: 5
+Content-Length: 41
+X-Kong-Response-Latency: 0
+Server: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p>しかし、2つ目の API Key を使うと、Kong Route へのアクセスはまだ許可されたままです：</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/route1/get -H &#39;apikey:987654&#39;
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 705
+Connection: keep-alive
+X-RateLimit-Limit-Minute: 8
+X-RateLimit-Remaining-Minute: 6
+RateLimit-Reset: 13
+RateLimit-Remaining: 6
+RateLimit-Limit: 8
+X-Cache-Key: 416fddbc351fdc6f904699fb6ddb58760678e92e246f506d3c83a266bdfa4311
+X-Cache-Status: Miss
+Date: Mon, 06 Feb 2023 15:48:47 GMT
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Kong-Upstream-Latency: 221
+X-Kong-Proxy-Latency: 1
+Via: kong/3.1.1.3-enterprise-edition</code></pre></div>
+<p>Kong-gratulations!API キーでリクエストを認証し、異なる Consumer を別々のポリシーに関連付け他ので、このセクションは完了です。次のセクションに進むには、<strong>Next</strong> をクリックしてください。</p>
+<h3 id="参考">参考</h3>
+<p>Kong Plugin を Service、Route、またはグローバルに適用することで、API Gateway レイヤーに広範囲なポリシーを実装することができます。 しかし今のところ、誰がData Planeにリクエストを送るかは制御できていません。つまり、ランタイムインスタンスである ELB のアドレスを知っている人なら誰でも、ELB にリクエストを送信し、サービスを利用することができます。</p>
+<p>API Gateway の認証は、API を使用して送信されるデータを制御する重要な方法です。基本的には、事前に定義された認証情報を使って、特定の Consumer が API にアクセスする権限を持っているかどうかをチェックします。</p>
+<p>Kong Gateway には、最もよく知られ、広く使用されている認証方法を実装できるプラグインのライブラリがあります。よく利用されているものを以下に示します：</p>
+<ul>
+<li>Basic Authentication</li>
+<li>Key Authentication</li>
+<li>OAuth 2.0 Authentication</li>
+<li>LDAP Authentication</li>
+<li>OpenID Connect</li>
+</ul>
+<p>Kong Plugin Hub では、<a href="https://docs.konghq.com/hub/#authentication" rel="external" target="_blank">Authentication</a> に関連するプラグインのドキュメントを提供しています。詳細については、<a href="https://konghq.com/learning-center/api-gateway/api-gateway-authentication" rel="external" target="_blank">API Gateway Authentication</a> をご覧ください。</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.ja/index.html">ユースケース</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-cn/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-tw/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html">API キー認証</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html">API 密鑰認證</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html">API 密钥认证</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html">レスポンス変換</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488529" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488529" defer></script>
+    <script src="/js/theme.js?1754488529" defer></script>
+  </body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Proxy Caching は、Kong Gateway 用のプロキシ・キャッシュ機能を提供します。レスポンスコードとコンテンツタイプ、およびリクエストメソッドに基づいてレスポンスをキャッシュします。Consumer 単位または API 単位でキャッシュできます。キャッシュは設定した期間保存され、その後同じリソースへのリクエストがあると、キャッシュが利用されレスポンスを返します。キャッシュは、有効期限が切れる前に Admin API で強制的に削除することもできます。
+実装 Gateway Services に移動し、前回作成した Kong Gateway Service service1 を選択します。Plugins タブをクリックし、&#43; New Plugin ボタンをクリックします。Select a Plugin ページで、Traffic control の View more をクリックします：
+Proxy Caching のアイコンをクリックし、以下を行います:
+Cache Ttl に 30 と入力します。この制限時間に達すると、全てのキャッシュデータはクリアされます。 Strategy で memory を選択します。プラグインはランタイムインスタンスのメモリを使用してキャッシュを保存します。 Save をクリックします。
+Service へのアクセス サービスに再度アクセスすると、キャッシュの状態を示す新しいヘッダーがいくつか表示されます：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="プロキシキャッシュ :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Proxy Caching は、Kong Gateway 用のプロキシ・キャッシュ機能を提供します。レスポンスコードとコンテンツタイプ、およびリクエストメソッドに基づいてレスポンスをキャッシュします。Consumer 単位または API 単位でキャッシュできます。キャッシュは設定した期間保存され、その後同じリソースへのリクエストがあると、キャッシュが利用されレスポンスを返します。キャッシュは、有効期限が切れる前に Admin API で強制的に削除することもできます。
+実装 Gateway Services に移動し、前回作成した Kong Gateway Service service1 を選択します。Plugins タブをクリックし、&#43; New Plugin ボタンをクリックします。Select a Plugin ページで、Traffic control の View more をクリックします：
+Proxy Caching のアイコンをクリックし、以下を行います:
+Cache Ttl に 30 と入力します。この制限時間に達すると、全てのキャッシュデータはクリアされます。 Strategy で memory を選択します。プラグインはランタイムインスタンスのメモリを使用してキャッシュを保存します。 Save をクリックします。
+Service へのアクセス サービスに再度アクセスすると、キャッシュの状態を示す新しいヘッダーがいくつか表示されます：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="プロキシキャッシュ :: API Management with Kong Konnect">
+    <meta property="og:description" content="Proxy Caching は、Kong Gateway 用のプロキシ・キャッシュ機能を提供します。レスポンスコードとコンテンツタイプ、およびリクエストメソッドに基づいてレスポンスをキャッシュします。Consumer 単位または API 単位でキャッシュできます。キャッシュは設定した期間保存され、その後同じリソースへのリクエストがあると、キャッシュが利用されレスポンスを返します。キャッシュは、有効期限が切れる前に Admin API で強制的に削除することもできます。
+実装 Gateway Services に移動し、前回作成した Kong Gateway Service service1 を選択します。Plugins タブをクリックし、&#43; New Plugin ボタンをクリックします。Select a Plugin ページで、Traffic control の View more をクリックします：
+Proxy Caching のアイコンをクリックし、以下を行います:
+Cache Ttl に 30 と入力します。この制限時間に達すると、全てのキャッシュデータはクリアされます。 Strategy で memory を選択します。プラグインはランタイムインスタンスのメモリを使用してキャッシュを保存します。 Save をクリックします。
+Service へのアクセス サービスに再度アクセスすると、キャッシュの状態を示す新しいヘッダーがいくつか表示されます：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="プロキシキャッシュ :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Proxy Caching は、Kong Gateway 用のプロキシ・キャッシュ機能を提供します。レスポンスコードとコンテンツタイプ、およびリクエストメソッドに基づいてレスポンスをキャッシュします。Consumer 単位または API 単位でキャッシュできます。キャッシュは設定した期間保存され、その後同じリソースへのリクエストがあると、キャッシュが利用されレスポンスを返します。キャッシュは、有効期限が切れる前に Admin API で強制的に削除することもできます。
+実装 Gateway Services に移動し、前回作成した Kong Gateway Service service1 を選択します。Plugins タブをクリックし、&#43; New Plugin ボタンをクリックします。Select a Plugin ページで、Traffic control の View more をクリックします：
+Proxy Caching のアイコンをクリックし、以下を行います:
+Cache Ttl に 30 と入力します。この制限時間に達すると、全てのキャッシュデータはクリアされます。 Strategy で memory を選択します。プラグインはランタイムインスタンスのメモリを使用してキャッシュを保存します。 Save をクリックします。
+Service へのアクセス サービスに再度アクセスすると、キャッシュの状態を示す新しいヘッダーがいくつか表示されます：
+:::code{showCopyAction=true showLineNumbers=false language=shell} curl -v $DATA_PLANE_LB/route1/get :::">
+    <meta itemprop="wordCount" content="605">
+    <title>プロキシキャッシュ :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488521" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488521" defer></script>
+    <script src="/js/search-lunr.js?1754488521" defer></script>
+    <script src="/js/search.js?1754488521" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488521";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488521" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488521" rel="stylesheet">
+    <link href="/css/theme.css?1754488521" rel="stylesheet">
+    <link href="/css/format-html.css?1754488521" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/150-proxy-caching.ja\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#kong-plugin-をグローバルに有効化する">Kong Plugin をグローバルに有効化する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">プロキシキャッシュ</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html" title="Proxy Caching (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/index.ja/index.html" title="ユースケース (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="プロキシキャッシュ">プロキシキャッシュ</h1>
+
+<p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">Proxy Caching</a> は、Kong Gateway 用のプロキシ・キャッシュ機能を提供します。レスポンスコードとコンテンツタイプ、およびリクエストメソッドに基づいてレスポンスをキャッシュします。Consumer 単位または API 単位でキャッシュできます。キャッシュは設定した期間保存され、その後同じリソースへのリクエストがあると、キャッシュが利用されレスポンスを返します。キャッシュは、有効期限が切れる前に Admin API で強制的に削除することもできます。</p>
+<h4 id="実装">実装</h4>
+<p><strong>Gateway Services</strong> に移動し、前回作成した Kong Gateway Service <code>service1</code> を選択します。<strong>Plugins</strong> タブをクリックし、<strong>+ New Plugin</strong> ボタンをクリックします。<strong>Select a Plugin</strong> ページで、<strong>Traffic control</strong> の <strong>View more</strong> をクリックします：</p>
+<p><a href="#R-image-aa6606a1bd9a836736fbad52db992ab7" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-aa6606a1bd9a836736fbad52db992ab7"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<p><strong>Proxy Caching</strong> のアイコンをクリックし、以下を行います:</p>
+<ul>
+<li><strong>Cache Ttl</strong> に <code>30</code> と入力します。この制限時間に達すると、全てのキャッシュデータはクリアされます。</li>
+<li><strong>Strategy</strong> で <code>memory</code> を選択します。プラグインはランタイムインスタンスのメモリを使用してキャッシュを保存します。</li>
+</ul>
+<p><a href="#R-image-7ac8dcd6f8e19cae9c61d657ad140caa" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/proxy_cache.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ac8dcd6f8e19cae9c61d657ad140caa"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/proxy_cache.png"></a></p>
+<p><strong>Save</strong> をクリックします。</p>
+<h4 id="service-へのアクセス">Service へのアクセス</h4>
+<p>サービスに再度アクセスすると、キャッシュの状態を示す新しいヘッダーがいくつか表示されます：</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/route1/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 480
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn/19.9.0
+&lt; Date: Mon, 05 Jun 2023 20:20:08 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 549
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<p>最初のリクエストでは、<strong>X-Cache-Status</strong> ヘッダーに <strong>Miss</strong> が返され、これはランタイムインスタンス内に利用可能なキャッシュが存在しないため、実際の API である <code>httpbin.org</code> に接続しなければならなかったことを意味しています。</p>
+<p>もう一つ新しいリクエストを送ると、ランタイムインスタンスはリクエストに該当するキャッシュを持っているので、ステータスは <strong>Hit</strong> となります。レイテンシかなり短縮されたことに注目してください。</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl -v $DATA_PLANE_LB/route1/get
+*   Trying 54.183.108.128:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (54.183.108.128) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Connection: keep-alive
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; Date: Mon, 05 Jun 2023 20:20:08 GMT
+&lt; X-Cache-Status: Hit
+&lt; Access-Control-Allow-Credentials: true
+&lt; Server: gunicorn/19.9.0
+&lt; Age: 9
+&lt; Access-Control-Allow-Origin: *
+&lt; Content-Length: 480
+&lt; X-Kong-Upstream-Latency: 0
+&lt; X-Kong-Proxy-Latency: 0
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<h4 id="kong-route-に対するプラグインの有効化">Kong Route に対するプラグインの有効化</h4>
+<p>次に、Service に対し流量制限のポリシーを定義します。今回は、Kong Gateway Service ではなく、Kong Route に対して <strong>Rate Limiting</strong> プラグインを有効にします。この場合、Service に定義された新しい Route では、Rate Limiting プラグインは有効にならず、Proxy Caching のみが有効になります。</p>
+<p>再び <strong>Gateway Manager</strong> に戻り、<code>service1</code> を選択し、<strong>Routes</strong> タブをクリックし、<code>route1</code> Route を選択します。そして <strong>Plugins</strong> タブの下にある <strong>+ New Plugin</strong> をクリックします。</p>
+<p><strong>Rate Limiting</strong> プラグインは同じ <strong>Traffic control</strong> プラグインセクションの下にあります。</p>
+<p><strong>Configure plugin: rate limiting</strong> の画面で：</p>
+<ul>
+<li><strong>Minute</strong> に３を入力します。これは、Route が1分間に3回しか利用できないことを意味します。</li>
+</ul>
+<p><a href="#R-image-987f7ddcbcf45aed93d534b2e2e453b8" class="lightbox-link"><img alt="rate_limiting" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rate_limiting.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-987f7ddcbcf45aed93d534b2e2e453b8"><img alt="rate_limiting" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rate_limiting.png"></a></p>
+<p><strong>Save</strong> をクリックします。</p>
+<h4 id="service-にアクセスする">Service にアクセスする</h4>
+<p>サービスへ再度アクセスすると、キャッシュ関連のヘッダーの他に、現在の流量制限ポリシーのステータスを示す新しいヘッダーが表示されます：</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -v $DATA_PLANE_LB/route1/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ curl -v $DATA_PLANE_LB/route1/get
+*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 480
+&lt; Connection: keep-alive
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; RateLimit-Limit: 3
+&lt; X-RateLimit-Remaining-Minute: 2
+&lt; RateLimit-Remaining: 2
+&lt; RateLimit-Reset: 57
+&lt; X-Cache-Key: e90274564efa1f26d9a366d7a55e27ffe8c7bca41a4f5aeaf4d9b08405919b38
+&lt; X-Cache-Status: Miss
+&lt; Server: gunicorn/19.9.0
+&lt; Date: Mon, 05 Jun 2023 20:28:03 GMT
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Credentials: true
+&lt; X-Kong-Upstream-Latency: 2
+&lt; X-Kong-Proxy-Latency: 187
+&lt; Via: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;args&#34;: {}, 
+  &#34;headers&#34;: {
+    &#34;Accept&#34;: &#34;*/*&#34;, 
+    &#34;Connection&#34;: &#34;keep-alive&#34;, 
+    &#34;Host&#34;: &#34;httpbin.kong.svc.cluster.local:8000&#34;, 
+    &#34;User-Agent&#34;: &#34;curl/7.88.1&#34;, 
+    &#34;X-Forwarded-Host&#34;: &#34;ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com&#34;, 
+    &#34;X-Forwarded-Path&#34;: &#34;/route1/get&#34;, 
+    &#34;X-Forwarded-Prefix&#34;: &#34;/route1&#34;
+  }, 
+  &#34;origin&#34;: &#34;192.168.55.204&#34;, 
+  &#34;url&#34;: &#34;http://ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com/get&#34;
+}
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact</code></pre></div>
+<p>新しいリクエストを送信し続けると、最終的に <strong>429</strong>エラーコードが表示され、この Route の流量制限ポリシーに達したことを示します。</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ curl -v $DATA_PLANE_LB/route1/get
+*   Trying 13.57.65.227:80...
+* Connected to ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com (13.57.65.227) port 80 (#0)
+&gt; GET /route1/get HTTP/1.1
+&gt; Host: ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com
+&gt; User-Agent: curl/7.88.1
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 429 Too Many Requests
+&lt; Date: Mon, 05 Jun 2023 20:28:15 GMT
+&lt; Content-Type: application/json; charset=utf-8
+&lt; Connection: keep-alive
+&lt; X-RateLimit-Limit-Minute: 3
+&lt; RateLimit-Limit: 3
+&lt; X-RateLimit-Remaining-Minute: 0
+&lt; RateLimit-Remaining: 0
+&lt; Retry-After: 45
+&lt; RateLimit-Reset: 45
+&lt; Content-Length: 41
+&lt; X-Kong-Response-Latency: 0
+&lt; Server: kong/3.3.0.0-enterprise-edition
+&lt; 
+{
+  &#34;message&#34;:&#34;API rate limit exceeded&#34;
+* Connection #0 to host ac916b2ee885743d6936cd6d5bec19b1-947248632.us-west-1.elb.amazonaws.com left intact
+}</code></pre></div>
+<h3 id="kong-plugin-をグローバルに有効化する">Kong Plugin をグローバルに有効化する</h3>
+<p>Plugin をKong Service または Route に限定する他に、グローバルに適用することもできます。そうすると、すべての Service および Route で Plugin で定義したポリシーが適用されます。</p>
+<p>試しに Proxy Caching プラグインをグローバルに適用してみましょう。<strong>Gateway Manager</strong> メニューから <code>default</code> Runtime Group を選択します。<strong>Plugins</strong> メニューをクリックします。先ほど設定した両方のプラグインが表示されるはずです。それぞれの有効範囲が <strong>Applied To</strong> 列に記述されています。</p>
+<p><strong>Proxy Caching</strong> プラグインの右側にある三つの点の <strong>Actions</strong> をクリックして削除します。</p>
+<p><strong>+ New Plugin</strong> をクリックします。再び <strong>Proxy Caching</strong> を選択し、先ほどと同じように設定します。同じプラグインが異なるスコープで表示されるはずです：</p>
+<p><a href="#R-image-8fb8d670dd669a597f72a4f53a6489a0" class="lightbox-link"><img alt="proxy_cache_global" class="lazy lightbox figure-image" loading="lazy" src="/static/images/proxy_cache_global.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8fb8d670dd669a597f72a4f53a6489a0"><img alt="proxy_cache_global" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/proxy_cache_global.png"></a></p>
+<p>Kong-gratulations!API レスポンスをキャッシュしたので、このセクションは完了です。次のセクションに進むには、<strong>Next</strong> をクリックしてください。</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.ja/index.html">プロキシキャッシュ</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.ja/index.html">ユースケース</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.zh-tw/index.html">代理快取</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching.zh-cn/index.html">代理缓存</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-cn/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/index.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.zh-tw/index.html">使用案例</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.ja/index.html">API キー認証</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-tw/index.html">API 密鑰認證</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication.zh-cn/index.html">API 密钥认证</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-cn/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.zh-tw/index.html">Response-Transformer 插件</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer.ja/index.html">レスポンス変換</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488521" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488521" defer></script>
+    <script src="/js/theme.js?1754488521" defer></script>
+  </body>
+</html>

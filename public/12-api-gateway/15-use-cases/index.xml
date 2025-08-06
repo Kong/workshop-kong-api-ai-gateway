@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Use Cases :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/12-api-gateway/15-use-cases/index.html</link>
+    <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Proxy caching API Key with Kong Consumers Rate Limiting using Redis Request Transformer OpenID Connect with Cognito These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.&#xA;You can now click Next to begin the module.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/12-api-gateway/15-use-cases/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Proxy Caching</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</guid>
+      <description>Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</description>
+    </item>
+    <item>
+      <title>API Key Authentication</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</guid>
+      <description>To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.</description>
+    </item>
+    <item>
+      <title>Response-Transformer Plugin</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</guid>
+      <description>The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.&#xA;In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.&#xA;Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:</description>
+    </item>
+    <item>
+      <title>Rate Limiting Using Redis</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</guid>
+      <description>Kong can rate-limit your traffic without any external dependency. In such a case, Kong stores the request counters in-memory and each Kong node applies the rate-limiting policy independently. There is no synchronization of information being done in this case. But if Redis is available in your cluster, Kong can take advantage of it and synchronize the rate-limit information across multiple Kong nodes and enforce a slightly different rate-limiting policy.&#xA;This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.</description>
+    </item>
+    <item>
+      <title>Authentication-OpenID Connect</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</guid>
+      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.&#xA;Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates</description>
+    </item>
+  </channel>
+</rss>

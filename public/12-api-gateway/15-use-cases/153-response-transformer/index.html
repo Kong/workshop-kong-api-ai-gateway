@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
+In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Response-Transformer Plugin :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
+In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Response-Transformer Plugin :: API Management with Kong Konnect">
+    <meta property="og:description" content="The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
+In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="Response-Transformer Plugin :: API Management with Kong Konnect">
+    <meta itemprop="description" content="The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
+In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta itemprop="wordCount" content="283">
+    <title>Response-Transformer Plugin :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754488581" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754488581" defer></script>
+    <script src="/js/search-lunr.js?1754488581" defer></script>
+    <script src="/js/search.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754488581";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754488581" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754488581" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488581" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488581" rel="stylesheet">
+    <link href="/css/theme.css?1754488581" rel="stylesheet">
+    <link href="/css/format-html.css?1754488581" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/153-response-transformer\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/153-response-transformer/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#verify">Verify</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Response-Transformer Plugin</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html" title="API Key Authentication (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html" title="Rate Limiting Using Redis (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="response-transformer-plugin">Response-Transformer Plugin</h1>
+
+<p>The <a href="https://docs.konghq.com/hub/kong-inc/response-transformer/" rel="external" target="_blank">Response-Transformer</a> plugin modifies the upstream response (e.g. response from the server) before returning it to the client.</p>
+<p>In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header &ldquo;demo: injected-by-kong&rdquo; before responding to the client.</p>
+<h4 id="create-the-response-transformer-plugin">Create the Response Transformer Plugin</h4>
+<p>Take the plugins declaration and enable the <strong>Response Transformer</strong> plugin to the Route.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; response-transformer.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+host: httpbin.kong.svc.cluster.local
+port: 8000
+routes:
+<ul>
+<li>name: response-transformer-route
+paths:
+<ul>
+<li>/response-transformer-route
+plugins:</li>
+<li>name: response-transformer
+instance_name: response-transformer1
+config:
+add:
+headers:
+- demo:injected-by-kong
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Submit the declaration
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway sync &ndash;konnect-token $PAT response-transformer.yaml
+:::</p>
+<h3 id="verify">Verify</h3>
+<p>Test to make sure Kong transforms the request to the echo server and httpbin server.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &ndash;head $DATA_PLANE_LB/response-transformer-route/get
+:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 469
+Connection: keep-alive
+Server: gunicorn
+Date: Wed, 28 May 2025 12:24:14 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+demo: injected-by-kong
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a</code></pre></div>
+<p><strong>Expected Results</strong> Notice that <code>demo: injected-by-kong</code> is injected in the header.</p>
+<h4 id="cleanup">Cleanup</h4>
+<p>Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+:::</p>
+<p>In real world scenario, you can enable as many plugins as you like depending on your use cases.</p>
+<p>Kong-gratulations! have now reached the end of this module by configuring the Kong Route to include <code>demo: injected-by-kong</code> before responding to the client. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response-Transformer Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754488581" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488581" defer></script>
+    <script src="/js/theme.js?1754488581" defer></script>
+  </body>
+</html>

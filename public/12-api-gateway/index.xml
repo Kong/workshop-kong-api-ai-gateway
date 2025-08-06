@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong API Gateway :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/12-api-gateway/index.html</link>
+    <description>With our Control Plane created and Data Plane layer deployed it’s time to create an API and expose an application. In this module, we will&#xA;Deploy an application to get protected by the Data Plane Use decK to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application. Enable Kong Plugins to the Kong Route or Kong Service. Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them. With decK (declarations for Kong) you can manage Kong Konnect configuration in a declaratively way.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/12-api-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kong Gateway Service and Kong Route</title>
+      <link>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</guid>
+      <description>For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.&#xA;Deploy the Application Deploy the application using the following declaration with both Kubernetes Deployment and Service.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat «EOF | kubectl apply -f - apiVersion: v1 kind: Service metadata: name: httpbin namespace: kong labels: app: httpbin spec: type: ClusterIP ports:</description>
+    </item>
+    <item>
+      <title>Use Cases</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/index.html</guid>
+      <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Proxy caching API Key with Kong Consumers Rate Limiting using Redis Request Transformer OpenID Connect with Cognito These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.&#xA;You can now click Next to begin the module.</description>
+    </item>
+  </channel>
+</rss>

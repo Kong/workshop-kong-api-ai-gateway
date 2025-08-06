@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rate Limiting Using Redis :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</link>
+    <description>Kong can rate-limit your traffic without any external dependency. In such a case, Kong stores the request counters in-memory and each Kong node applies the rate-limiting policy independently. There is no synchronization of information being done in this case. But if Redis is available in your cluster, Kong can take advantage of it and synchronize the rate-limit information across multiple Kong nodes and enforce a slightly different rate-limiting policy.&#xA;This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Set up Rate Limiting plugin</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html</guid>
+      <description>Add Rate Limiting plugin Just like you did before, add the Rate Limiting plugin on the Route setting Minute as 5 requests per minute, and set the identifier to Service.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:&#xA;httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 EOF ::: Submit the declaration:</description>
+    </item>
+    <item>
+      <title>Scale Kong for Kubernetes to multiple pods</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html</guid>
+      <description>Let’s scale out the Kong Data Plane deployment to 3 pods, for scalability and redundancy:&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat «EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: dataplane1 namespace: kong spec: extensions:&#xA;kind: KonnectExtension name: konnect-config1 group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.10.0.1 serviceAccountName: kaigateway-podid-sa replicas: 3 network: services: ingress: name: proxy1 type: LoadBalancer annotations: “service.beta.kubernetes.io/aws-load-balancer-scheme”: “internet-facing” “service.beta.kubernetes.io/aws-load-balancer-nlb-target-type”: “ip” EOF ::: Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.</description>
+    </item>
+    <item>
+      <title>Update the Rate Limiting Plugin</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1565-update-rate-limiting-plugin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1565-update-rate-limiting-plugin/index.html</guid>
+      <description>Update the Rate Limiting Plugin Let’s update our Kong Plugin configuration to use Redis as a data store rather than each Kong node storing the counter information in-memory. As a reminder, Redis was installed previously and it is available in the EKS cluster.&#xA;Here’s the new declarion:&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:&#xA;httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 policy: redis redis: host: redis-stack.redis.svc.cluster.local port: 6379 EOF ::: Submit the declaration:</description>
+    </item>
+  </channel>
+</rss>
