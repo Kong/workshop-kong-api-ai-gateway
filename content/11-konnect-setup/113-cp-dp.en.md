@@ -8,7 +8,7 @@ weight : 113
 The following declaration defines an [Authentication Configuration](https://docs.konghq.com/gateway-operator/latest/reference/custom-resources/#konnectapiauthconfiguration), based on the Kubernetes Secret and referring to a Konnect API URL, and the actual [Konnect Control Plane](https://docs.konghq.com/gateway-operator/1.5.x/reference/custom-resources/#konnectgatewaycontrolplane). 
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 kind: KonnectAPIAuthConfiguration
 apiVersion: konnect.konghq.com/v1alpha1
@@ -33,7 +33,7 @@ spec:
    authRef:
      name: konnect-api-auth-conf
 EOF
-:::
+{{</highlight>}}
 
 
 **Expected Sample Output**
@@ -49,7 +49,7 @@ If you go to Konnect UI >  Gateway manager, you should see a new control plane n
 
 The next declaration instantiates a Data Plane connected to your Control Plane. It creates a [KonnectExtension](https://docs.konghq.com/gateway-operator/1.5.x/reference/custom-resources/#konnectextension-1), asking KGO to manage the certificate and private key provisioning automatically, and the actual Data Plane. The [Data Plane](https://docs.konghq.com/gateway-operator/latest/reference/custom-resources/#dataplane) declaration specifies the Docker image, in our case 3.10, as well as how the Kubernetes Service, related to the Data Plane, should be created. Also, we use the the Data Plane deployment refers to the Kubernetes Service Account we created before.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 kind: KonnectExtension
 apiVersion: konnect.konghq.com/v1alpha1
@@ -93,28 +93,29 @@ spec:
          "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
          "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
-::alert[Pls **DO NOT** modify the `serviceAccountName`. Pod Identities and the respective IAM permissions are specfically associated with this name. ]
+> [!NOTE]
+> Pls **DO NOT** modify the `serviceAccountName`. Pod Identities and the respective IAM permissions are specfically associated with this name.
 
 It takes some minutes to get the Load Balancer provisioned and avaiable. Get its domain name with:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 echo "export DATA_PLANE_LB=$(kubectl get svc -n kong proxy1 --output=jsonpath='{.status.loadBalancer.ingress[0].hostname}')" >> ~/.bashrc
 bash
-:::
+{{</highlight>}}
 
 View the load balancer DNS as
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 echo $DATA_PLANE_LB
-:::
+{{</highlight>}}
 
 Try calling it as
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -w '\n' $DATA_PLANE_LB
-:::
+{{</highlight>}}
 
 **Expected Output**
 

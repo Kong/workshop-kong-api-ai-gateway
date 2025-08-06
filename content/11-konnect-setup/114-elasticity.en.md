@@ -9,9 +9,9 @@ This capability is especially interesting for Kubernetes applications like Kong 
 
 Here's our deployment before scaling it out:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get service -n kong
-:::
+{{</highlight>}}
 
 **Sample Output**
 
@@ -23,9 +23,9 @@ proxy1                             LoadBalancer   10.100.234.223   k8s-kong-prox
 
 Notice, at this point in the workshop, there is only one pod taking data plane traffic.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get pod -n kong -o wide
-:::
+{{</highlight>}}
 
 **Sample Output**
 
@@ -38,7 +38,7 @@ dataplane-dataplane1-ch6g9-6889fdf76b-5gjh9   1/1     Running   0          20h  
 
 Now, let's scale the deployment out creating 3 replicas of the pod
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -67,7 +67,7 @@ spec:
          "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
          "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
 Check the Deployment again and now you should see 3 replicas of the pod.
 
@@ -129,7 +129,7 @@ Events:
 
 Reduce the number of Pods to 1 again running as now we will turn on Horizontal pod autoscalar.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -158,7 +158,7 @@ spec:
          "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
          "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
 ### HPA - Horizontal Autoscaler
 
@@ -174,9 +174,9 @@ Kubernetes defines its own units for cpu and memory. You can read more about it 
 
 HPA relies no the Metrics Server to control the number of replicas of a given deployment. Check it as follows:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get pod -n kube-system -o json | jq -r '.items[].metadata | select(.name | startswith("metrics-server-"))' | jq -r '.name'
-:::
+{{</highlight>}}
 
 Now you should see two *metrics-server-* pods in *Running* state
 
@@ -193,7 +193,7 @@ Still using the Operator, let's upgrade our Data Plane deployment including new 
 
 Here's the final declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -231,7 +231,7 @@ spec:
              type: Utilization
              averageUtilization: 20
 EOF
-:::
+{{</highlight>}}
 
 
 
@@ -239,9 +239,9 @@ EOF
 
 After submitting the command check the Deployment again. Since we're not consume the Data Plane, we are supposed to see a single Pod running. In the next sections we're going to send requests to the Data Plane and new Pod will get created to handle them.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get pod -n kong
-:::
+{{</highlight>}}
 
 **Sample Output**
 
@@ -252,16 +252,16 @@ dataplane-dataplane1-ch6g9-5fb9c6484b-kklw5   1/1     Running   0          73s
 
 You can check the HPA status with:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get hpa -n kong
-:::
+{{</highlight>}}
 
 
 **Send traffic**
 
 We are going to use Fortio to consume the Data Plane and see the HPA in action. Note we are interested on sending traffic to the Data Plane only, so we are consuming a non-existing Route.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
@@ -275,7 +275,7 @@ spec:
     image: fortio/fortio
     args: ["load", "-c", "800", "-qps", "3000", "-t", "20m", "-allow-initial-errors", "http://proxy1.kong.svc.cluster.local:80/route1/get"]
 EOF
-:::
+{{</highlight>}}
 
 
 **Sample Output**
@@ -293,16 +293,16 @@ dataplane-dataplane1-ch6g9-8c6c9cfcd-rxcwm
 ```
 
 If you delete the Fortio pod, HPA should terminate one pod and get back to 1 replica only.
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl delete pod fortio
-:::
+{{</highlight>}}
 
 
 **Delete HPA**
 
 Delete the HPA setting applying the original declaration
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -331,7 +331,7 @@ spec:
          "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
          "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
 Kong-gratulations! have now reached the end of this module by implementing and successfully testing Horizontal Pod AutoScaling. You can now click **Next** to proceed with the next chapter.
 

@@ -16,6 +16,39 @@
     <loc>http://localhost:1313/11-konnect-setup/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/11-konnect-setup/111-personal-access-token/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/11-konnect-setup/112-kgo-installation/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/11-konnect-setup/113-cp-dp/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/11-konnect-setup/114-elasticity/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/index.html</loc>
   </url>
   <url>

@@ -1,0 +1,186 @@
+https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/#update-content-for-ingesting
+
+
+1. Retrieve the ID of the AI RAG Injector plugin that you want to update.
+
+CP_ID=$(curl -s https://us.api.konghq.com/v2/control-planes \
+  --header "Authorization: Bearer $PAT" | jq -r '.data[] | select(.name=="kong-aws") | .id')
+
+SERVICE_ID=$(curl -s https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/services/ai-proxy --header "Authorization: Bearer $PAT" | jq -r '.id')
+
+ROUTE_ID=$(curl -s https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/services/$SERVICE_ID/routes/openai-chat --header "Authorization: Bearer $PAT" | jq -r '.id')
+
+
+PLUGIN_ID=$(curl -s -X GET https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins \
+--header "Authorization: Bearer $PAT" | jq -r '.data[] | select(.instance_name=="ai-rag-injector-bedrock") | .id')
+
+PLUGIN_ID=$(curl -s -X GET https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/plugins \
+--header "Authorization: Bearer $PAT" | jq -r '.data[] | select(.instance_name=="ai-rag-injector-bedrock") | .id')
+
+
+
+
+8d6e36a6-5372-4bad-8070-54ec913903d8
+3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1
+
+2. Copy and paste the following script to a local file, for example `ingest_update.lua`:
+
+
+
+
+
+3. Run the script from your Kong instance:
+
+   ```sh
+   kong runner ingest_api.lua <plugin_id> <content_to_update>
+   ```
+
+
+wget http://softwareengineeringdaily.com/wp-content/uploads/2024/06/SED1683-Kong.txt
+kubectl cp ./ingest_update.lua -n kong $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name'):/tmp/ingest_update.lua
+kubectl cp ./SED1683-Kong.txt -n kong $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name'):/tmp/SED1683-Kong.txt
+
+
+
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("kong-"))' | jq -r '.name') -n kong -- cat /tmp/ai_rag_plugin_ingest_api.lua
+
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong -- /bin/bash
+
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("kong-"))' | jq -r '.name') -n kong -- echo $PLUGIN_ID
+
+
+kong runner /tmp/ingest_update.lua 3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1 $(cat /tmp/SED1683-Kong.txt)
+
+
+
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong -- kong health
+
+
+
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("kong-"))' | jq -r '.name') -n kong -- kong runner ai_rag_plugin_ingest_api.lua $PLUGIN_ID http://softwareengineeringdaily.com/wp-content/uploads/2024/06/SED1683-Kong.txt
+
+
+
+
+
+wget http://softwareengineeringdaily.com/wp-content/uploads/2024/06/SED1683-Kong.txt
+export CONTENT=$(cat ./SED1683-Kong-short.txt)
+kubectl cp ./ingest_update.lua -n kong $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name'):/tmp/ingest_update.lua
+kubectl exec -ti $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong -- kong runner /tmp/ingest_update.lua 3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1 "'"$(echo $CONTENT)"'"
+
+
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+
+
+
+
+
+curl -s -X POST \
+  --url $DATA_PLANE_LB/bedrock-route \
+  --header "Content-Type: application/json" \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "Who is Marco?"
+       }
+     ]
+   }' | jq
+
+
+curl -s -X POST \
+  --url $DATA_PLANE_LB/bedrock-route \
+  --header "Content-Type: application/json" \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "What did Marco say about AI Gateways?"
+       }
+     ]
+   }' | jq
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export OPENAI_API_KEY=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
+curl -s -X POST \
+  --url $DATA_PLANE_LB/bedrock-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "what is pi?"
+       }
+     ]
+   }' | jq
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl -s -X POST \
+  --url $DATA_PLANE_LB/bedrock-route \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "What did Marco say about AI Gateways?"
+       }
+     ]
+   }' | jq
+
+
+curl -s -X POST \
+  --url $DATA_PLANE_LB/bedrock-route \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "Who is Marco?"
+       }
+     ]
+   }' | jq
+
+
+
+
+curl  --http1.1 localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+     "messages": [{"role": "user", "content": "What did Marco say about AI Gateway?"}]
+   }' | jq
