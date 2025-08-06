@@ -36,8 +36,3 @@ To help secure and govern your environment, Konnect provides the ability to mana
 * [Dev Portal](https://docs.konghq.com/konnect/dev-portal/)
 * [Analytics](https://docs.konghq.com/konnect/analytics/)
 
-
-
-{{<highlight>}}
-asdad
-{{</highlight>}}

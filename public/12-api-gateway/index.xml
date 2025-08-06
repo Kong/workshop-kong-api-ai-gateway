@@ -3,7 +3,7 @@
   <channel>
     <title>Kong API Gateway :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/12-api-gateway/index.html</link>
-    <description>With our Control Plane created and Data Plane layer deployed it’s time to create an API and expose an application. In this module, we will&#xA;Deploy an application to get protected by the Data Plane Use decK to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application. Enable Kong Plugins to the Kong Route or Kong Service. Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them. With decK (declarations for Kong) you can manage Kong Konnect configuration in a declaratively way.</description>
+    <description>With our Control Plane created and Data Plane layer deployed it’s time to create an API and expose an application. In this module, we will:&#xA;Deploy an application to get protected by the Data Plane Use decK to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application. Enable Kong Plugins to the Kong Route or Kong Service. Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them. With decK (declarations for Kong) you can manage Kong Konnect configuration in a declaratively way.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/12-api-gateway/index.xml" rel="self" type="application/rss+xml" />
@@ -12,7 +12,7 @@
       <link>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</guid>
-      <description>For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.&#xA;Deploy the Application Deploy the application using the following declaration with both Kubernetes Deployment and Service.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat «EOF | kubectl apply -f - apiVersion: v1 kind: Service metadata: name: httpbin namespace: kong labels: app: httpbin spec: type: ClusterIP ports:</description>
+      <description>For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.&#xA;Deploy the Application Deploy the application using the following declaration with both Kubernetes Deployment and Service.&#xA;cat &lt;&lt;EOF | kubectl apply -f - apiVersion: v1 kind: Service metadata: name: httpbin namespace: kong labels: app: httpbin spec: type: ClusterIP ports: - name: http port: 8000 targetPort: 80 selector: app: httpbin --- apiVersion: apps/v1 kind: Deployment metadata: name: httpbin namespace: kong spec: replicas: 1 selector: matchLabels: app: httpbin version: v1 template: metadata: labels: app: httpbin version: v1 spec: containers: - image: docker.io/kong/httpbin imagePullPolicy: IfNotPresent name: httpbin ports: - containerPort: 8000 EOF Check the Deployment Observe Kubernetes Services in kong namespace kubectl get service httpbin -n kong Sample Output</description>
     </item>
     <item>
       <title>Use Cases</title>

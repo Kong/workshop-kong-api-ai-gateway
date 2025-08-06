@@ -25,10 +25,10 @@ spec:
 kind: KonnectGatewayControlPlane
 apiVersion: konnect.konghq.com/v1alpha1
 metadata:
- name: kong-aws
+ name: kong-workshop
  namespace: kong
 spec:
- name: kong-aws
+ name: kong-workshop
  konnect:
    authRef:
      name: konnect-api-auth-conf
@@ -47,7 +47,7 @@ If you go to Konnect UI >  Gateway manager, you should see a new control plane n
 
 #### Data Plane deployment
 
-The next declaration instantiates a Data Plane connected to your Control Plane. It creates a [KonnectExtension](https://docs.konghq.com/gateway-operator/1.5.x/reference/custom-resources/#konnectextension-1), asking KGO to manage the certificate and private key provisioning automatically, and the actual Data Plane. The [Data Plane](https://docs.konghq.com/gateway-operator/latest/reference/custom-resources/#dataplane) declaration specifies the Docker image, in our case 3.10, as well as how the Kubernetes Service, related to the Data Plane, should be created. Also, we use the the Data Plane deployment refers to the Kubernetes Service Account we created before.
+The next declaration instantiates a Data Plane connected to your Control Plane. It creates a [KonnectExtension](https://docs.konghq.com/gateway-operator/1.5.x/reference/custom-resources/#konnectextension-1), asking KGO to manage the certificate and private key provisioning automatically, and the actual Data Plane. The [Data Plane](https://docs.konghq.com/gateway-operator/latest/reference/custom-resources/#dataplane) declaration specifies the Docker image, in our case 3.11, as well as how the Kubernetes Service, related to the Data Plane, should be created. Also, we use the the Data Plane deployment refers to the Kubernetes Service Account we created before.
 
 {{<highlight>}}
 cat <<EOF | kubectl apply -f -
@@ -65,7 +65,7 @@ spec:
      ref:
        type: konnectNamespacedRef
        konnectNamespacedRef:
-         name: kong-aws
+         name: kong-workshop
 ---
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -82,27 +82,20 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
 {{</highlight>}}
 
-> [!NOTE]
-> Pls **DO NOT** modify the `serviceAccountName`. Pod Identities and the respective IAM permissions are specfically associated with this name.
 
 It takes some minutes to get the Load Balancer provisioned and avaiable. Get its domain name with:
 
 {{<highlight>}}
-echo "export DATA_PLANE_LB=$(kubectl get svc -n kong proxy1 --output=jsonpath='{.status.loadBalancer.ingress[0].hostname}')" >> ~/.bashrc
-bash
+export DATA_PLANE_LB=$(kubectl get svc -n kong proxy1 --output=jsonpath='{.status.loadBalancer.ingress[].ip}')
 {{</highlight>}}
 
 View the load balancer DNS as

@@ -6,45 +6,45 @@
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Install the Operator To get started let’s install the Operator:
-helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Kong Gateway Operator :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Install the Operator To get started let’s install the Operator:
-helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
     <meta property="og:url" content="http://localhost:1313/11-konnect-setup/112-kgo-installation/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Kong Gateway Operator :: API Management with Kong Konnect">
     <meta property="og:description" content="Install the Operator To get started let’s install the Operator:
-helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Konnect Setup">
     <meta itemprop="name" content="Kong Gateway Operator :: API Management with Kong Konnect">
     <meta itemprop="description" content="Install the Operator To get started let’s install the Operator:
-helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.">
     <meta itemprop="wordCount" content="93">
     <title>Kong Gateway Operator :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754488521" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754488521" defer></script>
-    <script src="/js/search-lunr.js?1754488521" defer></script>
-    <script src="/js/search.js?1754488521" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
+    <script src="/js/search-lunr.js?1754497137" defer></script>
+    <script src="/js/search.js?1754497137" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754488521";
+      window.relearn.index_js_url="/searchindex.en.js?1754497137";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754488521" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488521" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754488521" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754488521" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754497137" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488521" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488521" rel="stylesheet">
-    <link href="/css/theme.css?1754488521" rel="stylesheet">
-    <link href="/css/format-html.css?1754488521" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497137" rel="stylesheet">
+    <link href="/css/theme.css?1754497137" rel="stylesheet">
+    <link href="/css/format-html.css?1754497137" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -118,7 +118,7 @@ helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade 
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/11-konnect-setup/index.html"><span itemprop="name">Konnect Setup</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong Gateway Operator</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/111-personal-access-token/index.html" title="Personal Access Token (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/111-personal-access-token/index.html" title="PAT - Personal Access Token (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/113-cp-dp/index.html" title="Control Plane and Data Plane (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
@@ -145,12 +145,12 @@ helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade 
 <h4 id="install-the-operator">Install the Operator</h4>
 <p>To get started let&rsquo;s install the Operator:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add kong https://charts.konghq.com
-helm repo update kong
+helm repo update kong</code></pre></div>
 
-helm upgrade --install kgo kong/gateway-operator \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade --install kgo kong/gateway-operator \
 -n kong-system \
 --create-namespace \
---set image.tag=1.6 \
+--set image.tag=1.6.2 \
 --set kubernetes-configuration-crds.enabled=true \
 --set env.ENABLE_CONTROLLER_KONNECT=true</code></pre></div>
 
@@ -208,7 +208,8 @@ helm upgrade --install kgo kong/gateway-operator \
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu">
-            <li class="" data-nav-id="/11-konnect-setup/111-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/111-personal-access-token/index.html">Personal Access Token</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/110-minikube/index.html"><a class="padding" href="/11-konnect-setup/110-minikube/index.html">Minikube</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/111-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/111-personal-access-token/index.html">PAT - Personal Access Token</a></li>
             <li class="active " data-nav-id="/11-konnect-setup/112-kgo-installation/index.html"><a class="padding" href="/11-konnect-setup/112-kgo-installation/index.html">Kong Gateway Operator</a></li>
             <li class="" data-nav-id="/11-konnect-setup/113-cp-dp/index.html"><a class="padding" href="/11-konnect-setup/113-cp-dp/index.html">Control Plane and Data Plane</a></li>
             <li class="" data-nav-id="/11-konnect-setup/114-elasticity/index.html"><a class="padding" href="/11-konnect-setup/114-elasticity/index.html">Data Plane Elasticity</a></li></ul></li>
@@ -231,8 +232,8 @@ helm upgrade --install kgo kong/gateway-operator \
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754488521" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488521" defer></script>
-    <script src="/js/theme.js?1754488521" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754497137" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497137" defer></script>
+    <script src="/js/theme.js?1754497137" defer></script>
   </body>
 </html>

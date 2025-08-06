@@ -5,30 +5,34 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
-In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.
-Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates">
+    <meta name="description" content="The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Authentication-OpenID Connect :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
-In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.
-Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates">
-    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">
+    <meta name="twitter:title" content="Request Callout Plugin :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Authentication-OpenID Connect :: API Management with Kong Konnect">
-    <meta property="og:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
-In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.
-Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates">
+    <meta property="og:title" content="Request Callout Plugin :: API Management with Kong Konnect">
+    <meta property="og:description" content="The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
-    <meta itemprop="name" content="Authentication-OpenID Connect :: API Management with Kong Konnect">
-    <meta itemprop="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
-In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.
-Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates">
-    <meta itemprop="wordCount" content="385">
-    <title>Authentication-OpenID Connect :: API Management with Kong Konnect</title>
+    <meta itemprop="name" content="Request Callout Plugin :: API Management with Kong Konnect">
+    <meta itemprop="description" content="The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
+Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
+:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:">
+    <meta itemprop="wordCount" content="314">
+    <title>Request Callout Plugin :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
     <script src="/js/search-lunr.js?1754497137" defer></script>
@@ -53,7 +57,7 @@ Creating AWS Cognito Run the following command to create the AWS Cognito Resourc
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/12-api-gateway\/15-use-cases\/157-authenticaion_openid_connect\/index.html';
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/154-request-callout\/index.html';
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -103,7 +107,7 @@ Creating AWS Cognito Run the following command to create the AWS Cognito Resourc
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/154-request-callout/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -114,17 +118,27 @@ Creating AWS Cognito Run the following command to create the AWS Cognito Resourc
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#verify">Verify</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Authentication-OpenID Connect</span><meta itemprop="position" content="4"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Request Callout Plugin</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1565-update-rate-limiting-plugin/index.html" title="Update the Rate Limiting Plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html" title="Response Transformer Plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/index.html" title="Kong AI Gateway (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html" title="Rate Limiting Using Redis (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -144,33 +158,15 @@ Creating AWS Cognito Run the following command to create the AWS Cognito Resourc
   <header class="headline">
   </header>
 
-<h1 id="authentication-openid-connect">Authentication-OpenID Connect</h1>
+<h1 id="request-callout-plugin">Request Callout Plugin</h1>
 
-<p><a href="https://docs.konghq.com/hub/kong-inc/openid-connect/" rel="external" target="_blank">OpenID Connect plugin</a> allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) <a href="https://tools.ietf.org/html/rfc6749" rel="external" target="_blank">OAuth 2.0</a> resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.</p>
-<p>In this module, we will configure this plugin to use <a href="https://aws.amazon.com/cognito/" rel="external" target="_blank">Amazon Cognito</a> . A detailed integration guide is available <a href="https://docs.konghq.com/gateway/latest/kong-plugins/authentication/oidc/cognito/" rel="external" target="_blank">here</a> for future reading.</p>
-<h4 id="creating-aws-cognito">Creating AWS Cognito</h4>
-<p>Run the following command to create the AWS Cognito Resources using a CloudFormation templates</p>
+<p>The <a href="https://developer.konghq.com/plugins/request-callout/" rel="external" target="_blank">Request Callout</a> plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.</p>
+<p>In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header &ldquo;demo: injected-by-kong&rdquo; before responding to the client.</p>
+<h4 id="create-the-response-transformer-plugin">Create the Response Transformer Plugin</h4>
+<p>Take the plugins declaration and enable the <strong>Response Transformer</strong> plugin to the Route.</p>
 <p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl &lsquo;:assetUrl{path=&quot;/code/cognito.yaml&quot;}&rsquo; &ndash;output cognito.yaml
-echo &ldquo;export RANDOM_IDENTIFIER=$(uuidgen -r)&rdquo; &raquo; ~/.bashrc
-bash
-aws cloudformation  deploy &ndash;template-file cognito.yaml &ndash;stack-name cognito-$RANDOM_IDENTIFIER <br>
-&ndash;parameter-overrides ClientName=$RANDOM_IDENTIFIER-client Domain=$RANDOM_IDENTIFIER PoolName=$RANDOM_IDENTIFIER-pool CallBackUrl=https://$DATA_PLANE_LB/oidc-route/get
-echo &ldquo;export COGNITO_CLIENT_ID=$(aws cloudformation describe-stack-resources &ndash;stack-name cognito-$RANDOM_IDENTIFIER | jq -r &lsquo;.StackResources[] | select(.ResourceType==&ldquo;AWS::Cognito::UserPoolClient&rdquo;) | .PhysicalResourceId&rsquo;)&rdquo; &raquo; ~/.bashrc
-bash
-echo &ldquo;export COGNITO_POOL_ID=$(aws cloudformation describe-stack-resources &ndash;stack-name cognito-$RANDOM_IDENTIFIER | jq -r &lsquo;.StackResources[] | select(.ResourceType==&ldquo;AWS::Cognito::UserPool&rdquo;) | .PhysicalResourceId&rsquo;)&rdquo; &raquo; ~/.bashrc
-bash
-echo &ldquo;export ISSUER=https://cognito-idp.$AWS_REGION.amazonaws.com/$COGNITO_POOL_ID/.well-known/openid-configuration&rdquo; &raquo; ~/.bashrc
-bash
-:::</p>
-<p>Fetch the client secret</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-echo &ldquo;export CLIENT_SECRET=$(aws cognito-idp describe-user-pool-client &ndash;user-pool-id $COGNITO_POOL_ID &ndash;client-id $COGNITO_CLIENT_ID &ndash;query &lsquo;UserPoolClient.ClientSecret&rsquo;)&rdquo; &raquo; ~/.bashrc
-bash
-:::</p>
-<h4 id="installing-openid-connect-plugin">Installing OpenID Connect Plugin</h4>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-echo &ldquo;_format_version: &quot;3.0&quot;
+cat &gt; response-transformer.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
 _konnect:
 control_plane_name: kong-aws
 _info:
@@ -183,25 +179,37 @@ host: httpbin.kong.svc.cluster.local
 port: 8000
 routes:
 <ul>
-<li>name: oidc-route
+<li>name: response-transformer-route
 paths:
 <ul>
-<li>/oidc-route
-plugins:</li>
-<li>name: openid-connect
-instance_name: openid-connect1
-config:
-auth_methods:
+<li>/response-transformer-route
+plugins:
 <ul>
-<li>authorization_code
-redirect_uri:</li>
-<li>https://$DATA_PLANE_LB/oidc-route/get
-client_id:</li>
-<li>$COGNITO_CLIENT_ID
-client_secret:</li>
-<li>$CLIENT_SECRET
-issuer: $ISSUER&rdquo; &gt; ./oidc.yaml
+<li>name: request-callout
+instance_name: request-callout1
+config:
+callouts:
+<ul>
+<li>name: wikipedia
+request:
+url: en.wikipedia.org/w/api.php
+method: GET
+forward: false
+query:
+- srsearch:theorem
+- action:query
+- list:search
+- format:json
+response:
+body:
+decode: true
+upstream:
+by_lua: kong.response.exit(200, { uuid = kong.ctx.shared.callouts.c1.response.body.uuid,
+origin = kong.ctx.shared.callouts.c2.response.body.url})
+EOF
 :::</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -211,25 +219,34 @@ issuer: $ISSUER&rdquo; &gt; ./oidc.yaml
 </ul>
 <p>Submit the declaration
 :::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync &ndash;konnect-token $PAT oidc.yaml
+deck gateway sync &ndash;konnect-token $PAT response-transformer.yaml
 :::</p>
-<p>Check your Client Id, Secret and Issuer</p>
+<h3 id="verify">Verify</h3>
+<p>Test to make sure Kong transforms the request to the echo server and httpbin server.</p>
 <p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-echo $COGNITO_CLIENT_ID
-echo $CLIENT_SECRET
-echo $ISSUER
+curl &ndash;head $DATA_PLANE_LB/response-transformer-route/get
 :::</p>
-<h4 id="verification">Verification</h4>
-<p>Copy output of <code>echo https://$DATA_PLANE_LB/oidc-route/get</code> and paste in browser.</p>
-<p>After accepting the Server Certificate, since you haven&rsquo;t been authenticated, you will be redirected to Cognito&rsquo;s Authentication page:</p>
-<p><a href="#R-image-f6328f027fe0ed70b23c46df446fce47" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f6328f027fe0ed70b23c46df446fce47"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
-<p>Click on &ldquo;Sign up&rdquo; to register.</p>
-<p><a href="#R-image-4de850b8659fe4cdeaba2a5f3448d19d" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4de850b8659fe4cdeaba2a5f3448d19d"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
-<p>After entering your data click on &ldquo;Sign Up&rdquo;. Cognito will create a user and request the verification code sent by your email.</p>
-<p>After typing the code, Cognito will authenticate you, issues an Authorization Code and redirects you back to the original URL (Data Plane). The Data Plane connects to Cognito with the Authorization Code to get the Access Token and then allows you to consume the URL.</p>
-<p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 469
+Connection: keep-alive
+Server: gunicorn
+Date: Wed, 28 May 2025 12:24:14 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+demo: injected-by-kong
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 1
+Via: 1.1 kong/3.10.0.1-enterprise-edition
+X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a</code></pre></div>
+<p><strong>Expected Results</strong> Notice that <code>demo: injected-by-kong</code> is injected in the header.</p>
+<h4 id="cleanup">Cleanup</h4>
+<p>Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+:::</p>
+<p>In real world scenario, you can enable as many plugins as you like depending on your use cases.</p>
+<p>Kong-gratulations! have now reached the end of this module by configuring the Kong Route to include <code>demo: injected-by-kong</code> before responding to the client. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
   </footer>
@@ -286,9 +303,9 @@ echo $ISSUER
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
             <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
-            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication-OpenID Connect</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>

@@ -6,8 +6,8 @@ weight : 110
 This chapter will walk you through
 
 * Konnect Control Plane and Data Plane creation using Kong Gateway Operator (KGO).
-* Scale Kong data plane nodes on EKS using horizontal pod Autoscaler. 
-* Access Kong data plane through an AWS Load Balancer
+* Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. 
+* Access Kong data plane through Minikube tunnel
 
 Here's a Reference Architecture that will be implemented in this workshop:
 

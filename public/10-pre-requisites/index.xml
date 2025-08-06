@@ -19,7 +19,7 @@
       <link>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</guid>
-      <description>Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.&#xA;:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::&#xA;From the AWS console, navigate to Amazon Bedrock.</description>
+      <description>Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.&#xA;Choose the following models:&#xA;Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.</description>
     </item>
   </channel>
 </rss>

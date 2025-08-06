@@ -6,4 +6,4 @@ title = 'API Management with Kong Konnect'
   [[module.imports]]
     path = 'github.com/McShelby/hugo-theme-relearn'
 [params]
-  themeVariant = "blue"    
+  themeVariant = "blue"

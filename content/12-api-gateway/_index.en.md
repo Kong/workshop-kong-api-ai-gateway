@@ -3,7 +3,7 @@ title : "Kong API Gateway"
 weight : 120
 ---
 
-With our Control Plane created and Data Plane layer deployed it's time to create an API and expose an application. In this module, we will
+With our Control Plane created and Data Plane layer deployed it's time to create an API and expose an application. In this module, we will:
 
 * Deploy an application to get protected by the Data Plane
 * Use **decK** to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application.

@@ -11,11 +11,13 @@ To get started let's install the Operator:
 {{<highlight>}}
 helm repo add kong https://charts.konghq.com
 helm repo update kong
+{{</highlight>}}
 
+{{<highlight>}}
 helm upgrade --install kgo kong/gateway-operator \
 -n kong-system \
 --create-namespace \
---set image.tag=1.6 \
+--set image.tag=1.6.2 \
 --set kubernetes-configuration-crds.enabled=true \
 --set env.ENABLE_CONTROLLER_KONNECT=true
 {{</highlight>}}

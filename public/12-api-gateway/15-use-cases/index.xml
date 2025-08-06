@@ -22,11 +22,18 @@
       <description>To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.</description>
     </item>
     <item>
-      <title>Response-Transformer Plugin</title>
+      <title>Response Transformer Plugin</title>
       <link>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</guid>
-      <description>The Response-Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.&#xA;In this section, you will configure the Response-Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.&#xA;Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:</description>
+      <description>The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.&#xA;In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.&#xA;Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.&#xA;cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-aws _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml</description>
+    </item>
+    <item>
+      <title>Request Callout Plugin</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</guid>
+      <description>The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.&#xA;In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.&#xA;Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:</description>
     </item>
     <item>
       <title>Rate Limiting Using Redis</title>

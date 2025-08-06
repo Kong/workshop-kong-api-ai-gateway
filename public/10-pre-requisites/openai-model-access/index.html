@@ -5,50 +5,50 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
-:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
-From the AWS console, navigate to Amazon Bedrock.">
+    <meta name="description" content="Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+Choose the following models:
+Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="OpenAI model access :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
-:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
-From the AWS console, navigate to Amazon Bedrock.">
+    <meta name="twitter:description" content="Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+Choose the following models:
+Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.">
     <meta property="og:url" content="http://localhost:1313/10-pre-requisites/openai-model-access/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="OpenAI model access :: API Management with Kong Konnect">
-    <meta property="og:description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
-:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
-From the AWS console, navigate to Amazon Bedrock.">
+    <meta property="og:description" content="Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+Choose the following models:
+Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Pre-Requisites">
     <meta itemprop="name" content="OpenAI model access :: API Management with Kong Konnect">
-    <meta itemprop="description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
-:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
-From the AWS console, navigate to Amazon Bedrock.">
-    <meta itemprop="wordCount" content="228">
+    <meta itemprop="description" content="Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+Choose the following models:
+Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.">
+    <meta itemprop="wordCount" content="71">
     <title>OpenAI model access :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754488408" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754488408" defer></script>
-    <script src="/js/search-lunr.js?1754488408" defer></script>
-    <script src="/js/search.js?1754488408" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
+    <script src="/js/search-lunr.js?1754497137" defer></script>
+    <script src="/js/search.js?1754497137" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754488408";
+      window.relearn.index_js_url="/searchindex.en.js?1754497137";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754488408" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754488408" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754488408" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754488408" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754497137" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488408" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754488408" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754488408" rel="stylesheet">
-    <link href="/css/theme.css?1754488408" rel="stylesheet">
-    <link href="/css/format-html.css?1754488408" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497137" rel="stylesheet">
+    <link href="/css/theme.css?1754497137" rel="stylesheet">
+    <link href="/css/format-html.css?1754497137" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -146,23 +146,7 @@ From the AWS console, navigate to Amazon Bedrock.">
 
 <h1 id="openai-model-access">OpenAI model access</h1>
 
-<p>Access to Amazon Bedrock foundation models isn&rsquo;t granted by default. In order to gain access to the foundational model, follow the steps below.</p>
-<p>:::alert{header=&ldquo;Model providers&rdquo; type=&ldquo;info&rdquo;}
-As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html" rel="external" target="_blank">model support by AWS region</a>.
-:::</p>
-<ol>
-<li>
-<p>From the AWS console, navigate to <a href="https://us-west-2.console.aws.amazon.com/bedrock/home?region=us-west-2#/modelaccess" rel="external" target="_blank">Amazon Bedrock</a>.</p>
-</li>
-<li>
-<p>Select <strong>Enable specific models</strong>.</p>
-</li>
-</ol>
-<p>:::alert{header=&ldquo;Specific Model&rdquo; type=&ldquo;warning&rdquo;}
-Please note, during a hosted event such as re:Invent, Kubecon, Immersion Day, or any other event hosted by AWS or Kong, where are provided with temporary AWS account, you are limited to subscribing to 5 third-party models at most. <strong>Do NOT select &ldquo;Enable all models&rdquo;</strong> as it may result in termination of the AWS accounts that you are using during these events.
-:::</p>
-<ol start="3">
-<li>
+<p>Access to OpenAI foundation models isn&rsquo;t granted by default. In order to gain access to the foundational model, follow the steps below.</p>
 <p>Choose the following models:</p>
 <ul>
 <li>Amazon:
@@ -178,17 +162,6 @@ Please note, during a hosted event such as re:Invent, Kubecon, Immersion Day, or
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>Select <strong>Next</strong> to review and then <strong>Submit</strong>.</p>
-</li>
-<li>
-<p>Model access should take affect momentarily, you can verify it by looking at the <strong>Access status</strong> column.</p>
-</li>
-</ol>
-<p>You should see your models inside <strong>Model Catalog</strong>.
-<a href="#R-image-400ece2ccaacb33acd371538e839835a" class="lightbox-link"><img alt="MultiLine Commands" class="lazy lightbox figure-image" loading="lazy" src="/static/images/bedrock/bedrock_model_access.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-400ece2ccaacb33acd371538e839835a"><img alt="MultiLine Commands" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/bedrock/bedrock_model_access.png"></a></p>
 <p>This wraps up the model access configuration, in the next section you will learn how to use these models in the application.</p>
 
   <footer class="footline">
@@ -242,8 +215,8 @@ Please note, during a hosted event such as re:Invent, Kubecon, Immersion Day, or
             <li class="" data-nav-id="/10-pre-requisites/konnect-control-plane/index.html"><a class="padding" href="/10-pre-requisites/konnect-control-plane/index.html">Konnect Subscription</a></li>
             <li class="active " data-nav-id="/10-pre-requisites/openai-model-access/index.html"><a class="padding" href="/10-pre-requisites/openai-model-access/index.html">OpenAI model access</a></li></ul></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a></li>
-            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -261,8 +234,8 @@ Please note, during a hosted event such as re:Invent, Kubecon, Immersion Day, or
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754488408" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754488408" defer></script>
-    <script src="/js/theme.js?1754488408" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754497137" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497137" defer></script>
+    <script src="/js/theme.js?1754497137" defer></script>
   </body>
 </html>

@@ -1,18 +1,18 @@
 ---
-title : "Response Transformer Plugin"
-weight : 153
+title : "Request Callout Plugin"
+weight : 154
 ---
 
-The [Response Transformer](https://docs.konghq.com/hub/kong-inc/response-transformer/) plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
+The [Request Callout](https://developer.konghq.com/plugins/request-callout/) plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
 
-In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header "demo: injected-by-kong" before responding to the client.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header "demo: injected-by-kong" before responding to the client.
 
 
 #### Create the Response Transformer Plugin
 
 Take the plugins declaration and enable the **Response Transformer** plugin to the Route.
 
-{{<highlight>}}
+:::code{showCopyAction=true showLineNumbers=false language=shell}
 cat > response-transformer.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
@@ -29,28 +29,42 @@ services:
     paths:
     - /response-transformer-route
     plugins:
-    - name: response-transformer
-      instance_name: response-transformer1
-      config:
-        add:
-          headers:
-          - demo:injected-by-kong
+      - name: request-callout
+        instance_name: request-callout1
+        config:
+          callouts:
+          - name: wikipedia
+            request:
+              url: en.wikipedia.org/w/api.php
+              method: GET
+              forward: false
+              query:
+                - srsearch:theorem
+                - action:query
+                - list:search
+                - format:json
+            response:
+              body:
+                decode: true
+          upstream:
+            by_lua: kong.response.exit(200, { uuid = kong.ctx.shared.callouts.c1.response.body.uuid,
+              origin = kong.ctx.shared.callouts.c2.response.body.url})
 EOF
-{{</highlight>}}
+:::
 
 
 Submit the declaration
-{{<highlight>}}
+:::code{showCopyAction=true showLineNumbers=false language=shell}
 deck gateway sync --konnect-token $PAT response-transformer.yaml
-{{</highlight>}}
+:::
 
 
 ### Verify
 Test to make sure Kong transforms the request to the echo server and httpbin server. 
 
-{{<highlight>}}
+:::code{showCopyAction=true showLineNumbers=false language=shell}
 curl --head $DATA_PLANE_LB/response-transformer-route/get
-{{</highlight>}}
+:::
 
 ```
 HTTP/1.1 200 OK
@@ -76,9 +90,9 @@ X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a
 
 Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.
 
-{{<highlight>}}
+:::code{showCopyAction=true showLineNumbers=false language=shell}
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-{{</highlight>}}
+:::
 
 In real world scenario, you can enable as many plugins as you like depending on your use cases.
 
