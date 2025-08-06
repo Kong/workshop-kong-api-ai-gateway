@@ -8,15 +8,15 @@ The [Request Callout](https://developer.konghq.com/plugins/request-callout/) plu
 In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header "demo: injected-by-kong" before responding to the client.
 
 
-#### Create the Response Transformer Plugin
+#### Create the Request Callout Plugin
 
-Take the plugins declaration and enable the **Response Transformer** plugin to the Route.
+Take the plugins declaration and enable the **Request Callout** plugin to the Route.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat > response-transformer.yaml << 'EOF'
+{{<highlight>}}
+cat > request-callout.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -25,9 +25,9 @@ services:
   host: httpbin.kong.svc.cluster.local
   port: 8000
   routes:
-  - name: response-transformer-route
+  - name: request-callout-route
     paths:
-    - /response-transformer-route
+    - /request-callout-route
     plugins:
       - name: request-callout
         instance_name: request-callout1
@@ -50,21 +50,21 @@ services:
             by_lua: kong.response.exit(200, { uuid = kong.ctx.shared.callouts.c1.response.body.uuid,
               origin = kong.ctx.shared.callouts.c2.response.body.url})
 EOF
-:::
+{{</highlight>}}
 
 
-Submit the declaration
+{{<highlight>}}
 :::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync --konnect-token $PAT response-transformer.yaml
-:::
+deck gateway sync --konnect-token $PAT request-callout.yaml
+{{</highlight>}}
 
 
 ### Verify
 Test to make sure Kong transforms the request to the echo server and httpbin server. 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl --head $DATA_PLANE_LB/response-transformer-route/get
-:::
+{{<highlight>}}
+curl --head $DATA_PLANE_LB/request-callout-route/get
+{{</highlight>}}
 
 ```
 HTTP/1.1 200 OK
