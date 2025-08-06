@@ -102,7 +102,8 @@ curl -s "http://$DATA_PLANE_LB/request-callout-route/get" -H srsearch:"Miles Dav
 ```
 
 
-**Expected Results** Notice that new ``demo: injected-by-kong`` is injected in the header.
+**Expected Results**
+Notice that new ``Wikipedia-Total-Hits-Header`` header is injected.
 
 
 #### Cleanup
