@@ -33,7 +33,7 @@
       <link>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</guid>
-      <description>The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.&#xA;In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.&#xA;Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; response-transformer.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:</description>
+      <description>The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.&#xA;In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure the plugin to do the following:&#xA;Call Wikipedia using the “srseach” header as a parameter. The number of hits found and returned by Wikipeadia is added as a new header to the request. The request is sent to httpbin application which echoes the number of hits. Hit Wikipedia Just to get an idea what the Wikipedia response, send the following request:</description>
     </item>
     <item>
       <title>Rate Limiting Using Redis</title>

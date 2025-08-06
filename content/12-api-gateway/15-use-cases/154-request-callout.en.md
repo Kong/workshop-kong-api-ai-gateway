@@ -5,7 +5,20 @@ weight : 154
 
 The [Request Callout](https://developer.konghq.com/plugins/request-callout/) plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
 
-In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header "demo: injected-by-kong" before responding to the client.
+In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure the plugin to do the following:
+* Call Wikipedia using the "srseach" header as a parameter.
+* The number of hits found and returned by Wikipeadia is added as a new header to the request.
+* The request is sent to **httpbin** application which echoes the number of hits.
+
+#### Hit Wikipedia
+
+Just to get an idea what the Wikipedia response, send the following request:
+
+{{<highlight>}}
+curl -s "https://en.wikipedia.org/w/api.php?srsearch=Miles%20Davis&action=query&list=search&format=json" | jq '.query.searchinfo.totalhits'
+{{</highlight>}}
+
+You should get a number like **43535**, which represents the number of total hits related to **Miles Davis**
 
 
 #### Create the Request Callout Plugin
@@ -35,65 +48,71 @@ services:
           callouts:
           - name: wikipedia
             request:
-              url: en.wikipedia.org/w/api.php
+              url: https://en.wikipedia.org/w/api.php
               method: GET
-              forward: false
               query:
-                - srsearch:theorem
-                - action:query
-                - list:search
-                - format:json
+                forward: true
+              by_lua:
+                local srsearch = kong.request.get_header("srsearch");
+                local srsearch_encoded = ngx.escape_uri(srsearch)
+                query = "srsearch=" .. srsearch_encoded .. "&action=query&list=search&format=json";
+                kong.log.inspect(query);
+                kong.ctx.shared.callouts.wikipedia.request.params.query = query
             response:
               body:
                 decode: true
-          upstream:
-            by_lua: kong.response.exit(200, { uuid = kong.ctx.shared.callouts.c1.response.body.uuid,
-              origin = kong.ctx.shared.callouts.c2.response.body.url})
+              by_lua:
+                kong.service.request.add_header("wipikedia-total-hits-header", kong.ctx.shared.callouts.wikipedia.response.body.query.searchinfo.totalhits)
 EOF
 {{</highlight>}}
 
 
+Submit the declaration
 {{<highlight>}}
-:::code{showCopyAction=true showLineNumbers=false language=shell}
 deck gateway sync --konnect-token $PAT request-callout.yaml
 {{</highlight>}}
 
 
 ### Verify
-Test to make sure Kong transforms the request to the echo server and httpbin server. 
+Send the request to Kong and check the response
 
 {{<highlight>}}
-curl --head $DATA_PLANE_LB/request-callout-route/get
+curl -s "http://$DATA_PLANE_LB/request-callout-route/get" -H srsearch:"Miles Davis" | jq
 {{</highlight>}}
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 469
-Connection: keep-alive
-Server: gunicorn
-Date: Wed, 28 May 2025 12:24:14 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-demo: injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "Content-Length": "0",
+    "Host": "httpbin.kong.svc.cluster.local:8000",
+    "Srsearch": "Miles Davis",
+    "User-Agent": "curl/8.7.1",
+    "Wipikedia-Total-Hits-Header": "43535",
+    "X-Forwarded-Host": "127.0.0.1",
+    "X-Forwarded-Path": "/request-callout-route/get",
+    "X-Forwarded-Prefix": "/request-callout-route",
+    "X-Kong-Request-Id": "6e4df528567f446630c6ae5c0b461c2e"
+  },
+  "origin": "10.244.0.1",
+  "url": "http://httpbin.kong.svc.cluster.local:8000/get"
+}
 ```
 
 
-**Expected Results** Notice that ``demo: injected-by-kong`` is injected in the header.
+**Expected Results** Notice that new ``demo: injected-by-kong`` is injected in the header.
 
 
 #### Cleanup
 
 Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-:::
+{{<highlight>}}
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+{{</highlight>}}
 
 In real world scenario, you can enable as many plugins as you like depending on your use cases.
 
-Kong-gratulations! have now reached the end of this module by configuring the Kong Route to include ``demo: injected-by-kong`` before responding to the client. You can now click **Next** to proceed with the next module.
+Kong-gratulations! have now reached the end of this module. You can now click **Next** to proceed with the next module.

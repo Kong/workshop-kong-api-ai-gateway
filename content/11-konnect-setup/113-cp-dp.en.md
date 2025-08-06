@@ -119,6 +119,11 @@ curl -w '\n' $DATA_PLANE_LB
 }
 ```
 
+You can check the Data Plane logs with
+{{<highlight>}}
+kubectl logs -f $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong
+{{</highlight>}}
+
 #### Further Reading
 
 * [Kong Konnect API auth configuration](https://docs.konghq.com/gateway-operator/latest/get-started/konnect/create-konnectextension/#create-an-access-token-in-konnect) 
