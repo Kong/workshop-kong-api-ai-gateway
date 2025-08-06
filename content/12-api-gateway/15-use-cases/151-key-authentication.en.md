@@ -15,11 +15,11 @@ Please, check the [**Key-Auth** plugin](https://docs.konghq.com/hub/kong-inc/key
 
 ### Enable the Key Authentication Plugin on the Kong Route
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > key-auth.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -35,11 +35,11 @@ services:
   - name: key-auth
     instance_name: key-auth1
 EOF
-:::
+{{</highlight>}}
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT key-auth.yaml
-:::
+{{</highlight>}}
 
 
 
@@ -47,9 +47,9 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 Now, if you try the Route, you'll get a specific **401** error code meaning that, since you don't have any API Key injected in your request, you are not allowd to consume it.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -i $DATA_PLANE_LB/key-auth-route/get
-:::
+{{</highlight>}}
 
 ```
 HTTP/1.1 401 Unauthorized
@@ -73,11 +73,11 @@ X-Kong-Request-Id: 3bdc0f233664705be8414e1b29ace607
 
 In order to consume the Route we need to create a Kong Consumer. Here's its declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > key-auth.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -97,13 +97,13 @@ consumers:
   - key: "123456"
   username: consumer1
 EOF
-:::
+{{</highlight>}}
 
 
 Submit the declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT key-auth.yaml
-:::
+{{</highlight>}}
 
 
 
@@ -111,9 +111,9 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 Now, you need to inject the Key you've just created, as a header, in your requests. Using HTTPie, you can do it easily like this:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
-:::
+{{</highlight>}}
 
 ```
 HTTP/1.1 200 OK
@@ -172,11 +172,11 @@ For this section we're implementing a Rate Limiting policy. Keep in mind that a 
 
 Create the second ``consumer2``, just like you did with the first one, with the ``987654`` key.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > key-auth.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -199,37 +199,37 @@ consumers:
   - key: "987654"
   username: consumer2
 EOF
-:::
+{{</highlight>}}
 
 Submit the declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT key-auth.yaml
-:::
+{{</highlight>}}
 
 
 
 If you will, you can inject both keys to your requests.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
-:::
+{{</highlight>}}
 
 or
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:987654'
-:::
+{{</highlight>}}
 
 
 #### Consumers' Policy
 
 Now let's enhance the plugins declaration enabling the Rate Limiting plugin to each one of our consumers.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > key-auth.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -262,13 +262,13 @@ consumers:
     config:
       minute: 8
 EOF
-:::
+{{</highlight>}}
 
 
 Submit the declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT key-auth.yaml
-:::
+{{</highlight>}}
 
 
 
@@ -276,9 +276,9 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 First of all let's consume the Route with the Consumer1's API Key:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
-:::
+{{</highlight>}}
 
 **Expected Output**
 
@@ -304,9 +304,9 @@ X-Kong-Request-Id: 7b9f662e2e0d2f562b12535227ff024b
 
 Now, let's consume it with the Consumer2's API Key. As you can see the Data Plane is processing the Rate Limiting processes independently.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
-:::
+{{</highlight>}}
 
 **Expected Output**
 
@@ -333,9 +333,9 @@ X-Kong-Request-Id: d927f9253a57be7775bdd67e0e8f0328
 If we keep sending requests using the first API Key, eventually, as expected, we'll get an error code:
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
-:::
+{{</highlight>}}
 
 
 **Expected Output**
@@ -359,9 +359,9 @@ X-Kong-Request-Id: cf9e1a060a3d68737a805a732922ac19
 
 However, the second API Key is still allowed to consume the Kong Route:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:987654'
-:::
+{{</highlight>}}
 
 **Expected Output**
 
@@ -402,6 +402,3 @@ Kong Gateway has a library of plugins that provide simple ways to implement the 
 * OpenID Connect
 
 Kong Plugin Hub provides documentation about all [Authentication](https://docs.konghq.com/hub/#authentication) based plugins. Refer to the following link to read more about [API Gateway Authentication](https://konghq.com/learning-center/api-gateway/api-gateway-authentication)
-
-
-

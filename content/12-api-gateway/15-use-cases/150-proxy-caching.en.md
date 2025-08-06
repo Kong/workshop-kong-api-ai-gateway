@@ -14,11 +14,11 @@ Before enabling the **Proxy Caching**, let's check the list of plugins Konnect p
 ### Enabling a Kong Plugin on a Kong Service
 Create another declaration with ``plugins`` option. With this option you can enable and configure the plugin on your Kong Service.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > httpbin.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -41,7 +41,7 @@ services:
     paths:
     - /httpbin-route
 EOF
-:::
+{{</highlight>}}
 
 
 For the plugin configuration we used the following settings:
@@ -51,9 +51,9 @@ For the plugin configuration we used the following settings:
 All plugin configuration paramenters are described inside **[Kong Plugin Hub](https://docs.konghq.com/hub/)** portal, in its specific [documentation page](https://docs.konghq.com/hub/kong-inc/proxy-cache/).
 
 #### Submit the new declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
-:::
+{{</highlight>}}
 
 **Expected Output**
 ```
@@ -69,9 +69,9 @@ Summary:
 
 If you consume the service again, you'll see some new headers describing the caching status:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -v $DATA_PLANE_LB/httpbin-route/get
-:::
+{{</highlight>}}
 
 ```
 * Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
@@ -145,11 +145,11 @@ If we send a new request, the Runtime Instance has all it needs to satify the re
 
 Now, we are going to define a Rate Limiting policy for our Service. This time, you are going to enable the **Rate Limiting** plugin to the Kong Route, not to the Kong Gateway Service. In this sense, new Routes defined for the Service will not have the Rate Limiting plugin enabled, only the Proxy Caching.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > httpbin.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -176,7 +176,7 @@ services:
       config:
         minute: 3
 EOF
-:::
+{{</highlight>}}
 
 The configuration includes:
 * **minute** as ``3``, which means the Route can be consumed only 3 times a given minute.
@@ -184,18 +184,18 @@ The configuration includes:
 
 
 #### Submit the declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
-:::
+{{</highlight>}}
 
 
 #### Consume the Service
 
 If you consume the service again, you'll see, besides the caching related headers, new ones describing the status of current rate limiting policy:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -v $DATA_PLANE_LB/httpbin-route/get
-:::
+{{</highlight>}}
 
 ```
 * Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
@@ -277,11 +277,11 @@ Besides scoping a plugin to a Kong Service or Route, we can apply it globally al
 
 For example, let's apply the Proxy Caching plugin globally.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > httpbin.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -308,19 +308,19 @@ services:
       config:
         minute: 3
 EOF
-:::
+{{</highlight>}}
 
 
 #### Submit the declaration
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
-:::
+{{</highlight>}}
 
 After testing the configuration reset the Control Plane:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-:::
+{{</highlight>}}
 
 
 

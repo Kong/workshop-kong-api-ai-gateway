@@ -9,7 +9,8 @@ In this chapter we are going to explore the following common use cases we typica
 * API Key with Kong Consumers
 * Rate Limiting using Redis
 * Request Transformer
-* OpenID Connect with Cognito
+* Request Callout
+* OpenID Connect with Keycloak
 
 These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the [Plugin Hub](https://docs.konghq.com/hub/).
 

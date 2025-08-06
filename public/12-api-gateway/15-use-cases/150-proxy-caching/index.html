@@ -19,28 +19,28 @@
     <meta property="article:section" content="Kong API Gateway">
     <meta itemprop="name" content="Proxy Caching :: API Management with Kong Konnect">
     <meta itemprop="description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
-    <meta itemprop="wordCount" content="1154">
+    <meta itemprop="wordCount" content="1141">
     <title>Proxy Caching :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
-    <script src="/js/search-lunr.js?1754497137" defer></script>
-    <script src="/js/search.js?1754497137" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754497601" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754497601" defer></script>
+    <script src="/js/search-lunr.js?1754497601" defer></script>
+    <script src="/js/search.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754497137";
+      window.relearn.index_js_url="/searchindex.en.js?1754497601";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497137" rel="stylesheet">
-    <link href="/css/theme.css?1754497137" rel="stylesheet">
-    <link href="/css/format-html.css?1754497137" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497601" rel="stylesheet">
+    <link href="/css/theme.css?1754497601" rel="stylesheet">
+    <link href="/css/format-html.css?1754497601" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -153,46 +153,37 @@
 <p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">Proxy Caching</a> provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</p>
 <h3 id="kong-gateway-plugin-list">Kong Gateway Plugin list</h3>
 <p>Before enabling the <strong>Proxy Caching</strong>, let&rsquo;s check the list of plugins Konnect provides. Inside the <code>kong-aws</code> Control Plane, click on <strong>Plugins</strong> menu option and <strong>+ New plugin</strong>. You should the following page with all plugins available:</p>
-<p><a href="#R-image-549143acbe43750062cb51f177eb5433" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-549143acbe43750062cb51f177eb5433"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<p><a href="#R-image-9aff1194e89832ecd1d376eb2cfe6ff2" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9aff1194e89832ecd1d376eb2cfe6ff2"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
 <h3 id="enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</h3>
 <p>Create another declaration with <code>plugins</code> option. With this option you can enable and configure the plugin on your Kong Service.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _konnect:
-control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
-select_tags:</p>
-<ul>
-<li>httpbin-service-route
-services:</li>
-<li>name: httpbin-service
-tags:
-<ul>
-<li>httpbin-service-route
-host: httpbin.kong.svc.cluster.local
-port: 8000
-plugins:</li>
-<li>name: proxy-cache
-instance_name: proxy-cache1
-config:
-strategy: memory
-cache_ttl: 30
-routes:</li>
-<li>name: httpbin-route
-tags:
-<ul>
-<li>httpbin-service-route
-paths:</li>
-<li>/httpbin-route
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  tags:
+  - httpbin-service-route
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  plugins:
+  - name: proxy-cache
+    instance_name: proxy-cache1
+    config:
+      strategy: memory
+      cache_ttl: 30
+  routes:
+  - name: httpbin-route
+    tags:
+    - httpbin-service-route
+    paths:
+    - /httpbin-route
+EOF</code></pre></div>
+
 <p>For the plugin configuration we used the following settings:</p>
 <ul>
 <li><strong>strategy</strong> with <code>memory</code>. The plugin will use the Runtime Instance&rsquo;s memory to implement to cache.</li>
@@ -200,9 +191,8 @@ EOF
 </ul>
 <p>All plugin configuration paramenters are described inside <strong><a href="https://docs.konghq.com/hub/" rel="external" target="_blank">Kong Plugin Hub</a></strong> portal, in its specific <a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">documentation page</a>.</p>
 <h4 id="submit-the-new-declaration">Submit the new declaration</h4>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
+
 <p><strong>Expected Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>creating plugin proxy-cache for service httpbin-service
 Summary:
@@ -211,9 +201,8 @@ Summary:
   Deleted: 0</code></pre></div>
 <h4 id="consume-the-service">Consume the Service</h4>
 <p>If you consume the service again, you&rsquo;ll see some new headers describing the caching status:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -v $DATA_PLANE_LB/httpbin-route/get
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
+
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
 * IPv6: (none)
 * IPv4: 3.12.182.158, 18.216.117.235
@@ -276,59 +265,48 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 * Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact</code></pre></div>
 <h3 id="enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</h3>
 <p>Now, we are going to define a Rate Limiting policy for our Service. This time, you are going to enable the <strong>Rate Limiting</strong> plugin to the Kong Route, not to the Kong Gateway Service. In this sense, new Routes defined for the Service will not have the Rate Limiting plugin enabled, only the Proxy Caching.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _konnect:
-control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
-select_tags:</p>
-<ul>
-<li>httpbin-service-route
-services:</li>
-<li>name: httpbin-service
-tags:
-<ul>
-<li>httpbin-service-route
-host: httpbin.kong.svc.cluster.local
-port: 8000
-plugins:</li>
-<li>name: proxy-cache
-config:
-strategy: memory
-cache_ttl: 30
-routes:</li>
-<li>name: httpbin-route
-tags:
-<ul>
-<li>httpbin-service-route
-paths:</li>
-<li>/httpbin-route
-plugins:</li>
-<li>name: rate-limiting
-instance_name: rate-limiting1
-config:
-minute: 3
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  tags:
+  - httpbin-service-route
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  plugins:
+  - name: proxy-cache
+    config:
+      strategy: memory
+      cache_ttl: 30
+  routes:
+  - name: httpbin-route
+    tags:
+    - httpbin-service-route
+    paths:
+    - /httpbin-route
+    plugins:
+    - name: rate-limiting
+      instance_name: rate-limiting1
+      config:
+        minute: 3
+EOF</code></pre></div>
+
 <p>The configuration includes:</p>
 <ul>
 <li><strong>minute</strong> as <code>3</code>, which means the Route can be consumed only 3 times a given minute.</li>
 </ul>
 <h4 id="submit-the-declaration">Submit the declaration</h4>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
+
 <h4 id="consume-the-service-1">Consume the Service</h4>
 <p>If you consume the service again, you&rsquo;ll see, besides the caching related headers, new ones describing the status of current rate limiting policy:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -v $DATA_PLANE_LB/httpbin-route/get
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
+
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
 * IPv6: (none)
 * IPv4: 3.12.182.158, 18.216.117.235
@@ -398,54 +376,43 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 <h3 id="enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</h3>
 <p>Besides scoping a plugin to a Kong Service or Route, we can apply it globally also. When we do it so, all Services ans Routes will enforce the police described by the plugin.</p>
 <p>For example, let&rsquo;s apply the Proxy Caching plugin globally.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; httpbin.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _konnect:
-control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
-select_tags:</p>
-<ul>
-<li>httpbin-service-route
-plugins:</li>
-<li>name: proxy-cache
-config:
-strategy: memory
-cache_ttl: 30
-services:</li>
-<li>name: httpbin-service
-tags:
-<ul>
-<li>httpbin-service-route
-host: httpbin.kong.svc.cluster.local
-port: 8000
-routes:</li>
-<li>name: httpbin-route
-tags:
-<ul>
-<li>httpbin-service-route
-paths:</li>
-<li>/httpbin-route
-plugins:</li>
-<li>name: rate-limiting
-instance_name: rate-limiting1
-config:
-minute: 3
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  select_tags:
+  - httpbin-service-route
+plugins:
+- name: proxy-cache
+  config:
+    strategy: memory
+    cache_ttl: 30
+services:
+- name: httpbin-service
+  tags:
+  - httpbin-service-route
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: httpbin-route
+    tags:
+    - httpbin-service-route
+    paths:
+    - /httpbin-route
+    plugins:
+    - name: rate-limiting
+      instance_name: rate-limiting1
+      config:
+        minute: 3
+EOF</code></pre></div>
+
 <h4 id="submit-the-declaration-1">Submit the declaration</h4>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync &ndash;konnect-token $PAT httpbin.yaml
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
+
 <p>After testing the configuration reset the Control Plane:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f</code></pre></div>
+
 <p>Kong-gratulations! have now reached the end of this module by caching API responses. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
@@ -524,8 +491,8 @@ deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-tok
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754497137" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497137" defer></script>
-    <script src="/js/theme.js?1754497137" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754497601" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497601" defer></script>
+    <script src="/js/theme.js?1754497601" defer></script>
   </body>
 </html>

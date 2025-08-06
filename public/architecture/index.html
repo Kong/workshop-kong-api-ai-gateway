@@ -25,26 +25,26 @@ For today workshop, we will be focusing on Kong Gateway. Kong Gateway data plane
 For today workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs. While routing requests and providing responses, policies can be applied with plugins as necessary.">
     <meta itemprop="wordCount" content="391">
     <title>Kong Konnect Architectural Overview :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
-    <script src="/js/search-lunr.js?1754497137" defer></script>
-    <script src="/js/search.js?1754497137" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754497601" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754497601" defer></script>
+    <script src="/js/search-lunr.js?1754497601" defer></script>
+    <script src="/js/search.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754497137";
+      window.relearn.index_js_url="/searchindex.en.js?1754497601";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497137" rel="stylesheet">
-    <link href="/css/theme.css?1754497137" rel="stylesheet">
-    <link href="/css/format-html.css?1754497137" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497601" rel="stylesheet">
+    <link href="/css/theme.css?1754497601" rel="stylesheet">
+    <link href="/css/format-html.css?1754497601" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -151,8 +151,8 @@ For today workshop, we will be focusing on Kong Gateway. Kong Gateway data plane
 <h1 id="kong-konnect-architectural-overview">Kong Konnect Architectural Overview</h1>
 
 <p>The Kong Konnect platform provides a cloud control plane (CP), which manages all service configurations. It propagates those configurations to all Runtime control planes, which use in-memory storage. These nodes can be installed anywhere, on-premise or in AWS.</p>
-<p><a href="#R-image-d0090542175f2bffeca7d6d4f0f43c6f" class="lightbox-link"><img alt="Konnect Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-introduction.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d0090542175f2bffeca7d6d4f0f43c6f"><img alt="Konnect Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-introduction.png"></a></p>
+<p><a href="#R-image-639ed36683b1f0efbe31b0f903055926" class="lightbox-link"><img alt="Konnect Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-introduction.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-639ed36683b1f0efbe31b0f903055926"><img alt="Konnect Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-introduction.png"></a></p>
 <p>For today workshop, we will be focusing on Kong Gateway.
 Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs. While routing requests and providing responses, policies can be applied with plugins as necessary.</p>
 <h1 id="konnect-modules">Konnect modules</h1>
@@ -160,8 +160,8 @@ Kong Gateway data plane listen for traffic on the proxy port 443 by default. The
 <h2 id="control-plane-gateway-manager">Control Plane (Gateway Manager)</h2>
 <p>Control Plane empowers your teams to securely collaborate and manage their own set of runtimes and services without the risk of impacting other teams and projects. Control Plane instantly provisions hosted Kong Gateway control planes and supports securely attaching Kong Gateway data planes from your cloud or hybrid environments.</p>
 <p>Through the Control Plane, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.</p>
-<p><a href="#R-image-2b2e193440a40a4c80eedd00a4eecb84" class="lightbox-link"><img alt="gateway_manager" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway_cp.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2b2e193440a40a4c80eedd00a4eecb84"><img alt="gateway_manager" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway_cp.png"></a></p>
+<p><a href="#R-image-482742ef9183d9df7ea797b920e30bc6" class="lightbox-link"><img alt="gateway_manager" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway_cp.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-482742ef9183d9df7ea797b920e30bc6"><img alt="gateway_manager" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway_cp.png"></a></p>
 <h2 id="dev-portal">Dev Portal</h2>
 <p>Streamline developer onboarding with the Dev Portal, which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.</p>
 <h2 id="analytics">Analytics</h2>
@@ -243,8 +243,8 @@ Kong Gateway data plane listen for traffic on the proxy port 443 by default. The
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754497137" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497137" defer></script>
-    <script src="/js/theme.js?1754497137" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754497601" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497601" defer></script>
+    <script src="/js/theme.js?1754497601" defer></script>
   </body>
 </html>

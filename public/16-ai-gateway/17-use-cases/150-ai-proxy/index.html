@@ -25,26 +25,26 @@ The following table describes which providers and requests the AI Proxy plugin s
 The following table describes which providers and requests the AI Proxy plugin supports:">
     <meta itemprop="wordCount" content="1135">
     <title>AI Proxy plugin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754497137" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754497137" defer></script>
-    <script src="/js/search-lunr.js?1754497137" defer></script>
-    <script src="/js/search.js?1754497137" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754497601" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754497601" defer></script>
+    <script src="/js/search-lunr.js?1754497601" defer></script>
+    <script src="/js/search.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754497137";
+      window.relearn.index_js_url="/searchindex.en.js?1754497601";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754497137" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754497137" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754497601" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754497601" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497137" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497137" rel="stylesheet">
-    <link href="/css/theme.css?1754497137" rel="stylesheet">
-    <link href="/css/format-html.css?1754497137" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754497601" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754497601" rel="stylesheet">
+    <link href="/css/theme.css?1754497601" rel="stylesheet">
+    <link href="/css/format-html.css?1754497601" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -156,11 +156,11 @@ The following table describes which providers and requests the AI Proxy plugin s
 <h1 id="ai-proxy-plugin">AI Proxy plugin</h1>
 
 <p>The <a href="https://docs.konghq.com/hub/kong-inc/ai-proxy/configuration/" rel="external" target="_blank">AI Proxy plugin</a> is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.</p>
-<p><a href="#R-image-eedd0998e7a9f14c9f673e900030c7fb" class="lightbox-link"><img alt="AI Proxy Bedrock" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_proxy.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-eedd0998e7a9f14c9f673e900030c7fb"><img alt="AI Proxy Bedrock" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_proxy.png"></a></p>
+<p><a href="#R-image-0d23f77c978e04a73260b66089bbb856" class="lightbox-link"><img alt="AI Proxy Bedrock" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_proxy.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0d23f77c978e04a73260b66089bbb856"><img alt="AI Proxy Bedrock" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_proxy.png"></a></p>
 <p>The following table describes which providers and requests the AI Proxy plugin supports:</p>
-<p><a href="#R-image-e945d3f7259d41f52c7f56dc1b5e0821" class="lightbox-link"><img alt="providers_support" class="lazy lightbox figure-image" loading="lazy" src="/static/images/providers_support.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e945d3f7259d41f52c7f56dc1b5e0821"><img alt="providers_support" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/providers_support.png"></a></p>
+<p><a href="#R-image-822e97b4c6a4a4947d01d216768e899b" class="lightbox-link"><img alt="providers_support" class="lazy lightbox figure-image" loading="lazy" src="/static/images/providers_support.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-822e97b4c6a4a4947d01d216768e899b"><img alt="providers_support" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/providers_support.png"></a></p>
 <h2 id="getting-started-with-amazon-bedrock-and-kong-ai-gateway">Getting Started with Amazon Bedrock and Kong AI Gateway</h2>
 <p>We are going to get started with a simple configuration. The following decK declaration enables the <strong>AI Proxy</strong> plugin to the Kong Gateway Service, to send requests to Amazon Bedrock and consume the <strong>amazon.nova-micro-v1:0</strong> Amazon FM with <strong>chat</strong> LLM requests.</p>
 <p>For Amazon Bedrock, the <strong>allow_override</strong> parameter should be set to <code>false</code>, saying the the authorization header or parameter can not be overridden by requests.</p>
@@ -461,8 +461,8 @@ data: [DONE]</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754497137" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497137" defer></script>
-    <script src="/js/theme.js?1754497137" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754497601" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754497601" defer></script>
+    <script src="/js/theme.js?1754497601" defer></script>
   </body>
 </html>
