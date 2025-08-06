@@ -5,18 +5,30 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="">
+    <meta name="description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
+From the AWS console, navigate to Amazon Bedrock.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Categories :: API Management with Kong Konnect">
-    <meta property="og:url" content="http://localhost:1313/categories/index.html">
+    <meta name="twitter:title" content="OpenAI model access :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
+From the AWS console, navigate to Amazon Bedrock.">
+    <meta property="og:url" content="http://localhost:1313/10-pre-requisites/openai-model-access/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Categories :: API Management with Kong Konnect">
+    <meta property="og:title" content="OpenAI model access :: API Management with Kong Konnect">
+    <meta property="og:description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
+From the AWS console, navigate to Amazon Bedrock.">
     <meta property="og:locale" content="en_us">
-    <meta property="og:type" content="website">
-    <meta itemprop="name" content="Categories :: API Management with Kong Konnect">
-    <title>Categories :: API Management with Kong Konnect</title>
-    <link href="/categories/index.xml" rel="alternate" type="application/rss+xml" title="Categories :: API Management with Kong Konnect">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Pre-Requisites">
+    <meta itemprop="name" content="OpenAI model access :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.
+:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::
+From the AWS console, navigate to Amazon Bedrock.">
+    <meta itemprop="wordCount" content="228">
+    <title>OpenAI model access :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1754485349" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754485349" defer></script>
     <script src="/js/search-lunr.js?1754485349" defer></script>
@@ -41,9 +53,9 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/categories\/index.html';
-      window.relearn.relBasePath='..';
-      window.relearn.relBaseUri='..';
+      window.relearn.path='\/10-pre-requisites\/openai-model-access\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -91,7 +103,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/categories/index.html">
+  <body class="mobile-support html" data-url="/10-pre-requisites/openai-model-access/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -107,12 +119,12 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Categories</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/10-pre-requisites/index.html"><span itemprop="name">Pre-Requisites</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OpenAI model access</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/index.html" title="API Management with Kong Konnect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-pre-requisites/konnect-control-plane/index.html" title="Konnect Subscription (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/index.html" title="Konnect Setup (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -126,13 +138,58 @@
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable categories" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 10-pre-requisites" tabindex="-1">
         <div class="flex-block-wrapper">
-<article>
+<article class="default">
   <header class="headline">
   </header>
-<h1 id="categories">Categories</h1>
 
+<h1 id="openai-model-access">OpenAI model access</h1>
+
+<p>Access to Amazon Bedrock foundation models isn&rsquo;t granted by default. In order to gain access to the foundational model, follow the steps below.</p>
+<p>:::alert{header=&ldquo;Model providers&rdquo; type=&ldquo;info&rdquo;}
+As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html" rel="external" target="_blank">model support by AWS region</a>.
+:::</p>
+<ol>
+<li>
+<p>From the AWS console, navigate to <a href="https://us-west-2.console.aws.amazon.com/bedrock/home?region=us-west-2#/modelaccess" rel="external" target="_blank">Amazon Bedrock</a>.</p>
+</li>
+<li>
+<p>Select <strong>Enable specific models</strong>.</p>
+</li>
+</ol>
+<p>:::alert{header=&ldquo;Specific Model&rdquo; type=&ldquo;warning&rdquo;}
+Please note, during a hosted event such as re:Invent, Kubecon, Immersion Day, or any other event hosted by AWS or Kong, where are provided with temporary AWS account, you are limited to subscribing to 5 third-party models at most. <strong>Do NOT select &ldquo;Enable all models&rdquo;</strong> as it may result in termination of the AWS accounts that you are using during these events.
+:::</p>
+<ol start="3">
+<li>
+<p>Choose the following models:</p>
+<ul>
+<li>Amazon:
+<ul>
+<li>Nova Lite - amazon.nova-lite-v1:0</li>
+<li>Nova Micro - amazon.nova-micro-v1:0</li>
+<li>Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0</li>
+</ul>
+</li>
+<li>Meta:
+<ul>
+<li>Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Select <strong>Next</strong> to review and then <strong>Submit</strong>.</p>
+</li>
+<li>
+<p>Model access should take affect momentarily, you can verify it by looking at the <strong>Access status</strong> column.</p>
+</li>
+</ol>
+<p>You should see your models inside <strong>Model Catalog</strong>.
+<a href="#R-image-912b9b736fd78dc829b8dfcd769d0562" class="lightbox-link"><img alt="MultiLine Commands" class="lazy lightbox figure-image" loading="lazy" src="/static/images/bedrock/bedrock_model_access.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-912b9b736fd78dc829b8dfcd769d0562"><img alt="MultiLine Commands" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/bedrock/bedrock_model_access.png"></a></p>
+<p>This wraps up the model access configuration, in the next section you will learn how to use these models in the application.</p>
 
   <footer class="footline">
   </footer>
@@ -181,7 +238,9 @@
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
-            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu">
+            <li class="" data-nav-id="/10-pre-requisites/konnect-control-plane/index.html"><a class="padding" href="/10-pre-requisites/konnect-control-plane/index.html">Konnect Subscription</a></li>
+            <li class="active " data-nav-id="/10-pre-requisites/openai-model-access/index.html"><a class="padding" href="/10-pre-requisites/openai-model-access/index.html">OpenAI model access</a></li></ul></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a></li>
           </ul>
         </div>

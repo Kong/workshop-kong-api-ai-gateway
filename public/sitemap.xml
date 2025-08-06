@@ -4,6 +4,18 @@
     <loc>http://localhost:1313/architecture/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/10-pre-requisites/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/10-pre-requisites/konnect-control-plane/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/11-konnect-setup/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/index.html</loc>
   </url>
   <url>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pre-Requisites :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/10-pre-requisites/index.html</link>
+    <description>This chapter will walk you through the pre-requisites.&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Command Line Utilities In this workshop, we will use the following command line utilities&#xA;kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/10-pre-requisites/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Konnect Subscription</title>
+      <link>http://localhost:1313/10-pre-requisites/konnect-control-plane/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/10-pre-requisites/konnect-control-plane/index.html</guid>
+      <description>Konnect Plus Subscription You will need a Konnect subscription. Follow the steps below to obtain a Konnect Plus subscription. Initially $500 of credits are provided for up to 30 days, after the credits have expired or the time has finished Konnect Plus will charge based on Konnect Plus pricing. Following the workshop instructions will use less than $500 credits. After the workshop has finished the Konnect Plus environment can be deleted.</description>
+    </item>
+    <item>
+      <title>OpenAI model access</title>
+      <link>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</guid>
+      <description>Access to Amazon Bedrock foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.&#xA;:::alert{header=“Model providers” type=“info”} As part of this workshop we will utilize model provider from Amazon, Anthropic, and Cohere. Access to Amazon Titan model is available by default. Access to model in different AWS regions may vary, please refer to the model support by AWS region. :::&#xA;From the AWS console, navigate to Amazon Bedrock.</description>
+    </item>
+  </channel>
+</rss>

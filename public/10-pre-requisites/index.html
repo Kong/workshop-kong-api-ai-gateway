@@ -5,18 +5,38 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="">
+    <meta name="description" content="This chapter will walk you through the pre-requisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Command Line Utilities In this workshop, we will use the following command line utilities
+kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Categories :: API Management with Kong Konnect">
-    <meta property="og:url" content="http://localhost:1313/categories/index.html">
+    <meta name="twitter:title" content="Pre-Requisites :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="This chapter will walk you through the pre-requisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Command Line Utilities In this workshop, we will use the following command line utilities
+kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)">
+    <meta property="og:url" content="http://localhost:1313/10-pre-requisites/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Categories :: API Management with Kong Konnect">
+    <meta property="og:title" content="Pre-Requisites :: API Management with Kong Konnect">
+    <meta property="og:description" content="This chapter will walk you through the pre-requisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Command Line Utilities In this workshop, we will use the following command line utilities
+kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Categories :: API Management with Kong Konnect">
-    <title>Categories :: API Management with Kong Konnect</title>
-    <link href="/categories/index.xml" rel="alternate" type="application/rss+xml" title="Categories :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Pre-Requisites :: API Management with Kong Konnect">
+    <meta itemprop="description" content="This chapter will walk you through the pre-requisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Command Line Utilities In this workshop, we will use the following command line utilities
+kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)">
+    <meta itemprop="wordCount" content="68">
+    <title>Pre-Requisites :: API Management with Kong Konnect</title>
+    <link href="/10-pre-requisites/index.xml" rel="alternate" type="application/rss+xml" title="Pre-Requisites :: API Management with Kong Konnect">
     <link href="/css/auto-complete/auto-complete.min.css?1754485349" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754485349" defer></script>
     <script src="/js/search-lunr.js?1754485349" defer></script>
@@ -41,7 +61,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/categories\/index.html';
+      window.relearn.path='\/10-pre-requisites\/index.html';
       window.relearn.relBasePath='..';
       window.relearn.relBaseUri='..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -91,7 +111,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/categories/index.html">
+  <body class="mobile-support html" data-url="/10-pre-requisites/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -102,17 +122,23 @@
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#kong-konnect-subscription">Kong Konnect Subscription</a></li>
+    <li><a href="#command-line-utilities">Command Line Utilities</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Categories</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Pre-Requisites</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/index.html" title="API Management with Kong Konnect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/architecture/index.html" title="Kong Konnect Architectural Overview (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-pre-requisites/konnect-control-plane/index.html" title="Konnect Subscription (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -126,13 +152,25 @@
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable categories" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 10-pre-requisites" tabindex="-1">
         <div class="flex-block-wrapper">
-<article>
+<article class="default">
   <header class="headline">
   </header>
-<h1 id="categories">Categories</h1>
 
+<h1 id="pre-requisites">Pre-Requisites</h1>
+
+<p>This chapter will walk you through the pre-requisites.</p>
+<h2 id="kong-konnect-subscription">Kong Konnect Subscription</h2>
+<p>You will need a Kong Konnect Subscription to execute this workshop.</p>
+<p>If you want to check the Konnect Pricing and Plans, please, redirect to <a href="https://konghq.com/pricing" rel="external" target="_blank">https://konghq.com/pricing</a></p>
+<h2 id="command-line-utilities">Command Line Utilities</h2>
+<p>In this workshop, we will use the following command line utilities</p>
+<ul>
+<li>kubectl (we will install this in subsequent section)</li>
+<li>curl (pre-installed)</li>
+<li>jq (we will install this in subsequent section)</li>
+</ul>
 
   <footer class="footline">
   </footer>
@@ -181,7 +219,9 @@
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
-            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="active parent " data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu">
+            <li class="" data-nav-id="/10-pre-requisites/konnect-control-plane/index.html"><a class="padding" href="/10-pre-requisites/konnect-control-plane/index.html">Konnect Subscription</a></li>
+            <li class="" data-nav-id="/10-pre-requisites/openai-model-access/index.html"><a class="padding" href="/10-pre-requisites/openai-model-access/index.html">OpenAI model access</a></li></ul></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a></li>
           </ul>
         </div>
