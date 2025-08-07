@@ -1,6 +1,6 @@
 ---
 title : "Minikube"
-weight : 110
+weight : 104
 ---
 
 We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:

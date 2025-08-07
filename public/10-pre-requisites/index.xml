@@ -3,23 +3,30 @@
   <channel>
     <title>Pre-Requisites :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/10-pre-requisites/index.html</link>
-    <description>This chapter will walk you through the pre-requisites.&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Command Line Utilities In this workshop, we will use the following command line utilities&#xA;kubectl (we will install this in subsequent section) curl (pre-installed) jq (we will install this in subsequent section)</description>
+    <description>This chapter will walk you through the pre-requisites.&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.&#xA;Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/10-pre-requisites/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Konnect Subscription</title>
-      <link>http://localhost:1313/10-pre-requisites/konnect-control-plane/index.html</link>
+      <link>http://localhost:1313/10-pre-requisites/konnect-subscription/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/10-pre-requisites/konnect-control-plane/index.html</guid>
+      <guid>http://localhost:1313/10-pre-requisites/konnect-subscription/index.html</guid>
       <description>Konnect Plus Subscription You will need a Konnect subscription. Follow the steps below to obtain a Konnect Plus subscription. Initially $500 of credits are provided for up to 30 days, after the credits have expired or the time has finished Konnect Plus will charge based on Konnect Plus pricing. Following the workshop instructions will use less than $500 credits. After the workshop has finished the Konnect Plus environment can be deleted.</description>
     </item>
     <item>
-      <title>OpenAI model access</title>
-      <link>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</link>
+      <title>Minikube</title>
+      <link>http://localhost:1313/10-pre-requisites/minikube/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/10-pre-requisites/openai-model-access/index.html</guid>
-      <description>Access to OpenAI foundation models isn’t granted by default. In order to gain access to the foundational model, follow the steps below.&#xA;Choose the following models:&#xA;Amazon: Nova Lite - amazon.nova-lite-v1:0 Nova Micro - amazon.nova-micro-v1:0 Titan Text Embeddings V2 - amazon.titan-embed-text-v2:0 Meta: Llama 3.3 70B Instruct v1 - meta.llama3-3-70b-instruct-v1:0 This wraps up the model access configuration, in the next section you will learn how to use these models in the application.</description>
+      <guid>http://localhost:1313/10-pre-requisites/minikube/index.html</guid>
+      <description>We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:&#xA;podman machine set --memory 8196 podman machine start If you want to stop it run: podman machine stop Then you can install Minikube with: minikube start --driver=podman --memory=&#39;no-limit&#39; Use should see your cluster running with: kubectl get all --all-namespaces Typical output is:&#xA;NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrllp 0/1 Running 0 12s kube-system pod/etcd-minikube 1/1 Running 0 18s kube-system pod/kube-apiserver-minikube 1/1 Running 0 18s kube-system pod/kube-controller-manager-minikube 1/1 Running 0 18s kube-system pod/kube-proxy-xkfn9 1/1 Running 0 13s kube-system pod/kube-scheduler-minikube 1/1 Running 0 18s kube-system pod/storage-provisioner 1/1 Running 0 17s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 &lt;none&gt; 443/TCP 19s kube-system service/kube-dns ClusterIP 10.96.0.10 &lt;none&gt; 53/UDP,53/TCP,9153/TCP 18s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 18s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 0/1 1 0 18s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 0 12s To be able to consume the Kubernetes Load Balancer Services, in another terminal run: minikube tunnel</description>
+    </item>
+    <item>
+      <title>Redis and Ollama</title>
+      <link>http://localhost:1313/10-pre-requisites/redis-ollama/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/10-pre-requisites/redis-ollama/index.html</guid>
+      <description>Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.&#xA;helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update helm install ollama ollama-helm/ollama \ -n ollama \ --create-namespace \ --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \ --set service.type=LoadBalancer Install Redis Use the Redis-stack Helm Charts to Redis as our vector database.&#xA;helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace</description>
     </item>
   </channel>
 </rss>

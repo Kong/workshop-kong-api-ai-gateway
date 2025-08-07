@@ -19,8 +19,11 @@ Control Plane empowers your teams to securely collaborate and manage their own s
 
 Through the Control Plane, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
-
 ![gateway_manager](/static/images/gateway_cp.png)
+
+## AI Manager
+Manage all of your LLMs in a single dashboard providing a unified control plane to create, manage, and monitor LLMs using the Konnect platform. With AI Manager you can assign Gateway Services and define how traffic is distributed across models, enable streaming responses and manage authentication through the AI Gateway, monitor request and token volumes, track error rates, and measure average latency with historical comparisons, etc.
+
 ## Dev Portal
 Streamline developer onboarding with the Dev Portal, which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.
 
@@ -32,7 +35,8 @@ To help secure and govern your environment, Konnect provides the ability to mana
 
 # Further Reading
 
-* [Gateway Manager](https://docs.konghq.com/konnect/gateway-manager/)
-* [Dev Portal](https://docs.konghq.com/konnect/dev-portal/)
-* [Analytics](https://docs.konghq.com/konnect/analytics/)
+* [Gateway Manager](https://developer.konghq.com/gateway-manager/)
+* [AI Manager](https://developer.konghq.com/ai-manager/)
+* [Dev Portal](https://developer.konghq.com/dev-portal/)
+* [Analytics](https://developer.konghq.com/analytics/)
 

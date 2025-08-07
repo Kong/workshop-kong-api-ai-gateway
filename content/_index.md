@@ -16,12 +16,13 @@ In this workshop, you will:
 * Learn what are services, routes and plugin.
 * Deploy a sample microservice and access the application using the defined route.
 * Use the platform to address the following API Gateway use cases
-    * Authentication and Authorization
-    * Rate limiting
-    * Response Transformer
-    <!-- * Invoke AWS Lambda -->
     * Proxy caching
-<!-- * Learn how to do observability -->
+    * Authentication and Authorization
+    * Response Transformer
+    * Request Callout
+    * Rate limiting
+    <!-- * Invoke AWS Lambda -->
+    <!-- * Learn how to do observability -->
 
 * And the following AI Gateway use cases
     * Prompt Engineering
@@ -38,7 +39,3 @@ In this workshop, you will:
 * Sample Application and addressing the use cases (60 minutes)
 <!-- * Observability (20 minutes) -->
 * Next Steps and Cleanup (5 min)
-
-:::alert{header="Important" type="warning"}
-
-Running this workshop in your own AWS account will incur ~ $1 per hour charges. Please ensure to cleanup, once you fulfill your learning objectives.
