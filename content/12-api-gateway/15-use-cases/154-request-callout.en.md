@@ -62,7 +62,7 @@ services:
               body:
                 decode: true
               by_lua:
-                kong.service.request.add_header("wipikedia-total-hits-header", kong.ctx.shared.callouts.wikipedia.response.body.query.searchinfo.totalhits)
+                kong.service.request.add_header("wikipedia-total-hits-header", kong.ctx.shared.callouts.wikipedia.response.body.query.searchinfo.totalhits)
 EOF
 {{</highlight>}}
 
