@@ -1,6 +1,6 @@
 ---
 title: "Kong Konnect Architectural Overview"
-weight: 1
+weight: 105
 ---
 
 The Kong Konnect platform provides a cloud control plane (CP), which manages all service configurations. It propagates those configurations to all Runtime control planes, which use in-memory storage. These nodes can be installed anywhere, on-premise or in AWS.
