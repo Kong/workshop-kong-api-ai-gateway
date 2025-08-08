@@ -3,6 +3,19 @@ title: "Redis and Ollama"
 weight: 105
 ---
 
+## Install Redis
+Use the **redis-stack** Helm Charts to install Redis as our vector database.
+
+{{<highlight>}}
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
+helm repo update
+
+helm install redis-stack redis-stack/redis-stack -n redis --create-namespace
+{{</highlight>}}
+
+
+
+
 
 ## Install Ollama
 As our Embedding model, we're going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
@@ -19,12 +32,3 @@ helm install ollama ollama-helm/ollama \
 {{</highlight>}}
 
 
-## Install Redis
-Use the Redis-stack Helm Charts to Redis as our vector database.
-
-{{<highlight>}}
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
-helm repo update
-
-helm install redis-stack redis-stack/redis-stack -n redis --create-namespace
-{{</highlight>}}
