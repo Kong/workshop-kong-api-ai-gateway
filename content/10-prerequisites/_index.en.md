@@ -1,10 +1,10 @@
 ---
-title : "Pre-Requisites"
+title : "Prerequisites"
 weight : 100
 ---
 
 
-This chapter will walk you through the pre-requisites.
+This chapter will walk you through the prerequisites.
 
 
 ## Kong Konnect Subscription
@@ -24,8 +24,11 @@ In this workshop, the Data Plane will be running locally on a [Minikube](https:/
 In this workshop, we will use the following command line utilities
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [k9s](https://k9scli.io/)
 * [curl](https://curl.se/)
 * [jq](https://jqlang.org/)
+* [yq](https://github.com/mikefarah/yq)
+* [wget](https://www.gnu.org/software/wget/)
 
 
 ## Redis
@@ -34,7 +37,3 @@ In this workshop, we will use the following command line utilities
 
 ## Ollama
 The Kong AI Gateway use cases consume and protect LLM models running on [Ollama](https://github.com/ollama)
-
-
-
-

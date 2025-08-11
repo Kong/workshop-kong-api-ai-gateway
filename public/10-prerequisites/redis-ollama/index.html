@@ -5,30 +5,26 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
+    <meta name="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
-    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/index.html">
+    <meta name="twitter:title" content="Redis and Ollama :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+    <meta property="og:url" content="http://localhost:1313/10-prerequisites/redis-ollama/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta property="og:description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
+    <meta property="og:title" content="Redis and Ollama :: API Management with Kong Konnect">
+    <meta property="og:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta property="og:locale" content="en_us">
-    <meta property="og:type" content="website">
-    <meta itemprop="name" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta itemprop="description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
-    <meta itemprop="wordCount" content="43">
-    <title>Kong AI Gateway :: API Management with Kong Konnect</title>
-    <link href="/16-ai-gateway/index.xml" rel="alternate" type="application/rss+xml" title="Kong AI Gateway :: API Management with Kong Konnect">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Prerequisites">
+    <meta itemprop="name" content="Redis and Ollama :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+    <meta itemprop="wordCount" content="315">
+    <title>Redis and Ollama :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1754913769" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754913769" defer></script>
     <script src="/js/search-lunr.js?1754913769" defer></script>
@@ -53,9 +49,9 @@ Optional Reading Learn more about Kong AI Gateway">
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/16-ai-gateway\/index.html';
-      window.relearn.relBasePath='..';
-      window.relearn.relBaseUri='..';
+      window.relearn.path='\/10-prerequisites\/redis-ollama\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -103,7 +99,7 @@ Optional Reading Learn more about Kong AI Gateway">
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/16-ai-gateway/index.html">
+  <body class="mobile-support html" data-url="/10-prerequisites/redis-ollama/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -117,19 +113,21 @@ Optional Reading Learn more about Kong AI Gateway">
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#optional-reading">Optional Reading</a></li>
+    <li><a href="#install-redis">Install Redis</a></li>
+    <li><a href="#install-ollama">Install Ollama</a></li>
+    <li><a href="#metrics-server">Metrics Server</a></li>
   </ul>
 </nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong AI Gateway</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/10-prerequisites/index.html"><span itemprop="name">Prerequisites</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Redis and Ollama</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/158-authorization/index.html" title="Authorization - OPA (OpenPolicyAgent) (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-prerequisites/minikube/index.html" title="Minikube (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/159-ai-gateway-bedrock/index.html" title="AI with Amazon Bedrock (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/architecture/index.html" title="Kong Konnect Architectural Overview (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -143,18 +141,58 @@ Optional Reading Learn more about Kong AI Gateway">
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable 16-ai-gateway" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 10-prerequisites" tabindex="-1">
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
   </header>
 
-<h1 id="kong-ai-gateway">Kong AI Gateway</h1>
+<h1 id="redis-and-ollama">Redis and Ollama</h1>
 
-<p>In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.</p>
-<p>You can now click <strong>Next</strong> to begin the module.</p>
-<h2 id="optional-reading">Optional Reading</h2>
-<p>Learn more about <a href="https://docs.konghq.com/gateway/latest/ai-gateway/" rel="external" target="_blank">Kong AI Gateway</a></p>
+<h2 id="install-redis">Install Redis</h2>
+<p>Use the <strong>redis-stack</strong> Helm Charts to install Redis as our vector database.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
+helm repo update</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install redis-stack redis-stack/redis-stack -n redis --create-namespace</code></pre></div>
+
+<p>Check the installation:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version</code></pre></div>
+</p>
+<p>If you want to uninstall it:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall redis-stack -n redis
+kubectl delete namespace redis</code></pre></div>
+</p>
+<h2 id="install-ollama">Install Ollama</h2>
+<p>As our Embedding model, we&rsquo;re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add ollama-helm https://otwld.github.io/ollama-helm/
+helm repo update</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade ollama ollama-helm/ollama \
+-n ollama \
+  --create-namespace \
+  --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \
+  --set ollama.models.pull[1]=&#34;deepseek-r1:1.5b&#34; \
+  --set service.type=LoadBalancer</code></pre></div>
+
+<p>Send request to test it:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX POST http://localhost:11434/api/generate -d &#39;{
+  &#34;model&#34;: &#34;deepseek-r1:1.5b&#34;,
+  &#34;prompt&#34;: &#34;Tell me about Miles Davis&#34;,
+  &#34;stream&#34;: false
+}&#39; | jq &#39;.response&#39;</code></pre></div>
+
+<p>Expected response:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;&lt;think&gt;\n\n&lt;/think&gt;\n\nMiles Davis is an American singer, songwriter, and record producer. He gained prominence in the 1980s with hits like \&#34;She&#39;s My Girl\&#34; (1985) and \&#34;Candle in the Wind\&#34; (1986). Davis has also been active since then, with singles like \&#34;Just a Love Again\&#34; and \&#34;Skiwave\&#34; being notable.\n\n### Key Achievements:\n- **Chart-Topping Hits**: Davis was known for hitting top charts with songs like \&#34;She&#39;s My Girl,\&#34; which reached number 4 and sold over 30 million.\n- **Mint Record Sales**: His 1985 hit \&#34;She&#39;s MyGirl\&#34; had the highest sales of any single in U.S. music history, contributing to its chart-topping status.\n\n### Legacy:\n- **Bass Player/Engineer**: Davis is sometimes referred to as a \&#34;bass player\&#34; or \&#34;engineer,\&#34; playing an integral role in many of his hits.\n- **Television Appearances**: He has also been in numerous TV appearances and movies, adding significant commercial success.\n\nMiles Davis remains one of the most recognizable names in U.S. music history.&#34;</code></pre></div>
+<p>If you want to uninstall it:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall ollama -n ollama
+kubectl delete namespace ollama</code></pre></div>
+</p>
+<h2 id="metrics-server">Metrics Server</h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons enable metrics-server</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons list</code></pre></div>
+
 
   <footer class="footline">
   </footer>
@@ -202,13 +240,14 @@ Optional Reading Learn more about Kong AI Gateway">
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/konnect-subscription/index.html"><a class="padding" href="/10-prerequisites/konnect-subscription/index.html">Konnect Subscription</a></li>
+            <li class="" data-nav-id="/10-prerequisites/minikube/index.html"><a class="padding" href="/10-prerequisites/minikube/index.html">Minikube</a></li>
+            <li class="active " data-nav-id="/10-prerequisites/redis-ollama/index.html"><a class="padding" href="/10-prerequisites/redis-ollama/index.html">Redis and Ollama</a></li></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
-            <li class="active parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
-            <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway-bedrock/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway-bedrock/index.html">AI with Amazon Bedrock</a></li>
-            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">

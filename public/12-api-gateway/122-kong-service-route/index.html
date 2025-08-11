@@ -29,26 +29,26 @@ Deploy the Application Deploy the application using the following declaration wi
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: v1 kind: Service metadata: name: httpbin namespace: kong labels: app: httpbin spec: type: ClusterIP ports: - name: http port: 8000 targetPort: 80 selector: app: httpbin --- apiVersion: apps/v1 kind: Deployment metadata: name: httpbin namespace: kong spec: replicas: 1 selector: matchLabels: app: httpbin version: v1 template: metadata: labels: app: httpbin version: v1 spec: containers: - image: docker.io/kong/httpbin imagePullPolicy: IfNotPresent name: httpbin ports: - containerPort: 8000 EOF Check the Deployment Observe Kubernetes Services in kong namespace kubectl get service httpbin -n kong Sample Output">
     <meta itemprop="wordCount" content="538">
     <title>Kong Gateway Service and Kong Route :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754663106" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754663106" defer></script>
-    <script src="/js/search-lunr.js?1754663106" defer></script>
-    <script src="/js/search.js?1754663106" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754775302" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754775302" defer></script>
+    <script src="/js/search-lunr.js?1754775302" defer></script>
+    <script src="/js/search.js?1754775302" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754663106";
+      window.relearn.index_js_url="/searchindex.en.js?1754775302";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754663106" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754663106" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754663106" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754663106" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754775302" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754775302" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754775302" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754775302" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754663106" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754663106" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754663106" rel="stylesheet">
-    <link href="/css/theme.css?1754663106" rel="stylesheet">
-    <link href="/css/format-html.css?1754663106" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754775302" rel="stylesheet">
+    <link href="/css/theme.css?1754775302" rel="stylesheet">
+    <link href="/css/format-html.css?1754775302" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -250,8 +250,8 @@ Summary:
   Updated: 0
   Deleted: 0</code></pre></div>
 <p>You should see your new service’s overview page.</p>
-<p><a href="#R-image-7d8cc3a5f4b5a3eae8f72b5edb639d4b" class="lightbox-link"><img alt="service1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/httpbin-service-route.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7d8cc3a5f4b5a3eae8f72b5edb639d4b"><img alt="service1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/httpbin-service-route.png"></a></p>
+<p><a href="#R-image-582a7cf1b17a296cae96564cd9d61287" class="lightbox-link"><img alt="service1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/httpbin-service-route.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-582a7cf1b17a296cae96564cd9d61287"><img alt="service1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/httpbin-service-route.png"></a></p>
 <h4 id="consume-the-route">Consume the Route</h4>
 <p>We are to use the same ELB provisioned during the Data Plane deployment:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
@@ -353,8 +353,8 @@ Summary:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754663106" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754663106" defer></script>
-    <script src="/js/theme.js?1754663106" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754775302" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754775302" defer></script>
+    <script src="/js/theme.js?1754775302" defer></script>
   </body>
 </html>

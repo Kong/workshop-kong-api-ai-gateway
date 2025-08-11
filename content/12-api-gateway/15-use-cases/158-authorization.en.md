@@ -1,6 +1,6 @@
 ---
-title : "Authentication - OpenID Connect - Keycloak"
-weight : 157
+title : "Authorization - OPA (OpenPolicyAgent)"
+weight : 158
 ---
 
 [OpenID Connect plugin](https://docs.konghq.com/hub/kong-inc/openid-connect/) allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) [OAuth 2.0](https://tools.ietf.org/html/rfc6749) resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.

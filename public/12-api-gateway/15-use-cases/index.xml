@@ -43,11 +43,18 @@
       <description>Kong can rate-limit your traffic without any external dependency. In such a case, Kong stores the request counters in-memory and each Kong node applies the rate-limiting policy independently. There is no synchronization of information being done in this case. But if Redis is available in your cluster, Kong can take advantage of it and synchronize the rate-limit information across multiple Kong nodes and enforce a slightly different rate-limiting policy.&#xA;This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.</description>
     </item>
     <item>
-      <title>Authentication-OpenID Connect</title>
+      <title>Authentication - OpenID Connect - Keycloak</title>
       <link>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</guid>
-      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Amazon Cognito . A detailed integration guide is available here for future reading.&#xA;Creating AWS Cognito Run the following command to create the AWS Cognito Resources using a CloudFormation templates</description>
+      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.&#xA;Keycloak Run the following command to deploy Keycloak:</description>
+    </item>
+    <item>
+      <title>Authorization - OPA (OpenPolicyAgent)</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/158-authorization/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/158-authorization/index.html</guid>
+      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.&#xA;Keycloak Run the following command to deploy Keycloak:</description>
     </item>
   </channel>
 </rss>

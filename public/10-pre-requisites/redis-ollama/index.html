@@ -6,49 +6,45 @@
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
-helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update helm install ollama ollama-helm/ollama \ -n ollama \ --create-namespace \ --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \ --set service.type=LoadBalancer">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
-helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update helm install ollama ollama-helm/ollama \ -n ollama \ --create-namespace \ --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \ --set service.type=LoadBalancer">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta property="og:url" content="http://localhost:1313/10-pre-requisites/redis-ollama/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta property="og:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
-helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update helm install ollama ollama-helm/ollama \ -n ollama \ --create-namespace \ --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \ --set service.type=LoadBalancer">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Pre-Requisites">
     <meta itemprop="name" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta itemprop="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
-helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update helm install ollama ollama-helm/ollama \ -n ollama \ --create-namespace \ --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \ --set service.type=LoadBalancer">
-    <meta itemprop="wordCount" content="77">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+    <meta itemprop="wordCount" content="315">
     <title>Redis and Ollama :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754663175" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754663175" defer></script>
-    <script src="/js/search-lunr.js?1754663175" defer></script>
-    <script src="/js/search.js?1754663175" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754840657" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754840657" defer></script>
+    <script src="/js/search-lunr.js?1754840657" defer></script>
+    <script src="/js/search.js?1754840657" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754663175";
+      window.relearn.index_js_url="/searchindex.en.js?1754840657";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754663175" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754663175" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754663175" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754663175" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754840657" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754840657" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754840657" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754840657" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754663175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754663175" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754663175" rel="stylesheet">
-    <link href="/css/theme.css?1754663175" rel="stylesheet">
-    <link href="/css/format-html.css?1754663175" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754840657" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754840657" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754840657" rel="stylesheet">
+    <link href="/css/theme.css?1754840657" rel="stylesheet">
+    <link href="/css/format-html.css?1754840657" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -119,6 +115,7 @@ helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update 
   <ul>
     <li><a href="#install-redis">Install Redis</a></li>
     <li><a href="#install-ollama">Install Ollama</a></li>
+    <li><a href="#metrics-server">Metrics Server</a></li>
   </ul>
 </nav>
                 </div>
@@ -155,20 +152,46 @@ helm repo add ollama-helm https://otwld.github.io/ollama-helm/ helm repo update 
 <h2 id="install-redis">Install Redis</h2>
 <p>Use the <strong>redis-stack</strong> Helm Charts to install Redis as our vector database.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
-helm repo update
+helm repo update</code></pre></div>
 
-helm install redis-stack redis-stack/redis-stack -n redis --create-namespace</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install redis-stack redis-stack/redis-stack -n redis --create-namespace</code></pre></div>
 
+<p>Check the installation:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version</code></pre></div>
+</p>
+<p>If you want to uninstall it:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall redis-stack -n redis
+kubectl delete namespace redis</code></pre></div>
+</p>
 <h2 id="install-ollama">Install Ollama</h2>
 <p>As our Embedding model, we&rsquo;re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add ollama-helm https://otwld.github.io/ollama-helm/
-helm repo update
+helm repo update</code></pre></div>
 
-helm install ollama ollama-helm/ollama \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade ollama ollama-helm/ollama \
 -n ollama \
   --create-namespace \
   --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \
+  --set ollama.models.pull[1]=&#34;deepseek-r1:1.5b&#34; \
   --set service.type=LoadBalancer</code></pre></div>
+
+<p>Send request to test it:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX POST http://localhost:11434/api/generate -d &#39;{
+  &#34;model&#34;: &#34;deepseek-r1:1.5b&#34;,
+  &#34;prompt&#34;: &#34;Tell me about Miles Davis&#34;,
+  &#34;stream&#34;: false
+}&#39; | jq &#39;.response&#39;</code></pre></div>
+
+<p>Expected response:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;&lt;think&gt;\n\n&lt;/think&gt;\n\nMiles Davis is an American singer, songwriter, and record producer. He gained prominence in the 1980s with hits like \&#34;She&#39;s My Girl\&#34; (1985) and \&#34;Candle in the Wind\&#34; (1986). Davis has also been active since then, with singles like \&#34;Just a Love Again\&#34; and \&#34;Skiwave\&#34; being notable.\n\n### Key Achievements:\n- **Chart-Topping Hits**: Davis was known for hitting top charts with songs like \&#34;She&#39;s My Girl,\&#34; which reached number 4 and sold over 30 million.\n- **Mint Record Sales**: His 1985 hit \&#34;She&#39;s MyGirl\&#34; had the highest sales of any single in U.S. music history, contributing to its chart-topping status.\n\n### Legacy:\n- **Bass Player/Engineer**: Davis is sometimes referred to as a \&#34;bass player\&#34; or \&#34;engineer,\&#34; playing an integral role in many of his hits.\n- **Television Appearances**: He has also been in numerous TV appearances and movies, adding significant commercial success.\n\nMiles Davis remains one of the most recognizable names in U.S. music history.&#34;</code></pre></div>
+<p>If you want to uninstall it:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall ollama -n ollama
+kubectl delete namespace ollama</code></pre></div>
+</p>
+<h2 id="metrics-server">Metrics Server</h2>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons enable metrics-server</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons list</code></pre></div>
 
 
   <footer class="footline">
@@ -242,8 +265,8 @@ helm install ollama ollama-helm/ollama \
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754663175" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754663175" defer></script>
-    <script src="/js/theme.js?1754663175" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754840657" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754840657" defer></script>
+    <script src="/js/theme.js?1754840657" defer></script>
   </body>
 </html>

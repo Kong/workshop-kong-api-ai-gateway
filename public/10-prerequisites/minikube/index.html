@@ -14,7 +14,7 @@ NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrll
     <meta name="twitter:description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:
 podman machine set --memory 8196 podman machine start If you want to stop it run: podman machine stop Then you can install Minikube with: minikube start --driver=podman --memory=&#39;no-limit&#39; Use should see your cluster running with: kubectl get all --all-namespaces Typical output is:
 NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrllp 0/1 Running 0 12s kube-system pod/etcd-minikube 1/1 Running 0 18s kube-system pod/kube-apiserver-minikube 1/1 Running 0 18s kube-system pod/kube-controller-manager-minikube 1/1 Running 0 18s kube-system pod/kube-proxy-xkfn9 1/1 Running 0 13s kube-system pod/kube-scheduler-minikube 1/1 Running 0 18s kube-system pod/storage-provisioner 1/1 Running 0 17s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 &lt;none&gt; 443/TCP 19s kube-system service/kube-dns ClusterIP 10.96.0.10 &lt;none&gt; 53/UDP,53/TCP,9153/TCP 18s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 18s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 0/1 1 0 18s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 0 12s To be able to consume the Kubernetes Load Balancer Services, in another terminal run: minikube tunnel">
-    <meta property="og:url" content="http://localhost:1313/10-pre-requisites/minikube/index.html">
+    <meta property="og:url" content="http://localhost:1313/10-prerequisites/minikube/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Minikube :: API Management with Kong Konnect">
     <meta property="og:description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:
@@ -22,38 +22,38 @@ podman machine set --memory 8196 podman machine start If you want to stop it run
 NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrllp 0/1 Running 0 12s kube-system pod/etcd-minikube 1/1 Running 0 18s kube-system pod/kube-apiserver-minikube 1/1 Running 0 18s kube-system pod/kube-controller-manager-minikube 1/1 Running 0 18s kube-system pod/kube-proxy-xkfn9 1/1 Running 0 13s kube-system pod/kube-scheduler-minikube 1/1 Running 0 18s kube-system pod/storage-provisioner 1/1 Running 0 17s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 &lt;none&gt; 443/TCP 19s kube-system service/kube-dns ClusterIP 10.96.0.10 &lt;none&gt; 53/UDP,53/TCP,9153/TCP 18s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 18s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 0/1 1 0 18s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 0 12s To be able to consume the Kubernetes Load Balancer Services, in another terminal run: minikube tunnel">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
-    <meta property="article:section" content="Pre-Requisites">
+    <meta property="article:section" content="Prerequisites">
     <meta itemprop="name" content="Minikube :: API Management with Kong Konnect">
     <meta itemprop="description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:
 podman machine set --memory 8196 podman machine start If you want to stop it run: podman machine stop Then you can install Minikube with: minikube start --driver=podman --memory=&#39;no-limit&#39; Use should see your cluster running with: kubectl get all --all-namespaces Typical output is:
 NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrllp 0/1 Running 0 12s kube-system pod/etcd-minikube 1/1 Running 0 18s kube-system pod/kube-apiserver-minikube 1/1 Running 0 18s kube-system pod/kube-controller-manager-minikube 1/1 Running 0 18s kube-system pod/kube-proxy-xkfn9 1/1 Running 0 13s kube-system pod/kube-scheduler-minikube 1/1 Running 0 18s kube-system pod/storage-provisioner 1/1 Running 0 17s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 &lt;none&gt; 443/TCP 19s kube-system service/kube-dns ClusterIP 10.96.0.10 &lt;none&gt; 53/UDP,53/TCP,9153/TCP 18s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 18s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 0/1 1 0 18s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 0 12s To be able to consume the Kubernetes Load Balancer Services, in another terminal run: minikube tunnel">
     <meta itemprop="wordCount" content="198">
     <title>Minikube :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754840657" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754840657" defer></script>
-    <script src="/js/search-lunr.js?1754840657" defer></script>
-    <script src="/js/search.js?1754840657" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754913769" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754913769" defer></script>
+    <script src="/js/search-lunr.js?1754913769" defer></script>
+    <script src="/js/search.js?1754913769" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754840657";
+      window.relearn.index_js_url="/searchindex.en.js?1754913769";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754840657" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754840657" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754840657" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754840657" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754913769" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754913769" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754913769" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754913769" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754840657" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754840657" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754840657" rel="stylesheet">
-    <link href="/css/theme.css?1754840657" rel="stylesheet">
-    <link href="/css/format-html.css?1754840657" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754913769" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754913769" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754913769" rel="stylesheet">
+    <link href="/css/theme.css?1754913769" rel="stylesheet">
+    <link href="/css/format-html.css?1754913769" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/10-pre-requisites\/minikube\/index.html';
+      window.relearn.path='\/10-prerequisites\/minikube\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -103,7 +103,7 @@ NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrll
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/10-pre-requisites/minikube/index.html">
+  <body class="mobile-support html" data-url="/10-prerequisites/minikube/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -119,12 +119,12 @@ NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrll
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/10-pre-requisites/index.html"><span itemprop="name">Pre-Requisites</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Minikube</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/10-prerequisites/index.html"><span itemprop="name">Prerequisites</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Minikube</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-pre-requisites/konnect-subscription/index.html" title="Konnect Subscription (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-prerequisites/konnect-subscription/index.html" title="Konnect Subscription (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-pre-requisites/redis-ollama/index.html" title="Redis and Ollama (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-prerequisites/redis-ollama/index.html" title="Redis and Ollama (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -138,7 +138,7 @@ NAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-xrll
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable 10-pre-requisites" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 10-prerequisites" tabindex="-1">
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
@@ -232,10 +232,10 @@ kube-system   replicaset.apps/coredns-674b8bbfcf   1         1         0       1
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent " data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu">
-            <li class="" data-nav-id="/10-pre-requisites/konnect-subscription/index.html"><a class="padding" href="/10-pre-requisites/konnect-subscription/index.html">Konnect Subscription</a></li>
-            <li class="active " data-nav-id="/10-pre-requisites/minikube/index.html"><a class="padding" href="/10-pre-requisites/minikube/index.html">Minikube</a></li>
-            <li class="" data-nav-id="/10-pre-requisites/redis-ollama/index.html"><a class="padding" href="/10-pre-requisites/redis-ollama/index.html">Redis and Ollama</a></li></ul></li>
+            <li class="parent " data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/konnect-subscription/index.html"><a class="padding" href="/10-prerequisites/konnect-subscription/index.html">Konnect Subscription</a></li>
+            <li class="active " data-nav-id="/10-prerequisites/minikube/index.html"><a class="padding" href="/10-prerequisites/minikube/index.html">Minikube</a></li>
+            <li class="" data-nav-id="/10-prerequisites/redis-ollama/index.html"><a class="padding" href="/10-prerequisites/redis-ollama/index.html">Redis and Ollama</a></li></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
@@ -257,8 +257,8 @@ kube-system   replicaset.apps/coredns-674b8bbfcf   1         1         0       1
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754840657" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754840657" defer></script>
-    <script src="/js/theme.js?1754840657" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754913769" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754913769" defer></script>
+    <script src="/js/theme.js?1754913769" defer></script>
   </body>
 </html>

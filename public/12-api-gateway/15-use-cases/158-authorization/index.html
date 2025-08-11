@@ -5,30 +5,30 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="Add Rate Limiting plugin Just like you did before, add the Rate Limiting plugin on the Route setting Minute as 5 requests per minute, and set the identifier to Service.
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:
-httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 EOF ::: Submit the declaration:">
+    <meta name="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Set up Rate Limiting plugin :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="Add Rate Limiting plugin Just like you did before, add the Rate Limiting plugin on the Route setting Minute as 5 requests per minute, and set the identifier to Service.
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:
-httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 EOF ::: Submit the declaration:">
-    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html">
+    <meta name="twitter:title" content="Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/158-authorization/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Set up Rate Limiting plugin :: API Management with Kong Konnect">
-    <meta property="og:description" content="Add Rate Limiting plugin Just like you did before, add the Rate Limiting plugin on the Route setting Minute as 5 requests per minute, and set the identifier to Service.
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:
-httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 EOF ::: Submit the declaration:">
+    <meta property="og:title" content="Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect">
+    <meta property="og:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
-    <meta itemprop="name" content="Set up Rate Limiting plugin :: API Management with Kong Konnect">
-    <meta itemprop="description" content="Add Rate Limiting plugin Just like you did before, add the Rate Limiting plugin on the Route setting Minute as 5 requests per minute, and set the identifier to Service.
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; rate-limiting.yaml « ‘EOF’ _format_version: “3.0” _konnect: control_plane_name: kong-aws _info: select_tags:
-httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: name: rate-limiting-route paths: /rate-limiting-route plugins: name: rate-limiting instance_name: rate-limiting1 config: minute: 5 EOF ::: Submit the declaration:">
-    <meta itemprop="wordCount" content="247">
-    <title>Set up Rate Limiting plugin :: API Management with Kong Konnect</title>
+    <meta itemprop="name" content="Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect">
+    <meta itemprop="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta itemprop="wordCount" content="321">
+    <title>Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1754775302" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754775302" defer></script>
     <script src="/js/search-lunr.js?1754775302" defer></script>
@@ -53,9 +53,9 @@ httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.clu
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/12-api-gateway\/15-use-cases\/156-rate-limiting-using-redis\/1563-setup-rate-limiting-plugin\/index.html';
-      window.relearn.relBasePath='..\/..\/..\/..';
-      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/158-authorization\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -103,7 +103,7 @@ httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.clu
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html">
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/158-authorization/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -114,27 +114,17 @@ httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.clu
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
-<nav class="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li></li>
-        <li><a href="#results">Results</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+                <div class="topbar-content-wrapper"> 
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><span itemprop="name">Rate Limiting Using Redis</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Set up Rate Limiting plugin</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Authorization - OPA (OpenPolicyAgent)</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html" title="Rate Limiting Using Redis (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html" title="Authentication - OpenID Connect - Keycloak (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html" title="Scale Kong for Kubernetes to multiple pods (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/index.html" title="Kong AI Gateway (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -154,86 +144,68 @@ httpbin-service-route services: name: httpbin-service host: httpbin.kong.svc.clu
   <header class="headline">
   </header>
 
-<h1 id="set-up-rate-limiting-plugin">Set up Rate Limiting plugin</h1>
+<h1 id="authorization---opa-openpolicyagent">Authorization - OPA (OpenPolicyAgent)</h1>
 
-<h4 id="add-rate-limiting-plugin">Add Rate Limiting plugin</h4>
-<p>Just like you did before, add the <strong>Rate Limiting</strong> plugin on the Route setting <strong>Minute</strong> as 5 requests per minute, and set the identifier to <strong>Service</strong>.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; rate-limiting.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<p><a href="https://docs.konghq.com/hub/kong-inc/openid-connect/" rel="external" target="_blank">OpenID Connect plugin</a> allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) <a href="https://tools.ietf.org/html/rfc6749" rel="external" target="_blank">OAuth 2.0</a> resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.</p>
+<p>In this module, we will configure this plugin to use <a href="https://www.keycloak.org/" rel="external" target="_blank">Keycloak</a> . A detailed integration guide is available <a href="https://docs.konghq.com/gateway/latest/kong-plugins/authentication/oidc/cognito/" rel="external" target="_blank">here</a> for future reading.</p>
+<h4 id="keycloak">Keycloak</h4>
+<p>Run the following command to deploy Keycloak:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml
+yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace keycloak
+kubectl apply -n keycloak -f keycloak.yaml</code></pre></div>
+
+<h4 id="installing-openid-connect-plugin">Installing OpenID Connect Plugin</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo &#34;_format_version: \&#34;3.0\&#34;
 _konnect:
-control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
-select_tags:</p>
-<ul>
-<li>httpbin-service-route
-services:</li>
-<li>name: httpbin-service
-host: httpbin.kong.svc.cluster.local
-port: 8000
-routes:
-<ul>
-<li>name: rate-limiting-route
-paths:
-<ul>
-<li>/rate-limiting-route
-plugins:</li>
-<li>name: rate-limiting
-instance_name: rate-limiting1
-config:
-minute: 5
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Submit the declaration:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway sync &ndash;konnect-token $PAT rate-limiting.yaml
-:::</p>
-<h4 id="verify-traffic-control">Verify traffic control</h4>
-<p>Again, test the rate-limiting policy by executing the following command multiple times and observe the rate-limit headers in the response, specially, <code>X-RateLimit-Remaining-Minute</code>, <code>RateLimit-Reset</code> and <code>Retry-After</code> :</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -I $DATA_PLANE_LB/rate-limiting-route/get
-:::</p>
-<p><strong>Response</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 455
-Connection: keep-alive
-RateLimit-Limit: 5
-RateLimit-Reset: 10
-RateLimit-Remaining: 4
-X-RateLimit-Limit-Minute: 5
-X-RateLimit-Remaining-Minute: 4
-Server: gunicorn
-Date: Wed, 28 May 2025 12:30:50 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 6209954ef700ea7b7b23b8003b318e74</code></pre></div>
-<p>As explected, after sending too many requests,once the rate limiting is reached, you will see <code>HTTP/1.1 429 Too Many Requests</code></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl -I $DATA_PLANE_LB/rate-limiting-route/get
-HTTP/1.1 429 Too Many Requests
-Date: Wed, 28 May 2025 12:30:55 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-RateLimit-Limit: 5
-Retry-After: 5
-RateLimit-Reset: 5
-RateLimit-Remaining: 0
-X-RateLimit-Limit-Minute: 5
-X-RateLimit-Remaining-Minute: 0
-Content-Length: 92
-X-Kong-Response-Latency: 0
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 597fcd055d14c0189a6224041553e267</code></pre></div>
-<h3 id="results">Results</h3>
-<p>As there is a single Kong Data Plane Runtime instance running, Kong correctly imposes the rate-limit and you can make only 5 requests in a minute.</p>
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: oidc-route
+    paths:
+    - /oidc-route
+    plugins:
+    - name: openid-connect
+      instance_name: openid-connect1
+      config:
+        auth_methods:
+        - authorization_code
+        redirect_uri:
+        - https://$DATA_PLANE_LB/oidc-route/get
+        client_id:
+        - $COGNITO_CLIENT_ID
+        client_secret:
+        - $CLIENT_SECRET
+        issuer: $ISSUER&#34; &gt; ./oidc.yaml</code></pre></div>
+
+<p>Submit the declaration
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT oidc.yaml</code></pre></div>
+</p>
+<p>Check your Client Id, Secret and Issuer</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo $COGNITO_CLIENT_ID
+echo $CLIENT_SECRET
+echo $ISSUER</code></pre></div>
+
+<h4 id="verification">Verification</h4>
+<p>Copy output of <code>echo https://$DATA_PLANE_LB/oidc-route/get</code> and paste in browser.</p>
+<p>After accepting the Server Certificate, since you haven&rsquo;t been authenticated, you will be redirected to Cognito&rsquo;s Authentication page:</p>
+<p><a href="#R-image-cea6d38fcfbbba85bd43ff518386fb3f" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cea6d38fcfbbba85bd43ff518386fb3f"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
+<p>Click on &ldquo;Sign up&rdquo; to register.</p>
+<p><a href="#R-image-05413f87f83d275ef53186f463b2453a" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-05413f87f83d275ef53186f463b2453a"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
+<p>After entering your data click on &ldquo;Sign Up&rdquo;. Cognito will create a user and request the verification code sent by your email.</p>
+<p>After typing the code, Cognito will authenticate you, issues an Authorization Code and redirects you back to the original URL (Data Plane). The Data Plane connects to Cognito with the Authorization Code to get the Access Token and then allows you to consume the URL.</p>
+<p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
   </footer>
@@ -291,12 +263,9 @@ X-Kong-Request-Id: 597fcd055d14c0189a6224041553e267</code></pre></div>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
-            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu">
-            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html">Set up Rate Limiting plugin</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html">Scale Kong for Kubernetes to multiple pods</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1565-update-rate-limiting-plugin/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1565-update-rate-limiting-plugin/index.html">Update the Rate Limiting Plugin</a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication - OpenID Connect - Keycloak</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>

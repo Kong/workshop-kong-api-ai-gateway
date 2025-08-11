@@ -5,30 +5,38 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
+    <meta name="description" content="This chapter will walk you through the prerequisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.
+Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
-    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/index.html">
+    <meta name="twitter:title" content="Prerequisites :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="This chapter will walk you through the prerequisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.
+Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities">
+    <meta property="og:url" content="http://localhost:1313/10-prerequisites/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta property="og:description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
+    <meta property="og:title" content="Prerequisites :: API Management with Kong Konnect">
+    <meta property="og:description" content="This chapter will walk you through the prerequisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.
+Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Kong AI Gateway :: API Management with Kong Konnect">
-    <meta itemprop="description" content="In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.
-You can now click Next to begin the module.
-Optional Reading Learn more about Kong AI Gateway">
-    <meta itemprop="wordCount" content="43">
-    <title>Kong AI Gateway :: API Management with Kong Konnect</title>
-    <link href="/16-ai-gateway/index.xml" rel="alternate" type="application/rss+xml" title="Kong AI Gateway :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Prerequisites :: API Management with Kong Konnect">
+    <meta itemprop="description" content="This chapter will walk you through the prerequisites.
+Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.
+If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing
+Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.
+Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities">
+    <meta itemprop="wordCount" content="112">
+    <title>Prerequisites :: API Management with Kong Konnect</title>
+    <link href="/10-prerequisites/index.xml" rel="alternate" type="application/rss+xml" title="Prerequisites :: API Management with Kong Konnect">
     <link href="/css/auto-complete/auto-complete.min.css?1754913769" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1754913769" defer></script>
     <script src="/js/search-lunr.js?1754913769" defer></script>
@@ -53,7 +61,7 @@ Optional Reading Learn more about Kong AI Gateway">
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/16-ai-gateway\/index.html';
+      window.relearn.path='\/10-prerequisites\/index.html';
       window.relearn.relBasePath='..';
       window.relearn.relBaseUri='..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -103,7 +111,7 @@ Optional Reading Learn more about Kong AI Gateway">
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/16-ai-gateway/index.html">
+  <body class="mobile-support html" data-url="/10-prerequisites/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -117,19 +125,23 @@ Optional Reading Learn more about Kong AI Gateway">
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#optional-reading">Optional Reading</a></li>
+    <li><a href="#kong-konnect-subscription">Kong Konnect Subscription</a></li>
+    <li><a href="#kong-gateway-data-plane">Kong Gateway Data Plane</a></li>
+    <li><a href="#command-line-utilities">Command Line Utilities</a></li>
+    <li><a href="#redis">Redis</a></li>
+    <li><a href="#ollama">Ollama</a></li>
   </ul>
 </nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong AI Gateway</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Prerequisites</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/158-authorization/index.html" title="Authorization - OPA (OpenPolicyAgent) (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/index.html" title="API Management with Kong Konnect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/159-ai-gateway-bedrock/index.html" title="AI with Amazon Bedrock (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/10-prerequisites/konnect-subscription/index.html" title="Konnect Subscription (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -143,18 +155,38 @@ Optional Reading Learn more about Kong AI Gateway">
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable 16-ai-gateway" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 10-prerequisites" tabindex="-1">
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
   </header>
 
-<h1 id="kong-ai-gateway">Kong AI Gateway</h1>
+<h1 id="prerequisites">Prerequisites</h1>
 
-<p>In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.</p>
-<p>You can now click <strong>Next</strong> to begin the module.</p>
-<h2 id="optional-reading">Optional Reading</h2>
-<p>Learn more about <a href="https://docs.konghq.com/gateway/latest/ai-gateway/" rel="external" target="_blank">Kong AI Gateway</a></p>
+<p>This chapter will walk you through the prerequisites.</p>
+<h2 id="kong-konnect-subscription">Kong Konnect Subscription</h2>
+<p>You will need a Kong Konnect Subscription to execute this workshop.</p>
+<p>If you want to check the Konnect Pricing and Plans, please, redirect to <a href="https://konghq.com/pricing" rel="external" target="_blank">https://konghq.com/pricing</a></p>
+<h2 id="kong-gateway-data-plane">Kong Gateway Data Plane</h2>
+<p>In this workshop, the Data Plane will be running locally on a <a href="https://minikube.sigs.k8s.io/" rel="external" target="_blank">Minikube</a> Kubernetes Cluster over <a href="https://podman.io/" rel="external" target="_blank">Podman</a>.</p>
+<ul>
+<li><a href="https://podman.io/docs/installation" rel="external" target="_blank">Podman installation</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start" rel="external" target="_blank">Minikube installation</a></li>
+</ul>
+<h2 id="command-line-utilities">Command Line Utilities</h2>
+<p>In this workshop, we will use the following command line utilities</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl" rel="external" target="_blank">kubectl</a></li>
+<li><a href="https://k9scli.io/" rel="external" target="_blank">k9s</a></li>
+<li><a href="https://curl.se/" rel="external" target="_blank">curl</a></li>
+<li><a href="https://jqlang.org/" rel="external" target="_blank">jq</a></li>
+<li><a href="https://github.com/mikefarah/yq" rel="external" target="_blank">yq</a></li>
+<li><a href="https://www.gnu.org/software/wget/" rel="external" target="_blank">wget</a></li>
+</ul>
+<h2 id="redis">Redis</h2>
+<p><a href="https://redis.io/docs/" rel="external" target="_blank">Redis</a> is used in some use cases, including Rate Limiting, Caching, Semantic Routing and RAG.</p>
+<h2 id="ollama">Ollama</h2>
+<p>The Kong AI Gateway use cases consume and protect LLM models running on <a href="https://github.com/ollama" rel="external" target="_blank">Ollama</a></p>
 
   <footer class="footline">
   </footer>
@@ -202,13 +234,14 @@ Optional Reading Learn more about Kong AI Gateway">
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="active parent " data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/konnect-subscription/index.html"><a class="padding" href="/10-prerequisites/konnect-subscription/index.html">Konnect Subscription</a></li>
+            <li class="" data-nav-id="/10-prerequisites/minikube/index.html"><a class="padding" href="/10-prerequisites/minikube/index.html">Minikube</a></li>
+            <li class="" data-nav-id="/10-prerequisites/redis-ollama/index.html"><a class="padding" href="/10-prerequisites/redis-ollama/index.html">Redis and Ollama</a></li></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
-            <li class="active parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
-            <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway-bedrock/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway-bedrock/index.html">AI with Amazon Bedrock</a></li>
-            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
