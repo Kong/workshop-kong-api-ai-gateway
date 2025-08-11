@@ -16,9 +16,9 @@ kubectl get service -n kong
 **Sample Output**
 
 ```
-NAME                               TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)                      AGE
-dataplane-admin-dataplane1-x9n6r   ClusterIP      None             <none>                                                                    8444/TCP                     20h
-proxy1                             LoadBalancer   10.100.234.223   k8s-kong-proxy1-518c8abdcc-a10b0ef08ae8ba02.elb.us-east-2.amazonaws.com   80:32290/TCP,443:31084/TCP   20h
+NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+dataplane-admin-dataplane1-wjk92   ClusterIP      None            <none>        8444/TCP                     4d21h
+proxy1                             LoadBalancer   10.110.77.48    127.0.0.1     80:32462/TCP,443:31666/TCP   4d21h
 ```
 
 Notice, at this point in the workshop, there is only one pod taking data plane traffic.
@@ -30,8 +30,8 @@ kubectl get pod -n kong -o wide
 **Sample Output**
 
 ```
-NAME                                          READY   STATUS    RESTARTS   AGE   IP              NODE                                          NOMINATED NODE   READINESS GATES
-dataplane-dataplane1-ch6g9-6889fdf76b-5gjh9   1/1     Running   0          20h   192.168.61.40   ip-192-168-44-68.us-east-2.compute.internal   <none>           <none>
+NAME                                          READY   STATUS    RESTARTS      AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+dataplane-dataplane1-2pvw2-67fbd76d98-jxhfd   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   <none>           <none>
 ```
 
 ### Manual Scaling Out
@@ -55,25 +55,21 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
    replicas: 3
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
 {{</highlight>}}
 
 Check the Deployment again and now you should see 3 replicas of the pod.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get pod -n kong -o wide
-:::
+{{</highlight>}}
 
 **Sample Output**
 
@@ -86,9 +82,9 @@ dataplane-dataplane1-ch6g9-6889fdf76b-mrjdx   1/1     Running   0          6m15s
 
 As we can see, the 2 new Pods have been created and are up and running. If we check our Kubernetes Service again, we will see it has been updated with the new IP addresses. That allows the Service to implement Load Balancing across the Pod replicas.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl describe service proxy1 -n kong
-:::
+{{</highlight>}}
 
 **Sample Output**
 
@@ -99,32 +95,26 @@ Labels:                   app=dataplane1
                           gateway-operator.konghq.com/dataplane-service-state=live
                           gateway-operator.konghq.com/dataplane-service-type=ingress
                           gateway-operator.konghq.com/managed-by=dataplane
-Annotations:              gateway-operator.konghq.com/last-applied-annotations:
-                            {"service.beta.kubernetes.io/aws-load-balancer-nlb-target-type":"ip","service.beta.kubernetes.io/aws-load-balancer-scheme":"internet-facin...
-                          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-                          service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-Selector:                 app=dataplane1,gateway-operator.konghq.com/selector=2231a2f4-f440-4453-98a4-872ed899169b
+Annotations:              <none>
+Selector:                 app=dataplane1,gateway-operator.konghq.com/selector=8525cad1-ca9c-42c5-9c19-a053a25ff580
 Type:                     LoadBalancer
 IP Family Policy:         SingleStack
 IP Families:              IPv4
-IP:                       10.100.234.223
-IPs:                      10.100.234.223
-LoadBalancer Ingress:     k8s-kong-proxy1-518c8abdcc-a10b0ef08ae8ba02.elb.us-east-2.amazonaws.com
+IP:                       10.110.155.140
+IPs:                      10.110.155.140
+LoadBalancer Ingress:     127.0.0.1 (VIP)
 Port:                     http  80/TCP
 TargetPort:               8000/TCP
-NodePort:                 http  32290/TCP
-Endpoints:                192.168.61.40:8000,192.168.36.12:8000,192.168.52.45:8000
+NodePort:                 http  30164/TCP
+Endpoints:                10.244.0.89:8000,10.244.0.91:8000,10.244.0.90:8000
 Port:                     https  443/TCP
 TargetPort:               8443/TCP
-NodePort:                 https  31084/TCP
-Endpoints:                192.168.61.40:8443,192.168.36.12:8443,192.168.52.45:8443
+NodePort:                 https  32512/TCP
+Endpoints:                10.244.0.89:8443,10.244.0.91:8443,10.244.0.90:8443
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Internal Traffic Policy:  Cluster
-Events:
-  Type    Reason                  Age                From     Message
-  ----    ------                  ----               ----     -------
-  Normal  SuccessfullyReconciled  13m (x2 over 20h)  service  Successfully reconciled
+Events:                   <none>
 ```
 
 Reduce the number of Pods to 1 again running as now we will turn on Horizontal pod autoscalar.
@@ -146,17 +136,13 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
    replicas: 1
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
 {{</highlight>}}
 
@@ -183,8 +169,7 @@ Now you should see two *metrics-server-* pods in *Running* state
 **Sample Output**
 
 ```
-metrics-server-84cbf4fd8-9fblt
-metrics-server-84cbf4fd8-zw6hs
+metrics-server-7fbb699795-5qqp5
 ```
 
 #### Turn HPA on
@@ -210,7 +195,7 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
+         image: kong/kong-gateway:3.11
          resources:
            requests:
              memory: "300Mi"
@@ -218,7 +203,6 @@ spec:
            limits:
              memory: "800Mi"
              cpu: "1200m"
-       serviceAccountName: kaigateway-podid-sa
    scaling:
      horizontal:
        minReplicas: 1
@@ -273,7 +257,7 @@ spec:
   containers:
   - name: fortio
     image: fortio/fortio
-    args: ["load", "-c", "800", "-qps", "3000", "-t", "20m", "-allow-initial-errors", "http://proxy1.kong.svc.cluster.local:80/route1/get"]
+    args: ["load", "-c", "100", "-qps", "500", "-t", "20m", "-allow-initial-errors", "http://proxy1.kong.svc.cluster.local:80/route1/get"]
 EOF
 {{</highlight>}}
 
@@ -319,17 +303,13 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
    replicas: 1
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
 {{</highlight>}}
 

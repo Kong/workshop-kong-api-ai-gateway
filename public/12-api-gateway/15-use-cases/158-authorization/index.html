@@ -29,26 +29,26 @@ In this module, we will configure this plugin to use Keycloak . A detailed integ
 Keycloak Run the following command to deploy Keycloak:">
     <meta itemprop="wordCount" content="321">
     <title>Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754775302" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754775302" defer></script>
-    <script src="/js/search-lunr.js?1754775302" defer></script>
-    <script src="/js/search.js?1754775302" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754919721" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754919721" defer></script>
+    <script src="/js/search-lunr.js?1754919721" defer></script>
+    <script src="/js/search.js?1754919721" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754775302";
+      window.relearn.index_js_url="/searchindex.en.js?1754919721";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754775302" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754919721" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754775302" rel="stylesheet">
-    <link href="/css/theme.css?1754775302" rel="stylesheet">
-    <link href="/css/format-html.css?1754775302" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754919721" rel="stylesheet">
+    <link href="/css/theme.css?1754919721" rel="stylesheet">
+    <link href="/css/format-html.css?1754919721" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -198,11 +198,11 @@ echo $ISSUER</code></pre></div>
 <h4 id="verification">Verification</h4>
 <p>Copy output of <code>echo https://$DATA_PLANE_LB/oidc-route/get</code> and paste in browser.</p>
 <p>After accepting the Server Certificate, since you haven&rsquo;t been authenticated, you will be redirected to Cognito&rsquo;s Authentication page:</p>
-<p><a href="#R-image-cea6d38fcfbbba85bd43ff518386fb3f" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cea6d38fcfbbba85bd43ff518386fb3f"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
+<p><a href="#R-image-b8800e579c3c8fc783e565d13949f683" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b8800e579c3c8fc783e565d13949f683"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
 <p>Click on &ldquo;Sign up&rdquo; to register.</p>
-<p><a href="#R-image-05413f87f83d275ef53186f463b2453a" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-05413f87f83d275ef53186f463b2453a"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
+<p><a href="#R-image-1fd0f0331b26fd3042cfe9c298786519" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1fd0f0331b26fd3042cfe9c298786519"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
 <p>After entering your data click on &ldquo;Sign Up&rdquo;. Cognito will create a user and request the verification code sent by your email.</p>
 <p>After typing the code, Cognito will authenticate you, issues an Authorization Code and redirects you back to the original URL (Data Plane). The Data Plane connects to Cognito with the Authorization Code to get the Access Token and then allows you to consume the URL.</p>
 <p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
@@ -253,7 +253,7 @@ echo $ISSUER</code></pre></div>
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
@@ -284,8 +284,8 @@ echo $ISSUER</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754775302" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754775302" defer></script>
-    <script src="/js/theme.js?1754775302" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754919721" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754919721" defer></script>
+    <script src="/js/theme.js?1754919721" defer></script>
   </body>
 </html>

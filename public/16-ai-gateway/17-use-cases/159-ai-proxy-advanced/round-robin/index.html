@@ -29,26 +29,26 @@ bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced
 bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced-service host: localhost port: 32000 routes: name: route1 paths: /bedrock-route plugins: name: ai-proxy-advanced instance_name: ai-proxy-advanced-bedrock config: balancer: algorithm: round-robin targets: model: provider: bedrock name: “us.amazon.nova-micro-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false model: provider: bedrock name: “us.meta.llama3-3-70b-instruct-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false EOF ::: Apply the declaration with decK: :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-token $PAT ai-proxy-advanced.yaml :::">
     <meta itemprop="wordCount" content="546">
     <title>Round Robin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754775302" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754775302" defer></script>
-    <script src="/js/search-lunr.js?1754775302" defer></script>
-    <script src="/js/search.js?1754775302" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754919721" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754919721" defer></script>
+    <script src="/js/search-lunr.js?1754919721" defer></script>
+    <script src="/js/search.js?1754919721" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754775302";
+      window.relearn.index_js_url="/searchindex.en.js?1754919721";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754775302" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754775302" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754919721" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754775302" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754775302" rel="stylesheet">
-    <link href="/css/theme.css?1754775302" rel="stylesheet">
-    <link href="/css/format-html.css?1754775302" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754919721" rel="stylesheet">
+    <link href="/css/theme.css?1754919721" rel="stylesheet">
+    <link href="/css/format-html.css?1754919721" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -307,7 +307,7 @@ curl -s -X POST <br>
       <div id="R-content-wrapper" class="highlightable">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/10-pre-requisites/index.html"><a class="padding" href="/10-pre-requisites/index.html">Pre-Requisites</a><ul id="R-subsections-188f3a304b47eda4169b210565024d52" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
@@ -343,8 +343,8 @@ curl -s -X POST <br>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754775302" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754775302" defer></script>
-    <script src="/js/theme.js?1754775302" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754919721" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754919721" defer></script>
+    <script src="/js/theme.js?1754919721" defer></script>
   </body>
 </html>

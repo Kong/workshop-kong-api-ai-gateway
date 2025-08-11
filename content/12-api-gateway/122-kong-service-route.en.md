@@ -3,6 +3,23 @@ title : "Kong Gateway Service and Kong Route"
 weight : 122
 ---
 
+
+**Gateway Services** represent the upstream services in your system. These applications are the business logic components of your system responsible for responding to requests.
+
+The configuration of a Gateway Service defines the connectivity details between the Kong Gateway and the upstream service, along with other metadata. Generally, you should map one Gateway Service to each upstream service.
+
+For simple deployments, the upstream URL can be provided directly in the Gateway Service. For sophisticated traffic management needs, a Gateway Service can point at an **Upstream**.
+
+Gateway Services, in conjunction with **Routes**, let you expose your upstream services to clients with Kong Gateway.
+
+**Plugins** can be attached to a Service, and will run against every request that triggers a request to the Service that they’re attached to.
+
+
+![kong_entities](/static/images/kong_entities.png)
+
+
+
+
 For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.
 
 #### Deploy the Application
@@ -198,8 +215,4 @@ If successful, you should see the **httpbin** output:
 
 
 Kong-gratulations! have now reached the end of this module by having your first service set up, running, and routing traffic proxied through a Kong data plane. You can now click **Next** to proceed with the next module.
-
-
-Kong-gratulations! have now reached the end of this module by creating a Kong Service. You can now click **Next** to proceed with the next chapter.
-
 
