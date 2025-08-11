@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
+Keycloak Installation Run the following command to deploy Keycloak:
+wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Keycloak :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
+Keycloak Installation Run the following command to deploy Keycloak:
+wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/1573-authenticaion_openid_connect/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Keycloak :: API Management with Kong Konnect">
+    <meta property="og:description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
+Keycloak Installation Run the following command to deploy Keycloak:
+wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="Keycloak :: API Management with Kong Konnect">
+    <meta itemprop="description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
+Keycloak Installation Run the following command to deploy Keycloak:
+wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+    <meta itemprop="wordCount" content="458">
+    <title>Keycloak :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754940057" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754940057" defer></script>
+    <script src="/js/search-lunr.js?1754940057" defer></script>
+    <script src="/js/search.js?1754940057" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754940057";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754940057" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754940057" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754940057" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754940057" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754940057" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754940057" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754940057" rel="stylesheet">
+    <link href="/css/theme.css?1754940057" rel="stylesheet">
+    <link href="/css/format-html.css?1754940057" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/157-openidconnect\/1573-authenticaion_openid_connect\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/157-openidconnect/1573-authenticaion_openid_connect/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#keycloak-installation">Keycloak Installation</a></li>
+        <li><a href="#keycloak-realm-definition">Keycloak &ldquo;Realm&rdquo; definition</a></li>
+        <li><a href="#test-the-keycloak-endpoint">Test the Keycloak Endpoint</a></li>
+        <li><a href="#user-creation">User creation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><span itemprop="name">OpenID Connect</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Keycloak</span><meta itemprop="position" content="5"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html" title="OpenID Connect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/1574-oidc_authorizationcode/index.html" title="Authorization Code (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="keycloak">Keycloak</h1>
+
+<p>The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and <a href="https://www.keycloak.org/" rel="external" target="_blank">Keycloak</a> as the Identity Provider. Let&rsquo;s start installing Keycloak in our Kubernetes Cluster.</p>
+<h3 id="keycloak-installation">Keycloak Installation</h3>
+<p>Run the following command to deploy Keycloak:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml
+yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace keycloak
+kubectl apply -n keycloak -f keycloak.yaml</code></pre></div>
+
+<h3 id="keycloak-realm-definition">Keycloak &ldquo;Realm&rdquo; definition</h3>
+<p>All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak&rsquo;s external IP address:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http://localhost:8080</code></pre></div>
+
+<p>To login use the admin&rsquo;s credentials: <code>admin/admin</code>. Click on <strong>Manage realms</strong> we can create a new <code>realm</code>. Create a <code>realm</code> called <strong>kong</strong>.</p>
+<h6 id="client_idclient_secret-creation">Client_Id/Client_Secret creation</h6>
+<p>For both OAuth grants we need a <strong>cliend_id</strong> and <strong>client_secret</strong> pair. Clicking on <strong>Clients</strong> and <strong>Create client</strong> we can define a new <code>client</code> representing Kong.</p>
+<p>Choose <code>kong_id</code> for the new <strong>Client ID</strong>. The configurations should be the following:</p>
+<ul>
+<li><strong>Capability config</strong>
+<ul>
+<li>Client authentication: on (Access Type: public)</li>
+<li>Authentication flow -&gt; Service accounts role: on (this allows us to implement the OAuth &ldquo;Client Credentials&rdquo; Grant)</li>
+</ul>
+</li>
+<li><strong>Login settings</strong>
+<ul>
+<li>Valid Redirect URIs: <code>http://localhost/oidc-route/get</code>. This parameter is needed in the OAuth Authorization Code Grant. It defines which URIs are allowed to redirect users to Keycloak.</li>
+</ul>
+</li>
+</ul>
+<p>Click on <strong>Save</strong>.</p>
+<p>To get your <code>client_secret</code>, click on the <strong>Credentials</strong> option shown in the horizontal menu. Take note of the <code>client_secret</code>, for example: <strong>Z7VZs4LkYPU5yVqEYgEadL2TzXwqmr4U</strong></p>
+<h3 id="test-the-keycloak-endpoint">Test the Keycloak Endpoint</h3>
+<p>You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the <strong>client_id/client_secret</strong> pair you have just created. You should get an Access Token as a result. Use <code>jwt</code> to decode the Access Token. Make sure you have jwt installed on your environment. For example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#39;http://localhost:8080/realms/kong/protocol/openid-connect/token&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--data-urlencode &#39;client_id=kong_id&#39; \
+--data-urlencode &#39;client_secret=Z7VZs4LkYPU5yVqEYgEadL2TzXwqmr4U&#39; \
+--data-urlencode &#39;grant_type=client_credentials&#39; | jq -r &#39;.access_token&#39; | jwt decode -</code></pre></div>
+
+<p>Expected Output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
+------------
+{
+  &#34;typ&#34;: &#34;JWT&#34;,
+  &#34;alg&#34;: &#34;RS256&#34;,
+  &#34;kid&#34;: &#34;4BhOAuNGIWSUbmbDh_pJO7vRPTAlrKNKLQ6qSUc4ces&#34;
+}
+
+Token claims
+------------
+{
+  &#34;acr&#34;: &#34;1&#34;,
+  &#34;allowed-origins&#34;: [
+    &#34;http://localhost:route1&#34;
+  ],
+  &#34;aud&#34;: &#34;account&#34;,
+  &#34;azp&#34;: &#34;kong_id&#34;,
+  &#34;clientAddress&#34;: &#34;10.244.0.1&#34;,
+  &#34;clientHost&#34;: &#34;10.244.0.1&#34;,
+  &#34;client_id&#34;: &#34;kong_id&#34;,
+  &#34;email_verified&#34;: false,
+  &#34;exp&#34;: 1754928407,
+  &#34;iat&#34;: 1754928107,
+  &#34;iss&#34;: &#34;http://localhost:8080/realms/kong&#34;,
+  &#34;jti&#34;: &#34;trrtcc:862aaac8-fd88-dead-8d02-fbb576f1f6ff&#34;,
+  &#34;preferred_username&#34;: &#34;service-account-kong_id&#34;,
+  &#34;realm_access&#34;: {
+    &#34;roles&#34;: [
+      &#34;offline_access&#34;,
+      &#34;uma_authorization&#34;,
+      &#34;default-roles-kong&#34;
+    ]
+  },
+  &#34;resource_access&#34;: {
+    &#34;account&#34;: {
+      &#34;roles&#34;: [
+        &#34;manage-account&#34;,
+        &#34;manage-account-links&#34;,
+        &#34;view-profile&#34;
+      ]
+    }
+  },
+  &#34;scope&#34;: &#34;profile email&#34;,
+  &#34;sub&#34;: &#34;35508456-5770-4bd7-9bcc-7f14b9d7b5d5&#34;,
+  &#34;typ&#34;: &#34;Bearer&#34;
+}</code></pre></div>
+<h3 id="user-creation">User creation</h3>
+<p>Now, specifically for the <strong>Authorization Code Grant</strong>, we need to create a Keycloak user. You can do it by clicking on <strong>Users</strong> and <strong>Create new user</strong>. Choose <code>consumer1</code> for the <strong>Username</strong> and click on <strong>Create</strong>:</p>
+<p>Click on <strong>Credentials</strong> and <strong>Set password</strong>. Type <code>kong</code> for both <strong>Password</strong> and <strong>Password confirmation</strong> fields. Turn <strong>Temporary</strong> to <code>off</code> and click on <strong>Save</strong> and <strong>Save Password</strong>.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu">
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/1573-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/1573-authenticaion_openid_connect/index.html">Keycloak</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/1574-oidc_authorizationcode/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/1574-oidc_authorizationcode/index.html">Authorization Code</a></li></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754940057" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754940057" defer></script>
+    <script src="/js/theme.js?1754940057" defer></script>
+  </body>
+</html>

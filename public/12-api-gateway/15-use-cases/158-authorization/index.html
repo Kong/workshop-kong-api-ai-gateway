@@ -29,26 +29,26 @@ In this module, we will configure this plugin to use Keycloak . A detailed integ
 Keycloak Run the following command to deploy Keycloak:">
     <meta itemprop="wordCount" content="321">
     <title>Authorization - OPA (OpenPolicyAgent) :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754925006" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754925006" defer></script>
-    <script src="/js/search-lunr.js?1754925006" defer></script>
-    <script src="/js/search.js?1754925006" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754945616" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754945616" defer></script>
+    <script src="/js/search-lunr.js?1754945616" defer></script>
+    <script src="/js/search.js?1754945616" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754925006";
+      window.relearn.index_js_url="/searchindex.en.js?1754945616";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754945616" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754945616" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754945616" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754945616" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754925006" rel="stylesheet">
-    <link href="/css/theme.css?1754925006" rel="stylesheet">
-    <link href="/css/format-html.css?1754925006" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754945616" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754945616" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754945616" rel="stylesheet">
+    <link href="/css/theme.css?1754945616" rel="stylesheet">
+    <link href="/css/format-html.css?1754945616" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -122,7 +122,7 @@ Keycloak Run the following command to deploy Keycloak:">
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Authorization - OPA (OpenPolicyAgent)</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html" title="Authentication - OpenID Connect - Keycloak (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/1576-oidc_accesscontrol/index.html" title="Access Control (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/index.html" title="Kong AI Gateway (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
@@ -198,11 +198,11 @@ echo $ISSUER</code></pre></div>
 <h4 id="verification">Verification</h4>
 <p>Copy output of <code>echo https://$DATA_PLANE_LB/oidc-route/get</code> and paste in browser.</p>
 <p>After accepting the Server Certificate, since you haven&rsquo;t been authenticated, you will be redirected to Cognito&rsquo;s Authentication page:</p>
-<p><a href="#R-image-a50efb49cf8384447f9db293d0a5597a" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a50efb49cf8384447f9db293d0a5597a"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
+<p><a href="#R-image-6f30d667ebc9c5fee51370301d55cf27" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6f30d667ebc9c5fee51370301d55cf27"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
 <p>Click on &ldquo;Sign up&rdquo; to register.</p>
-<p><a href="#R-image-45ce382ab835d6d967ff2bfbd0062e89" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-45ce382ab835d6d967ff2bfbd0062e89"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
+<p><a href="#R-image-a5e6069642a1f0906bec3f6087611718" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a5e6069642a1f0906bec3f6087611718"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
 <p>After entering your data click on &ldquo;Sign Up&rdquo;. Cognito will create a user and request the verification code sent by your email.</p>
 <p>After typing the code, Cognito will authenticate you, issues an Authorization Code and redirects you back to the original URL (Data Plane). The Data Plane connects to Cognito with the Authorization Code to get the Access Token and then allows you to consume the URL.</p>
 <p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
@@ -264,7 +264,7 @@ echo $ISSUER</code></pre></div>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
             <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication - OpenID Connect - Keycloak</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu"></ul></li>
             <li class="active " data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
@@ -284,8 +284,8 @@ echo $ISSUER</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754925006" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754925006" defer></script>
-    <script src="/js/theme.js?1754925006" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754945616" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754945616" defer></script>
+    <script src="/js/theme.js?1754945616" defer></script>
   </body>
 </html>

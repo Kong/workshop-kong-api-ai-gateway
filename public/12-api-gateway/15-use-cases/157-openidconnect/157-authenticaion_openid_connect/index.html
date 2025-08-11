@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Authentication - OpenID Connect - Keycloak :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Authentication - OpenID Connect - Keycloak :: API Management with Kong Konnect">
+    <meta property="og:description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="Authentication - OpenID Connect - Keycloak :: API Management with Kong Konnect">
+    <meta itemprop="description" content="OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.
+In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.
+Keycloak Run the following command to deploy Keycloak:">
+    <meta itemprop="wordCount" content="321">
+    <title>Authentication - OpenID Connect - Keycloak :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754925816" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754925816" defer></script>
+    <script src="/js/search-lunr.js?1754925816" defer></script>
+    <script src="/js/search.js?1754925816" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754925816";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754925816" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754925816" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754925816" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754925816" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925816" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925816" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754925816" rel="stylesheet">
+    <link href="/css/theme.css?1754925816" rel="stylesheet">
+    <link href="/css/format-html.css?1754925816" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/157-openidconnect\/157-authenticaion_openid_connect\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><span itemprop="name">OpenID Connect</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Authentication - OpenID Connect - Keycloak</span><meta itemprop="position" content="5"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html" title="OpenID Connect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect.en-copy/index.html" title="OpenID Connect - Keycloak (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="authentication---openid-connect---keycloak">Authentication - OpenID Connect - Keycloak</h1>
+
+<p><a href="https://docs.konghq.com/hub/kong-inc/openid-connect/" rel="external" target="_blank">OpenID Connect plugin</a> allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) <a href="https://tools.ietf.org/html/rfc6749" rel="external" target="_blank">OAuth 2.0</a> resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.</p>
+<p>In this module, we will configure this plugin to use <a href="https://www.keycloak.org/" rel="external" target="_blank">Keycloak</a> . A detailed integration guide is available <a href="https://docs.konghq.com/gateway/latest/kong-plugins/authentication/oidc/cognito/" rel="external" target="_blank">here</a> for future reading.</p>
+<h4 id="keycloak">Keycloak</h4>
+<p>Run the following command to deploy Keycloak:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml
+yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace keycloak
+kubectl apply -n keycloak -f keycloak.yaml</code></pre></div>
+
+<h4 id="installing-openid-connect-plugin">Installing OpenID Connect Plugin</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo &#34;_format_version: \&#34;3.0\&#34;
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: oidc-route
+    paths:
+    - /oidc-route
+    plugins:
+    - name: openid-connect
+      instance_name: openid-connect1
+      config:
+        auth_methods:
+        - authorization_code
+        redirect_uri:
+        - https://$DATA_PLANE_LB/oidc-route/get
+        client_id:
+        - $COGNITO_CLIENT_ID
+        client_secret:
+        - $CLIENT_SECRET
+        issuer: $ISSUER&#34; &gt; ./oidc.yaml</code></pre></div>
+
+<p>Submit the declaration
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT oidc.yaml</code></pre></div>
+</p>
+<p>Check your Client Id, Secret and Issuer</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo $COGNITO_CLIENT_ID
+echo $CLIENT_SECRET
+echo $ISSUER</code></pre></div>
+
+<h4 id="verification">Verification</h4>
+<p>Copy output of <code>echo https://$DATA_PLANE_LB/oidc-route/get</code> and paste in browser.</p>
+<p>After accepting the Server Certificate, since you haven&rsquo;t been authenticated, you will be redirected to Cognito&rsquo;s Authentication page:</p>
+<p><a href="#R-image-e15862cdf726901267016cdea15fc129" class="lightbox-link"><img alt="cognito7" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito7.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e15862cdf726901267016cdea15fc129"><img alt="cognito7" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito7.png"></a></p>
+<p>Click on &ldquo;Sign up&rdquo; to register.</p>
+<p><a href="#R-image-0946477e25bd02585d6d32ec2c229874" class="lightbox-link"><img alt="cognito8" class="lazy lightbox figure-image" loading="lazy" src="/static/images/cognito8.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0946477e25bd02585d6d32ec2c229874"><img alt="cognito8" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/cognito8.png"></a></p>
+<p>After entering your data click on &ldquo;Sign Up&rdquo;. Cognito will create a user and request the verification code sent by your email.</p>
+<p>After typing the code, Cognito will authenticate you, issues an Authorization Code and redirects you back to the original URL (Data Plane). The Data Plane connects to Cognito with the Authorization Code to get the Access Token and then allows you to consume the URL.</p>
+<p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu">
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect/index.html">Authentication - OpenID Connect - Keycloak</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect.en-copy/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/157-authenticaion_openid_connect.en-copy/index.html">OpenID Connect - Keycloak</a></li></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754925816" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754925816" defer></script>
+    <script src="/js/theme.js?1754925816" defer></script>
+  </body>
+</html>

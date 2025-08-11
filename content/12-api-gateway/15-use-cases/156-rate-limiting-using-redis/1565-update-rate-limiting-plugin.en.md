@@ -7,13 +7,13 @@ weight : 1565
 #### Update the Rate Limiting Plugin
 Let's update our Kong Plugin configuration to use Redis as a data store rather than each Kong node storing the counter information in-memory. As a reminder, Redis was installed previously and it is available in the EKS cluster.
 
-Here's the new declarion:
+Here's the new declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat > rate-limiting.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -35,7 +35,7 @@ services:
           host: redis-stack.redis.svc.cluster.local
           port: 6379
 EOF
-:::
+{{</highlight>}}
 
 
 
@@ -43,9 +43,9 @@ EOF
 
 Submit the declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 deck gateway sync --konnect-token $PAT rate-limiting.yaml
-:::
+{{</highlight>}}
 
 
 
@@ -55,27 +55,27 @@ Execute the following commands more than 5 times.
 
 What happens?
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -I $DATA_PLANE_LB/rate-limiting-route/get
-:::
+{{</highlight>}}
 
 **Response**
 
 ```
 HTTP/1.1 429 Too Many Requests
-Date: Wed, 28 May 2025 12:40:06 GMT
+Date: Mon, 11 Aug 2025 15:16:04 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
-X-RateLimit-Limit-Minute: 5
+Retry-After: 56
 X-RateLimit-Remaining-Minute: 0
-RateLimit-Reset: 54
-Retry-After: 54
-RateLimit-Remaining: 0
 RateLimit-Limit: 5
+X-RateLimit-Limit-Minute: 5
+RateLimit-Remaining: 0
+RateLimit-Reset: 56
 Content-Length: 92
-X-Kong-Response-Latency: 2
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: d517af1d0873f14cca18af72d314072c
+X-Kong-Response-Latency: 7
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: b1c6ee6da33a042a51eeca1b5fb4f150
 ```
 
 **Expected Results**  Because Redis is the data-store for the rate-limiting plugin, you should be able to make only 5 requests in a minute
@@ -84,7 +84,7 @@ X-Kong-Request-Id: d517af1d0873f14cca18af72d314072c
 
 #### Reduce the number of replicas
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -101,19 +101,15 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
    replicas: 1
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
 
 

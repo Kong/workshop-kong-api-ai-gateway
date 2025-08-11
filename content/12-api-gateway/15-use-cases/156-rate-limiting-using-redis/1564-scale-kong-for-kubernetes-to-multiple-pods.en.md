@@ -62,30 +62,30 @@ Similarly you can see new Runtime Instances connected to your Runtime Group
 #### Verify traffic control
 Test the rate-limiting policy by executing the following command and observing the rate-limit headers.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 curl -I $DATA_PLANE_LB/rate-limiting-route/get
-:::
+{{</highlight>}}
 
 **Response**
 
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 455
+Content-Length: 389
 Connection: keep-alive
-RateLimit-Reset: 29
 X-RateLimit-Remaining-Minute: 4
-X-RateLimit-Limit-Minute: 5
 RateLimit-Limit: 5
+X-RateLimit-Limit-Minute: 5
 RateLimit-Remaining: 4
+RateLimit-Reset: 57
 Server: gunicorn
-Date: Wed, 28 May 2025 12:35:31 GMT
+Date: Mon, 11 Aug 2025 15:12:03 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 6
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 2373ed35e4fff87e406eb4347e15702f
+X-Kong-Upstream-Latency: 9
+X-Kong-Proxy-Latency: 8
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942
 ```
 
 #### Results

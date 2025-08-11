@@ -43,18 +43,18 @@
       <description>Kong can rate-limit your traffic without any external dependency. In such a case, Kong stores the request counters in-memory and each Kong node applies the rate-limiting policy independently. There is no synchronization of information being done in this case. But if Redis is available in your cluster, Kong can take advantage of it and synchronize the rate-limit information across multiple Kong nodes and enforce a slightly different rate-limiting policy.&#xA;This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.</description>
     </item>
     <item>
-      <title>Authentication - OpenID Connect - Keycloak</title>
-      <link>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</link>
+      <title>OpenID Connect</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html</guid>
-      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.&#xA;Keycloak Run the following command to deploy Keycloak:</description>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/index.html</guid>
+      <description>For advanced and enterprise class requirements, OpenID Connect (OIDC) is the preferred option to implement API consumer Authentication. OIDC also provides mechanisms to implement Authorization. In fact, when applying OIDC to secure the APIs, we’re delegating the Authentication process to the external Identity Provider entity.&#xA;OpenID Connect is an authentication protocol built on top of OAuth 2.0 and JWT - JSON Web Token to add login and profile information about the identity who is logged in.</description>
     </item>
     <item>
-      <title>Authorization - OPA (OpenPolicyAgent)</title>
-      <link>http://localhost:1313/12-api-gateway/15-use-cases/158-authorization/index.html</link>
+      <title>OPA (OpenPolicyAgent) - Authorization</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/15-use-cases/158-authorization/index.html</guid>
-      <description>OpenID Connect plugin allows the integration with a 3rd party identity provider (IdP) in a standardized way. This plugin can be used to implement Kong as a (proxying) OAuth 2.0 resource server (RS) and/or as an OpenID Connect relying party (RP) between the client, and the upstream service.&#xA;In this module, we will configure this plugin to use Keycloak . A detailed integration guide is available here for future reading.&#xA;Keycloak Run the following command to deploy Keycloak:</description>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html</guid>
+      <description>OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.</description>
     </item>
   </channel>
 </rss>

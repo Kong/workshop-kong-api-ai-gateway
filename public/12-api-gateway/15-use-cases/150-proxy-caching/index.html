@@ -21,26 +21,26 @@
     <meta itemprop="description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
     <meta itemprop="wordCount" content="1093">
     <title>Proxy Caching :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754925006" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754925006" defer></script>
-    <script src="/js/search-lunr.js?1754925006" defer></script>
-    <script src="/js/search.js?1754925006" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754946073" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754946073" defer></script>
+    <script src="/js/search-lunr.js?1754946073" defer></script>
+    <script src="/js/search.js?1754946073" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754925006";
+      window.relearn.index_js_url="/searchindex.en.js?1754946073";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754925006" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754946073" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754925006" rel="stylesheet">
-    <link href="/css/theme.css?1754925006" rel="stylesheet">
-    <link href="/css/format-html.css?1754925006" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754946073" rel="stylesheet">
+    <link href="/css/theme.css?1754946073" rel="stylesheet">
+    <link href="/css/format-html.css?1754946073" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -153,8 +153,8 @@
 <p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">Proxy Caching</a> provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</p>
 <h3 id="kong-gateway-plugin-list">Kong Gateway Plugin list</h3>
 <p>Before enabling the <strong>Proxy Caching</strong>, let&rsquo;s check the list of plugins Konnect provides. Inside the <code>kong-workshop</code> Control Plane, click on <strong>Plugins</strong> menu option and <strong>+ New plugin</strong>. You should the following page with all plugins available:</p>
-<p><a href="#R-image-a9ec7a2d49a89525d0126148b385fe83" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a9ec7a2d49a89525d0126148b385fe83"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<p><a href="#R-image-e2bbdb71596a099a3af574dd8f370f10" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e2bbdb71596a099a3af574dd8f370f10"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
 <h3 id="enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</h3>
 <p>Create another declaration with <code>plugins</code> option. With this option you can enable and configure the plugin on your Kong Service.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
@@ -460,8 +460,8 @@ EOF</code></pre></div>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
             <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-authenticaion_openid_connect/index.html">Authentication - OpenID Connect - Keycloak</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-authorization/index.html">Authorization - OPA (OpenPolicyAgent)</a></li></ul></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-opa-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">OPA (OpenPolicyAgent) - Authorization</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>
@@ -480,8 +480,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754925006" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754925006" defer></script>
-    <script src="/js/theme.js?1754925006" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754946073" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754946073" defer></script>
+    <script src="/js/theme.js?1754946073" defer></script>
   </body>
 </html>

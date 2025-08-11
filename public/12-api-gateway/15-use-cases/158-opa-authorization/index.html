@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect">
+    <meta property="og:description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect">
+    <meta itemprop="description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
+    <meta itemprop="wordCount" content="943">
+    <title>OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1754946073" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754946073" defer></script>
+    <script src="/js/search-lunr.js?1754946073" defer></script>
+    <script src="/js/search.js?1754946073" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1754946073";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754946073" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754946073" rel="stylesheet">
+    <link href="/css/theme.css?1754946073" rel="stylesheet">
+    <link href="/css/format-html.css?1754946073" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/12-api-gateway\/15-use-cases\/158-opa-authorization\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#--name-opa-policy">cat &laquo;EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: opa
+namespace: opa
+labels:
+app: opa
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: opa
+template:
+metadata:
+labels:
+app: opa
+spec:
+containers:
+- name: opa
+image: openpolicyagent/opa:edge-static
+volumeMounts:
+- readOnly: true
+mountPath: /policy
+name: opa-policy
+args:
+- &ldquo;run&rdquo;
+- &ldquo;&ndash;server&rdquo;
+- &ldquo;&ndash;addr=0.0.0.0:8181&rdquo;
+- &ldquo;&ndash;set=decision_logs.console=true&rdquo;
+- &ldquo;&ndash;set=status.console=true&rdquo;
+- &ldquo;&ndash;ignore=.*&rdquo;
+volumes:
+- name: opa-policy</a></li>
+    <li><a href="#token-header">Token header</a></li>
+    <li><a href="#token-claims">Token claims</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OPA (OpenPolicyAgent) - Authorization</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/157-openidconnect/1576-oidc_accesscontrol/index.html" title="Authorization (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/index.html" title="Kong AI Gateway (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="opa-openpolicyagent---authorization">OPA (OpenPolicyAgent) - Authorization</h1>
+
+<p>OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let&rsquo;s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That&rsquo;s the main purpose of the <a href="https://www.openpolicyagent.org" rel="external" target="_blank">Open Policy Agent - OPA</a> engine.</p>
+<p>In fact, such a decision is simply applying the same Separation of Concerns principle to get two independent layers implementing, each one of them, the Authentication and Authorization policies. Our architecture topology would look slightly different now.</p>
+<p>On the other hand, as we stated in the beginning of the chapter, it is not the case to remove the Authorization policies from the OAuth/OIDC layer. There will be different abstraction levels for the policies: some of them, possibly coarse-grained enterprise class ones, should still be implemented by the OAuth/OIDC layer. Fine-grained policies, instead, would be better implemented by the specific Authorization layer.</p>
+<p><a href="#R-image-ade30c1bb8f5bb27e56b8f1adc5dbe97" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ade30c1bb8f5bb27e56b8f1adc5dbe97"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
+<p>Change the OpenID Connect plugin to turn Authorization off</p>
+<p>Since we are going to move the Authorization policy to OPA, the first thing to do is return our OpenID Connect plugin to the original Client Credentials state:</p>
+<p>curl -X PUT <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins/oidc1" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins/oidc1</a> <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;header &lsquo;accept: application/json&rsquo; <br>
+&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; <br>
+&ndash;data '
+{
+&ldquo;name&rdquo;: &ldquo;openid-connect&rdquo;,
+&ldquo;instance_name&rdquo;: &ldquo;oidc1&rdquo;,
+&ldquo;config&rdquo;: {
+&ldquo;issuer&rdquo;: &ldquo;&rsquo;$ISSUER&rsquo;&rdquo;,
+&ldquo;extra_jwks_uris&rdquo;: [&ldquo;http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs&rdquo;],
+&ldquo;auth_methods&rdquo;: [&ldquo;client_credentials&rdquo;],
+&ldquo;consumer_optional&rdquo;: false,
+&ldquo;consumer_claim&rdquo;: [&ldquo;client_id&rdquo;],
+&ldquo;consumer_by&rdquo;: [&ldquo;username&rdquo;]
+}
+}&rsquo;</p>
+<p>OPA Installation
+Create another namespace, this time to install OPA</p>
+<p>kubectl create namespace opa</p>
+<p>OPA can be installed with this simple declaration. Note it&rsquo;s going to be exposed with a new Load Balancer:</p>
+<h2 id="--name-opa-policy">cat &laquo;EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: opa
+namespace: opa
+labels:
+app: opa
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: opa
+template:
+metadata:
+labels:
+app: opa
+spec:
+containers:
+- name: opa
+image: openpolicyagent/opa:edge-static
+volumeMounts:
+- readOnly: true
+mountPath: /policy
+name: opa-policy
+args:
+- &ldquo;run&rdquo;
+- &ldquo;&ndash;server&rdquo;
+- &ldquo;&ndash;addr=0.0.0.0:8181&rdquo;
+- &ldquo;&ndash;set=decision_logs.console=true&rdquo;
+- &ldquo;&ndash;set=status.console=true&rdquo;
+- &ldquo;&ndash;ignore=.*&rdquo;
+volumes:
+- name: opa-policy</h2>
+<p>apiVersion: v1
+kind: Service
+metadata:
+name: opa
+namespace: opa
+spec:
+selector:
+app: opa
+type: LoadBalancer
+ports:</p>
+<ul>
+<li>name: http
+protocol: TCP
+port: 8181
+targetPort: 8181
+EOF</li>
+</ul>
+<p>Check the installation
+% kubectl get service -n opa
+NAME   TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)          AGE
+opa    LoadBalancer   10.96.128.59   172.19.255.202   8181:30954/TCP   44m</p>
+<p>% kubectl get pod -n opa
+NAME                  READY   STATUS    RESTARTS   AGE
+opa-84d784c88-m8r2n   1/1     Running   0          5h17m</p>
+<p>Check if OPA is running properly:</p>
+<p>% curl -i -X GET http://172.19.255.202:8181/health
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Sat, 03 Aug 2024 17:16:14 GMT
+Content-Length: 3</p>
+<p>{}</p>
+<p>As expected, there no policies available:</p>
+<p>% curl -s -X GET http://172.19.255.202:8181/v1/policies
+{&ldquo;result&rdquo;:[]}</p>
+<p>Create the Authorization Policy
+OPA uses Rego (<a href="https://www.openpolicyagent.org/docs/latest/#rego" rel="external" target="_blank">https://www.openpolicyagent.org/docs/latest/#rego</a>) language for Policy definition. Here&rsquo;s the policy we are going to create:</p>
+<p>package jwt</p>
+<p>import rego.v1</p>
+<p>default allow := false</p>
+<p>allow if {
+check_cid
+check_working_day
+}</p>
+<p>check_cid if {
+v := input.request.http.headers.authorization
+startswith(v, &ldquo;Bearer&rdquo;)
+bearer_token := substring(v, count(&ldquo;Bearer &ldquo;), -1)
+[_, token, _] := io.jwt.decode(bearer_token)
+token.aud == &ldquo;silver&rdquo;
+}</p>
+<p>check_working_day if {
+wday := time.weekday(time.now_ns())
+wday != &ldquo;Saturday&rdquo;; wday != &ldquo;Sunday&rdquo;
+}</p>
+<p>The simple policy checks two main conditions:
+If the Access Token issued by Keycloak, validated and mapped by Kong Data Plane, has a specific audience. To try the policy we are requesting the audience to be a different one.
+Only requests sent during working days should be allowed.</p>
+<p>Create a file named &ldquo;jwt.rego&rdquo; and apply the policy sending a request to OPA:</p>
+<p>curl -XPUT http://172.19.255.202:8181/v1/policies/jwt &ndash;data-binary @jwt.rego</p>
+<p>Check the policy with:</p>
+<p>curl -s -X GET http://172.19.255.202:8181/v1/policies | jq -r &lsquo;.result[].id&rsquo;</p>
+<p>curl -s -X GET http://172.19.255.202:8181/v1/policies/jwt | jq -r &lsquo;.result.raw&rsquo;</p>
+<p>Enable the OPA plugin to the Kong Route
+Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the &ldquo;opa_path&rdquo; parameter refers to the &ldquo;allow&rdquo; function defined in the policy. The &ldquo;opa_host&rdquo; and &ldquo;opa_port&rdquo; are references to the OPA Kubernetes Service&rsquo;s FQDN:</p>
+<p>curl -X POST <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins</a> <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;header &lsquo;accept: application/json&rsquo; <br>
+&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; <br>
+&ndash;data '
+{
+&ldquo;name&rdquo;: &ldquo;opa&rdquo;,
+&ldquo;instance_name&rdquo;: &ldquo;opa&rdquo;,
+&ldquo;config&rdquo;: {
+&ldquo;opa_path&rdquo;: &ldquo;/v1/data/jwt/allow&rdquo;,
+&ldquo;opa_protocol&rdquo;: &ldquo;http&rdquo;,
+&ldquo;opa_host&rdquo;: &ldquo;opa.opa.svc.cluster.local&rdquo;,
+&ldquo;opa_port&rdquo;: 8181
+}
+}&rsquo;</p>
+<p>If you want to check the enabled plugin your Kong Route currently has send the following request:</p>
+<p>% curl -sX GET <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins</a> <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;header &lsquo;accept: application/json&rsquo; <br>
+&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; | jq -r &lsquo;.data[] | select(.enabled==true)&rsquo; | jq -r &lsquo;.name&rsquo;
+openid-connect
+opa</p>
+<p>Consume the Kong Route
+A new error code should be returned if we try to consume the Route:</p>
+<p>% curl -siX GET $DP_ADDR/route1/get -u &ldquo;kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr&rdquo;</p>
+<p>HTTP/1.1 403 Forbidden
+Date: Sat, 03 Aug 2024 22:02:37 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Content-Length: 26
+X-Kong-Response-Latency: 4
+Server: kong/3.7.1.2-enterprise-edition
+X-Kong-Request-Id: fa699046f7d21773b626a4311537e171</p>
+<p>{&ldquo;message&rdquo;:&ldquo;unauthorized&rdquo;}</p>
+<p>This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak &ldquo;kong_mapper&rdquo; Client Scope Mapper and change the &ldquo;Included Custom Audience&rdquo; to &ldquo;silver&rdquo;.</p>
+<p>Assuming you are on a working day, OPA should allow you to consume the Route again.</p>
+<p>% curl -sX GET $DP_ADDR/route1/get -u &ldquo;kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr&rdquo;| jq -r &lsquo;.headers.Authorization&rsquo; | cut -d &quot; &quot; -f 2 | jwt decode -</p>
+<h2 id="token-header">Token header</h2>
+<p>{
+&ldquo;typ&rdquo;: &ldquo;JWT&rdquo;,
+&ldquo;alg&rdquo;: &ldquo;RS256&rdquo;,
+&ldquo;kid&rdquo;: &ldquo;9ah-4Ngfka3NZOd3lnu1zO4Wy31jS9vS-jU_xCW45pU&rdquo;
+}</p>
+<h2 id="token-claims">Token claims</h2>
+<p>{
+&ldquo;acr&rdquo;: &ldquo;1&rdquo;,
+&ldquo;allowed-origins&rdquo;: [
+&ldquo;http://172.19.255.200&rdquo;
+],
+&ldquo;aud&rdquo;: &ldquo;silver&rdquo;,
+&ldquo;azp&rdquo;: &ldquo;kong_id&rdquo;,
+&ldquo;clientAddress&rdquo;: &ldquo;10.244.0.1&rdquo;,
+&ldquo;clientHost&rdquo;: &ldquo;10.244.0.1&rdquo;,
+&ldquo;client_id&rdquo;: &ldquo;kong_id&rdquo;,
+&ldquo;email_verified&rdquo;: false,
+&ldquo;exp&rdquo;: 1722723209,
+&ldquo;iat&rdquo;: 1722722909,
+&ldquo;iss&rdquo;: &ldquo;http://172.19.255.201:8080/realms/kong&rdquo;,
+&ldquo;jti&rdquo;: &ldquo;ae549748-1dc0-4f5a-8c7f-4d6d9ae52f70&rdquo;,
+&ldquo;preferred_username&rdquo;: &ldquo;service-account-kong_id&rdquo;,
+&ldquo;scope&rdquo;: &ldquo;openid profile email&rdquo;,
+&ldquo;sub&rdquo;: &ldquo;f1905c0c-3454-4fdc-a050-752da8062f80&rdquo;,
+&ldquo;typ&rdquo;: &ldquo;Bearer&rdquo;
+}</p>
+<p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/122-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-kong-service-route/index.html">Kong Gateway Service and Kong Route</a></li>
+            <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu"></ul></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/158-opa-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">OPA (OpenPolicyAgent) - Authorization</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1754946073" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754946073" defer></script>
+    <script src="/js/theme.js?1754946073" defer></script>
+  </body>
+</html>
