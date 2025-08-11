@@ -21,26 +21,26 @@
     <meta itemprop="description" content="To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.">
     <meta itemprop="wordCount" content="1278">
     <title>API Key Authentication :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754919721" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754919721" defer></script>
-    <script src="/js/search-lunr.js?1754919721" defer></script>
-    <script src="/js/search.js?1754919721" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754925006" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754925006" defer></script>
+    <script src="/js/search-lunr.js?1754925006" defer></script>
+    <script src="/js/search.js?1754925006" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754919721";
+      window.relearn.index_js_url="/searchindex.en.js?1754925006";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754925006" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754919721" rel="stylesheet">
-    <link href="/css/theme.css?1754919721" rel="stylesheet">
-    <link href="/css/format-html.css?1754919721" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754925006" rel="stylesheet">
+    <link href="/css/theme.css?1754925006" rel="stylesheet">
+    <link href="/css/format-html.css?1754925006" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -151,8 +151,8 @@
 
 <p>To get started with API Authentication, let&rsquo;s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.</p>
 <p>A Kong Consumer represents a consumer (user or application) of a Service. A Kong Consumer is tightly coupled to an Authentication mechanism the Kong Gateway provides.</p>
-<p><a href="#R-image-10659dbe7755ef60d1cae55a94bafb2e" class="lightbox-link"><img alt="kong_consumer" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_consumer.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-10659dbe7755ef60d1cae55a94bafb2e"><img alt="kong_consumer" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_consumer.png"></a></p>
+<p><a href="#R-image-0098a2474d2ceb02cbc34d21a1cbaac7" class="lightbox-link"><img alt="kong_consumer" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_consumer.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0098a2474d2ceb02cbc34d21a1cbaac7"><img alt="kong_consumer" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_consumer.png"></a></p>
 <p>Please, check the <a href="https://docs.konghq.com/hub/kong-inc/key-auth/" rel="external" target="_blank"><strong>Key-Auth</strong> plugin</a> plugin and <a href="https://docs.konghq.com/gateway/latest/key-concepts/consumers/" rel="external" target="_blank"><strong>Kong Consumer</strong></a> documentation pages to learn more about them.</p>
 <h3 id="enable-the-key-authentication-plugin-on-the-kong-route">Enable the Key Authentication Plugin on the Kong Route</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; key-auth.yaml &lt;&lt; &#39;EOF&#39;
@@ -182,18 +182,18 @@ EOF</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i $DATA_PLANE_LB/key-auth-route/get</code></pre></div>
 
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 401 Unauthorized
-Date: Wed, 28 May 2025 12:05:25 GMT
+Date: Mon, 11 Aug 2025 14:44:59 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key
 Content-Length: 96
-X-Kong-Response-Latency: 0
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 3bdc0f233664705be8414e1b29ace607
+X-Kong-Response-Latency: 2
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 1f8a6c1c9d0d1853d9db426588c1ce1c
 
 {
   &#34;message&#34;:&#34;No API key found in request&#34;,
-  &#34;request_id&#34;:&#34;3bdc0f233664705be8414e1b29ace607&#34;
+  &#34;request_id&#34;:&#34;1f8a6c1c9d0d1853d9db426588c1ce1c&#34;
 }</code></pre></div>
 <h4 id="create-a-kong-consumer">Create a Kong Consumer</h4>
 <p>In order to consume the Route we need to create a Kong Consumer. Here&rsquo;s its declaration:</p>
@@ -230,27 +230,27 @@ EOF</code></pre></div>
 
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
 Server: gunicorn
-Date: Wed, 28 May 2025 12:07:57 GMT
+Date: Mon, 11 Aug 2025 14:45:52 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 5
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 4b58c81d7e6d937ec596a22f2635834e</code></pre></div>
+X-Kong-Upstream-Latency: 9
+X-Kong-Proxy-Latency: 4
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: b535885591f5ec7f7fb5f070fa365465</code></pre></div>
 <p>Of course, if you inject a wrong key, you get a specific error like this:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:12&#39;
 HTTP/1.1 401 Unauthorized
-Date: Wed, 28 May 2025 12:08:38 GMT
+Date: Mon, 11 Aug 2025 14:46:36 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key
 Content-Length: 81
 X-Kong-Response-Latency: 1
-Server: kong/3.10.0.2-enterprise-edition
-X-Kong-Request-Id: 325bee25eda87c5358c3e06334f07d74</code></pre></div>
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 688e271ea4cae5794bc1cb59ea3ec131</code></pre></div>
 <p><strong>NOTE</strong></p>
 <ul>
 <li>The header has to have the API Key name, which is, in our case, <code>apikey</code>. That was the default name provided by Konnect when you enabled the <strong>Key Authentication</strong> on the Kong Route. You can change the plugin configuration, if you will.</li>
@@ -361,81 +361,81 @@ EOF</code></pre></div>
 <p><strong>Expected Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 601
+Content-Length: 551
 Connection: keep-alive
 X-RateLimit-Limit-Minute: 5
 X-RateLimit-Remaining-Minute: 4
-RateLimit-Reset: 35
+RateLimit-Reset: 11
 RateLimit-Remaining: 4
 RateLimit-Limit: 5
 Server: gunicorn
-Date: Fri, 09 May 2025 13:04:25 GMT
+Date: Mon, 11 Aug 2025 14:47:49 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 7b9f662e2e0d2f562b12535227ff024b</code></pre></div>
+X-Kong-Upstream-Latency: 3
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: ad38e60e76c57d5826f3c37fdce4925c</code></pre></div>
 <p>Now, let&rsquo;s consume it with the Consumer2&rsquo;s API Key. As you can see the Data Plane is processing the Rate Limiting processes independently.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:123456&#39;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:987654&#39;</code></pre></div>
 
 <p><strong>Expected Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
-RateLimit-Limit: 5
-RateLimit-Reset: 50
-RateLimit-Remaining: 4
-X-RateLimit-Limit-Minute: 5
-X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 8
+X-RateLimit-Remaining-Minute: 7
+RateLimit-Reset: 27
+RateLimit-Remaining: 7
+RateLimit-Limit: 8
 Server: gunicorn
-Date: Wed, 28 May 2025 12:15:10 GMT
+Date: Mon, 11 Aug 2025 14:49:33 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: d927f9253a57be7775bdd67e0e8f0328</code></pre></div>
+X-Kong-Proxy-Latency: 3
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 9cf1fb53db3a9b740d9bd42e9091d245</code></pre></div>
 <p>If we keep sending requests using the first API Key, eventually, as expected, we&rsquo;ll get an error code:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:123456&#39;</code></pre></div>
 
 <p><strong>Expected Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 429 Too Many Requests
-Date: Wed, 28 May 2025 12:15:28 GMT
+Date: Mon, 11 Aug 2025 14:50:21 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
-RateLimit-Limit: 5
-Retry-After: 32
-RateLimit-Reset: 32
-RateLimit-Remaining: 0
 X-RateLimit-Limit-Minute: 5
 X-RateLimit-Remaining-Minute: 0
+RateLimit-Reset: 39
+Retry-After: 39
+RateLimit-Remaining: 0
+RateLimit-Limit: 5
 Content-Length: 92
-X-Kong-Response-Latency: 0
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: cf9e1a060a3d68737a805a732922ac19</code></pre></div>
+X-Kong-Response-Latency: 1
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 38afd254e246a946a65153780606be3c</code></pre></div>
 <p>However, the second API Key is still allowed to consume the Kong Route:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl --head $DATA_PLANE_LB/key-auth-route/get -H &#39;apikey:987654&#39;</code></pre></div>
 
 <p><strong>Expected Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
-RateLimit-Limit: 8
-RateLimit-Reset: 26
-RateLimit-Remaining: 6
 X-RateLimit-Limit-Minute: 8
-X-RateLimit-Remaining-Minute: 6
+X-RateLimit-Remaining-Minute: 7
+RateLimit-Reset: 34
+RateLimit-Remaining: 7
+RateLimit-Limit: 8
 Server: gunicorn
-Date: Wed, 28 May 2025 12:15:34 GMT
+Date: Mon, 11 Aug 2025 14:50:26 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: aaa3c84c4226d21e1c178e598cfb791e</code></pre></div>
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: f8602e2e2778f306fba41f1661ef554c</code></pre></div>
 <p>Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click <strong>Next</strong> to proceed with the next module.</p>
 <h3 id="optional-reading">Optional Reading</h3>
 <p>Applying Kong Plugins on Services, Routes or Globally helps us to implement an extensive list of policies in the API Gateway layer. However, so far, we are not controlling who is sending the requests to the Data Plane. That is, anyone who has the Runtime Instance ELB address is capable to send requests to it and consumer the Services.</p>
@@ -527,8 +527,8 @@ X-Kong-Request-Id: aaa3c84c4226d21e1c178e598cfb791e</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754919721" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754919721" defer></script>
-    <script src="/js/theme.js?1754919721" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754925006" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754925006" defer></script>
+    <script src="/js/theme.js?1754925006" defer></script>
   </body>
 </html>

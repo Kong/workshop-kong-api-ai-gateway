@@ -18,7 +18,7 @@ Just to get an idea what the Wikipedia response, send the following request:
 curl -s "https://en.wikipedia.org/w/api.php?srsearch=Miles%20Davis&action=query&list=search&format=json" | jq '.query.searchinfo.totalhits'
 {{</highlight>}}
 
-You should get a number like **43535**, which represents the number of total hits related to **Miles Davis**
+You should get a number like **43555**, which represents the number of total hits related to **Miles Davis**
 
 
 #### Create the Request Callout Plugin
@@ -90,7 +90,7 @@ curl -s "http://$DATA_PLANE_LB/request-callout-route/get" -H srsearch:"Miles Dav
     "Host": "httpbin.kong.svc.cluster.local:8000",
     "Srsearch": "Miles Davis",
     "User-Agent": "curl/8.7.1",
-    "Wipikedia-Total-Hits-Header": "43535",
+    "Wipikedia-Total-Hits-Header": "43555",
     "X-Forwarded-Host": "127.0.0.1",
     "X-Forwarded-Path": "/request-callout-route/get",
     "X-Forwarded-Prefix": "/request-callout-route",

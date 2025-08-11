@@ -7,7 +7,7 @@ weight : 150
 
 ### Kong Gateway Plugin list
 
-Before enabling the **Proxy Caching**, let's check the list of plugins Konnect provides. Inside the ``kong-aws`` Control Plane, click on **Plugins** menu option and **+ New plugin**. You should the following page with all plugins available:
+Before enabling the **Proxy Caching**, let's check the list of plugins Konnect provides. Inside the ``kong-workshop`` Control Plane, click on **Plugins** menu option and **+ New plugin**. You should the following page with all plugins available:
 
 ![proxy_cache](/static/images/plugins.png)
 
@@ -74,34 +74,31 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 {{</highlight>}}
 
 ```
-* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
-* IPv6: (none)
-* IPv4: 3.12.182.158, 18.216.117.235
-*   Trying 3.12.182.158:80...
-* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+*   Trying 127.0.0.1:80...
+* Connected to 127.0.0.1 (127.0.0.1) port 80
 > GET /httpbin-route/get HTTP/1.1
-> Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+> Host: 127.0.0.1
 > User-Agent: curl/8.7.1
 > Accept: */*
 > 
 * Request completely sent off
 < HTTP/1.1 200 OK
 < Content-Type: application/json
-< Content-Length: 443
+< Content-Length: 377
 < Connection: keep-alive
-< X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+< X-Cache-Key: a00008105a989fd0fa8a1eeeee08924b7205d24ed1adee71698926c12a31f2b7
 < X-Cache-Status: Miss
 < Server: gunicorn
-< Date: Tue, 27 May 2025 22:37:06 GMT
+< Date: Mon, 11 Aug 2025 14:39:46 GMT
 < Access-Control-Allow-Origin: *
 < Access-Control-Allow-Credentials: true
-< X-Kong-Upstream-Latency: 2
-< X-Kong-Proxy-Latency: 1
-< Via: 1.1 kong/3.10.0.1-enterprise-edition
-< X-Kong-Request-Id: eda0954efb9dc903147b4325b0a73563
+< X-Kong-Upstream-Latency: 8
+< X-Kong-Proxy-Latency: 6
+< Via: 1.1 kong/3.11.0.2-enterprise-edition
+< X-Kong-Request-Id: 4501cc0fa798cf08435edc01bb2b1a40
 < 
-{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"eda0954efb9dc903147b4325b0a73563"},"origin":"192.168.61.217","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
-* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact
+{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"127.0.0.1","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"4501cc0fa798cf08435edc01bb2b1a40"},"origin":"10.244.0.1","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
+* Connection #0 to host 127.0.0.1 left intact
 ```
 
 Notice that, for the first request we get **Miss** for the **X-Cache-Status** header, meaning that the Runtime Instance didn't have any data avaialble in the cache and had to connect to the Upstream Service, ``httpbin.org``.
@@ -110,13 +107,10 @@ If we send a new request, the Runtime Instance has all it needs to satify the re
 
 ```
 # curl -v $DATA_PLANE_LB/httpbin-route/get
-* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
-* IPv6: (none)
-* IPv4: 18.216.117.235, 3.12.182.158
-*   Trying 18.216.117.235:80...
-* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (18.216.117.235) port 80
+*   Trying 127.0.0.1:80...
+* Connected to 127.0.0.1 (127.0.0.1) port 80
 > GET /httpbin-route/get HTTP/1.1
-> Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+> Host: 127.0.0.1
 > User-Agent: curl/8.7.1
 > Accept: */*
 > 
@@ -124,21 +118,21 @@ If we send a new request, the Runtime Instance has all it needs to satify the re
 < HTTP/1.1 200 OK
 < Content-Type: application/json
 < Connection: keep-alive
-< X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+< X-Cache-Key: a00008105a989fd0fa8a1eeeee08924b7205d24ed1adee71698926c12a31f2b7
 < Access-Control-Allow-Credentials: true
-< age: 2
 < X-Cache-Status: Hit
 < Access-Control-Allow-Origin: *
+< Date: Mon, 11 Aug 2025 14:40:17 GMT
+< age: 3
 < Server: gunicorn
-< Date: Tue, 27 May 2025 22:37:06 GMT
-< Content-Length: 443
+< Content-Length: 377
 < X-Kong-Upstream-Latency: 0
 < X-Kong-Proxy-Latency: 1
-< Via: 1.1 kong/3.10.0.1-enterprise-edition
-< X-Kong-Request-Id: d148241a9c5e904a0b68235008315038
+< Via: 1.1 kong/3.11.0.2-enterprise-edition
+< X-Kong-Request-Id: 97cc6027e33f240a67d8930161b44e57
 < 
-{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"eda0954efb9dc903147b4325b0a73563"},"origin":"192.168.61.217","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
-* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact
+{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"127.0.0.1","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"2228de44dadd2e6126d82c4fb2e43961"},"origin":"10.244.0.1","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
+* Connection #0 to host 127.0.0.1 left intact
 ```
 
 ### Enabling a Kong Plugin on a Kong Route
@@ -198,39 +192,36 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 {{</highlight>}}
 
 ```
-* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
-* IPv6: (none)
-* IPv4: 3.12.182.158, 18.216.117.235
-*   Trying 3.12.182.158:80...
-* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+*   Trying 127.0.0.1:80...
+* Connected to 127.0.0.1 (127.0.0.1) port 80
 > GET /httpbin-route/get HTTP/1.1
-> Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+> Host: 127.0.0.1
 > User-Agent: curl/8.7.1
 > Accept: */*
 > 
 * Request completely sent off
 < HTTP/1.1 200 OK
 < Content-Type: application/json
-< Content-Length: 443
+< Content-Length: 377
 < Connection: keep-alive
-< RateLimit-Limit: 3
-< RateLimit-Reset: 51
-< X-RateLimit-Remaining-Minute: 2
 < X-RateLimit-Limit-Minute: 3
 < RateLimit-Remaining: 2
-< X-Cache-Key: 631505758a8c7ccfea4694d7b0164f6b4deaebc64c36c906813c79ba4ab906f3
+< RateLimit-Reset: 32
+< RateLimit-Limit: 3
+< X-RateLimit-Remaining-Minute: 2
+< X-Cache-Key: a00008105a989fd0fa8a1eeeee08924b7205d24ed1adee71698926c12a31f2b7
 < X-Cache-Status: Miss
 < Server: gunicorn
-< Date: Tue, 27 May 2025 22:39:09 GMT
+< Date: Mon, 11 Aug 2025 14:41:28 GMT
 < Access-Control-Allow-Origin: *
 < Access-Control-Allow-Credentials: true
-< X-Kong-Upstream-Latency: 2
-< X-Kong-Proxy-Latency: 2
-< Via: 1.1 kong/3.10.0.1-enterprise-edition
-< X-Kong-Request-Id: de0e817681d25556c8cfd01fcbaf1645
+< X-Kong-Upstream-Latency: 1
+< X-Kong-Proxy-Latency: 5
+< Via: 1.1 kong/3.11.0.2-enterprise-edition
+< X-Kong-Request-Id: 882b11008e7ddd2eff471a433576524d
 < 
-{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"de0e817681d25556c8cfd01fcbaf1645"},"origin":"192.168.61.217","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
-* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact
+{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"127.0.0.1","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"882b11008e7ddd2eff471a433576524d"},"origin":"10.244.0.1","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
+* Connection #0 to host 127.0.0.1 left intact
 ```
 
 
@@ -238,36 +229,33 @@ If you keep sending new requests to the Runtime Instance, eventually, you'll get
 
 ```
 curl -v $DATA_PLANE_LB/httpbin-route/get
-* Host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com:80 was resolved.
-* IPv6: (none)
-* IPv4: 3.12.182.158, 18.216.117.235
-*   Trying 3.12.182.158:80...
-* Connected to a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com (3.12.182.158) port 80
+*   Trying 127.0.0.1:80...
+* Connected to 127.0.0.1 (127.0.0.1) port 80
 > GET /httpbin-route/get HTTP/1.1
-> Host: a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com
+> Host: 127.0.0.1
 > User-Agent: curl/8.7.1
 > Accept: */*
 > 
 * Request completely sent off
 < HTTP/1.1 429 Too Many Requests
-< Date: Tue, 27 May 2025 22:39:15 GMT
+< Date: Mon, 11 Aug 2025 14:41:58 GMT
 < Content-Type: application/json; charset=utf-8
 < Connection: keep-alive
-< RateLimit-Limit: 3
-< Retry-After: 45
-< RateLimit-Reset: 45
-< RateLimit-Remaining: 0
 < X-RateLimit-Limit-Minute: 3
 < X-RateLimit-Remaining-Minute: 0
+< RateLimit-Reset: 2
+< Retry-After: 2
+< RateLimit-Remaining: 0
+< RateLimit-Limit: 3
 < Content-Length: 92
-< X-Kong-Response-Latency: 0
-< Server: kong/3.10.0.1-enterprise-edition
-< X-Kong-Request-Id: 78a9a40f86bf6f7856ea932ce3bf2029
+< X-Kong-Response-Latency: 1
+< Server: kong/3.11.0.2-enterprise-edition
+< X-Kong-Request-Id: ce56eb67161a85678126a00ef59e6159
 < 
 {
   "message":"API rate limit exceeded",
-  "request_id":"78a9a40f86bf6f7856ea932ce3bf2029"
-* Connection #0 to host a06491acb99f64d0481263f3536909da-1064984904.us-east-2.elb.amazonaws.com left intact
+  "request_id":"ce56eb67161a85678126a00ef59e6159"
+* Connection #0 to host 127.0.0.1 left intact
 }
 ```
 
@@ -319,7 +307,7 @@ deck gateway sync --konnect-token $PAT httpbin.yaml
 After testing the configuration reset the Control Plane:
 
 {{<highlight>}}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 {{</highlight>}}
 
 

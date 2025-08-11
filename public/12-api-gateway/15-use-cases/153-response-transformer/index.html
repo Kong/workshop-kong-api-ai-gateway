@@ -8,21 +8,21 @@
     <meta name="description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
-cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-aws _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
+cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Response Transformer Plugin :: API Management with Kong Konnect">
     <meta name="twitter:description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
-cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-aws _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
+cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Response Transformer Plugin :: API Management with Kong Konnect">
     <meta property="og:description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
-cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-aws _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
+cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
@@ -30,29 +30,29 @@ cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;
     <meta itemprop="description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
-cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-aws _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
+cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta itemprop="wordCount" content="274">
     <title>Response Transformer Plugin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754919721" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754919721" defer></script>
-    <script src="/js/search-lunr.js?1754919721" defer></script>
-    <script src="/js/search.js?1754919721" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754925006" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754925006" defer></script>
+    <script src="/js/search-lunr.js?1754925006" defer></script>
+    <script src="/js/search.js?1754925006" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754919721";
+      window.relearn.index_js_url="/searchindex.en.js?1754925006";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754919721" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754919721" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754925006" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754925006" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754919721" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754919721" rel="stylesheet">
-    <link href="/css/theme.css?1754919721" rel="stylesheet">
-    <link href="/css/format-html.css?1754919721" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754925006" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754925006" rel="stylesheet">
+    <link href="/css/theme.css?1754925006" rel="stylesheet">
+    <link href="/css/format-html.css?1754925006" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -167,7 +167,7 @@ cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -197,21 +197,21 @@ EOF</code></pre></div>
 
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 469
+Content-Length: 403
 Connection: keep-alive
 Server: gunicorn
-Date: Wed, 28 May 2025 12:24:14 GMT
+Date: Mon, 11 Aug 2025 14:51:56 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo: injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a</code></pre></div>
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 6d294407e61075665321d07709210e3a</code></pre></div>
 <p><strong>Expected Results</strong> Notice that <code>demo: injected-by-kong</code> is injected in the header.</p>
 <h4 id="cleanup">Cleanup</h4>
 <p>Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f</code></pre></div>
 
 <p>In real world scenario, you can enable as many plugins as you like depending on your use cases.</p>
 <p>Kong-gratulations! have now reached the end of this module by configuring the Kong Route to include <code>demo: injected-by-kong</code> before responding to the client. You can now click <strong>Next</strong> to proceed with the next module.</p>
@@ -293,8 +293,8 @@ X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754919721" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754919721" defer></script>
-    <script src="/js/theme.js?1754919721" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754925006" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754925006" defer></script>
+    <script src="/js/theme.js?1754925006" defer></script>
   </body>
 </html>

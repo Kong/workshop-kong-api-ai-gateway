@@ -53,18 +53,18 @@ curl -i $DATA_PLANE_LB/key-auth-route/get
 
 ```
 HTTP/1.1 401 Unauthorized
-Date: Wed, 28 May 2025 12:05:25 GMT
+Date: Mon, 11 Aug 2025 14:44:59 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key
 Content-Length: 96
-X-Kong-Response-Latency: 0
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 3bdc0f233664705be8414e1b29ace607
+X-Kong-Response-Latency: 2
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 1f8a6c1c9d0d1853d9db426588c1ce1c
 
 {
   "message":"No API key found in request",
-  "request_id":"3bdc0f233664705be8414e1b29ace607"
+  "request_id":"1f8a6c1c9d0d1853d9db426588c1ce1c"
 }
 ```
 
@@ -118,30 +118,30 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
 Server: gunicorn
-Date: Wed, 28 May 2025 12:07:57 GMT
+Date: Mon, 11 Aug 2025 14:45:52 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 5
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 4b58c81d7e6d937ec596a22f2635834e
+X-Kong-Upstream-Latency: 9
+X-Kong-Proxy-Latency: 4
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: b535885591f5ec7f7fb5f070fa365465
 ```
 
 Of course, if you inject a wrong key, you get a specific error like this:
 ```
 # curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:12'
 HTTP/1.1 401 Unauthorized
-Date: Wed, 28 May 2025 12:08:38 GMT
+Date: Mon, 11 Aug 2025 14:46:36 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key
 Content-Length: 81
 X-Kong-Response-Latency: 1
-Server: kong/3.10.0.2-enterprise-edition
-X-Kong-Request-Id: 325bee25eda87c5358c3e06334f07d74
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 688e271ea4cae5794bc1cb59ea3ec131
 ```
 
 
@@ -285,27 +285,27 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 601
+Content-Length: 551
 Connection: keep-alive
 X-RateLimit-Limit-Minute: 5
 X-RateLimit-Remaining-Minute: 4
-RateLimit-Reset: 35
+RateLimit-Reset: 11
 RateLimit-Remaining: 4
 RateLimit-Limit: 5
 Server: gunicorn
-Date: Fri, 09 May 2025 13:04:25 GMT
+Date: Mon, 11 Aug 2025 14:47:49 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 7b9f662e2e0d2f562b12535227ff024b
+X-Kong-Upstream-Latency: 3
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: ad38e60e76c57d5826f3c37fdce4925c
 ```
 
 Now, let's consume it with the Consumer2's API Key. As you can see the Data Plane is processing the Rate Limiting processes independently.
 
 {{<highlight>}}
-curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
+curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:987654'
 {{</highlight>}}
 
 **Expected Output**
@@ -313,21 +313,21 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
-RateLimit-Limit: 5
-RateLimit-Reset: 50
-RateLimit-Remaining: 4
-X-RateLimit-Limit-Minute: 5
-X-RateLimit-Remaining-Minute: 4
+X-RateLimit-Limit-Minute: 8
+X-RateLimit-Remaining-Minute: 7
+RateLimit-Reset: 27
+RateLimit-Remaining: 7
+RateLimit-Limit: 8
 Server: gunicorn
-Date: Wed, 28 May 2025 12:15:10 GMT
+Date: Mon, 11 Aug 2025 14:49:33 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: d927f9253a57be7775bdd67e0e8f0328
+X-Kong-Proxy-Latency: 3
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 9cf1fb53db3a9b740d9bd42e9091d245
 ```
 
 If we keep sending requests using the first API Key, eventually, as expected, we'll get an error code:
@@ -342,19 +342,19 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:123456'
 
 ```
 HTTP/1.1 429 Too Many Requests
-Date: Wed, 28 May 2025 12:15:28 GMT
+Date: Mon, 11 Aug 2025 14:50:21 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
-RateLimit-Limit: 5
-Retry-After: 32
-RateLimit-Reset: 32
-RateLimit-Remaining: 0
 X-RateLimit-Limit-Minute: 5
 X-RateLimit-Remaining-Minute: 0
+RateLimit-Reset: 39
+Retry-After: 39
+RateLimit-Remaining: 0
+RateLimit-Limit: 5
 Content-Length: 92
-X-Kong-Response-Latency: 0
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: cf9e1a060a3d68737a805a732922ac19
+X-Kong-Response-Latency: 1
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 38afd254e246a946a65153780606be3c
 ```
 
 However, the second API Key is still allowed to consume the Kong Route:
@@ -368,21 +368,21 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:987654'
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 617
+Content-Length: 551
 Connection: keep-alive
-RateLimit-Limit: 8
-RateLimit-Reset: 26
-RateLimit-Remaining: 6
 X-RateLimit-Limit-Minute: 8
-X-RateLimit-Remaining-Minute: 6
+X-RateLimit-Remaining-Minute: 7
+RateLimit-Reset: 34
+RateLimit-Remaining: 7
+RateLimit-Limit: 8
 Server: gunicorn
-Date: Wed, 28 May 2025 12:15:34 GMT
+Date: Mon, 11 Aug 2025 14:50:26 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: aaa3c84c4226d21e1c178e598cfb791e
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: f8602e2e2778f306fba41f1661ef554c
 ```
 
 Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click **Next** to proceed with the next module.

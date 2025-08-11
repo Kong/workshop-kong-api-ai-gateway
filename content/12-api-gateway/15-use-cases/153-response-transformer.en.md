@@ -16,7 +16,7 @@ Take the plugins declaration and enable the **Response Transformer** plugin to t
 cat > response-transformer.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -55,17 +55,17 @@ curl --head $DATA_PLANE_LB/response-transformer-route/get
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 469
+Content-Length: 403
 Connection: keep-alive
 Server: gunicorn
-Date: Wed, 28 May 2025 12:24:14 GMT
+Date: Mon, 11 Aug 2025 14:51:56 GMT
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Credentials: true
 demo: injected-by-kong
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 2
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 6d294407e61075665321d07709210e3a
 ```
 
 
@@ -77,7 +77,7 @@ X-Kong-Request-Id: a08fac3ca8cc994a3d90bd70ece7745a
 Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.
 
 {{<highlight>}}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 {{</highlight>}}
 
 In real world scenario, you can enable as many plugins as you like depending on your use cases.

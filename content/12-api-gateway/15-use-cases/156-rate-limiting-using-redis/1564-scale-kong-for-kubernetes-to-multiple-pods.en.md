@@ -6,7 +6,7 @@ weight : 1564
 
 Let's scale out the Kong Data Plane deployment to 3 pods, for scalability and redundancy:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
@@ -23,19 +23,15 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.10.0.1
-       serviceAccountName: kaigateway-podid-sa
+         image: kong/kong-gateway:3.11
    replicas: 3
  network:
    services:
      ingress:
        name: proxy1
        type: LoadBalancer
-       annotations:
-         "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-         "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
 EOF
-:::
+{{</highlight>}}
 
 
 
@@ -43,9 +39,9 @@ EOF
 #### Wait for replicas to deploy
 It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+{{<highlight>}}
 kubectl get pods -n kong
-:::
+{{</highlight>}}
 
 ```
 NAME                                          READY   STATUS    RESTARTS   AGE
