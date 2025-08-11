@@ -19,28 +19,28 @@
     <meta property="article:section" content="Kong API Gateway">
     <meta itemprop="name" content="OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect">
     <meta itemprop="description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
-    <meta itemprop="wordCount" content="943">
+    <meta itemprop="wordCount" content="905">
     <title>OPA (OpenPolicyAgent) - Authorization :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754946073" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754946073" defer></script>
-    <script src="/js/search-lunr.js?1754946073" defer></script>
-    <script src="/js/search.js?1754946073" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754949362" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754949362" defer></script>
+    <script src="/js/search-lunr.js?1754949362" defer></script>
+    <script src="/js/search.js?1754949362" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754946073";
+      window.relearn.index_js_url="/searchindex.en.js?1754949362";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754946073" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754946073" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754946073" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754946073" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754949362" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754949362" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754949362" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754949362" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946073" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754946073" rel="stylesheet">
-    <link href="/css/theme.css?1754946073" rel="stylesheet">
-    <link href="/css/format-html.css?1754946073" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754949362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754949362" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754949362" rel="stylesheet">
+    <link href="/css/theme.css?1754949362" rel="stylesheet">
+    <link href="/css/format-html.css?1754949362" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -109,42 +109,11 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#--name-opa-policy">cat &laquo;EOF | kubectl apply -f -
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-name: opa
-namespace: opa
-labels:
-app: opa
-spec:
-replicas: 1
-selector:
-matchLabels:
-app: opa
-template:
-metadata:
-labels:
-app: opa
-spec:
-containers:
-- name: opa
-image: openpolicyagent/opa:edge-static
-volumeMounts:
-- readOnly: true
-mountPath: /policy
-name: opa-policy
-args:
-- &ldquo;run&rdquo;
-- &ldquo;&ndash;server&rdquo;
-- &ldquo;&ndash;addr=0.0.0.0:8181&rdquo;
-- &ldquo;&ndash;set=decision_logs.console=true&rdquo;
-- &ldquo;&ndash;set=status.console=true&rdquo;
-- &ldquo;&ndash;ignore=.*&rdquo;
-volumes:
-- name: opa-policy</a></li>
-    <li><a href="#token-header">Token header</a></li>
-    <li><a href="#token-claims">Token claims</a></li>
+    <li>
+      <ul>
+        <li><a href="#opa-installation">OPA Installation</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
                 </div>
@@ -181,193 +150,208 @@ volumes:
 <p>OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let&rsquo;s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That&rsquo;s the main purpose of the <a href="https://www.openpolicyagent.org" rel="external" target="_blank">Open Policy Agent - OPA</a> engine.</p>
 <p>In fact, such a decision is simply applying the same Separation of Concerns principle to get two independent layers implementing, each one of them, the Authentication and Authorization policies. Our architecture topology would look slightly different now.</p>
 <p>On the other hand, as we stated in the beginning of the chapter, it is not the case to remove the Authorization policies from the OAuth/OIDC layer. There will be different abstraction levels for the policies: some of them, possibly coarse-grained enterprise class ones, should still be implemented by the OAuth/OIDC layer. Fine-grained policies, instead, would be better implemented by the specific Authorization layer.</p>
-<p><a href="#R-image-ade30c1bb8f5bb27e56b8f1adc5dbe97" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ade30c1bb8f5bb27e56b8f1adc5dbe97"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
-<p>Change the OpenID Connect plugin to turn Authorization off</p>
-<p>Since we are going to move the Authorization policy to OPA, the first thing to do is return our OpenID Connect plugin to the original Client Credentials state:</p>
-<p>curl -X PUT <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins/oidc1" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins/oidc1</a> <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;header &lsquo;accept: application/json&rsquo; <br>
-&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; <br>
-&ndash;data '
-{
-&ldquo;name&rdquo;: &ldquo;openid-connect&rdquo;,
-&ldquo;instance_name&rdquo;: &ldquo;oidc1&rdquo;,
-&ldquo;config&rdquo;: {
-&ldquo;issuer&rdquo;: &ldquo;&rsquo;$ISSUER&rsquo;&rdquo;,
-&ldquo;extra_jwks_uris&rdquo;: [&ldquo;http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs&rdquo;],
-&ldquo;auth_methods&rdquo;: [&ldquo;client_credentials&rdquo;],
-&ldquo;consumer_optional&rdquo;: false,
-&ldquo;consumer_claim&rdquo;: [&ldquo;client_id&rdquo;],
-&ldquo;consumer_by&rdquo;: [&ldquo;username&rdquo;]
-}
-}&rsquo;</p>
-<p>OPA Installation
-Create another namespace, this time to install OPA</p>
-<p>kubectl create namespace opa</p>
+<p><a href="#R-image-eec5c238f12f0d3483312f20d128c4e4" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eec5c238f12f0d3483312f20d128c4e4"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
+<h3 id="opa-installation">OPA Installation</h3>
+<p>Create another namespace, this time to install OPA</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace opa</code></pre></div>
 <p>OPA can be installed with this simple declaration. Note it&rsquo;s going to be exposed with a new Load Balancer:</p>
-<h2 id="--name-opa-policy">cat &laquo;EOF | kubectl apply -f -
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &lt;&lt;EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: opa
-namespace: opa
-labels:
-app: opa
+  name: opa
+  namespace: opa
+  labels:
+    app: opa
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: opa
-template:
-metadata:
-labels:
-app: opa
-spec:
-containers:
-- name: opa
-image: openpolicyagent/opa:edge-static
-volumeMounts:
-- readOnly: true
-mountPath: /policy
-name: opa-policy
-args:
-- &ldquo;run&rdquo;
-- &ldquo;&ndash;server&rdquo;
-- &ldquo;&ndash;addr=0.0.0.0:8181&rdquo;
-- &ldquo;&ndash;set=decision_logs.console=true&rdquo;
-- &ldquo;&ndash;set=status.console=true&rdquo;
-- &ldquo;&ndash;ignore=.*&rdquo;
-volumes:
-- name: opa-policy</h2>
-<p>apiVersion: v1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opa
+  template:
+    metadata:
+      labels:
+        app: opa
+    spec:
+      containers:
+      - name: opa
+        image: openpolicyagent/opa:edge-static
+        volumeMounts:
+          - readOnly: true
+            mountPath: /policy
+            name: opa-policy
+        args:
+          - &#34;run&#34;
+          - &#34;--server&#34;
+          - &#34;--addr=0.0.0.0:8181&#34;
+          - &#34;--set=decision_logs.console=true&#34;
+          - &#34;--set=status.console=true&#34;
+          - &#34;--ignore=.*&#34;
+      volumes:
+      - name: opa-policy
+---
+apiVersion: v1
 kind: Service
 metadata:
-name: opa
-namespace: opa
+  name: opa
+  namespace: opa
 spec:
-selector:
-app: opa
-type: LoadBalancer
-ports:</p>
-<ul>
-<li>name: http
-protocol: TCP
-port: 8181
-targetPort: 8181
-EOF</li>
-</ul>
-<p>Check the installation
-% kubectl get service -n opa
-NAME   TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)          AGE
-opa    LoadBalancer   10.96.128.59   172.19.255.202   8181:30954/TCP   44m</p>
-<p>% kubectl get pod -n opa
+  selector:
+    app: opa
+  type: LoadBalancer
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8181
+    targetPort: 8181
+EOF</code></pre></div>
+<p>Check the installation</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get service -n opa
+NAME   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+opa    LoadBalancer   10.99.181.108   127.0.0.1     8181:32674/TCP   14s
+
+% kubectl get pod -n opa
 NAME                  READY   STATUS    RESTARTS   AGE
-opa-84d784c88-m8r2n   1/1     Running   0          5h17m</p>
+opa-b9fb4959c-mh6v6   1/1     Running   0          45s</code></pre></div>
 <p>Check if OPA is running properly:</p>
-<p>% curl -i -X GET http://172.19.255.202:8181/health
-HTTP/1.1 200 OK
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X GET http://localhost:8181/health</code></pre></div>
+<p>Expected output</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
 Content-Type: application/json
-Date: Sat, 03 Aug 2024 17:16:14 GMT
-Content-Length: 3</p>
-<p>{}</p>
+Date: Mon, 11 Aug 2025 21:07:45 GMT
+Content-Length: 3
+
+{}</code></pre></div>
 <p>As expected, there no policies available:</p>
-<p>% curl -s -X GET http://172.19.255.202:8181/v1/policies
-{&ldquo;result&rdquo;:[]}</p>
-<p>Create the Authorization Policy
-OPA uses Rego (<a href="https://www.openpolicyagent.org/docs/latest/#rego" rel="external" target="_blank">https://www.openpolicyagent.org/docs/latest/#rego</a>) language for Policy definition. Here&rsquo;s the policy we are going to create:</p>
-<p>package jwt</p>
-<p>import rego.v1</p>
-<p>default allow := false</p>
-<p>allow if {
-check_cid
-check_working_day
-}</p>
-<p>check_cid if {
-v := input.request.http.headers.authorization
-startswith(v, &ldquo;Bearer&rdquo;)
-bearer_token := substring(v, count(&ldquo;Bearer &ldquo;), -1)
-[_, token, _] := io.jwt.decode(bearer_token)
-token.aud == &ldquo;silver&rdquo;
-}</p>
-<p>check_working_day if {
-wday := time.weekday(time.now_ns())
-wday != &ldquo;Saturday&rdquo;; wday != &ldquo;Sunday&rdquo;
-}</p>
-<p>The simple policy checks two main conditions:
-If the Access Token issued by Keycloak, validated and mapped by Kong Data Plane, has a specific audience. To try the policy we are requesting the audience to be a different one.
-Only requests sent during working days should be allowed.</p>
-<p>Create a file named &ldquo;jwt.rego&rdquo; and apply the policy sending a request to OPA:</p>
-<p>curl -XPUT http://172.19.255.202:8181/v1/policies/jwt &ndash;data-binary @jwt.rego</p>
-<p>Check the policy with:</p>
-<p>curl -s -X GET http://172.19.255.202:8181/v1/policies | jq -r &lsquo;.result[].id&rsquo;</p>
-<p>curl -s -X GET http://172.19.255.202:8181/v1/policies/jwt | jq -r &lsquo;.result.raw&rsquo;</p>
-<p>Enable the OPA plugin to the Kong Route
-Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the &ldquo;opa_path&rdquo; parameter refers to the &ldquo;allow&rdquo; function defined in the policy. The &ldquo;opa_host&rdquo; and &ldquo;opa_port&rdquo; are references to the OPA Kubernetes Service&rsquo;s FQDN:</p>
-<p>curl -X POST <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins</a> <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;header &lsquo;accept: application/json&rsquo; <br>
-&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; <br>
-&ndash;data '
-{
-&ldquo;name&rdquo;: &ldquo;opa&rdquo;,
-&ldquo;instance_name&rdquo;: &ldquo;opa&rdquo;,
-&ldquo;config&rdquo;: {
-&ldquo;opa_path&rdquo;: &ldquo;/v1/data/jwt/allow&rdquo;,
-&ldquo;opa_protocol&rdquo;: &ldquo;http&rdquo;,
-&ldquo;opa_host&rdquo;: &ldquo;opa.opa.svc.cluster.local&rdquo;,
-&ldquo;opa_port&rdquo;: 8181
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{&#34;result&#34;:[]}</code></pre></div>
+<h4 id="create-the-authorization-policy">Create the Authorization Policy</h4>
+<p>OPA uses <a href="https://www.openpolicyagent.org/docs/latest/#rego" rel="external" target="_blank">Rego</a> language for Policy definition. Here&rsquo;s the policy we are going to create:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; jwt.rego &lt;&lt; &#39;EOF&#39;
+package jwt
+
+import rego.v1
+
+default allow := false
+
+allow if {
+	check_cid
+	check_working_day
 }
-}&rsquo;</p>
-<p>If you want to check the enabled plugin your Kong Route currently has send the following request:</p>
-<p>% curl -sX GET <a href="https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins" rel="external" target="_blank">https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins</a> <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;header &lsquo;accept: application/json&rsquo; <br>
-&ndash;header &ldquo;Authorization: Bearer $PAT&rdquo; | jq -r &lsquo;.data[] | select(.enabled==true)&rsquo; | jq -r &lsquo;.name&rsquo;
-openid-connect
-opa</p>
-<p>Consume the Kong Route
-A new error code should be returned if we try to consume the Route:</p>
-<p>% curl -siX GET $DP_ADDR/route1/get -u &ldquo;kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr&rdquo;</p>
-<p>HTTP/1.1 403 Forbidden
+
+check_cid if {
+	v := input.request.http.headers.authorization
+	startswith(v, &#34;Bearer&#34;)
+	bearer_token := substring(v, count(&#34;Bearer &#34;), -1)
+	[_, token, _] := io.jwt.decode(bearer_token)
+	token.aud == &#34;silver&#34;
+}
+
+check_working_day if {
+	wday := time.weekday(time.now_ns())
+	wday != &#34;Saturday&#34;; wday != &#34;Sunday&#34;
+}
+EOF</code></pre></div>
+<p>The simple policy checks two main conditions:</p>
+<ul>
+<li>If the Access Token issued by Keycloak, validated and mapped by Kong Data Plane, has a specific audience. To try the policy we are requesting the audience to be a different one.</li>
+<li>Only requests sent during working days should be allowed.</li>
+</ul>
+<p>Create the <code>jwt.rego</code> file and apply the policy sending a request to OPA:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -XPUT http://localhost:8181/v1/policies/jwt --data-binary @jwt.rego</code></pre></div>
+<p>Check the policy with:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies | jq -r &#39;.result[].id&#39;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies/jwt | jq -r &#39;.result.raw&#39;</code></pre></div>
+<h4 id="enable-the-opa-plugin-to-the-kong-route">Enable the OPA plugin to the Kong Route</h4>
+<p>Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the <strong>opa_path</strong> parameter refers to the <code>allow</code> function defined in the policy. The <strong>opa_host</strong> and <strong>opa_port</strong> are references to the OPA Kubernetes Service&rsquo;s FQDN.</p>
+<p>Since we are going to move the Authorization policy to OPA, we are also returning our OpenID Connect plugin to the original Client Credentials state, with no <strong>audience_required</strong> configuration:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; oidc.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: oidc-route
+    paths:
+    - /oidc-route
+    plugins:
+    - name: openid-connect
+      instance_name: openid-connect1
+      config:
+        auth_methods: [&#34;client_credentials&#34;]
+        issuer: http://keycloak.keycloak:8080/realms/kong
+        token_endpoint: http://keycloak.keycloak:8080/realms/kong/protocol/openid-connect/token
+        extra_jwks_uris: [&#34;http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs&#34;]
+        consumer_optional: false
+        consumer_claim: [&#34;client_id&#34;]
+        consumer_by: [&#34;username&#34;]
+    - name: opa
+      instance_name: opa1
+      config:
+        opa_path: &#34;/v1/data/jwt/allow&#34;
+        opa_protocol: http
+        opa_host: &#34;opa.opa.svc.cluster.local&#34;
+        opa_port: 8181
+consumers:
+- username: kong_id
+EOF</code></pre></div>
+
+<p>Submit the declaration
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT oidc.yaml</code></pre></div>
+</p>
+<h4 id="consume-the-kong-route">Consume the Kong Route</h4>
+<p>A new error code should be returned if we try to consume the Route:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -siX GET http://localhost/oidc-route/get -u &#34;kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j&#34;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 403 Forbidden
 Date: Sat, 03 Aug 2024 22:02:37 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 26
 X-Kong-Response-Latency: 4
 Server: kong/3.7.1.2-enterprise-edition
-X-Kong-Request-Id: fa699046f7d21773b626a4311537e171</p>
-<p>{&ldquo;message&rdquo;:&ldquo;unauthorized&rdquo;}</p>
-<p>This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak &ldquo;kong_mapper&rdquo; Client Scope Mapper and change the &ldquo;Included Custom Audience&rdquo; to &ldquo;silver&rdquo;.</p>
+X-Kong-Request-Id: fa699046f7d21773b626a4311537e171
+
+{&#34;message&#34;:&#34;unauthorized&#34;}</code></pre></div>
+<p>This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak <code>kong_mapper</code> Client Scope Mapper and change the <strong>Included Custom Audience</strong> to <code>silver</code>.</p>
 <p>Assuming you are on a working day, OPA should allow you to consume the Route again.</p>
-<p>% curl -sX GET $DP_ADDR/route1/get -u &ldquo;kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr&rdquo;| jq -r &lsquo;.headers.Authorization&rsquo; | cut -d &quot; &quot; -f 2 | jwt decode -</p>
-<h2 id="token-header">Token header</h2>
-<p>{
-&ldquo;typ&rdquo;: &ldquo;JWT&rdquo;,
-&ldquo;alg&rdquo;: &ldquo;RS256&rdquo;,
-&ldquo;kid&rdquo;: &ldquo;9ah-4Ngfka3NZOd3lnu1zO4Wy31jS9vS-jU_xCW45pU&rdquo;
-}</p>
-<h2 id="token-claims">Token claims</h2>
-<p>{
-&ldquo;acr&rdquo;: &ldquo;1&rdquo;,
-&ldquo;allowed-origins&rdquo;: [
-&ldquo;http://172.19.255.200&rdquo;
-],
-&ldquo;aud&rdquo;: &ldquo;silver&rdquo;,
-&ldquo;azp&rdquo;: &ldquo;kong_id&rdquo;,
-&ldquo;clientAddress&rdquo;: &ldquo;10.244.0.1&rdquo;,
-&ldquo;clientHost&rdquo;: &ldquo;10.244.0.1&rdquo;,
-&ldquo;client_id&rdquo;: &ldquo;kong_id&rdquo;,
-&ldquo;email_verified&rdquo;: false,
-&ldquo;exp&rdquo;: 1722723209,
-&ldquo;iat&rdquo;: 1722722909,
-&ldquo;iss&rdquo;: &ldquo;http://172.19.255.201:8080/realms/kong&rdquo;,
-&ldquo;jti&rdquo;: &ldquo;ae549748-1dc0-4f5a-8c7f-4d6d9ae52f70&rdquo;,
-&ldquo;preferred_username&rdquo;: &ldquo;service-account-kong_id&rdquo;,
-&ldquo;scope&rdquo;: &ldquo;openid profile email&rdquo;,
-&ldquo;sub&rdquo;: &ldquo;f1905c0c-3454-4fdc-a050-752da8062f80&rdquo;,
-&ldquo;typ&rdquo;: &ldquo;Bearer&rdquo;
-}</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET http://localhost/oidc-route/get -u &#34;kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j&#34;| jq -r &#39;.headers.Authorization&#39; | cut -d &#34; &#34; -f 2 | jwt decode -</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
+------------
+{
+  &#34;typ&#34;: &#34;JWT&#34;,
+  &#34;alg&#34;: &#34;RS256&#34;,
+  &#34;kid&#34;: &#34;JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY&#34;
+}
+
+Token claims
+------------
+{
+  &#34;acr&#34;: &#34;1&#34;,
+  &#34;allowed-origins&#34;: [
+    &#34;/*&#34;
+  ],
+  &#34;aud&#34;: &#34;silver&#34;,
+  &#34;azp&#34;: &#34;kong_id&#34;,
+  &#34;clientAddress&#34;: &#34;10.244.0.106&#34;,
+  &#34;clientHost&#34;: &#34;10.244.0.106&#34;,
+  &#34;client_id&#34;: &#34;kong_id&#34;,
+  &#34;email_verified&#34;: false,
+  &#34;exp&#34;: 1754949643,
+  &#34;iat&#34;: 1754949343,
+  &#34;iss&#34;: &#34;http://keycloak.keycloak:8080/realms/kong&#34;,
+  &#34;jti&#34;: &#34;trrtcc:a4d77414-c9a7-f5c0-daea-0532b8960b4e&#34;,
+  &#34;preferred_username&#34;: &#34;service-account-kong_id&#34;,
+  &#34;scope&#34;: &#34;openid email profile&#34;,
+  &#34;sub&#34;: &#34;e7b5a37b-d06a-4b40-92d7-36f09768ed79&#34;,
+  &#34;typ&#34;: &#34;Bearer&#34;
+}</code></pre></div>
 <p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
@@ -447,8 +431,8 @@ X-Kong-Request-Id: fa699046f7d21773b626a4311537e171</p>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754946073" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754946073" defer></script>
-    <script src="/js/theme.js?1754946073" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754949362" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754949362" defer></script>
+    <script src="/js/theme.js?1754949362" defer></script>
   </body>
 </html>

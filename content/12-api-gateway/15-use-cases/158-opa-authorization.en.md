@@ -13,37 +13,17 @@ On the other hand, as we stated in the beginning of the chapter, it is not the c
 ![keycloak_opa](/static/images/keycloak_opa.png)
 
 
+### OPA Installation
 
-
-Change the OpenID Connect plugin to turn Authorization off
-
-Since we are going to move the Authorization policy to OPA, the first thing to do is return our OpenID Connect plugin to the original Client Credentials state:
-
-curl -X PUT https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins/oidc1 \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --header "Authorization: Bearer $PAT" \
-  --data '
-  {
-    "name": "openid-connect",
-    "instance_name": "oidc1",
-    "config": {
-      "issuer": "'$ISSUER'",
-      "extra_jwks_uris": ["http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs"],
-      "auth_methods": ["client_credentials"],
-      "consumer_optional": false,
-      "consumer_claim": ["client_id"],
-      "consumer_by": ["username"]
-    }
-  }'
-
-OPA Installation
 Create another namespace, this time to install OPA
 
+```
 kubectl create namespace opa
+```
 
 OPA can be installed with this simple declaration. Note it's going to be exposed with a new Load Balancer:
 
+```
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -94,34 +74,53 @@ spec:
     port: 8181
     targetPort: 8181
 EOF
+```
 
 Check the installation
+```
 % kubectl get service -n opa
-NAME   TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)          AGE
-opa    LoadBalancer   10.96.128.59   172.19.255.202   8181:30954/TCP   44m
+NAME   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+opa    LoadBalancer   10.99.181.108   127.0.0.1     8181:32674/TCP   14s
 
 % kubectl get pod -n opa
 NAME                  READY   STATUS    RESTARTS   AGE
-opa-84d784c88-m8r2n   1/1     Running   0          5h17m
+opa-b9fb4959c-mh6v6   1/1     Running   0          45s
+```
+
 
 Check if OPA is running properly:
 
-% curl -i -X GET http://172.19.255.202:8181/health
+```
+curl -i -X GET http://localhost:8181/health
+```
+
+Expected output
+
+```
 HTTP/1.1 200 OK
 Content-Type: application/json
-Date: Sat, 03 Aug 2024 17:16:14 GMT
+Date: Mon, 11 Aug 2025 21:07:45 GMT
 Content-Length: 3
 
 {}
+```
+
 
 As expected, there no policies available:
 
-% curl -s -X GET http://172.19.255.202:8181/v1/policies
+```
+curl -s -X GET http://localhost:8181/v1/policies
+```
+
+```
 {"result":[]}
+```
 
-Create the Authorization Policy
-OPA uses Rego (https://www.openpolicyagent.org/docs/latest/#rego) language for Policy definition. Here's the policy we are going to create:
+#### Create the Authorization Policy
+OPA uses [Rego](https://www.openpolicyagent.org/docs/latest/#rego) language for Policy definition. Here's the policy we are going to create:
 
+```
+cat > jwt.rego << 'EOF'
 package jwt
 
 import rego.v1
@@ -145,54 +144,92 @@ check_working_day if {
 	wday := time.weekday(time.now_ns())
 	wday != "Saturday"; wday != "Sunday"
 }
+EOF
+```
 
 The simple policy checks two main conditions:
-If the Access Token issued by Keycloak, validated and mapped by Kong Data Plane, has a specific audience. To try the policy we are requesting the audience to be a different one.
-Only requests sent during working days should be allowed.
+* If the Access Token issued by Keycloak, validated and mapped by Kong Data Plane, has a specific audience. To try the policy we are requesting the audience to be a different one.
+* Only requests sent during working days should be allowed.
 
-Create a file named "jwt.rego" and apply the policy sending a request to OPA:
+Create the ``jwt.rego`` file and apply the policy sending a request to OPA:
 
-curl -XPUT http://172.19.255.202:8181/v1/policies/jwt --data-binary @jwt.rego
+```
+curl -XPUT http://localhost:8181/v1/policies/jwt --data-binary @jwt.rego
+```
 
 Check the policy with:
 
-curl -s -X GET http://172.19.255.202:8181/v1/policies | jq -r '.result[].id'
+```
+curl -s -X GET http://localhost:8181/v1/policies | jq -r '.result[].id'
+```
+```
+curl -s -X GET http://localhost:8181/v1/policies/jwt | jq -r '.result.raw'
+```
 
-curl -s -X GET http://172.19.255.202:8181/v1/policies/jwt | jq -r '.result.raw'
 
-Enable the OPA plugin to the Kong Route
-Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the "opa_path" parameter refers to the "allow" function defined in the policy. The "opa_host" and "opa_port" are references to the OPA Kubernetes Service's FQDN:
+#### Enable the OPA plugin to the Kong Route
 
-curl -X POST https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --header "Authorization: Bearer $PAT" \
-  --data '
-  {
-    "name": "opa",
-    "instance_name": "opa",
-    "config": {
-      "opa_path": "/v1/data/jwt/allow",
-      "opa_protocol": "http",
-      "opa_host": "opa.opa.svc.cluster.local",
-      "opa_port": 8181
-    }
-  }'
+Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the **opa_path** parameter refers to the ``allow`` function defined in the policy. The **opa_host** and **opa_port** are references to the OPA Kubernetes Service's FQDN.
 
-If you want to check the enabled plugin your Kong Route currently has send the following request:
+Since we are going to move the Authorization policy to OPA, we are also returning our OpenID Connect plugin to the original Client Credentials state, with no **audience_required** configuration:
 
-% curl -sX GET https://us.api.konghq.com/v2/control-planes/$CP_ID/core-entities/routes/$ROUTE_ID/plugins \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --header "Authorization: Bearer $PAT" | jq -r '.data[] | select(.enabled==true)' | jq -r '.name'
-openid-connect
-opa
 
-Consume the Kong Route
+
+{{<highlight>}}
+cat > oidc.yaml << 'EOF'
+_format_version: "3.0"
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: oidc-route
+    paths:
+    - /oidc-route
+    plugins:
+    - name: openid-connect
+      instance_name: openid-connect1
+      config:
+        auth_methods: ["client_credentials"]
+        issuer: http://keycloak.keycloak:8080/realms/kong
+        token_endpoint: http://keycloak.keycloak:8080/realms/kong/protocol/openid-connect/token
+        extra_jwks_uris: ["http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs"]
+        consumer_optional: false
+        consumer_claim: ["client_id"]
+        consumer_by: ["username"]
+    - name: opa
+      instance_name: opa1
+      config:
+        opa_path: "/v1/data/jwt/allow"
+        opa_protocol: http
+        opa_host: "opa.opa.svc.cluster.local"
+        opa_port: 8181
+consumers:
+- username: kong_id
+EOF
+{{</highlight>}}
+
+
+
+Submit the declaration
+{{<highlight>}}
+deck gateway sync --konnect-token $PAT oidc.yaml
+{{</highlight>}}
+
+
+#### Consume the Kong Route
 A new error code should be returned if we try to consume the Route:
 
-% curl -siX GET $DP_ADDR/route1/get -u "kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr"
+```
+curl -siX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"
+```
 
+```
 HTTP/1.1 403 Forbidden
 Date: Sat, 03 Aug 2024 22:02:37 GMT
 Content-Type: application/json; charset=utf-8
@@ -203,21 +240,25 @@ Server: kong/3.7.1.2-enterprise-edition
 X-Kong-Request-Id: fa699046f7d21773b626a4311537e171
 
 {"message":"unauthorized"}
+```
 
-This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak "kong_mapper" Client Scope Mapper and change the "Included Custom Audience" to "silver".
+This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak ``kong_mapper`` Client Scope Mapper and change the **Included Custom Audience** to ``silver``.
 
 
 
 Assuming you are on a working day, OPA should allow you to consume the Route again.
 
-% curl -sX GET $DP_ADDR/route1/get -u "kong_id:Se1nohCpJMpjBplyGbTrh67yKeAmP1Kr"| jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+```
+curl -sX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"| jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+```
 
+```
 Token header
 ------------
 {
   "typ": "JWT",
   "alg": "RS256",
-  "kid": "9ah-4Ngfka3NZOd3lnu1zO4Wy31jS9vS-jU_xCW45pU"
+  "kid": "JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY"
 }
 
 Token claims
@@ -225,23 +266,23 @@ Token claims
 {
   "acr": "1",
   "allowed-origins": [
-    "http://172.19.255.200"
+    "/*"
   ],
   "aud": "silver",
   "azp": "kong_id",
-  "clientAddress": "10.244.0.1",
-  "clientHost": "10.244.0.1",
+  "clientAddress": "10.244.0.106",
+  "clientHost": "10.244.0.106",
   "client_id": "kong_id",
   "email_verified": false,
-  "exp": 1722723209,
-  "iat": 1722722909,
-  "iss": "http://172.19.255.201:8080/realms/kong",
-  "jti": "ae549748-1dc0-4f5a-8c7f-4d6d9ae52f70",
+  "exp": 1754949643,
+  "iat": 1754949343,
+  "iss": "http://keycloak.keycloak:8080/realms/kong",
+  "jti": "trrtcc:a4d77414-c9a7-f5c0-daea-0532b8960b4e",
   "preferred_username": "service-account-kong_id",
-  "scope": "openid profile email",
-  "sub": "f1905c0c-3454-4fdc-a050-752da8062f80",
+  "scope": "openid email profile",
+  "sub": "e7b5a37b-d06a-4b40-92d7-36f09768ed79",
   "typ": "Bearer"
 }
-
+```
 
 Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click **Next** to proceed with the next module.
