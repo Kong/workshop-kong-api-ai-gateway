@@ -6,54 +6,50 @@
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Let’s get started with a simple round-robin policy:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ai-proxy-advanced.yaml « ‘EOF’ _format_version: “3.0” _info: select_tags:
-bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced-service host: localhost port: 32000 routes: name: route1 paths: /bedrock-route plugins: name: ai-proxy-advanced instance_name: ai-proxy-advanced-bedrock config: balancer: algorithm: round-robin targets: model: provider: bedrock name: “us.amazon.nova-micro-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false model: provider: bedrock name: “us.meta.llama3-3-70b-instruct-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false EOF ::: Apply the declaration with decK: :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-token $PAT ai-proxy-advanced.yaml :::">
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: round-robin targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; EOF Apply the declaration with decK:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Round Robin :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Let’s get started with a simple round-robin policy:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ai-proxy-advanced.yaml « ‘EOF’ _format_version: “3.0” _info: select_tags:
-bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced-service host: localhost port: 32000 routes: name: route1 paths: /bedrock-route plugins: name: ai-proxy-advanced instance_name: ai-proxy-advanced-bedrock config: balancer: algorithm: round-robin targets: model: provider: bedrock name: “us.amazon.nova-micro-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false model: provider: bedrock name: “us.meta.llama3-3-70b-instruct-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false EOF ::: Apply the declaration with decK: :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-token $PAT ai-proxy-advanced.yaml :::">
-    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/round-robin/index.html">
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: round-robin targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; EOF Apply the declaration with decK:">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Round Robin :: API Management with Kong Konnect">
     <meta property="og:description" content="Let’s get started with a simple round-robin policy:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ai-proxy-advanced.yaml « ‘EOF’ _format_version: “3.0” _info: select_tags:
-bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced-service host: localhost port: 32000 routes: name: route1 paths: /bedrock-route plugins: name: ai-proxy-advanced instance_name: ai-proxy-advanced-bedrock config: balancer: algorithm: round-robin targets: model: provider: bedrock name: “us.amazon.nova-micro-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false model: provider: bedrock name: “us.meta.llama3-3-70b-instruct-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false EOF ::: Apply the declaration with decK: :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-token $PAT ai-proxy-advanced.yaml :::">
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: round-robin targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; EOF Apply the declaration with decK:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong AI Gateway">
     <meta itemprop="name" content="Round Robin :: API Management with Kong Konnect">
     <meta itemprop="description" content="Let’s get started with a simple round-robin policy:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ai-proxy-advanced.yaml « ‘EOF’ _format_version: “3.0” _info: select_tags:
-bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced-service host: localhost port: 32000 routes: name: route1 paths: /bedrock-route plugins: name: ai-proxy-advanced instance_name: ai-proxy-advanced-bedrock config: balancer: algorithm: round-robin targets: model: provider: bedrock name: “us.amazon.nova-micro-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false model: provider: bedrock name: “us.meta.llama3-3-70b-instruct-v1:0” options: bedrock: aws_region: us-west-2 route_type: “llm/v1/chat” auth: allow_override: false EOF ::: Apply the declaration with decK: :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-token $PAT ai-proxy-advanced.yaml :::">
-    <meta itemprop="wordCount" content="546">
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: round-robin targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; EOF Apply the declaration with decK:">
+    <meta itemprop="wordCount" content="698">
     <title>Round Robin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755013406" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755013406" defer></script>
-    <script src="/js/search-lunr.js?1755013406" defer></script>
-    <script src="/js/search.js?1755013406" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755015119" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755015119" defer></script>
+    <script src="/js/search-lunr.js?1755015119" defer></script>
+    <script src="/js/search.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755013406";
+      window.relearn.index_js_url="/searchindex.en.js?1755015119";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755013406" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755013406" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755013406" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755013406" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755013406" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755013406" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755013406" rel="stylesheet">
-    <link href="/css/theme.css?1755013406" rel="stylesheet">
-    <link href="/css/format-html.css?1755013406" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755015119" rel="stylesheet">
+    <link href="/css/theme.css?1755015119" rel="stylesheet">
+    <link href="/css/format-html.css?1755015119" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/16-ai-gateway\/17-use-cases\/159-ai-proxy-advanced\/round-robin\/index.html';
+      window.relearn.path='\/16-ai-gateway\/17-use-cases\/159-ai-proxy-advanced\/2-round-robin\/index.html';
       window.relearn.relBasePath='..\/..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -103,7 +99,7 @@ bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/round-robin/index.html">
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -124,7 +120,7 @@ bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html" title="AI Proxy Advanced plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/weight/index.html" title="Weight (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html" title="Weight (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -147,118 +143,117 @@ bedrock _konnect: control_plane_name: kong-aws services: name: ai-proxy-advanced
 <h1 id="round-robin">Round Robin</h1>
 
 <p>Let&rsquo;s get started with a simple round-robin policy:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; ai-proxy-advanced.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _info:
-select_tags:</p>
-<ul>
-<li>bedrock
+  select_tags:
+  - llm
 _konnect:
-control_plane_name: kong-aws
-services:</li>
-<li>name: ai-proxy-advanced-service
-host: localhost
-port: 32000
-routes:
-<ul>
-<li>name: route1
-paths:
-<ul>
-<li>/bedrock-route
-plugins:</li>
-<li>name: ai-proxy-advanced
-instance_name: ai-proxy-advanced-bedrock
-config:
-balancer:
-algorithm: round-robin
-targets:
-<ul>
-<li>model:
-provider: bedrock
-name: &ldquo;us.amazon.nova-micro-v1:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-route_type: &ldquo;llm/v1/chat&rdquo;
-auth:
-allow_override: false</li>
-<li>model:
-provider: bedrock
-name: &ldquo;us.meta.llama3-3-70b-instruct-v1:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-route_type: &ldquo;llm/v1/chat&rdquo;
-auth:
-allow_override: false
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
-deck gateway sync &ndash;konnect-token $PAT ai-proxy-advanced.yaml
-:::</p>
+  control_plane_name: kong-workshop
+services:
+- name: ai-proxy-advanced-service
+  host: localhost
+  port: 32000
+  routes:
+  - name: route1
+    paths:
+    - /route1
+    plugins:
+    - name: ai-proxy-advanced
+      instance_name: ai-proxy-advanced1
+      config:
+        balancer:
+          algorithm: round-robin
+        targets:
+        - model:
+            provider: openai
+            name: gpt-4.1
+            options:
+              temperature: 1.0
+          route_type: &#34;llm/v1/chat&#34;
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+        - model:
+            provider: llama2
+            name: llama3.2:1b
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+          route_type: &#34;llm/v1/chat&#34;
+EOF</code></pre></div>
+<p>Apply the declaration with decK:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
 <p>Send the request few times. Note we are going to receive responses from both LLMs, in a round-robin way.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Who is considered the greatest Polish writer?&rdquo;
-}
-]
-}&rsquo; | jq
-:::</p>
-<p>Here&rsquo;s the Llama3.3 response:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;Who is considered the greatest Polish writer?&#34;
+       }
+     ]
+   }&#39; | jq</code></pre></div>
+<p>Here&rsquo;s the OpenAI&rsquo;s gpt-4.1 response:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
-  &#34;model&#34;: &#34;us.meta.llama3-3-70b-instruct-v1:0&#34;,
-  &#34;usage&#34;: {
-    &#34;prompt_tokens&#34;: 43,
-    &#34;completion_tokens&#34;: 372,
-    &#34;total_tokens&#34;: 415
-  },
+  &#34;id&#34;: &#34;chatcmpl-C3lbQFtYTrEWwq7N6zKWh4CHl3idX&#34;,
   &#34;object&#34;: &#34;chat.completion&#34;,
+  &#34;created&#34;: 1755014004,
+  &#34;model&#34;: &#34;gpt-4.1-2025-04-14&#34;,
   &#34;choices&#34;: [
     {
+      &#34;index&#34;: 0,
       &#34;message&#34;: {
-        &#34;content&#34;: &#34;The question of who is considered the greatest Polish writer is subjective and can vary depending on personal opinions and literary critiques. However, one writer who is often regarded as one of the greatest Polish writers is Adam Mickiewicz (1798-1855).\n\nMickiewicz is a Polish poet, playwright, and novelist, best known for his epic poem \&#34;Pan Tadeusz\&#34; (1834), which is considered Poland&#39;s national epic. The poem tells the story of the Polish-Lithuanian Commonwealth and its struggle for independence against the Russian Empire.\n\nMickiewicz is also known for his other works, such as \&#34;Dziady\&#34; (Forefathers&#39; Eve), a play that explores the themes of Polish identity, history, and culture. He is considered one of the most important figures in Polish literature and a key figure in the Polish Romantic movement.\n\nOther notable Polish writers who are often considered among the greatest include:\n\n* Henryk Sienkiewicz (1846-1916), a Nobel Prize-winning novelist known for his historical novels, such as \&#34;Quo Vadis\&#34; (1896) and \&#34;The Teutonic Knights\&#34; (1900).\n* Juliusz Słowacki (1809-1849), a poet and playwright who is considered one of the most important figures in Polish Romanticism.\n* Cyprian Kamil Norwid (1821-1883), a poet, playwright, and painter who is known for his innovative and expressive style.\n* Wisława Szymborska (1923-2012), a Nobel Prize-winning poet who is known for her concise and insightful poetry.\n\nOverall, while opinions may vary, Adam Mickiewicz is often regarded as one of the greatest Polish writers, and his works continue to be widely read and studied in Poland and around the world.&#34;,
-        &#34;role&#34;: &#34;assistant&#34;
+        &#34;role&#34;: &#34;assistant&#34;,
+        &#34;content&#34;: &#34;The title of \&#34;greatest Polish writer\&#34; is somewhat subjective and can depend on whom you ask and which literary genre or era is in focus. However, several names consistently rise to the top in critical consensus and cultural significance:\n\n1. **Adam Mickiewicz (1798–1855):** Often considered the national poet of Poland and a key figure in Romanticism, Mickiewicz is renowned for works such as *Pan Tadeusz* and *Dziady* (Forefathers&#39; Eve). His impact on Polish identity and literature is unparalleled.\n\n2. **Henryk Sienkiewicz (1846–1916):** Winner of the Nobel Prize for Literature in 1905, Sienkiewicz is famous for historical novels such as *Quo Vadis* and his \&#34;Trilogy\&#34; (*With Fire and Sword*, *The Deluge*, *Fire in the Steppe*).\n\n3. **Wisława Szymborska (1923–2012):** One of the most celebrated modern poets, Szymborska received the Nobel Prize in 1996. Her poetry is noted for its wit, irony, and philosophical depth.\n\n4. **Czesław Miłosz (1911–2004):** A Nobel Prize-winning poet (1980), essayist, and thinker, Miłosz&#39;s impact on world literature and Polish thought is immense.\n\nGiven the foundational role Adam Mickiewicz played in defining Polish literature and his enduring influence, **Mickiewicz is most frequently regarded as the greatest Polish writer, particularly in terms of cultural and historical significance**.\n\nHowever, for different periods or genres, Sienkiewicz, Szymborska, or Miłosz may be regarded as the greatest by some readers or scholars.&#34;,
+        &#34;refusal&#34;: null,
+        &#34;annotations&#34;: []
       },
-      &#34;finish_reason&#34;: &#34;stop&#34;,
-      &#34;index&#34;: 0
+      &#34;logprobs&#34;: null,
+      &#34;finish_reason&#34;: &#34;stop&#34;
     }
-  ]
+  ],
+  &#34;usage&#34;: {
+    &#34;prompt_tokens&#34;: 15,
+    &#34;completion_tokens&#34;: 364,
+    &#34;total_tokens&#34;: 379,
+    &#34;prompt_tokens_details&#34;: {
+      &#34;cached_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0
+    },
+    &#34;completion_tokens_details&#34;: {
+      &#34;reasoning_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0,
+      &#34;accepted_prediction_tokens&#34;: 0,
+      &#34;rejected_prediction_tokens&#34;: 0
+    }
+  },
+  &#34;service_tier&#34;: &#34;default&#34;,
+  &#34;system_fingerprint&#34;: &#34;fp_799e4ca3f1&#34;
 }</code></pre></div>
-<p>And here is Amazon&rsquo;s Nova Micro:</p>
+<p>And here is llama3.2:1b&rsquo;s:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
-  &#34;model&#34;: &#34;us.amazon.nova-micro-v1:0&#34;,
-  &#34;usage&#34;: {
-    &#34;prompt_tokens&#34;: 8,
-    &#34;completion_tokens&#34;: 109,
-    &#34;total_tokens&#34;: 117
-  },
   &#34;object&#34;: &#34;chat.completion&#34;,
+  &#34;model&#34;: &#34;llama3.2:1b&#34;,
   &#34;choices&#34;: [
     {
-      &#34;message&#34;: {
-        &#34;content&#34;: &#34;The greatest Polish writer is often considered to be **Henryk Sienkiewicz**. He is best known for his historical novel \&#34;Quo Vadis,\&#34; which earned him the Nobel Prize in Literature in 1905. Sienkiewicz also wrote other notable works, including \&#34;With Fire and Sword\&#34; and \&#34;The Deluge,\&#34; which are part of his series known as \&#34;The Trilogy.\&#34; His works are celebrated for their vivid portrayal of Polish history and culture, and they continue to be widely read and appreciated both in Poland and internationally.&#34;,
-        &#34;role&#34;: &#34;assistant&#34;
-      },
+      &#34;index&#34;: 0,
       &#34;finish_reason&#34;: &#34;stop&#34;,
-      &#34;index&#34;: 0
+      &#34;message&#34;: {
+        &#34;content&#34;: &#34;The greatest Polish writer is often debated among scholars and literary enthusiasts. However, some of the most highly regarded Polish writers include:\n\n1. Juliusz Słowacki (1795-1861): Considered one of the greatest Polish writers, Słowacki was a poet, playwright, and translator. He is known for his lyric poetry and plays that often explored themes of love, nature, and social issues.\n2. Adam Mickiewicz (1809-1849): A leading figure in Poland&#39;s national revival movement, Mickiewicz was a poet, composer, and politician. He wrote the epic poem \&#34;Pan Tadeusz,\&#34; which is considered one of the greatest Polish works of literature.\n3. Józef Piłsudski (1867-1935): While not traditionally considered a writer, Piłsudski was a prominent statesman and military leader who played a key role in Poland&#39;s struggle for independence. He also wrote two literary novels, \&#34;The Tragedy of Maksimilian\&#34; and \&#34;The Trial of Maximilian.\&#34;\n4. Cyprian Kamil Norwid (1821-1883): A poet, playwright, and critic, Norwid was one of the most influential Polish writers of his time. He is known for his innovative style and exploration of themes such as love, nature, and social justice.\n5. Henryk Sienkiewicz (1846-1916): Although primarily a novelist and playwright, Sienkiewicz&#39;s works often explored themes of politics, history, and morality. His novel \&#34;Quo Vadis\&#34; is considered one of the greatest Polish novels of all time.\n\nHowever, if I had to choose one writer who is widely regarded as the greatest Polish writer, it would be Juliusz Słowacki.&#34;,
+        &#34;role&#34;: &#34;assistant&#34;
+      }
     }
-  ]
+  ],
+  &#34;usage&#34;: {
+    &#34;completion_tokens&#34;: 370,
+    &#34;total_tokens&#34;: 403,
+    &#34;prompt_tokens&#34;: 33
+  },
+  &#34;created&#34;: 1755014233
 }</code></pre></div>
 
   <footer class="footline">
@@ -321,10 +316,10 @@ curl -s -X POST <br>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth Plugin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced plugin</a></li>
             <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced plugin</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu">
-            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/round-robin/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/round-robin/index.html">Round Robin</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/weight/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/weight/index.html">Weight</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/lowest-latency-usage/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/lowest-latency-usage/index.html">Lowest-Latency and Lowest-Usage</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/semantic-routing/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/semantic-routing/index.html">Semantic Routing</a></li></ul></li>
+            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html">Round Robin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html">Weight</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html">Lowest-Latency and Lowest-Usage</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html">Semantic Routing</a></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/170-rag/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/170-rag/index.html">RAG - Retrieval-Augmented Generation</a></li></ul></li></ul></li>
           </ul>
         </div>
@@ -343,8 +338,8 @@ curl -s -X POST <br>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755013406" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755013406" defer></script>
-    <script src="/js/theme.js?1755013406" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755015119" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755015119" defer></script>
+    <script src="/js/theme.js?1755015119" defer></script>
   </body>
 </html>

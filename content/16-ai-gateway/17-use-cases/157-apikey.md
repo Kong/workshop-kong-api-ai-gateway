@@ -10,37 +10,49 @@ In this section, you will configure the **Key-Auth** plugin on the Kong Route to
 
 Add a KongPlugin resource for authentication, specifically the **Key-Auth** plugin. Note that, besides describing the plugin configuration, the declaration also creates a **Kong Consumer**, named ``user1``, with an API Key (``123456``) as its credential.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-key-auth.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
-  - bedrock
+  - llm
 services:
 - name: service1
   host: localhost
   port: 32000
   routes:
-  - name: route1
+  - name: ollama-route
     paths:
-    - /bedrock-route
+    - /ollama-route
     plugins:
     - name: ai-proxy
-      instance_name: ai-proxy-bedrock-route
-      enabled: true
+      instance_name: ai-proxy-ollama
       config:
-        auth:
-          param_name: "allow_override"
-          param_value: "false"
-          param_location: "body"
         route_type: llm/v1/chat
         model:
-          provider: bedrock
+          provider: llama2
+          name: llama3.2:1b
           options:
-            bedrock:
-              aws_region: us-west-2
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+        model:
+          provider: openai
+          name: gpt-4.1
+          options:
+            temperature: 1.0
     - name: key-auth
       instance_name: key-auth-bedrock
       enabled: true
@@ -49,23 +61,23 @@ consumers:
   - key: "123456"
   username: user1
 EOF
-:::
+```
 
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-key-auth.yaml
-:::
+```
 
 
 
 #### Verify authentication is required
 New requests now require authentication
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -i -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
    --data '{
    "messages": [
@@ -73,10 +85,9 @@ curl -i -X POST \
        "role": "user",
        "content": "Who is Jimi Hendrix?"
      }
-   ],
-   "model": "us.amazon.nova-lite-v1:0"
+   ]
   }'
-:::
+```
 
 * Expect response
 
@@ -84,18 +95,18 @@ The response is a ``HTTP/1.1 401 Unauthorized``, meaning the Kong Gateway Servic
 
 ```
 HTTP/1.1 401 Unauthorized
-Date: Wed, 14 May 2025 18:38:01 GMT
+Date: Tue, 12 Aug 2025 14:53:42 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Key
 Content-Length: 96
 X-Kong-Response-Latency: 1
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 8feb9f43ffb49565779f5a329cd33140
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: fd1bc16647271a20b7245b0cc9eb5052
 
 {
   "message":"No API key found in request",
-  "request_id":"8feb9f43ffb49565779f5a329cd33140"
+  "request_id":"fd1bc16647271a20b7245b0cc9eb5052"
 }
 ```
 
@@ -103,9 +114,9 @@ X-Kong-Request-Id: 8feb9f43ffb49565779f5a329cd33140
 
 Use the apikey to pass authentication to access the services.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -i -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
   --data '{
@@ -114,10 +125,9 @@ curl -i -X POST \
        "role": "user",
        "content": "Who is Jimi Hendrix?"
      }
-   ],
-   "model": "us.amazon.nova-lite-v1:0"
+   ]
   }'
-:::
+```
 
 The request should now respond with a  **HTTP/1.1 200 OK**.
 

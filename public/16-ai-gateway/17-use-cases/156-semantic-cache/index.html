@@ -23,28 +23,28 @@ When a new request is made, the system can retrieve and reuse previously cached 
     <meta itemprop="name" content="AI Semantic Cache plugin :: API Management with Kong Konnect">
     <meta itemprop="description" content="Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
 When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
-    <meta itemprop="wordCount" content="2026">
+    <meta itemprop="wordCount" content="1753">
     <title>AI Semantic Cache plugin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755009442" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755009442" defer></script>
-    <script src="/js/search-lunr.js?1755009442" defer></script>
-    <script src="/js/search.js?1755009442" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755015119" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755015119" defer></script>
+    <script src="/js/search-lunr.js?1755015119" defer></script>
+    <script src="/js/search.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755009442";
+      window.relearn.index_js_url="/searchindex.en.js?1755015119";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755009442" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755009442" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755009442" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755009442" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755009442" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755009442" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755009442" rel="stylesheet">
-    <link href="/css/theme.css?1755009442" rel="stylesheet">
-    <link href="/css/format-html.css?1755009442" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755015119" rel="stylesheet">
+    <link href="/css/theme.css?1755015119" rel="stylesheet">
+    <link href="/css/format-html.css?1755015119" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -164,8 +164,8 @@ When a new request is made, the system can retrieve and reuse previously cached 
 </ul>
 <h3 id="how-it-works">How it works</h3>
 <p>The diagram below illustrates the semantic caching mechanism implemented by the <strong>AI Semantic Cache</strong> plugin.</p>
-<p><a href="#R-image-79ad11879a19dd0f7091b6bd978daa22" class="lightbox-link"><img alt="semantic_cache_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_cache_plugin.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-79ad11879a19dd0f7091b6bd978daa22"><img alt="semantic_cache_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_cache_plugin.png"></a></p>
+<p><a href="#R-image-8b910bef8d7d8076e3b73d555eb380ba" class="lightbox-link"><img alt="semantic_cache_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_cache_plugin.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8b910bef8d7d8076e3b73d555eb380ba"><img alt="semantic_cache_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_cache_plugin.png"></a></p>
 <p>The process involves three parts: request handling, embedding generation, and response caching.</p>
 <ul>
 <li>First, a user starts a chat request with the LLM. The <strong>AI Semantic Cache</strong> plugin queries the vector database to see if there are any semantically similar requests that have already been cached. If there is a match, the vector database returns the cached response to the user.</li>
@@ -176,99 +176,89 @@ When a new request is made, the system can retrieve and reuse previously cached 
 <h3 id="redis-as-a-vector-database">Redis as a Vector database</h3>
 <p>We are going to configure the <strong>AI Semantic Cache</strong> to consume the Redis deployment available in the EKS Cluster. Redis, this time, will play the Vector database role.</p>
 <h3 id="apply-the-semantic-cache-plugin">Apply the Semantic Cache plugin</h3>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; ai-semantic-cache.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-semantic-cache.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _info:
-select_tags:</p>
-<ul>
-<li>semantic-cache
-_info:
-select_tags:</li>
-<li>bedrock
+  select_tags:
+  - semantic-cache
+  - llm
 _konnect:
-control_plane_name: kong-aws
-services:</li>
-<li>name: service1
-host: localhost
-port: 32000
-routes:
-<ul>
-<li>name: route1
-paths:
-<ul>
-<li>/bedrock-route
-plugins:</li>
-<li>name: ai-proxy
-instance_name: ai-proxy-bedrock-route
-enabled: true
-config:
-auth:
-param_name: &ldquo;allow_override&rdquo;
-param_value: &ldquo;false&rdquo;
-param_location: &ldquo;body&rdquo;
-route_type: llm/v1/chat
-model:
-provider: bedrock
-options:
-bedrock:
-aws_region: us-west-2</li>
-<li>name: ai-semantic-cache
-instance_name: ai-semantic-cache-bedrock
-enabled: true
-config:
-embeddings:
-auth:
-param_name: &ldquo;allow_override&rdquo;
-param_value: &ldquo;false&rdquo;
-param_location: &ldquo;body&rdquo;
-model:
-provider: bedrock
-name: &ldquo;amazon.titan-embed-text-v2:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-vectordb:
-dimensions: 1024
-distance_metric: cosine
-strategy: redis
-threshold: 0.2
-redis:
-host: &ldquo;redis-stack.redis.svc.cluster.local&rdquo;
-port: 6379
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
-deck gateway sync &ndash;konnect-token $PAT ai-semantic-cache.yaml
-:::</p>
+  control_plane_name: kong-workshop
+services:
+- name: service1
+  host: localhost
+  port: 32000
+  routes:
+  - name: ollama-route
+    paths:
+    - /ollama-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-ollama
+      config:
+        route_type: llm/v1/chat
+        model:
+          provider: llama2
+          name: llama3.2:1b
+          options:
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      enabled: true
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+        model:
+          provider: openai
+          name: gpt-4.1
+          options:
+            temperature: 1.0
+    - name: ai-semantic-cache
+      instance_name: ai-semantic-cache-openai
+      enabled: true
+      config:
+        embeddings:
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          model:
+            provider: openai
+            name: &#34;text-embedding-3-small&#34;
+        vectordb:
+          dimensions: 1024
+          distance_metric: cosine
+          strategy: redis
+          threshold: 0.2
+          redis:
+            host: &#34;redis-stack.redis.svc.cluster.local&#34;
+            port: 6379
+EOF</code></pre></div>
+<p>Apply the declaration with decK:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-semantic-cache.yaml</code></pre></div>
 <h3 id="check-redis">Check Redis</h3>
 <p>Before sending request, you can scan the Redis database:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <h5 id="1st-request">1st Request</h5>
 <p>Since we don&rsquo;t have any cached data, the first request is going to return &ldquo;Miss&rdquo;:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -i -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Who is Jimi Hendrix?&rdquo;
-}
-],
-&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
-}&rsquo;
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+   --data &#39;{
+   &#34;messages&#34;: [
+     {
+       &#34;role&#34;: &#34;user&#34;,
+       &#34;content&#34;: &#34;Who is Jimi Hendrix?&#34;
+     }
+   ]
+ }&#39;</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
@@ -276,75 +266,119 @@ curl -i -X POST <br>
 Content-Type: application/json
 Connection: keep-alive
 X-Cache-Status: Miss
-Date: Fri, 18 Apr 2025 14:41:32 GMT
-Content-Length: 2703
-x-amzn-RequestId: 08a965e0-60b4-457f-aacd-273cb6940988
-X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
-X-Kong-Upstream-Latency: 3440
-X-Kong-Proxy-Latency: 97
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 80eeaf284d891a588e55fb22b95f814b
+x-ratelimit-limit-tokens: 30000
+x-ratelimit-remaining-requests: 499
+Date: Tue, 12 Aug 2025 14:47:48 GMT
+x-ratelimit-remaining-tokens: 29993
+access-control-expose-headers: X-Request-ID
+openai-organization: user-4qzstwunaw6d1dhwnga5bc5q
+openai-processing-ms: 7218
+x-ratelimit-reset-requests: 120ms
+openai-project: proj_r4KYFyenuGWthS5te4zaurNN
+cf-cache-status: DYNAMIC
+openai-version: 2020-10-01
+Server: cloudflare
+X-Content-Type-Options: nosniff
+x-envoy-upstream-service-time: 7420
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+CF-RAY: 96e0c4e97b364d3b-GRU
+x-ratelimit-limit-requests: 500
+x-request-id: req_ae7f43291824451dbfec2a27b1a3ec2a
+x-ratelimit-reset-tokens: 14ms
+alt-svc: h3=&#34;:443&#34;; ma=86400
+X-Kong-LLM-Model: openai/gpt-4.1
+Content-Length: 2005
+X-Kong-Upstream-Latency: 8820
+X-Kong-Proxy-Latency: 876
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 8fd73d1623140f675ed93b0dcb4aeb16
 
-{&#34;usage&#34;:{&#34;completion_tokens&#34;:557,&#34;prompt_tokens&#34;:5,&#34;total_tokens&#34;:562},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Jimi Hendrix was an American rock guitarist, singer, and songwriter widely regarded as one of the greatest and most influential guitarists in the history of popular music. Born on November 27, 1942, in Seattle, Washington, he became a pivotal figure in the 1960s psychedelic and hard rock movements.\n\n### Early Life and Career\nHendrix&#39;s interest in music began at a young age. He started playing guitar at 15 and later served in the U.S. Army, where he was a member of the Army band. After leaving the Army, he moved to Nashville, Tennessee, and then to New York City, where he played in various R&amp;B bands.\n\n### Breakthrough\nHendrix moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell. The band quickly gained popularity in Europe, and their debut album, \&#34;Are You Experienced,\&#34; released in 1967, brought them international acclaim.\n\n### Musical Innovation\nHendrix was known for his innovative and highly influential guitar playing. He used feedback, distortion, and other effects to create a new sound that pushed the boundaries of rock music. His performances were characterized by his virtuosic technique, including playing the guitar behind his back, between his legs, and with his teeth.\n\n### Notable Works\n- **\&#34;Are You Experienced\&#34; (1967)**: The band&#39;s debut album, featuring hits like \&#34;Purple Haze\&#34; and \&#34;Hey Joe.\&#34;\n- **\&#34;Axis: Bold as Love\&#34; (1967)**: Known for its complex compositions and innovative use of studio effects.\n- **\&#34;Electric Ladyland\&#34; (1968)**: A double album that showcased the band&#39;s experimental approach and included the iconic track \&#34;Voodoo Child (Slight Return).\&#34;\n- **Woodstock (1969)**: His performance at the Woodstock Festival, particularly his rendition of \&#34;The Star-Spangled Banner,\&#34; is considered one of the most legendary moments in rock history.\n\n### Legacy\nHendrix&#39;s influence extends far beyond his lifetime. He has inspired countless musicians across various genres, and his innovative approach to the guitar has left a lasting impact on rock music. He died on September 18, 1970, at the age of 27, but his music continues to be celebrated and studied.\n\n### Honors and Recognition\nHendrix has been inducted into multiple halls of fame, including the Rock and Roll Hall of Fame and the UK Music Hall of Fame. He has received numerous awards and accolades, including Grammy Awards, and is often ranked among the greatest guitarists of all time by various music publications.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;}</code></pre></div>
+{
+  &#34;id&#34;: &#34;chatcmpl-C3kZpdNpSx8eaIHhsLg14RhZgFBww&#34;,
+  &#34;object&#34;: &#34;chat.completion&#34;,
+  &#34;created&#34;: 1755010061,
+  &#34;model&#34;: &#34;gpt-4.1-2025-04-14&#34;,
+  &#34;choices&#34;: [
+    {
+      &#34;index&#34;: 0,
+      &#34;message&#34;: {
+        &#34;role&#34;: &#34;assistant&#34;,
+        &#34;content&#34;: &#34;**Jimi Hendrix** (full name: James Marshall Hendrix, born November 27, 1942 – died September 18, 1970) was an American guitarist, singer, and songwriter, widely regarded as one of the most influential electric guitarists in the history of popular music. Emerging in the late 1960s, Hendrix revolutionized the way the guitar was played, using feedback, distortion, and an array of innovative techniques that transformed rock, blues, and psychedelic music.\n\nHendrix rose to fame with his band, **The Jimi Hendrix Experience**, delivering classic albums such as *Are You Experienced* (1967) and *Electric Ladyland* (1968). His groundbreaking performances included a legendary rendition of \&#34;The Star-Spangled Banner\&#34; at Woodstock in 1969.\n\nDespite his career only spanning about four years, Hendrix&#39;s influence endures through his recordings and his impact on generations of musicians. He was posthumously inducted into the Rock and Roll Hall of Fame in 1992. Some of his most famous songs include \&#34;Purple Haze,\&#34; \&#34;Hey Joe,\&#34; \&#34;Voodoo Child (Slight Return),\&#34; and \&#34;All Along the Watchtower.\&#34; Hendrix died at the age of 27, becoming one of the most iconic members of the so-called \&#34;27 Club.\&#34;&#34;,
+        &#34;refusal&#34;: null,
+        &#34;annotations&#34;: []
+      },
+      &#34;logprobs&#34;: null,
+      &#34;finish_reason&#34;: &#34;stop&#34;
+    }
+  ],
+  &#34;usage&#34;: {
+    &#34;prompt_tokens&#34;: 13,
+    &#34;completion_tokens&#34;: 264,
+    &#34;total_tokens&#34;: 277,
+    &#34;prompt_tokens_details&#34;: {
+      &#34;cached_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0
+    },
+    &#34;completion_tokens_details&#34;: {
+      &#34;reasoning_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0,
+      &#34;accepted_prediction_tokens&#34;: 0,
+      &#34;rejected_prediction_tokens&#34;: 0
+    }
+  },
+  &#34;service_tier&#34;: &#34;default&#34;,
+  &#34;system_fingerprint&#34;: &#34;fp_51e1070cf2&#34;
+}</code></pre></div>
 <h5 id="check-redis-again">Check Redis again</h5>
-<p>The Redis database has an entry now:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
-:::</p>
+<p>The Redis database has an entry now:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf&#34;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36&#34;</code></pre></div>
 <h5 id="2nd-request">2nd Request</h5>
 <p>The Semantic Cache plugin will use the cached data for similar requests:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -i -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Tell me more about Jimi Hendrix&rdquo;
-}
-],
-&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
-}&rsquo;
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+   --data &#39;{
+   &#34;messages&#34;: [
+     {
+       &#34;role&#34;: &#34;user&#34;,
+       &#34;content&#34;: &#34;Tell me more about Jimi Hendrix&#34;
+     }
+   ]
+ }&#39;</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 200 OK
-Date: Fri, 18 Apr 2025 14:44:21 GMT
+Date: Tue, 12 Aug 2025 14:48:55 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 X-Cache-Status: Hit
-Age: 3
-X-Cache-Key: kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d
-X-Cache-Ttl: 297
-Content-Length: 3653
-X-Kong-Response-Latency: 73
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: deab9b016f23907e1b737a0d8fea6a5d
+Age: 67
+X-Cache-Key: kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36
+X-Cache-Ttl: 233
+Content-Length: 1814
+X-Kong-Response-Latency: 1438
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 2debcb5db5e6f3637bef912cca963a5d
 
-{&#34;usage&#34;:{&#34;completion_tokens&#34;:731,&#34;prompt_tokens&#34;:6,&#34;total_tokens&#34;:737},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Jimi Hendrix was an iconic American rock guitarist, singer, and songwriter, widely regarded as one of the greatest musicians in the history of rock music. Born on November 27, 1942, in Seattle, Washington, Hendrix became a pivotal figure in the 1960s counterculture and is celebrated for his groundbreaking guitar techniques and innovative approach to music.\n\n### Early Life and Career\nHendrix&#39;s early years were marked by a deep interest in music, which he pursued despite facing racial discrimination. He began playing in local bands in the mid-1960s before moving to New York City, where he played in various R&amp;B and soul bands. His big break came when he moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell.\n\n### The Jimi Hendrix Experience\nThe Jimi Hendrix Experience quickly gained a reputation for their electrifying live performances. Their debut album, \&#34;Are You Experienced,\&#34; released in 1967, showcased Hendrix&#39;s innovative guitar playing, characterized by his use of feedback, distortion, and other effects to create a unique sound. Tracks like \&#34;Purple Haze\&#34; and \&#34;Hey Joe\&#34; became instant classics.\n\n### Iconic Performances\nHendrix&#39;s performances at major music festivals, such as the Monterey Pop Festival (1967) and Woodstock (1969), are legendary. His rendition of \&#34;The Star-Spangled Banner\&#34; at Monterey, where he played the song with feedback and distortion, remains one of the most iconic moments in rock history. At Woodstock, his performance was a highlight, featuring songs like \&#34;Voodoo Child (Slight Return)\&#34; and \&#34;Purple Haze.\&#34;\n\n### Innovations and Techniques\nHendrix revolutionized the role of the electric guitar in rock music. He was a master of using the guitar as a percussive and melodic instrument, often incorporating elements of blues, jazz, and psychedelic rock. His techniques included playing with his teeth and behind his back, using the guitar as a percussive instrument, and employing innovative studio effects.\n\n### Studio Albums\nHendrix released several influential albums during his career, including:\n- **\&#34;Are You Experienced\&#34; (1967)**: The debut album that introduced his innovative sound.\n- **\&#34;Axis: Bold as Love\&#34; (1967)**: Featuring hits like \&#34;Castles Made of Sand\&#34; and \&#34;Little Wing.\&#34;\n- **\&#34;Electric Ladyland\&#34; (1968)**: A double album that showcased the band&#39;s studio experimentation and live performances.\n- **\&#34;Band of Gypsys\&#34; (1969)**: Recorded with Billy Cox and Buddy Miles, it featured a more raw and powerful sound.\n\n### Legacy\nHendrix&#39;s influence extends far beyond his lifetime. His innovative approach to guitar playing has inspired countless musicians across genres. He was inducted into the Rock and Roll Hall of Fame in 1990 and the UK Music Hall of Fame in 2005. His life and music continue to be celebrated, with numerous documentaries, biographies, and compilations dedicated to his work.\n\n### Personal Life and Death\nHendrix&#39;s personal life was marked by struggles with addiction and mental health issues. He died on September 18, 1970, in London, at the age of 27. His death was ruled an accidental overdose, but it remains a subject of much speculation and debate.\n\nJimi Hendrix&#39;s legacy as a musical innovator and cultural icon endures, and his contributions to rock music continue to be celebrated and studied.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;,&#34;id&#34;:&#34;7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d&#34;}</code></pre></div>
+{&#34;object&#34;:&#34;chat.completion&#34;,&#34;created&#34;:1755010061,&#34;id&#34;:&#34;2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36&#34;,&#34;usage&#34;:{&#34;completion_tokens&#34;:264,&#34;prompt_tokens_details&#34;:{&#34;cached_tokens&#34;:0,&#34;audio_tokens&#34;:0},&#34;completion_tokens_details&#34;:{&#34;accepted_prediction_tokens&#34;:0,&#34;audio_tokens&#34;:0,&#34;rejected_prediction_tokens&#34;:0,&#34;reasoning_tokens&#34;:0},&#34;total_tokens&#34;:277,&#34;prompt_tokens&#34;:13},&#34;model&#34;:&#34;gpt-4.1-2025-04-14&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:&#34;fp_51e1070cf2&#34;,&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;index&#34;:0,&#34;logprobs&#34;:null,&#34;message&#34;:{&#34;annotations&#34;:{},&#34;role&#34;:&#34;assistant&#34;,&#34;refusal&#34;:null,&#34;content&#34;:&#34;**Jimi Hendrix** (full name: James Marshall Hendrix, born November 27, 1942 – died September 18, 1970) was an American guitarist, singer, and songwriter, widely regarded as one of the most influential electric guitarists in the history of popular music. Emerging in the late 1960s, Hendrix revolutionized the way the guitar was played, using feedback, distortion, and an array of innovative techniques that transformed rock, blues, and psychedelic music.\n\nHendrix rose to fame with his band, **The Jimi Hendrix Experience**, delivering classic albums such as *Are You Experienced* (1967) and *Electric Ladyland* (1968). His groundbreaking performances included a legendary rendition of \&#34;The Star-Spangled Banner\&#34; at Woodstock in 1969.\n\nDespite his career only spanning about four years, Hendrix&#39;s influence endures through his recordings and his impact on generations of musicians. He was posthumously inducted into the Rock and Roll Hall of Fame in 1992. Some of his most famous songs include \&#34;Purple Haze,\&#34; \&#34;Hey Joe,\&#34; \&#34;Voodoo Child (Slight Return),\&#34; and \&#34;All Along the Watchtower.\&#34; Hendrix died at the age of 27, becoming one of the most iconic members of the so-called \&#34;27 Club.\&#34;&#34;}}]}</code></pre></div>
 <h5 id="3rd-request">3rd Request</h5>
 <p>As expected, for a non-related request, the AI Gateway will hit the LLM to satisfy the query:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -i -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Who was Joseph Conrad?&rdquo;
-}
-],
-&ldquo;model&rdquo;: &ldquo;us.amazon.nova-lite-v1:0&rdquo;
-}&rsquo;
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+   --data &#39;{
+   &#34;messages&#34;: [
+     {
+       &#34;role&#34;: &#34;user&#34;,
+       &#34;content&#34;: &#34;Who was Joseph Conrad?&#34;
+     }
+   ]
+ }&#39;</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
@@ -352,27 +386,77 @@ curl -i -X POST <br>
 Content-Type: application/json
 Connection: keep-alive
 X-Cache-Status: Miss
-Date: Fri, 18 Apr 2025 14:45:30 GMT
-Content-Length: 1465
-x-amzn-RequestId: e23f122b-b4d7-4164-a417-1d9f20e82289
-X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
-X-Kong-Upstream-Latency: 1647
-X-Kong-Proxy-Latency: 143
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 6025a75733a29f47b2c7fd56c0c4771f
+openai-version: 2020-10-01
+x-envoy-upstream-service-time: 4746
+Date: Tue, 12 Aug 2025 14:49:35 GMT
+x-ratelimit-limit-requests: 500
+x-ratelimit-limit-tokens: 30000
+x-ratelimit-remaining-requests: 499
+CF-RAY: 96e0c7a088ac1b20-GRU
+x-ratelimit-remaining-tokens: 29992
+alt-svc: h3=&#34;:443&#34;; ma=86400
+access-control-expose-headers: X-Request-ID
+X-Content-Type-Options: nosniff
+Server: cloudflare
+openai-organization: user-4qzstwunaw6d1dhwnga5bc5q
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+x-request-id: req_10dee9e2989e46cbb32a2125f774f446
+openai-processing-ms: 4658
+cf-cache-status: DYNAMIC
+openai-project: proj_r4KYFyenuGWthS5te4zaurNN
+x-ratelimit-reset-tokens: 16ms
+x-ratelimit-reset-requests: 120ms
+X-Kong-LLM-Model: openai/gpt-4.1
+Content-Length: 2515
+X-Kong-Upstream-Latency: 4996
+X-Kong-Proxy-Latency: 2222
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: b5fadb69431d1234d8bbd53a71abc559
 
-{&#34;usage&#34;:{&#34;completion_tokens&#34;:296,&#34;prompt_tokens&#34;:5,&#34;total_tokens&#34;:301},&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;message&#34;:{&#34;content&#34;:&#34;Joseph Conrad (born Józef Teodor Konrad Korzeniowski) was a renowned Polish-British writer born on December 3, 1857, in Berdichev, then part of the Russian Empire (now Ukraine), and died on August 3, 1924, in Bishopsbourne, England. \n\nConrad is best known for his novels and short stories that explore themes of imperialism, existentialism, and the complexities of the human psyche. His works often feature seafaring settings and characters, reflecting his own experiences as a sailor. Some of his most famous works include:\n\n1. **\&#34;Heart of Darkness\&#34;** (1899) - A novella that critiques the brutal realities of colonialism in the Congo Free State.\n2. **\&#34;Lord Jim\&#34;** (1900) - A novel that delves into themes of honor, failure, and redemption.\n3. **\&#34;Nostromo\&#34;** (1904) - A novel set in the fictional South American country of Costaguana, exploring themes of imperialism and the corrupting influence of power.\n4. **\&#34;The Secret Agent\&#34;** (1907) - A novel that examines the nature of terrorism and the psychology of the individual.\n\nConrad&#39;s writing is characterized by its complex narrative structures, rich symbolism, and deep psychological insight. He is considered one of the greatest novelists in the English language and a precursor to modernist literature.&#34;,&#34;role&#34;:&#34;assistant&#34;},&#34;index&#34;:0}],&#34;object&#34;:&#34;chat.completion&#34;}</code></pre></div>
+{
+  &#34;id&#34;: &#34;chatcmpl-C3kbbMudkoKV6rrzvOHz0lQ8IH0Ci&#34;,
+  &#34;object&#34;: &#34;chat.completion&#34;,
+  &#34;created&#34;: 1755010171,
+  &#34;model&#34;: &#34;gpt-4.1-2025-04-14&#34;,
+  &#34;choices&#34;: [
+    {
+      &#34;index&#34;: 0,
+      &#34;message&#34;: {
+        &#34;role&#34;: &#34;assistant&#34;,
+        &#34;content&#34;: &#34;**Joseph Conrad** (born Józef Teodor Konrad Korzeniowski; 1857–1924) was a Polish-British writer widely regarded as one of the great novelists writing in English, despite the fact that English was not his first language. He was born in Berdychiv, in the Russian Empire (now in Ukraine), to Polish parents.\n\n**Background:**\n- **Early Life:** Conrad’s parents were exiled for their involvement in Polish independence movements. Orphaned at a young age, he spent much of his youth in Poland and later France.\n- **Seafaring Career:** In his twenties, Conrad became a merchant marine, traveling around the world and eventually settling in England. He gained British citizenship in 1886.\n\n**Literary Career:**\n- He began writing novels and short stories in English, starting with *Almayer’s Folly* (1895).\n- **Notable works** include:\n  - *Heart of Darkness* (1899)\n  - *Lord Jim* (1900)\n  - *Nostromo* (1904)\n  - *The Secret Agent* (1907)\n- His novels often deal with themes of isolation, existential doubt, imperialism, and the complexity of human nature.\n\n**Legacy:**\n- Conrad’s innovative narrative techniques and psychological depth influenced modernist literature and writers such as Virginia Woolf, T.S. Eliot, and William Faulkner.\n- *Heart of Darkness*, a novella about a journey into the Congo, is considered one of the most important works of 20th-century literature and has inspired many adaptations, including the film *Apocalypse Now*.\n\n**Summary:**  \nJoseph Conrad was a Polish-born novelist who wrote in English and became one of the leading literary figures of his time, celebrated for his adventure tales, deep psychological insight, and exploration of moral ambiguity.&#34;,
+        &#34;refusal&#34;: null,
+        &#34;annotations&#34;: []
+      },
+      &#34;logprobs&#34;: null,
+      &#34;finish_reason&#34;: &#34;stop&#34;
+    }
+  ],
+  &#34;usage&#34;: {
+    &#34;prompt_tokens&#34;: 12,
+    &#34;completion_tokens&#34;: 383,
+    &#34;total_tokens&#34;: 395,
+    &#34;prompt_tokens_details&#34;: {
+      &#34;cached_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0
+    },
+    &#34;completion_tokens_details&#34;: {
+      &#34;reasoning_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0,
+      &#34;accepted_prediction_tokens&#34;: 0,
+      &#34;rejected_prediction_tokens&#34;: 0
+    }
+  },
+  &#34;service_tier&#34;: &#34;default&#34;,
+  &#34;system_fingerprint&#34;: &#34;fp_799e4ca3f1&#34;
+}</code></pre></div>
 <h5 id="check-redis-again-1">Check Redis again</h5>
 <p>Redis database has two entries now:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf&#34;
-&#34;kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:60afd78b21ec82cf4d2264efd0b6faf081edd85c287f272e41508e5ddcd7dc50&#34;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36&#34;
+&#34;kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:42aa94b4bbbedce497e59e1fd0fc617683a43b58ac7e306a47feb46f502f1499&#34;</code></pre></div>
 <p>Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
@@ -453,8 +537,8 @@ kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].meta
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755009442" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755009442" defer></script>
-    <script src="/js/theme.js?1755009442" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755015119" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755015119" defer></script>
+    <script src="/js/theme.js?1755015119" defer></script>
   </body>
 </html>

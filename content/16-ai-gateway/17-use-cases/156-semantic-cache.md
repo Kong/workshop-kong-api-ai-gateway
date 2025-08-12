@@ -32,55 +32,62 @@ We are going to configure the **AI Semantic Cache** to consume the Redis deploym
 
 ### Apply the Semantic Cache plugin
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-semantic-cache.yaml << 'EOF'
 _format_version: "3.0"
 _info:
   select_tags:
   - semantic-cache
-_info:
-  select_tags:
-  - bedrock
+  - llm
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: service1
   host: localhost
   port: 32000
   routes:
-  - name: route1
+  - name: ollama-route
     paths:
-    - /bedrock-route
+    - /ollama-route
     plugins:
     - name: ai-proxy
-      instance_name: ai-proxy-bedrock-route
-      enabled: true
+      instance_name: ai-proxy-ollama
       config:
-        auth:
-          param_name: "allow_override"
-          param_value: "false"
-          param_location: "body"
         route_type: llm/v1/chat
         model:
-          provider: bedrock
+          provider: llama2
+          name: llama3.2:1b
           options:
-            bedrock:
-              aws_region: us-west-2
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      enabled: true
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+        model:
+          provider: openai
+          name: gpt-4.1
+          options:
+            temperature: 1.0
     - name: ai-semantic-cache
-      instance_name: ai-semantic-cache-bedrock
+      instance_name: ai-semantic-cache-openai
       enabled: true
       config:
         embeddings:
           auth:
-            param_name: "allow_override"
-            param_value: "false"
-            param_location: "body"
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           model:
-            provider: bedrock
-            name: "amazon.titan-embed-text-v2:0"
-            options:
-              bedrock:
-                aws_region: us-west-2
+            provider: openai
+            name: "text-embedding-3-small"
         vectordb:
           dimensions: 1024
           distance_metric: cosine
@@ -90,31 +97,31 @@ services:
             host: "redis-stack.redis.svc.cluster.local"
             port: 6379
 EOF
-:::
+```
 
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-semantic-cache.yaml
-:::
+```
 
 
 
 ### Check Redis
 Before sending request, you can scan the Redis database:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-cli --scan
-:::
+```
 
 ##### 1st Request
 
 Since we don't have any cached data, the first request is going to return "Miss":
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -i -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
    --data '{
    "messages": [
@@ -122,10 +129,9 @@ curl -i -X POST \
        "role": "user",
        "content": "Who is Jimi Hendrix?"
      }
-   ],
-   "model": "us.amazon.nova-lite-v1:0"
+   ]
  }'
-:::
+```
 
 * Expected response
 ```
@@ -133,31 +139,83 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Connection: keep-alive
 X-Cache-Status: Miss
-Date: Fri, 18 Apr 2025 14:41:32 GMT
-Content-Length: 2703
-x-amzn-RequestId: 08a965e0-60b4-457f-aacd-273cb6940988
-X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
-X-Kong-Upstream-Latency: 3440
-X-Kong-Proxy-Latency: 97
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 80eeaf284d891a588e55fb22b95f814b
+x-ratelimit-limit-tokens: 30000
+x-ratelimit-remaining-requests: 499
+Date: Tue, 12 Aug 2025 14:47:48 GMT
+x-ratelimit-remaining-tokens: 29993
+access-control-expose-headers: X-Request-ID
+openai-organization: user-4qzstwunaw6d1dhwnga5bc5q
+openai-processing-ms: 7218
+x-ratelimit-reset-requests: 120ms
+openai-project: proj_r4KYFyenuGWthS5te4zaurNN
+cf-cache-status: DYNAMIC
+openai-version: 2020-10-01
+Server: cloudflare
+X-Content-Type-Options: nosniff
+x-envoy-upstream-service-time: 7420
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+CF-RAY: 96e0c4e97b364d3b-GRU
+x-ratelimit-limit-requests: 500
+x-request-id: req_ae7f43291824451dbfec2a27b1a3ec2a
+x-ratelimit-reset-tokens: 14ms
+alt-svc: h3=":443"; ma=86400
+X-Kong-LLM-Model: openai/gpt-4.1
+Content-Length: 2005
+X-Kong-Upstream-Latency: 8820
+X-Kong-Proxy-Latency: 876
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 8fd73d1623140f675ed93b0dcb4aeb16
 
-{"usage":{"completion_tokens":557,"prompt_tokens":5,"total_tokens":562},"choices":[{"finish_reason":"stop","message":{"content":"Jimi Hendrix was an American rock guitarist, singer, and songwriter widely regarded as one of the greatest and most influential guitarists in the history of popular music. Born on November 27, 1942, in Seattle, Washington, he became a pivotal figure in the 1960s psychedelic and hard rock movements.\n\n### Early Life and Career\nHendrix's interest in music began at a young age. He started playing guitar at 15 and later served in the U.S. Army, where he was a member of the Army band. After leaving the Army, he moved to Nashville, Tennessee, and then to New York City, where he played in various R&B bands.\n\n### Breakthrough\nHendrix moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell. The band quickly gained popularity in Europe, and their debut album, \"Are You Experienced,\" released in 1967, brought them international acclaim.\n\n### Musical Innovation\nHendrix was known for his innovative and highly influential guitar playing. He used feedback, distortion, and other effects to create a new sound that pushed the boundaries of rock music. His performances were characterized by his virtuosic technique, including playing the guitar behind his back, between his legs, and with his teeth.\n\n### Notable Works\n- **\"Are You Experienced\" (1967)**: The band's debut album, featuring hits like \"Purple Haze\" and \"Hey Joe.\"\n- **\"Axis: Bold as Love\" (1967)**: Known for its complex compositions and innovative use of studio effects.\n- **\"Electric Ladyland\" (1968)**: A double album that showcased the band's experimental approach and included the iconic track \"Voodoo Child (Slight Return).\"\n- **Woodstock (1969)**: His performance at the Woodstock Festival, particularly his rendition of \"The Star-Spangled Banner,\" is considered one of the most legendary moments in rock history.\n\n### Legacy\nHendrix's influence extends far beyond his lifetime. He has inspired countless musicians across various genres, and his innovative approach to the guitar has left a lasting impact on rock music. He died on September 18, 1970, at the age of 27, but his music continues to be celebrated and studied.\n\n### Honors and Recognition\nHendrix has been inducted into multiple halls of fame, including the Rock and Roll Hall of Fame and the UK Music Hall of Fame. He has received numerous awards and accolades, including Grammy Awards, and is often ranked among the greatest guitarists of all time by various music publications.","role":"assistant"},"index":0}],"object":"chat.completion"}
+{
+  "id": "chatcmpl-C3kZpdNpSx8eaIHhsLg14RhZgFBww",
+  "object": "chat.completion",
+  "created": 1755010061,
+  "model": "gpt-4.1-2025-04-14",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "**Jimi Hendrix** (full name: James Marshall Hendrix, born November 27, 1942 – died September 18, 1970) was an American guitarist, singer, and songwriter, widely regarded as one of the most influential electric guitarists in the history of popular music. Emerging in the late 1960s, Hendrix revolutionized the way the guitar was played, using feedback, distortion, and an array of innovative techniques that transformed rock, blues, and psychedelic music.\n\nHendrix rose to fame with his band, **The Jimi Hendrix Experience**, delivering classic albums such as *Are You Experienced* (1967) and *Electric Ladyland* (1968). His groundbreaking performances included a legendary rendition of \"The Star-Spangled Banner\" at Woodstock in 1969.\n\nDespite his career only spanning about four years, Hendrix's influence endures through his recordings and his impact on generations of musicians. He was posthumously inducted into the Rock and Roll Hall of Fame in 1992. Some of his most famous songs include \"Purple Haze,\" \"Hey Joe,\" \"Voodoo Child (Slight Return),\" and \"All Along the Watchtower.\" Hendrix died at the age of 27, becoming one of the most iconic members of the so-called \"27 Club.\"",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 13,
+    "completion_tokens": 264,
+    "total_tokens": 277,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_51e1070cf2"
+}
 ```
 
 
 ##### Check Redis again
 
 The Redis database has an entry now:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-cli --scan
-:::
+```
 
 * Expected response
 
 ```
-"kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf"
+"kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36"
 ```
 
 
@@ -165,9 +223,9 @@ kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.n
 ##### 2nd Request
 The Semantic Cache plugin will use the cached data for similar requests:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -i -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
    --data '{
    "messages": [
@@ -175,38 +233,37 @@ curl -i -X POST \
        "role": "user",
        "content": "Tell me more about Jimi Hendrix"
      }
-   ],
-   "model": "us.amazon.nova-lite-v1:0"
+   ]
  }'
-:::
+```
 
 
 * Expected response
 
 ```
 HTTP/1.1 200 OK
-Date: Fri, 18 Apr 2025 14:44:21 GMT
+Date: Tue, 12 Aug 2025 14:48:55 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 X-Cache-Status: Hit
-Age: 3
-X-Cache-Key: kong_semantic_cache:9eb0bd74-b166-46a7-b478-d46910134e2b:bedrock-us.amazon.nova-lite-v1:0:7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d
-X-Cache-Ttl: 297
-Content-Length: 3653
-X-Kong-Response-Latency: 73
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: deab9b016f23907e1b737a0d8fea6a5d
+Age: 67
+X-Cache-Key: kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36
+X-Cache-Ttl: 233
+Content-Length: 1814
+X-Kong-Response-Latency: 1438
+Server: kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: 2debcb5db5e6f3637bef912cca963a5d
 
-{"usage":{"completion_tokens":731,"prompt_tokens":6,"total_tokens":737},"choices":[{"finish_reason":"stop","message":{"content":"Jimi Hendrix was an iconic American rock guitarist, singer, and songwriter, widely regarded as one of the greatest musicians in the history of rock music. Born on November 27, 1942, in Seattle, Washington, Hendrix became a pivotal figure in the 1960s counterculture and is celebrated for his groundbreaking guitar techniques and innovative approach to music.\n\n### Early Life and Career\nHendrix's early years were marked by a deep interest in music, which he pursued despite facing racial discrimination. He began playing in local bands in the mid-1960s before moving to New York City, where he played in various R&B and soul bands. His big break came when he moved to London in 1966, where he formed the Jimi Hendrix Experience with bassist Noel Redding and drummer Mitch Mitchell.\n\n### The Jimi Hendrix Experience\nThe Jimi Hendrix Experience quickly gained a reputation for their electrifying live performances. Their debut album, \"Are You Experienced,\" released in 1967, showcased Hendrix's innovative guitar playing, characterized by his use of feedback, distortion, and other effects to create a unique sound. Tracks like \"Purple Haze\" and \"Hey Joe\" became instant classics.\n\n### Iconic Performances\nHendrix's performances at major music festivals, such as the Monterey Pop Festival (1967) and Woodstock (1969), are legendary. His rendition of \"The Star-Spangled Banner\" at Monterey, where he played the song with feedback and distortion, remains one of the most iconic moments in rock history. At Woodstock, his performance was a highlight, featuring songs like \"Voodoo Child (Slight Return)\" and \"Purple Haze.\"\n\n### Innovations and Techniques\nHendrix revolutionized the role of the electric guitar in rock music. He was a master of using the guitar as a percussive and melodic instrument, often incorporating elements of blues, jazz, and psychedelic rock. His techniques included playing with his teeth and behind his back, using the guitar as a percussive instrument, and employing innovative studio effects.\n\n### Studio Albums\nHendrix released several influential albums during his career, including:\n- **\"Are You Experienced\" (1967)**: The debut album that introduced his innovative sound.\n- **\"Axis: Bold as Love\" (1967)**: Featuring hits like \"Castles Made of Sand\" and \"Little Wing.\"\n- **\"Electric Ladyland\" (1968)**: A double album that showcased the band's studio experimentation and live performances.\n- **\"Band of Gypsys\" (1969)**: Recorded with Billy Cox and Buddy Miles, it featured a more raw and powerful sound.\n\n### Legacy\nHendrix's influence extends far beyond his lifetime. His innovative approach to guitar playing has inspired countless musicians across genres. He was inducted into the Rock and Roll Hall of Fame in 1990 and the UK Music Hall of Fame in 2005. His life and music continue to be celebrated, with numerous documentaries, biographies, and compilations dedicated to his work.\n\n### Personal Life and Death\nHendrix's personal life was marked by struggles with addiction and mental health issues. He died on September 18, 1970, in London, at the age of 27. His death was ruled an accidental overdose, but it remains a subject of much speculation and debate.\n\nJimi Hendrix's legacy as a musical innovator and cultural icon endures, and his contributions to rock music continue to be celebrated and studied.","role":"assistant"},"index":0}],"object":"chat.completion","id":"7bb5349c15e9068e3dfca4f83bd2f40fbdf42aa892b93622f8759f58273db18d"}
+{"object":"chat.completion","created":1755010061,"id":"2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36","usage":{"completion_tokens":264,"prompt_tokens_details":{"cached_tokens":0,"audio_tokens":0},"completion_tokens_details":{"accepted_prediction_tokens":0,"audio_tokens":0,"rejected_prediction_tokens":0,"reasoning_tokens":0},"total_tokens":277,"prompt_tokens":13},"model":"gpt-4.1-2025-04-14","service_tier":"default","system_fingerprint":"fp_51e1070cf2","choices":[{"finish_reason":"stop","index":0,"logprobs":null,"message":{"annotations":{},"role":"assistant","refusal":null,"content":"**Jimi Hendrix** (full name: James Marshall Hendrix, born November 27, 1942 – died September 18, 1970) was an American guitarist, singer, and songwriter, widely regarded as one of the most influential electric guitarists in the history of popular music. Emerging in the late 1960s, Hendrix revolutionized the way the guitar was played, using feedback, distortion, and an array of innovative techniques that transformed rock, blues, and psychedelic music.\n\nHendrix rose to fame with his band, **The Jimi Hendrix Experience**, delivering classic albums such as *Are You Experienced* (1967) and *Electric Ladyland* (1968). His groundbreaking performances included a legendary rendition of \"The Star-Spangled Banner\" at Woodstock in 1969.\n\nDespite his career only spanning about four years, Hendrix's influence endures through his recordings and his impact on generations of musicians. He was posthumously inducted into the Rock and Roll Hall of Fame in 1992. Some of his most famous songs include \"Purple Haze,\" \"Hey Joe,\" \"Voodoo Child (Slight Return),\" and \"All Along the Watchtower.\" Hendrix died at the age of 27, becoming one of the most iconic members of the so-called \"27 Club.\""}}]}
 ```
 
 
 ##### 3rd Request
 As expected, for a non-related request, the AI Gateway will hit the LLM to satisfy the query:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -i -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
    --data '{
    "messages": [
@@ -214,10 +271,9 @@ curl -i -X POST \
        "role": "user",
        "content": "Who was Joseph Conrad?"
      }
-   ],
-   "model": "us.amazon.nova-lite-v1:0"
+   ]
  }'
-:::
+```
 
 * Expected response
 
@@ -226,17 +282,69 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Connection: keep-alive
 X-Cache-Status: Miss
-Date: Fri, 18 Apr 2025 14:45:30 GMT
-Content-Length: 1465
-x-amzn-RequestId: e23f122b-b4d7-4164-a417-1d9f20e82289
-X-Kong-LLM-Model: bedrock/us.amazon.nova-lite-v1:0
-X-Kong-Upstream-Latency: 1647
-X-Kong-Proxy-Latency: 143
-Via: 1.1 kong/3.10.0.1-enterprise-edition
-Server: kong/3.10.0.1-enterprise-edition
-X-Kong-Request-Id: 6025a75733a29f47b2c7fd56c0c4771f
+openai-version: 2020-10-01
+x-envoy-upstream-service-time: 4746
+Date: Tue, 12 Aug 2025 14:49:35 GMT
+x-ratelimit-limit-requests: 500
+x-ratelimit-limit-tokens: 30000
+x-ratelimit-remaining-requests: 499
+CF-RAY: 96e0c7a088ac1b20-GRU
+x-ratelimit-remaining-tokens: 29992
+alt-svc: h3=":443"; ma=86400
+access-control-expose-headers: X-Request-ID
+X-Content-Type-Options: nosniff
+Server: cloudflare
+openai-organization: user-4qzstwunaw6d1dhwnga5bc5q
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+x-request-id: req_10dee9e2989e46cbb32a2125f774f446
+openai-processing-ms: 4658
+cf-cache-status: DYNAMIC
+openai-project: proj_r4KYFyenuGWthS5te4zaurNN
+x-ratelimit-reset-tokens: 16ms
+x-ratelimit-reset-requests: 120ms
+X-Kong-LLM-Model: openai/gpt-4.1
+Content-Length: 2515
+X-Kong-Upstream-Latency: 4996
+X-Kong-Proxy-Latency: 2222
+Via: 1.1 kong/3.11.0.2-enterprise-edition
+X-Kong-Request-Id: b5fadb69431d1234d8bbd53a71abc559
 
-{"usage":{"completion_tokens":296,"prompt_tokens":5,"total_tokens":301},"choices":[{"finish_reason":"stop","message":{"content":"Joseph Conrad (born Józef Teodor Konrad Korzeniowski) was a renowned Polish-British writer born on December 3, 1857, in Berdichev, then part of the Russian Empire (now Ukraine), and died on August 3, 1924, in Bishopsbourne, England. \n\nConrad is best known for his novels and short stories that explore themes of imperialism, existentialism, and the complexities of the human psyche. His works often feature seafaring settings and characters, reflecting his own experiences as a sailor. Some of his most famous works include:\n\n1. **\"Heart of Darkness\"** (1899) - A novella that critiques the brutal realities of colonialism in the Congo Free State.\n2. **\"Lord Jim\"** (1900) - A novel that delves into themes of honor, failure, and redemption.\n3. **\"Nostromo\"** (1904) - A novel set in the fictional South American country of Costaguana, exploring themes of imperialism and the corrupting influence of power.\n4. **\"The Secret Agent\"** (1907) - A novel that examines the nature of terrorism and the psychology of the individual.\n\nConrad's writing is characterized by its complex narrative structures, rich symbolism, and deep psychological insight. He is considered one of the greatest novelists in the English language and a precursor to modernist literature.","role":"assistant"},"index":0}],"object":"chat.completion"}
+{
+  "id": "chatcmpl-C3kbbMudkoKV6rrzvOHz0lQ8IH0Ci",
+  "object": "chat.completion",
+  "created": 1755010171,
+  "model": "gpt-4.1-2025-04-14",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "**Joseph Conrad** (born Józef Teodor Konrad Korzeniowski; 1857–1924) was a Polish-British writer widely regarded as one of the great novelists writing in English, despite the fact that English was not his first language. He was born in Berdychiv, in the Russian Empire (now in Ukraine), to Polish parents.\n\n**Background:**\n- **Early Life:** Conrad’s parents were exiled for their involvement in Polish independence movements. Orphaned at a young age, he spent much of his youth in Poland and later France.\n- **Seafaring Career:** In his twenties, Conrad became a merchant marine, traveling around the world and eventually settling in England. He gained British citizenship in 1886.\n\n**Literary Career:**\n- He began writing novels and short stories in English, starting with *Almayer’s Folly* (1895).\n- **Notable works** include:\n  - *Heart of Darkness* (1899)\n  - *Lord Jim* (1900)\n  - *Nostromo* (1904)\n  - *The Secret Agent* (1907)\n- His novels often deal with themes of isolation, existential doubt, imperialism, and the complexity of human nature.\n\n**Legacy:**\n- Conrad’s innovative narrative techniques and psychological depth influenced modernist literature and writers such as Virginia Woolf, T.S. Eliot, and William Faulkner.\n- *Heart of Darkness*, a novella about a journey into the Congo, is considered one of the most important works of 20th-century literature and has inspired many adaptations, including the film *Apocalypse Now*.\n\n**Summary:**  \nJoseph Conrad was a Polish-born novelist who wrote in English and became one of the leading literary figures of his time, celebrated for his adventure tales, deep psychological insight, and exploration of moral ambiguity.",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 12,
+    "completion_tokens": 383,
+    "total_tokens": 395,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_799e4ca3f1"
+}
 ```
 
 
@@ -245,14 +353,14 @@ X-Kong-Request-Id: 6025a75733a29f47b2c7fd56c0c4771f
 
 Redis database has two entries now:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-cli --scan
-:::
+```
 
 * Expected response
 ```
-"kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:6e373ab243f6868432eae1f532c4cb11849d502b60a9a6644a6f24d7e89cc4bf"
-"kong_semantic_cache:2398b6a1-85e4-4330-af08-4628f51254e7:bedrock-us.amazon.nova-lite-v1:0:60afd78b21ec82cf4d2264efd0b6faf081edd85c287f272e41508e5ddcd7dc50"
+"kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36"
+"kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:42aa94b4bbbedce497e59e1fd0fc617683a43b58ac7e306a47feb46f502f1499"
 ```
 
 

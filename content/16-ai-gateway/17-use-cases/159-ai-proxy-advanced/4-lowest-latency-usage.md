@@ -10,14 +10,14 @@ The lowest-latency algorithm is based on the response time for each model. It di
 
 Create a file with the following declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-proxy-advanced.yaml << 'EOF'
 _format_version: "3.0"
 _info:
   select_tags:
-  - bedrock
+  - llm
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: ai-proxy-advanced-service
   host: localhost
@@ -25,48 +25,46 @@ services:
   routes:
   - name: route1
     paths:
-    - /bedrock-route
+    - /route1
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced1
       config:
         balancer:
           algorithm: lowest-latency
           latency_strategy: e2e
         targets:
         - model:
-            provider: bedrock
-            name: "us.amazon.nova-micro-v1:0"
+            provider: openai
+            name: gpt-4.1
             options:
-              bedrock:
-                aws_region: us-west-2
+              temperature: 1.0
           route_type: "llm/v1/chat"
           auth:
-            allow_override: false
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
         - model:
-            provider: bedrock
-            name: "us.meta.llama3-3-70b-instruct-v1:0"
+            provider: llama2
+            name: llama3.2:1b
             options:
-              bedrock:
-                aws_region: us-west-2
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
           route_type: "llm/v1/chat"
-          auth:
-            allow_override: false
 EOF
-:::
+```
 
 Apply the declaration with decK:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml
-:::
+```
 
 Test the Route again.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/route1 \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [
@@ -76,7 +74,7 @@ curl -s -X POST \
        }
      ]
    }' | jq
-:::
+```
 
 #### Lowest Usage policy
 
@@ -85,14 +83,14 @@ The lowest-usage algorithm in **AI Proxy Advanced** is based on the volume of us
 Replace the declaration:
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-proxy-advanced.yaml << 'EOF'
 _format_version: "3.0"
 _info:
   select_tags:
-  - bedrock
+  - llm
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: ai-proxy-advanced-service
   host: localhost
@@ -100,51 +98,50 @@ services:
   routes:
   - name: route1
     paths:
-    - /bedrock-route
+    - /route1
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced1
       config:
         balancer:
           algorithm: lowest-usage
         targets:
         - model:
-            provider: bedrock
-            name: "us.amazon.nova-micro-v1:0"
+            provider: openai
+            name: gpt-4.1
             options:
-              bedrock:
-                aws_region: us-west-2
+              temperature: 1.0
           route_type: "llm/v1/chat"
           auth:
-            allow_override: false
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
         - model:
-            provider: bedrock
-            name: "us.meta.llama3-3-70b-instruct-v1:0"
+            provider: llama2
+            name: llama3.2:1b
             options:
-              bedrock:
-                aws_region: us-west-2
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
           route_type: "llm/v1/chat"
-          auth:
-            allow_override: false
 EOF
-:::
+```
+
 
 
 
 
 Apply the declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml
-:::
+```
 
 
 And test the Route again.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/route1 \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [
@@ -154,4 +151,4 @@ curl -s -X POST \
        }
      ]
    }' | jq
-:::
+```

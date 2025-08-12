@@ -29,26 +29,26 @@ curl http://localhost:8080/realms/kong/.well-known/openid-configuration | jq The
 cat &gt; oidc.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: oidc-route paths: - /oidc-route plugins: - name: openid-connect instance_name: openid-connect1 config: auth_methods: [&#34;authorization_code&#34;] redirect_uri: - http://localhost/oidc-route/get client_id: [&#34;kong_id&#34;] client_secret: [&#34;RVXO9SOJskjw4LeVupjRbIMJIAyyil8j&#34;] issuer: http://127.0.0.1:8080/realms/kong authorization_endpoint: http://127.0.0.1:8080/realms/kong/protocol/openid-connect/auth token_endpoint: http://keycloak.keycloak:8080/realms/kong/protocol/openid-connect/token extra_jwks_uris: [&#34;http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs&#34;] consumer_optional: false consumer_claim: [&#34;preferred_username&#34;] consumer_by: [&#34;username&#34;] consumers: - username: consumer1 EOF An important observation here is that we have the OpenId Connect plugin configured with the Kong Consumer mapping. The consumer_claim setting specifies that the plugin will take the preferred_username field from the Access Token to map it to some Kong Consumer. The Kong Consumer chosen is the one that has the same preferred_username as its username. The declaration above configures the OIDC plugin as well as creates the necessary consumer. Later on you can apply plugin to the Kong Consumer to define specific policies.">
     <meta itemprop="wordCount" content="448">
     <title>Authorization Code :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755008450" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755008450" defer></script>
-    <script src="/js/search-lunr.js?1755008450" defer></script>
-    <script src="/js/search.js?1755008450" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755015119" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755015119" defer></script>
+    <script src="/js/search-lunr.js?1755015119" defer></script>
+    <script src="/js/search.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755008450";
+      window.relearn.index_js_url="/searchindex.en.js?1755015119";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755008450" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755008450" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755008450" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755008450" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755015119" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755008450" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755008450" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755008450" rel="stylesheet">
-    <link href="/css/theme.css?1755008450" rel="stylesheet">
-    <link href="/css/format-html.css?1755008450" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755015119" rel="stylesheet">
+    <link href="/css/theme.css?1755015119" rel="stylesheet">
+    <link href="/css/format-html.css?1755015119" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -193,11 +193,11 @@ EOF</code></pre></div>
 <p>Redirect your browser the following URL. Since you haven&rsquo;t been authenticated, you will be redirected to Keycloak&rsquo;s Authentication page:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http://localhost/oidc-route/get</code></pre></div>
 
-<p><a href="#R-image-4fc8378d03465d8e215b03478ac6f8ea" class="lightbox-link"><img alt="keycloak_auth" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_auth.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4fc8378d03465d8e215b03478ac6f8ea"><img alt="keycloak_auth" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_auth.png"></a></p>
+<p><a href="#R-image-b1cbce939b24eaebcd80118367a6d63d" class="lightbox-link"><img alt="keycloak_auth" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_auth.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b1cbce939b24eaebcd80118367a6d63d"><img alt="keycloak_auth" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_auth.png"></a></p>
 <p>As credentials, enter the Keycloak user and password previously created: <code>consumer1/kong</code>. After filling out the form with your email and name you, Keycloak authenticates you and redirects you back to the original URL (Data Plane), this time adding the Authorization Code. Following the steps described previously, the OpenId Connect plugin sends another request to Keycloak, using the <code>client_id</code> and <code>client_secret</code> pair, configured in the plugin, to validate the Authorization Code and ask Keycloak to issue the Access Token. The Data Plane finally routes the request to the HTTPbin application. As expected, the response, this time, includes the access token issued by Keycloak which was injected by the plugin as a Bearer Token</p>
-<p><a href="#R-image-f69c139b5eca7ccae176b6428a265ca8" class="lightbox-link"><img alt="keycloak_httpbin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_httpbin.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f69c139b5eca7ccae176b6428a265ca8"><img alt="keycloak_httpbin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_httpbin.png"></a></p>
+<p><a href="#R-image-cc4f4b65387e6bcdc47e45f46d6417f9" class="lightbox-link"><img alt="keycloak_httpbin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_httpbin.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc4f4b65387e6bcdc47e45f46d6417f9"><img alt="keycloak_httpbin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_httpbin.png"></a></p>
 <p>If you copy the token and decodes it with jwt you should see an output similar to this:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
 ------------
@@ -331,8 +331,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755008450" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755008450" defer></script>
-    <script src="/js/theme.js?1755008450" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755015119" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755015119" defer></script>
+    <script src="/js/theme.js?1755015119" defer></script>
   </body>
 </html>

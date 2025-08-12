@@ -23,9 +23,9 @@ The AI Proxy Advanced plugin supports semantic routing, which enables distributi
 
 By analyzing the content of the request, the plugin can match it to the most appropriate model that is known to perform better in similar contexts. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
 
-As a illustration here is the architecture where we are going to implement the multiple load balancing policies. AI Proxy Advanced will manage both Bedrock's LLM models:
-* us.amazon.nova-lite-v1:0
-* us.meta.llama3-3-70b-instruct-v1:0
+As a illustration here is the architecture where we are going to implement the multiple load balancing policies. AI Proxy Advanced will manage both LLMs:
+* gpt-4.1
+* llama3.2:1b
 
 ![ai_proxy_advanced](/static/images/ai_proxy_advanced.png)
 

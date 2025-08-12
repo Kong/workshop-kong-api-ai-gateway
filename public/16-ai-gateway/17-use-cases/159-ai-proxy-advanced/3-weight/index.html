@@ -5,22 +5,26 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.">
+    <meta name="description" content="Now, let’s redirect 80% of the request to OpenAI’s gpt-4.1 with a weight based policy:
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; weight: 20 EOF Apply the declaration with decK:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AI Prompt Template plugin :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.">
-    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html">
+    <meta name="twitter:title" content="Weight :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Now, let’s redirect 80% of the request to OpenAI’s gpt-4.1 with a weight based policy:
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; weight: 20 EOF Apply the declaration with decK:">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="AI Prompt Template plugin :: API Management with Kong Konnect">
-    <meta property="og:description" content="The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.">
+    <meta property="og:title" content="Weight :: API Management with Kong Konnect">
+    <meta property="og:description" content="Now, let’s redirect 80% of the request to OpenAI’s gpt-4.1 with a weight based policy:
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; weight: 20 EOF Apply the declaration with decK:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong AI Gateway">
-    <meta itemprop="name" content="AI Prompt Template plugin :: API Management with Kong Konnect">
-    <meta itemprop="description" content="The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.">
-    <meta itemprop="wordCount" content="310">
-    <title>AI Prompt Template plugin :: API Management with Kong Konnect</title>
+    <meta itemprop="name" content="Weight :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Now, let’s redirect 80% of the request to OpenAI’s gpt-4.1 with a weight based policy:
+cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; weight: 20 EOF Apply the declaration with decK:">
+    <meta itemprop="wordCount" content="109">
+    <title>Weight :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1755015119" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1755015119" defer></script>
     <script src="/js/search-lunr.js?1755015119" defer></script>
@@ -45,7 +49,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/16-ai-gateway\/17-use-cases\/151-prompt-engineering\/2-prompt-template\/index.html';
+      window.relearn.path='\/16-ai-gateway\/17-use-cases\/159-ai-proxy-advanced\/3-weight\/index.html';
       window.relearn.relBasePath='..\/..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -95,7 +99,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html">
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -111,12 +115,12 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><span itemprop="name">Prompt Engineering</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Prompt Template plugin</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><span itemprop="name">AI Proxy Advanced plugin</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Weight</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html" title="AI Prompt Decorator plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html" title="Round Robin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html" title="AI Prompt Guard plugin (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html" title="Lowest-Latency and Lowest-Usage (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -136,85 +140,51 @@
   <header class="headline">
   </header>
 
-<h1 id="ai-prompt-template-plugin">AI Prompt Template plugin</h1>
+<h1 id="weight">Weight</h1>
 
-<p>The <strong>AI Prompt Template</strong> plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: <code>{{variable}}</code>. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.</p>
-<p>This plugin also sanitizes string inputs to ensure that JSON control characters are escaped, preventing arbitrary prompt injection.</p>
-<p>When calling a template, simply replace the messages (<code>llm/v1/chat</code>) or prompt (<code>llm/v1/completions</code>) with a template reference, in the following format: <code>{template://TEMPLATE_NAME}</code></p>
-<p>Here&rsquo;s an example of template definition:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-prompt-template.yaml &lt;&lt; &#39;EOF&#39;
+<p>Now, let&rsquo;s redirect 80% of the request to OpenAI&rsquo;s gpt-4.1 with a weight based policy:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
-_konnect:
-  control_plane_name: kong-workshop
 _info:
   select_tags:
   - llm
+_konnect:
+  control_plane_name: kong-workshop
 services:
-- name: service1
+- name: ai-proxy-advanced-service
   host: localhost
   port: 32000
   routes:
-  - name: ollama-route
+  - name: route1
     paths:
-    - /ollama-route
+    - /route1
     plugins:
-    - name: ai-proxy
-      instance_name: ai-proxy-ollama
+    - name: ai-proxy-advanced
+      instance_name: ai-proxy-advanced1
       config:
-        route_type: llm/v1/chat
-        model:
-          provider: llama2
-          name: llama3.2:1b
-          options:
-            llama2_format: ollama
-            upstream_url: http://ollama.ollama:11434/api/chat
-  - name: openai-route
-    paths:
-    - /openai-route
-    plugins:
-    - name: ai-proxy
-      instance_name: ai-proxy-openai
-      config:
-        route_type: llm/v1/chat
-        auth:
-          header_name: Authorization
-          header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
-        model:
-          provider: openai
-          name: gpt-4.1
-          options:
-            temperature: 1.0
-    - name: ai-prompt-template
-      instance_name: ai-prompt-template-openai
-      enabled: true
-      config:
-        allow_untemplated_requests: true
-        templates:
-        - name: template1
-          template: |-
-            {
-                &#34;messages&#34;: [
-                    {
-                        &#34;role&#34;: &#34;user&#34;,
-                        &#34;content&#34;: &#34;Explain to me what {{thing}} is.&#34;
-                    }
-                ]
-            }
+        targets:
+        - model:
+            provider: openai
+            name: gpt-4.1
+            options:
+              temperature: 1.0
+          route_type: &#34;llm/v1/chat&#34;
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          weight: 80
+        - model:
+            provider: llama2
+            name: llama3.2:1b
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+          route_type: &#34;llm/v1/chat&#34;
+          weight: 20
 EOF</code></pre></div>
 <p>Apply the declaration with decK:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-prompt-template.yaml</code></pre></div>
-<p>Now, send a request referring the template:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
-  --url $DATA_PLANE_LB/openai-route \
-  --header &#39;Content-Type: application/json&#39; \
-  --data &#39;{
-     &#34;messages&#34;: &#34;{template://template1}&#34;,
-     &#34;properties&#34;: {
-       &#34;thing&#34;: &#34;niilism&#34;
-     }
-  }&#39; | jq</code></pre></div>
-<p>Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click <strong>Next</strong> to proceed with the next module.</p>
+deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
 
   <footer class="footline">
   </footer>
@@ -270,15 +240,16 @@ deck gateway sync --konnect-token $PAT ai-prompt-template.yaml</code></pre></div
             <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway/index.html">Kong AI Gateway</a></li>
             <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu">
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy plugin</a></li>
-            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu">
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html">AI Prompt Decorator plugin</a></li>
-            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html">AI Prompt Template plugin</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html">AI Prompt Guard plugin</a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomer plugins</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache plugin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth Plugin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced plugin</a></li>
-            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced plugin</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu"></ul></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced plugin</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html">Round Robin</a></li>
+            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html">Weight</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html">Lowest-Latency and Lowest-Usage</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html">Semantic Routing</a></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/170-rag/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/170-rag/index.html">RAG - Retrieval-Augmented Generation</a></li></ul></li></ul></li>
           </ul>
         </div>
