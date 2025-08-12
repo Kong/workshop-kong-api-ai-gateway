@@ -5,12 +5,18 @@ weight : 150
 
 The [AI Proxy plugin](https://docs.konghq.com/hub/kong-inc/ai-proxy/configuration/) is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
-![AI Proxy Bedrock](/static/images/ai_proxy.png)
+![AI Proxy](/static/images/ai_proxy.png)
 
 
 The following table describes which providers and requests the AI Proxy plugin supports:
 
 ![providers_support](/static/images/providers_support.png)
+
+* Obs 1: OpenAI has marked [Completions](https://platform.openai.com/docs/api-reference/completions) as legacy and recommends using the [Chat Completions API](https://platform.openai.com/docs/guides/text?api-mode=responses) for developing new applications.
+
+* Obs 2: Starting with Kong AI Gateway 3.11, new GenAI APIs are supported:
+
+![genai_apis](/static/images/genai_apis.jpg)
 
 
 ## Getting Started with Amazon Bedrock and Kong AI Gateway

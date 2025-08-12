@@ -23,7 +23,7 @@ As an example, here’s the typical topology and the Authorization Code with PKC
 
 1. Consumer sends a request to Kong Data Plane.
 2. Since the API is being protected with the OIDC plugin, the Data Plane redirects the consumer to the IdP. Consumer provides credentials to the Identity Provide (IdP).
-3. IdP authenticates the consumer enforcing security policies previously defined. The policies might involve several database technologies (e.g. LDAP, etc.), MFA (Multi-Fact Authentication), etc.
+3. IdP authenticates the consumer enforcing security policies previously defined. The policies might involve several database technologies (e.g. LDAP, etc.), MFA (Multi-Factor Authentication), etc.
 4. After user authentication, IdP redirects the consumer back to the Data Plane with the Authorization Code injected inside the request.
 5. Data Plane sends a request to the IdP’s token endpoint with the Authorization Code and gets an Access Token from the IdP.
 6. Data Plane routes the request to the upstream service along with the Access Token

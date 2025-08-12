@@ -8,11 +8,11 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/16-ai-gateway/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AI with Amazon Bedrock</title>
-      <link>http://localhost:1313/16-ai-gateway/159-ai-gateway-bedrock/index.html</link>
+      <title>Kong AI Gateway</title>
+      <link>http://localhost:1313/16-ai-gateway/159-ai-gateway/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/16-ai-gateway/159-ai-gateway-bedrock/index.html</guid>
-      <description>Kong AI Gateway With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely&#xA;While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</description>
+      <guid>http://localhost:1313/16-ai-gateway/159-ai-gateway/index.html</guid>
+      <description>With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely&#xA;While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</description>
     </item>
     <item>
       <title>Use Cases</title>

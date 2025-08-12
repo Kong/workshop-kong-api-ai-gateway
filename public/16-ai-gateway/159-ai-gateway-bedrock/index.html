@@ -25,26 +25,26 @@ While AI providers don’t conform to a standard API specification, the Kong AI 
 While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.">
     <meta itemprop="wordCount" content="354">
     <title>AI with Amazon Bedrock :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1754946161" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1754946161" defer></script>
-    <script src="/js/search-lunr.js?1754946161" defer></script>
-    <script src="/js/search.js?1754946161" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1754996815" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1754996815" defer></script>
+    <script src="/js/search-lunr.js?1754996815" defer></script>
+    <script src="/js/search.js?1754996815" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1754946161";
+      window.relearn.index_js_url="/searchindex.en.js?1754996815";
     </script>
-    <script src="/js/lunr/lunr.min.js?1754946161" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1754946161" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1754946161" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1754946161" defer></script>
+    <script src="/js/lunr/lunr.min.js?1754996815" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1754996815" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1754996815" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1754996815" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946161" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754946161" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754946161" rel="stylesheet">
-    <link href="/css/theme.css?1754946161" rel="stylesheet">
-    <link href="/css/format-html.css?1754946161" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754996815" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1754996815" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1754996815" rel="stylesheet">
+    <link href="/css/theme.css?1754996815" rel="stylesheet">
+    <link href="/css/format-html.css?1754996815" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -146,13 +146,13 @@ While AI providers don’t conform to a standard API specification, the Kong AI 
 <p>With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely</p>
 <p>While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</p>
 <p>You can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.</p>
-<p><a href="#R-image-e2d4c197ccc36178a19e2600c633c175" class="lightbox-link"><img alt="Kong AI Gateway Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai-gateway.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e2d4c197ccc36178a19e2600c633c175"><img alt="Kong AI Gateway Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai-gateway.png"></a></p>
+<p><a href="#R-image-711c14936f0e2fc7c4e702cb63c9126c" class="lightbox-link"><img alt="Kong AI Gateway Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai-gateway.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-711c14936f0e2fc7c4e702cb63c9126c"><img alt="Kong AI Gateway Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai-gateway.png"></a></p>
 <ul>
 <li>Kong AI Gateway functional scope</li>
 </ul>
-<p><a href="#R-image-4fbac4dff4465db2985f273d1cc4484d" class="lightbox-link"><img alt="Kong AI Gateway scope" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_scope.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4fbac4dff4465db2985f273d1cc4484d"><img alt="Kong AI Gateway scope" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_scope.png"></a></p>
+<p><a href="#R-image-373053457d1bb07f782b867467f6cf3f" class="lightbox-link"><img alt="Kong AI Gateway scope" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_scope.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-373053457d1bb07f782b867467f6cf3f"><img alt="Kong AI Gateway scope" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_scope.png"></a></p>
 <h4 id="amazon-bedrock">Amazon Bedrock</h4>
 <p>Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon through a single API, along with a broad set of capabilities you need to build generative AI applications with security, privacy, and responsible AI.</p>
 <p>Using Amazon Bedrock, you can easily experiment with and evaluate top FMs for your use case, privately customize them with your data using techniques such as fine-tuning and Retrieval Augmented Generation (RAG), and build agents that execute tasks using your enterprise systems and data sources. Since Amazon Bedrock is serverless, you don&rsquo;t have to manage any infrastructure, and you can securely integrate and deploy generative AI capabilities into your applications using the AWS services you are already familiar with.</p>
@@ -249,8 +249,8 @@ While AI providers don’t conform to a standard API specification, the Kong AI 
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1754946161" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754946161" defer></script>
-    <script src="/js/theme.js?1754946161" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1754996815" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1754996815" defer></script>
+    <script src="/js/theme.js?1754996815" defer></script>
   </body>
 </html>
