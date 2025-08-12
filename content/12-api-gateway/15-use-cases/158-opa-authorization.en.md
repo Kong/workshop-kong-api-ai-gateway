@@ -1,5 +1,5 @@
 ---
-title : "OPA (OpenPolicyAgent) - Authorization"
+title : "OPA (Open Policy Agent) - Authorization"
 weight : 158
 ---
 

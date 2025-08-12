@@ -72,9 +72,11 @@ kubectl delete namespace ollama
 {{</highlight>}}
 
 
+## Keycloak and OPA
+The installation procedures for both servers are available in the **OpenID Connect** and **OPA (Open Policy Agent)** sections
 
 
-## Metrics Server
+## Enable Metrics Server
 
 {{<highlight>}}
 minikube addons enable metrics-server

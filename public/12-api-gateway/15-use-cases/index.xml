@@ -50,7 +50,7 @@
       <description>For advanced and enterprise class requirements, OpenID Connect (OIDC) is the preferred option to implement API consumer Authentication. OIDC also provides mechanisms to implement Authorization. In fact, when applying OIDC to secure the APIs, we’re delegating the Authentication process to the external Identity Provider entity.&#xA;OpenID Connect is an authentication protocol built on top of OAuth 2.0 and JWT - JSON Web Token to add login and profile information about the identity who is logged in.</description>
     </item>
     <item>
-      <title>OPA (OpenPolicyAgent) - Authorization</title>
+      <title>OPA (Open Policy Agent) - Authorization</title>
       <link>http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html</guid>
