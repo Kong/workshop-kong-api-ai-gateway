@@ -1,5 +1,5 @@
 ---
-title : "Kong AI Gateway"
+title : "Introduction"
 weight : 159
 ---
 

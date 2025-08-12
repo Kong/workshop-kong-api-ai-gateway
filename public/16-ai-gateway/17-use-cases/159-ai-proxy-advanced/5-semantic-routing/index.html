@@ -19,28 +19,28 @@
     <meta property="article:section" content="Kong AI Gateway">
     <meta itemprop="name" content="Semantic Routing :: API Management with Kong Konnect">
     <meta itemprop="description" content="Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.">
-    <meta itemprop="wordCount" content="373">
+    <meta itemprop="wordCount" content="364">
     <title>Semantic Routing :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755015119" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755015119" defer></script>
-    <script src="/js/search-lunr.js?1755015119" defer></script>
-    <script src="/js/search.js?1755015119" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755016566" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755016566" defer></script>
+    <script src="/js/search-lunr.js?1755016566" defer></script>
+    <script src="/js/search.js?1755016566" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755015119";
+      window.relearn.index_js_url="/searchindex.en.js?1755016566";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755015119" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755015119" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755015119" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755015119" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755016566" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755016566" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755016566" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755016566" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755015119" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755015119" rel="stylesheet">
-    <link href="/css/theme.css?1755015119" rel="stylesheet">
-    <link href="/css/format-html.css?1755015119" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755016566" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755016566" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755016566" rel="stylesheet">
+    <link href="/css/theme.css?1755016566" rel="stylesheet">
+    <link href="/css/format-html.css?1755016566" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -140,134 +140,105 @@
 
 <h4 id="semantic">Semantic</h4>
 <p>The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.</p>
-<p><a href="#R-image-b0294cd045c437a58ff8438885675d8e" class="lightbox-link"><img alt="Semantic Routing" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_routing.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b0294cd045c437a58ff8438885675d8e"><img alt="Semantic Routing" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_routing.png"></a></p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; ai-proxy-advanced.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+<p><a href="#R-image-b9d573b0a3132997737edb4bd55f8db3" class="lightbox-link"><img alt="Semantic Routing" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_routing.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b9d573b0a3132997737edb4bd55f8db3"><img alt="Semantic Routing" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_routing.png"></a></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _info:
-select_tags:</p>
-<ul>
-<li>bedrock
+  select_tags:
+  - llm
 _konnect:
-control_plane_name: kong-aws
-services:</li>
-<li>name: ai-proxy-advanced-service
-host: localhost
-port: 32000
-routes:
-<ul>
-<li>name: route1
-paths:
-<ul>
-<li>/bedrock-route
-plugins:</li>
-<li>name: ai-proxy-advanced
-instance_name: ai-proxy-advanced-bedrock
-config:
-balancer:
-algorithm: semantic
-embeddings:
-auth:
-param_name: &ldquo;allow_override&rdquo;
-param_value: &ldquo;false&rdquo;
-param_location: &ldquo;body&rdquo;
-model:
-provider: bedrock
-name: &ldquo;amazon.titan-embed-text-v2:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-vectordb:
-dimensions: 1024
-distance_metric: cosine
-strategy: redis
-threshold: 1.0
-redis:
-host: &ldquo;redis-stack.redis.svc.cluster.local&rdquo;
-port: 6379
-database: 0
-targets:
-<ul>
-<li>model:
-provider: bedrock
-name: &ldquo;us.amazon.nova-micro-v1:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-route_type: &ldquo;llm/v1/chat&rdquo;
-auth:
-allow_override: false
-description: &ldquo;mathematics, algebra, calculus, trigonometry&rdquo;</li>
-<li>model:
-provider: bedrock
-name: &ldquo;us.meta.llama3-3-70b-instruct-v1:0&rdquo;
-options:
-bedrock:
-aws_region: us-west-2
-route_type: &ldquo;llm/v1/chat&rdquo;
-auth:
-allow_override: false
-description: &ldquo;piano, orchestra, liszt, classical music&rdquo;
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
-deck gateway sync &ndash;konnect-token $PAT ai-proxy-advanced.yaml
-:::</p>
-<p>Send a request related to Mathematics. The response should come from Amazon&rsquo;s Nova Micro model
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Tell me about the last theorem of Fermat&rdquo;
-}
-]
-}&rsquo; | jq
-:::</p>
-<p>On the other hand, Llama3.3 should be responsible for requests related to Classical Music.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Who wrote the Hungarian Rhapsodies piano pieces?&rdquo;
-}
-]
-}&rsquo; | jq
-:::</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST <br>
-&ndash;url $DATA_PLANE_LB/bedrock-route <br>
-&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
-&ndash;data &lsquo;{
-&ldquo;messages&rdquo;: [
-{
-&ldquo;role&rdquo;: &ldquo;user&rdquo;,
-&ldquo;content&rdquo;: &ldquo;Tell me a contemporaty pianist of Chopin&rdquo;
-}
-]
-}&rsquo; | jq
-:::</p>
-<p>If you check Redis, you&rsquo;ll se there are two entries, related to the models
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].metadata.name&rsquo;) -n redis &ndash; redis-cli &ndash;scan
-:::</p>
+  control_plane_name: kong-workshop
+services:
+- name: ai-proxy-advanced-service
+  host: localhost
+  port: 32000
+  routes:
+  - name: route1
+    paths:
+    - /route1
+    plugins:
+    - name: ai-proxy-advanced
+      instance_name: ai-proxy-advanced1
+      config:
+        balancer:
+          algorithm: semantic
+        embeddings:
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          model:
+            provider: openai
+            name: &#34;text-embedding-3-small&#34;
+        vectordb:
+          dimensions: 1024
+          distance_metric: cosine
+          strategy: redis
+          threshold: 1.0
+          redis:
+            host: &#34;redis-stack.redis.svc.cluster.local&#34;
+            port: 6379
+            database: 0
+        targets:
+        - model:
+            provider: openai
+            name: gpt-4.1
+            options:
+              temperature: 1.0
+          route_type: &#34;llm/v1/chat&#34;
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          description: &#34;mathematics, algebra, calculus, trigonometry&#34;
+        - model:
+            provider: llama2
+            name: llama3.2:1b
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+          route_type: &#34;llm/v1/chat&#34;
+          description: &#34;piano, orchestra, liszt, classical music&#34;
+EOF</code></pre></div>
+<p>Apply the declaration with decK:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
+<p>Send a request related to Mathematics. The response should come from OpenAI&rsquo;s gpt-4.1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;Tell me about the last theorem of Fermat&#34;
+       }
+     ]
+   }&#39; | jq</code></pre></div>
+<p>On the other hand, Llama3.1 should be responsible for requests related to Classical Music.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+    &#34;messages&#34;: [
+      {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: &#34;Who wrote the Hungarian Rhapsodies piano pieces?&#34;
+      }
+    ]
+  }&#39; | jq</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+    &#34;messages&#34;: [
+      {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: &#34;Tell me a contemporaty pianist of Chopin&#34;
+      }
+    ]
+  }&#39; | jq</code></pre></div>
+<p>If you check Redis, you&rsquo;ll se there are two entries, related to the models</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <ul>
 <li>Expected output</li>
 </ul>
@@ -356,8 +327,8 @@ kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &lsquo;.items[].meta
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755015119" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755015119" defer></script>
-    <script src="/js/theme.js?1755015119" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755016566" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755016566" defer></script>
+    <script src="/js/theme.js?1755016566" defer></script>
   </body>
 </html>

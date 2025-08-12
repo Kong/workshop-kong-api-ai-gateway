@@ -13,14 +13,14 @@ The semantic algorithm distributes requests to different models based on the sim
 
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-proxy-advanced.yaml << 'EOF'
 _format_version: "3.0"
 _info:
   select_tags:
-  - bedrock
+  - llm
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: ai-proxy-advanced-service
   host: localhost
@@ -28,24 +28,20 @@ services:
   routes:
   - name: route1
     paths:
-    - /bedrock-route
+    - /route1
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced1
       config:
         balancer:
           algorithm: semantic
         embeddings:
           auth:
-            param_name: "allow_override"
-            param_value: "false"
-            param_location: "body"
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           model:
-            provider: bedrock
-            name: "amazon.titan-embed-text-v2:0"
-            options:
-              bedrock:
-                aws_region: us-west-2
+            provider: openai
+            name: "text-embedding-3-small"
         vectordb:
           dimensions: 1024
           distance_metric: cosine
@@ -57,41 +53,39 @@ services:
             database: 0
         targets:
         - model:
-            provider: bedrock
-            name: "us.amazon.nova-micro-v1:0"
+            provider: openai
+            name: gpt-4.1
             options:
-              bedrock:
-                aws_region: us-west-2
+              temperature: 1.0
           route_type: "llm/v1/chat"
           auth:
-            allow_override: false
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           description: "mathematics, algebra, calculus, trigonometry"
         - model:
-            provider: bedrock
-            name: "us.meta.llama3-3-70b-instruct-v1:0"
+            provider: llama2
+            name: llama3.2:1b
             options:
-              bedrock:
-                aws_region: us-west-2
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
           route_type: "llm/v1/chat"
-          auth:
-            allow_override: false
           description: "piano, orchestra, liszt, classical music"
 EOF
-:::
+```
 
 
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml
-:::
+```
 
 
-Send a request related to Mathematics. The response should come from Amazon's Nova Micro model
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+Send a request related to Mathematics. The response should come from OpenAI's gpt-4.1
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/route1 \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [
@@ -101,14 +95,14 @@ curl -s -X POST \
        }
      ]
    }' | jq
-:::
+```
 
 
-On the other hand, Llama3.3 should be responsible for requests related to Classical Music.
+On the other hand, Llama3.1 should be responsible for requests related to Classical Music.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/route1 \
   --header 'Content-Type: application/json' \
   --data '{
     "messages": [
@@ -118,11 +112,11 @@ curl -s -X POST \
       }
     ]
   }' | jq
-:::
+```
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/route1 \
   --header 'Content-Type: application/json' \
   --data '{
     "messages": [
@@ -132,13 +126,13 @@ curl -s -X POST \
       }
     ]
   }' | jq
-:::
+```
 
 
 If you check Redis, you'll se there are two entries, related to the models
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-cli --scan
-:::
+```
 
 * Expected output
 ```
