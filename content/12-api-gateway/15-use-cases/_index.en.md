@@ -11,6 +11,7 @@ In this chapter we are going to explore the following common use cases we typica
 * Request Transformer
 * Request Callout
 * OpenID Connect with Keycloak
+* Access Control with Open Policy Agent (OPA)
 
 These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the [Plugin Hub](https://docs.konghq.com/hub/).
 
