@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AI Proxy Advanced plugin :: API Management with Kong Konnect</title>
+    <title>AI Proxy Advanced :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html</link>
     <description>The AI Proxy Advanced plugin lets you transform and proxy requests to multiple AI providers and models at the same time. This lets you set up load balancing between targets.&#xA;The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.&#xA;Load balancing This plugin supports several load-balancing algorithms, similar to those used for Kong upstreams, allowing efficient distribution of requests across different AI models. The supported algorithms include:</description>
     <generator>Hugo</generator>

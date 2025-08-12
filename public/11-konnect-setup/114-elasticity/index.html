@@ -37,26 +37,26 @@ kubectl get service -n kong Sample Output
 NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy1 LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
     <meta itemprop="wordCount" content="1006">
     <title>Data Plane Elasticity :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755023175" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755023175" defer></script>
-    <script src="/js/search-lunr.js?1755023175" defer></script>
-    <script src="/js/search.js?1755023175" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755030470" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755030470" defer></script>
+    <script src="/js/search-lunr.js?1755030470" defer></script>
+    <script src="/js/search.js?1755030470" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755023175";
+      window.relearn.index_js_url="/searchindex.en.js?1755030470";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755023175" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755030470" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755023175" rel="stylesheet">
-    <link href="/css/theme.css?1755023175" rel="stylesheet">
-    <link href="/css/format-html.css?1755023175" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755030470" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755030470" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755030470" rel="stylesheet">
+    <link href="/css/theme.css?1755030470" rel="stylesheet">
+    <link href="/css/format-html.css?1755030470" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -438,8 +438,8 @@ EOF</code></pre></div>
             <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="parent " data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu">
-            <li class="" data-nav-id="/11-konnect-setup/111-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/111-personal-access-token/index.html">PAT - Personal Access Token</a></li>
-            <li class="" data-nav-id="/11-konnect-setup/112-kgo-installation/index.html"><a class="padding" href="/11-konnect-setup/112-kgo-installation/index.html">Kong Gateway Operator</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/111-kgo-installation/index.html"><a class="padding" href="/11-konnect-setup/111-kgo-installation/index.html">Kong Gateway Operator</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/112-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/112-personal-access-token/index.html">PAT - Personal Access Token</a></li>
             <li class="" data-nav-id="/11-konnect-setup/113-cp-dp/index.html"><a class="padding" href="/11-konnect-setup/113-cp-dp/index.html">Control Plane and Data Plane</a></li>
             <li class="active " data-nav-id="/11-konnect-setup/114-elasticity/index.html"><a class="padding" href="/11-konnect-setup/114-elasticity/index.html">Data Plane Elasticity</a></li></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
@@ -461,8 +461,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755023175" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755023175" defer></script>
-    <script src="/js/theme.js?1755023175" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755030470" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755030470" defer></script>
+    <script src="/js/theme.js?1755030470" defer></script>
   </body>
 </html>

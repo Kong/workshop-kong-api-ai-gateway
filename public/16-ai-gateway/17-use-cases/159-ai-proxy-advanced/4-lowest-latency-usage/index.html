@@ -29,26 +29,26 @@ Create a file with the following declaration:
 cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: lowest-latency latency_strategy: e2e targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; EOF Apply the declaration with decK:">
     <meta itemprop="wordCount" content="342">
     <title>Lowest-Latency and Lowest-Usage :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755023175" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755023175" defer></script>
-    <script src="/js/search-lunr.js?1755023175" defer></script>
-    <script src="/js/search.js?1755023175" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755029844" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755029844" defer></script>
+    <script src="/js/search-lunr.js?1755029844" defer></script>
+    <script src="/js/search.js?1755029844" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755023175";
+      window.relearn.index_js_url="/searchindex.en.js?1755029844";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755023175" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755029844" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755023175" rel="stylesheet">
-    <link href="/css/theme.css?1755023175" rel="stylesheet">
-    <link href="/css/format-html.css?1755023175" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755029844" rel="stylesheet">
+    <link href="/css/theme.css?1755029844" rel="stylesheet">
+    <link href="/css/format-html.css?1755029844" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -119,7 +119,7 @@ cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><span itemprop="name">AI Proxy Advanced plugin</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Lowest-Latency and Lowest-Usage</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><span itemprop="name">AI Proxy Advanced</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Lowest-Latency and Lowest-Usage</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html" title="Weight (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -315,13 +315,13 @@ deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
             <li class="parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
             <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway/index.html">Introduction</a></li>
             <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu">
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy plugin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy</a></li>
             <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomer plugins</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache plugin</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth Plugin</a></li>
-            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced plugin</a></li>
-            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced plugin</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomers</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced</a></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced</a><ul id="R-subsections-2fae536c9a93e13a3229a0587c096fc2" class="collapsible-menu">
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html">Round Robin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html">Weight</a></li>
             <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html">Lowest-Latency and Lowest-Usage</a></li>
@@ -344,8 +344,8 @@ deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755023175" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755023175" defer></script>
-    <script src="/js/theme.js?1755023175" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755029844" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755029844" defer></script>
+    <script src="/js/theme.js?1755029844" defer></script>
   </body>
 </html>

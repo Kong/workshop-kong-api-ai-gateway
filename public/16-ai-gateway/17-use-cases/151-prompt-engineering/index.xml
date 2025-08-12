@@ -8,21 +8,21 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AI Prompt Decorator plugin</title>
+      <title>AI Prompt Decorator</title>
       <link>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html</guid>
       <description>The AI Prompt Decorator plugin adds an array of llm/v1/chat messages to either the start or end of an LLM consumer’s chat history. This allows you to pre-engineer complex prompts, or steer (and guard) prompts in such a way that the modification to the consumer’s LLM message is completely transparent.&#xA;You can use this plugin to pre-set a system prompt, set up specific prompt history, add words and phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway.</description>
     </item>
     <item>
-      <title>AI Prompt Template plugin</title>
+      <title>AI Prompt Template</title>
       <link>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html</guid>
       <description>The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.</description>
     </item>
     <item>
-      <title>AI Prompt Guard plugin</title>
+      <title>AI Prompt Guard</title>
       <link>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html</guid>

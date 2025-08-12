@@ -1,6 +1,6 @@
 ---
 title : "PAT - Personal Access Token"
-weight : 111
+weight : 112
 ---
 
 KGO requires a [Konnect Personal Access Token (PAT)](https://docs.konghq.com/konnect/org-management/access-tokens/) for creating the Control Plane. To generate your PAT,  click on your initials in the upper right corner of the Konnect home page, then select **Personal Access Tokens**. Click on **+ Generate Token**, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.
@@ -24,6 +24,7 @@ export PAT=PASTE_THE_CONTENTS_OF_COPIED_PAT
 
 
 * Create the namespace
+
 {{<highlight>}}
 kubectl create namespace kong
 {{</highlight>}}
@@ -41,6 +42,7 @@ kubectl label secret konnect-pat -n kong "konghq.com/credential=konnect"
 
 
 * Check your Secret. You should your PAT.
+
 {{<highlight>}}
 kubectl get secret konnect-pat -n kong -o jsonpath='{.data.*}' | base64 -d
 {{</highlight>}}

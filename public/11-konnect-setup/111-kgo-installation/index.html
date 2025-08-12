@@ -5,45 +5,53 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="">
+    <meta name="description" content="Install the Operator To get started let’s install the Operator:
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Tags :: API Management with Kong Konnect">
-    <meta property="og:url" content="http://localhost:1313/tags/index.html">
+    <meta name="twitter:title" content="Kong Gateway Operator :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Install the Operator To get started let’s install the Operator:
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:">
+    <meta property="og:url" content="http://localhost:1313/11-konnect-setup/111-kgo-installation/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Tags :: API Management with Kong Konnect">
+    <meta property="og:title" content="Kong Gateway Operator :: API Management with Kong Konnect">
+    <meta property="og:description" content="Install the Operator To get started let’s install the Operator:
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:">
     <meta property="og:locale" content="en_us">
-    <meta property="og:type" content="website">
-    <meta itemprop="name" content="Tags :: API Management with Kong Konnect">
-    <title>Tags :: API Management with Kong Konnect</title>
-    <link href="/tags/index.xml" rel="alternate" type="application/rss+xml" title="Tags :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1755029844" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755029844" defer></script>
-    <script src="/js/search-lunr.js?1755029844" defer></script>
-    <script src="/js/search.js?1755029844" defer></script>
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Konnect Setup">
+    <meta itemprop="name" content="Kong Gateway Operator :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Install the Operator To get started let’s install the Operator:
+helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:">
+    <meta itemprop="wordCount" content="111">
+    <title>Kong Gateway Operator :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1755030470" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755030470" defer></script>
+    <script src="/js/search-lunr.js?1755030470" defer></script>
+    <script src="/js/search.js?1755030470" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755029844";
+      window.relearn.index_js_url="/searchindex.en.js?1755030470";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755029844" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755029844" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755029844" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755030470" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755030470" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755029844" rel="stylesheet">
-    <link href="/css/theme.css?1755029844" rel="stylesheet">
-    <link href="/css/format-html.css?1755029844" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755030470" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755030470" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755030470" rel="stylesheet">
+    <link href="/css/theme.css?1755030470" rel="stylesheet">
+    <link href="/css/format-html.css?1755030470" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/tags\/index.html';
-      window.relearn.relBasePath='..';
-      window.relearn.relBaseUri='..';
+      window.relearn.path='\/11-konnect-setup\/111-kgo-installation\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -91,7 +99,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/tags/index.html">
+  <body class="mobile-support html" data-url="/11-konnect-setup/111-kgo-installation/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -107,12 +115,12 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Tags</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/11-konnect-setup/index.html"><span itemprop="name">Konnect Setup</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong Gateway Operator</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/index.html" title="API Management with Kong Konnect (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/index.html" title="Konnect Setup (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/11-konnect-setup/112-personal-access-token/index.html" title="PAT - Personal Access Token (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -126,13 +134,34 @@
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable tags" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 11-konnect-setup" tabindex="-1">
         <div class="flex-block-wrapper">
-<article>
+<article class="default">
   <header class="headline">
   </header>
-<h1 id="tags">Tags</h1>
 
+<h1 id="kong-gateway-operator">Kong Gateway Operator</h1>
+
+<h4 id="install-the-operator">Install the Operator</h4>
+<p>To get started let&rsquo;s install the Operator:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add kong https://charts.konghq.com
+helm repo update kong</code></pre></div>
+
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade --install kgo kong/gateway-operator \
+-n kong-system \
+--create-namespace \
+--set image.tag=1.6.2 \
+--set kubernetes-configuration-crds.enabled=true \
+--set env.ENABLE_CONTROLLER_KONNECT=true</code></pre></div>
+
+<p>You can check the Operator&rsquo;s log with:
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system</code></pre></div>
+</p>
+<h4 id="delete-kgo">Delete KGO</h4>
+<p>If you want to delete KGO run:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall kgo -n kong-system
+kubectl delete namespace kong-system</code></pre></div>
+<p>Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click <strong>Next</strong> to proceed with the next module.</p>
 
   <footer class="footline">
   </footer>
@@ -182,7 +211,11 @@
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
-            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu">
+            <li class="active " data-nav-id="/11-konnect-setup/111-kgo-installation/index.html"><a class="padding" href="/11-konnect-setup/111-kgo-installation/index.html">Kong Gateway Operator</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/112-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/112-personal-access-token/index.html">PAT - Personal Access Token</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/113-cp-dp/index.html"><a class="padding" href="/11-konnect-setup/113-cp-dp/index.html">Control Plane and Data Plane</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/114-elasticity/index.html"><a class="padding" href="/11-konnect-setup/114-elasticity/index.html">Data Plane Elasticity</a></li></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
@@ -202,8 +235,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755029844" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755029844" defer></script>
-    <script src="/js/theme.js?1755029844" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755030470" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755030470" defer></script>
+    <script src="/js/theme.js?1755030470" defer></script>
   </body>
 </html>

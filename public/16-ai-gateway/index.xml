@@ -19,7 +19,7 @@
       <link>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</guid>
-      <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformer AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
+      <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
     </item>
   </channel>
 </rss>

@@ -36,14 +36,8 @@ EOF
 {{</highlight>}}
 
 
-**Expected Sample Output**
 
-```
-konnectapiauthconfiguration.konnect.konghq.com/konnect-api-auth-conf created
-konnectgatewaycontrolplane.konnect.konghq.com/kong-aws created
-```
-
-If you go to Konnect UI >  Gateway manager, you should see a new control plane named `kong-aws` getting created.
+If you go to Konnect UI > Gateway manager, you should see a new control plane named `kong-workshop` getting created.
 
 #### Data Plane deployment
 
@@ -123,6 +117,20 @@ You can check the Data Plane logs with
 {{<highlight>}}
 kubectl logs -f $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong
 {{</highlight>}}
+
+
+#### Control Plane and Data Plane deletion
+
+If you want to delete CP and DP run:
+
+```
+kubectl delete dataplane dataplane1 -n kong
+kubectl delete konnectextensions.konnect.konghq.com konnect-config1 -n kong
+kubectl delete konnectgatewaycontrolplane kong-workshop -n kong
+kubectl delete konnectapiauthconfiguration konnect-api-auth-conf -n kong
+kubectl delete secret konnect-pat -n kong
+kubectl delete namespace kong
+```
 
 #### Further Reading
 

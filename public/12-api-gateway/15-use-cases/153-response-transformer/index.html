@@ -11,14 +11,14 @@ Create the Response Transformer Plugin Take the plugins declaration and enable t
 cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Response Transformer Plugin :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="Response Transformer :: API Management with Kong Konnect">
     <meta name="twitter:description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
 cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Response Transformer Plugin :: API Management with Kong Konnect">
+    <meta property="og:title" content="Response Transformer :: API Management with Kong Konnect">
     <meta property="og:description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
@@ -26,33 +26,33 @@ cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
-    <meta itemprop="name" content="Response Transformer Plugin :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Response Transformer :: API Management with Kong Konnect">
     <meta itemprop="description" content="The Response Transformer plugin modifies the upstream response (e.g. response from the server) before returning it to the client.
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header “demo: injected-by-kong” before responding to the client.
 Create the Response Transformer Plugin Take the plugins declaration and enable the Response Transformer plugin to the Route.
 cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: response-transformer-route paths: - /response-transformer-route plugins: - name: response-transformer instance_name: response-transformer1 config: add: headers: - demo:injected-by-kong EOF Submit the declaration deck gateway sync --konnect-token $PAT response-transformer.yaml">
     <meta itemprop="wordCount" content="274">
-    <title>Response Transformer Plugin :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755023175" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755023175" defer></script>
-    <script src="/js/search-lunr.js?1755023175" defer></script>
-    <script src="/js/search.js?1755023175" defer></script>
+    <title>Response Transformer :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1755029844" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755029844" defer></script>
+    <script src="/js/search-lunr.js?1755029844" defer></script>
+    <script src="/js/search.js?1755029844" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755023175";
+      window.relearn.index_js_url="/searchindex.en.js?1755029844";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755023175" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755023175" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755029844" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755029844" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755023175" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755023175" rel="stylesheet">
-    <link href="/css/theme.css?1755023175" rel="stylesheet">
-    <link href="/css/format-html.css?1755023175" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755029844" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755029844" rel="stylesheet">
+    <link href="/css/theme.css?1755029844" rel="stylesheet">
+    <link href="/css/format-html.css?1755029844" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -133,12 +133,12 @@ cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Response Transformer Plugin</span><meta itemprop="position" content="4"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Response Transformer</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html" title="API Key Authentication (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/154-request-callout/index.html" title="Request Callout Plugin (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/154-request-callout/index.html" title="Request Callout (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -158,7 +158,7 @@ cat &gt; response-transformer.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;
   <header class="headline">
   </header>
 
-<h1 id="response-transformer-plugin">Response Transformer Plugin</h1>
+<h1 id="response-transformer">Response Transformer</h1>
 
 <p>The <a href="https://docs.konghq.com/hub/kong-inc/response-transformer/" rel="external" target="_blank">Response Transformer</a> plugin modifies the upstream response (e.g. response from the server) before returning it to the client.</p>
 <p>In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header &ldquo;demo: injected-by-kong&rdquo; before responding to the client.</p>
@@ -270,11 +270,11 @@ X-Kong-Request-Id: 6d294407e61075665321d07709210e3a</code></pre></div>
             <li class="parent alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu">
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/150-proxy-caching/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/150-proxy-caching/index.html">Proxy Caching</a></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/151-key-authentication/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/151-key-authentication/index.html">API Key Authentication</a></li>
-            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer Plugin</a></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout Plugin</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/15-use-cases/153-response-transformer/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/153-response-transformer/index.html">Response Transformer</a></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/154-request-callout/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/154-request-callout/index.html">Request Callout</a></li>
             <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html">Rate Limiting Using Redis</a><ul id="R-subsections-6547d583843936d30f1b726eb5939c1a" class="collapsible-menu"></ul></li>
             <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/index.html">OpenID Connect</a><ul id="R-subsections-34875f368b35fa0fde449b57e732d3fb" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-opa-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">OPA (Open Policy Agent) - Authorization</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-opa-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">OPA (Open Policy Agent)</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
           </ul>
         </div>
@@ -293,8 +293,8 @@ X-Kong-Request-Id: 6d294407e61075665321d07709210e3a</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755023175" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755023175" defer></script>
-    <script src="/js/theme.js?1755023175" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755029844" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755029844" defer></script>
+    <script src="/js/theme.js?1755029844" defer></script>
   </body>
 </html>

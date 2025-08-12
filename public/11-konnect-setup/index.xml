@@ -8,25 +8,25 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/11-konnect-setup/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>PAT - Personal Access Token</title>
-      <link>http://localhost:1313/11-konnect-setup/111-personal-access-token/index.html</link>
+      <title>Kong Gateway Operator</title>
+      <link>http://localhost:1313/11-konnect-setup/111-kgo-installation/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/11-konnect-setup/111-personal-access-token/index.html</guid>
-      <description>KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on + Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.</description>
+      <guid>http://localhost:1313/11-konnect-setup/111-kgo-installation/index.html</guid>
+      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:</description>
     </item>
     <item>
-      <title>Kong Gateway Operator</title>
-      <link>http://localhost:1313/11-konnect-setup/112-kgo-installation/index.html</link>
+      <title>PAT - Personal Access Token</title>
+      <link>http://localhost:1313/11-konnect-setup/112-personal-access-token/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/11-konnect-setup/112-kgo-installation/index.html</guid>
-      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Kong-gratulations! have now reached the end of this module by creating a Kong Operator. You can now click Next to proceed with the next module.</description>
+      <guid>http://localhost:1313/11-konnect-setup/112-personal-access-token/index.html</guid>
+      <description>KGO requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on + Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.</description>
     </item>
     <item>
       <title>Control Plane and Data Plane</title>
       <link>http://localhost:1313/11-konnect-setup/113-cp-dp/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/11-konnect-setup/113-cp-dp/index.html</guid>
-      <description>Control Plane Deployment The following declaration defines an Authentication Configuration, based on the Kubernetes Secret and referring to a Konnect API URL, and the actual Konnect Control Plane.&#xA;cat &lt;&lt;EOF | kubectl apply -f - kind: KonnectAPIAuthConfiguration apiVersion: konnect.konghq.com/v1alpha1 metadata: name: konnect-api-auth-conf namespace: kong spec: type: secretRef secretRef: name: konnect-pat namespace: kong serverURL: us.api.konghq.com --- kind: KonnectGatewayControlPlane apiVersion: konnect.konghq.com/v1alpha1 metadata: name: kong-workshop namespace: kong spec: name: kong-workshop konnect: authRef: name: konnect-api-auth-conf EOF Expected Sample Output</description>
+      <description>Control Plane Deployment The following declaration defines an Authentication Configuration, based on the Kubernetes Secret and referring to a Konnect API URL, and the actual Konnect Control Plane.&#xA;cat &lt;&lt;EOF | kubectl apply -f - kind: KonnectAPIAuthConfiguration apiVersion: konnect.konghq.com/v1alpha1 metadata: name: konnect-api-auth-conf namespace: kong spec: type: secretRef secretRef: name: konnect-pat namespace: kong serverURL: us.api.konghq.com --- kind: KonnectGatewayControlPlane apiVersion: konnect.konghq.com/v1alpha1 metadata: name: kong-workshop namespace: kong spec: name: kong-workshop konnect: authRef: name: konnect-api-auth-conf EOF If you go to Konnect UI &gt; Gateway manager, you should see a new control plane named kong-workshop getting created.</description>
     </item>
     <item>
       <title>Data Plane Elasticity</title>
