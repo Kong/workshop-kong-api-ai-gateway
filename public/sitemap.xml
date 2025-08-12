@@ -34,7 +34,7 @@
     <loc>http://localhost:1313/architecture/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/10-prerequisites/redis-ollama/index.html</loc>
+    <loc>http://localhost:1313/10-prerequisites/redis-ollama-keycloak-opa/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/11-konnect-setup/index.html</loc>
