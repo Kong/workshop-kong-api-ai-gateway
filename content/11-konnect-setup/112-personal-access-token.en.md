@@ -33,7 +33,7 @@ kubectl create namespace kong
 * Create K8s Secret with PAT
 
 > [!NOTE]
-> Pls don’t forget to replace **PASTE_THE_CONTENTS_OF_COPIED_PAT** in the below command with the copied PAT from Kong UI.
+> Don’t forget to replace **PASTE_THE_CONTENTS_OF_COPIED_PAT** in the command above with the copied PAT from Kong UI.
 
 {{<highlight>}}
 kubectl create secret generic konnect-pat -n kong --from-literal=token=$(echo $PAT)
