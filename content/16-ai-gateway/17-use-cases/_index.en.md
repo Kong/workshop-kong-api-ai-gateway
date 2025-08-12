@@ -7,7 +7,7 @@ In this chapter we are going to explore the following common use cases we typica
 
 * Simple AI Gateway Proxy
 * Prompt Engineering
-* AI Request and Response Tranformer
+* AI Request and Response Tranformers
 * AI Semantic Cache
 * AI Rate Limiting
 * AI Proxy Advanced and load balancing algoritms
