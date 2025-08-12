@@ -1,5 +1,5 @@
 ---
-title : "AI Prompt Template plugin"
+title : "AI Prompt Template"
 weight : 2
 ---
 

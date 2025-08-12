@@ -1,5 +1,5 @@
 ---
-title : "AI Request and Response Transfomer plugins"
+title : "AI Request and Response Transfomers"
 weight : 155
 ---
 

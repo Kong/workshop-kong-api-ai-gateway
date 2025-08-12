@@ -1,5 +1,5 @@
 ---
-title : "AI Rate Limiting Advanced plugin"
+title : "AI Rate Limiting Advanced"
 weight : 158
 ---
 

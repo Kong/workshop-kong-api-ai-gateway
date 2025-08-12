@@ -1,5 +1,5 @@
 ---
-title : "Key Auth Plugin"
+title : "Key Auth"
 weight : 157
 ---
 

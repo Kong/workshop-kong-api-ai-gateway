@@ -1,5 +1,5 @@
 ---
-title : "AI Prompt Decorator plugin"
+title : "AI Prompt Decorator"
 weight : 1
 ---
 

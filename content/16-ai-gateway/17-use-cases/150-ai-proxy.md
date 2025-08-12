@@ -1,5 +1,5 @@
 ---
-title : "AI Proxy plugin"
+title : "AI Proxy"
 weight : 150
 ---
 

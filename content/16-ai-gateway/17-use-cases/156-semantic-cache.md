@@ -1,5 +1,5 @@
 ---
-title : "AI Semantic Cache plugin"
+title : "AI Semantic Cache"
 weight : 156
 ---
 

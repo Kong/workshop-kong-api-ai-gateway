@@ -1,5 +1,5 @@
 ---
-title : "Request Callout Plugin"
+title : "Request Callout"
 weight : 154
 ---
 

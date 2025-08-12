@@ -1,5 +1,5 @@
 ---
-title : "AI Prompt Guard plugin"
+title : "AI Prompt Guard"
 weight : 3
 ---
 

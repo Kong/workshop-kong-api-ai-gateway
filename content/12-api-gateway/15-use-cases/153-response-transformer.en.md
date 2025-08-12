@@ -1,5 +1,5 @@
 ---
-title : "Response Transformer Plugin"
+title : "Response Transformer"
 weight : 153
 ---
 
