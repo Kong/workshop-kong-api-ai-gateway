@@ -21,14 +21,12 @@ The following table describes which providers and requests the AI Proxy plugin s
 
 ## Getting Started with Kong AI Gateway
 
-We are going to get started with a simple configuration. The following decK declaration enables the **AI Proxy** plugin to the Kong Gateway Service, to send requests to the LLM and consume the **amazon.nova-micro-v1:0** Amazon FM with **chat** LLM requests.
+We are going to get started with a simple configuration. The following decK declaration enables the **AI Proxy** plugin to the Kong Gateway Service, to send requests to the LLM and consume the Ollama's **lamma3.2:1b** FM and OpenAI's **gpt-5** FM with **chat** LLM requests.
 
-For Amazon Bedrock, the **allow_override** parameter should be set to ``false``, saying the the authorization header or parameter can not be overridden by requests.
-
-Update your **ai-gateway.yaml** file with that. Make sure you have the **DECK_OPENAI_API_KEY** environment variable set with your OpenAI's API Key.
+Update your **ai-proxy.yaml** file with that. Make sure you have the **DECK_OPENAI_API_KEY** environment variable set with your OpenAI's API Key.
 
 ```
-cat > ai-gateway.yaml << 'EOF'
+cat > ai-proxy.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
   control_plane_name: kong-workshop
@@ -77,7 +75,7 @@ EOF
 Apply the declaration with decK:
 ```
 deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-gateway.yaml
+deck gateway sync --konnect-token $PAT ai-proxy.yaml
 ```
 
 
@@ -195,10 +193,10 @@ The **AI Proxy** plugin is responsible for a variety of topics. For example:
 
 ### Define the model to be consume when sending the request
 
-As you may have noticed our **AI Proxy** plugin defines the model it should consume. That is can be done for individual requests, if required. Change the **ai-gateway.yaml** file, removing the model's name parameter and apply the declaration again:
+As you may have noticed our **AI Proxy** plugin defines the model it should consume. That is can be done for individual requests, if required. Change the **ai-proxy.yaml** file, removing the model's name parameter and apply the declaration again:
 
 ```
-cat > ai-gateway.yaml << 'EOF'
+cat > ai-proxy.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
   control_plane_name: kong-workshop
@@ -244,7 +242,7 @@ EOF
 
 ```
 deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-gateway.yaml
+deck gateway sync --konnect-token $PAT ai-proxy.yaml
 ```
 
 

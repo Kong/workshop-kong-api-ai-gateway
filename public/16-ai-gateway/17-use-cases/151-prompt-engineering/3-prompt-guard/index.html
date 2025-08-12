@@ -5,26 +5,26 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="The AI Request Transformer and AI Response Transformer plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request’s body before proxying it to the Upstream Service and prior to forwarding the response to the client.
-The plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.">
+    <meta name="description" content="The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.
+You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AI Request and Response Transfomer plugins :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="The AI Request Transformer and AI Response Transformer plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request’s body before proxying it to the Upstream Service and prior to forwarding the response to the client.
-The plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.">
-    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">
+    <meta name="twitter:title" content="AI Prompt Guard plugin :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.
+You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="AI Request and Response Transfomer plugins :: API Management with Kong Konnect">
-    <meta property="og:description" content="The AI Request Transformer and AI Response Transformer plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request’s body before proxying it to the Upstream Service and prior to forwarding the response to the client.
-The plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.">
+    <meta property="og:title" content="AI Prompt Guard plugin :: API Management with Kong Konnect">
+    <meta property="og:description" content="The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.
+You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong AI Gateway">
-    <meta itemprop="name" content="AI Request and Response Transfomer plugins :: API Management with Kong Konnect">
-    <meta itemprop="description" content="The AI Request Transformer and AI Response Transformer plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request’s body before proxying it to the Upstream Service and prior to forwarding the response to the client.
-The plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.">
-    <meta itemprop="wordCount" content="639">
-    <title>AI Request and Response Transfomer plugins :: API Management with Kong Konnect</title>
+    <meta itemprop="name" content="AI Prompt Guard plugin :: API Management with Kong Konnect">
+    <meta itemprop="description" content="The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.
+You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.">
+    <meta itemprop="wordCount" content="514">
+    <title>AI Prompt Guard plugin :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1755009442" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1755009442" defer></script>
     <script src="/js/search-lunr.js?1755009442" defer></script>
@@ -49,9 +49,9 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/16-ai-gateway\/17-use-cases\/155-request-response-transformer\/index.html';
-      window.relearn.relBasePath='..\/..\/..';
-      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.path='\/16-ai-gateway\/17-use-cases\/151-prompt-engineering\/3-prompt-guard\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -99,7 +99,7 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -115,12 +115,12 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Request and Response Transfomer plugins</span><meta itemprop="position" content="4"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><span itemprop="name">Prompt Engineering</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Prompt Guard plugin</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html" title="AI Prompt Guard plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html" title="AI Prompt Template plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html" title="AI Semantic Cache plugin (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html" title="AI Request and Response Transfomer plugins (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -140,26 +140,23 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
   <header class="headline">
   </header>
 
-<h1 id="ai-request-and-response-transfomer-plugins">AI Request and Response Transfomer plugins</h1>
+<h1 id="ai-prompt-guard-plugin">AI Prompt Guard plugin</h1>
 
-<p>The <strong>AI Request Transformer</strong> and <strong>AI Response Transformer</strong> plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request&rsquo;s body before proxying it to the Upstream Service and prior to forwarding the response to the client.</p>
-<p>The plugins support <code>llm/v1/chat</code> style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the <strong>AI Proxy</strong> plugin, under the <code>config.llm</code> block.</p>
-<p>The <strong>AI Request Transformer</strong> plugin runs before all of the <strong>AI Prompt</strong> plugins and the <strong>AI Proxy</strong> plugin, allowing it to also introspect LLM requests against the same, or a different, LLM. On the other hand, the <strong>AI Response Transformer</strong> plugin runs after the <strong>AI Proxy</strong> plugin, and after proxying to the Upstream Service, allowing it to also introspect LLM responses against the same, or a different, LLM service.</p>
-<p><a href="#R-image-71d3834f7d252d82a9e1518a0f62e8ca" class="lightbox-link"><img alt="request_response_tranformer_plugins" class="lazy lightbox figure-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-71d3834f7d252d82a9e1518a0f62e8ca"><img alt="request_response_tranformer_plugins" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png"></a></p>
-<p>The diagram shows the journey of a consumer’s request through Kong Gateway to the backend service, where it is transformed by both an AI LLM service and Kong’s <strong>AI Request Transformer</strong> and the <strong>AI Response Transformer</strong> plugins.</p>
-<p>For each plugin the configuration and usage processes are:</p>
+<p>The <strong>AI Prompt Guard</strong> plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of <code>llm/v1/chat</code> or <code>llm/v1/completions</code> requests.</p>
+<p>You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.</p>
 <ul>
-<li>The Kong Gateway admin sets up an llm: configuration block, following the same configuration format as the AI Proxy plugin, and the same driver capabilities.</li>
-<li>The Kong Gateway admin sets up a prompt for the request introspection. The prompt becomes the system message in the LLM chat request, and prepares the LLM with transformation instructions for the incoming user request body (for the <strong>AI Request Transformer</strong> plugin) and for the returning upstream response body (for the <strong>AI Response Transformer</strong> plugin)</li>
-<li>The user makes an HTTP(S) call.</li>
-<li>Before proxying the user’s request to the backend, Kong Gateway sets the entire request body as the user message in the LLM chat request, and then sends it to the configured LLM service.</li>
-<li>After receiving the response from the backend, Kong Gateway sets the entire response body as the user message in the LLM chat request, then sends it to the configured LLM service.</li>
-<li>The LLM service returns a response <code>assistant</code> message, which is subsequently set as the upstream request body.</li>
+<li>For <code>llm/v1/chat</code> type models: You can optionally configure the plugin to ignore existing chat history, wherein it will only scan the trailing user message.</li>
+<li>For <code>llm/v1/completions</code> type models: There is only one prompt field, thus the whole prompt is scanned on every request.</li>
 </ul>
-<p>The following example is going to apply the plugins to transform both request and reponse when consuming the <strong>httpbin</strong> Upstream Service.</p>
-<p>Now, configure both plugins. Keep in mind that the plugins are totally independent from each other so, the configuration depends on your use case.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-request-response-tranformer.yaml &lt;&lt; &#39;EOF&#39;
+<p>The plugin matches lists of regular expressions to requests through AI Proxy. The matching behavior is as follows:</p>
+<ul>
+<li>If any <code>deny</code> expressions are set, and the request matches any regex pattern in the deny list, the caller receives a 400 response.</li>
+<li>If any <code>allow</code> expressions are set, but the request matches none of the allowed expressions, the caller also receives a 400 response.</li>
+<li>If any <code>allow</code> expressions are set, and the request matches one of the allow expressions, the request passes through to the LLM.</li>
+<li>If there are both <code>deny</code> and <code>allow</code> expressions set, the <code>deny</code> condition takes precedence over <code>allow</code>. Any request that matches an entry in the <code>deny</code> list will return a 400 response, even if it also matches an expression in the <code>allow</code> list. If the request does not match an expression in the <code>deny</code> list, then it must match an expression in the <code>allow</code> list to be passed through to the LLM</li>
+</ul>
+<p>Here&rsquo;s an example to allow only valid credit cards numbers:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-prompt-guard.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
 _konnect:
   control_plane_name: kong-workshop
@@ -167,68 +164,81 @@ _info:
   select_tags:
   - llm
 services:
-- name: httpbin-service
-  host: httpbin.kong.svc.cluster.local
-  port: 8000
+- name: service1
+  host: localhost
+  port: 32000
   routes:
-  - name: httpbin-route
+  - name: ollama-route
     paths:
-    - /httpbin-route
+    - /ollama-route
     plugins:
-    - name: ai-request-transformer
-      instance_name: ai-request-transformer
+    - name: ai-proxy
+      instance_name: ai-proxy-ollama
+      config:
+        route_type: llm/v1/chat
+        model:
+          provider: llama2
+          name: llama3.2:1b
+          options:
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+        model:
+          provider: openai
+          name: gpt-4.1
+          options:
+            temperature: 1.0
+    - name: ai-prompt-guard
+      instance_name: ai-prompt-guard-openai
       enabled: true
       config:
-        prompt: In my JSON message, anywhere there is a JSON tag for a &#34;city&#34;, also add a &#34;country&#34; tag with the name of the country in which the city resides. Return me only the JSON message, no extra text.&#34;
-        llm:
-          route_type: llm/v1/chat
-          auth:
-            header_name: Authorization
-            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
-          model:
-            provider: openai
-            name: gpt-4.1
-            options:
-              temperature: 1.0
-    - name: ai-response-transformer
-      instance_name: ai-response-transformer
-      enabled: true
-      config:
-        prompt: For any city name, add its current temperature, in brackets next to it. Reply with the JSON result only.
-        llm:
-          route_type: llm/v1/chat
-          auth:
-            header_name: Authorization
-            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
-          model:
-            provider: openai
-            name: gpt-4.1
-            options:
-              temperature: 1.0
+        allow_all_conversation_history: true
+        allow_patterns: 
+        - &#34;.*\\\&#34;card\\\&#34;.*\\\&#34;4[0-9]{3}\\*{12}\\\&#34;&#34;
 EOF</code></pre></div>
 <p>Apply the declaration with decK:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-request-response-tranformer.yaml</code></pre></div>
+deck gateway sync --konnect-token $PAT ai-prompt-guard.yaml</code></pre></div>
+<p>Send a request with a valid credit card pattern:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
-  --url $DATA_PLANE_LB/httpbin-route/post \
+  --url $DATA_PLANE_LB/openai-route \
   --header &#39;Content-Type: application/json&#39; \
-  --data &#39;{
-   &#34;user&#34;: {
-     &#34;name&#34;: &#34;Kong User&#34;,
-     &#34;city&#34;: &#34;Tokyo&#34;
-   }
-}&#39; | jq</code></pre></div>
-<ul>
-<li>Expected output</li>
-</ul>
+  --data-raw &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;Validate this card: {\&#34;card\&#34;: \&#34;4111************\&#34;, \&#34;cvv\&#34;: \&#34;000\&#34;}&#34;
+       }
+     ]
+   }&#39; | jq &#39;.&#39;</code></pre></div>
+<p>Now, send a non-valid number:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data-raw &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;Validate this card: {\&#34;card\&#34;: \&#34;4111xyz************\&#34;, \&#34;cvv\&#34;: \&#34;000\&#34;}&#34;
+       }
+     ]
+   }&#39; | jq &#39;.&#39;</code></pre></div>
+<p>The expect result is:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
-  &#34;user&#34;: {
-    &#34;name&#34;: &#34;Kong User&#34;,
-    &#34;city&#34;: &#34;Tokyo [12°C]&#34;,
-    &#34;country&#34;: &#34;Japan&#34;
+  &#34;error&#34;: {
+    &#34;message&#34;: &#34;bad request&#34;
   }
 }</code></pre></div>
-<p>Kong-gratulations! have now reached the end of this module by using Kong Gateway to invoke a AWS Lambda function. You can now click <strong>Next</strong> to proceed with the next chapter.</p>
 
   <footer class="footline">
   </footer>
@@ -284,8 +294,11 @@ deck gateway sync --konnect-token $PAT ai-request-response-tranformer.yaml</code
             <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway/index.html">Kong AI Gateway</a></li>
             <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu">
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy plugin</a></li>
-            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu"></ul></li>
-            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomer plugins</a></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-0363202472319e6574b8e953cfd2e962" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html">AI Prompt Decorator plugin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html">AI Prompt Template plugin</a></li>
+            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html">AI Prompt Guard plugin</a></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomer plugins</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache plugin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/157-apikey/index.html">Key Auth Plugin</a></li>
             <li class="" data-nav-id="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced plugin</a></li>

@@ -18,58 +18,71 @@ The plugin matches lists of regular expressions to requests through AI Proxy. Th
 
 Here's an example to allow only valid credit cards numbers:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-prompt-guard.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
-  - bedrock
+  - llm
 services:
 - name: service1
   host: localhost
   port: 32000
   routes:
-  - name: route1
+  - name: ollama-route
     paths:
-    - /bedrock-route
+    - /ollama-route
     plugins:
     - name: ai-proxy
-      instance_name: "ai-proxy-bedrock"
+      instance_name: ai-proxy-ollama
       config:
-        auth:
-          param_name: "allow_override"
-          param_value: "false"
-          param_location: "body"
-        route_type: "llm/v1/chat"
+        route_type: llm/v1/chat
         model:
-          provider: "bedrock"
+          provider: llama2
+          name: llama3.2:1b
           options:
-            bedrock:
-              aws_region: "us-west-2"
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+        model:
+          provider: openai
+          name: gpt-4.1
+          options:
+            temperature: 1.0
     - name: ai-prompt-guard
-      instance_name: ai-prompt-guard-bedrock
+      instance_name: ai-prompt-guard-openai
       enabled: true
       config:
         allow_all_conversation_history: true
         allow_patterns: 
         - ".*\\\"card\\\".*\\\"4[0-9]{3}\\*{12}\\\""
 EOF
-:::
+```
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-prompt-guard.yaml
-:::
+```
 
 
 Send a request with a valid credit card pattern:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data-raw '{
      "messages": [
@@ -77,19 +90,18 @@ curl -s -X POST \
          "role": "user",
          "content": "Validate this card: {\"card\": \"4111************\", \"cvv\": \"000\"}"
        }
-     ],
-     "model": "us.amazon.nova-lite-v1:0"
+     ]
    }' | jq '.'
-:::
+```
 
 
 
 
 Now, send a non-valid number:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data-raw '{
      "messages": [
@@ -97,10 +109,9 @@ curl -s -X POST \
          "role": "user",
          "content": "Validate this card: {\"card\": \"4111xyz************\", \"cvv\": \"000\"}"
        }
-     ],
-     "model": "us.amazon.nova-lite-v1:0"
+     ]
    }' | jq '.'
-:::
+```
 
 
 The expect result is:

@@ -26,14 +26,14 @@ The following example is going to apply the plugins to transform both request an
 
 Now, configure both plugins. Keep in mind that the plugins are totally independent from each other so, the configuration depends on your use case.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-request-response-tranformer.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
-  - bedrock
+  - llm
 services:
 - name: httpbin-service
   host: httpbin.kong.svc.cluster.local
@@ -49,45 +49,41 @@ services:
       config:
         prompt: In my JSON message, anywhere there is a JSON tag for a "city", also add a "country" tag with the name of the country in which the city resides. Return me only the JSON message, no extra text."
         llm:
-          auth:
-            param_name: "allow_override"
-            param_value: "false"
-            param_location: "body"
           route_type: llm/v1/chat
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           model:
-            name: "us.meta.llama3-3-70b-instruct-v1:0"
-            provider: bedrock
+            provider: openai
+            name: gpt-4.1
             options:
-              bedrock:
-                aws_region: us-west-2
+              temperature: 1.0
     - name: ai-response-transformer
       instance_name: ai-response-transformer
       enabled: true
       config:
         prompt: For any city name, add its current temperature, in brackets next to it. Reply with the JSON result only.
         llm:
-          auth:
-            param_name: "allow_override"
-            param_value: "false"
-            param_location: "body"
           route_type: llm/v1/chat
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           model:
-            name: "us.meta.llama3-3-70b-instruct-v1:0"
-            provider: bedrock
+            provider: openai
+            name: gpt-4.1
             options:
-              bedrock:
-                aws_region: us-west-2
+              temperature: 1.0
 EOF
-:::
+```
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-request-response-tranformer.yaml
-:::
+```
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
   --url $DATA_PLANE_LB/httpbin-route/post \
   --header 'Content-Type: application/json' \
@@ -97,7 +93,7 @@ curl -s -X POST \
      "city": "Tokyo"
    }
 }' | jq
-:::
+```
 
 * Expected output
 

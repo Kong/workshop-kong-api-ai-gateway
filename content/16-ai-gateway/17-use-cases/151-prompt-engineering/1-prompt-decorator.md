@@ -8,58 +8,69 @@ The **AI Prompt Decorator** plugin adds an array of ``llm/v1/chat`` messages to 
 You can use this plugin to pre-set a system prompt, set up specific prompt history, add words and phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway.
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-prompt-decorator.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 _info:
   select_tags:
-  - bedrock
+  - llm
 services:
 - name: service1
   host: localhost
   port: 32000
   routes:
-  - name: route1
+  - name: ollama-route
     paths:
-    - /bedrock-route
+    - /ollama-route
     plugins:
     - name: ai-proxy
-      instance_name: "ai-proxy-bedrock"
+      instance_name: ai-proxy-ollama
       config:
-        auth:
-          param_name: "allow_override"
-          param_value: "false"
-          param_location: "body"
-        route_type: "llm/v1/chat"
+        route_type: llm/v1/chat
         model:
-          provider: "bedrock"
+          provider: llama2
           options:
-            bedrock:
-              aws_region: "us-west-2"
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
+        model:
+          provider: openai
+          options:
+            temperature: 1.0
     - name: ai-prompt-decorator
-      instance_name: ai-prompt-decorator-bedrock
+      instance_name: ai-prompt-decorator-openai
       config:
         prompts:
           prepend:
           - role: system
             content: "You will always respond in the Portuguese (Brazil) language."
 EOF
-:::
+```
 
 Apply the declaration with decK:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-prompt-decorator.yaml
-:::
+```
 
 
 Send a request now:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [
@@ -68,9 +79,9 @@ curl -s -X POST \
          "content": "what is pi?"
        }
      ],
-     "model": "us.amazon.nova-lite-v1:0"
+     "model": "gpt-5"
    }' | jq
-:::
+```
 
 
 
