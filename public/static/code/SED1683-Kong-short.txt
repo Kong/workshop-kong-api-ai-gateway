@@ -1,0 +1,33 @@
+EPISODE 1683
+
+INTRODUCTION
+
+0:00:00 ANNOUNCER: Kong is a software company that provides open-source platforms and cloud services for managing, monitoring, and scaling APIs in microservices. Marco Palladino is the CTO of Kong, and he joins the podcast to talk about the platform and APIs as the building blocks of the digital world.
+
+This episode is hosted by Lee Atchison. Lee Atchison is a software architect, author, and thought leader on cloud computing and application modernization. His best-selling book, Architecting for Scale, is an essential resource for technical teams looking to maintain high availability and manage risk in their cloud environments. Lee is the host of his podcast, Modern Digital Business, produced for people looking to build and grow their digital business. Listen at mdb.fm. Follow Lee at softwarearchitectureinsights.com and see all his content at leeatchison.com.
+
+INTERVIEW
+
+0:10:08 MP: Today, when we build APIs, we build APIs for different use cases. We may build an API because we want to turn our application into a platform, so we want to attract the developers outside of the organization to build on top of our APIs. We may be building APIs internally, because we want to allow other teams to compose APIs together and create new products faster. We may be using APIs as a way to implement microservices and as a way to consume AI. There is different use cases of APIs. Based on that use case, we may need different infrastructure. We need an edge gateway for external consumption. We need an internal service mesh for microservices consumption. We need an AI gateway for connecting together multiple LLMs and orchestrating them.
+
+What Kong provides is a unified control plane that allows us to deploy the gateway in all of these different capacities in as an edge gateway, as a service mesh, as an AI gateway, and then gives us a unified control plane to be able to see what are all the APIs that are emerging across all these different use cases, and then provide a standardized way to manage them, to consume them, to monitor them, to expose them, whether they're external, internal in pretty much any capacity.
+
+0:11:29 LA: You create API gateways for a variety of different use cases that you mentioned. We'll go into those in a little bit more detail in a bit, and provide the coordination to provide a single plane of glass approach for managing those gateways, which includes not only controlling them, but also analytics and all of that.
+
+0:11:50 MP: Absolutely. I mean, there is a lot more that's been done. The point being is this. APIs, we said earlier, they used to be an add on. If you look at APIs today, they are at the backbone of what every organization does. APIs are being used to access every data and every service that the organization provides to their customers. When you look at the APIs, you're really looking at the interface of the business. How can any business innovate and modernize and build, execute on a vision without understanding what is the API that the organization has?
+
+The APIs are the system of record of everything the organization does. A platform like Kong gives to developers the tooling and the infrastructure technology to cater to their technology use cases, but it also gives the organization a platform to be able to drive business outcomes, like creating new products faster, like shipping back fixes in a quicker way, entering new markets, stuff like that.
+
+0:12:53 LA: When I think about the types of things that an API gateway is going to help with it, so we've talked about governance, we talked about security, analytics, and I want you to go into each of those three in a little bit more detail in a second here. But is documentation the fourth one?
+
+0:13:10 MP: Well, documentation is an important part of providing an API platform. The consumer of an API at the end of the day is a developer. In the future, it will be AI. But today, it is a developer. A developer needs to know how to use API as a VA documentation. I want to clarify that the gateway, it's one of the many API use cases that we can deliver. There is an API gateway, there is a service mesh, there is ingress controllers. The gateway, it is what Kong started with, but it's part of a broader end-to-end platform that covers other use cases as well.
+
+0:13:51 LA: You're actually right. I've been very inappropriately using the word API gateway as an overall theme issue. But in fact, there are several use cases. API gateways are really more for external APIs, not while service mesh is more for internal and the other use cases you're talking about. What about outbound APIs? An application's use of business SaaS applications and things like that.
+
+0:14:19 MP: When we look at the gateway in general, it provides an ingress point to be able to consume internal APIs. A gateway can also be deployed as an egress gateway in such a way that the APIs that we consume are external APIs, which could be a SaaS product, to your point. Then we can use that gateway as an egress point for all traffic. On top of that egress traffic, we can then manage credentials, we can manage security, we can manage observability, the same way we would do for our own APIs that we're exposing in the ingress.
+
+0:14:52 LA: Got it. That makes sense. Let's talk about those three main use cases here that we're talking about. Governance, security, and analytics, I think. Am I missing anything besides those three?
+
+0:15:04 MP: There's others. There is a traffic control. There is support for serverless APIs, but we can talk about some of these capabilities. Let's go to your point. Let's go one level deeper.
+
+0:15:13 LA: Yeah, so let's start with governance.
