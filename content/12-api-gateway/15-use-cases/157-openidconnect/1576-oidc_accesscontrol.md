@@ -3,9 +3,28 @@ title : "Authorization"
 weight : 1576
 ---
 
-So far, we have used the OpenID Connect plugin to implement Authentication processes only. This section is going to show how to use the plugin to implement an Authorization mechanism based on the [OAuth Scopes](https://oauth.net/2/scope/).
+So far, we have used the OpenID Connect plugin to implement Authentication processes only.
+
+
+* The aud (Audience) claim comes from the JWT specification in [RFC 7519]. It allows the receiving party to verify whether a given JWT was intended for them. Per the specification, the aud value can be a single string or an array of strings.
+
+aud - Identifies the audience (resource URI or server) that this access token is intended for.
+
+
+* The scope claim originates from the OAuth 2.0 specification in [RFC 6749]. It defines the range of access granted by an access token, limiting it to specific claims or user data. For example, you might not want a third-party client to query any arbitrary resource using an OAuth 2.0 access token. Instead, the scope claim restricts the token’s permissions to a predefined set of resources or operations.
+
+scp - Array of scopes that are granted to this access token.
+
+The OpenID Connect plugin supports some [coarse-grained authorization](https://developer.konghq.com/plugins/openid-connect/#authorization) mechanisms:
+* Claims-based authorization
+* ACL plugin authorization
+* Consumer authorization
+
+This section is going to show how to use the plugin to implement an Authorization mechanism based on the [OAuth Scopes](https://oauth.net/2/scope/).
 
 **OAuth Scopes** allow us to limit access to an Access Token. The configuration gets started, including a new setting to our OpenId Connect plugin: "audience_required". The following configuration defines that the Kong Route can be consumed by requests that have Access Tokens with the "aud" field set as "gold". This is a nice option to implement, for instance, Kong Konnect consumer classes.
+
+
 
 
 #### Installing OpenID Connect Plugin
@@ -73,14 +92,13 @@ X-Kong-Request-Id: 19afd85ac97a9657b4920a3f69c8783e
 Note that the response describes the reason why we cannot consume the Route.
 
 #### Create the Keycloak Client Scope
-The first thing to do is to create a Client Scope in Keycloak. Go to the **kong** realm and click the **Client scopes** option in the left menu. Name the Client Scope as ``kong_scope`` and click "Save".
+1. The first thing to do is to create a Client Scope in Keycloak. Go to the **kong** realm and click the **Client scopes** option in the left menu. Name the Client Scope as ``kong_scope`` and click "Save".
 
-Click the **Mappers** tab now and choose **Configure a new mapper**. Choose **Audience** and name it as ``kong_mapper``. For the **Included Custom Audience** field type ``gold``, which is the audience the plugin has been configured. Click Save.
+2. Click the **Mappers** tab now and choose **Configure a new mapper**. Choose **Audience** and name it as ``kong_mapper``. For the **Included Custom Audience** field type ``gold``, which is the audience the plugin has been configured. Click Save.
 
-Now click on the **Clients** option in the left menu and choose our ``kong_id`` client. Client the **Client scopes** tab and add the new ``kong_scope`` we just created it as ``Default``:
+3. Now click on the **Clients** option in the left menu and choose our ``kong_id`` client. Client the **Client scopes** tab and add the new ``kong_scope`` we just created it as ``Default``:
 
-
-As you can see in our previous requests, Keycloak adds, by default, the ``account`` audience as ``aud``: ``account`` field inside the Access Token. One last optional step is to remove it, so the token should have our "gold" audience only. To do that, click the default ``<client_id>-dedicated`` Client Scope (in our case, ``kong_id-dedicated``) and its Scope tab. Inside the **Scope** tab, turn the "Full scope allowed" option off.
+4. As you can see in our previous requests, Keycloak adds, by default, the ``account`` audience as ``aud``: ``account`` field inside the Access Token. One last optional step is to remove it, so the token should have our "gold" audience only. To do that, click the default ``<client_id>-dedicated`` Client Scope (in our case, ``kong_id-dedicated``) and its Scope tab. Inside the **Scope** tab, turn the "Full scope allowed" option off.
 
 
 #### Test the Keycloak Endpoint

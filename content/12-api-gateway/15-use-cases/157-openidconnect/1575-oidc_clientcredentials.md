@@ -3,6 +3,8 @@ title : "Client Credentials"
 weight : 1575
 ---
 
+This page describes a configuration of the [Client Credentials Grant](https://oauth.net/2/grant-types/client-credentials/). Check the [OpenID Connect plugin documentation](https://developer.konghq.com/plugins/openid-connect/#client-credentials-grant-workflow) to learn more about it.
+
 The main use case for the OAuth Client Credentials Grant is to address application authentication rather than user authentication. In such a scenario, authentication processes based on userid and password are not feasible. Instead, applications should deal with Client IDs and Client Secrets to authenticate and get a token.
 
 #### Installing OpenID Connect Plugin

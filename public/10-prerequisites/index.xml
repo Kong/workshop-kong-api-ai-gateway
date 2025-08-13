@@ -3,7 +3,7 @@
   <channel>
     <title>Prerequisites :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/10-prerequisites/index.html</link>
-    <description>This chapter will walk you through the prerequisites.&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.&#xA;If you want to check the Konnect Pricing and Plans, please, redirect to https://konghq.com/pricing&#xA;Kong Gateway Data Plane In this workshop, the Data Plane will be running locally on a Minikube Kubernetes Cluster over Podman.&#xA;Podman installation Minikube installation Command Line Utilities In this workshop, we will use the following command line utilities</description>
+    <description>Knowledge Attendees should have a intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, etc.&#xA;Attendees should have a basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.&#xA;Kong Academy Complete two badges via Kong Academy: Kong Gateway Foundations and Kong Gateway Operations&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/10-prerequisites/index.xml" rel="self" type="application/rss+xml" />

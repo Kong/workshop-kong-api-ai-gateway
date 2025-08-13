@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="The AI Proxy plugin is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
+The following table describes which providers and requests the AI Proxy plugin supports:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AI Proxy :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="The AI Proxy plugin is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
+The following table describes which providers and requests the AI Proxy plugin supports:">
+    <meta property="og:url" content="http://localhost:1313/20-observability/17-use-cases/150-ai-proxy/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="AI Proxy :: API Management with Kong Konnect">
+    <meta property="og:description" content="The AI Proxy plugin is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
+The following table describes which providers and requests the AI Proxy plugin supports:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Observability">
+    <meta itemprop="name" content="AI Proxy :: API Management with Kong Konnect">
+    <meta itemprop="description" content="The AI Proxy plugin is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
+The following table describes which providers and requests the AI Proxy plugin supports:">
+    <meta itemprop="wordCount" content="1223">
+    <title>AI Proxy :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1755090119" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755090119" defer></script>
+    <script src="/js/search-lunr.js?1755090119" defer></script>
+    <script src="/js/search.js?1755090119" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1755090119";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1755090119" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755090119" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755090119" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755090119" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090119" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755090119" rel="stylesheet">
+    <link href="/css/theme.css?1755090119" rel="stylesheet">
+    <link href="/css/format-html.css?1755090119" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/20-observability\/17-use-cases\/150-ai-proxy\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/20-observability/17-use-cases/150-ai-proxy/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#getting-started-with-kong-ai-gateway">Getting Started with Kong AI Gateway</a>
+      <ul>
+        <li><a href="#openai-api">OpenAI API</a></li>
+        <li><a href="#send-a-request-to-kong-ai-gateway">Send a request to Kong AI Gateway</a></li>
+        <li><a href="#define-the-model-to-be-consume-when-sending-the-request">Define the model to be consume when sending the request</a></li>
+        <li><a href="#streaming">Streaming</a></li>
+        <li><a href="#extra-model-options">Extra Model Options</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/17-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Proxy</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/17-use-cases/index.html" title="Use Cases (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/17-use-cases/151-prompt-engineering/index.html" title="Prompt Engineering (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 20-observability" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ai-proxy">AI Proxy</h1>
+
+<p>The <a href="https://docs.konghq.com/hub/kong-inc/ai-proxy/configuration/" rel="external" target="_blank">AI Proxy plugin</a> is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.</p>
+<p><a href="#R-image-eb78199981f296cd0b897f2d582ff097" class="lightbox-link"><img alt="AI Proxy" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_proxy.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eb78199981f296cd0b897f2d582ff097"><img alt="AI Proxy" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_proxy.png"></a></p>
+<p>The following table describes which providers and requests the AI Proxy plugin supports:</p>
+<p><a href="#R-image-ac5bc516962e8419198fea2d018cd531" class="lightbox-link"><img alt="providers_support" class="lazy lightbox figure-image" loading="lazy" src="/static/images/providers_support.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ac5bc516962e8419198fea2d018cd531"><img alt="providers_support" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/providers_support.png"></a></p>
+<ul>
+<li>
+<p>Obs 1: OpenAI has marked <a href="https://platform.openai.com/docs/api-reference/completions" rel="external" target="_blank">Completions</a> as legacy and recommends using the <a href="https://platform.openai.com/docs/guides/text?api-mode=responses" rel="external" target="_blank">Chat Completions API</a> for developing new applications.</p>
+</li>
+<li>
+<p>Obs 2: Starting with Kong AI Gateway 3.11, new GenAI APIs are supported:</p>
+</li>
+</ul>
+<p><a href="#R-image-b6db29e7ab5b589561c95f52ae073279" class="lightbox-link"><img alt="genai_apis" class="lazy lightbox figure-image" loading="lazy" src="/static/images/genai_apis.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6db29e7ab5b589561c95f52ae073279"><img alt="genai_apis" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/genai_apis.jpg"></a></p>
+<h2 id="getting-started-with-kong-ai-gateway">Getting Started with Kong AI Gateway</h2>
+<p>We are going to get started with a simple configuration. The following decK declaration enables the <strong>AI Proxy</strong> plugin to the Kong Gateway Service, to send requests to the LLM and consume the Ollama&rsquo;s <strong>lamma3.2:1b</strong> FM and OpenAI&rsquo;s <strong>gpt-5</strong> FM with <strong>chat</strong> LLM requests.</p>
+<p>Update your <strong>ai-proxy.yaml</strong> file with that. Make sure you have the <strong>DECK_OPENAI_API_KEY</strong> environment variable set with your OpenAI&rsquo;s API Key.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - llm
+services:
+- name: service1
+  host: localhost
+  port: 32000
+  routes:
+  - name: ollama-route
+    paths:
+    - /ollama-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-ollama
+      config:
+        route_type: llm/v1/chat
+        model:
+          provider: llama2
+          name: llama3.2:1b
+          options:
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+        model:
+          provider: openai
+          name: gpt-5
+          options:
+            temperature: 1.0
+EOF</code></pre></div>
+<p>Apply the declaration with decK:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-proxy.yaml</code></pre></div>
+<h3 id="openai-api">OpenAI API</h3>
+<p>Kong AI Gateway provides one API to access all of the LLMs it supports. To accomplish this, Kong AI Gateway has standardized on the <a href="https://platform.openai.com/docs/api-reference" rel="external" target="_blank">OpenAI API specification</a>. This will help developers to onboard more quickly by providing them with an API specification that they&rsquo;re already familiar with. You can start using LLMs behind the AI Gateway simply by redirecting your requests to a URL that points to a route of the AI Gateway.</p>
+<h3 id="send-a-request-to-kong-ai-gateway">Send a request to Kong AI Gateway</h3>
+<p>Now, send a request to Kong AI Gateway following the <a href="https://platform.openai.com/docs/api-reference/chat" rel="external" target="_blank">OpenAI API Chat</a> specification as a reference:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url http://$DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ]
+   }&#39; | jq</code></pre></div>
+<p><strong>Expected Output</strong></p>
+<p>Note the response also complies to the OpenAI API spec:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ]
+   }&#39; | jq
+{
+  &#34;id&#34;: &#34;chatcmpl-C3jWHoMI65rb0Ojkai1NjBq0JoRMG&#34;,
+  &#34;object&#34;: &#34;chat.completion&#34;,
+  &#34;created&#34;: 1755005997,
+  &#34;model&#34;: &#34;gpt-5-2025-08-07&#34;,
+  &#34;choices&#34;: [
+    {
+      &#34;index&#34;: 0,
+      &#34;message&#34;: {
+        &#34;role&#34;: &#34;assistant&#34;,
+        &#34;content&#34;: &#34;Pi (π) is the mathematical constant equal to the ratio of a circle’s circumference to its diameter. It’s the same for all circles.\n\n- Approximate value: 3.141592653589793…\n- Nature: irrational (non-terminating, non-repeating) and transcendental.\n- Common formulas:\n  - Circumference: C = 2πr\n  - Area of a circle: A = πr²\n  - Appears widely, e.g., e^(iπ) + 1 = 0, normal distribution, waves/Fourier analysis.\n- Handy approximations: 22/7 ≈ 3.142857, 355/113 ≈ 3.14159292.\n\nIf you want more digits or historical background, say the word.&#34;,
+        &#34;refusal&#34;: null,
+        &#34;annotations&#34;: []
+      },
+      &#34;finish_reason&#34;: &#34;stop&#34;
+    }
+  ],
+  &#34;usage&#34;: {
+    &#34;prompt_tokens&#34;: 10,
+    &#34;completion_tokens&#34;: 621,
+    &#34;total_tokens&#34;: 631,
+    &#34;prompt_tokens_details&#34;: {
+      &#34;cached_tokens&#34;: 0,
+      &#34;audio_tokens&#34;: 0
+    },
+    &#34;completion_tokens_details&#34;: {
+      &#34;reasoning_tokens&#34;: 448,
+      &#34;audio_tokens&#34;: 0,
+      &#34;accepted_prediction_tokens&#34;: 0,
+      &#34;rejected_prediction_tokens&#34;: 0
+    }
+  },
+  &#34;service_tier&#34;: &#34;default&#34;,
+  &#34;system_fingerprint&#34;: null
+}</code></pre></div>
+<p>You can also consume the Ollama&rsquo;s route</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url http://$DATA_PLANE_LB/ollama-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ]
+   }&#39; | jq</code></pre></div>
+<h5 id="ai-proxy-configuration-parameters">AI Proxy configuration parameters</h5>
+<p>The <strong>AI Proxy</strong> plugin is responsible for a variety of topics. For example:</p>
+<ul>
+<li>Request and response formats appropriate for the configured <strong>provider</strong> and <strong>route_type</strong> settings. <strong>provider</strong> can be set as <strong>anthropic</strong>, <strong>azure</strong>, <strong>bedrock</strong>, <strong>cohere</strong>, <strong>gemini</strong>, <strong>huggingface</strong>, <strong>llama2</strong>, <strong>mistral</strong> or <strong>openai</strong>.</li>
+<li>The <strong>route_type</strong> AI Proxy configuration parameter defines which kind of request the AI Gateway is going to perform. It must be one of:
+<ul>
+<li><strong>audio/v1/audio/speech</strong></li>
+<li><strong>audio/v1/audio/transcriptions</strong></li>
+<li><strong>audio/v1/audio/translations</strong></li>
+<li><strong>image/v1/images/edits</strong></li>
+<li><strong>image/v1/images/generations</strong></li>
+<li><strong>llm/v1/assistants</strong></li>
+<li><strong>llm/v1/batches</strong></li>
+<li><strong>llm/v1/chat</strong></li>
+<li><strong>llm/v1/completions</strong></li>
+<li><strong>llm/v1/embeddings</strong></li>
+<li><strong>llm/v1/files</strong></li>
+<li><strong>llm/v1/responses</strong></li>
+<li><strong>preserve</strong></li>
+<li><strong>realtime/v1/realtime</strong></li>
+</ul>
+</li>
+<li>Authentication on behalf of the Kong API consumer.</li>
+<li>Decorating the request with parameters from the <strong>config.model.options</strong> block, appropriate for the chosen provider. For our case, we tell the temperature we are going to use.</li>
+</ul>
+<h3 id="define-the-model-to-be-consume-when-sending-the-request">Define the model to be consume when sending the request</h3>
+<p>As you may have noticed our <strong>AI Proxy</strong> plugin defines the model it should consume. That is can be done for individual requests, if required. Change the <strong>ai-proxy.yaml</strong> file, removing the model&rsquo;s name parameter and apply the declaration again:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - llm
+services:
+- name: service1
+  host: localhost
+  port: 32000
+  routes:
+  - name: ollama-route
+    paths:
+    - /ollama-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-ollama
+      config:
+        route_type: llm/v1/chat
+        model:
+          provider: llama2
+          options:
+            llama2_format: ollama
+            upstream_url: http://ollama.ollama:11434/api/chat
+  - name: openai-route
+    paths:
+    - /openai-route
+    plugins:
+    - name: ai-proxy
+      instance_name: ai-proxy-openai
+      config:
+        route_type: llm/v1/chat
+        auth:
+          header_name: Authorization
+          header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+        model:
+          provider: openai
+          options:
+            temperature: 1.0
+EOF</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-proxy.yaml</code></pre></div>
+<p>Send the request specifing the model:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ],
+     &#34;model&#34;: &#34;gpt-5&#34;
+   }&#39;</code></pre></div>
+<p>or</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ],
+     &#34;model&#34;: &#34;gpt-4&#34;
+   }&#39;</code></pre></div>
+<p>Note the Kong AI Proxy plugin adds a new <strong>X-Kong-LLM-Model</strong> header with the model we consumer: <code>openai/gpt-5</code> or <code>openai/gpt-4</code></p>
+<h3 id="streaming">Streaming</h3>
+<p>Normally, a request is processed and completely buffered by the LLM before being sent back to Kong AI Gateway and then to the caller in a single large JSON block. This process can be time-consuming, depending on the request parameters, and the complexity of the request sent to the LLM model. To avoid making the user wait for their chat response with a loading animation, most models can stream each word (or sets of words and tokens) back to the client. This allows the chat response to be rendered in real time.</p>
+<p>The <code>config</code> AI Proxy configuration section has a <strong>response_streaming</strong> parameter to define the response streaming. By default is set as <code>allow</code> but it can be set with <code>deny</code> or <code>always</code>.</p>
+<p>As an example, if you send the same request with the <strong>stream</strong> parameter as <code>true</code> you should see a response like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;what is pi?&#34;
+       }
+     ],
+     &#34;model&#34;: &#34;gpt-4&#34;,
+     &#34;stream&#34;: true
+   }&#39;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;role&#34;:&#34;assistant&#34;,&#34;content&#34;:&#34;&#34;,&#34;refusal&#34;:null},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;D5jIQAiER0kD2&#34;}
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;content&#34;:&#34;Pi&#34;},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;3S9RmT4NS9k3b&#34;}
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;content&#34;:&#34; (&#34;},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;3ARtgUA4COqRA&#34;}
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;content&#34;:&#34;π&#34;},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;IS99TImGO4SoLp&#34;}
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;content&#34;:&#34;)&#34;},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;8jpC3eE7bQvh7b&#34;}
+
+...
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{&#34;content&#34;:&#34;.&#34;},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:null}],&#34;obfuscation&#34;:&#34;YHL01GZcTNF1Wh&#34;}
+
+data: {&#34;id&#34;:&#34;chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK&#34;,&#34;object&#34;:&#34;chat.completion.chunk&#34;,&#34;created&#34;:1755007032,&#34;model&#34;:&#34;gpt-4-0613&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:null,&#34;choices&#34;:[{&#34;index&#34;:0,&#34;delta&#34;:{},&#34;logprobs&#34;:null,&#34;finish_reason&#34;:&#34;stop&#34;}],&#34;obfuscation&#34;:&#34;vf2t9C6t3&#34;}
+
+data: [DONE]</code></pre></div>
+<h3 id="extra-model-options">Extra Model Options</h3>
+<p>The <a href="https://developer.konghq.com/plugins/ai-proxy/reference/" rel="external" target="_blank">Kong AI Proxy</a> provides other configuration options. For example:</p>
+<ul>
+<li><strong>max_tokens</strong>: defines the <strong>max_tokens</strong>, if using chat or completion models.</li>
+<li><strong>temperature</strong>: it is a number between 0 and 5 and it defines the matching temperature, if using chat or completion models.</li>
+<li><strong>top_p</strong>: a number between 0 and 1 defining the top-p probability mass, if supported.</li>
+<li><strong>top_k</strong>: an integer between 0 and 500 defining the top-k most likely tokens, if supported.</li>
+</ul>
+<p>Kong-gratulations! have now reached the end of this module by caching API responses. You can now click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu">
+            <li class="parent alwaysopen " data-nav-id="/20-observability/17-use-cases/index.html"><a class="padding" href="/20-observability/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-a063a860f8407145f89ac2776a5f4acb" class="collapsible-menu">
+            <li class="active " data-nav-id="/20-observability/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/20-observability/17-use-cases/150-ai-proxy/index.html">AI Proxy</a></li>
+            <li class="alwaysopen " data-nav-id="/20-observability/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/20-observability/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-dab816c1786489d1d867b2788435b5a8" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-observability/17-use-cases/155-request-response-transformer/index.html"><a class="padding" href="/20-observability/17-use-cases/155-request-response-transformer/index.html">AI Request and Response Transfomers</a></li>
+            <li class="" data-nav-id="/20-observability/17-use-cases/156-semantic-cache/index.html"><a class="padding" href="/20-observability/17-use-cases/156-semantic-cache/index.html">AI Semantic Cache</a></li>
+            <li class="" data-nav-id="/20-observability/17-use-cases/157-apikey/index.html"><a class="padding" href="/20-observability/17-use-cases/157-apikey/index.html">Key Auth</a></li>
+            <li class="" data-nav-id="/20-observability/17-use-cases/158-rate-limiting/index.html"><a class="padding" href="/20-observability/17-use-cases/158-rate-limiting/index.html">AI Rate Limiting Advanced</a></li>
+            <li class="alwaysopen " data-nav-id="/20-observability/17-use-cases/159-ai-proxy-advanced/index.html"><a class="padding" href="/20-observability/17-use-cases/159-ai-proxy-advanced/index.html">AI Proxy Advanced</a><ul id="R-subsections-a3748944f54beed25e0ab521336b4101" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-observability/17-use-cases/170-rag/index.html"><a class="padding" href="/20-observability/17-use-cases/170-rag/index.html">RAG - Retrieval-Augmented Generation</a></li></ul></li>
+            <li class="" data-nav-id="/20-observability/210-introduction/index.html"><a class="padding" href="/20-observability/210-introduction/index.html">OpenTelemetry Introduction</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1755090119" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755090119" defer></script>
+    <script src="/js/theme.js?1755090119" defer></script>
+  </body>
+</html>

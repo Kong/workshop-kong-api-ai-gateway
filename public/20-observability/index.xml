@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Observability :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/20-observability/index.html</link>
+    <description>The third part of the workshop is dedicated to Observability, exploring the built-in capabilities provided by Konnect and how to leverage the Kong Data Plane plugins to integrate with external infrastructures, Dynatrace or Honeycomb.&#xA;The external infrastructure we are going to use is based on the OpenTelemetry standard and it comprises:&#xA;OTel Collector: implements the component responsible for receiving, processing and exporting telemetry data. Loki: plays the log processing role and receiving all requests and responses processed by the Kong API and AI Gateway Data Plane. Prometheus: responsible for scraping and storing the metrics the Kong API and AI Gateway generate. Grafana: used to query and analyze logs and metrics. Jaeger: distributed tracing platform. You can now click Next to begin the module.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/20-observability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Use Cases</title>
+      <link>http://localhost:1313/20-observability/17-use-cases/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/17-use-cases/index.html</guid>
+      <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
+    </item>
+    <item>
+      <title>OpenTelemetry Introduction</title>
+      <link>http://localhost:1313/20-observability/210-introduction/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/210-introduction/index.html</guid>
+      <description>Observability focuses mainly on three core pillars:&#xA;Logs: Detailed, timestamped records of events and activities within a system, offering a granular view of operations Metrics: Quantitative data points that capture various aspects of system performance, such as resource usage, response times, and throughput Traces: Visual paths that requests follow as they traverse through different system components, enabling end-to-end analysis of transactions and interactions OpenTelemetry Here’s a concise definition of OpenTelemetry, available on its website:</description>
+    </item>
+  </channel>
+</rss>
