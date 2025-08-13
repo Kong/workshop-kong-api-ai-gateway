@@ -25,26 +25,26 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
 The plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.">
     <meta itemprop="wordCount" content="639">
     <title>AI Request and Response Transfomers :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755090119" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755090119" defer></script>
-    <script src="/js/search-lunr.js?1755090119" defer></script>
-    <script src="/js/search.js?1755090119" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755090317" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755090317" defer></script>
+    <script src="/js/search-lunr.js?1755090317" defer></script>
+    <script src="/js/search.js?1755090317" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755090119";
+      window.relearn.index_js_url="/searchindex.en.js?1755090317";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755090119" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755090119" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755090119" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755090119" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755090317" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755090317" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755090317" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755090317" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090119" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090119" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755090119" rel="stylesheet">
-    <link href="/css/theme.css?1755090119" rel="stylesheet">
-    <link href="/css/format-html.css?1755090119" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755090317" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755090317" rel="stylesheet">
+    <link href="/css/theme.css?1755090317" rel="stylesheet">
+    <link href="/css/format-html.css?1755090317" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -145,8 +145,8 @@ The plugins support llm/v1/chat style requests for all of the same providers as 
 <p>The <strong>AI Request Transformer</strong> and <strong>AI Response Transformer</strong> plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request&rsquo;s body before proxying it to the Upstream Service and prior to forwarding the response to the client.</p>
 <p>The plugins support <code>llm/v1/chat</code> style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the <strong>AI Proxy</strong> plugin, under the <code>config.llm</code> block.</p>
 <p>The <strong>AI Request Transformer</strong> plugin runs before all of the <strong>AI Prompt</strong> plugins and the <strong>AI Proxy</strong> plugin, allowing it to also introspect LLM requests against the same, or a different, LLM. On the other hand, the <strong>AI Response Transformer</strong> plugin runs after the <strong>AI Proxy</strong> plugin, and after proxying to the Upstream Service, allowing it to also introspect LLM responses against the same, or a different, LLM service.</p>
-<p><a href="#R-image-1a48fe3064b60282b9212ca883633056" class="lightbox-link"><img alt="request_response_tranformer_plugins" class="lazy lightbox figure-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1a48fe3064b60282b9212ca883633056"><img alt="request_response_tranformer_plugins" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png"></a></p>
+<p><a href="#R-image-bd1567b7141d6fba29217533da644188" class="lightbox-link"><img alt="request_response_tranformer_plugins" class="lazy lightbox figure-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bd1567b7141d6fba29217533da644188"><img alt="request_response_tranformer_plugins" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/request_response_tranformer_plugins.png"></a></p>
 <p>The diagram shows the journey of a consumer’s request through Kong Gateway to the backend service, where it is transformed by both an AI LLM service and Kong’s <strong>AI Request Transformer</strong> and the <strong>AI Response Transformer</strong> plugins.</p>
 <p>For each plugin the configuration and usage processes are:</p>
 <ul>
@@ -309,8 +309,8 @@ deck gateway sync --konnect-token $PAT ai-request-response-tranformer.yaml</code
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755090119" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755090119" defer></script>
-    <script src="/js/theme.js?1755090119" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755090317" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755090317" defer></script>
+    <script src="/js/theme.js?1755090317" defer></script>
   </body>
 </html>
