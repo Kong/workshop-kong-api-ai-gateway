@@ -4,7 +4,16 @@ weight : 100
 ---
 
 
-This chapter will walk you through the prerequisites.
+
+
+Attendees should have a intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, etc.
+
+Attendees should have a basic knowledge of GenAI models, specially LLMs and providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.
+
+
+## Kong Academy
+
+Complete two badges via Kong Academy: **Kong Gateway Foundations** and **Kong Gateway Operations**
 
 
 ## Kong Konnect Subscription
