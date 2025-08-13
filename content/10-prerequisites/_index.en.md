@@ -4,11 +4,11 @@ weight : 100
 ---
 
 
-
+## Knowledge
 
 Attendees should have a intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, etc.
 
-Attendees should have a basic knowledge of GenAI models, specially LLMs and providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.
+Attendees should have a basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.
 
 
 ## Kong Academy
