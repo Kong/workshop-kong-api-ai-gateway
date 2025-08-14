@@ -29,26 +29,26 @@ The main use case for the OAuth Client Credentials Grant is to address applicati
 Installing OpenID Connect Plugin cat &gt; oidc.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - httpbin-service-route services: - name: httpbin-service host: httpbin.kong.svc.cluster.local port: 8000 routes: - name: oidc-route paths: - /oidc-route plugins: - name: openid-connect instance_name: openid-connect1 config: auth_methods: [&#34;client_credentials&#34;] issuer: http://keycloak.keycloak:8080/realms/kong token_endpoint: http://keycloak.keycloak:8080/realms/kong/protocol/openid-connect/token extra_jwks_uris: [&#34;http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs&#34;] consumer_optional: false consumer_claim: [&#34;client_id&#34;] consumer_by: [&#34;username&#34;] consumers: - username: kong_id EOF Note that we are going to map the Access Token to the Kong Consumer based on the client_id now.">
     <meta itemprop="wordCount" content="289">
     <title>Client Credentials :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755208493" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755208493" defer></script>
-    <script src="/js/search-lunr.js?1755208493" defer></script>
-    <script src="/js/search.js?1755208493" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755208764" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755208764" defer></script>
+    <script src="/js/search-lunr.js?1755208764" defer></script>
+    <script src="/js/search.js?1755208764" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755208493";
+      window.relearn.index_js_url="/searchindex.en.js?1755208764";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755208493" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755208493" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755208493" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755208493" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755208764" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755208764" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755208764" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755208764" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208493" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208493" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755208493" rel="stylesheet">
-    <link href="/css/theme.css?1755208493" rel="stylesheet">
-    <link href="/css/format-html.css?1755208493" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208764" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208764" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755208764" rel="stylesheet">
+    <link href="/css/theme.css?1755208764" rel="stylesheet">
+    <link href="/css/format-html.css?1755208764" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -299,7 +299,7 @@ Token claims
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/157-openidconnect/1576-oidc_accesscontrol/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/157-openidconnect/1576-oidc_accesscontrol/index.html">Authorization</a></li></ul></li>
             <li class="" data-nav-id="/12-api-gateway/15-use-cases/158-opa-authorization/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/158-opa-authorization/index.html">OPA (Open Policy Agent)</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">20-Observabilities</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -317,8 +317,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755208493" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755208493" defer></script>
-    <script src="/js/theme.js?1755208493" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755208764" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755208764" defer></script>
+    <script src="/js/theme.js?1755208764" defer></script>
   </body>
 </html>

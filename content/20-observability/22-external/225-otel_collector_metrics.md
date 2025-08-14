@@ -1,5 +1,5 @@
 ---
-title : "OTel Collector and Prometheus Metrics"
+title : "OTel Collector and Metrics"
 weight : 225
 ---
 

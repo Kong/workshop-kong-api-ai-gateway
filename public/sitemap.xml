@@ -139,6 +139,9 @@
     <loc>http://localhost:1313/20-observability/22-external/225-otel_collector_metrics/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/20-observability/22-external/226-otel_collector_logs/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html</loc>
   </url>
   <url>

@@ -1,5 +1,5 @@
 ---
-title : "OTel Collector and Jaeger Tracing"
+title : "OTel Collector and Tracing"
 weight : 224
 ---
 
