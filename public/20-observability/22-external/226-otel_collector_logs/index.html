@@ -27,28 +27,28 @@ New collector configuration cat &gt; otelcollector &lt;&lt; &#39;EOF&#39; apiVer
     <meta itemprop="description" content="We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 https://grafana.com/docs/loki/latest/send-data/otel/ https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
 New collector configuration cat &gt; otelcollector &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 otlphttp/loki: endpoint: http://loki.loki:3100/otlp debug: verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loku] EOF The declaration has critical parameters defined:">
-    <meta itemprop="wordCount" content="1136">
+    <meta itemprop="wordCount" content="739">
     <title>OTel Collector and Logs :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755209559" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755209559" defer></script>
-    <script src="/js/search-lunr.js?1755209559" defer></script>
-    <script src="/js/search.js?1755209559" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755211142" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755211142" defer></script>
+    <script src="/js/search-lunr.js?1755211142" defer></script>
+    <script src="/js/search.js?1755211142" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755209559";
+      window.relearn.index_js_url="/searchindex.en.js?1755211142";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755209559" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755211142" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755209559" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755209559" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755209559" rel="stylesheet">
-    <link href="/css/theme.css?1755209559" rel="stylesheet">
-    <link href="/css/format-html.css?1755209559" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211142" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211142" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755211142" rel="stylesheet">
+    <link href="/css/theme.css?1755211142" rel="stylesheet">
+    <link href="/css/format-html.css?1755211142" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,6 +120,8 @@ New collector configuration cat &gt; otelcollector &lt;&lt; &#39;EOF&#39; apiVer
     <li>
       <ul>
         <li><a href="#new-collector-configuration">New collector configuration</a></li>
+        <li><a href="#deploy-the-collector">Deploy the collector</a></li>
+        <li><a href="#configure-the-prometheus-and-tcp-log-plugins">Configure the Prometheus and TCP Log Plugins</a></li>
       </ul>
     </li>
   </ul>
@@ -231,105 +233,58 @@ spec:
           exporters: [otlphttp/loku]
 EOF</code></pre></div>
 <p>The declaration has critical parameters defined:</p>
-<p>image: it refers to the “contrib” distribution of the Collector.
-A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.
-Inside the “service” configuration section, a new “metrics” pipeline have been included:</p>
-<p>The Prometheus exporter configured, so we can access the metrics sending requests directly to the collector through port 8889 as described in the exporter section.
-It also includes the “otlp” receiver, so it can grab metrics coming from the Backend microservices as well.
-It has “cumulativetodelta” as a Processor. A Processor is another OTel Collector construct, responsible for taking the data collected by receivers and modifying it before sending it to the exporters. Basically, the “Cumulative to Delta” Processor converts the Histogram metrics with cumulative temporality, produced by the Kong Prometheus plugin, to delta temporality, supported by Dynatrace.
-Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “otlp” and “tcplog” to get data from both Kong Gateway Plugin. Its “exporters” is set to the same “otlphttp” which sends data to Dynatrace.</p>
-<p>Kubernetes Service Account for Prometheus Receiver
-The OTel Collector Prometheus Receiver fully supports the scraping configuration defined by Prometheus. The receiver, more precisely, uses the “pod” role of the Kubernetes Service Discovery configurations (“kubernetes_sd_config”). Specific “relabel_config” settings with “regex” expressions allow the receiver to discover Kubernetes Pods that belong to the Kong Data Plane deployment.</p>
-<p>One of the relabeling configs is related to the port 8100. This port configuration is part of the Data Plane deployment we used to get it running. Here&rsquo;s the snippet of the “values.yaml” file we used previously:</p>
-<p>status:
-enabled: true
-http:
-enabled: true
-containerPort: 8100
-parameters: []
-That&rsquo;s the Kong Gateway&rsquo;s Status API where the Prometheus plugin exposes the metrics produced. In fact, the endpoint the receiver scrapes is, as specified in the OTel Collector configuration.</p>
-<p>http://&lt;Data_Plane_Pod_IP&gt;:8100/metrics
-On the other hand, the OTel Collector has to be allowed to scrape the endpoint. We can define such permission with a Kubernetes ClusterRole and apply it to a Kubernetes Service Account with a Kubernetes ClusterRoleBinding.</p>
-<p>Here&rsquo;s the ClusterRole declaration. It&rsquo;s a quite open one but it&rsquo;s good enough for this exercise.</p>
-<p>kubectl apply -f - &laquo;EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-name: pod-reader
-rules:</p>
 <ul>
-<li>apiGroups: [&quot;&quot;]
-resources: [&ldquo;pods&rdquo;]
-verbs: [&ldquo;get&rdquo;, &ldquo;watch&rdquo;, &ldquo;list&rdquo;]
-EOF
-Then we need to create a Kubernetes Service Account and bind the Role to it.</li>
+<li>A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.</li>
+<li>Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp” which sends data to Loki.</li>
 </ul>
-<p>kubectl create sa collector -n opentelemetry-operator-system</p>
-<p>kubectl apply -f - &laquo;EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-name: read-pods
-roleRef:
-kind: ClusterRole
-name: pod-reader
-subjects:</p>
-<ul>
-<li>kind: ServiceAccount
-name: collector
-namespace: opentelemetry-operator-system
-EOF
-Finally, note that the OTel Collector configuration is deployed using the Service Account with serviceAccount: collector and then it will be able to scrape the endpoint exposed by Kong Gateway.</li>
-</ul>
-<p>Deploy the collector
-Delete the current collector first and instantiate a new one simply submitting the declaration:</p>
-<p>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system</p>
-<p>kubectl apply -f otelcollector-dynatrace-traces-metrics-logs.yaml
-Interestingly enough, the collector service now listens to four ports:</p>
-<p>% kubectl get service collector-kong-collector -n opentelemetry-operator-system
+<h3 id="deploy-the-collector">Deploy the collector</h3>
+<p>Delete the current collector first and instantiate a new one simply submitting the declaration:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
+
+kubectl apply -f otelcollector.yaml</code></pre></div>
+<p>Interestingly enough, the collector service now listens to four ports:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get service collector-kong-collector -n opentelemetry-operator-system 
 NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                AGE
-collector-kong-collector   ClusterIP   10.100.67.18   <!-- raw HTML omitted -->        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h
-Configure the Prometheus and TCP Log Plugins
-Add the Prometheus and TCP Log plugins to our decK declaration and submit it to Konnect:</p>
-<p>cat &gt; kong-plugins.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
+collector-kong-collector   ClusterIP   10.100.67.18   &lt;none&gt;        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h</code></pre></div>
+<h3 id="configure-the-prometheus-and-tcp-log-plugins">Configure the Prometheus and TCP Log Plugins</h3>
+<p>Add the Prometheus and TCP Log plugins to our decK declaration and submit it to Konnect:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-plugins.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
 _info:
-select_tags:</p>
-<ul>
-<li>kong-plugins
+  select_tags:
+  - kong-plugins
 _konnect:
-control_plane_name: default
-plugins:</li>
-<li>name: opentelemetry
-instance_name: opentelemetry1
-enabled: true
-config:
-traces_endpoint: <a href="http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces" rel="external" target="_blank">http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces</a>
-propagation:
-default_format: &ldquo;w3c&rdquo;
-inject: [&ldquo;w3c&rdquo;]
-resource_attributes:
-service.name: &ldquo;kong-otel&rdquo;</li>
-<li>name: prometheus
-instance_name: prometheus1
-config:
-per_consumer: true
-status_code_metrics: true
-latency_metrics: true
-bandwidth_metrics: true
-upstream_health_metrics: true
-ai_metrics: true</li>
-<li>name: tcp-log
-instance_name: tcp-log1
-enabled: true
-config:
-host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
-port: 54525
-custom_fields_by_lua:
-trace_id: local log_payload = kong.log.serialize()  local trace_id = log_payload[&rsquo;trace_id&rsquo;][&lsquo;w3c&rsquo;]   return trace_id
-EOF
-Submit the new plugin declaration with:</li>
-</ul>
+  control_plane_name: default
+plugins:
+- name: opentelemetry
+  instance_name: opentelemetry1
+  enabled: true
+  config:
+    traces_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces
+    propagation:
+      default_format: &#34;w3c&#34;
+      inject: [&#34;w3c&#34;]
+    resource_attributes:
+      service.name: &#34;kong-otel&#34;
+- name: prometheus
+  instance_name: prometheus1
+  config:
+    per_consumer: true
+    status_code_metrics: true
+    latency_metrics: true
+    bandwidth_metrics: true
+    upstream_health_metrics: true
+    ai_metrics: true
+- name: tcp-log
+  instance_name: tcp-log1
+  enabled: true
+  config:
+    host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
+    port: 54525
+    custom_fields_by_lua:
+      trace_id: local log_payload = kong.log.serialize()  local trace_id = log_payload[&#39;trace_id&#39;][&#39;w3c&#39;]   return trace_id
+EOF</code></pre></div>
+<p>Submit the new plugin declaration with:</p>
 <p>deck gateway sync &ndash;konnect-token $PAT kong-plugins.yaml
 Consume the Application and check collector&rsquo;s Prometheus endpoint
 Using “port-forward”, send a request to the collector&rsquo;s Prometheus endpoint. In a terminal run:</p>
@@ -448,8 +403,8 @@ Here&rsquo;s a Dynatrace Logs app with events generated by the TCP Log Plugin. C
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755209559" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755209559" defer></script>
-    <script src="/js/theme.js?1755209559" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755211142" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755211142" defer></script>
+    <script src="/js/theme.js?1755211142" defer></script>
   </body>
 </html>

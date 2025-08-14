@@ -83,85 +83,33 @@ spec:
           exporters: [otlphttp/loku]
 EOF
 ```
+
 The declaration has critical parameters defined:
 
-image: it refers to the “contrib” distribution of the Collector.
-A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.
-Inside the “service” configuration section, a new “metrics” pipeline have been included:
+* A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.
+* Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp” which sends data to Loki.
 
-The Prometheus exporter configured, so we can access the metrics sending requests directly to the collector through port 8889 as described in the exporter section.
-It also includes the “otlp” receiver, so it can grab metrics coming from the Backend microservices as well.
-It has “cumulativetodelta” as a Processor. A Processor is another OTel Collector construct, responsible for taking the data collected by receivers and modifying it before sending it to the exporters. Basically, the “Cumulative to Delta” Processor converts the Histogram metrics with cumulative temporality, produced by the Kong Prometheus plugin, to delta temporality, supported by Dynatrace.
-Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “otlp” and “tcplog” to get data from both Kong Gateway Plugin. Its “exporters” is set to the same “otlphttp” which sends data to Dynatrace.
-
-Kubernetes Service Account for Prometheus Receiver
-The OTel Collector Prometheus Receiver fully supports the scraping configuration defined by Prometheus. The receiver, more precisely, uses the “pod” role of the Kubernetes Service Discovery configurations (“kubernetes_sd_config”). Specific “relabel_config” settings with “regex” expressions allow the receiver to discover Kubernetes Pods that belong to the Kong Data Plane deployment.
-
-One of the relabeling configs is related to the port 8100. This port configuration is part of the Data Plane deployment we used to get it running. Here's the snippet of the “values.yaml” file we used previously:
-
-
-status:
-  enabled: true
-  http:
-    enabled: true
-    containerPort: 8100
-    parameters: []
-That's the Kong Gateway's Status API where the Prometheus plugin exposes the metrics produced. In fact, the endpoint the receiver scrapes is, as specified in the OTel Collector configuration.
-
-
-http://<Data_Plane_Pod_IP>:8100/metrics
-On the other hand, the OTel Collector has to be allowed to scrape the endpoint. We can define such permission with a Kubernetes ClusterRole and apply it to a Kubernetes Service Account with a Kubernetes ClusterRoleBinding.
-
-Here's the ClusterRole declaration. It's a quite open one but it's good enough for this exercise.
-
-
-kubectl apply -f - <<EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: pod-reader
-rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "watch", "list"]
-EOF
-Then we need to create a Kubernetes Service Account and bind the Role to it.
-
-
-kubectl create sa collector -n opentelemetry-operator-system
-
-kubectl apply -f - <<EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: read-pods
-roleRef:
-  kind: ClusterRole
-  name: pod-reader
-subjects:
-- kind: ServiceAccount
-  name: collector
-  namespace: opentelemetry-operator-system
-EOF
-Finally, note that the OTel Collector configuration is deployed using the Service Account with serviceAccount: collector and then it will be able to scrape the endpoint exposed by Kong Gateway.
-
-Deploy the collector
+### Deploy the collector
 Delete the current collector first and instantiate a new one simply submitting the declaration:
 
-
+```
 kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
 
-kubectl apply -f otelcollector-dynatrace-traces-metrics-logs.yaml
+kubectl apply -f otelcollector.yaml
+```
+
 Interestingly enough, the collector service now listens to four ports:
 
-
+```
 % kubectl get service collector-kong-collector -n opentelemetry-operator-system 
 NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                AGE
 collector-kong-collector   ClusterIP   10.100.67.18   <none>        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h
-Configure the Prometheus and TCP Log Plugins
+```
+
+### Configure the Prometheus and TCP Log Plugins
 Add the Prometheus and TCP Log plugins to our decK declaration and submit it to Konnect:
 
-
+```
 cat > kong-plugins.yaml << 'EOF'
 _format_version: "3.0"
 _info:
@@ -198,6 +146,7 @@ plugins:
     custom_fields_by_lua:
       trace_id: local log_payload = kong.log.serialize()  local trace_id = log_payload['trace_id']['w3c']   return trace_id
 EOF
+```
 Submit the new plugin declaration with:
 
 

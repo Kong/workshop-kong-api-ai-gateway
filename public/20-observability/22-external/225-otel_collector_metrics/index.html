@@ -25,26 +25,26 @@ New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; a
 New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; exporters: otlphttp: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] EOF The declaration has critical parameters defined:">
     <meta itemprop="wordCount" content="790">
     <title>OTel Collector and Metrics :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755209559" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755209559" defer></script>
-    <script src="/js/search-lunr.js?1755209559" defer></script>
-    <script src="/js/search.js?1755209559" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755211183" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755211183" defer></script>
+    <script src="/js/search-lunr.js?1755211183" defer></script>
+    <script src="/js/search.js?1755211183" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755209559";
+      window.relearn.index_js_url="/searchindex.en.js?1755211183";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755209559" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755209559" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755211183" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755211183" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755211183" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755211183" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755209559" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755209559" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755209559" rel="stylesheet">
-    <link href="/css/theme.css?1755209559" rel="stylesheet">
-    <link href="/css/format-html.css?1755209559" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211183" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211183" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755211183" rel="stylesheet">
+    <link href="/css/theme.css?1755211183" rel="stylesheet">
+    <link href="/css/format-html.css?1755211183" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -407,8 +407,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755209559" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755209559" defer></script>
-    <script src="/js/theme.js?1755209559" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755211183" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755211183" defer></script>
+    <script src="/js/theme.js?1755211183" defer></script>
   </body>
 </html>

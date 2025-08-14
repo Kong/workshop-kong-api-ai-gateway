@@ -21,26 +21,26 @@
     <meta itemprop="description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
     <meta itemprop="wordCount" content="905">
     <title>OPA (Open Policy Agent) :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755208764" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755208764" defer></script>
-    <script src="/js/search-lunr.js?1755208764" defer></script>
-    <script src="/js/search.js?1755208764" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755211142" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755211142" defer></script>
+    <script src="/js/search-lunr.js?1755211142" defer></script>
+    <script src="/js/search.js?1755211142" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755208764";
+      window.relearn.index_js_url="/searchindex.en.js?1755211142";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755208764" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755208764" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755208764" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755208764" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755211142" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755211142" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208764" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208764" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755208764" rel="stylesheet">
-    <link href="/css/theme.css?1755208764" rel="stylesheet">
-    <link href="/css/format-html.css?1755208764" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211142" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755211142" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755211142" rel="stylesheet">
+    <link href="/css/theme.css?1755211142" rel="stylesheet">
+    <link href="/css/format-html.css?1755211142" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -150,8 +150,8 @@
 <p>OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let&rsquo;s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That&rsquo;s the main purpose of the <a href="https://www.openpolicyagent.org" rel="external" target="_blank">Open Policy Agent - OPA</a> engine.</p>
 <p>In fact, such a decision is simply applying the same Separation of Concerns principle to get two independent layers implementing, each one of them, the Authentication and Authorization policies. Our architecture topology would look slightly different now.</p>
 <p>On the other hand, as we stated in the beginning of the chapter, it is not the case to remove the Authorization policies from the OAuth/OIDC layer. There will be different abstraction levels for the policies: some of them, possibly coarse-grained enterprise class ones, should still be implemented by the OAuth/OIDC layer. Fine-grained policies, instead, would be better implemented by the specific Authorization layer.</p>
-<p><a href="#R-image-415707f18894854a9c7ea6ace4b058c8" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-415707f18894854a9c7ea6ace4b058c8"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
+<p><a href="#R-image-191414e9af39e2d185d6721c9616a9cf" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-191414e9af39e2d185d6721c9616a9cf"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
 <h3 id="opa-installation">OPA Installation</h3>
 <p>Create another namespace, this time to install OPA</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace opa</code></pre></div>
@@ -432,8 +432,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755208764" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755208764" defer></script>
-    <script src="/js/theme.js?1755208764" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755211142" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755211142" defer></script>
+    <script src="/js/theme.js?1755211142" defer></script>
   </body>
 </html>
