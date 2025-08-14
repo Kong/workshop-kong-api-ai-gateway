@@ -35,5 +35,12 @@
       <guid>http://localhost:1313/20-observability/240-otel_collector_tracing/index.html</guid>
       <description>Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.&#xA;Jaeger Installation We are going to use the Jaeger Helm Charts&#xA;Save the values.yaml Jaeger provides as an example:&#xA;wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0&#xA;helm install jaeger jaegertracing/jaeger -n observability \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n observability --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:</description>
     </item>
+    <item>
+      <title>OTel Collector and Jaeger Tracing</title>
+      <link>http://localhost:1313/20-observability/250-otel_collector_metrics/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/250-otel_collector_metrics/index.html</guid>
+      <description>Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.&#xA;Jaeger Installation We are going to use the Jaeger Helm Charts&#xA;Save the values.yaml Jaeger provides as an example:&#xA;wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0&#xA;helm install jaeger jaegertracing/jaeger -n observability \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n observability --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:</description>
+    </item>
   </channel>
 </rss>

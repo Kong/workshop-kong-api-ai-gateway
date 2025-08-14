@@ -243,4 +243,10 @@ open -a "Google Chrome" "http://localhost:3000"
 ```
 
 
-https://grafana.com/docs/grafana/latest/datasources/jaeger/
+##### Configure Grafana
+
+[Documentation](https://grafana.com/docs/grafana/latest/datasources/jaeger)
+
+![grafana_jaeger](/static/images/grafana_jaeger.png)
+
+
