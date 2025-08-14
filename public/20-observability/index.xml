@@ -3,23 +3,37 @@
   <channel>
     <title>Observability :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/20-observability/index.html</link>
-    <description>The third part of the workshop is dedicated to Observability, exploring the built-in capabilities provided by Konnect and how to leverage the Kong Data Plane plugins to integrate with external infrastructures, Dynatrace or Honeycomb.&#xA;The external infrastructure we are going to use is based on the OpenTelemetry standard and it comprises:&#xA;OTel Collector: implements the component responsible for receiving, processing and exporting telemetry data. Loki: plays the log processing role and receiving all requests and responses processed by the Kong API and AI Gateway Data Plane. Prometheus: responsible for scraping and storing the metrics the Kong API and AI Gateway generate. Grafana: used to query and analyze logs and metrics. Jaeger: distributed tracing platform. You can now click Next to begin the module.</description>
+    <description>The third part of the workshop is dedicated to Observability, exploring the built-in capabilities provided by Konnect and how to leverage the Kong Data Plane plugins to integrate with external infrastructures, Dynatrace or Honeycomb.&#xA;The external infrastructure we are going to use is based on the OpenTelemetry standard and it comprises:&#xA;OTel Collector: implements the component responsible for receiving, processing and exporting telemetry data. Loki: plays the log processing role and receiving all requests and responses processed by the Kong API and AI Gateway Data Plane. Prometheus: responsible for scraping and storing the metrics the Kong API and AI Gateway generate. Grafana: used to query and analyze logs and metrics. Jaeger: distributed tracing platform.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/20-observability/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Use Cases</title>
-      <link>http://localhost:1313/20-observability/17-use-cases/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/20-observability/17-use-cases/index.html</guid>
-      <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
-    </item>
     <item>
       <title>OpenTelemetry Introduction</title>
       <link>http://localhost:1313/20-observability/210-introduction/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/20-observability/210-introduction/index.html</guid>
       <description>Observability focuses mainly on three core pillars:&#xA;Logs: Detailed, timestamped records of events and activities within a system, offering a granular view of operations Metrics: Quantitative data points that capture various aspects of system performance, such as resource usage, response times, and throughput Traces: Visual paths that requests follow as they traverse through different system components, enabling end-to-end analysis of transactions and interactions OpenTelemetry Here’s a concise definition of OpenTelemetry, available on its website:</description>
+    </item>
+    <item>
+      <title>Reference Architecture</title>
+      <link>http://localhost:1313/20-observability/220-reference_architecture/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/220-reference_architecture/index.html</guid>
+      <description>The Kong Konnect and Observability Stack topology is quite simple in this example:&#xA;The main components here are:&#xA;Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.</description>
+    </item>
+    <item>
+      <title>OTel Collector Installation</title>
+      <link>http://localhost:1313/20-observability/230-otel_collector_installation/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/230-otel_collector_installation/index.html</guid>
+      <description>To deploy the OpenTelemetry Collector and to get better control over it, we’re going to do it through the OpenTelemetry Kubernetes Operator. In fact, the collector is also capable of auto-instrument applications and services using OpenTelemetry instrumentation libraries.&#xA;Installing Cert-Manager The OpenTelemetry Operator requires Cert-Manager to be installed in your Kubernetes cluster. The Cert-Manager can then issue certificates to be used by the communication between the Kubernetes API Server and the existing webhook included in the operator.</description>
+    </item>
+    <item>
+      <title>OTel Collector and Jaeger Tracing</title>
+      <link>http://localhost:1313/20-observability/240-otel_collector_tracing/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-observability/240-otel_collector_tracing/index.html</guid>
+      <description>Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.&#xA;Jaeger Installation We are going to use the Jaeger Helm Charts&#xA;Save the values.yaml Jaeger provides as an example:&#xA;wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0&#xA;helm install jaeger jaegertracing/jaeger -n observability \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n observability --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:</description>
     </item>
   </channel>
 </rss>

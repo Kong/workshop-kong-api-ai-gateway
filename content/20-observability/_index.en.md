@@ -13,6 +13,8 @@ The external infrastructure we are going to use is based on the [OpenTelemetry](
 * [Jaeger](https://www.jaegertracing.io/): distributed tracing platform.
 
 
+![observability_stack](/static/images/observability_stack.jpg)
+
 You can now click **Next** to begin the module.
 
 ## Optional Reading
