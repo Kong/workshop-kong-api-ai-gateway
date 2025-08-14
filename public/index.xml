@@ -43,11 +43,11 @@
       <description>In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
     </item>
     <item>
-      <title>Observability</title>
+      <title>20-Observabilities</title>
       <link>http://localhost:1313/20-observability/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/20-observability/index.html</guid>
-      <description>The third part of the workshop is dedicated to Observability, exploring the built-in capabilities provided by Konnect and how to leverage the Kong Data Plane plugins to integrate with external infrastructures, Dynatrace or Honeycomb.&#xA;The external infrastructure we are going to use is based on the OpenTelemetry standard and it comprises:&#xA;OTel Collector: implements the component responsible for receiving, processing and exporting telemetry data. Loki: plays the log processing role and receiving all requests and responses processed by the Kong API and AI Gateway Data Plane. Prometheus: responsible for scraping and storing the metrics the Kong API and AI Gateway generate. Grafana: used to query and analyze logs and metrics. Jaeger: distributed tracing platform.</description>
+      <description></description>
     </item>
   </channel>
 </rss>

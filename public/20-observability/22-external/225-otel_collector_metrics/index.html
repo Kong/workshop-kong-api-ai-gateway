@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
+New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; exporters: otlphttp: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] EOF The declaration has critical parameters defined:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OTel Collector and Prometheus Metrics :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
+New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; exporters: otlphttp: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] EOF The declaration has critical parameters defined:">
+    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/225-otel_collector_metrics/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="OTel Collector and Prometheus Metrics :: API Management with Kong Konnect">
+    <meta property="og:description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
+New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; exporters: otlphttp: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] EOF The declaration has critical parameters defined:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Observability">
+    <meta itemprop="name" content="OTel Collector and Prometheus Metrics :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
+New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;kong-kong-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; exporters: otlphttp: endpoint: http://jaeger-collector.observability:4318 prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] metrics: receivers: [otlp, prometheus] exporters: [otlphttp, prometheus] EOF The declaration has critical parameters defined:">
+    <meta itemprop="wordCount" content="790">
+    <title>OTel Collector and Prometheus Metrics :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1755208613" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755208613" defer></script>
+    <script src="/js/search-lunr.js?1755208613" defer></script>
+    <script src="/js/search.js?1755208613" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1755208613";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1755208613" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755208613" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755208613" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755208613" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208613" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755208613" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755208613" rel="stylesheet">
+    <link href="/css/theme.css?1755208613" rel="stylesheet">
+    <link href="/css/format-html.css?1755208613" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/20-observability\/22-external\/225-otel_collector_metrics\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/20-observability/22-external/225-otel_collector_metrics/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#new-collector-configuration">New collector configuration</a></li>
+        <li><a href="#configure-the-prometheus-plugins">Configure the Prometheus Plugins</a></li>
+        <li><a href="#check-metrics-in-grafana">Check Metrics in Grafana</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/22-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OTel Collector and Prometheus Metrics</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/224-otel_collector_tracing/index.html" title="OTel Collector and Jaeger Tracing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 20-observability" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="otel-collector-and-prometheus-metrics">OTel Collector and Prometheus Metrics</h1>
+
+<p>Now, let&rsquo;s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the <a href="https://docs.konghq.com/hub/kong-inc/prometheus/" rel="external" target="_blank">Prometheus Plugin</a>. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific <a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md" rel="external" target="_blank">“prometheusreceiver”</a> to the collector configuration. The receiver is responsible for scraping the Data Plane&rsquo;s <a href="https://docs.konghq.com/gateway/latest/reference/configuration/#status_listen" rel="external" target="_blank">Status API</a>, which, by default, is configured with the <code>:8100/metrics</code> endpoint.</p>
+<h3 id="new-collector-configuration">New collector configuration</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39;
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: collector-kong
+  namespace: opentelemetry-operator-system
+spec:
+  image: otel/opentelemetry-collector-contrib:0.132.2
+  serviceAccount: collector
+  mode: deployment
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: &#39;otel-collector&#39;
+              scrape_interval: 5s
+              kubernetes_sd_configs:
+              - role: pod
+              scheme: http
+              tls_config:
+                ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+              authorization:
+                credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+              metrics_path: /metrics
+              relabel_configs:
+              - source_labels: [__meta_kubernetes_namespace]
+                action: keep
+                regex: &#34;kong&#34;
+              - source_labels: [__meta_kubernetes_pod_name]
+                action: keep
+                regex: &#34;kong-kong-(.+)&#34;
+              - source_labels: [__meta_kubernetes_pod_container_name]
+                action: keep
+                regex: &#34;proxy&#34;
+              - source_labels: [__meta_kubernetes_pod_container_port_number]
+                action: keep
+                regex: &#34;8100&#34;
+
+    exporters:
+      otlphttp:
+        endpoint: http://jaeger-collector.observability:4318
+      prometheus:
+        endpoint: 0.0.0.0:8889
+      #debug:
+      #  verbosity: detailed
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          exporters: [otlphttp]
+        metrics:
+          receivers: [otlp, prometheus]
+          exporters: [otlphttp, prometheus]
+EOF</code></pre></div>
+<p>The declaration has critical parameters defined:</p>
+<ul>
+<li>Inside the “service” configuration section, a new “metrics” pipeline have been included:
+<ul>
+<li>The Prometheus exporter configured, so we can access the metrics sending requests directly to the collector through port 8889 as described in the exporter section.</li>
+<li>It also includes the <code>otlp</code> receiver, so it can grab metrics coming from the Backend microservices as well.</li>
+</ul>
+</li>
+</ul>
+<h4 id="kubernetes-service-account-for-prometheus-receiver">Kubernetes Service Account for Prometheus Receiver</h4>
+<p>The OTel Collector <a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md" rel="external" target="_blank">Prometheus Receiver</a> fully supports the <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config" rel="external" target="_blank">scraping configuration</a> defined by Prometheus. The receiver, more precisely, uses the <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#pod" rel="external" target="_blank"><code>pod</code></a> role of the Kubernetes Service Discovery configurations (<a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config" rel="external" target="_blank"><code>kubernetes_sd_config</code></a>). Specific <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config" rel="external" target="_blank"><code>relabel_config</code></a> settings with “regex” expressions allow the receiver to discover Kubernetes Pods that belong to the Kong Data Plane deployment.</p>
+<p>One of the relabeling configs is related to the port 8100. This port configuration is part of the Data Plane deployment we used to get it running. Here&rsquo;s the snippet of the “values.yaml” file we used previously:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>status:
+  enabled: true
+  http:
+    enabled: true
+    containerPort: 8100
+    parameters: []</code></pre></div>
+<p>That&rsquo;s the Kong Gateway&rsquo;s Status API where the Prometheus plugin exposes the metrics produced. In fact, the endpoint the receiver scrapes is, as specified in the OTel Collector configuration, <code>http://&lt;Data_Plane_Pod_IP&gt;:8100/metrics</code></p>
+<p>On the other hand, the OTel Collector has to be allowed to scrape the endpoint. We can define such permission with a Kubernetes ClusterRole and apply it to a Kubernetes Service Account with a Kubernetes ClusterRoleBinding.</p>
+<p>Here&rsquo;s the ClusterRole declaration. It&rsquo;s a quite open one but it&rsquo;s good enough for this exercise.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl apply -f - &lt;&lt;EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-reader
+rules:
+- apiGroups: [&#34;&#34;]
+  resources: [&#34;pods&#34;]
+  verbs: [&#34;get&#34;, &#34;watch&#34;, &#34;list&#34;]
+EOF</code></pre></div>
+<p>Then we need to create a Kubernetes Service Account and bind the Role to it.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create sa collector -n opentelemetry-operator-system</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl apply -f - &lt;&lt;EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-pods
+roleRef:
+  kind: ClusterRole
+  name: pod-reader
+subjects:
+- kind: ServiceAccount
+  name: collector
+  namespace: opentelemetry-operator-system
+EOF</code></pre></div>
+<p>Finally, note that the OTel Collector configuration is deployed using the Service Account with <code>serviceAccount: collector</code> and then it will be able to scrape the endpoint exposed by Kong Gateway.</p>
+<h4 id="deploy-the-collector">Deploy the collector</h4>
+<p>Delete the current collector first and instantiate a new one simply submitting the declaration:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
+
+kubectl apply -f otelcollector.yaml</code></pre></div>
+<p>Interestingly enough, the collector service now listens to four ports:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get service collector-kong-collector -n opentelemetry-operator-system 
+NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                AGE
+collector-kong-collector   ClusterIP   10.100.67.18   &lt;none&gt;        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h</code></pre></div>
+<h3 id="configure-the-prometheus-plugins">Configure the Prometheus Plugins</h3>
+<p>Add the Prometheus and TCP Log plugins to our decK declaration and submit it to Konnect:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  tags:
+  - httpbin-service-route
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  plugins:
+  - name: opentelemetry
+    instance_name: opentelemetry1
+    enabled: true
+    config:
+      traces_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces
+      #propagation:
+      #  default_format: &#34;w3c&#34;
+      #  inject: [&#34;w3c&#34;]
+      resource_attributes:
+        service.name: &#34;kong-otel&#34;
+  - name: prometheus
+    instance_name: prometheus1
+    config:
+      per_consumer: true
+      status_code_metrics: true
+      latency_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: true
+      ai_metrics: true
+  routes:
+  - name: httpbin-route
+    tags:
+    - httpbin-service-route
+    paths:
+    - /httpbin-route
+EOF</code></pre></div>
+<p>Submit the new plugin declaration with:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT kong-plugins.yaml</code></pre></div>
+<p>Consume the Application and check collector&rsquo;s Prometheus endpoint
+Using “port-forward”, send a request to the collector&rsquo;s Prometheus endpoint. In a terminal run:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl port-forward service/collector-kong-collector -n opentelemetry-operator-system 8889</code></pre></div>
+<p>Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http :8889/metrics</code></pre></div>
+<p>You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here&rsquo;s a snippet of the output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong
+# TYPE kong_http_requests_total counter
+kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#34;,job=&#34;otel-collector&#34;,route=&#34;coupon_route&#34;,service=&#34;coupon_service&#34;,source=&#34;service&#34;,workspace=&#34;default&#34;} 1
+kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#34;,job=&#34;otel-collector&#34;,route=&#34;inventory_route&#34;,service=&#34;inventory_service&#34;,source=&#34;service&#34;,workspace=&#34;default&#34;} 1
+kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#34;,job=&#34;otel-collector&#34;,route=&#34;pricing_route&#34;,service=&#34;pricing_service&#34;,source=&#34;service&#34;,workspace=&#34;default&#34;} 1</code></pre></div>
+<h3 id="check-metrics-in-grafana">Check Metrics in Grafana</h3>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu">
+            <li class="" data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a></li>
+            <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
+            <li class="" data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_installation/index.html">OTel Collector Installation</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/224-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/224-otel_collector_tracing/index.html">OTel Collector and Jaeger Tracing</a></li>
+            <li class="active " data-nav-id="/20-observability/22-external/225-otel_collector_metrics/index.html"><a class="padding" href="/20-observability/22-external/225-otel_collector_metrics/index.html">OTel Collector and Prometheus Metrics</a></li></ul></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1755208613" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755208613" defer></script>
+    <script src="/js/theme.js?1755208613" defer></script>
+  </body>
+</html>

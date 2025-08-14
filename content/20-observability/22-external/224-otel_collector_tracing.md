@@ -1,6 +1,6 @@
 ---
 title : "OTel Collector and Jaeger Tracing"
-weight : 240
+weight : 224
 ---
 
 Here's a nice introduction of [OTel Collector and Jaeger](https://www.jaegertracing.io/docs/latest/architecture/#with-opentelemetry-collector) deployment. The Collector is going to be running as a "remote cluster" in a specific K8s deployument.

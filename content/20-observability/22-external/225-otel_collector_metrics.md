@@ -1,6 +1,6 @@
 ---
 title : "OTel Collector and Prometheus Metrics"
-weight : 250
+weight : 225
 ---
 
 Now, let's add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the [Prometheus Plugin](https://docs.konghq.com/hub/kong-inc/prometheus/). In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific [“prometheusreceiver”](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md) to the collector configuration. The receiver is responsible for scraping the Data Plane's [Status API](https://docs.konghq.com/gateway/latest/reference/configuration/#status_listen), which, by default, is configured with the ``:8100/metrics`` endpoint.

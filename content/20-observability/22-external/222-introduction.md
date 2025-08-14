@@ -1,6 +1,6 @@
 ---
 title : "OpenTelemetry Introduction"
-weight : 210
+weight : 222
 ---
 
 Observability focuses mainly on three core pillars:

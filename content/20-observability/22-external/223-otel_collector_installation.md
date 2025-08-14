@@ -1,6 +1,6 @@
 ---
 title : "OTel Collector Installation"
-weight : 230
+weight : 223
 ---
 
 To deploy the OpenTelemetry Collector and to get better control over it, we're going to do it through the OpenTelemetry Kubernetes Operator. In fact, the collector is also capable of auto-instrument applications and services using OpenTelemetry instrumentation libraries.

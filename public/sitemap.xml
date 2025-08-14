@@ -118,19 +118,25 @@
     <loc>http://localhost:1313/20-observability/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/20-observability/210-introduction/index.html</loc>
+    <loc>http://localhost:1313/20-observability/21-builtin/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/20-observability/220-reference_architecture/index.html</loc>
+    <loc>http://localhost:1313/20-observability/22-external/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/20-observability/230-otel_collector_installation/index.html</loc>
+    <loc>http://localhost:1313/20-observability/22-external/220-reference_architecture/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/20-observability/240-otel_collector_tracing/index.html</loc>
+    <loc>http://localhost:1313/20-observability/22-external/222-introduction/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/20-observability/250-otel_collector_metrics/index.html</loc>
+    <loc>http://localhost:1313/20-observability/22-external/223-otel_collector_installation/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-observability/22-external/224-otel_collector_tracing/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-observability/22-external/225-otel_collector_metrics/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html</loc>
