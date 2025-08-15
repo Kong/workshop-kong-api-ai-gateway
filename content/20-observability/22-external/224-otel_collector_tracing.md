@@ -17,13 +17,13 @@ wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-
 
 And use it to install Jaeger 2.9.0
 ```
-helm install jaeger jaegertracing/jaeger -n observability \
+helm install jaeger jaegertracing/jaeger -n jaeger \
   --create-namespace \
   --set allInOne.image.repository=jaegertracing/jaeger \
   --set allInOne.image.tag=2.9.0 \
   --values ./jaeger-values.yaml
 
-kubectl patch deployment jaeger -n observability --type json \
+kubectl patch deployment jaeger -n jaeger --type json \
   -p='[
     {"op": "remove", "path": "/spec/template/spec/containers/0/readinessProbe"},
     {"op": "remove", "path": "/spec/template/spec/containers/0/livenessProbe"}
@@ -40,7 +40,7 @@ kubectl delete namespace observability
 Check Jaeger's log with:
 
 ```
-kubectl logs -f $(kubectl get pod -n observability -o json | jq -r '.items[].metadata | select(.name | startswith("jaeger-"))' | jq -r '.name') -n observability
+kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r '.items[].metadata | select(.name | startswith("jaeger-"))' | jq -r '.name') -n jaeger
 ```
 
 
@@ -70,7 +70,7 @@ spec:
 
     exporters:
       otlphttp:
-        endpoint: http://jaeger-collector.observability:4318
+        endpoint: http://jaeger-collector.jaeger:4318
       #debug:
       #  verbosity: detailed
 
@@ -245,7 +245,20 @@ open -a "Google Chrome" "http://localhost:3000"
 
 ##### Configure Grafana
 
-[Documentation](https://grafana.com/docs/grafana/latest/datasources/jaeger)
+The following page has all documentation to define [Jaeger as a Grafana Data Source](https://grafana.com/docs/grafana/latest/datasources/jaeger). The main steps are:
+
+* Click "Connections" in the left-side menu.
+* Under "Your connections", click "Data sources".
+* Click "+ Add new data source" and choose Jaeger.
+* The Settings page of the data source is displayed. For "Connection" type ``http://jaeger-query.jaeger:16686``.
+
+This [section](https://grafana.com/docs/grafana/latest/datasources/jaeger/#query-the-data-source) describes how to use the **Explore** menu option to query Jaeger.
+
+* Click "Explore" in the left-side menu.
+* Choose "Jaeger" as the data source.
+* For "Query type", click "Search". You should see ``kong-otel`` as an option for "Service Name".
+* Click "Run query". You should see your trace there. Click it and you should get the spans.
+
 
 ![grafana_jaeger](/static/images/grafana_jaeger.png)
 
