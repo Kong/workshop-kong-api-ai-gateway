@@ -5,8 +5,40 @@ weight : 225
 
 Now, let's add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the [Prometheus Plugin](https://docs.konghq.com/hub/kong-inc/prometheus/). In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific [“prometheusreceiver”](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md) to the collector configuration. The receiver is responsible for scraping the Data Plane's [Status API](https://docs.konghq.com/gateway/latest/reference/configuration/#status_listen), which, by default, is configured with the ``:8100/metrics`` endpoint.
 
+You can check the port with:
+
+```
+kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong | yq '.spec.containers[].env[] | select(.name == "KONG_STATUS_LISTEN")'
+```
+
+Expected result:
+```
+name: KONG_STATUS_LISTEN
+value: 0.0.0.0:8100
+```
+
+and with:
+
+```
+kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong | yq '.spec.containers[].ports[] | select(.name == "metrics")'           
+```
+
+Expected result:
+```
+containerPort: 8100
+name: metrics
+protocol: TCP
+```
+
+
+
+https://prometheus.io/docs/guides/opentelemetry/
+
+
 
 ### New collector configuration
+
+We need to add the new ``Prometheus Receiver`` to our OTel Collector configuration:
 
 ```
 cat > otelcollector.yaml << 'EOF'
@@ -27,6 +59,7 @@ spec:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
+
       prometheus:
         config:
           scrape_configs:
@@ -46,7 +79,7 @@ spec:
                 regex: "kong"
               - source_labels: [__meta_kubernetes_pod_name]
                 action: keep
-                regex: "kong-kong-(.+)"
+                regex: "dataplane-(.+)"
               - source_labels: [__meta_kubernetes_pod_container_name]
                 action: keep
                 regex: "proxy"
@@ -55,8 +88,10 @@ spec:
                 regex: "8100"
 
     exporters:
-      otlphttp:
-        endpoint: http://jaeger-collector.observability:4318
+      otlphttp/jaeger:
+        endpoint: http://jaeger-collector.jaeger:4318
+      otlphttp/prometheus:
+        endpoint: http://prometheus-operated.prometheus:9090/api/v1/otlp
       prometheus:
         endpoint: 0.0.0.0:8889
       #debug:
@@ -66,10 +101,10 @@ spec:
       pipelines:
         traces:
           receivers: [otlp]
-          exporters: [otlphttp]
+          exporters: [otlphttp/jaeger]
         metrics:
-          receivers: [otlp, prometheus]
-          exporters: [otlphttp, prometheus]
+          receivers: [prometheus]
+          exporters: [otlphttp/prometheus, prometheus]
 EOF
 ```
 
@@ -82,16 +117,8 @@ The declaration has critical parameters defined:
 #### Kubernetes Service Account for Prometheus Receiver
 The OTel Collector [Prometheus Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md) fully supports the [scraping configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) defined by Prometheus. The receiver, more precisely, uses the [``pod``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#pod) role of the Kubernetes Service Discovery configurations ([``kubernetes_sd_config``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)). Specific [``relabel_config``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config) settings with “regex” expressions allow the receiver to discover Kubernetes Pods that belong to the Kong Data Plane deployment.
 
-One of the relabeling configs is related to the port 8100. This port configuration is part of the Data Plane deployment we used to get it running. Here's the snippet of the “values.yaml” file we used previously:
+One of the relabeling configs is related to the port 8100, named ``metrics``. This port configuration is part of the Data Plane deployment we used to get it running. 
 
-```
-status:
-  enabled: true
-  http:
-    enabled: true
-    containerPort: 8100
-    parameters: []
-```
 
 That's the Kong Gateway's Status API where the Prometheus plugin exposes the metrics produced. In fact, the endpoint the receiver scrapes is, as specified in the OTel Collector configuration, ``http://<Data_Plane_Pod_IP>:8100/metrics``
 
@@ -132,6 +159,43 @@ subjects:
   namespace: opentelemetry-operator-system
 EOF
 ```
+
+
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: collector
+  namespace: opentelemetry-operator-system 
+  labels:
+    app.kubernetes.io/name: kong
+spec:
+ selector:
+   matchLabels:
+     gateway-operator.konghq.com/dataplane-service-type: ingress
+ endpoints:
+ - targetPort: metrics
+   scheme: http
+ jobLabel: kong
+ namespaceSelector:
+   matchNames:
+     - kong
+EOF
+```
+
+
+
+
+### Check Prometheus
+
+In MacOS, you can open Grafana with:
+
+```
+open -a "Google Chrome" "http://localhost:9090"
+```
+
 
 Finally, note that the OTel Collector configuration is deployed using the Service Account with ``serviceAccount: collector`` and then it will be able to scrape the endpoint exposed by Kong Gateway.
 
@@ -182,6 +246,7 @@ services:
         service.name: "kong-otel"
   - name: prometheus
     instance_name: prometheus1
+    enabled: true
     config:
       per_consumer: true
       status_code_metrics: true
@@ -200,7 +265,7 @@ EOF
 
 Submit the new plugin declaration with:
 ```
-deck gateway sync --konnect-token $PAT kong-plugins.yaml
+deck gateway sync --konnect-token $PAT httpbin.yaml
 ```
 
 Consume the Application and check collector's Prometheus endpoint

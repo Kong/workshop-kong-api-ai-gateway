@@ -106,6 +106,12 @@ Content-Length: 3
 ```
 
 
+If you want to delete it:
+```
+kubectl delete service opa -n opa
+kubectl delete deployment opa -n opa
+```
+
 As expected, there no policies available:
 
 ```

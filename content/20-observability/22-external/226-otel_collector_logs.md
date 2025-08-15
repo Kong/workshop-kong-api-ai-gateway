@@ -3,15 +3,307 @@ title : "OTel Collector and Logs"
 weight : 226
 ---
 
+https://github.com/grafana/loki/blob/main/README.md
+https://github.com/grafana/loki/blob/main/production/helm/loki/README.md
+https://grafana.com/docs/loki/next/setup/install/helm/
+
+
 We still need to add logs to our environment. To inject Kong Gateway's Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the [TCP Log Plugin](https://docs.konghq.com/hub/kong-inc/tcp-log/).
 
 https://grafana.com/docs/loki/latest/send-data/otel/
+
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+
+### Install Loki
+
+First, all the Helm Charts
+
+```
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+```
+
+Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.
+
+```
+helm uninstall loki -n loki
+kubectl delete namespace loki
+```
+
+```
+helm install loki grafana/loki \
+  --namespace=loki --create-namespace \
+  --set replicaCount=1 \
+  --set image.tag=3.5.0 \
+  --set persistence.enabled=false \
+  --set loki.useTestSchema=true \
+  --set loki.storage.backend=memory \
+  --set loki.storage.bucketNames.chunks=test \
+  --set loki.storage.bucketNames.ruler=test \
+  --set ruler.enabled=false \
+--set backend.replicas=0 \
+--set read.replicas=0 \
+--set write.replicas=0 \
+--set ingester.replicas=0 \
+--set querier.replicas=0 \
+--set queryFrontend.replicas=0 \
+--set queryScheduler.replicas=0 \
+--set distributor.replicas=0 \
+--set compactor.replicas=0 \
+--set indexGateway.replicas=0 \
+--set bloomCompactor.replicas=0 \
+--set bloomGateway.replicas=0
+
+helm upgrade --install loki grafana/loki \
+  --namespace=loki --create-namespace \
+  --set loki.image.tag=3.5.0 \
+  --set replicaCount=1 \
+  --set loki.config.table_manager.retention_deletes_enabled=false \
+  --set loki.config.schema_config.configs[0].from=2020-10-15 \
+  --set loki.config.schema_config.configs[0].store=memory \
+  --set loki.config.schema_config.configs[0].object_store=memory \
+  --set loki.config.schema_config.configs[0].schema=v11 \
+  --set persistence.enabled=false \
+  --set ingress.enabled=false
+
+  config:
+    table_manager:
+      retention_deletes_enabled: false
+    schema_config:
+      configs:
+        - from: 2020-10-15
+          store: memory       # <--- store in memory only
+          object_store: memory
+          schema: v11
+    storage_config:
+      memory:
+        max_chunks: 100000   # optional, limits memory usage
+
+
+
+
+
+replicaCount: 1
+
+image:
+  tag: "3.5.0"
+
+loki:
+  config:
+    table_manager:
+      retention_deletes_enabled: false
+    schema_config:
+      configs:
+        - from: 2020-10-15
+          store: memory       # <--- store in memory only
+          object_store: memory
+          schema: v11
+    storage_config:
+      memory:
+        max_chunks: 100000   # optional, limits memory usage
+
+persistence:
+  enabled: false           # no disk persistence
+
+service:
+  type: ClusterIP
+  port: 3100
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+ingress:
+  enabled: false
+
+
+helm upgrade --install loki grafana/loki \
+  --namespace=loki --create-namespace \
+  --set singleBinary.enabled=true \
+  --set loki.image.tag=3.5.0 \
+  --set persistence.enabled=false \
+  --set replicas=1 \
+  --set test.enabled=false \
+  --set loki.useTestSchema=true \
+  --set loki.config="|
+    server:
+      http_listen_port: 3100
+    common:
+      path_prefix: /loki
+      storage:
+        filesystem:
+          chunks_directory: /loki/chunks
+          rules_directory: /loki/rules
+      replication_factor: 1
+    limits_config:
+      allow_structured_metadata: true
+    otlp:
+      enabled: true
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+" 
+
+
+
+
+
+helm upgrade --install loki grafana/loki \
+  --namespace=loki --create-namespace \
+  --version 6.6.3 \
+  --set singleBinary.enabled=true \
+  --set loki.image.tag=3.5.0 \
+  --set persistence.enabled=false \
+  --set replicas=1 \
+  --set test.enabled=false \
+  --set loki.useTestSchema=true \
+  --set loki.config="|
+    server:
+      http_listen_port: 3100
+    common:
+      path_prefix: /loki
+      storage:
+        filesystem:
+          chunks_directory: /loki/chunks
+          rules_directory: /loki/rules
+      replication_factor: 1
+    limits_config:
+      allow_structured_metadata: true
+    otlp:
+      enabled: true
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+" 
+
+
+
+
+
+
+
+
+helm install loki -n loki grafana/loki-stack \
+--create-namespace \
+--set loki.image.tag=3.5.3 \
+--set loki.service.type=LoadBalancer \
+--set promtail.enabled=false \
+--set singleBinary.enabled=true \
+--set loki.image.tag=3.5.0 \
+--set persistence.enabled=false \
+--set replicas=1 \
+--set read.enabled=false \
+--set write.enabled=false \
+--set backend.enabled=false \
+--set test.enabled=false
+
+
+
+
+
+
+helm install loki -n loki grafana/loki-stack \
+--create-namespace \
+--set loki.image.tag=3.5.3 \
+--set loki.service.type=LoadBalancer \
+--set promtail.enabled=false \
+--set loki.commonConfig.replication_factor=1 \
+--set minio.enabled=false
+
+
+--set config.ChunkStoreConfig.
+max_look_back_period not found in type 
+
+
+--set backend.replicas=0 \
+--set read.replicas=0 \
+--set write.replicas=0 \
+--set ingester.replicas=0 \
+--set querier.replicas=0 \
+--set queryFrontend.replicas=0 \
+--set queryScheduler.replicas=0 \
+--set distributor.replicas=0 \
+--set compactor.replicas=0 \
+--set indexGateway.replicas=0 \
+--set bloomCompactor.replicas=0 \
+--set bloomGateway.replicas=0
+
+\
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
+--set deploymentMode=SingleBinary
+--set
+ \
+--set singleBinary.replicas=1
+
+--
+
+
+
+helm install loki -n loki grafana/loki-stack \
+--create-namespace \
+--set loki.image.tag=3.5.3 \
+--set loki.service.type=LoadBalancer \
+--set promtail.enabled=false
+ \
+
+--set loki.service.port=3100 \
+
+```
+
+--set loki.otlp.http.enabled=true \
+--set loki.otlp.http.endpoint=0.0.0.0:4318 \
+
+
+loki:
+  server:
+    http_listen_port: 3100
+  otlp:
+    http:
+      enabled: true
+      endpoint: 0.0.0.0:4318
+    grpc:
+      enabled: true
+      endpoint: 0.0.0.0:4317
+
+
+Hit the port to make sure Loki is ready to accept requests:
+
+```
+curl http://localhost:3100/ready
+```
+
+
+If you want to uninstall it run:
+
+```
+helm uninstall loki -n loki
+kubectl delete namespace loki
+```
+
 
 ### New collector configuration
 
 ```
-cat > otelcollector << 'EOF'
+cat > otelcollector.yaml << 'EOF'
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
@@ -29,6 +321,7 @@ spec:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
+
       prometheus:
         config:
           scrape_configs:
@@ -48,7 +341,7 @@ spec:
                 regex: "kong"
               - source_labels: [__meta_kubernetes_pod_name]
                 action: keep
-                regex: "kong-kong-(.+)"
+                regex: "dataplane-(.+)"
               - source_labels: [__meta_kubernetes_pod_container_name]
                 action: keep
                 regex: "proxy"
@@ -62,13 +355,15 @@ spec:
 
     exporters:
       otlphttp/jaeger:
-        endpoint: http://jaeger-collector.observability:4318
-      prometheus:
-        endpoint: 0.0.0.0:8889
+        endpoint: http://jaeger-collector.jaeger:4318
+      otlphttp/prometheus:
+        endpoint: http://prometheus-operated.prometheus:9090/api/v1/otlp
       otlphttp/loki:
         endpoint: http://loki.loki:3100/otlp
-      debug:
-        verbosity: detailed
+      prometheus:
+        endpoint: 0.0.0.0:8889
+      #debug:
+      #  verbosity: detailed
 
     service:
       pipelines:
@@ -76,13 +371,16 @@ spec:
           receivers: [otlp]
           exporters: [otlphttp/jaeger]
         metrics:
-          receivers: [otlp, prometheus]
-          exporters: [otlphttp, prometheus]
+          receivers: [prometheus]
+          exporters: [otlphttp/prometheus, prometheus]
         logs:
           receivers: [tcplog]
-          exporters: [otlphttp/loku]
+          exporters: [otlphttp/loki]
 EOF
 ```
+
+endpoint: http://loki.loki:3100/loki/api/v1/push
+
 
 The declaration has critical parameters defined:
 
@@ -110,47 +408,132 @@ collector-kong-collector   ClusterIP   10.100.67.18   <none>        4317/TCP,431
 Add the Prometheus and TCP Log plugins to our decK declaration and submit it to Konnect:
 
 ```
-cat > kong-plugins.yaml << 'EOF'
+cat > httpbin.yaml << 'EOF'
 _format_version: "3.0"
+_konnect:
+  control_plane_name: kong-workshop
 _info:
   select_tags:
-  - kong-plugins
-_konnect:
-  control_plane_name: default
-plugins:
-- name: opentelemetry
-  instance_name: opentelemetry1
-  enabled: true
-  config:
-    traces_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces
-    propagation:
-      default_format: "w3c"
-      inject: ["w3c"]
-    resource_attributes:
-      service.name: "kong-otel"
-- name: prometheus
-  instance_name: prometheus1
-  config:
-    per_consumer: true
-    status_code_metrics: true
-    latency_metrics: true
-    bandwidth_metrics: true
-    upstream_health_metrics: true
-    ai_metrics: true
-- name: tcp-log
-  instance_name: tcp-log1
-  enabled: true
-  config:
-    host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
-    port: 54525
-    custom_fields_by_lua:
-      trace_id: local log_payload = kong.log.serialize()  local trace_id = log_payload['trace_id']['w3c']   return trace_id
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  tags:
+  - httpbin-service-route
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  plugins:
+  - name: opentelemetry
+    instance_name: opentelemetry1
+    enabled: true
+    config:
+      traces_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces
+      #propagation:
+      #  default_format: "w3c"
+      #  inject: ["w3c"]
+      resource_attributes:
+        service.name: "kong-otel"
+  - name: prometheus
+    instance_name: prometheus1
+    enabled: true
+    config:
+      per_consumer: true
+      status_code_metrics: true
+      latency_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: true
+      ai_metrics: true
+  - name: tcp-log
+    instance_name: tcp-log1
+    enabled: true
+    config:
+      host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
+      port: 54525
+      custom_fields_by_lua:
+        streams: local ts=string.format('%18.0f', os.time()*1000000000) local log_payload         =
+          kong.log.serialize() local service = log_payload['service'] or 'noService'
+          local cjson         =
+          require "cjson" local payload_string = cjson.encode(log_payload) local
+          t         = { {stream = {gateway='kong-gateway', service=service['name']},
+          values={{ts,         payload_string}}} } return
+          t
+  routes:
+  - name: httpbin-route
+    tags:
+    - httpbin-service-route
+    paths:
+    - /httpbin-route
 EOF
 ```
+
+
+### Update the DataPlane with new Lua configuration
+
+```
+kubectl delete dataplane dataplane1 -n kong
+```
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: gateway-operator.konghq.com/v1beta1
+kind: DataPlane
+metadata:
+  name: dataplane1
+  namespace: kong
+spec:
+  extensions:
+  - kind: KonnectExtension
+    name: konnect-config1
+    group: konnect.konghq.com
+  deployment:
+    podTemplateSpec:
+      spec:
+        containers:
+        - name: proxy
+          image: kong/kong-gateway:3.11
+          env:
+          - name: KONG_TRACING_INSTRUMENTATIONS
+            value: all
+          - name: KONG_TRACING_SAMPLING_RATE
+            value: "1.0"
+          - name: KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES
+            value: cjson
+  network:
+    services:
+      ingress:
+        name: proxy1
+        type: LoadBalancer
+EOF
+```
+
+           #value: pl.stringio, ffi-zlib, cjson.safe
+
+
+        #http://loki.loki:3100g-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push
+
+- name: http-log
+  instance_name: http-log1
+  enabled: true
+  config:
+    custom_fields_by_lua:
+      streams: local ts=string.format('%18.0f', os.time()*1000000000) local log_payload         =
+        kong.log.serialize() local service = log_payload['service'] or 'noService'
+        local cjson         =
+        require "cjson" local payload_string = cjson.encode(log_payload) local
+        t         = { {stream = {gateway='kong-gateway', service=service['name']},
+        values={{ts,         payload_string}}} } return
+        t
+    http_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push
+
 Submit the new plugin declaration with:
+```
+deck gateway sync --konnect-token $PAT httpbin.yaml
+```
 
 
-deck gateway sync --konnect-token $PAT kong-plugins.yaml
+https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md
+https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs
+
+
 Consume the Application and check collector's Prometheus endpoint
 Using “port-forward”, send a request to the collector's Prometheus endpoint. In a terminal run:
 

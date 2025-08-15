@@ -223,7 +223,9 @@ helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack
 --set prometheus.service.port=9090 \
 --set grafana.service.type=LoadBalancer \
 --set grafana.service.port=3000 \
---set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
+--set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
+--set prometheus.prometheusSpec.additionalArgs[0].value=
+
 ```
 
 If you want to uninstall them run:
