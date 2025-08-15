@@ -12,7 +12,7 @@
       <link>http://localhost:1313/10-prerequisites/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/10-prerequisites/index.html</guid>
-      <description>Knowledge Attendees should have a intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, Prometheus etc.&#xA;Attendees should have a basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.&#xA;Kong Academy Complete two badges via Kong Academy: Kong Gateway Foundations and Kong Gateway Operations&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.</description>
+      <description>Knowledge Attendees should have intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, Prometheus etc.&#xA;Attendees should have basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.&#xA;Kong Academy Complete two badges via Kong Academy: Kong Gateway Foundations and Kong Gateway Operations&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.</description>
     </item>
     <item>
       <title>Kong Konnect Architectural Overview</title>

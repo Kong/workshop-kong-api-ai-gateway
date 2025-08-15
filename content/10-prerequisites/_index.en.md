@@ -31,6 +31,7 @@ In this workshop, the Data Plane will be running locally on a [**Minikube**](htt
 In this workshop, we will use the following command line utilities
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [helm](https://helm.sh/docs/intro/install/)
 * [k9s](https://k9scli.io/)
 * [curl](https://curl.se/)
 * [jq](https://jqlang.org/)
