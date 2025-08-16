@@ -1,5 +1,5 @@
 ---
-title : "OTel Collector Installation"
+title : "OTel Collector Operator Installation"
 weight : 223
 ---
 

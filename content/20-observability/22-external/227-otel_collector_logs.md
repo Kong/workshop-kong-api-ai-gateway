@@ -1,11 +1,12 @@
 ---
 title : "OTel Collector and Logs"
-weight : 226
+weight : 227
 ---
 
 https://github.com/grafana/loki/blob/main/README.md
 https://github.com/grafana/loki/blob/main/production/helm/loki/README.md
 https://grafana.com/docs/loki/next/setup/install/helm/
+https://grafana.com/docs/loki/latest/send-data/otel/
 
 
 We still need to add logs to our environment. To inject Kong Gateway's Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the [TCP Log Plugin](https://docs.konghq.com/hub/kong-inc/tcp-log/).
@@ -14,275 +15,7 @@ https://grafana.com/docs/loki/latest/send-data/otel/
 
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
 
-### Install Loki
 
-First, all the Helm Charts
-
-```
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-```
-
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.
-
-```
-helm uninstall loki -n loki
-kubectl delete namespace loki
-```
-
-```
-helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set replicaCount=1 \
-  --set image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.storage.backend=memory \
-  --set loki.storage.bucketNames.chunks=test \
-  --set loki.storage.bucketNames.ruler=test \
-  --set ruler.enabled=false \
---set backend.replicas=0 \
---set read.replicas=0 \
---set write.replicas=0 \
---set ingester.replicas=0 \
---set querier.replicas=0 \
---set queryFrontend.replicas=0 \
---set queryScheduler.replicas=0 \
---set distributor.replicas=0 \
---set compactor.replicas=0 \
---set indexGateway.replicas=0 \
---set bloomCompactor.replicas=0 \
---set bloomGateway.replicas=0
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set loki.image.tag=3.5.0 \
-  --set replicaCount=1 \
-  --set loki.config.table_manager.retention_deletes_enabled=false \
-  --set loki.config.schema_config.configs[0].from=2020-10-15 \
-  --set loki.config.schema_config.configs[0].store=memory \
-  --set loki.config.schema_config.configs[0].object_store=memory \
-  --set loki.config.schema_config.configs[0].schema=v11 \
-  --set persistence.enabled=false \
-  --set ingress.enabled=false
-
-  config:
-    table_manager:
-      retention_deletes_enabled: false
-    schema_config:
-      configs:
-        - from: 2020-10-15
-          store: memory       # <--- store in memory only
-          object_store: memory
-          schema: v11
-    storage_config:
-      memory:
-        max_chunks: 100000   # optional, limits memory usage
-
-
-
-
-
-replicaCount: 1
-
-image:
-  tag: "3.5.0"
-
-loki:
-  config:
-    table_manager:
-      retention_deletes_enabled: false
-    schema_config:
-      configs:
-        - from: 2020-10-15
-          store: memory       # <--- store in memory only
-          object_store: memory
-          schema: v11
-    storage_config:
-      memory:
-        max_chunks: 100000   # optional, limits memory usage
-
-persistence:
-  enabled: false           # no disk persistence
-
-service:
-  type: ClusterIP
-  port: 3100
-
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu: 500m
-    memory: 512Mi
-
-ingress:
-  enabled: false
-
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set singleBinary.enabled=true \
-  --set loki.image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set replicas=1 \
-  --set test.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.config="|
-    server:
-      http_listen_port: 3100
-    common:
-      path_prefix: /loki
-      storage:
-        filesystem:
-          chunks_directory: /loki/chunks
-          rules_directory: /loki/rules
-      replication_factor: 1
-    limits_config:
-      allow_structured_metadata: true
-    otlp:
-      enabled: true
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-" 
-
-
-
-
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --version 6.6.3 \
-  --set singleBinary.enabled=true \
-  --set loki.image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set replicas=1 \
-  --set test.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.config="|
-    server:
-      http_listen_port: 3100
-    common:
-      path_prefix: /loki
-      storage:
-        filesystem:
-          chunks_directory: /loki/chunks
-          rules_directory: /loki/rules
-      replication_factor: 1
-    limits_config:
-      allow_structured_metadata: true
-    otlp:
-      enabled: true
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-" 
-
-
-
-
-
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false \
---set singleBinary.enabled=true \
---set loki.image.tag=3.5.0 \
---set persistence.enabled=false \
---set replicas=1 \
---set read.enabled=false \
---set write.enabled=false \
---set backend.enabled=false \
---set test.enabled=false
-
-
-
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false \
---set loki.commonConfig.replication_factor=1 \
---set minio.enabled=false
-
-
---set config.ChunkStoreConfig.
-max_look_back_period not found in type 
-
-
---set backend.replicas=0 \
---set read.replicas=0 \
---set write.replicas=0 \
---set ingester.replicas=0 \
---set querier.replicas=0 \
---set queryFrontend.replicas=0 \
---set queryScheduler.replicas=0 \
---set distributor.replicas=0 \
---set compactor.replicas=0 \
---set indexGateway.replicas=0 \
---set bloomCompactor.replicas=0 \
---set bloomGateway.replicas=0
-
-\
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-indexGateway:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
---set deploymentMode=SingleBinary
---set
- \
---set singleBinary.replicas=1
-
---
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false
- \
-
---set loki.service.port=3100 \
-
-```
-
---set loki.otlp.http.enabled=true \
---set loki.otlp.http.endpoint=0.0.0.0:4318 \
-
-
-loki:
-  server:
-    http_listen_port: 3100
-  otlp:
-    http:
-      enabled: true
-      endpoint: 0.0.0.0:4318
-    grpc:
-      enabled: true
-      endpoint: 0.0.0.0:4317
 
 
 Hit the port to make sure Loki is ready to accept requests:
@@ -292,12 +25,6 @@ curl http://localhost:3100/ready
 ```
 
 
-If you want to uninstall it run:
-
-```
-helm uninstall loki -n loki
-kubectl delete namespace loki
-```
 
 
 ### New collector configuration
@@ -357,7 +84,7 @@ spec:
       otlphttp/jaeger:
         endpoint: http://jaeger-collector.jaeger:4318
       otlphttp/prometheus:
-        endpoint: http://prometheus-operated.prometheus:9090/api/v1/otlp
+        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
       otlphttp/loki:
         endpoint: http://loki.loki:3100/otlp
       prometheus:
@@ -453,7 +180,7 @@ services:
           kong.log.serialize() local service = log_payload['service'] or 'noService'
           local cjson         =
           require "cjson" local payload_string = cjson.encode(log_payload) local
-          t         = { {stream = {gateway='kong-gateway', service=service['name']},
+          t         = { {stream = {gateway='kong-gateway', service_name=service['name']},
           values={{ts,         payload_string}}} } return
           t
   routes:

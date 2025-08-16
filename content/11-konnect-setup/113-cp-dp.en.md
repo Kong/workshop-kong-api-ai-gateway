@@ -121,13 +121,20 @@ kubectl logs -f $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | s
 
 #### Control Plane and Data Plane deletion
 
-If you want to delete CP and DP run:
-
+If you want to delete the DP run run:
 ```
 kubectl delete dataplane dataplane1 -n kong
 kubectl delete konnectextensions.konnect.konghq.com konnect-config1 -n kong
+```
+
+If you want to delete the CP run:
+```
 kubectl delete konnectgatewaycontrolplane kong-workshop -n kong
 kubectl delete konnectapiauthconfiguration konnect-api-auth-conf -n kong
+```
+
+If you want to delete the PAT and namespace run:
+```
 kubectl delete secret konnect-pat -n kong
 kubectl delete namespace kong
 ```

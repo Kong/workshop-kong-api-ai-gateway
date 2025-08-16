@@ -5,30 +5,38 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="The Kong Konnect and Observability Stack topology is quite simple in this example:
-The main components here are:
-Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.">
+    <meta name="description" content="Jaeger Installation We are going to use the Jaeger Helm Charts
+Save the values.yaml Jaeger provides as an example:
+wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:
+kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger Prometheus Installation Add the Helm Charts first:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Reference Architecture :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="The Kong Konnect and Observability Stack topology is quite simple in this example:
-The main components here are:
-Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.">
-    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/220-reference_architecture/index.html">
+    <meta name="twitter:title" content="Observability Stack Installation :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Jaeger Installation We are going to use the Jaeger Helm Charts
+Save the values.yaml Jaeger provides as an example:
+wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:
+kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger Prometheus Installation Add the Helm Charts first:">
+    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/224-observability_stack_installation/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Reference Architecture :: API Management with Kong Konnect">
-    <meta property="og:description" content="The Kong Konnect and Observability Stack topology is quite simple in this example:
-The main components here are:
-Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.">
+    <meta property="og:title" content="Observability Stack Installation :: API Management with Kong Konnect">
+    <meta property="og:description" content="Jaeger Installation We are going to use the Jaeger Helm Charts
+Save the values.yaml Jaeger provides as an example:
+wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:
+kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger Prometheus Installation Add the Helm Charts first:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Observability">
-    <meta itemprop="name" content="Reference Architecture :: API Management with Kong Konnect">
-    <meta itemprop="description" content="The Kong Konnect and Observability Stack topology is quite simple in this example:
-The main components here are:
-Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.">
-    <meta itemprop="wordCount" content="103">
-    <title>Reference Architecture :: API Management with Kong Konnect</title>
+    <meta itemprop="name" content="Observability Stack Installation :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Jaeger Installation We are going to use the Jaeger Helm Charts
+Save the values.yaml Jaeger provides as an example:
+wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:
+kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger Prometheus Installation Add the Helm Charts first:">
+    <meta itemprop="wordCount" content="317">
+    <title>Observability Stack Installation :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1755378457" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1755378457" defer></script>
     <script src="/js/search-lunr.js?1755378457" defer></script>
@@ -53,7 +61,7 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/20-observability\/22-external\/220-reference_architecture\/index.html';
+      window.relearn.path='\/20-observability\/22-external\/224-observability_stack_installation\/index.html';
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -103,7 +111,7 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/20-observability/22-external/220-reference_architecture/index.html">
+  <body class="mobile-support html" data-url="/20-observability/22-external/224-observability_stack_installation/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -119,12 +127,12 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/22-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Reference Architecture</span><meta itemprop="position" content="4"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/22-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Observability Stack Installation</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/index.html" title="External Observability Stack (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/223-otel_collector_operator_installation/index.html" title="OTel Collector Operator Installation (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/222-introduction/index.html" title="OpenTelemetry Introduction (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/225-otel_collector_tracing/index.html" title="OTel Collector and Tracing (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -144,20 +152,81 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
   <header class="headline">
   </header>
 
-<h1 id="reference-architecture">Reference Architecture</h1>
+<h1 id="observability-stack-installation">Observability Stack Installation</h1>
 
-<p>The Kong Konnect and Observability Stack topology is quite simple in this example:</p>
-<p><a href="#R-image-c86dfff71586c7fdfc0a9472cb379b6e" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c86dfff71586c7fdfc0a9472cb379b6e"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg"></a></p>
-<p>The main components here are:</p>
-<ul>
-<li>Konnect Control Plane: responsible for administration tasks including APIs and Policies definition</li>
-<li>Konnect Data Plane: handles the requests sent by the API consumers</li>
-<li>Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals</li>
-<li>Upstream Service: services or microservices protected by the Konnnect Data Plane</li>
-<li>OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant</li>
-<li>Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.</li>
-</ul>
+<h4 id="jaeger-installation">Jaeger Installation</h4>
+<p>We are going to use the <a href="https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger" rel="external" target="_blank">Jaeger Helm Charts</a></p>
+<p>Save the <code>values.yaml</code> Jaeger provides as an example:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml</code></pre></div>
+<p>And use it to install Jaeger 2.9.0</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install jaeger jaegertracing/jaeger -n jaeger \
+  --create-namespace \
+  --set allInOne.image.repository=jaegertracing/jaeger \
+  --set allInOne.image.tag=2.9.0 \
+  --values ./jaeger-values.yaml
+
+kubectl patch deployment jaeger -n jaeger --type json \
+  -p=&#39;[
+    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;},
+    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;}
+  ]&#39;</code></pre></div>
+<p>Check Jaeger&rsquo;s log with:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger</code></pre></div>
+<h4 id="prometheus-installation">Prometheus Installation</h4>
+<p>Add the Helm Charts first:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code></pre></div>
+<p>Again, after the installation, we should have two new Minikube tunnels defined:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack \
+--create-namespace \
+--set alertmanager.enabled=false \
+--set prometheus.service.type=LoadBalancer \
+--set prometheus.service.port=9090 \
+--set grafana.service.type=LoadBalancer \
+--set grafana.service.port=3000 \
+--set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
+--set prometheus.prometheusSpec.additionalArgs[0].value=</code></pre></div>
+<h4 id="loki-installation">Loki Installation</h4>
+<p>First, all the Helm Charts</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update</code></pre></div>
+<p>Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install loki grafana/loki \
+  --namespace=loki --create-namespace \
+  -f loki-config.yaml</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl patch svc loki \             
+  -n loki \
+  -p &#39;{&#34;spec&#34;: {&#34;type&#34;: &#34;LoadBalancer&#34;}}&#39;</code></pre></div>
+<h4 id="grafana-installation">Grafana Installation</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade --install grafana grafana/grafana \
+--namespace grafana \
+--create-namespace \
+--set adminUser=admin \
+--set adminPassword=admin \
+--set service.type=LoadBalancer \
+--set service.port=3000 \
+--set datasources.&#34;datasources\.yaml&#34;.apiVersion=1 \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[0].name=Jaeger \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[0].type=jaeger \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[0].url=http://jaeger-query.jaeger:16686 \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[0].access=proxy \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[1].name=Prometheus \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[1].type=prometheus \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[1].url=http://prometheus-kube-prometheus-prometheus.prometheus:9090 \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[1].access=proxy \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[2].name=Loki \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[2].type=loki \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[2].url=http://loki.loki:3100 \
+--set datasources.&#34;datasources\.yaml&#34;.datasources[2].access=proxy</code></pre></div>
+<h4 id="uninstall">Uninstall</h4>
+<p>If you want to uninstall them run:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall jaeger -n jaeger
+kubectl delete namespace jaeger</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall prometheus -n prometheus
+kubectl delete namespace prometheus</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall loki -n loki
+kubectl delete namespace loki</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall grafana -n grafana
+kubectl delete namespace grafana</code></pre></div>
 
   <footer class="footline">
   </footer>
@@ -213,10 +282,10 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
             <li class="parent " data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu">
             <li class="" data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a></li>
             <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
-            <li class="active " data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
             <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
             <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_operator_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_operator_installation/index.html">OTel Collector Operator Installation</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/224-observability_stack_installation/index.html"><a class="padding" href="/20-observability/22-external/224-observability_stack_installation/index.html">Observability Stack Installation</a></li>
+            <li class="active " data-nav-id="/20-observability/22-external/224-observability_stack_installation/index.html"><a class="padding" href="/20-observability/22-external/224-observability_stack_installation/index.html">Observability Stack Installation</a></li>
             <li class="" data-nav-id="/20-observability/22-external/225-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/225-otel_collector_tracing/index.html">OTel Collector and Tracing</a></li>
             <li class="" data-nav-id="/20-observability/22-external/226-otel_collector_metrics/index.html"><a class="padding" href="/20-observability/22-external/226-otel_collector_metrics/index.html">OTel Collector and Metrics</a></li>
             <li class="" data-nav-id="/20-observability/22-external/227-otel_collector_logs/index.html"><a class="padding" href="/20-observability/22-external/227-otel_collector_logs/index.html">OTel Collector and Logs</a></li></ul></li></ul></li>

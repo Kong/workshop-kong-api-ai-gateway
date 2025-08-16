@@ -6,62 +6,54 @@
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
-Jaeger Installation We are going to use the Jaeger Helm Charts
-Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:">
+OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
+cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="OTel Collector and Tracing :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
-Jaeger Installation We are going to use the Jaeger Helm Charts
-Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:">
-    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/224-otel_collector_tracing/index.html">
+OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
+cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
+    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/225-otel_collector_tracing/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="OTel Collector and Tracing :: API Management with Kong Konnect">
     <meta property="og:description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
-Jaeger Installation We are going to use the Jaeger Helm Charts
-Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:">
+OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
+cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Observability">
     <meta itemprop="name" content="OTel Collector and Tracing :: API Management with Kong Konnect">
     <meta itemprop="description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
-Jaeger Installation We are going to use the Jaeger Helm Charts
-Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.9.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; If you want to uninstall it run:">
-    <meta itemprop="wordCount" content="1024">
+OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
+cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
+    <meta itemprop="wordCount" content="647">
     <title>OTel Collector and Tracing :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755376431" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755376431" defer></script>
-    <script src="/js/search-lunr.js?1755376431" defer></script>
-    <script src="/js/search.js?1755376431" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755378457" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755378457" defer></script>
+    <script src="/js/search-lunr.js?1755378457" defer></script>
+    <script src="/js/search.js?1755378457" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755376431";
+      window.relearn.index_js_url="/searchindex.en.js?1755378457";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755376431" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755376431" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755376431" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755376431" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755378457" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755376431" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755376431" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755376431" rel="stylesheet">
-    <link href="/css/theme.css?1755376431" rel="stylesheet">
-    <link href="/css/format-html.css?1755376431" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755378457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755378457" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755378457" rel="stylesheet">
+    <link href="/css/theme.css?1755378457" rel="stylesheet">
+    <link href="/css/format-html.css?1755378457" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/20-observability\/22-external\/224-otel_collector_tracing\/index.html';
+      window.relearn.path='\/20-observability\/22-external\/225-otel_collector_tracing\/index.html';
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -111,7 +103,7 @@ helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set 
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/20-observability/22-external/224-otel_collector_tracing/index.html">
+  <body class="mobile-support html" data-url="/20-observability/22-external/225-otel_collector_tracing/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -130,7 +122,7 @@ helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set 
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/22-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OTel Collector and Tracing</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/223-otel_collector_installation/index.html" title="OTel Collector Installation (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/224-observability_stack_installation/index.html" title="Observability Stack Installation (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/226-otel_collector_metrics/index.html" title="OTel Collector and Metrics (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
@@ -155,27 +147,6 @@ helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set 
 <h1 id="otel-collector-and-tracing">OTel Collector and Tracing</h1>
 
 <p>Here&rsquo;s a nice introduction of <a href="https://www.jaegertracing.io/docs/latest/architecture/#with-opentelemetry-collector" rel="external" target="_blank">OTel Collector and Jaeger</a> deployment. The Collector is going to be running as a &ldquo;remote cluster&rdquo; in a specific K8s deployument.</p>
-<h4 id="jaeger-installation">Jaeger Installation</h4>
-<p>We are going to use the <a href="https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger" rel="external" target="_blank">Jaeger Helm Charts</a></p>
-<p>Save the <code>values.yaml</code> Jaeger provides as an example:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml</code></pre></div>
-<p>And use it to install Jaeger 2.9.0</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install jaeger jaegertracing/jaeger -n jaeger \
-  --create-namespace \
-  --set allInOne.image.repository=jaegertracing/jaeger \
-  --set allInOne.image.tag=2.9.0 \
-  --values ./jaeger-values.yaml
-
-kubectl patch deployment jaeger -n jaeger --type json \
-  -p=&#39;[
-    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;},
-    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;}
-  ]&#39;</code></pre></div>
-<p>If you want to uninstall it run:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall jaeger -n observability
-kubectl delete namespace observability</code></pre></div>
-<p>Check Jaeger&rsquo;s log with:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger</code></pre></div>
 <h4 id="opentelemetry-collector-instantiation">OpenTelemetry Collector instantiation</h4>
 <h5 id="create-a-collector-declaration">Create a collector declaration</h5>
 <p>To get started we&rsquo;re going to manage Traces first. Later on, we&rsquo;ll enhance the collector to process both Metrics and Logs. Here&rsquo;s the declaration:</p>
@@ -296,100 +267,6 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <p>Consume the Kong Route</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
 <h4 id="use-grafana-to-see-your-traces">Use Grafana to see your traces</h4>
-<h5 id="installing-prometheus-and-grafana">Installing Prometheus and Grafana</h5>
-<p>The Prometheus community distribution embeds Grafana so we can install both with a single command. Add the Helm Charts first:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code></pre></div>
-<p>Again, after the installation, we should have two new Minikube tunnels defined:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack \
---create-namespace \
---set alertmanager.enabled=false \
---set prometheus.service.type=LoadBalancer \
---set prometheus.service.port=9090 \
---set grafana.service.type=LoadBalancer \
---set grafana.service.port=3000 \
---set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
---set prometheus.prometheusSpec.additionalArgs[0].value=</code></pre></div>
-<h1 id="install-grafana-with-log-drilldown-plugin">Install Grafana with Log Drilldown plugin</h1>
-<p>//helm upgrade prometheus -n prometheus prometheus-community/kube-prometheus-stack <br>
-&ndash;create-namespace <br>
-&ndash;set alertmanager.enabled=false <br>
-&ndash;set prometheus.service.type=LoadBalancer <br>
-&ndash;set prometheus.service.port=9090 <br>
-&ndash;set grafana.service.type=LoadBalancer <br>
-&ndash;set grafana.service.port=3000 <br>
-&ndash;set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver <br>
-&ndash;set prometheus.prometheusSpec.additionalArgs[0].value=</p>
-<p>helm upgrade &ndash;install prometheus-stack prometheus-community/kube-prometheus-stack <br>
-&ndash;namespace prometheus <br>
-&ndash;create-namespace <br>
-&ndash;set grafana.enabled=false <br>
-&ndash;set alertmanager.enabled=false <br>
-&ndash;set prometheus.service.type=LoadBalancer <br>
-&ndash;set prometheus.service.port=9090 <br>
-&ndash;set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver <br>
-&ndash;set prometheus.prometheusSpec.additionalArgs[0].value=</p>
-<h1 id="install-loki-stack">Install Loki stack</h1>
-<p>//helm upgrade &ndash;install loki grafana/loki-stack <br>
-&ndash;namespace monitoring <br>
-&ndash;set grafana.enabled=false <br>
-&ndash;set promtail.enabled=false <br>
-&ndash;set loki.persistence.enabled=false <br>
-&ndash;set loki.service.type=ClusterIP</p>
-<h1 id="install-grafana-with-log-drilldown-plugin-1">Install Grafana with Log Drilldown plugin</h1>
-<p>helm uninstall grafana -n grafana
-kubectl delete namespace grafana</p>
-<p>helm upgrade &ndash;install grafana grafana/grafana <br>
-&ndash;namespace grafana <br>
-&ndash;create-namespace <br>
-&ndash;set adminUser=admin <br>
-&ndash;set adminPassword=admin <br>
-&ndash;set service.type=LoadBalancer <br>
-&ndash;set service.port=3000 <br>
-&ndash;set persistence.enabled=false <br>
-&ndash;set plugins[1]=grafana-lokiexplore-app <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.apiVersion=1 <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].name=Jaeger <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].type=jaeger <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].url=http://jaeger-query.jaeger:16686 <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].access=proxy <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].name=Prometheus <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].type=prometheus <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].url=http://prometheus-stack-kube-prom-prometheus.prometheus:9090 <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].access=proxy <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].name=Loki <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].type=loki <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].url=http://loki.loki:3100 <br>
-&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].access=proxy</p>
-<p>&ndash;set datasources.datasources.yaml.apiVersion=1 <br>
-&ndash;set datasources.datasources.yaml.datasources[0].name=Prometheus <br>
-&ndash;set datasources.datasources.yaml.datasources[0].type=prometheus <br>
-&ndash;set datasources.datasources.yaml.datasources[0].url=http://prometheus-stack-kube-prom-prometheus.prometheus:9090 <br>
-&ndash;set datasources.datasources.yaml.datasources[0].access=proxy</p>
-<p><br>
-&ndash;set datasources.datasources.yaml.datasources[1].name=Loki <br>
-&ndash;set datasources.datasources.yaml.datasources[1].type=loki <br>
-&ndash;set datasources.datasources.yaml.datasources[1].url=http://loki.loki.svc.cluster.local <br>
-&ndash;set datasources.datasources.yaml.datasources[1].access=proxy</p>
-<p>prometheus-stack-kube-prom-prometheus</p>
-<p>#&ndash;set plugins[0]=grafana-log-drilldown-panel <br>
-&ndash;set plugins[0]=grafana-lokiexplore-app \</p>
-<p>helm upgrade &ndash;install grafana grafana/grafana <br>
-&ndash;namespace monitoring <br>
-&ndash;set adminUser=admin <br>
-&ndash;set adminPassword=admin <br>
-&ndash;set plugins[0]=grafana-log-drilldown-panel <br>
-&ndash;set datasources.datasources.yaml.apiVersion=1 <br>
-&ndash;set datasources.datasources.yaml.datasources[0].name=Prometheus <br>
-&ndash;set datasources.datasources.yaml.datasources[0].type=prometheus <br>
-&ndash;set datasources.datasources.yaml.datasources[0].url=http://prometheus-stack-kube-prometheus-prometheus.monitoring.svc.cluster.local <br>
-&ndash;set datasources.datasources.yaml.datasources[0].access=proxy <br>
-&ndash;set datasources.datasources.yaml.datasources[1].name=Loki <br>
-&ndash;set datasources.datasources.yaml.datasources[1].type=loki <br>
-&ndash;set datasources.datasources.yaml.datasources[1].url=http://loki.monitoring.svc.cluster.local <br>
-&ndash;set datasources.datasources.yaml.datasources[1].access=proxy</p>
-<p>If you want to uninstall them run:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall prometheus -n prometheus
-kubectl delete namespace prometheus</code></pre></div>
 <p>By default, Grafana administrador&rsquo;s credentials are: <code>admin/prom-operator</code></p>
 <p>In MacOS, you can open Grafana with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>open -a &#34;Google Chrome&#34; &#34;http://localhost:3000&#34;</code></pre></div>
@@ -408,8 +285,8 @@ kubectl delete namespace prometheus</code></pre></div>
 <li>For &ldquo;Query type&rdquo;, click &ldquo;Search&rdquo;. You should see <code>kong-otel</code> as an option for &ldquo;Service Name&rdquo;.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see your trace there. Click it and you should get the spans.</li>
 </ul>
-<p><a href="#R-image-27b654b338ec11e7d8a2aaf35a7a25fd" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-27b654b338ec11e7d8a2aaf35a7a25fd"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
+<p><a href="#R-image-f34bc5a292b5020b774b138f549104e1" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f34bc5a292b5020b774b138f549104e1"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -467,9 +344,9 @@ kubectl delete namespace prometheus</code></pre></div>
             <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
             <li class="" data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
             <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_installation-copy/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_installation-copy/index.html">OTel Collector Installation</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_installation/index.html">OTel Collector Installation</a></li>
-            <li class="active " data-nav-id="/20-observability/22-external/224-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/224-otel_collector_tracing/index.html">OTel Collector and Tracing</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_operator_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_operator_installation/index.html">OTel Collector Operator Installation</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/224-observability_stack_installation/index.html"><a class="padding" href="/20-observability/22-external/224-observability_stack_installation/index.html">Observability Stack Installation</a></li>
+            <li class="active " data-nav-id="/20-observability/22-external/225-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/225-otel_collector_tracing/index.html">OTel Collector and Tracing</a></li>
             <li class="" data-nav-id="/20-observability/22-external/226-otel_collector_metrics/index.html"><a class="padding" href="/20-observability/22-external/226-otel_collector_metrics/index.html">OTel Collector and Metrics</a></li>
             <li class="" data-nav-id="/20-observability/22-external/227-otel_collector_logs/index.html"><a class="padding" href="/20-observability/22-external/227-otel_collector_logs/index.html">OTel Collector and Logs</a></li></ul></li></ul></li>
           </ul>
@@ -489,8 +366,8 @@ kubectl delete namespace prometheus</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755376431" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755376431" defer></script>
-    <script src="/js/theme.js?1755376431" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755378457" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755378457" defer></script>
+    <script src="/js/theme.js?1755378457" defer></script>
   </body>
 </html>

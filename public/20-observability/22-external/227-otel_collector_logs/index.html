@@ -9,9 +9,8 @@
 We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 https://grafana.com/docs/loki/latest/send-data/otel/
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
-Install Loki First, all the Helm Charts
-helm repo add grafana https://grafana.github.io/helm-charts helm repo update kubectl patch svc loki \ -n loki -p ‘{“spec”: {“type”: “LoadBalancer”}}’
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.">
+Hit the port to make sure Loki is ready to accept requests:
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="OTel Collector and Logs :: API Management with Kong Konnect">
@@ -19,19 +18,17 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
 We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 https://grafana.com/docs/loki/latest/send-data/otel/
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
-Install Loki First, all the Helm Charts
-helm repo add grafana https://grafana.github.io/helm-charts helm repo update kubectl patch svc loki \ -n loki -p ‘{“spec”: {“type”: “LoadBalancer”}}’
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.">
-    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/226-otel_collector_logs/index.html">
+Hit the port to make sure Loki is ready to accept requests:
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
+    <meta property="og:url" content="http://localhost:1313/20-observability/22-external/227-otel_collector_logs/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="OTel Collector and Logs :: API Management with Kong Konnect">
     <meta property="og:description" content="https://github.com/grafana/loki/blob/main/README.md https://github.com/grafana/loki/blob/main/production/helm/loki/README.md https://grafana.com/docs/loki/next/setup/install/helm/ https://grafana.com/docs/loki/latest/send-data/otel/
 We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 https://grafana.com/docs/loki/latest/send-data/otel/
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
-Install Loki First, all the Helm Charts
-helm repo add grafana https://grafana.github.io/helm-charts helm repo update kubectl patch svc loki \ -n loki -p ‘{“spec”: {“type”: “LoadBalancer”}}’
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.">
+Hit the port to make sure Loki is ready to accept requests:
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Observability">
@@ -40,36 +37,35 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
 We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 https://grafana.com/docs/loki/latest/send-data/otel/
 https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
-Install Loki First, all the Helm Charts
-helm repo add grafana https://grafana.github.io/helm-charts helm repo update kubectl patch svc loki \ -n loki -p ‘{“spec”: {“type”: “LoadBalancer”}}’
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.">
-    <meta itemprop="wordCount" content="1667">
+Hit the port to make sure Loki is ready to accept requests:
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
+    <meta itemprop="wordCount" content="936">
     <title>OTel Collector and Logs :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755376395" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755376395" defer></script>
-    <script src="/js/search-lunr.js?1755376395" defer></script>
-    <script src="/js/search.js?1755376395" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755378457" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755378457" defer></script>
+    <script src="/js/search-lunr.js?1755378457" defer></script>
+    <script src="/js/search.js?1755378457" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755376395";
+      window.relearn.index_js_url="/searchindex.en.js?1755378457";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755376395" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755376395" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755376395" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755376395" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755378457" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755378457" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755376395" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755376395" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755376395" rel="stylesheet">
-    <link href="/css/theme.css?1755376395" rel="stylesheet">
-    <link href="/css/format-html.css?1755376395" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755378457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755378457" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755378457" rel="stylesheet">
+    <link href="/css/theme.css?1755378457" rel="stylesheet">
+    <link href="/css/format-html.css?1755378457" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/20-observability\/22-external\/226-otel_collector_logs\/index.html';
+      window.relearn.path='\/20-observability\/22-external\/227-otel_collector_logs\/index.html';
       window.relearn.relBasePath='..\/..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
@@ -119,7 +115,7 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/20-observability/22-external/226-otel_collector_logs/index.html">
+  <body class="mobile-support html" data-url="/20-observability/22-external/227-otel_collector_logs/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -135,7 +131,6 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
   <ul>
     <li>
       <ul>
-        <li><a href="#install-loki">Install Loki</a></li>
         <li><a href="#new-collector-configuration">New collector configuration</a></li>
         <li><a href="#deploy-the-collector">Deploy the collector</a></li>
         <li><a href="#configure-the-prometheus-and-tcp-log-plugins">Configure the Prometheus and TCP Log Plugins</a></li>
@@ -151,7 +146,7 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/index.html"><span itemprop="name">Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-observability/22-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OTel Collector and Logs</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/225-otel_collector_metrics/index.html" title="OTel Collector and Metrics (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-observability/22-external/226-otel_collector_metrics/index.html" title="OTel Collector and Metrics (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
             </div>
@@ -182,349 +177,8 @@ Install Loki with the following Helm command. Since we are exposing it with a Lo
 <p>We still need to add logs to our environment. To inject Kong Gateway&rsquo;s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the <a href="https://docs.konghq.com/hub/kong-inc/tcp-log/" rel="external" target="_blank">TCP Log Plugin</a>.</p>
 <p><a href="https://grafana.com/docs/loki/latest/send-data/otel/" rel="external" target="_blank">https://grafana.com/docs/loki/latest/send-data/otel/</a></p>
 <p><a href="https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration" rel="external" target="_blank">https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration</a></p>
-<h3 id="install-loki">Install Loki</h3>
-<p>First, all the Helm Charts</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update</code></pre></div>
-<p>kubectl patch svc loki \          <br>
--n loki <br>
--p &lsquo;{&ldquo;spec&rdquo;: {&ldquo;type&rdquo;: &ldquo;LoadBalancer&rdquo;}}&rsquo;</p>
-<p>Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall loki -n loki
-kubectl delete namespace loki
-
-helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  -f loki-config.yaml</code></pre></div>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>monolith:
-  singleBinary:
-    replicas: 1
-    resources:
-      limits:
-        cpu: 4000m
-        memory: 6Gi  # Large memory for monolith with all components
-      requests:
-        cpu: 500m
-        memory: 1Gi
-    persistence:
-      enabled: false
-    
-    extraVolumes:
-      - name: tmp-storage
-        emptyDir:
-          medium: Memory
-          sizeLimit: 3Gi  # Large memory allocation for monolith
-  
-  loki:
-    config: |
-      # Monolith configuration with all components optimized
-      limits_config:
-        retention_period: 12h
-        max_streams_per_user: 5000
-        ingestion_rate_mb: 100  # Very high ingestion for monolith
-        per_stream_rate_limit: 20MB
-        max_query_parallelism: 32  # Full parallelism utilization
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set deploymentMode=SingleBinary \
-  --set loki.image.tag=&#34;3.5.0&#34; \
-  --set singleBinary.replicas=1 \
-  --set singleBinary.persistence.enabled=false \
-  --set gateway.enabled=false \
-  --set monitoring.selfMonitoring.enabled=false \
-  --set monitoring.lokiCanary.enabled=false \
-  --set test.enabled=false \
-  --set write.replicas=0 \
-  --set read.replicas=0 \
-  --set backend.replicas=0 \
-  --set ingester.replicas=0 \
-  --set querier.replicas=0 \
-  --set queryFrontend.replicas=0 \
-  --set queryScheduler.replicas=0 \
-  --set distributor.replicas=0 \
-  --set compactor.replicas=0 \
-  --set indexGateway.replicas=0 \
-  --set bloomCompactor.replicas=0 \
-  --set bloomGateway.replicas=0 \
-  --set ruler.enabled=false \
-  --set tableManager.enabled=false
-
-  -f loki-config.yaml
-
-
-
-
-
-
-helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set replicaCount=1 \
-  --set image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.storage.backend=memory \
-  --set loki.storage.bucketNames.chunks=test \
-  --set loki.storage.bucketNames.ruler=test \
-  --set ruler.enabled=false \
---set backend.replicas=0 \
---set read.replicas=0 \
---set write.replicas=0 \
---set ingester.replicas=0 \
---set querier.replicas=0 \
---set queryFrontend.replicas=0 \
---set queryScheduler.replicas=0 \
---set distributor.replicas=0 \
---set compactor.replicas=0 \
---set indexGateway.replicas=0 \
---set bloomCompactor.replicas=0 \
---set bloomGateway.replicas=0
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set loki.image.tag=3.5.0 \
-  --set replicaCount=1 \
-  --set loki.config.table_manager.retention_deletes_enabled=false \
-  --set loki.config.schema_config.configs[0].from=2020-10-15 \
-  --set loki.config.schema_config.configs[0].store=memory \
-  --set loki.config.schema_config.configs[0].object_store=memory \
-  --set loki.config.schema_config.configs[0].schema=v11 \
-  --set persistence.enabled=false \
-  --set ingress.enabled=false
-
-  config:
-    table_manager:
-      retention_deletes_enabled: false
-    schema_config:
-      configs:
-        - from: 2020-10-15
-          store: memory       # &lt;--- store in memory only
-          object_store: memory
-          schema: v11
-    storage_config:
-      memory:
-        max_chunks: 100000   # optional, limits memory usage
-
-
-
-
-
-replicaCount: 1
-
-image:
-  tag: &#34;3.5.0&#34;
-
-loki:
-  config:
-    table_manager:
-      retention_deletes_enabled: false
-    schema_config:
-      configs:
-        - from: 2020-10-15
-          store: memory       # &lt;--- store in memory only
-          object_store: memory
-          schema: v11
-    storage_config:
-      memory:
-        max_chunks: 100000   # optional, limits memory usage
-
-persistence:
-  enabled: false           # no disk persistence
-
-service:
-  type: ClusterIP
-  port: 3100
-
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu: 500m
-    memory: 512Mi
-
-ingress:
-  enabled: false
-
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --set singleBinary.enabled=true \
-  --set loki.image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set replicas=1 \
-  --set test.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.config=&#34;|
-    server:
-      http_listen_port: 3100
-    common:
-      path_prefix: /loki
-      storage:
-        filesystem:
-          chunks_directory: /loki/chunks
-          rules_directory: /loki/rules
-      replication_factor: 1
-    limits_config:
-      allow_structured_metadata: true
-    otlp:
-      enabled: true
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-&#34; 
-
-
-
-
-
-helm upgrade --install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  --version 6.6.3 \
-  --set singleBinary.enabled=true \
-  --set loki.image.tag=3.5.0 \
-  --set persistence.enabled=false \
-  --set replicas=1 \
-  --set test.enabled=false \
-  --set loki.useTestSchema=true \
-  --set loki.config=&#34;|
-    server:
-      http_listen_port: 3100
-    common:
-      path_prefix: /loki
-      storage:
-        filesystem:
-          chunks_directory: /loki/chunks
-          rules_directory: /loki/rules
-      replication_factor: 1
-    limits_config:
-      allow_structured_metadata: true
-    otlp:
-      enabled: true
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-&#34; 
-
-
-
-
-
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false \
---set singleBinary.enabled=true \
---set loki.image.tag=3.5.0 \
---set persistence.enabled=false \
---set replicas=1 \
---set read.enabled=false \
---set write.enabled=false \
---set backend.enabled=false \
---set test.enabled=false
-
-
-
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false \
---set loki.commonConfig.replication_factor=1 \
---set minio.enabled=false
-
-
---set config.ChunkStoreConfig.
-max_look_back_period not found in type 
-
-
---set backend.replicas=0 \
---set read.replicas=0 \
---set write.replicas=0 \
---set ingester.replicas=0 \
---set querier.replicas=0 \
---set queryFrontend.replicas=0 \
---set queryScheduler.replicas=0 \
---set distributor.replicas=0 \
---set compactor.replicas=0 \
---set indexGateway.replicas=0 \
---set bloomCompactor.replicas=0 \
---set bloomGateway.replicas=0
-
-\
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-indexGateway:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
---set deploymentMode=SingleBinary
---set
- \
---set singleBinary.replicas=1
-
---
-
-
-
-helm install loki -n loki grafana/loki-stack \
---create-namespace \
---set loki.image.tag=3.5.3 \
---set loki.service.type=LoadBalancer \
---set promtail.enabled=false
- \
-
---set loki.service.port=3100 \</code></pre></div>
-<p>&ndash;set loki.otlp.http.enabled=true <br>
-&ndash;set loki.otlp.http.endpoint=0.0.0.0:4318 \</p>
-<p>loki:
-server:
-http_listen_port: 3100
-otlp:
-http:
-enabled: true
-endpoint: 0.0.0.0:4318
-grpc:
-enabled: true
-endpoint: 0.0.0.0:4317</p>
 <p>Hit the port to make sure Loki is ready to accept requests:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl http://localhost:3100/ready</code></pre></div>
-<p>If you want to uninstall it run:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall loki -n loki
-kubectl delete namespace loki</code></pre></div>
 <h3 id="new-collector-configuration">New collector configuration</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39;
 apiVersion: opentelemetry.io/v1beta1
@@ -580,20 +234,13 @@ spec:
       otlphttp/jaeger:
         endpoint: http://jaeger-collector.jaeger:4318
       otlphttp/prometheus:
-        endpoint: http://prometheus-operated.prometheus:9090/api/v1/otlp
+        endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
       otlphttp/loki:
         endpoint: http://loki.loki:3100/otlp
       prometheus:
         endpoint: 0.0.0.0:8889
       #debug:
       #  verbosity: detailed
-
-    processors:
-      attributes:
-        actions:
-          - key: service_name
-            action: update
-            value: kong-gateway
 
     service:
       pipelines:
@@ -605,7 +252,6 @@ spec:
           exporters: [otlphttp/prometheus, prometheus]
         logs:
           receivers: [tcplog]
-          processors: [attributes]
           exporters: [otlphttp/loki]
 EOF</code></pre></div>
 <p>endpoint: <a href="http://loki.loki:3100/loki/api/v1/push" rel="external" target="_blank">http://loki.loki:3100/loki/api/v1/push</a></p>
@@ -832,11 +478,11 @@ Here&rsquo;s a Dynatrace Logs app with events generated by the TCP Log Plugin. C
             <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
             <li class="" data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
             <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_installation-copy/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_installation-copy/index.html">OTel Collector Installation</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_installation/index.html">OTel Collector Installation</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/224-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/224-otel_collector_tracing/index.html">OTel Collector and Tracing</a></li>
-            <li class="" data-nav-id="/20-observability/22-external/225-otel_collector_metrics/index.html"><a class="padding" href="/20-observability/22-external/225-otel_collector_metrics/index.html">OTel Collector and Metrics</a></li>
-            <li class="active " data-nav-id="/20-observability/22-external/226-otel_collector_logs/index.html"><a class="padding" href="/20-observability/22-external/226-otel_collector_logs/index.html">OTel Collector and Logs</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/20-observability/22-external/223-otel_collector_operator_installation/index.html"><a class="padding" href="/20-observability/22-external/223-otel_collector_operator_installation/index.html">OTel Collector Operator Installation</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/224-observability_stack_installation/index.html"><a class="padding" href="/20-observability/22-external/224-observability_stack_installation/index.html">Observability Stack Installation</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/225-otel_collector_tracing/index.html"><a class="padding" href="/20-observability/22-external/225-otel_collector_tracing/index.html">OTel Collector and Tracing</a></li>
+            <li class="" data-nav-id="/20-observability/22-external/226-otel_collector_metrics/index.html"><a class="padding" href="/20-observability/22-external/226-otel_collector_metrics/index.html">OTel Collector and Metrics</a></li>
+            <li class="active " data-nav-id="/20-observability/22-external/227-otel_collector_logs/index.html"><a class="padding" href="/20-observability/22-external/227-otel_collector_logs/index.html">OTel Collector and Logs</a></li></ul></li></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -854,8 +500,8 @@ Here&rsquo;s a Dynatrace Logs app with events generated by the TCP Log Plugin. C
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755376395" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755376395" defer></script>
-    <script src="/js/theme.js?1755376395" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755378457" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755378457" defer></script>
+    <script src="/js/theme.js?1755378457" defer></script>
   </body>
 </html>
