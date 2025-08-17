@@ -25,26 +25,26 @@ cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1b
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: dataplane1 namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config1 group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.11 replicas: 3 network: services: ingress: name: proxy1 type: LoadBalancer EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta itemprop="wordCount" content="375">
     <title>Scale Kong for Kubernetes to multiple pods :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755436246" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755436246" defer></script>
-    <script src="/js/search-lunr.js?1755436246" defer></script>
-    <script src="/js/search.js?1755436246" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755440182" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755440182" defer></script>
+    <script src="/js/search-lunr.js?1755440182" defer></script>
+    <script src="/js/search.js?1755440182" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755436246";
+      window.relearn.index_js_url="/searchindex.en.js?1755440182";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755436246" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755440182" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436246" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436246" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755436246" rel="stylesheet">
-    <link href="/css/theme.css?1755436246" rel="stylesheet">
-    <link href="/css/format-html.css?1755436246" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440182" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440182" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755440182" rel="stylesheet">
+    <link href="/css/theme.css?1755440182" rel="stylesheet">
+    <link href="/css/format-html.css?1755440182" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -189,8 +189,8 @@ dataplane-dataplane1-qdc66-84d7746bbf-kpbpl   1/1     Running   0          26s
 httpbin-5c69574c95-xq76q                      1/1     Running   0          6d19h</code></pre></div>
 <h3 id="check-konnect-runtime-group">Check Konnect Runtime Group</h3>
 <p>Similarly you can see new Runtime Instances connected to your Runtime Group</p>
-<p><a href="#R-image-431093f00b4d3ae5b98bd11eb4f7111c" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-431093f00b4d3ae5b98bd11eb4f7111c"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
+<p><a href="#R-image-83edb6fb709a4c7e0f597f4ba37daf8d" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-83edb6fb709a4c7e0f597f4ba37daf8d"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
 <h4 id="verify-traffic-control">Verify traffic control</h4>
 <p>Test the rate-limiting policy by executing the following command and observing the rate-limit headers.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -I $DATA_PLANE_LB/rate-limiting-route/get</code></pre></div>
@@ -300,8 +300,8 @@ X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755436246" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755436246" defer></script>
-    <script src="/js/theme.js?1755436246" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755440182" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755440182" defer></script>
+    <script src="/js/theme.js?1755440182" defer></script>
   </body>
 </html>

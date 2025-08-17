@@ -6,25 +6,26 @@ weight: 105
 ## Install Redis
 Use the **redis-stack** Helm Charts to install Redis as our vector database.
 
-{{<highlight>}}
+```
 helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
 helm repo update
-{{</highlight>}}
+```
 
-{{<highlight>}}
+```
 helm install redis-stack redis-stack/redis-stack -n redis --create-namespace
-{{</highlight>}}
+```
 
 Check the installation:
-{{<highlight>}}
-kubectl exec $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-server --version
-{{</highlight>}}
+```
+$ kubectl exec $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-server --version
+Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd
+```
 
 If you want to uninstall it:
-{{<highlight>}}
+```
 helm uninstall redis-stack -n redis
 kubectl delete namespace redis
-{{</highlight>}}
+```
 
 
 
@@ -33,30 +34,41 @@ kubectl delete namespace redis
 ## Install Ollama
 As our Embedding model, we're going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.
 
-{{<highlight>}}
+```
 helm repo add ollama-helm https://otwld.github.io/ollama-helm/
 helm repo update
-{{</highlight>}}
+```
 
-{{<highlight>}}
+```
 helm install ollama ollama-helm/ollama \
 -n ollama \
   --create-namespace \
   --set ollama.models.pull[0]="mxbai-embed-large:latest" \
   --set ollama.models.pull[1]="llama3.2:1b" \
   --set service.type=LoadBalancer
-{{</highlight>}}
+```
 
+Check the version and models
+```
+$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version
+ollama version is 0.11.2
+
+
+$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama list
+NAME                        ID              SIZE      MODIFIED
+llama3.2:1b                 baf6a787fdff    1.3 GB    31 minutes ago
+mxbai-embed-large:latest    468836162de7    669 MB    32 minutes ago
+```
 
 Send request to test it:
 
-{{<highlight>}}
+```
 curl -sX POST http://localhost:11434/api/generate -d '{
   "model": "llama3.2:1b",
   "prompt": "Tell me about Miles Davis",
   "stream": false
 }' | jq '.response'
-{{</highlight>}}
+```
 
 
 Expected response:
@@ -66,22 +78,22 @@ Expected response:
 
 
 If you want to uninstall it:
-{{<highlight>}}
+```
 helm uninstall ollama -n ollama
 kubectl delete namespace ollama
-{{</highlight>}}
+```
 
 
 ## Enable Metrics Server
 
-{{<highlight>}}
+```
 minikube addons enable metrics-server
-{{</highlight>}}
+```
 
 
-{{<highlight>}}
+```
 minikube addons list
-{{</highlight>}}
+```
 
 
 

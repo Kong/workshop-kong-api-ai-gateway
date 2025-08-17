@@ -25,26 +25,26 @@ Logs: Detailed, timestamped records of events and activities within a system, of
 Logs: Detailed, timestamped records of events and activities within a system, offering a granular view of operations Metrics: Quantitative data points that capture various aspects of system performance, such as resource usage, response times, and throughput Traces: Visual paths that requests follow as they traverse through different system components, enabling end-to-end analysis of transactions and interactions OpenTelemetry Here’s a concise definition of OpenTelemetry, available on its website:">
     <meta itemprop="wordCount" content="401">
     <title>OpenTelemetry Introduction :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755436246" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755436246" defer></script>
-    <script src="/js/search-lunr.js?1755436246" defer></script>
-    <script src="/js/search.js?1755436246" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755440182" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755440182" defer></script>
+    <script src="/js/search-lunr.js?1755440182" defer></script>
+    <script src="/js/search.js?1755440182" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755436246";
+      window.relearn.index_js_url="/searchindex.en.js?1755440182";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755436246" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755436246" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755440182" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755440182" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436246" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436246" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755436246" rel="stylesheet">
-    <link href="/css/theme.css?1755436246" rel="stylesheet">
-    <link href="/css/format-html.css?1755436246" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440182" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440182" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755440182" rel="stylesheet">
+    <link href="/css/theme.css?1755440182" rel="stylesheet">
+    <link href="/css/format-html.css?1755440182" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -153,8 +153,8 @@ Logs: Detailed, timestamped records of events and activities within a system, of
 <p>“OpenTelemetry, also known as OTel, is a vendor-neutral open source Observability framework for instrumenting, generating, collecting, and exporting telemetry data such as traces, metrics, and logs.”</p>
 <h4 id="otel-collector">OTel Collector</h4>
 <p>The OTel specification comprises several <a href="https://opentelemetry.io/docs/what-is-opentelemetry/#main-opentelemetry-components" rel="external" target="_blank">components</a>, including, for example, the <a href="https://opentelemetry.io/docs/specs/otlp/" rel="external" target="_blank">OpenTelemetry Protocol (OTLP)</a>. From the architecture perspective, one of the main components is the OpenTelemetry Collector, which is responsible for receiving, processing, and exporting telemetry data. The following diagram is taken from the official <a href="https://opentelemetry.io/docs/collector/" rel="external" target="_blank">OpenTelemetry Collector documentation page</a>.</p>
-<p><a href="#R-image-eead2f05e7bdbd06667ab0e2cf8d1b6d" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel-collector.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-eead2f05e7bdbd06667ab0e2cf8d1b6d"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel-collector.svg"></a></p>
+<p><a href="#R-image-eedf2908a070b4d8f095029a1b3b925f" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel-collector.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eedf2908a070b4d8f095029a1b3b925f"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel-collector.svg"></a></p>
 <p>Although it&rsquo;s totally valid to send telemetry signals directly from the application to the observability backends with <a href="https://opentelemetry.io/docs/collector/deployment/no-collector/" rel="external" target="_blank">no collector</a> in place, it&rsquo;s generally recommended to use the OTel Collector. The collector abstracts the backend observability infrastructure, so the services can normalize this kind of processing more quickly in a standardized manner as well as let the collector take care of error handling, encryption, data filtering, transformation, etc.</p>
 <p>As you can see in the diagram, the collector defines multiple components such as:</p>
 <ul>
@@ -165,8 +165,8 @@ Logs: Detailed, timestamped records of events and activities within a system, of
 <p>OTel Collector offers other types of connectors and extensions. Please, refer to <a href="https://opentelemetry.io/docs/collector/configuration/" rel="external" target="_blank">OTel Collector documentation</a> to learn more about these components.</p>
 <p>The components are tied together in <a href="https://opentelemetry.io/docs/collector/configuration/#pipelines" rel="external" target="_blank">Pipelines</a>, inside the <a href="https://opentelemetry.io/docs/collector/configuration/#service" rel="external" target="_blank">Service</a> section of the collector configuration file.</p>
 <p>From the deployment perspective, here&rsquo;s the minimum recommended scenario called <a href="https://opentelemetry.io/docs/collector/deployment/agent/" rel="external" target="_blank">Agent Pattern</a>. The application uses the OTel SDK to send telemetry data to the collector through OTLP. The collector, in turn, sends the data to the existing backends. The collector is also flexible enough to support a variety of topologies to address scalability, high availability, fan-out, etc. Check the <a href="https://opentelemetry.io/docs/collector/deployment/" rel="external" target="_blank">OTel Collector deployment page</a> for more information.</p>
-<p><a href="#R-image-9606b8de508f77ccdc0a225d39e5e3a3" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel-agent-sdk.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9606b8de508f77ccdc0a225d39e5e3a3"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel-agent-sdk.svg"></a></p>
+<p><a href="#R-image-5c1eddef16cb71546afbfa81b1ab3b69" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel-agent-sdk.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5c1eddef16cb71546afbfa81b1ab3b69"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel-agent-sdk.svg"></a></p>
 <p>The OTel Collector comes from the community, but Dynatrace provides a distribution for the <a href="https://docs.dynatrace.com/docs/ingest-from/opentelemetry/collector" rel="external" target="_blank">OpenTelemetry Collector</a>. It is a customized implementation tailored for typical use cases in a Dynatrace context. It ships with an optimized and verified set of collector components.</p>
 
   <footer class="footline">
@@ -247,8 +247,8 @@ Logs: Detailed, timestamped records of events and activities within a system, of
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755436246" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755436246" defer></script>
-    <script src="/js/theme.js?1755436246" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755440182" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755440182" defer></script>
+    <script src="/js/theme.js?1755440182" defer></script>
   </body>
 </html>

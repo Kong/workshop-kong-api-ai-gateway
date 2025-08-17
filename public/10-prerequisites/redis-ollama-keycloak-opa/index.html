@@ -6,45 +6,53 @@
     <meta name="generator" content="Hugo 0.148.2">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation:
+$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd If you want to uninstall it:
+helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation:
+$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd If you want to uninstall it:
+helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta property="og:url" content="http://localhost:1313/10-prerequisites/redis-ollama-keycloak-opa/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta property="og:description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation:
+$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd If you want to uninstall it:
+helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Prerequisites">
     <meta itemprop="name" content="Redis and Ollama :: API Management with Kong Konnect">
     <meta itemprop="description" content="Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.
-helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation: kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version If you want to uninstall it: helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
-    <meta itemprop="wordCount" content="613">
+helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation:
+$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd If you want to uninstall it:
+helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.">
+    <meta itemprop="wordCount" content="688">
     <title>Redis and Ollama :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755436837" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755436837" defer></script>
-    <script src="/js/search-lunr.js?1755436837" defer></script>
-    <script src="/js/search.js?1755436837" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755440355" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755440355" defer></script>
+    <script src="/js/search-lunr.js?1755440355" defer></script>
+    <script src="/js/search.js?1755440355" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755436837";
+      window.relearn.index_js_url="/searchindex.en.js?1755440355";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755436837" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755436837" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755436837" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755436837" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755440355" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755440355" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755440355" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755440355" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436837" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755436837" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755436837" rel="stylesheet">
-    <link href="/css/theme.css?1755436837" rel="stylesheet">
-    <link href="/css/format-html.css?1755436837" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440355" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755440355" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755440355" rel="stylesheet">
+    <link href="/css/theme.css?1755440355" rel="stylesheet">
+    <link href="/css/format-html.css?1755440355" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -154,46 +162,46 @@ helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm re
 <p>Use the <strong>redis-stack</strong> Helm Charts to install Redis as our vector database.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack
 helm repo update</code></pre></div>
-
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install redis-stack redis-stack/redis-stack -n redis --create-namespace</code></pre></div>
-
-<p>Check the installation:
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version</code></pre></div>
-</p>
-<p>If you want to uninstall it:
+<p>Check the installation:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version
+Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd</code></pre></div>
+<p>If you want to uninstall it:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall redis-stack -n redis
 kubectl delete namespace redis</code></pre></div>
-</p>
 <h2 id="install-ollama">Install Ollama</h2>
 <p>As our Embedding model, we&rsquo;re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add ollama-helm https://otwld.github.io/ollama-helm/
 helm repo update</code></pre></div>
-
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install ollama ollama-helm/ollama \
 -n ollama \
   --create-namespace \
   --set ollama.models.pull[0]=&#34;mxbai-embed-large:latest&#34; \
   --set ollama.models.pull[1]=&#34;llama3.2:1b&#34; \
   --set service.type=LoadBalancer</code></pre></div>
+<p>Check the version and models</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r &#39;.items[].metadata.name&#39;) -n ollama -- ollama --version
+ollama version is 0.11.2
 
+
+$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r &#39;.items[].metadata.name&#39;) -n ollama -- ollama list
+NAME                        ID              SIZE      MODIFIED
+llama3.2:1b                 baf6a787fdff    1.3 GB    31 minutes ago
+mxbai-embed-large:latest    468836162de7    669 MB    32 minutes ago</code></pre></div>
 <p>Send request to test it:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX POST http://localhost:11434/api/generate -d &#39;{
   &#34;model&#34;: &#34;llama3.2:1b&#34;,
   &#34;prompt&#34;: &#34;Tell me about Miles Davis&#34;,
   &#34;stream&#34;: false
 }&#39; | jq &#39;.response&#39;</code></pre></div>
-
 <p>Expected response:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;Miles Davis (1926-1991) was an American jazz trumpeter, bandleader, and composer. He is widely regarded as one of the most influential musicians in the history of jazz.\n\nEarly Life and Career:\n\nBorn in Alton, Illinois, Davis grew up in a musical family and began playing trumpet at age five. He studied music theory and composition at the Juilliard School in New York City before serving in the United States Army during World War II.\n\nAfter the war, Davis moved to New York City&#39;s lower East Side, where he formed his first jazz group with guitarist Red Garland and pianist Cannonball Adderley. In 1954, he joined the cool jazz group Chirps, later renamed Art Bayou&#39;s Jazz Experience.\n\nThe \&#34;Cool\&#34; Period:\n\nIn 1956, Davis moved to Los Angeles to form a new band with pianist John Coltrane, bassist Charles Mingus, and drummer Bill Evans. This group was known as Miles Davis Quintet and released several critically acclaimed albums, including \&#34;Birth of the Cool\&#34; (1957) and \&#34;Kind of Blue\&#34; (1959). The quintet&#39;s music marked a turning point in jazz history, with its emphasis on cool, introspective, and expressive playing.\n\nIn the early 1960s, Davis began to experiment with more avant-garde and experimental approaches to jazz. He collaborated with pianist Herbie Hancock on the album \&#34;Milestones\&#34; (1960), which featured a more complex and electronic approach to jazz.\n\nLater Years:\n\nIn the late 1960s, Davis&#39;s playing became increasingly introspective and personal. He released several critically acclaimed albums, including \&#34;Bitches Brew\&#34; (1970) and \&#34;A Tribute to Jack Johnson\&#34; (1971). His later work was marked by a more relaxed and improvisational approach, as he explored new musical territories and collaborated with artists from other genres.\n\nPersonal Life:\n\nDavis&#39;s personal life was marked by periods of great creativity and introspection. He had several high-profile relationships, including with actress Joanna Glenn and fashion designer Carole King. In the 1970s, Davis became increasingly interested in Eastern spirituality and meditation, which influenced his later music.\n\nDeath:\n\nMiles Davis died on September 28, 1991, at the age of 65, due to complications from heart failure. He was buried in the Forest Lawn Memorial Park Cemetery in Glendale, California.\n\nLegacy:\n\nMiles Davis&#39;s legacy is profound and far-reaching. He helped shape the development of cool jazz and improvisational music, and his influence can be heard in countless artists across multiple genres. His innovative approach to jazz has inspired generations of musicians, from John Coltrane to Wayne Shorter and beyond.\n\nDavis&#39;s music continues to be celebrated for its complexity, depth, and emotional resonance. He remains one of the most beloved and respected figures in jazz history, and his impact on modern music is immeasurable.&#34;</code></pre></div>
-<p>If you want to uninstall it:
+<p>If you want to uninstall it:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm uninstall ollama -n ollama
 kubectl delete namespace ollama</code></pre></div>
-</p>
 <h2 id="enable-metrics-server">Enable Metrics Server</h2>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons enable metrics-server</code></pre></div>
-
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>minikube addons list</code></pre></div>
-
 <h2 id="keycloak-and-opa">Keycloak and OPA</h2>
 <p>The installation procedures for both servers are available in the <strong>OpenID Connect</strong> and <strong>OPA (Open Policy Agent)</strong> sections</p>
 
@@ -269,8 +277,8 @@ kubectl delete namespace ollama</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755436837" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755436837" defer></script>
-    <script src="/js/theme.js?1755436837" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755440355" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755440355" defer></script>
+    <script src="/js/theme.js?1755440355" defer></script>
   </body>
 </html>
