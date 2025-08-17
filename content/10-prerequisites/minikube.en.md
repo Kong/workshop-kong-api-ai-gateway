@@ -5,25 +5,37 @@ weight : 104
 
 We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:
 
-{{<highlight>}}
+```
 podman machine set --memory 8196
 podman machine start
-{{</highlight>}}
+```
 
 If you want to stop it run:
-{{<highlight>}}
+```
 podman machine stop
-{{</highlight>}}
+```
+
+```
+$ podman --version
+podman version 5.6.0
+```
 
 Then you can install Minikube with:
-{{<highlight>}}
+```
 minikube start --driver=podman --memory='no-limit'
-{{</highlight>}}
+```
+
+```
+$ minikube version
+minikube version: v1.36.0
+commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1
+```
+
 
 Use should see your cluster running with:
-{{<highlight>}}
+```
 kubectl get all --all-namespaces
-{{</highlight>}}
+```
 
 Typical output is:
 ```
@@ -52,9 +64,9 @@ kube-system   replicaset.apps/coredns-674b8bbfcf   1         1         0       1
 
 
 To be able to consume the Kubernetes Load Balancer Services, in another terminal run:
-{{<highlight>}}
+```
 minikube tunnel
-{{</highlight>}}
+```
 
 
 You can now click **Next** to install the operator.

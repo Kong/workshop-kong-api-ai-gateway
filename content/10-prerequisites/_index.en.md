@@ -20,8 +20,8 @@ Complete two badges via Kong Academy: **Kong Gateway Foundations** and **Kong Ga
 You will need a Kong Konnect Subscription to execute this workshop.
 
 
-## Kong Gateway Data Plane
-In this workshop, the Data Plane will be running locally on a [**Minikube**](https://minikube.sigs.k8s.io/) Kubernetes Cluster over [**Podman**](https://podman.io/).
+## Environment
+Please, make sure you have [**Minikube 1.36.0**](https://minikube.sigs.k8s.io/) Kubernetes Cluster over [**Podman 5.6.0**](https://podman.io/) installed.
 
 * [Podman installation](https://podman.io/docs/installation)
 * [Minikube installation](https://minikube.sigs.k8s.io/docs/start)
