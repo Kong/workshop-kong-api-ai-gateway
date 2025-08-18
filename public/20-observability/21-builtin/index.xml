@@ -19,7 +19,7 @@
       <link>http://localhost:1313/20-observability/21-builtin/212-debugger/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/20-observability/21-builtin/212-debugger/index.html</guid>
-      <description>Basically Konnect provides two main Builtin Observability services:&#xA;Konnect Advanced Analytics: it is a real-time, contextual analytics platform that provides insights into API health, performance, and usage.&#xA;Konnect Debugger: it provides a connected debugging experience and real-time trace-level visibility into API traffic.</description>
+      <description>Konnect Debugger provides a connected debugging experience and real-time trace-level visibility into API traffic, enabling you to:&#xA;Troubleshoot issues: Investigate and resolve problems during deployments or incidents with targeted, on-demand traces. Understand request lifecycle: Visualize exactly what happened during a specific request, including order and duration plugin execution. See Debugger spans for a list of spans captured. Improve performance and reliability: Use deep insights to fine-tune configurations and resolve bottlenecks. Capture traces and logs Konnect Debugger allows you to capture traces and logs.</description>
     </item>
   </channel>
 </rss>
