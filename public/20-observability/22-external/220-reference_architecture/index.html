@@ -29,26 +29,26 @@ The main components here are:
 Konnect Control Plane: responsible for administration tasks including APIs and Policies definition Konnect Data Plane: handles the requests sent by the API consumers Kong Gateway Plugins: components running inside the Data Plane to produce OpenTelemetry signals Upstream Service: services or microservices protected by the Konnnect Data Plane OpenTelemetry Collector: handles and processes the signals sent by the OTel plugin and sends them to the Dynatrace tenant Observability Stack: formed by Loki, Prometheus, Jaeger and Grafana, provides a single pane of glass with dashboards, reports, etc.">
     <meta itemprop="wordCount" content="103">
     <title>Reference Architecture :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755521107" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755521107" defer></script>
-    <script src="/js/search-lunr.js?1755521107" defer></script>
-    <script src="/js/search.js?1755521107" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755526710" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755526710" defer></script>
+    <script src="/js/search-lunr.js?1755526710" defer></script>
+    <script src="/js/search.js?1755526710" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755521107";
+      window.relearn.index_js_url="/searchindex.en.js?1755526710";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755521107" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755526710" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755521107" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755521107" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755521107" rel="stylesheet">
-    <link href="/css/theme.css?1755521107" rel="stylesheet">
-    <link href="/css/format-html.css?1755521107" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755526710" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755526710" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755526710" rel="stylesheet">
+    <link href="/css/theme.css?1755526710" rel="stylesheet">
+    <link href="/css/format-html.css?1755526710" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -147,8 +147,8 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
 <h1 id="reference-architecture">Reference Architecture</h1>
 
 <p>The Kong Konnect and Observability Stack topology is quite simple in this example:</p>
-<p><a href="#R-image-6d43800a90eb822dba7c51813fde880a" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6d43800a90eb822dba7c51813fde880a"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg"></a></p>
+<p><a href="#R-image-95b8ee4382a22d0bc2314815bf04c393" class="lightbox-link"><img alt="otel_collector" class="lazy lightbox figure-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-95b8ee4382a22d0bc2314815bf04c393"><img alt="otel_collector" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/otel_reference_architeture.jpg"></a></p>
 <p>The main components here are:</p>
 <ul>
 <li>Konnect Control Plane: responsible for administration tasks including APIs and Policies definition</li>
@@ -211,7 +211,7 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu">
-            <li class="" data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a></li>
+            <li class="alwaysopen " data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a><ul id="R-subsections-e8b3a585e93eadfb19686a382a346652" class="collapsible-menu"></ul></li>
             <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
             <li class="active " data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
             <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
@@ -237,8 +237,8 @@ Konnect Control Plane: responsible for administration tasks including APIs and P
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755521107" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755521107" defer></script>
-    <script src="/js/theme.js?1755521107" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755526710" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755526710" defer></script>
+    <script src="/js/theme.js?1755526710" defer></script>
   </body>
 </html>

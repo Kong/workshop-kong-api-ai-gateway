@@ -121,6 +121,12 @@
     <loc>http://localhost:1313/20-observability/21-builtin/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/20-observability/21-builtin/211-advanced_analytics/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-observability/21-builtin/212-debugger/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/20-observability/22-external/index.html</loc>
   </url>
   <url>

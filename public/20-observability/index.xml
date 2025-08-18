@@ -12,7 +12,7 @@
       <link>http://localhost:1313/20-observability/21-builtin/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/20-observability/21-builtin/index.html</guid>
-      <description>Konnect Builtin Observability</description>
+      <description>Basically Konnect provides two main Builtin Observability services:&#xA;Konnect Advanced Analytics: it is a real-time, contextual analytics platform that provides insights into API health, performance, and usage.&#xA;Konnect Debugger: it provides a connected debugging experience and real-time trace-level visibility into API traffic.</description>
     </item>
     <item>
       <title>External Observability Stack</title>

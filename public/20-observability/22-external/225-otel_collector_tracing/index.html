@@ -29,26 +29,26 @@ OpenTelemetry Collector instantiation Create a collector declaration To get star
 cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
     <meta itemprop="wordCount" content="647">
     <title>OTel Collector and Tracing :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755521107" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755521107" defer></script>
-    <script src="/js/search-lunr.js?1755521107" defer></script>
-    <script src="/js/search.js?1755521107" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1755526710" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1755526710" defer></script>
+    <script src="/js/search-lunr.js?1755526710" defer></script>
+    <script src="/js/search.js?1755526710" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755521107";
+      window.relearn.index_js_url="/searchindex.en.js?1755526710";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755521107" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755521107" defer></script>
+    <script src="/js/lunr/lunr.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1755526710" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1755526710" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755521107" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755521107" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755521107" rel="stylesheet">
-    <link href="/css/theme.css?1755521107" rel="stylesheet">
-    <link href="/css/format-html.css?1755521107" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755526710" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755526710" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755526710" rel="stylesheet">
+    <link href="/css/theme.css?1755526710" rel="stylesheet">
+    <link href="/css/format-html.css?1755526710" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -285,8 +285,8 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <li>For &ldquo;Query type&rdquo;, click &ldquo;Search&rdquo;. You should see <code>kong-otel</code> as an option for &ldquo;Service Name&rdquo;.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see your trace there. Click it and you should get the spans.</li>
 </ul>
-<p><a href="#R-image-d2a3ddc488fb1ad46199bee522a8522e" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d2a3ddc488fb1ad46199bee522a8522e"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
+<p><a href="#R-image-e1ab806da21f0d7510a49bb56cfa6553" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e1ab806da21f0d7510a49bb56cfa6553"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -340,7 +340,7 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu">
-            <li class="" data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a></li>
+            <li class="alwaysopen " data-nav-id="/20-observability/21-builtin/index.html"><a class="padding" href="/20-observability/21-builtin/index.html">Konnect Builtin Observability</a><ul id="R-subsections-e8b3a585e93eadfb19686a382a346652" class="collapsible-menu"></ul></li>
             <li class="parent alwaysopen " data-nav-id="/20-observability/22-external/index.html"><a class="padding" href="/20-observability/22-external/index.html">External Observability Stack</a><ul id="R-subsections-78b5503c4b9d1c571356633cec18a748" class="collapsible-menu">
             <li class="" data-nav-id="/20-observability/22-external/220-reference_architecture/index.html"><a class="padding" href="/20-observability/22-external/220-reference_architecture/index.html">Reference Architecture</a></li>
             <li class="" data-nav-id="/20-observability/22-external/222-introduction/index.html"><a class="padding" href="/20-observability/22-external/222-introduction/index.html">OpenTelemetry Introduction</a></li>
@@ -366,8 +366,8 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755521107" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755521107" defer></script>
-    <script src="/js/theme.js?1755521107" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1755526710" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755526710" defer></script>
+    <script src="/js/theme.js?1755526710" defer></script>
   </body>
 </html>

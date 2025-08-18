@@ -19,7 +19,7 @@
       <link>http://localhost:1313/10-prerequisites/minikube/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/10-prerequisites/minikube/index.html</guid>
-      <description>We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:&#xA;podman machine set --memory 8196 podman machine start If you want to stop it run:&#xA;podman machine stop $ podman --version podman version 5.6.0 Then you can install Minikube with:&#xA;minikube start --driver=podman --memory=&#39;no-limit&#39; $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1 Use should see your cluster running with:&#xA;kubectl get all --all-namespaces Typical output is:</description>
+      <description>Podman We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:&#xA;podman machine set --memory 8196 podman machine start If you want to stop it run:&#xA;podman machine stop $ podman --version podman version 5.6.0 Minikube Then you can install Minikube with:&#xA;minikube start --driver=podman --memory=&#39;no-limit&#39; $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1 Use should see your cluster running with:</description>
     </item>
     <item>
       <title>Redis and Ollama</title>

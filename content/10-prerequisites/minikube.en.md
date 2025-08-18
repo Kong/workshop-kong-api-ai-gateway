@@ -3,6 +3,7 @@ title : "Minikube"
 weight : 104
 ---
 
+#### Podman
 We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:
 
 ```
@@ -19,6 +20,8 @@ podman machine stop
 $ podman --version
 podman version 5.6.0
 ```
+
+#### Minikube
 
 Then you can install Minikube with:
 ```
