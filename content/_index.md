@@ -12,7 +12,7 @@ Kong Konnect is an API lifecycle management platform delivered as a service. The
 In this workshop, you will:
 
 * Get an architectural overview of Kong Konnect platform.
-* Set up Konnect runtime on Amazon Elastic Kubernetes Service (EKS).
+* Set up Konnect runtime on Kubernetes Cluster.
 * Learn what are services, routes and plugin.
 * Deploy a sample microservice and access the application using the defined route.
 * Use the platform to address the following API Gateway use cases
@@ -21,8 +21,8 @@ In this workshop, you will:
     * Response Transformer
     * Request Callout
     * Rate limiting
+    * Observability
     <!-- * Invoke AWS Lambda -->
-    <!-- * Learn how to do observability -->
 
 * And the following AI Gateway use cases
     * Prompt Engineering
@@ -34,8 +34,9 @@ In this workshop, you will:
 
 # Expected Duration
 
-* Pre-Requisite Environment Setup (20 minutes)
+* Workshop Introduction (15 minutes)
 * Architectural Walkthrough (10 minutes)
-* Sample Application and addressing the use cases (60 minutes)
-<!-- * Observability (20 minutes) -->
+* Sample Application and initial use case (15 minutes)
+* Addressing API and AI Gateway use cases (90 minutes)
+* Observability (30 minutes)
 * Next Steps and Cleanup (5 min)
