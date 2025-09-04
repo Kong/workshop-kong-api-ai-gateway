@@ -40,7 +40,7 @@ kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r '.items[].metadata |
 
 #### Prometheus Installation
 
-Add the Helm Charts first:
+Add the [Helm Charts](https://github.com/prometheus-community/helm-charts) repo first:
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -71,13 +71,110 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
+Now, create a ``loki-values.yaml`` with the deployment configuration. We are using a simple monolithic [**SingleBinary**](https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/) option.
+
+```
+cat > loki-values.yaml << 'EOF'
+deploymentMode: SingleBinary
+
+singleBinary:
+  replicas: 1
+  persistence:
+    enabled: false
+  canary:
+    enabled: false
+    args:
+      - -log-output=false
+  extraVolumeMounts:
+    - name: loki-storage
+      mountPath: /var/loki
+  extraVolumes:
+    - name: loki-storage
+      emptyDir: {}
+
+loki:
+  commonConfig:
+    replication_factor: 1
+  image:
+    tag: 3.5.3
+  auth_enabled: false
+  memberlist:
+    enable: false
+  storage:
+    type: filesystem
+    filesystem:
+      chunks_directory: /var/loki/chunks
+      rules_directory: /var/loki/rules
+
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+
+  limits_config:
+    allow_structured_metadata: true
+    volume_enabled: true
+
+  ruler:
+    enable_api: true
+
+  pattern_ingester:
+    enabled: true
+
+chunksCache:
+  enabled: false
+
+resultsCache:
+  enabled: false
+
+indexGateway:
+  enabled: false
+
+minio:
+  enabled: false
+
+gateway:
+  enabled: false
+
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
+EOF
+```
+
+
 Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.
+
 
 
 ```
 helm install loki grafana/loki \
   --namespace=loki --create-namespace \
-  -f loki-config.yaml
+  -f loki-values.yaml
 ```
 
 ```
@@ -91,6 +188,15 @@ kubectl patch svc loki \
 
 
 #### Grafana Installation
+
+The Grafana installation [Helm](https://github.com/grafana/helm-charts/) commands creates the Data Sources for the 3 components, Jaeger, Prometheus and Loki, using their specific Kubernetes FQDN endpoints.
+
+Add the repo:
+```
+helm repo add grafana https://grafana.github.io/helm-charts
+```
+
+Deploy Grafana and three Data Sources.
 
 ```
 helm upgrade --install grafana grafana/grafana \
