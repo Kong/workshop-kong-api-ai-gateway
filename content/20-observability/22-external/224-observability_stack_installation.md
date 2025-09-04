@@ -59,8 +59,7 @@ helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack
 ```
 
 
---set grafana.service.type=LoadBalancer \
---set grafana.service.port=3000 \
+
 
 
 #### Loki Installation
@@ -86,6 +85,9 @@ kubectl patch svc loki \
   -n loki \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
+
+
+
 
 
 #### Grafana Installation
