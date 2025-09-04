@@ -179,17 +179,11 @@ In MacOS, you can open Grafana with:
 open -a "Google Chrome" "http://localhost:3000"
 ```
 
+Use the ``admin/admin`` as the **username** and **password**. You will be asked to change your password.
 
-##### Configure Grafana
 
-The following page has all documentation to define [Jaeger as a Grafana Data Source](https://grafana.com/docs/grafana/latest/datasources/jaeger). The main steps are:
+##### Check the Traces
 
-* Click "Connections" in the left-side menu.
-* Under "Your connections", click "Data sources".
-* Click "+ Add new data source" and choose Jaeger.
-* The Settings page of the data source is displayed. For "Connection" type ``http://jaeger-query.jaeger:16686``.
-
-This [section](https://grafana.com/docs/grafana/latest/datasources/jaeger/#query-the-data-source) describes how to use the **Explore** menu option to query Jaeger.
 
 * Click "Explore" in the left-side menu.
 * Choose "Jaeger" as the data source.

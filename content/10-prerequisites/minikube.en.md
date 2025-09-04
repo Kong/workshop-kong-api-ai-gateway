@@ -18,7 +18,7 @@ podman machine stop
 
 ```
 $ podman --version
-podman version 5.6.0
+podman version 5.5.2
 ```
 
 #### Minikube

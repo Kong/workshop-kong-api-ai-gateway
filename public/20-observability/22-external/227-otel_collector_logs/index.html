@@ -3,64 +3,52 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Hugo 0.149.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="https://github.com/grafana/loki/blob/main/README.md https://github.com/grafana/loki/blob/main/production/helm/loki/README.md https://grafana.com/docs/loki/next/setup/install/helm/ https://grafana.com/docs/loki/latest/send-data/otel/
-We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
-https://grafana.com/docs/loki/latest/send-data/otel/
-https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+    <meta name="description" content="We still need to add logs to our environment where Loki has been deployed. To inject Kong Gateway’s Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 Hit the port to make sure Loki is ready to accept requests:
-curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF The declaration has critical parameters defined:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="OTel Collector and Logs :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="https://github.com/grafana/loki/blob/main/README.md https://github.com/grafana/loki/blob/main/production/helm/loki/README.md https://grafana.com/docs/loki/next/setup/install/helm/ https://grafana.com/docs/loki/latest/send-data/otel/
-We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
-https://grafana.com/docs/loki/latest/send-data/otel/
-https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+    <meta name="twitter:description" content="We still need to add logs to our environment where Loki has been deployed. To inject Kong Gateway’s Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 Hit the port to make sure Loki is ready to accept requests:
-curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF The declaration has critical parameters defined:">
     <meta property="og:url" content="http://localhost:1313/20-observability/22-external/227-otel_collector_logs/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="OTel Collector and Logs :: API Management with Kong Konnect">
-    <meta property="og:description" content="https://github.com/grafana/loki/blob/main/README.md https://github.com/grafana/loki/blob/main/production/helm/loki/README.md https://grafana.com/docs/loki/next/setup/install/helm/ https://grafana.com/docs/loki/latest/send-data/otel/
-We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
-https://grafana.com/docs/loki/latest/send-data/otel/
-https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+    <meta property="og:description" content="We still need to add logs to our environment where Loki has been deployed. To inject Kong Gateway’s Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 Hit the port to make sure Loki is ready to accept requests:
-curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF The declaration has critical parameters defined:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Observability">
     <meta itemprop="name" content="OTel Collector and Logs :: API Management with Kong Konnect">
-    <meta itemprop="description" content="https://github.com/grafana/loki/blob/main/README.md https://github.com/grafana/loki/blob/main/production/helm/loki/README.md https://grafana.com/docs/loki/next/setup/install/helm/ https://grafana.com/docs/loki/latest/send-data/otel/
-We still need to add logs to our environment. To inject Kong Gateway’s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
-https://grafana.com/docs/loki/latest/send-data/otel/
-https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+    <meta itemprop="description" content="We still need to add logs to our environment where Loki has been deployed. To inject Kong Gateway’s Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the TCP Log Plugin.
 Hit the port to make sure Loki is ready to accept requests:
-curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF endpoint: http://loki.loki:3100/loki/api/v1/push">
-    <meta itemprop="wordCount" content="936">
+curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF The declaration has critical parameters defined:">
+    <meta itemprop="wordCount" content="622">
     <title>OTel Collector and Logs :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755529956" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755529956" defer></script>
-    <script src="/js/search-lunr.js?1755529956" defer></script>
-    <script src="/js/search.js?1755529956" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1757021466" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1757021466" defer></script>
+    <script src="/js/search-lunr.js?1757021466" defer></script>
+    <script src="/js/search.js?1757021466" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755529956";
+      window.relearn.index_js_url="/searchindex.en.js?1757021466";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755529956" defer></script>
+    <script src="/js/lunr/lunr.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1757021466" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755529956" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755529956" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755529956" rel="stylesheet">
-    <link href="/css/theme.css?1755529956" rel="stylesheet">
-    <link href="/css/format-html.css?1755529956" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1757021466" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1757021466" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1757021466" rel="stylesheet">
+    <link href="/css/theme.css?1757021466" rel="stylesheet">
+    <link href="/css/format-html.css?1757021466" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -135,6 +123,8 @@ curl http://localhost:3100/ready New collector configuration cat &gt; otelcollec
         <li><a href="#deploy-the-collector">Deploy the collector</a></li>
         <li><a href="#configure-the-prometheus-and-tcp-log-plugins">Configure the Prometheus and TCP Log Plugins</a></li>
         <li><a href="#update-the-dataplane-with-new-lua-configuration">Update the DataPlane with new Lua configuration</a></li>
+        <li><a href="#consume-the-kong-route">Consume the Kong Route</a></li>
+        <li><a href="#check-logs-in-grafana">Check Logs in Grafana</a></li>
       </ul>
     </li>
   </ul>
@@ -170,13 +160,7 @@ curl http://localhost:3100/ready New collector configuration cat &gt; otelcollec
 
 <h1 id="otel-collector-and-logs">OTel Collector and Logs</h1>
 
-<p><a href="https://github.com/grafana/loki/blob/main/README.md" rel="external" target="_blank">https://github.com/grafana/loki/blob/main/README.md</a>
-<a href="https://github.com/grafana/loki/blob/main/production/helm/loki/README.md" rel="external" target="_blank">https://github.com/grafana/loki/blob/main/production/helm/loki/README.md</a>
-<a href="https://grafana.com/docs/loki/next/setup/install/helm/" rel="external" target="_blank">https://grafana.com/docs/loki/next/setup/install/helm/</a>
-<a href="https://grafana.com/docs/loki/latest/send-data/otel/" rel="external" target="_blank">https://grafana.com/docs/loki/latest/send-data/otel/</a></p>
-<p>We still need to add logs to our environment. To inject Kong Gateway&rsquo;s Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the <a href="https://docs.konghq.com/hub/kong-inc/tcp-log/" rel="external" target="_blank">TCP Log Plugin</a>.</p>
-<p><a href="https://grafana.com/docs/loki/latest/send-data/otel/" rel="external" target="_blank">https://grafana.com/docs/loki/latest/send-data/otel/</a></p>
-<p><a href="https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration" rel="external" target="_blank">https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration</a></p>
+<p>We still need to add logs to our environment where <a href="https://github.com/grafana/loki/blob/main/README.md" rel="external" target="_blank">Loki</a> has been deployed. To inject Kong Gateway&rsquo;s Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the <a href="https://docs.konghq.com/hub/kong-inc/tcp-log/" rel="external" target="_blank">TCP Log Plugin</a>.</p>
 <p>Hit the port to make sure Loki is ready to accept requests:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl http://localhost:3100/ready</code></pre></div>
 <h3 id="new-collector-configuration">New collector configuration</h3>
@@ -254,18 +238,17 @@ spec:
           receivers: [tcplog]
           exporters: [otlphttp/loki]
 EOF</code></pre></div>
-<p>endpoint: <a href="http://loki.loki:3100/loki/api/v1/push" rel="external" target="_blank">http://loki.loki:3100/loki/api/v1/push</a></p>
 <p>The declaration has critical parameters defined:</p>
 <ul>
-<li>A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.</li>
-<li>Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp” which sends data to Loki.</li>
+<li>A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Loki.</li>
+<li>Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp/loki” which sends data to the <a href="https://grafana.com/docs/loki/latest/send-data/otel/" rel="external" target="_blank">Loki endpoint</a>.</li>
 </ul>
 <h3 id="deploy-the-collector">Deploy the collector</h3>
 <p>Delete the current collector first and instantiate a new one simply submitting the declaration:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
 
 kubectl apply -f otelcollector.yaml</code></pre></div>
-<p>Interestingly enough, the collector service now listens to four ports:</p>
+<p>The collector service now listens to four ports:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get service collector-kong-collector -n opentelemetry-operator-system 
 NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                AGE
 collector-kong-collector   ClusterIP   10.100.67.18   &lt;none&gt;        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h</code></pre></div>
@@ -326,7 +309,9 @@ services:
     paths:
     - /httpbin-route
 EOF</code></pre></div>
+<p>Loki requires a specific format for <a href="https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs" rel="external" target="_blank">log ingestion</a>. The Lua code inside the <code>custom_fields_for_lua</code> parameter processes the log to be supported by Loki.</p>
 <h3 id="update-the-dataplane-with-new-lua-configuration">Update the DataPlane with new Lua configuration</h3>
+<p>The <strong>cjon</strong> Lua function, used by the <strong>TCP Log</strong> plugin is considered <code>untrusted</code> so we need to configure the Data Plane with the <code>KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES</code> paramenter to accept it.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete dataplane dataplane1 -n kong</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &lt;&lt;EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
@@ -358,69 +343,17 @@ spec:
         name: proxy1
         type: LoadBalancer
 EOF</code></pre></div>
-<pre><code>       #value: pl.stringio, ffi-zlib, cjson.safe
-
-
-    #http://loki.loki:3100g-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push
-</code></pre>
+<h3 id="consume-the-kong-route">Consume the Kong Route</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
+<h3 id="check-logs-in-grafana">Check Logs in Grafana</h3>
+<p>In Grafana UI:</p>
 <ul>
-<li>name: http-log
-instance_name: http-log1
-enabled: true
-config:
-custom_fields_by_lua:
-streams: local ts=string.format(&rsquo;%18.0f&rsquo;, os.time()*1000000000) local log_payload         =
-kong.log.serialize() local service = log_payload[&lsquo;service&rsquo;] or &rsquo;noService&rsquo;
-local cjson         =
-require &ldquo;cjson&rdquo; local payload_string = cjson.encode(log_payload) local
-t         = { {stream = {gateway=&lsquo;kong-gateway&rsquo;, service=service[&rsquo;name&rsquo;]},
-values={{ts,         payload_string}}} } return
-t
-http_endpoint: <a href="http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push" rel="external" target="_blank">http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push</a></li>
+<li>Click &ldquo;Explore&rdquo; in the left-side menu.</li>
+<li>Choose &ldquo;Loki&rdquo; as the data source.</li>
+<li>Click &ldquo;Run query&rdquo; with the following parameters. You should see the logs there.</li>
 </ul>
-<p>Submit the new plugin declaration with:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
-<p><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md" rel="external" target="_blank">https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md</a>
-<a href="https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs" rel="external" target="_blank">https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs</a></p>
-<p>Consume the Application and check collector&rsquo;s Prometheus endpoint
-Using “port-forward”, send a request to the collector&rsquo;s Prometheus endpoint. In a terminal run:</p>
-<p>kubectl port-forward service/collector-kong-collector -n opentelemetry-operator-system 8889
-Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.</p>
-<p>% http :8889/metrics
-You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here&rsquo;s a snippet of the output:</p>
-<h1 id="help-kong_http_requests_total-http-status-codes-per-consumerserviceroute-in-kong">HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong</h1>
-<h1 id="type-kong_http_requests_total-counter">TYPE kong_http_requests_total counter</h1>
-<p>kong_http_requests_total{code=&ldquo;200&rdquo;,instance=&ldquo;192.168.76.233:8100&rdquo;,job=&ldquo;otel-collector&rdquo;,route=&ldquo;coupon_route&rdquo;,service=&ldquo;coupon_service&rdquo;,source=&ldquo;service&rdquo;,workspace=&ldquo;default&rdquo;} 1
-kong_http_requests_total{code=&ldquo;200&rdquo;,instance=&ldquo;192.168.76.233:8100&rdquo;,job=&ldquo;otel-collector&rdquo;,route=&ldquo;inventory_route&rdquo;,service=&ldquo;inventory_service&rdquo;,source=&ldquo;service&rdquo;,workspace=&ldquo;default&rdquo;} 1
-kong_http_requests_total{code=&ldquo;200&rdquo;,instance=&ldquo;192.168.76.233:8100&rdquo;,job=&ldquo;otel-collector&rdquo;,route=&ldquo;pricing_route&rdquo;,service=&ldquo;pricing_service&rdquo;,source=&ldquo;service&rdquo;,workspace=&ldquo;default&rdquo;} 1
-Check Metrics and Logs in Dynatrace
-One of the main values provided by Dynatrace is Dashboard creation capabilities. You can create them visually and using DQL (Dynatrace Query Language). As an example, Dynatrace provides a Kong Dashboard where we can manage the main metrics and the access log.</p>
-<p>The Kong Dashboard should look like this.</p>
-<p>Connecting Log Data to Traces
-Dynatrace has the ability to connect Log Events to Traces. That allows us to navigate to the trace associated with a given log event.</p>
-<p>In order to do it, the log event has to have a “trace_id” field with the actual trace id it is related to. By default, the OpenTelemetry Plugin injects such a field. However, it adds the format used, in order case “w3c”. For example:</p>
-<p>{
-&ldquo;trace_id&rdquo;:{
-&ldquo;w3c&rdquo;:&ldquo;3b7fb854f5442239c0e94edc69fd6886&rdquo;
-},
-&ldquo;route&rdquo;:{
-&ldquo;paths&rdquo;:[
-&ldquo;/coupon&rdquo;
-],
-&ldquo;created_at&rdquo;:1738765016,
-….
-}
-As you can see here, the TCP Log gets executed after the OpenTelemetry Plugin. So, to solve that, the TCP Log Plugin configuration has the “custom_fields_by_lua” set with a Lua code which removes the “w3c” part out of the field added by the OpenTelemetry Plugin. The new log event can then follow the format Dynatrace looks for:</p>
-<p>{
-&ldquo;trace_id&rdquo;:&ldquo;3b7fb854f5442239c0e94edc69fd6886&rdquo;,
-&ldquo;route&rdquo;:{
-&ldquo;paths&rdquo;:[
-&ldquo;/inventory&rdquo;
-],
-&ldquo;created_at&rdquo;:1738765016,
-….
-}
-Here&rsquo;s a Dynatrace Logs app with events generated by the TCP Log Plugin. Choose an event and you&rsquo;ll see the right panel with the “Open trace” button.</p>
+<p><a href="#R-image-330457adc17470eb62a79b5f199e9764" class="lightbox-link"><img alt="grafana_loki" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_loki.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-330457adc17470eb62a79b5f199e9764"><img alt="grafana_loki" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_loki.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -500,8 +433,8 @@ Here&rsquo;s a Dynatrace Logs app with events generated by the TCP Log Plugin. C
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755529956" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755529956" defer></script>
-    <script src="/js/theme.js?1755529956" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1757021466" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1757021466" defer></script>
+    <script src="/js/theme.js?1757021466" defer></script>
   </body>
 </html>

@@ -51,17 +51,21 @@ Again, after the installation, we should have two new Minikube tunnels defined:
 helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack \
 --create-namespace \
 --set alertmanager.enabled=false \
+--set grafana.enabled=false \
 --set prometheus.service.type=LoadBalancer \
 --set prometheus.service.port=9090 \
---set grafana.service.type=LoadBalancer \
---set grafana.service.port=3000 \
 --set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
 --set prometheus.prometheusSpec.additionalArgs[0].value=
 ```
 
+
+--set grafana.service.type=LoadBalancer \
+--set grafana.service.port=3000 \
+
+
 #### Loki Installation
 
-First, all the Helm Charts
+First, add the [Helm Charts](https://github.com/grafana/loki/blob/main/production/helm/loki/README.md). Read the [documentation](https://grafana.com/docs/loki/next/setup/install/helm/) to learn more.
 
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
@@ -78,7 +82,7 @@ helm install loki grafana/loki \
 ```
 
 ```
-kubectl patch svc loki \             
+kubectl patch svc loki \
   -n loki \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```

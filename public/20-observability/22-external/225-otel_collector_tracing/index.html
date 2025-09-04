@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Hugo 0.149.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
 OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
@@ -27,28 +27,28 @@ cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/
     <meta itemprop="description" content="Here’s a nice introduction of OTel Collector and Jaeger deployment. The Collector is going to be running as a “remote cluster” in a specific K8s deployument.
 OpenTelemetry Collector instantiation Create a collector declaration To get started we’re going to manage Traces first. Later on, we’ll enhance the collector to process both Metrics and Logs. Here’s the declaration:
 cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 exporters: otlphttp: endpoint: http://jaeger-collector.jaeger:4318 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp] EOF The declaration has critical parameters defined:">
-    <meta itemprop="wordCount" content="647">
+    <meta itemprop="wordCount" content="599">
     <title>OTel Collector and Tracing :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1755529956" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1755529956" defer></script>
-    <script src="/js/search-lunr.js?1755529956" defer></script>
-    <script src="/js/search.js?1755529956" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1757021466" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1757021466" defer></script>
+    <script src="/js/search-lunr.js?1757021466" defer></script>
+    <script src="/js/search.js?1757021466" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1755529956";
+      window.relearn.index_js_url="/searchindex.en.js?1757021466";
     </script>
-    <script src="/js/lunr/lunr.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1755529956" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1755529956" defer></script>
+    <script src="/js/lunr/lunr.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1757021466" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1757021466" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755529956" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1755529956" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1755529956" rel="stylesheet">
-    <link href="/css/theme.css?1755529956" rel="stylesheet">
-    <link href="/css/format-html.css?1755529956" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1757021466" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1757021466" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1757021466" rel="stylesheet">
+    <link href="/css/theme.css?1757021466" rel="stylesheet">
+    <link href="/css/format-html.css?1757021466" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -270,23 +270,16 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <p>By default, Grafana administrador&rsquo;s credentials are: <code>admin/prom-operator</code></p>
 <p>In MacOS, you can open Grafana with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>open -a &#34;Google Chrome&#34; &#34;http://localhost:3000&#34;</code></pre></div>
-<h5 id="configure-grafana">Configure Grafana</h5>
-<p>The following page has all documentation to define <a href="https://grafana.com/docs/grafana/latest/datasources/jaeger" rel="external" target="_blank">Jaeger as a Grafana Data Source</a>. The main steps are:</p>
-<ul>
-<li>Click &ldquo;Connections&rdquo; in the left-side menu.</li>
-<li>Under &ldquo;Your connections&rdquo;, click &ldquo;Data sources&rdquo;.</li>
-<li>Click &ldquo;+ Add new data source&rdquo; and choose Jaeger.</li>
-<li>The Settings page of the data source is displayed. For &ldquo;Connection&rdquo; type <code>http://jaeger-query.jaeger:16686</code>.</li>
-</ul>
-<p>This <a href="https://grafana.com/docs/grafana/latest/datasources/jaeger/#query-the-data-source" rel="external" target="_blank">section</a> describes how to use the <strong>Explore</strong> menu option to query Jaeger.</p>
+<p>Use the <code>admin/admin</code> as the <strong>username</strong> and <strong>password</strong>. You will be asked to change your password.</p>
+<h5 id="check-the-traces">Check the Traces</h5>
 <ul>
 <li>Click &ldquo;Explore&rdquo; in the left-side menu.</li>
 <li>Choose &ldquo;Jaeger&rdquo; as the data source.</li>
 <li>For &ldquo;Query type&rdquo;, click &ldquo;Search&rdquo;. You should see <code>kong-otel</code> as an option for &ldquo;Service Name&rdquo;.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see your trace there. Click it and you should get the spans.</li>
 </ul>
-<p><a href="#R-image-78a16a76c61e58c545d35a7fe85c0fa5" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-78a16a76c61e58c545d35a7fe85c0fa5"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
+<p><a href="#R-image-560b7ef4000acf6078f27b146dd51e67" class="lightbox-link"><img alt="grafana_jaeger" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_jaeger.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-560b7ef4000acf6078f27b146dd51e67"><img alt="grafana_jaeger" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_jaeger.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -366,8 +359,8 @@ deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1755529956" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1755529956" defer></script>
-    <script src="/js/theme.js?1755529956" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1757021466" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1757021466" defer></script>
+    <script src="/js/theme.js?1757021466" defer></script>
   </body>
 </html>

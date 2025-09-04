@@ -25,7 +25,7 @@ helm upgrade --install kgo kong/gateway-operator \
 
 You can check the Operator's log with:
 {{<highlight>}}
-kubectl logs $(kubectl get pod -n kong-system -o json | jq -r '.items[].metadata | select(.name | startswith("kgo-gateway-operator"))' | jq -r '.name') -n kong-system
+kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r '.items[].metadata | select(.name | startswith("kgo-gateway-operator"))' | jq -r '.name') -n kong-system
 {{</highlight>}}
 
 

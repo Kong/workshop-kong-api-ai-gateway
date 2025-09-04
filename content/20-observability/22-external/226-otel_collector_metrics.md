@@ -32,10 +32,6 @@ protocol: TCP
 
 
 
-https://prometheus.io/docs/guides/opentelemetry/
-
-
-
 ### New collector configuration
 
 We need to add the new ``Prometheus Receiver`` to our OTel Collector configuration:
@@ -109,9 +105,9 @@ EOF
 ```
 
 The declaration has critical parameters defined:
-* Inside the “service” configuration section, a new “metrics” pipeline have been included:
-  * The Prometheus exporter configured, so we can access the metrics sending requests directly to the collector through port 8889 as described in the exporter section.
-  * It also includes the ``otlp`` receiver, so it can grab metrics coming from the Backend microservices as well.
+* Inside the “service” configuration section, a new “metrics” pipeline have been included. It has two exporters:
+  * The ``prometheus`` exporter configured, so we can access the metrics sending requests directly to the collector through port 8889 as described in the exporter section.
+  * It also includes the ``otlphttp/prometheus`` exporter responsible for pushing the metrics to Prometheus using its specific [OTLP endpoint](https://prometheus.io/docs/guides/opentelemetry/).
 
 
 #### Kubernetes Service Account for Prometheus Receiver
@@ -185,18 +181,6 @@ spec:
 EOF
 ```
 
-
-
-
-### Check Prometheus
-
-In MacOS, you can open Grafana with:
-
-```
-open -a "Google Chrome" "http://localhost:9090"
-```
-
-
 Finally, note that the OTel Collector configuration is deployed using the Service Account with ``serviceAccount: collector`` and then it will be able to scrape the endpoint exposed by Kong Gateway.
 
 #### Deploy the collector
@@ -209,11 +193,11 @@ kubectl apply -f otelcollector.yaml
 ```
 
 
-Interestingly enough, the collector service now listens to four ports:
+Interestingly enough, the collector service now listens to three ports:
 ```
 % kubectl get service collector-kong-collector -n opentelemetry-operator-system 
 NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                                AGE
-collector-kong-collector   ClusterIP   10.100.67.18   <none>        4317/TCP,4318/TCP,8889/TCP,54525/TCP   21h
+collector-kong-collector   ClusterIP   10.100.67.18   <none>        4317/TCP,4318/TCP,8889/TCP.            21h
 ```
 
 ### Configure the Prometheus Plugins
@@ -268,8 +252,15 @@ Submit the new plugin declaration with:
 deck gateway sync --konnect-token $PAT httpbin.yaml
 ```
 
-Consume the Application and check collector's Prometheus endpoint
+### Consume the Kong Route
+```
+curl -v $DATA_PLANE_LB/httpbin-route/get
+```
+
+### Check OTel Collector's Prometheus endpoint
+
 Using “port-forward”, send a request to the collector's Prometheus endpoint. In a terminal run:
+
 ```
 kubectl port-forward service/collector-kong-collector -n opentelemetry-operator-system 8889
 ```
@@ -289,6 +280,26 @@ kong_http_requests_total{code="200",instance="192.168.76.233:8100",job="otel-col
 kong_http_requests_total{code="200",instance="192.168.76.233:8100",job="otel-collector",route="pricing_route",service="pricing_service",source="service",workspace="default"} 1
 ```
 
+### Check Prometheus
+
+In MacOS, you can open Grafana with:
+
+```
+open -a "Google Chrome" "http://localhost:9090"
+```
+
+* In the **Query** page you can see all metrics produced by Kong Prometheus plugin and pushed by the OTel Collector. Choose ``kong_http_requests_total``.
+
+![prometheus](/static/images/prometheus.png)
+
 ### Check Metrics in Grafana
 
+In Grafana UI:
 
+* Click "Explore" in the left-side menu.
+* Choose "Prometheus" as the data source.
+* Inside the "metrics" box you should see all new Kong metrics. Choose ``kong_http_requests_total``.
+* Click "Run query". You should see the metric there.
+
+
+![grafana_prometheus](/static/images/grafana_prometheus.png)

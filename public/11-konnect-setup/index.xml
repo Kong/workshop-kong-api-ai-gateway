@@ -12,7 +12,7 @@
       <link>http://localhost:1313/11-konnect-setup/111-kgo-installation/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/11-konnect-setup/111-kgo-installation/index.html</guid>
-      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:</description>
+      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install kgo kong/gateway-operator \ -n kong-system \ --create-namespace \ --set image.tag=1.6.2 \ --set kubernetes-configuration-crds.enabled=true \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;kgo-gateway-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete KGO If you want to delete KGO run:</description>
     </item>
     <item>
       <title>PAT - Personal Access Token</title>

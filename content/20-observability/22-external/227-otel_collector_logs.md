@@ -3,17 +3,8 @@ title : "OTel Collector and Logs"
 weight : 227
 ---
 
-https://github.com/grafana/loki/blob/main/README.md
-https://github.com/grafana/loki/blob/main/production/helm/loki/README.md
-https://grafana.com/docs/loki/next/setup/install/helm/
-https://grafana.com/docs/loki/latest/send-data/otel/
 
-
-We still need to add logs to our environment. To inject Kong Gateway's Access Logs, we can use Log Processing plugin Kong Gateway provides, for example the [TCP Log Plugin](https://docs.konghq.com/hub/kong-inc/tcp-log/).
-
-https://grafana.com/docs/loki/latest/send-data/otel/
-
-https://grafana.com/docs/loki/latest/send-data/otel/#loki-configuration
+We still need to add logs to our environment where [Loki](https://github.com/grafana/loki/blob/main/README.md) has been deployed. To inject Kong Gateway's Access Logs, we can use a Log Processing plugin Kong Gateway provides, for example the [TCP Log Plugin](https://docs.konghq.com/hub/kong-inc/tcp-log/).
 
 
 
@@ -106,13 +97,10 @@ spec:
 EOF
 ```
 
-endpoint: http://loki.loki:3100/loki/api/v1/push
-
-
 The declaration has critical parameters defined:
 
-* A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Dynatrace.
-* Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp” which sends data to Loki.
+* A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Loki.
+* Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp/loki” which sends data to the [Loki endpoint](https://grafana.com/docs/loki/latest/send-data/otel/).
 
 ### Deploy the collector
 Delete the current collector first and instantiate a new one simply submitting the declaration:
@@ -123,7 +111,7 @@ kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-s
 kubectl apply -f otelcollector.yaml
 ```
 
-Interestingly enough, the collector service now listens to four ports:
+The collector service now listens to four ports:
 
 ```
 % kubectl get service collector-kong-collector -n opentelemetry-operator-system 
@@ -192,8 +180,11 @@ services:
 EOF
 ```
 
+Loki requires a specific format for [log ingestion](https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs). The Lua code inside the ``custom_fields_for_lua`` parameter processes the log to be supported by Loki.
 
 ### Update the DataPlane with new Lua configuration
+
+The **cjon** Lua function, used by the **TCP Log** plugin is considered ``untrusted`` so we need to configure the Data Plane with the ``KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES`` paramenter to accept it.
 
 ```
 kubectl delete dataplane dataplane1 -n kong
@@ -232,86 +223,21 @@ spec:
 EOF
 ```
 
-           #value: pl.stringio, ffi-zlib, cjson.safe
 
-
-        #http://loki.loki:3100g-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push
-
-- name: http-log
-  instance_name: http-log1
-  enabled: true
-  config:
-    custom_fields_by_lua:
-      streams: local ts=string.format('%18.0f', os.time()*1000000000) local log_payload         =
-        kong.log.serialize() local service = log_payload['service'] or 'noService'
-        local cjson         =
-        require "cjson" local payload_string = cjson.encode(log_payload) local
-        t         = { {stream = {gateway='kong-gateway', service=service['name']},
-        values={{ts,         payload_string}}} } return
-        t
-    http_endpoint: http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:3500/loki/api/v1/push
-
-Submit the new plugin declaration with:
+### Consume the Kong Route
 ```
-deck gateway sync --konnect-token $PAT httpbin.yaml
+curl -v $DATA_PLANE_LB/httpbin-route/get
 ```
 
 
-https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md
-https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs
+### Check Logs in Grafana
+
+In Grafana UI:
+
+* Click "Explore" in the left-side menu.
+* Choose "Loki" as the data source.
+* Click "Run query" with the following parameters. You should see the logs there.
 
 
-Consume the Application and check collector's Prometheus endpoint
-Using “port-forward”, send a request to the collector's Prometheus endpoint. In a terminal run:
-
-
-kubectl port-forward service/collector-kong-collector -n opentelemetry-operator-system 8889
-Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.
-
-
-% http :8889/metrics
-You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here's a snippet of the output:
-
-
-# HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong
-# TYPE kong_http_requests_total counter
-kong_http_requests_total{code="200",instance="192.168.76.233:8100",job="otel-collector",route="coupon_route",service="coupon_service",source="service",workspace="default"} 1
-kong_http_requests_total{code="200",instance="192.168.76.233:8100",job="otel-collector",route="inventory_route",service="inventory_service",source="service",workspace="default"} 1
-kong_http_requests_total{code="200",instance="192.168.76.233:8100",job="otel-collector",route="pricing_route",service="pricing_service",source="service",workspace="default"} 1
-Check Metrics and Logs in Dynatrace
-One of the main values provided by Dynatrace is Dashboard creation capabilities. You can create them visually and using DQL (Dynatrace Query Language). As an example, Dynatrace provides a Kong Dashboard where we can manage the main metrics and the access log.
-
-The Kong Dashboard should look like this.
-
-
-Connecting Log Data to Traces
-Dynatrace has the ability to connect Log Events to Traces. That allows us to navigate to the trace associated with a given log event.
-
-In order to do it, the log event has to have a “trace_id” field with the actual trace id it is related to. By default, the OpenTelemetry Plugin injects such a field. However, it adds the format used, in order case “w3c”. For example:
-
-
-{
-  "trace_id":{
-    "w3c":"3b7fb854f5442239c0e94edc69fd6886"
-  },
-  "route":{
-    "paths":[
-      "/coupon"
-    ],
-    "created_at":1738765016,
-….
-}
-As you can see here, the TCP Log gets executed after the OpenTelemetry Plugin. So, to solve that, the TCP Log Plugin configuration has the “custom_fields_by_lua” set with a Lua code which removes the “w3c” part out of the field added by the OpenTelemetry Plugin. The new log event can then follow the format Dynatrace looks for:
-
-
-{
-  "trace_id":"3b7fb854f5442239c0e94edc69fd6886",
-  "route":{
-    "paths":[
-      "/inventory"
-    ],
-    "created_at":1738765016,
-….
-}
-Here's a Dynatrace Logs app with events generated by the TCP Log Plugin. Choose an event and you'll see the right panel with the “Open trace” button.
+![grafana_loki](/static/images/grafana_loki.png)
 
