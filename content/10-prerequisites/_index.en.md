@@ -21,7 +21,7 @@ You will need a Kong Konnect Subscription to execute this workshop.
 
 
 ## Environment
-Please, make sure you have [**Minikube 1.36.0**](https://minikube.sigs.k8s.io/) Kubernetes Cluster over [**Podman 5.6.0**](https://podman.io/) installed.
+Please, make sure you have [**Minikube 1.36.0**](https://minikube.sigs.k8s.io/) Kubernetes Cluster over [**Podman 5.6.1**](https://podman.io/) installed.
 
 * [Podman installation](https://podman.io/docs/installation)
 * [Minikube installation](https://minikube.sigs.k8s.io/docs/start)

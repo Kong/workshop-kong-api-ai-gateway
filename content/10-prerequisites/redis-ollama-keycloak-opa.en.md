@@ -51,7 +51,7 @@ helm install ollama ollama-helm/ollama \
 Check the version and models
 ```
 $ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version
-ollama version is 0.11.2
+ollama version is 0.12.2
 
 
 $ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama list

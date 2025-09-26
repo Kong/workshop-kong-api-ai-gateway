@@ -19,7 +19,7 @@
       <link>http://localhost:1313/10-prerequisites/minikube/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/10-prerequisites/minikube/index.html</guid>
-      <description>Podman We are going to deploy our Data Plane in a Minikube Cluster over Podman. You can start Podman with:&#xA;podman machine set --memory 8196 podman machine start If you want to stop it run:&#xA;podman machine stop $ podman --version podman version 5.5.2 Minikube Then you can install Minikube with:&#xA;minikube start --driver=podman --memory=&#39;no-limit&#39; $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1 Use should see your cluster running with:</description>
+      <description>Podman We are going to deploy our Data Plane in a Minikube Cluster over Podman.&#xA;Run it if you don’t have any machine installed:&#xA;podman machine init You can start Podman with:&#xA;podman machine set --memory 8196 --rootful podman machine start If you want to stop it run:&#xA;podman machine stop $ podman --version podman version 5.6.1 Minikube 1.36 You can install Minikube with:&#xA;curl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty Minikube 1.37 You can install Minikube with:</description>
     </item>
     <item>
       <title>Redis and Ollama</title>
