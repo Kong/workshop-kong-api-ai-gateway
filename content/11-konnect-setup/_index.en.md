@@ -25,7 +25,7 @@ Here's a Reference Architecture that will be implemented in this workshop:
 After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:
 * Konnect User Interface.
 * [RESTful Admin API](https://developer.konghq.com/api/), a fundamental mechanism for administration purposes.
-* [Kong Gateway Operator (KGO)](https://developer.konghq.com/gateway-operator/) and Kubernetes CRDs
+* [Kong Gateway Operator (KGO)](https://developer.konghq.com/operator/) and Kubernetes CRDs
 
 To get an easier and faster deployment, this workshop uses KGO. You may observe the output in Konnect UI.
 

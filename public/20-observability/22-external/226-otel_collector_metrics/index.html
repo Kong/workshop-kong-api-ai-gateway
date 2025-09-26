@@ -29,26 +29,26 @@ You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
     <meta itemprop="wordCount" content="995">
     <title>OTel Collector and Metrics :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1758900631" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1758900631" defer></script>
-    <script src="/js/search-lunr.js?1758900631" defer></script>
-    <script src="/js/search.js?1758900631" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1758900761" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1758900761" defer></script>
+    <script src="/js/search-lunr.js?1758900761" defer></script>
+    <script src="/js/search.js?1758900761" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1758900631";
+      window.relearn.index_js_url="/searchindex.en.js?1758900761";
     </script>
-    <script src="/js/lunr/lunr.min.js?1758900631" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1758900631" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1758900631" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1758900631" defer></script>
+    <script src="/js/lunr/lunr.min.js?1758900761" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1758900761" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1758900761" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1758900761" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900631" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900631" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758900631" rel="stylesheet">
-    <link href="/css/theme.css?1758900631" rel="stylesheet">
-    <link href="/css/format-html.css?1758900631" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900761" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900761" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758900761" rel="stylesheet">
+    <link href="/css/theme.css?1758900761" rel="stylesheet">
+    <link href="/css/format-html.css?1758900761" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -373,8 +373,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <ul>
 <li>In the <strong>Query</strong> page you can see all metrics produced by Kong Prometheus plugin and pushed by the OTel Collector. Choose <code>kong_http_requests_total</code>.</li>
 </ul>
-<p><a href="#R-image-09337141c7c7d3ca31586c801dae3b70" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-09337141c7c7d3ca31586c801dae3b70"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
+<p><a href="#R-image-ea45f5c77b7f7a82229e3b41eff1997b" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ea45f5c77b7f7a82229e3b41eff1997b"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
 <h3 id="check-metrics-in-grafana">Check Metrics in Grafana</h3>
 <p>In Grafana UI:</p>
 <ul>
@@ -383,8 +383,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <li>Inside the &ldquo;metrics&rdquo; box you should see all new Kong metrics. Choose <code>kong_http_requests_total</code>.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see the metric there.</li>
 </ul>
-<p><a href="#R-image-0539beba33836209f640dfc9037f2713" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0539beba33836209f640dfc9037f2713"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
+<p><a href="#R-image-dd811df62d10e8c982a0d4dc414a37fc" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dd811df62d10e8c982a0d4dc414a37fc"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -466,8 +466,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1758900631" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758900631" defer></script>
-    <script src="/js/theme.js?1758900631" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1758900761" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758900761" defer></script>
+    <script src="/js/theme.js?1758900761" defer></script>
   </body>
 </html>
