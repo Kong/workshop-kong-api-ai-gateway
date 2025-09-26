@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.1">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Semantic Routing :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/5-semantic-routing/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Semantic Routing :: API Management with Kong Konnect">
+    <meta property="og:description" content="Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong AI Gateway">
+    <meta itemprop="name" content="Semantic Routing :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.">
+    <meta itemprop="wordCount" content="364">
+    <title>Semantic Routing :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1758888519" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1758888519" defer></script>
+    <script src="/js/search-lunr.js?1758888519" defer></script>
+    <script src="/js/search.js?1758888519" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1758888519";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1758888519" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1758888519" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1758888519" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1758888519" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758888519" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758888519" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758888519" rel="stylesheet">
+    <link href="/css/theme.css?1758888519" rel="stylesheet">
+    <link href="/css/format-html.css?1758888519" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/16-ai-gateway\/17-use-cases-copy\/159-ai-proxy-advanced\/5-semantic-routing\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/5-semantic-routing/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases-copy/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/index.html"><span itemprop="name">AI Proxy Advanced</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Semantic Routing</span><meta itemprop="position" content="5"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/4-lowest-latency-usage/index.html" title="Lowest-Latency and Lowest-Usage (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-use-cases-copy/170-rag/index.html" title="RAG - Retrieval-Augmented Generation (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 16-ai-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="semantic-routing">Semantic Routing</h1>
+
+<h4 id="semantic">Semantic</h4>
+<p>The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.</p>
+<p><a href="#R-image-2f81437f3ff30f9807a073b43c34db8e" class="lightbox-link"><img alt="Semantic Routing" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_routing.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2f81437f3ff30f9807a073b43c34db8e"><img alt="Semantic Routing" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_routing.png"></a></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+_info:
+  select_tags:
+  - llm
+_konnect:
+  control_plane_name: kong-workshop
+services:
+- name: ai-proxy-advanced-service
+  host: localhost
+  port: 32000
+  routes:
+  - name: route1
+    paths:
+    - /route1
+    plugins:
+    - name: ai-proxy-advanced
+      instance_name: ai-proxy-advanced1
+      config:
+        balancer:
+          algorithm: semantic
+        embeddings:
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          model:
+            provider: openai
+            name: &#34;text-embedding-3-small&#34;
+        vectordb:
+          dimensions: 1024
+          distance_metric: cosine
+          strategy: redis
+          threshold: 1.0
+          redis:
+            host: &#34;redis-stack.redis.svc.cluster.local&#34;
+            port: 6379
+            database: 0
+        targets:
+        - model:
+            provider: openai
+            name: gpt-4.1
+            options:
+              temperature: 1.0
+          route_type: &#34;llm/v1/chat&#34;
+          auth:
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
+          description: &#34;mathematics, algebra, calculus, trigonometry&#34;
+        - model:
+            provider: llama2
+            name: llama3.2:1b
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+          route_type: &#34;llm/v1/chat&#34;
+          description: &#34;piano, orchestra, liszt, classical music&#34;
+EOF</code></pre></div>
+<p>Apply the declaration with decK:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
+<p>Send a request related to Mathematics. The response should come from OpenAI&rsquo;s gpt-4.1</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+     &#34;messages&#34;: [
+       {
+         &#34;role&#34;: &#34;user&#34;,
+         &#34;content&#34;: &#34;Tell me about the last theorem of Fermat&#34;
+       }
+     ]
+   }&#39; | jq</code></pre></div>
+<p>On the other hand, Llama3.1 should be responsible for requests related to Classical Music.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+    &#34;messages&#34;: [
+      {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: &#34;Who wrote the Hungarian Rhapsodies piano pieces?&#34;
+      }
+    ]
+  }&#39; | jq</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
+  --url $DATA_PLANE_LB/route1 \
+  --header &#39;Content-Type: application/json&#39; \
+  --data &#39;{
+    &#34;messages&#34;: [
+      {
+        &#34;role&#34;: &#34;user&#34;,
+        &#34;content&#34;: &#34;Tell me a contemporaty pianist of Chopin&#34;
+      }
+    ]
+  }&#39; | jq</code></pre></div>
+<p>If you check Redis, you&rsquo;ll se there are two entries, related to the models</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
+<ul>
+<li>Expected output</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;ai_proxy_advanced_semantic:01c84f59-b7c3-418b-818d-4369ef3e55ef:8f74aeaab95482bb37fbd69cd42154dcd6d321e1631ffdfd1802e1609d4c2481&#34;
+&#34;ai_proxy_advanced_semantic:01c84f59-b7c3-418b-818d-4369ef3e55ef:72a33ce9079fd34f6fb3624c3a4ba1a0df0c1aad267986db2249dc26a8808a41&#34;</code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/159-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/159-ai-gateway/index.html">Introduction</a></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases-copy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/index.html">Use Cases</a><ul id="R-subsections-d50a3c5f80d2eeaa2a8505951ebe3d95" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/150-ai-proxy/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/150-ai-proxy/index.html">AI Proxy</a></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-83844485e8ff8990ae2b2012c8643158" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/155-request-response-transformer/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/155-request-response-transformer/index.html">AI Request and Response Transfomers</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/156-semantic-cache/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/156-semantic-cache/index.html">AI Semantic Cache</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/157-apikey/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/157-apikey/index.html">Key Auth</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/158-rate-limiting/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/158-rate-limiting/index.html">AI Rate Limiting Advanced</a></li>
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/index.html">AI Proxy Advanced</a><ul id="R-subsections-ee973baf6dd0656c62355d121f6e5c16" class="collapsible-menu">
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/2-round-robin/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/2-round-robin/index.html">Round Robin</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/3-weight/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/3-weight/index.html">Weight</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/4-lowest-latency-usage/index.html">Lowest-Latency and Lowest-Usage</a></li>
+            <li class="active " data-nav-id="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/5-semantic-routing/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/159-ai-proxy-advanced/5-semantic-routing/index.html">Semantic Routing</a></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-use-cases-copy/170-rag/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases-copy/170-rag/index.html">RAG - Retrieval-Augmented Generation</a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/17-use-cases/index.html"><a class="padding" href="/16-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-2a30b88874758540c08bc7b5dc0b321f" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1758888519" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758888519" defer></script>
+    <script src="/js/theme.js?1758888519" defer></script>
+  </body>
+</html>

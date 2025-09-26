@@ -22,10 +22,6 @@ podman machine set --memory 8196 --rootful
 podman machine start
 ```
 
-If you want to stop it run:
-```
-podman machine stop
-```
 
 Check the version:
 
@@ -58,6 +54,8 @@ commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
 ```
 minikube start --driver=podman --memory='no-limit' --container-runtime=containerd
 ```
+
+
 
 
 ##### Check your cluster
@@ -100,6 +98,23 @@ To be able to consume the Kubernetes Load Balancer Services, in another terminal
 ```
 minikube tunnel
 ```
+
+
+
+
+
+If you want to stop Minikube run:
+```
+minikube stop
+```
+
+
+If you want to stop Podman run:
+```
+podman machine stop
+```
+
+
 
 
 You can now click **Next** to install the operator.

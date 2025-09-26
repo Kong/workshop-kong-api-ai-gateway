@@ -5,7 +5,7 @@ var relearn_searchindex = [
     "description": "The AI Prompt Decorator plugin adds an array of llm/v1/chat messages to either the start or end of an LLM consumer’s chat history. This allows you to pre-engineer complex prompts, or steer (and guard) prompts in such a way that the modification to the consumer’s LLM message is completely transparent.\nYou can use this plugin to pre-set a system prompt, set up specific prompt history, add words and phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway.",
     "tags": [],
     "title": "AI Prompt Decorator",
-    "uri": "/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/151-prompt-engineering/1-prompt-decorator/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e Prompt Engineering",
@@ -13,7 +13,7 @@ var relearn_searchindex = [
     "description": "The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.",
     "tags": [],
     "title": "AI Prompt Template",
-    "uri": "/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/151-prompt-engineering/2-prompt-template/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e AI Proxy Advanced",
@@ -21,7 +21,7 @@ var relearn_searchindex = [
     "description": "Let’s get started with a simple round-robin policy:\ncat \u003e ai-proxy-advanced.yaml \u003c\u003c 'EOF' _format_version: \"3.0\" _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: round-robin targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: \"llm/v1/chat\" auth: header_name: Authorization header_value: Bearer ${{ env \"DECK_OPENAI_API_KEY\" }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: \"llm/v1/chat\" EOF Apply the declaration with decK:",
     "tags": [],
     "title": "Round Robin",
-    "uri": "/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/2-round-robin/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e Prompt Engineering",
@@ -29,7 +29,7 @@ var relearn_searchindex = [
     "description": "The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.\nYou can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.",
     "tags": [],
     "title": "AI Prompt Guard",
-    "uri": "/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/151-prompt-engineering/3-prompt-guard/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e AI Proxy Advanced",
@@ -37,7 +37,7 @@ var relearn_searchindex = [
     "description": "Now, let’s redirect 80% of the request to OpenAI’s gpt-4.1 with a weight based policy:\ncat \u003e ai-proxy-advanced.yaml \u003c\u003c 'EOF' _format_version: \"3.0\" _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: \"llm/v1/chat\" auth: header_name: Authorization header_value: Bearer ${{ env \"DECK_OPENAI_API_KEY\" }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: \"llm/v1/chat\" weight: 20 EOF Apply the declaration with decK:",
     "tags": [],
     "title": "Weight",
-    "uri": "/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/3-weight/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e AI Proxy Advanced",
@@ -45,7 +45,7 @@ var relearn_searchindex = [
     "description": "Lowest Latency policy The lowest-latency algorithm is based on the response time for each model. It distributes requests to models with the lowest response time.\nCreate a file with the following declaration:\ncat \u003e ai-proxy-advanced.yaml \u003c\u003c 'EOF' _format_version: \"3.0\" _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: balancer: algorithm: lowest-latency latency_strategy: e2e targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: \"llm/v1/chat\" auth: header_name: Authorization header_value: Bearer ${{ env \"DECK_OPENAI_API_KEY\" }} - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: \"llm/v1/chat\" EOF Apply the declaration with decK:",
     "tags": [],
     "title": "Lowest-Latency and Lowest-Usage",
-    "uri": "/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases \u003e AI Proxy Advanced",
@@ -53,7 +53,7 @@ var relearn_searchindex = [
     "description": "Semantic The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.",
     "tags": [],
     "title": "Semantic Routing",
-    "uri": "/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect",
@@ -73,11 +73,11 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Prerequisites",
-    "content": "Podman We are going to deploy our Data Plane in a Minikube Cluster over Podman.\nRun it if you don’t have any machine installed:\npodman machine init You can start Podman with:\npodman machine set --memory 8196 --rootful podman machine start If you want to stop it run:\npodman machine stop Check the version:\n$ podman --version podman version 5.6.1 Minikube 1.36 You can install Minikube with:\ncurl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty Minikube 1.37 You can install Minikube with:\ncurl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.37.0 commit: 65318f4cfff9c12cc87ec9eb8f4cdd57b25047f3 Check your cluster minikube start --driver=podman --memory='no-limit' --container-runtime=containerd Use should see your cluster running with:\nkubectl get all --all-namespaces Typical output is:\nNAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-7hnl7 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/etcd-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kindnet-vbhk5 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/kube-apiserver-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kube-controller-manager-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kube-proxy-4qcvd 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/kube-scheduler-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/storage-provisioner 1/1 Running 3 (4m39s ago) 6m5s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 \u003cnone\u003e 443/TCP 6m7s kube-system service/kube-dns ClusterIP 10.96.0.10 \u003cnone\u003e 53/UDP,53/TCP,9153/TCP 6m6s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kindnet 1 1 1 1 1 \u003cnone\u003e 6m5s kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 6m6s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 1/1 1 1 6m6s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 1 6m1s To be able to consume the Kubernetes Load Balancer Services, in another terminal run:\nminikube tunnel You can now click Next to install the operator.",
-    "description": "Podman We are going to deploy our Data Plane in a Minikube Cluster over Podman.\nRun it if you don’t have any machine installed:\npodman machine init You can start Podman with:\npodman machine set --memory 8196 --rootful podman machine start If you want to stop it run:\npodman machine stop Check the version:\n$ podman --version podman version 5.6.1 Minikube 1.36 You can install Minikube with:\ncurl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty Minikube 1.37 You can install Minikube with:",
+    "content": "We are going to deploy our Data Plane in a Minikube Cluster over Podman.\nPodman 5.6.1 Here are the instructions to install Podman.\nInitialize a machine:\npodman machine init You can start Podman with:\npodman machine set --memory 8196 --rootful podman machine start Check the version:\n$ podman --version podman version 5.6.1 Minikube 1.36 You can install it with:\ncurl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty Start your cluster minikube start --driver=podman --memory='no-limit' --container-runtime=containerd Check your cluster Use should see your cluster running with:\nkubectl get all --all-namespaces Typical output is:\nNAMESPACE NAME READY STATUS RESTARTS AGE kube-system pod/coredns-674b8bbfcf-7hnl7 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/etcd-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kindnet-vbhk5 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/kube-apiserver-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kube-controller-manager-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/kube-proxy-4qcvd 1/1 Running 1 (5m12s ago) 6m1s kube-system pod/kube-scheduler-minikube 1/1 Running 1 (5m12s ago) 6m6s kube-system pod/storage-provisioner 1/1 Running 3 (4m39s ago) 6m5s NAMESPACE NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE default service/kubernetes ClusterIP 10.96.0.1 \u003cnone\u003e 443/TCP 6m7s kube-system service/kube-dns ClusterIP 10.96.0.10 \u003cnone\u003e 53/UDP,53/TCP,9153/TCP 6m6s NAMESPACE NAME DESIRED CURRENT READY UP-TO-DATE AVAILABLE NODE SELECTOR AGE kube-system daemonset.apps/kindnet 1 1 1 1 1 \u003cnone\u003e 6m5s kube-system daemonset.apps/kube-proxy 1 1 1 1 1 kubernetes.io/os=linux 6m6s NAMESPACE NAME READY UP-TO-DATE AVAILABLE AGE kube-system deployment.apps/coredns 1/1 1 1 6m6s NAMESPACE NAME DESIRED CURRENT READY AGE kube-system replicaset.apps/coredns-674b8bbfcf 1 1 1 6m1s To be able to consume the Kubernetes Load Balancer Services, in another terminal run:\nminikube tunnel If you want to stop Minikube run:\nminikube stop If you want to stop Podman run:\npodman machine stop You can now click Next to install the operator.",
+    "description": "We are going to deploy our Data Plane in a Minikube Cluster over Podman.\nPodman 5.6.1 Here are the instructions to install Podman.\nInitialize a machine:\npodman machine init You can start Podman with:\npodman machine set --memory 8196 --rootful podman machine start Check the version:\n$ podman --version podman version 5.6.1 Minikube 1.36 You can install it with:\ncurl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64 sudo install minikube-darwin-arm64 /usr/local/bin/minikube $ minikube version minikube version: v1.36.0 commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty Start your cluster minikube start --driver=podman --memory='no-limit' --container-runtime=containerd Check your cluster Use should see your cluster running with:",
     "tags": [],
-    "title": "Minikube",
-    "uri": "/10-prerequisites/minikube/index.html"
+    "title": "Podman and Minikube",
+    "uri": "/10-prerequisites/podman_minikube/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect",
@@ -157,7 +157,7 @@ var relearn_searchindex = [
     "description": "The AI Proxy plugin is the fundamental AI Gateway component. It lets you transform and proxy requests to a number of AI providers and models. The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.\nThe following table describes which providers and requests the AI Proxy plugin supports:",
     "tags": [],
     "title": "AI Proxy",
-    "uri": "/16-ai-gateway/17-use-cases/150-ai-proxy/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/150-ai-proxy/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong API Gateway \u003e Use Cases",
@@ -189,7 +189,7 @@ var relearn_searchindex = [
     "description": "For Prompt Engineering use cases, Kong AI Gateway provides:\nAI Prompt Decorator plugin: it injects messages at the start or end of a caller’s chat history. AI Prompt Guard plugin: it lets you configure a series of PCRE-compatible regular expressions to allow and block specific prompts, words, phrases, or otherwise and have more control over the LLM. AI Prompt Template plugin: it’s responsible for pre-configuring AI prompts to users All plugins extend the functionality of the AI Proxy plugin, and requires AI Proxy to be configured first.",
     "tags": [],
     "title": "Prompt Engineering",
-    "uri": "/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/151-prompt-engineering/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong API Gateway \u003e Use Cases",
@@ -213,7 +213,7 @@ var relearn_searchindex = [
     "description": "The AI Request Transformer and AI Response Transformer plugins integrate with the LLM on Amazon Bedrock, enabling introspection and transformation of the request’s body before proxying it to the Upstream Service and prior to forwarding the response to the client.\nThe plugins support llm/v1/chat style requests for all of the same providers as the AI Proxy plugin. It also use all of the same configuration and tuning parameters as the AI Proxy plugin, under the config.llm block.",
     "tags": [],
     "title": "AI Request and Response Transfomers",
-    "uri": "/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/155-request-response-transformer/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases",
@@ -221,7 +221,7 @@ var relearn_searchindex = [
     "description": "Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.\nWhen a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.",
     "tags": [],
     "title": "AI Semantic Cache",
-    "uri": "/16-ai-gateway/17-use-cases/156-semantic-cache/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/156-semantic-cache/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong API Gateway \u003e Use Cases",
@@ -237,7 +237,7 @@ var relearn_searchindex = [
     "description": "In this section, you will configure the Key-Auth plugin on the Kong Route to protect Amazon Bedrock.\nAdd Kong Key Authentication plugin and Kong Consumer Add a KongPlugin resource for authentication, specifically the Key-Auth plugin. Note that, besides describing the plugin configuration, the declaration also creates a Kong Consumer, named user1, with an API Key (123456) as its credential.\ncat \u003e ai-key-auth.yaml \u003c\u003c 'EOF' _format_version: \"3.0\" _konnect: control_plane_name: kong-workshop _info: select_tags: - llm services: - name: service1 host: localhost port: 32000 routes: - name: ollama-route paths: - /ollama-route plugins: - name: ai-proxy instance_name: ai-proxy-ollama config: route_type: llm/v1/chat model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat - name: openai-route paths: - /openai-route plugins: - name: ai-proxy instance_name: ai-proxy-openai config: route_type: llm/v1/chat auth: header_name: Authorization header_value: Bearer ${{ env \"DECK_OPENAI_API_KEY\" }} model: provider: openai name: gpt-4.1 options: temperature: 1.0 - name: key-auth instance_name: key-auth-bedrock enabled: true consumers: - keyauth_credentials: - key: \"123456\" username: user1 EOF Apply the declaration with decK:",
     "tags": [],
     "title": "Key Auth",
-    "uri": "/16-ai-gateway/17-use-cases/157-apikey/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/157-apikey/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong API Gateway \u003e Use Cases",
@@ -253,7 +253,7 @@ var relearn_searchindex = [
     "description": "With the existing API Key policy, we can control the incoming requests. However, the policies implemented by the other plugins are the same regardless the consumer.\nIn this section, we are going to define specific Rate Limiting policies for each Consumer represented by its API Key.\nKong Consumer Policies It’s important then to be able to define specific policies for each one of these consumers. For example, it would be great to define Rate Limiting policies for different consumers like this:",
     "tags": [],
     "title": "AI Rate Limiting Advanced",
-    "uri": "/16-ai-gateway/17-use-cases/158-rate-limiting/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/158-rate-limiting/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong API Gateway \u003e Use Cases",
@@ -269,23 +269,23 @@ var relearn_searchindex = [
     "description": "The AI Proxy Advanced plugin lets you transform and proxy requests to multiple AI providers and models at the same time. This lets you set up load balancing between targets.\nThe plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.\nLoad balancing This plugin supports several load-balancing algorithms, similar to those used for Kong upstreams, allowing efficient distribution of requests across different AI models. The supported algorithms include:",
     "tags": [],
     "title": "AI Proxy Advanced",
-    "uri": "/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html"
-  },
-  {
-    "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway",
-    "content": "With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely\nWhile AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.\nYou can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.\nKong AI Gateway functional scope Universal API Kong’s AI Gateway Universal API, delivered through the AI Proxy and AI Proxy Advanced plugins, simplifies AI model integration by providing a single, standardized interface for interacting with models across multiple providers.\nEasy to use: Configure once and access any AI model with minimal integration effort.\nLoad balancing: Automatically distribute AI requests across multiple models or providers for optimal performance and cost efficiency.\nRetry and fallback: Optimize AI requests based on model performance, cost, or other factors.\nCross-plugin integration: Leverage AI in non-AI API workflows through other Kong Gateway plugins.\nHigh Level Tasks You will complete the following:\nSet up Kong AI Proxy for LLM Integration Implement Kong AI Plugins to secure prompt message You can now click Next to proceed further.",
-    "description": "With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely\nWhile AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.",
-    "tags": [],
-    "title": "Introduction",
-    "uri": "/16-ai-gateway/159-ai-gateway/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect",
-    "content": "In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.\nYou can now click Next to begin the module.\nOptional Reading Learn more about Kong AI Gateway",
-    "description": "In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.\nYou can now click Next to begin the module.\nOptional Reading Learn more about Kong AI Gateway",
+    "content": "Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely\nWhile AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.\nYou can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.\nKong AI Gateway functional scope Universal API Kong’s AI Gateway Universal API, delivered through the AI Proxy and AI Proxy Advanced plugins, simplifies AI model integration by providing a single, standardized interface for interacting with models across multiple providers.\nEasy to use: Configure once and access any AI model with minimal integration effort.\nLoad balancing: Automatically distribute AI requests across multiple models or providers for optimal performance and cost efficiency.\nRetry and fallback: Optimize AI requests based on model performance, cost, or other factors.\nCross-plugin integration: Leverage AI in non-AI API workflows through other Kong Gateway plugins.\nHigh Level Tasks You will complete the following:\nSet up Kong AI Proxy for LLM Integration Implement Kong AI Plugins to secure prompt message You can now click Next to proceed further.\nOptional Reading Learn more about Kong AI Gateway\nYou can now click Next to begin the module.",
+    "description": "Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely\nWhile AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.",
     "tags": [],
     "title": "Kong AI Gateway",
     "uri": "/16-ai-gateway/index.html"
+  },
+  {
+    "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway",
+    "content": "AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.\nKey features include:\nRouting and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.",
+    "description": "AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.\nKey features include:\nRouting and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.",
+    "tags": [],
+    "title": "Konnect AI Gateway User Interface",
+    "uri": "/16-ai-gateway/17-konnect-ui/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Use Cases",
@@ -293,7 +293,23 @@ var relearn_searchindex = [
     "description": "What is RAG? RAG offers a solution to some of the limitations in traditional generative AI models, such as accuracy and hallucinations, allowing companies to create more contextually relevant AI applications.\nBasically, the RAG application comprises two main processes:\nData Preparation: External data sources, including all sorts of documents, are chunked and submitted to an Embedding Model which converts them into embeddings. The embeddings are stored in a Vector Database.",
     "tags": [],
     "title": "RAG - Retrieval-Augmented Generation",
-    "uri": "/16-ai-gateway/17-use-cases/170-rag/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/170-rag/index.html"
+  },
+  {
+    "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Konnect AI Gateway User Interface",
+    "content": "Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.\nInside the New AI Gateway page do the following:\nName your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save Connect LLM Inside the Overview page click Connect LLM* and do the following:\nFor the Connect to LLM popup box leave the LLM Provider box with its default values, OpenAI. Open the box if you want to check all LLMs supported by Kong AI Gateway. We are going to expose the OpenAI’s gpt-4 model, so, for the Enter a model box, also leave its default value. Finally, for the API Key box, paste your OpenAI’s API Key. Note you can store you API Key in you vault and leverage the vault support provided by Konnect. Click Save. You should get redirected to the Overview with the new AI Gateway configured:\nConsume the AI Gateway For now, we are not going to apply any AI based plugin so, inside the Overview page, click Test your setup.\nUse the Copy button to copy the request, paste it into your terminal changing \u003cYOUR_HOST_NAME\u003e\u003e with your DATA_PLANE_URL environment variable and send it to your Data Plane:\ncurl -X POST $DATA_PLANE_URL/openai-route \\ -H 'Content-Type: application/json' \\ -d '{ \"messages\": [ { \"role\": \"user\", \"content\": \"How does Kong AI Gateway work?\" } ] }' Behind the scenes The AI Gateway Konnect UI is the easiest way to configure your Control Plane with new AI Gateway and plugins. Behind the scenes, Konnect creates all Kong Objects required to implement the AI Gateway. For example, if you get back to your API Gateway menu option, you’ll see you have three Kong Object defined:\nKong Gateway Service Kong Route, with the your Route configuration, including the /openai-route path. Kong Plugin with the Kong AI Proxy Advanced plugin with the necessary configuration to hit OpenAI and consume its gpt-4 model. For example, here’s your Kong AI Proxy Advanced configuration page:\nThat means you can use the same mechanisms you did for the API Gateway plugins, including the same Konnect UI and decK declarations, to configure the AI based plugins.\nWe are going to explore the AI Proxy and AI Proxy Advanced and other AI based plugins in the next sections.\nClick Next to proceed with the next module.",
+    "description": "Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.\nInside the New AI Gateway page do the following:\nName your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save",
+    "tags": [],
+    "title": "AI Manager",
+    "uri": "/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html"
+  },
+  {
+    "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway \u003e Konnect AI Gateway User Interface",
+    "content": "As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.\nChoose your AI Gateway your created in the previous section.\nUsing the Konnect AI Manager UI we have two options:\nInside the Overview page, there’s a Add plugin option. If you click on it you see a popup window to configure the Decorator.\nInside the AI Gateway menu, there’s a Prompt Engineering option. If you click on it you’ll be able to configure two kinds of Prompt Engineering policies: Templates and Decorators\nWe are going to use the option #2. So, click the Decorators tab and + Add decorator.\nInside the New prompt decorator page, choose Start from scratch and type You will always respond in Italian. Click Save\nCopy the request again and send it to the Data Plane. You should receive something like:\n{ \"id\": \"chatcmpl-CK2oV3pSAWxXXzClbHOLEkCiXb8Zx\", \"object\": \"chat.completion\", \"created\": 1758893411, \"model\": \"gpt-4-0613\", \"choices\": [ { \"index\": 0, \"message\": { \"role\": \"assistant\", \"content\": \"Kong AI Gateway funziona come un intermediario tra le applicazioni client e dei servizi di backend. Funziona gestendo e dirigendo il traffico di rete a questi servizi. Inoltre, offre funzionalità come autenticazione, rate limiting, logging, trasformazioni di richieste e risposte, e molte altre funzioni utili. Kong AI Gateway può essere personalizzato per adattarsi alle diverse esigenze dell'azienda attraverso l'uso di plugin.\", \"refusal\": null, \"annotations\": [] }, \"logprobs\": null, \"finish_reason\": \"stop\" } ], \"usage\": { \"prompt_tokens\": 24, \"completion_tokens\": 110, \"total_tokens\": 134, \"prompt_tokens_details\": { \"cached_tokens\": 0, \"audio_tokens\": 0 }, \"completion_tokens_details\": { \"reasoning_tokens\": 0, \"audio_tokens\": 0, \"accepted_prediction_tokens\": 0, \"rejected_prediction_tokens\": 0 } }, \"service_tier\": \"default\", \"system_fingerprint\": null } Click Next to proceed with the next module.",
+    "description": "As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.\nChoose your AI Gateway your created in the previous section.\nUsing the Konnect AI Manager UI we have two options:\nInside the Overview page, there’s a Add plugin option. If you click on it you see a popup window to configure the Decorator.\nInside the AI Gateway menu, there’s a Prompt Engineering option. If you click on it you’ll be able to configure two kinds of Prompt Engineering policies: Templates and Decorators",
+    "tags": [],
+    "title": "Prompt Engineering - Decorator",
+    "uri": "/16-ai-gateway/17-konnect-ui/172-decorator/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect \u003e Kong AI Gateway",
@@ -301,7 +317,7 @@ var relearn_searchindex = [
     "description": "In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.\nSimple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.",
     "tags": [],
     "title": "Use Cases",
-    "uri": "/16-ai-gateway/17-use-cases/index.html"
+    "uri": "/16-ai-gateway/18-use-cases/index.html"
   },
   {
     "breadcrumb": "API Management with Kong Konnect",

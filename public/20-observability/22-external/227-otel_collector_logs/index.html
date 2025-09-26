@@ -29,26 +29,26 @@ Hit the port to make sure Loki is ready to accept requests:
 curl http://localhost:3100/ready New collector configuration cat &gt; otelcollector.yaml &lt;&lt; &#39;EOF&#39; apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: collector-kong namespace: opentelemetry-operator-system spec: image: otel/opentelemetry-collector-contrib:0.132.2 serviceAccount: collector mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 prometheus: config: scrape_configs: - job_name: &#39;otel-collector&#39; scrape_interval: 5s kubernetes_sd_configs: - role: pod scheme: http tls_config: ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt authorization: credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token metrics_path: /metrics relabel_configs: - source_labels: [__meta_kubernetes_namespace] action: keep regex: &#34;kong&#34; - source_labels: [__meta_kubernetes_pod_name] action: keep regex: &#34;dataplane-(.&#43;)&#34; - source_labels: [__meta_kubernetes_pod_container_name] action: keep regex: &#34;proxy&#34; - source_labels: [__meta_kubernetes_pod_container_port_number] action: keep regex: &#34;8100&#34; tcplog: listen_address: 0.0.0.0:54525 operators: - type: json_parser exporters: otlphttp/jaeger: endpoint: http://jaeger-collector.jaeger:4318 otlphttp/prometheus: endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp otlphttp/loki: endpoint: http://loki.loki:3100/otlp prometheus: endpoint: 0.0.0.0:8889 #debug: # verbosity: detailed service: pipelines: traces: receivers: [otlp] exporters: [otlphttp/jaeger] metrics: receivers: [prometheus] exporters: [otlphttp/prometheus, prometheus] logs: receivers: [tcplog] exporters: [otlphttp/loki] EOF The declaration has critical parameters defined:">
     <meta itemprop="wordCount" content="622">
     <title>OTel Collector and Logs :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1758886975" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1758886975" defer></script>
-    <script src="/js/search-lunr.js?1758886975" defer></script>
-    <script src="/js/search.js?1758886975" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1758899553" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1758899553" defer></script>
+    <script src="/js/search-lunr.js?1758899553" defer></script>
+    <script src="/js/search.js?1758899553" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1758886975";
+      window.relearn.index_js_url="/searchindex.en.js?1758899553";
     </script>
-    <script src="/js/lunr/lunr.min.js?1758886975" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1758886975" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1758886975" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1758886975" defer></script>
+    <script src="/js/lunr/lunr.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1758899553" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758886975" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758886975" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758886975" rel="stylesheet">
-    <link href="/css/theme.css?1758886975" rel="stylesheet">
-    <link href="/css/format-html.css?1758886975" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758899553" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758899553" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758899553" rel="stylesheet">
+    <link href="/css/theme.css?1758899553" rel="stylesheet">
+    <link href="/css/format-html.css?1758899553" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -352,8 +352,8 @@ EOF</code></pre></div>
 <li>Choose &ldquo;Loki&rdquo; as the data source.</li>
 <li>Click &ldquo;Run query&rdquo; with the following parameters. You should see the logs there.</li>
 </ul>
-<p><a href="#R-image-de4c3653e20612380b46e06a03a1cc20" class="lightbox-link"><img alt="grafana_loki" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_loki.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-de4c3653e20612380b46e06a03a1cc20"><img alt="grafana_loki" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_loki.png"></a></p>
+<p><a href="#R-image-87f893b3180cb4c3919bfd070a864a7e" class="lightbox-link"><img alt="grafana_loki" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_loki.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-87f893b3180cb4c3919bfd070a864a7e"><img alt="grafana_loki" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_loki.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -433,8 +433,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1758886975" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758886975" defer></script>
-    <script src="/js/theme.js?1758886975" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1758899553" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758899553" defer></script>
+    <script src="/js/theme.js?1758899553" defer></script>
   </body>
 </html>

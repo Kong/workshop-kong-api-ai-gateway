@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prompt Engineering :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/index.html</link>
+    <description>For Prompt Engineering use cases, Kong AI Gateway provides:&#xA;AI Prompt Decorator plugin: it injects messages at the start or end of a caller’s chat history. AI Prompt Guard plugin: it lets you configure a series of PCRE-compatible regular expressions to allow and block specific prompts, words, phrases, or otherwise and have more control over the LLM. AI Prompt Template plugin: it’s responsible for pre-configuring AI prompts to users All plugins extend the functionality of the AI Proxy plugin, and requires AI Proxy to be configured first.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Prompt Decorator</title>
+      <link>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/1-prompt-decorator/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/1-prompt-decorator/index.html</guid>
+      <description>The AI Prompt Decorator plugin adds an array of llm/v1/chat messages to either the start or end of an LLM consumer’s chat history. This allows you to pre-engineer complex prompts, or steer (and guard) prompts in such a way that the modification to the consumer’s LLM message is completely transparent.&#xA;You can use this plugin to pre-set a system prompt, set up specific prompt history, add words and phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway.</description>
+    </item>
+    <item>
+      <title>AI Prompt Template</title>
+      <link>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/2-prompt-template/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/2-prompt-template/index.html</guid>
+      <description>The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: {{variable}}. This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.</description>
+    </item>
+    <item>
+      <title>AI Prompt Guard</title>
+      <link>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/3-prompt-guard/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-ai-gateway/17-use-cases-copy/151-prompt-engineering/3-prompt-guard/index.html</guid>
+      <description>The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.&#xA;You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.</description>
+    </item>
+  </channel>
+</rss>

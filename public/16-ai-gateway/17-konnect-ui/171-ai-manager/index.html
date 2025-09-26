@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.1">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.
+Inside the New AI Gateway page do the following:
+Name your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AI Manager :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.
+Inside the New AI Gateway page do the following:
+Name your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save">
+    <meta property="og:url" content="http://localhost:1313/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="AI Manager :: API Management with Kong Konnect">
+    <meta property="og:description" content="Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.
+Inside the New AI Gateway page do the following:
+Name your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong AI Gateway">
+    <meta itemprop="name" content="AI Manager :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.
+Inside the New AI Gateway page do the following:
+Name your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save">
+    <meta itemprop="wordCount" content="439">
+    <title>AI Manager :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1758899553" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1758899553" defer></script>
+    <script src="/js/search-lunr.js?1758899553" defer></script>
+    <script src="/js/search.js?1758899553" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1758899553";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1758899553" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1758899553" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758899553" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758899553" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758899553" rel="stylesheet">
+    <link href="/css/theme.css?1758899553" rel="stylesheet">
+    <link href="/css/format-html.css?1758899553" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/16-ai-gateway\/17-konnect-ui\/171-ai-manager\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-the-ai-gateway">Create the AI Gateway</a></li>
+        <li><a href="#connect-llm">Connect LLM</a></li>
+        <li><a href="#consume-the-ai-gateway">Consume the AI Gateway</a></li>
+        <li><a href="#behind-the-scenes">Behind the scenes</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/index.html"><span itemprop="name">Kong AI Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-ai-gateway/17-konnect-ui/index.html"><span itemprop="name">Konnect AI Gateway User Interface</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI Manager</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-konnect-ui/index.html" title="Konnect AI Gateway User Interface (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-ai-gateway/17-konnect-ui/172-decorator/index.html" title="Prompt Engineering - Decorator (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 16-ai-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ai-manager">AI Manager</h1>
+
+<h3 id="create-the-ai-gateway">Create the AI Gateway</h3>
+<p>The <strong>AI Gateway</strong> menu option lets you to expose an existing LLM. Click on the option and choose <strong>Start from scratch</strong> option inside the <strong>New AI Gateway</strong> button.</p>
+<p>Inside the <strong>New AI Gateway</strong> page do the following:</p>
+<ul>
+<li>Name your new AI Gateway as <code>ai_gateway_1</code>.</li>
+<li>Every AI Gateway has to be related to an existing Control Plane, so, for the <strong>Select gateway</strong> box, choose your <code>kong-workshop</code> Control Plane.</li>
+<li>Define a basic Route with <code>/openai-route</code> as its Path.</li>
+<li>Keep all other parameter with their default values and click <strong>Save</strong></li>
+</ul>
+<p><a href="#R-image-108b9c1064f7b5b1b5fc875127c3488b" class="lightbox-link"><img alt="AI Gateway 1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_1.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-108b9c1064f7b5b1b5fc875127c3488b"><img alt="AI Gateway 1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_1.png"></a></p>
+<h3 id="connect-llm">Connect LLM</h3>
+<p>Inside the <strong>Overview</strong> page click <strong>Connect LLM</strong>* and do the following:</p>
+<ul>
+<li>For the <strong>Connect to LLM</strong> popup box leave the <strong>LLM Provider</strong> box with its default values, <code>OpenAI</code>. Open the box if you want to check all LLMs supported by Kong AI Gateway.</li>
+<li>We are going to expose the OpenAI&rsquo;s <strong>gpt-4</strong> model, so, for the <strong>Enter a model</strong> box, also leave its default value.</li>
+<li>Finally, for the <strong>API Key</strong> box, paste your OpenAI&rsquo;s API Key. Note you can store you API Key in you vault and leverage the <a href="https://developer.konghq.com/gateway/entities/vault/" rel="external" target="_blank">vault support</a> provided by Konnect. Click <strong>Save</strong>.</li>
+</ul>
+<p><a href="#R-image-4e6f0bc8e3942ccaffb11377b6a9da45" class="lightbox-link"><img alt="OpenAI Config" class="lazy lightbox figure-image" loading="lazy" src="/static/images/openai_config.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4e6f0bc8e3942ccaffb11377b6a9da45"><img alt="OpenAI Config" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/openai_config.png"></a></p>
+<p>You should get redirected to the <strong>Overview</strong> with the new AI Gateway configured:</p>
+<p><a href="#R-image-51eb3dd7ea48b6594135b83e37a5c64b" class="lightbox-link"><img alt="AI Gateway Overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_overview.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-51eb3dd7ea48b6594135b83e37a5c64b"><img alt="AI Gateway Overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_overview.png"></a></p>
+<h3 id="consume-the-ai-gateway">Consume the AI Gateway</h3>
+<p>For now, we are not going to apply any AI based plugin so, inside the <strong>Overview</strong> page, click <strong>Test your setup</strong>.</p>
+<p><a href="#R-image-405fc146ae7bd35291c8ac5215e5f23b" class="lightbox-link"><img alt="Test your setup" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_test_your_setup.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-405fc146ae7bd35291c8ac5215e5f23b"><img alt="Test your setup" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_test_your_setup.png"></a></p>
+<p>Use the <strong>Copy</strong> button to copy the request, paste it into your terminal changing <code>&lt;YOUR_HOST_NAME&gt;&gt;</code> with your <code>DATA_PLANE_URL</code> environment variable and send it to your Data Plane:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -X POST $DATA_PLANE_URL/openai-route \
+-H &#39;Content-Type: application/json&#39; \
+-d &#39;{
+  &#34;messages&#34;: [
+    {
+      &#34;role&#34;: &#34;user&#34;,
+      &#34;content&#34;: &#34;How does Kong AI Gateway work?&#34;
+    }
+  ]
+}&#39;</code></pre></div>
+<h3 id="behind-the-scenes">Behind the scenes</h3>
+<p>The AI Gateway Konnect UI is the easiest way to configure your Control Plane with new AI Gateway and plugins. Behind the scenes, Konnect creates all Kong Objects required to implement the AI Gateway. For example, if you get back to your <strong>API Gateway</strong> menu option, you&rsquo;ll see you have three Kong Object defined:</p>
+<ul>
+<li>Kong Gateway Service</li>
+<li>Kong Route, with the your Route configuration, including the <code>/openai-route</code> path.</li>
+<li>Kong Plugin with the <strong>Kong AI Proxy Advanced</strong> plugin with the necessary configuration to hit OpenAI and consume its <code>gpt-4</code> model.</li>
+</ul>
+<p>For example, here&rsquo;s your <strong>Kong AI Proxy Advanced</strong> configuration page:</p>
+<p><a href="#R-image-ea5fefc2252d390adc63e712218b8f0b" class="lightbox-link"><img alt="AI Proxy Advanced" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ui_ai_proxy_advanced.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ea5fefc2252d390adc63e712218b8f0b"><img alt="AI Proxy Advanced" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ui_ai_proxy_advanced.png"></a></p>
+<p>That means you can use the same mechanisms you did for the API Gateway plugins, including the same Konnect UI and decK declarations, to configure the AI based plugins.</p>
+<p>We are going to explore the <strong>AI Proxy</strong> and <strong>AI Proxy Advanced</strong> and other AI based plugins in the next sections.</p>
+<p>Click <strong>Next</strong> to proceed with the next module.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu">
+            <li class="parent alwaysopen " data-nav-id="/16-ai-gateway/17-konnect-ui/index.html"><a class="padding" href="/16-ai-gateway/17-konnect-ui/index.html">Konnect AI Gateway User Interface</a><ul id="R-subsections-1eab269cec0a8d662fa0057e8fd6bd37" class="collapsible-menu">
+            <li class="active " data-nav-id="/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html"><a class="padding" href="/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html">AI Manager</a></li>
+            <li class="" data-nav-id="/16-ai-gateway/17-konnect-ui/172-decorator/index.html"><a class="padding" href="/16-ai-gateway/17-konnect-ui/172-decorator/index.html">Prompt Engineering - Decorator</a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/16-ai-gateway/18-use-cases/index.html"><a class="padding" href="/16-ai-gateway/18-use-cases/index.html">Use Cases</a><ul id="R-subsections-c0641d16bd44e864326d3941cf8c94dd" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1758899553" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758899553" defer></script>
+    <script src="/js/theme.js?1758899553" defer></script>
+  </body>
+</html>

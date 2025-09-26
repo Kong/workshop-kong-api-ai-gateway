@@ -3,22 +3,22 @@
   <channel>
     <title>Kong AI Gateway :: API Management with Kong Konnect</title>
     <link>http://localhost:1313/16-ai-gateway/index.html</link>
-    <description>In this second part of the workshop we are going to explore the AI capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
+    <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely&#xA;While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/16-ai-gateway/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Introduction</title>
-      <link>http://localhost:1313/16-ai-gateway/159-ai-gateway/index.html</link>
+      <title>Konnect AI Gateway User Interface</title>
+      <link>http://localhost:1313/16-ai-gateway/17-konnect-ui/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/16-ai-gateway/159-ai-gateway/index.html</guid>
-      <description>With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely&#xA;While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</description>
+      <guid>http://localhost:1313/16-ai-gateway/17-konnect-ui/index.html</guid>
+      <description>AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.&#xA;Key features include:&#xA;Routing and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.</description>
     </item>
     <item>
       <title>Use Cases</title>
-      <link>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</link>
+      <link>http://localhost:1313/16-ai-gateway/18-use-cases/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</guid>
+      <guid>http://localhost:1313/16-ai-gateway/18-use-cases/index.html</guid>
       <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
     </item>
   </channel>

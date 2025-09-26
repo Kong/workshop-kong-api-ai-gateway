@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Konnect AI Gateway User Interface :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/16-ai-gateway/17-konnect-ui/index.html</link>
+    <description>AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.&#xA;Key features include:&#xA;Routing and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/16-ai-gateway/17-konnect-ui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Manager</title>
+      <link>http://localhost:1313/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html</guid>
+      <description>Create the AI Gateway The AI Gateway menu option lets you to expose an existing LLM. Click on the option and choose Start from scratch option inside the New AI Gateway button.&#xA;Inside the New AI Gateway page do the following:&#xA;Name your new AI Gateway as ai_gateway_1. Every AI Gateway has to be related to an existing Control Plane, so, for the Select gateway box, choose your kong-workshop Control Plane. Define a basic Route with /openai-route as its Path. Keep all other parameter with their default values and click Save</description>
+    </item>
+    <item>
+      <title>Prompt Engineering - Decorator</title>
+      <link>http://localhost:1313/16-ai-gateway/17-konnect-ui/172-decorator/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-ai-gateway/17-konnect-ui/172-decorator/index.html</guid>
+      <description>As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.&#xA;Choose your AI Gateway your created in the previous section.&#xA;Using the Konnect AI Manager UI we have two options:&#xA;Inside the Overview page, there’s a Add plugin option. If you click on it you see a popup window to configure the Decorator.&#xA;Inside the AI Gateway menu, there’s a Prompt Engineering option. If you click on it you’ll be able to configure two kinds of Prompt Engineering policies: Templates and Decorators</description>
+    </item>
+  </channel>
+</rss>

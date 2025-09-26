@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/1-prompt-decorator/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/151-prompt-engineering/1-prompt-decorator/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/2-prompt-template/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/151-prompt-engineering/2-prompt-template/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/2-round-robin/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/2-round-robin/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/3-prompt-guard/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/151-prompt-engineering/3-prompt-guard/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/3-weight/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/3-weight/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/4-lowest-latency-usage/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/5-semantic-routing/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/10-prerequisites/index.html</loc>
@@ -28,7 +28,7 @@
     <loc>http://localhost:1313/10-prerequisites/konnect-subscription/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/10-prerequisites/minikube/index.html</loc>
+    <loc>http://localhost:1313/10-prerequisites/podman_minikube/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/architecture/index.html</loc>
@@ -58,7 +58,7 @@
     <loc>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/150-ai-proxy/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/150-ai-proxy/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</loc>
@@ -70,7 +70,7 @@
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/151-prompt-engineering/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/151-prompt-engineering/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</loc>
@@ -79,40 +79,46 @@
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/155-request-response-transformer/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/155-request-response-transformer/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/156-semantic-cache/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/156-semantic-cache/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/157-apikey/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/157-apikey/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/158-rate-limiting/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/158-rate-limiting/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/158-opa-authorization/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/159-ai-proxy-advanced/index.html</loc>
-  </url>
-  <url>
-    <loc>http://localhost:1313/16-ai-gateway/159-ai-gateway/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/159-ai-proxy-advanced/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/16-ai-gateway/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/170-rag/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/17-konnect-ui/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/16-ai-gateway/17-use-cases/index.html</loc>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/170-rag/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/17-konnect-ui/171-ai-manager/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/17-konnect-ui/172-decorator/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/16-ai-gateway/18-use-cases/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/20-observability/index.html</loc>
