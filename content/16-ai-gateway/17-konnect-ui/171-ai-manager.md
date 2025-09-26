@@ -42,7 +42,7 @@ Use the **Copy** button to copy the request, paste it into your terminal changin
 
 
 ```
-curl -X POST $DATA_PLANE_URL/openai-route \
+curl -X POST $DATA_PLANE_LB/openai-route \
 -H 'Content-Type: application/json' \
 -d '{
   "messages": [
