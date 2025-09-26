@@ -1,12 +1,16 @@
 ---
-title : "Minikube"
+title : "Podman and Minikube"
 weight : 104
 ---
 
-#### Podman
 We are going to deploy our Data Plane in a Minikube Cluster over Podman.
 
-Run it if you don't have any machine installed:
+### Podman 5.6.1
+
+Here are the [instructions](https://podman.io/docs/installation) to install Podman.
+
+
+Initialize a machine:
 
 ```
 podman machine init
@@ -23,14 +27,16 @@ If you want to stop it run:
 podman machine stop
 ```
 
+Check the version:
+
 ```
 $ podman --version
 podman version 5.6.1
 ```
 
-#### Minikube 1.36
+### Minikube 1.36
 
-You can install Minikube with:
+You can install it with:
 
 ```
 curl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64
@@ -46,30 +52,15 @@ commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
 
 
 
-
-#### Minikube 1.37
-
-You can install Minikube with:
-
-```
-curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-darwin-arm64
-sudo install minikube-darwin-arm64 /usr/local/bin/minikube
-```
-
-```
-$ minikube version
-minikube version: v1.37.0
-commit: 65318f4cfff9c12cc87ec9eb8f4cdd57b25047f3
-```
-
-
-
-##### Check your cluster
+##### Start your cluster
 
 
 ```
 minikube start --driver=podman --memory='no-limit' --container-runtime=containerd
 ```
+
+
+##### Check your cluster
 
 Use should see your cluster running with:
 
