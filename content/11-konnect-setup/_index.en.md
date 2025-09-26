@@ -19,7 +19,7 @@ Here's a Reference Architecture that will be implemented in this workshop:
     *  On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana and Dynatrace.
     * On the right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models.
 * Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases.
-* Kong Gateway protects not just the LLM Models but also the upstream services, including your application micros surfaces or services.
+* Kong Gateway protects not just the LLM Models but also the upstream services, including your applications, microservices and services.
 
 ### Konnect Control Plane
 After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:
