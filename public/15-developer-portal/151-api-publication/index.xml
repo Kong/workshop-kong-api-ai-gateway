@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dev Portal creation and API publication :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/15-developer-portal/151-api-publication/index.html</link>
+    <description>Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed&#xA;Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click + Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/15-developer-portal/151-api-publication/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

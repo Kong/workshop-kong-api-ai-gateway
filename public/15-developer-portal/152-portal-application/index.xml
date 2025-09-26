@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Developer Self-Service and Application Registration :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/15-developer-portal/152-portal-application/index.html</link>
+    <description>This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.&#xA;So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/15-developer-portal/152-portal-application/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

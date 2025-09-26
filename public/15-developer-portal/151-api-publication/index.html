@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.1">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed
+Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click &#43; Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dev Portal creation and API publication :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed
+Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click &#43; Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.">
+    <meta property="og:url" content="http://localhost:1313/15-developer-portal/151-api-publication/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Dev Portal creation and API publication :: API Management with Kong Konnect">
+    <meta property="og:description" content="Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed
+Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click &#43; Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Dev Portal creation and API publication :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed
+Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click &#43; Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.">
+    <meta itemprop="wordCount" content="686">
+    <title>Dev Portal creation and API publication :: API Management with Kong Konnect</title>
+    <link href="/15-developer-portal/151-api-publication/index.xml" rel="alternate" type="application/rss+xml" title="Dev Portal creation and API publication :: API Management with Kong Konnect">
+    <link href="/css/auto-complete/auto-complete.min.css?1758900677" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1758900677" defer></script>
+    <script src="/js/search-lunr.js?1758900677" defer></script>
+    <script src="/js/search.js?1758900677" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1758900677";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1758900677" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1758900677" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1758900677" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1758900677" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900677" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758900677" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758900677" rel="stylesheet">
+    <link href="/css/theme.css?1758900677" rel="stylesheet">
+    <link href="/css/format-html.css?1758900677" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/15-developer-portal\/151-api-publication\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/15-developer-portal/151-api-publication/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#basic-developer-portal-implementation">Basic Developer Portal implementation</a>
+      <ul>
+        <li><a href="#kong-service-and-route">Kong Service and Route</a></li>
+        <li><a href="#dev-portal-creation">Dev Portal creation</a></li>
+        <li><a href="#test-your-dev-portal">Test your Dev Portal</a></li>
+        <li><a href="#api-creation">API creation</a></li>
+        <li><a href="#api-publication">API Publication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-developer-portal/index.html"><span itemprop="name">Konnect Developer Portal</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Dev Portal creation and API publication</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-developer-portal/index.html" title="Konnect Developer Portal (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-developer-portal/152-portal-application/index.html" title="Developer Self-Service and Application Registration (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 15-developer-portal" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="dev-portal-creation-and-api-publication">Dev Portal creation and API publication</h1>
+
+<h2 id="basic-developer-portal-implementation">Basic Developer Portal implementation</h2>
+<p>In this section we are going to cover the basic steps to get a Developer Portal deployed</p>
+<h3 id="kong-service-and-route">Kong Service and Route</h3>
+<ol>
+<li>Create a Kong Service based on <code>http://httpbin.konghq.com</code></li>
+<li>Create a Kong Route with path <code>/</code></li>
+<li>Globally enable the CORS plugin to your Control Plane. That&rsquo;s needed to solve the relationship between the Dev Portal and the Upstream Service.</li>
+</ol>
+<h3 id="dev-portal-creation">Dev Portal creation</h3>
+<ol>
+<li>Choose the <strong>Dev Portal</strong> menu option and click <strong>+ Create a new portal</strong>.</li>
+<li>Create a <strong>Private Portal</strong> named <code>portal1</code>. In the <strong>New Portal</strong> page accept the default values and click <strong>Save</strong>
+<a href="#R-image-3940e491d876fbafc71c529d8a2ea918" class="lightbox-link"><img alt="portal1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3940e491d876fbafc71c529d8a2ea918"><img alt="portal1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1.png"></a></li>
+<li>Click <strong>Go to overview</strong>. You should see the <strong>Overview</strong> page of your portal
+<a href="#R-image-151ba413fbe964c19138ef6e7893498d" class="lightbox-link"><img alt="portal1_overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_overview.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-151ba413fbe964c19138ef6e7893498d"><img alt="portal1_overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_overview.png"></a></li>
+<li>Check the Portal configuration:</li>
+</ol>
+<ul>
+<li><strong>User authentication</strong>: <code>Konnect built-in</code> - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the <strong>build-in</strong> option, it can be configured as <strong>OIDC</strong> or <strong>SAML</strong>.</li>
+<li><strong>Default authentication strategy</strong>: <code>key-auth</code> - That defines the mechanism to control the API consumption inside the Dev Portal.</li>
+</ul>
+<h3 id="test-your-dev-portal">Test your Dev Portal</h3>
+<ol>
+<li>Sign Up</li>
+</ol>
+<p>If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there&rsquo;s no developer created, click <strong>Sing up</strong> and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.</p>
+<p><a href="#R-image-2ac9422424b159c05a8f6d041186d61a" class="lightbox-link"><img alt="portal1_signup" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_signup.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2ac9422424b159c05a8f6d041186d61a"><img alt="portal1_signup" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_signup.png"></a></p>
+<p>Check your email and click the <strong>Confirm your email address</strong>. Still playing the developer role, you should get redirected to the Dev Portal to define your password.</p>
+<p>After creating the password, if you try to login, you&rsquo;ll receive an error message saying &ldquo;Your account is disabled or pending approval&rdquo;. That&rsquo;s because, by default, the Dev Portal was created with the <strong>Auto approved developers</strong> option disabled, meaning the administrator has to manually approve the new developers registrations.</p>
+<ol start="2">
+<li>Approve the Developer registration</li>
+</ol>
+<p>Getting back to the Dev Portal Administrator role, return to the <strong>Dev Portal</strong> menu option and choose <strong>Access and approvals</strong>. You can approve the new developer registration in the page:</p>
+<p><a href="#R-image-7c2eb6ceb33c34dca601fbbc99a61435" class="lightbox-link"><img alt="portal1_developer_approval" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_developer_approval.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7c2eb6ceb33c34dca601fbbc99a61435"><img alt="portal1_developer_approval" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_developer_approval.png"></a></p>
+<ol start="3">
+<li>Login to the Dev Portal</li>
+</ol>
+<p>Playing the Developer role again, try to login to the Dev Portal one more time. You should get redirected to the Dev Portal home page. Click the <strong>API</strong> tab. You are supposed to get an empty page since we don&rsquo;t have any API published.</p>
+<p><a href="#R-image-6d413adbef73a9896bb88a1defa6a2f5" class="lightbox-link"><img alt="portal1_no_apis" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_no_apis.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6d413adbef73a9896bb88a1defa6a2f5"><img alt="portal1_no_apis" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_no_apis.png"></a></p>
+<h3 id="api-creation">API creation</h3>
+<ol>
+<li>Prepare your OpenAPI specification</li>
+</ol>
+<p>Download the <a href="/code/httpbin_spec.yaml">httpbin_spec.yaml</a> OpenAPI specification. From the Konnect Dev Portal perspective, the spec has two main configurations:</p>
+<ul>
+<li>The <code>servers</code> section. Make sure the <code>url</code> parameters has your Proxy URL:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>  - url: &lt;YOUR_PROXY_URL&gt;</code></pre></div>
+<ul>
+<li>Note the spec has added specific DevPortal elements in the <code>security</code> &amp; <code>securitySchemes</code> sections. That means the DevPortal will use the Key Auth plugin to control the API Consumption inside the Portal.</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>#################################
+# Kong DevPortal Security mechanism
+#################################
+security:
+  - ApiKeyAuth: []
+#################################</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>components:
+  securitySchemes:
+#################################
+# Kong Gateway Key-Auth
+#################################
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+#################################</code></pre></div>
+<ol start="2">
+<li>Create your API</li>
+</ol>
+<p>Choose the <strong>APIs</strong> menu option inside <strong>Dev Portal</strong> and click <strong>+ New API</strong>. Upload your <code>httpbin_orig.yaml</code> and click <strong>Create</strong>. You should see your <code>httpbin</code> API page:</p>
+<p><a href="#R-image-49c5ffaca6c09db6e7bd991705805618" class="lightbox-link"><img alt="httpbin_api" class="lazy lightbox figure-image" loading="lazy" src="/static/images/httpbin_api.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-49c5ffaca6c09db6e7bd991705805618"><img alt="httpbin_api" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/httpbin_api.png"></a></p>
+<ol start="3">
+<li>Test your API</li>
+</ol>
+<p>Click the <strong>API Specification</strong> tab. Click <strong>try it!</strong> in the <strong>Returns Origin IP</strong></p>
+<p><a href="#R-image-62e19f2ef942e7d53e1e02c4736d53a7" class="lightbox-link"><img alt="tryit" class="lazy lightbox figure-image" loading="lazy" src="/static/images/tryit.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62e19f2ef942e7d53e1e02c4736d53a7"><img alt="tryit" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/tryit.png"></a></p>
+<ol start="4">
+<li>Add a documentation</li>
+</ol>
+<p>Click the <strong>Documentation</strong> tab. Create a new and empty document page with both name and slug as <code>doc1</code>. Click <strong>edit</strong> and type some documentation. Click <strong>save</strong> and switch the <strong>Published</strong> toggle on.</p>
+<p><a href="#R-image-a285f0de2494a45ae86e9e300cce152b" class="lightbox-link"><img alt="api_documentation" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_documentation.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a285f0de2494a45ae86e9e300cce152b"><img alt="api_documentation" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_documentation.png"></a></p>
+<h3 id="api-publication">API Publication</h3>
+<ol>
+<li>Go to the <strong>Portals</strong> tab and click <strong>Publish API</strong>. Choose <code>portal1</code>and make sure you have the <strong>API visibility</strong> set as <code>Private</code>. Click <strong>Publish API</strong>.</li>
+</ol>
+<p>You should see the <code>portal1</code> listed inside the tab.</p>
+<p><a href="#R-image-0d9d6794059a6805296701358746fbcd" class="lightbox-link"><img alt="api_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0d9d6794059a6805296701358746fbcd"><img alt="api_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_portal.png"></a></p>
+<ol start="2">
+<li>You are going to play the Developer role again. Click on the URL shown in the <strong>Portals</strong> tab to get redirected to the Dev Portal. Login to it, if needed.</li>
+</ol>
+<p>Inside the Dev Portal home page, click the <strong>APIs</strong> tab. You should see the API you&rsquo;ve just published.</p>
+<p><a href="#R-image-f845425681762f620e7f7d5742916226" class="lightbox-link"><img alt="api_devportal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f845425681762f620e7f7d5742916226"><img alt="api_devportal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal.png"></a></p>
+<ol start="3">
+<li>Click <strong>View APIs</strong>. You should see the documentation page with the data you entered before. Click <strong>Overview</strong> to see the <code>httpbin</code> API specification rendered in the page. Click <strong>Try it</strong> for <strong>Returns Origin IP</strong> to send a request to the Data Plane and consume the API.</li>
+</ol>
+<p><a href="#R-image-94d1b9df5f0955b1223b3470d199d9e8" class="lightbox-link"><img alt="api_devportal_return" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal_return.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-94d1b9df5f0955b1223b3470d199d9e8"><img alt="api_devportal_return" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal_return.png"></a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/14-apiops-deck/index.html"><a class="padding" href="/14-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="parent " data-nav-id="/15-developer-portal/index.html"><a class="padding" href="/15-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-21b3550f5b82a7619e2d221f57fdbc43" class="collapsible-menu">
+            <li class="active " data-nav-id="/15-developer-portal/151-api-publication/index.html"><a class="padding" href="/15-developer-portal/151-api-publication/index.html">Dev Portal creation and API publication</a></li>
+            <li class="" data-nav-id="/15-developer-portal/152-portal-application/index.html"><a class="padding" href="/15-developer-portal/152-portal-application/index.html">Developer Self-Service and Application Registration</a></li></ul></li>
+            <li class="" data-nav-id="/16-ai-gateway/index.html"><a class="padding" href="/16-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-2f2bf218915a29de3a144cfa324a5fc4" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-observability/index.html"><a class="padding" href="/20-observability/index.html">Observability</a><ul id="R-subsections-3829b558aa20efb46efd7e331dc0c9e9" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1758900677" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758900677" defer></script>
+    <script src="/js/theme.js?1758900677" defer></script>
+  </body>
+</html>

@@ -58,7 +58,13 @@
     <loc>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/14-apiops-deck/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/16-ai-gateway/18-use-cases/150-ai-proxy/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/15-developer-portal/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</loc>
@@ -70,7 +76,13 @@
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/15-developer-portal/151-api-publication/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/16-ai-gateway/18-use-cases/151-prompt-engineering/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/15-developer-portal/152-portal-application/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/153-response-transformer/index.html</loc>
