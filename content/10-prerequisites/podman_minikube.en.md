@@ -3,11 +3,15 @@ title : "Podman and Minikube"
 weight : 104
 ---
 
-We are going to deploy our Data Plane in a Minikube Cluster over Podman.
+We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
+* Podmang 5.6.1
+* Minikube 1.36
+
+
 
 ### Podman 5.6.1
 
-Here are the [instructions](https://podman.io/docs/installation) to install Podman.
+Here are the [instructions](https://podman.io/docs/installation) to install Podman and the installation package for [5.6.1 version](https://github.com/containers/podman/releases/tag/v5.6.1).
 
 
 Initialize a machine:

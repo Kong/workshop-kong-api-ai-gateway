@@ -77,6 +77,7 @@ spec:
        containers:
        - name: proxy
          image: kong/kong-gateway:3.11
+         config: 
  network:
    services:
      ingress:
