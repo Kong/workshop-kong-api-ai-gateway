@@ -72,29 +72,29 @@ kubectl get all --all-namespaces
 
 Typical output is:
 ```
-NAMESPACE     NAME                                   READY   STATUS    RESTARTS        AGE
-kube-system   pod/coredns-674b8bbfcf-7hnl7           1/1     Running   1 (5m12s ago)   6m1s
-kube-system   pod/etcd-minikube                      1/1     Running   1 (5m12s ago)   6m6s
-kube-system   pod/kindnet-vbhk5                      1/1     Running   1 (5m12s ago)   6m1s
-kube-system   pod/kube-apiserver-minikube            1/1     Running   1 (5m12s ago)   6m6s
-kube-system   pod/kube-controller-manager-minikube   1/1     Running   1 (5m12s ago)   6m6s
-kube-system   pod/kube-proxy-4qcvd                   1/1     Running   1 (5m12s ago)   6m1s
-kube-system   pod/kube-scheduler-minikube            1/1     Running   1 (5m12s ago)   6m6s
-kube-system   pod/storage-provisioner                1/1     Running   3 (4m39s ago)   6m5s
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-7d764666f9-znvfn           1/1     Running   0          78s
+kube-system   pod/etcd-minikube                      1/1     Running   0          84s
+kube-system   pod/kindnet-cwmh6                      1/1     Running   0          78s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          84s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          84s
+kube-system   pod/kube-proxy-fzt4f                   1/1     Running   0          78s
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          84s
+kube-system   pod/storage-provisioner                1/1     Running   0          83s
 
 NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
-default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  6m7s
-kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   6m6s
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  85s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   84s
 
 NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
-kube-system   daemonset.apps/kindnet      1         1         1       1            1           <none>                   6m5s
-kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   6m6s
+kube-system   daemonset.apps/kindnet      1         1         1       1            1           <none>                   83s
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   84s
 
 NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-kube-system   deployment.apps/coredns   1/1     1            1           6m6s
+kube-system   deployment.apps/coredns   1/1     1            1           84s
 
 NAMESPACE     NAME                                 DESIRED   CURRENT   READY   AGE
-kube-system   replicaset.apps/coredns-674b8bbfcf   1         1         1       6m1s
+kube-system   replicaset.apps/coredns-7d764666f9   1         1         1       79s
 ```
 
 

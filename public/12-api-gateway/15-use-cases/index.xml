@@ -33,7 +33,7 @@
       <link>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/12-api-gateway/15-use-cases/154-request-callout/index.html</guid>
-      <description>The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.&#xA;In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure the plugin to do the following:&#xA;Call Wikipedia using the “srseach” header as a parameter. The number of hits found and returned by Wikipeadia is added as a new header to the request. The request is sent to httpbin application which echoes the number of hits. Hit Wikipedia Just to get an idea what the Wikipedia response, send the following request:</description>
+      <description>The Request Callout plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.&#xA;In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure the plugin to do the following:&#xA;Call the dummyjson.com service using the “user id” as a parameter. The email of the user is returned and is added as a new header to the request. The request is sent to httpbin application which echoes the number of hits. Hit dummyjson Service Just to get an idea of the dummyjson response, send the following request:</description>
     </item>
     <item>
       <title>Rate Limiting Using Redis</title>

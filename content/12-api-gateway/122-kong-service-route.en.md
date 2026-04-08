@@ -101,7 +101,7 @@ deck gateway ping --konnect-control-plane-name kong-workshop --konnect-token $PA
 
 **Expected Output**
 ```
-Successfully Konnected to the Example-Name organization!
+Successfully Konnected to the Kong organization!
 ```
 
 
@@ -184,15 +184,15 @@ If successful, you should see the **httpbin** output:
 < Content-Length: 377
 < Connection: keep-alive
 < Server: gunicorn
-< Date: Wed, 06 Aug 2025 16:19:15 GMT
+< Date: Wed, 08 Apr 2026 17:05:07 GMT
 < Access-Control-Allow-Origin: *
 < Access-Control-Allow-Credentials: true
-< X-Kong-Upstream-Latency: 6
-< X-Kong-Proxy-Latency: 3
-< Via: 1.1 kong/3.11.0.2-enterprise-edition
-< X-Kong-Request-Id: 0cbe555eefb4f14bb43f9b511435bd5c
+< X-Kong-Upstream-Latency: 7
+< X-Kong-Proxy-Latency: 72
+< Via: 1.1 kong/3.14.0.0-enterprise-edition
+< X-Kong-Request-Id: 4e4e692f3acb5e4d7de8820a302d4c1f
 < 
-{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"127.0.0.1","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"0cbe555eefb4f14bb43f9b511435bd5c"},"origin":"10.244.0.1","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
+{"args":{},"headers":{"Accept":"*/*","Connection":"keep-alive","Host":"httpbin.kong.svc.cluster.local:8000","User-Agent":"curl/8.7.1","X-Forwarded-Host":"127.0.0.1","X-Forwarded-Path":"/httpbin-route/get","X-Forwarded-Prefix":"/httpbin-route","X-Kong-Request-Id":"4e4e692f3acb5e4d7de8820a302d4c1f"},"origin":"10.244.0.1","url":"http://httpbin.kong.svc.cluster.local:8000/get"}
 * Connection #0 to host 127.0.0.1 left intact
 ```
 

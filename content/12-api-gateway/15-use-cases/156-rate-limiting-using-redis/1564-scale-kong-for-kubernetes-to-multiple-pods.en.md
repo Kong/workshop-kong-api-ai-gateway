@@ -11,24 +11,24 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 3
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF
 {{</highlight>}}

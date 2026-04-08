@@ -213,7 +213,7 @@ spec:
            name: cpu
            target:
              type: Utilization
-             averageUtilization: 20
+             averageUtilization: 10
  network:
    services:
      ingress:
@@ -274,11 +274,11 @@ Eventually, HPA will start a new replica:
 ```
 % kubectl get hpa -n kong
 NAME               REFERENCE                                     TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
-kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-9hfk9   cpu: 24%/20%   1         20        1          3m50s
+kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-psshm   cpu: 14%/10%   1         20        1          2m15s
 
 % kubectl get pod -n kong -o json | jq -r '.items[].metadata.name'
-dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj
-dataplane-kong-workshop-dp-9hfk9-84b465f8bc-wchn8
+dataplane-kong-workshop-dp-psshm-74d57f6899-mpxhn
+dataplane-kong-workshop-dp-psshm-74d57f6899-ztn22
 ```
 
 If you delete the Fortio pod, HPA should terminate one pod and get back to 1 replica only.

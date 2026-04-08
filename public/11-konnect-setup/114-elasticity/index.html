@@ -37,26 +37,26 @@ kubectl get service -n kong Sample Output
 NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy-kong-workshop LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
     <meta itemprop="wordCount" content="1076">
     <title>Data Plane Elasticity :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
-    <script src="/js/search-lunr.js?1775663873" defer></script>
-    <script src="/js/search.js?1775663873" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775667930" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775667930" defer></script>
+    <script src="/js/search-lunr.js?1775667930" defer></script>
+    <script src="/js/search.js?1775667930" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+      window.relearn.index_js_url="/searchindex.en.js?1775667930";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775667930" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775667930" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775667930" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775667930" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
-    <link href="/css/theme.css?1775663873" rel="stylesheet">
-    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775667930" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775667930" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775667930" rel="stylesheet">
+    <link href="/css/theme.css?1775667930" rel="stylesheet">
+    <link href="/css/format-html.css?1775667930" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -319,7 +319,7 @@ spec:
            name: cpu
            target:
              type: Utilization
-             averageUtilization: 20
+             averageUtilization: 10
  network:
    services:
      ingress:
@@ -357,11 +357,11 @@ EOF</code></pre></div>
 <p>Eventually, HPA will start a new replica:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get hpa -n kong
 NAME               REFERENCE                                     TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
-kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-9hfk9   cpu: 24%/20%   1         20        1          3m50s
+kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-psshm   cpu: 14%/10%   1         20        1          2m15s
 
 % kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata.name&#39;
-dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj
-dataplane-kong-workshop-dp-9hfk9-84b465f8bc-wchn8</code></pre></div>
+dataplane-kong-workshop-dp-psshm-74d57f6899-mpxhn
+dataplane-kong-workshop-dp-psshm-74d57f6899-ztn22</code></pre></div>
 <p>If you delete the Fortio pod, HPA should terminate one pod and get back to 1 replica only.
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete pod fortio</code></pre></div>
 </p>
@@ -462,6 +462,7 @@ EOF</code></pre></div>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -479,8 +480,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
-    <script src="/js/theme.js?1775663873" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775667930" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775667930" defer></script>
+    <script src="/js/theme.js?1775667930" defer></script>
   </body>
 </html>

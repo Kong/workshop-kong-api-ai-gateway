@@ -84,5 +84,12 @@
       <guid>http://localhost:1313/19-developer-portal/index.html</guid>
       <description>The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.&#xA;Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.</description>
     </item>
+    <item>
+      <title>Appendix</title>
+      <link>http://localhost:1313/40-appendix/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/40-appendix/index.html</guid>
+      <description>Here are the manifests we used throughout the workshop&#xA;RAG Injector Mocking Plugin, AI MCP Proxy Plugin and AI MCP OAuth2 Plugin Logging LLM Proxy for Solace Agent Mesh</description>
+    </item>
   </channel>
 </rss>

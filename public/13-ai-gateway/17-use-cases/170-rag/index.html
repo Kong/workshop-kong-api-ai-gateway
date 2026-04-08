@@ -29,26 +29,26 @@ Basically, the RAG application comprises two main processes:
 Data Preparation: External data sources, including all sorts of documents, are chunked and submitted to an Embedding Model which converts them into embeddings. The embeddings are stored in a Vector Database.">
     <meta itemprop="wordCount" content="865">
     <title>RAG - Retrieval-Augmented Generation :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
-    <script src="/js/search-lunr.js?1775663873" defer></script>
-    <script src="/js/search.js?1775663873" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775665677" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775665677" defer></script>
+    <script src="/js/search-lunr.js?1775665677" defer></script>
+    <script src="/js/search.js?1775665677" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+      window.relearn.index_js_url="/searchindex.en.js?1775665677";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775665677" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775665677" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775665677" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775665677" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
-    <link href="/css/theme.css?1775663873" rel="stylesheet">
-    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775665677" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775665677" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775665677" rel="stylesheet">
+    <link href="/css/theme.css?1775665677" rel="stylesheet">
+    <link href="/css/format-html.css?1775665677" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -175,12 +175,12 @@ Data Preparation: External data sources, including all sorts of documents, are c
 <li>The RAG application sends a query to the Prompt/Chat LLM Model combining the Prompt with the Relevant Data returned by the Vector Database.</li>
 <li>The LLM Model returns a response.</li>
 </ol>
-<p><a href="#R-image-a312373c2af78af8d3d15a3d8bbdcb11" class="lightbox-link"><img alt="rag" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a312373c2af78af8d3d15a3d8bbdcb11"><img alt="rag" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag.png"></a></p>
+<p><a href="#R-image-68046d9f89877546caf76592a0a58332" class="lightbox-link"><img alt="rag" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-68046d9f89877546caf76592a0a58332"><img alt="rag" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag.png"></a></p>
 <h2 id="implementation-architecture">Implementation Architecture</h2>
 <h4 id="data-preparation-time">Data Preparation time</h4>
-<p><a href="#R-image-b3bb4e0d282e0d83396a95205afd0867" class="lightbox-link"><img alt="datapreparation_time" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag_data_preparation_time.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b3bb4e0d282e0d83396a95205afd0867"><img alt="datapreparation_time" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag_data_preparation_time.png"></a></p>
+<p><a href="#R-image-1f8f64312df1eced1c730fcedae30848" class="lightbox-link"><img alt="datapreparation_time" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag_data_preparation_time.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1f8f64312df1eced1c730fcedae30848"><img alt="datapreparation_time" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag_data_preparation_time.png"></a></p>
 <p>During the preparation time, the following steps are executed:</p>
 <ol>
 <li>The Document Loader script asks the AI RAG Injector plugin to provides the configuration regarding both Embedding Model and Vector Database.</li>
@@ -188,8 +188,8 @@ Data Preparation: External data sources, including all sorts of documents, are c
 <li>The Document Loader stores the embeddings and content into the Vector Database.</li>
 </ol>
 <h4 id="rag-time">RAG time</h4>
-<p><a href="#R-image-43567562c942200d5a495bce561d8f9c" class="lightbox-link"><img alt="rag_time" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag_time.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-43567562c942200d5a495bce561d8f9c"><img alt="rag_time" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag_time.png"></a></p>
+<p><a href="#R-image-1e1ffbdba7275bc9d756cde782442b8d" class="lightbox-link"><img alt="rag_time" class="lazy lightbox figure-image" loading="lazy" src="/static/images/rag_time.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1e1ffbdba7275bc9d756cde782442b8d"><img alt="rag_time" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/rag_time.png"></a></p>
 <p>The following steps are performed during the execution time:</p>
 <ol>
 <li>The API Consumer send a request with a prompt.</li>
@@ -360,6 +360,7 @@ kubectl cp ./ingest_update.lua -n kong $(kubectl get pod -n kong -o json | jq -r
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
           </ul>
         </div>
         <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
@@ -377,8 +378,8 @@ kubectl cp ./ingest_update.lua -n kong $(kubectl get pod -n kong -o json | jq -r
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
-    <script src="/js/theme.js?1775663873" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775665677" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775665677" defer></script>
+    <script src="/js/theme.js?1775665677" defer></script>
   </body>
 </html>

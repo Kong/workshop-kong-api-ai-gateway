@@ -6,16 +6,15 @@ weight : 154
 The [Request Callout](https://developer.konghq.com/plugins/request-callout/) plugin allows you to insert arbitrary API calls before proxying a request to the upstream service.
 
 In this section, you will configure the Request Callout plugin on the Kong Route. Specifically, you will configure the plugin to do the following:
-* Call Wikipedia using the "srseach" header as a parameter.
-* The number of hits found and returned by Wikipeadia is added as a new header to the request.
-* The request is sent to **httpbin** application which echoes the number of hits.
+* Call the ``dummyjson.com`` service using the “user id” as a parameter.
+* The email of the user is returned and is added as a new header to the request.
+* The request is sent to httpbin application which echoes the number of hits.
 
-#### Hit Wikipedia
-
-Just to get an idea what the Wikipedia response, send the following request:
+#### Hit dummyjson Service
+Just to get an idea of the ``dummyjson`` response, send the following request:
 
 {{<highlight>}}
-curl -s "https://en.wikipedia.org/w/api.php?srsearch=Miles%20Davis&action=query&list=search&format=json" | jq '.query.searchinfo.totalhits'
+curl -s "https://dummyjson.com/users/1" | jq -r '.email'
 {{</highlight>}}
 
 You should get a number like **43555**, which represents the number of total hits related to **Miles Davis**
@@ -32,37 +31,51 @@ _konnect:
   control_plane_name: kong-workshop
 _info:
   select_tags:
-  - httpbin-service-route
+    - httpbin-service-route
 services:
-- name: httpbin-service
-  host: httpbin.kong.svc.cluster.local
-  port: 8000
-  routes:
-  - name: request-callout-route
-    paths:
-    - /request-callout-route
-    plugins:
-      - name: request-callout
-        instance_name: request-callout1
-        config:
-          callouts:
-          - name: wikipedia
-            request:
-              url: https://en.wikipedia.org/w/api.php
-              method: GET
-              query:
-                forward: true
-              by_lua:
-                local srsearch = kong.request.get_header("srsearch");
-                local srsearch_encoded = ngx.escape_uri(srsearch)
-                query = "srsearch=" .. srsearch_encoded .. "&action=query&list=search&format=json";
-                kong.log.inspect(query);
-                kong.ctx.shared.callouts.wikipedia.request.params.query = query
-            response:
-              body:
-                decode: true
-              by_lua:
-                kong.service.request.add_header("wikipedia-total-hits-header", kong.ctx.shared.callouts.wikipedia.response.body.query.searchinfo.totalhits)
+  - name: httpbin-service
+    host: httpbin.konghq.com
+    port: 80
+    routes:
+      - name: request-callout-route
+        paths:
+          - /request-callout-route
+        plugins:
+          - name: request-callout
+            instance_name: request-callout1
+            config:
+              callouts:
+                - name: dummyjson
+                  request:
+                    url: https://dummyjson.com/users/1
+                    method: GET
+                    headers:
+                      forward: false
+                      custom:
+                        User-Agent: kong-request-callout-demo
+                    by_lua: |
+                      local user_id = kong.request.get_header("X-User-ID")
+                      if not user_id then
+                        kong.log.err("Missing X-User-ID header")
+                        return
+                      end
+                      kong.ctx.shared.callouts.dummyjson.request.params.url =
+                        "https://dummyjson.com/users/" .. tostring(user_id)
+                  response:
+                    body:
+                      decode: true
+                    by_lua: |
+                      local c = kong.ctx.shared.callouts.dummyjson
+                      if not c or not c.response or not c.response.body then
+                        kong.log.err("callout dummyjson failed or empty response")
+                        return
+                      end
+                      local email = c.response.body.email
+                      if email then
+                        kong.service.request.add_header("user-email", tostring(email))
+                      else
+                        kong.log.err("email not found in dummyjson response")
+                      end
 EOF
 {{</highlight>}}
 
@@ -77,33 +90,40 @@ deck gateway sync --konnect-token $PAT request-callout.yaml
 Send the request to Kong and check the response
 
 {{<highlight>}}
-curl -s "http://$DATA_PLANE_LB/request-callout-route/get" -H srsearch:"Miles Davis" | jq
+curl -s "$DATA_PLANE_LB/request-callout-route/get" -H 'X-User-ID: 1' | jq '.headers["User-Email"]'
 {{</highlight>}}
 
-```
+or
+
+{{<highlight>}}
+curl -s "$DATA_PLANE_LB/request-callout-route/get" -H 'X-User-ID: 2'
+{{</highlight>}}
+
+
+**Expected Results**: Notice that new User-Email header is injected.
+{{<highlight>}}
 {
-  "args": {},
+  "args": {}, 
   "headers": {
-    "Accept": "*/*",
-    "Connection": "keep-alive",
-    "Content-Length": "0",
-    "Host": "httpbin.kong.svc.cluster.local:8000",
-    "Srsearch": "Miles Davis",
-    "User-Agent": "curl/8.7.1",
-    "Wipikedia-Total-Hits-Header": "43555",
-    "X-Forwarded-Host": "127.0.0.1",
-    "X-Forwarded-Path": "/request-callout-route/get",
-    "X-Forwarded-Prefix": "/request-callout-route",
-    "X-Kong-Request-Id": "6e4df528567f446630c6ae5c0b461c2e"
-  },
-  "origin": "10.244.0.1",
-  "url": "http://httpbin.kong.svc.cluster.local:8000/get"
+    "Accept": "*/*", 
+    "Connection": "keep-alive", 
+    "Content-Length": "0", 
+    "Host": "httpbin.konghq.com", 
+    "User-Agent": "curl/8.7.1", 
+    "User-Email": "michael.williams@x.dummyjson.com", 
+    "X-Forwarded-Host": "7aadd278a4.serverless.gateways.konggateway.com", 
+    "X-Forwarded-Path": "/request-callout-route/get", 
+    "X-Forwarded-Prefix": "/request-callout-route", 
+    "X-Kong-Request-Id": "2fe945127f5b5b67f169be1ab8c4e848", 
+    "X-User-Id": "2"
+  }, 
+  "origin": "167.60.7.166", 
+  "url": "https://7aadd278a4.serverless.gateways.konggateway.com/get"
 }
-```
+{{</highlight>}}
 
 
-**Expected Results**
-Notice that new ``Wikipedia-Total-Hits-Header`` header is injected.
+
 
 
 #### Cleanup

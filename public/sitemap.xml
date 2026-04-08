@@ -49,9 +49,6 @@
     <loc>http://localhost:1313/10-prerequisites/konnect-subscription/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/10-prerequisites/minikube/index.html</loc>
-  </url>
-  <url>
     <loc>http://localhost:1313/10-prerequisites/podman_minikube/index.html</loc>
   </url>
   <url>
@@ -218,6 +215,27 @@
   </url>
   <url>
     <loc>http://localhost:1313/15-observability/152-external/227-otel_collector_logs/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/transcript-snippet/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/ingest-update/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/marketplace-mock/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/marketplace-mcp/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/marketplace-oauth/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/40-appendix/marketplace-mcp-logging/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html</loc>
