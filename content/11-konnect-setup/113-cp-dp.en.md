@@ -198,6 +198,6 @@ kubectl delete namespace kong
 
 #### Further Reading
 
-* [Kong Konnect API auth configuration](https://docs.konghq.com/gateway-operator/latest/get-started/konnect/create-konnectextension/#create-an-access-token-in-konnect) 
+* [Kong Kubernetes Operator](https://developer.konghq.com/index/operator/) 
 
 Kong-gratulations! have now reached the end of this module by creating control plane and data plane. You can now click **Next** to proceed with the next module.

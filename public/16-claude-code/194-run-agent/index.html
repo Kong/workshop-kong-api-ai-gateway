@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Set your Python environment Now, you need to set your local Python environment to tell it you have a new application:
+:::code{showCopyAction=true showLineNumbers=false language=shell} . ./.venv/bin/activate :::
+Run the Agent :::code{showCopyAction=true showLineNumbers=false language=shell} python3 strands_kong_agent.py :::
+You should see the Agent response and a prompt:
+============================================================ Strands Agent → Kong AI Gateway → Amazon Bedrock MCP tools served via Kong AI Gateway ============================================================ Type your message (or &#34;quit&#34; to exit): You: Type the same question you did before:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Run the Strands Agent :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Set your Python environment Now, you need to set your local Python environment to tell it you have a new application:
+:::code{showCopyAction=true showLineNumbers=false language=shell} . ./.venv/bin/activate :::
+Run the Agent :::code{showCopyAction=true showLineNumbers=false language=shell} python3 strands_kong_agent.py :::
+You should see the Agent response and a prompt:
+============================================================ Strands Agent → Kong AI Gateway → Amazon Bedrock MCP tools served via Kong AI Gateway ============================================================ Type your message (or &#34;quit&#34; to exit): You: Type the same question you did before:">
+    <meta property="og:url" content="http://localhost:1313/16-claude-code/194-run-agent/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Run the Strands Agent :: API Management with Kong Konnect">
+    <meta property="og:description" content="Set your Python environment Now, you need to set your local Python environment to tell it you have a new application:
+:::code{showCopyAction=true showLineNumbers=false language=shell} . ./.venv/bin/activate :::
+Run the Agent :::code{showCopyAction=true showLineNumbers=false language=shell} python3 strands_kong_agent.py :::
+You should see the Agent response and a prompt:
+============================================================ Strands Agent → Kong AI Gateway → Amazon Bedrock MCP tools served via Kong AI Gateway ============================================================ Type your message (or &#34;quit&#34; to exit): You: Type the same question you did before:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong AI/MCP Gateway, Claude Code and Amazon Bedrock">
+    <meta itemprop="name" content="Run the Strands Agent :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Set your Python environment Now, you need to set your local Python environment to tell it you have a new application:
+:::code{showCopyAction=true showLineNumbers=false language=shell} . ./.venv/bin/activate :::
+Run the Agent :::code{showCopyAction=true showLineNumbers=false language=shell} python3 strands_kong_agent.py :::
+You should see the Agent response and a prompt:
+============================================================ Strands Agent → Kong AI Gateway → Amazon Bedrock MCP tools served via Kong AI Gateway ============================================================ Type your message (or &#34;quit&#34; to exit): You: Type the same question you did before:">
+    <meta itemprop="wordCount" content="268">
+    <title>Run the Strands Agent :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
+    <script src="/js/search-lunr.js?1775663873" defer></script>
+    <script src="/js/search.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
+    <link href="/css/theme.css?1775663873" rel="stylesheet">
+    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/16-claude-code\/194-run-agent\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/16-claude-code/194-run-agent/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#set-your-python-environment">Set your Python environment</a></li>
+        <li><a href="#run-the-agent">Run the Agent</a></li>
+        <li><a href="#check-konnect-observability">Check Konnect Observability</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/16-claude-code/index.html"><span itemprop="name">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Run the Strands Agent</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/16-claude-code/193-create-agent/index.html" title="Create the Strands Agent (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/17-kai-kongmcpserver/index.html" title="Kong AI Assistant & Kong Konnect MCP Server (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 16-claude-code" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="run-the-strands-agent">Run the Strands Agent</h1>
+
+<h3 id="set-your-python-environment">Set your Python environment</h3>
+<p>Now, you need to set your local Python environment to tell it you have a new application:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+. ./.venv/bin/activate
+:::</p>
+<h3 id="run-the-agent">Run the Agent</h3>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+python3 strands_kong_agent.py
+:::</p>
+<p>You should see the Agent response and a prompt:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>============================================================
+  Strands Agent → Kong AI Gateway → Amazon Bedrock
+  MCP tools served via Kong AI Gateway
+============================================================
+
+Type your message (or &#34;quit&#34; to exit):
+
+You: </code></pre></div>
+<p>Type the same question you did before:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+list all orders made by Alice
+:::</p>
+<p>You should see similar responses:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>You: list all orders made by Alice 
+
+I&#39;ll help you find all orders made by Alice. First, let me get the users to find Alice&#39;s user ID, then retrieve her orders.
+Tool #1: marketplace-route-1
+I found Alice Johnson with ID &#34;a1b2c3d4&#34;. Now let me get her orders:
+Tool #2: marketplace-route-2
+## Orders made by Alice Johnson:
+
+Based on the search results, Alice Johnson (ID: a1b2c3d4) has made **3 orders**:
+
+1. **Order #ord001** - Sugar (50kg)
+2. **Order #ord002** - Cleaning Supplies Pack  
+3. **Order #ord003** - Canned Tomatoes (100 cans)
+
+Alice&#39;s orders include a mix of food items (sugar and canned tomatoes) and household supplies (cleaning supplies pack).
+
+You: </code></pre></div>
+<p>You can try other prompts like:
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+how about Ian Walker&rsquo;s?
+:::</p>
+<p>or</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+and Claudio&rsquo;s?
+:::</p>
+<p>Type <code>ˆC</code> to exit.</p>
+<h3 id="check-konnect-observability">Check Konnect Observability</h3>
+<p>Since, all Strands Agent requests went through the Kong AI Gateway you can check them inside the <strong>Observability</strong> option. Open the <strong>AI Dashboard</strong> you created previously and check it out</p>
+<p><a href="#R-image-4c1b3675266ae7a907c1b9697a82ccaf" class="lightbox-link"><img alt="agent-observability" class="lazy lightbox figure-image" loading="lazy" src="/static/images/claude_code_observability.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4c1b3675266ae7a907c1b9697a82ccaf"><img alt="agent-observability" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/claude_code_observability.png"></a></p>
+<p>You can now click <strong>Next</strong> to proceed further.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu">
+            <li class="" data-nav-id="/16-claude-code/191-configure-kong-ai-gateway/index.html"><a class="padding" href="/16-claude-code/191-configure-kong-ai-gateway/index.html">Configure Kong AI Gateway</a></li>
+            <li class="" data-nav-id="/16-claude-code/192-configure-claudecode/index.html"><a class="padding" href="/16-claude-code/192-configure-claudecode/index.html">Configure Claude Code</a></li>
+            <li class="" data-nav-id="/16-claude-code/193-create-agent/index.html"><a class="padding" href="/16-claude-code/193-create-agent/index.html">Create the Strands Agent</a></li>
+            <li class="active " data-nav-id="/16-claude-code/194-run-agent/index.html"><a class="padding" href="/16-claude-code/194-run-agent/index.html">Run the Strands Agent</a></li></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
+    <script src="/js/theme.js?1775663873" defer></script>
+  </body>
+</html>

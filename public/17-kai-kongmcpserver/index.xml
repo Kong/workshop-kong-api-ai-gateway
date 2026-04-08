@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong AI Assistant &amp; Kong Konnect MCP Server :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/17-kai-kongmcpserver/index.html</link>
+    <description>Kong’s AI assistant, KAi, can detect issues, suggest fixes, and accelerate your workflows all without leaving the Konnect UI. KAi is enabled by default for Konnect Plus and trial accounts. KAi is always disabled by default. You can enable KAi by enabling it in Konnect Labs, inside the Organization menu option.&#xA;KAi can help you do the following:&#xA;Run a debug session to analyze API performance issues Provides recommendations to improve API performance Answer any Konnect questions using the Kong Docs How KAi works KAi is made up of a series of components running inside Konnect. The agent can perform smart orchestration and analysis of Konnect data and entities. You can interact with the agent in the following ways:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/17-kai-kongmcpserver/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

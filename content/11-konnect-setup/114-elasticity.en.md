@@ -318,5 +318,18 @@ spec:
 EOF
 {{</highlight>}}
 
+
+#### Further Reading
+
+* [Kong Konnect Data Plane Elasticity: Pod Autoscaling with VPA](https://konghq.com/blog/engineering/data-plane-elasticity-eks-1-29-pod-autoscaling-with-vpa)
+* [Kong Konnect Data Plane Pod Autoscaling with HPA](https://konghq.com/blog/engineering/pod-autoscaling-with-hpa-on-eks-1-29)
+* [Kong Konnect Data Plane Node Autoscaling with Cluster Autoscaler](https://konghq.com/blog/engineering/dp-node-autoscaling-with-cluster-autoscaler-aws-eks-1-29)
+* [Kong Konnect Data Plane Node Autoscaling with Karpenter](https://konghq.com/blog/engineering/dp-node-autoscaling-with-karpenter-aws-eks-1-29)
+
+
+Kong-gratulations! have now reached the end of this module by creating control plane and data plane. You can now click **Next** to proceed with the next module.
+
+
+
 Kong-gratulations! have now reached the end of this module by implementing and successfully testing Horizontal Pod AutoScaling. You can now click **Next** to proceed with the next chapter.
 

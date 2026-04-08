@@ -26,7 +26,7 @@
       <link>http://localhost:1313/11-konnect-setup/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/11-konnect-setup/index.html</guid>
-      <description>This chapter will walk you through&#xA;Konnect Control Plane and Data Plane creation using Kong Gateway Operator (KGO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:&#xA;Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana and Dynatrace. On the right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:</description>
+      <description>This chapter will walk you through&#xA;Konnect Control Plane and Data Plane creation using Kong Gateway Operator (KGO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:&#xA;Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:</description>
     </item>
     <item>
       <title>Kong API Gateway</title>
@@ -36,32 +36,53 @@
       <description>With our Control Plane created and Data Plane layer deployed it’s time to create an API and expose an application. In this module, we will:&#xA;Deploy an application to get protected by the Data Plane Use decK to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application. Enable Kong Plugins to the Kong Route or Kong Service. Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them. With decK (declarations for Kong) you can manage Kong Konnect configuration in a declaratively way.</description>
     </item>
     <item>
-      <title>APIOps and decK</title>
-      <link>http://localhost:1313/14-apiops-deck/index.html</link>
+      <title>Kong AI Gateway</title>
+      <link>http://localhost:1313/13-ai-gateway/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/14-apiops-deck/index.html</guid>
+      <guid>http://localhost:1313/13-ai-gateway/index.html</guid>
+      <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. At the same, new MCP standards have emerged to add contexts to AI Agents more easily.&#xA;Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely:&#xA;LLM Gateway: While AI providers don’t conform to a standard API specification, the Kong LLM Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality. MCP Gateway: It sits side-by-side with the Kong LLM Gateway and it is responsible for converting Kong Gateway Services into MCP Servers as well as proxying and protecting existing MCP Servers. You can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.</description>
+    </item>
+    <item>
+      <title>Kong MCP Gateway</title>
+      <link>http://localhost:1313/14-mcp-gateway/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/index.html</guid>
+      <description>In this third part of the workshop we are going to explore the MCP capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
+    </item>
+    <item>
+      <title>Konnect Observability</title>
+      <link>http://localhost:1313/15-observability/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/15-observability/index.html</guid>
+      <description>This part of the workshop is dedicated to Observability, exploring:&#xA;Built-in capabilities provided by Konnect Kong Data Plane plugins to integrate with external Observability infrastructures such as Dynatrace or Honeycomb.</description>
+    </item>
+    <item>
+      <title>Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</title>
+      <link>http://localhost:1313/16-claude-code/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-claude-code/index.html</guid>
+      <description>In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.&#xA;The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.&#xA;The tutorial goes through the following steps:</description>
+    </item>
+    <item>
+      <title>Kong AI Assistant &amp; Kong Konnect MCP Server</title>
+      <link>http://localhost:1313/17-kai-kongmcpserver/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/17-kai-kongmcpserver/index.html</guid>
+      <description>Kong’s AI assistant, KAi, can detect issues, suggest fixes, and accelerate your workflows all without leaving the Konnect UI. KAi is enabled by default for Konnect Plus and trial accounts. KAi is always disabled by default. You can enable KAi by enabling it in Konnect Labs, inside the Organization menu option.&#xA;KAi can help you do the following:&#xA;Run a debug session to analyze API performance issues Provides recommendations to improve API performance Answer any Konnect questions using the Kong Docs How KAi works KAi is made up of a series of components running inside Konnect. The agent can perform smart orchestration and analysis of Konnect data and entities. You can interact with the agent in the following ways:</description>
+    </item>
+    <item>
+      <title>APIOps and decK</title>
+      <link>http://localhost:1313/18-apiops-deck/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/18-apiops-deck/index.html</guid>
       <description>Concept APIOps applies DevOps principles (automation, version control, CI/CD) to API lifecycle management. Here’s a diagrama describing an APIOps lifecycle with Kong Technologies.&#xA;There are 3 main steps used to deliver APIs to Kong Gateway. These workflows are completed in sequence, with administrator approval between each step. Completion of final workflow results in a deployed API to Kong Konnect.&#xA;OpenAPI to Kong: This step takes an OpenAPI specification and converts it to a decK file that can be used by Kong Gateway. Additionally, service specific patches are applied to the decK file allowing administrators to set overrides for specific APIs. Stage decK changes: This step takes the decK file generated by the OpenAPI to Kong step and compares it to the current state of the Kong Gateway. It generates a diff and stages the changes as a PR. decK sync: This step is triggered by the merging of deck configuration files to the main branch (by the previous workflow PR approval). The step triggers a deck gateway sync command on the configuration files and applies the changes to Kong Gateway. decK and APIOps With Kong Konnect and decK, APIs can be treated as code — versioned, tested, and deployed through pipelines.</description>
     </item>
     <item>
       <title>Konnect Developer Portal</title>
-      <link>http://localhost:1313/15-developer-portal/index.html</link>
+      <link>http://localhost:1313/19-developer-portal/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/15-developer-portal/index.html</guid>
+      <guid>http://localhost:1313/19-developer-portal/index.html</guid>
       <description>The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.&#xA;Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.</description>
-    </item>
-    <item>
-      <title>Kong AI Gateway</title>
-      <link>http://localhost:1313/16-ai-gateway/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/16-ai-gateway/index.html</guid>
-      <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely&#xA;While AI providers don’t conform to a standard API specification, the Kong AI Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality.</description>
-    </item>
-    <item>
-      <title>Observability</title>
-      <link>http://localhost:1313/20-observability/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/20-observability/index.html</guid>
-      <description>The third part of the workshop is dedicated to Observability, exploring:&#xA;Built-in capabilities provided by Konnect Kong Data Plane plugins to integrate with external Observability infrastructures such as Dynatrace or Honeycomb.</description>
     </item>
   </channel>
 </rss>

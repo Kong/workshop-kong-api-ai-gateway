@@ -5,7 +5,7 @@ weight : 121
 
 
 
-![kong_entities](/static/images/kong_entities.png)
+![kong_entities](/static/images/kong_entities_new.png)
 
 
 Kong Gateway can proxy:
@@ -35,7 +35,7 @@ A Kong Route defines rules that match client requests and associate them with a 
 
 A Kong Service can have many Kong Routes associated with it.
 
-![kong_service](/static/images/kong_route.png)
+![kong_route](/static/images/kong_route.png)
 
 
 ## Kong Plugin
@@ -44,10 +44,10 @@ A Kong Service can have many Kong Routes associated with it.
 
 **Plugins** extend the functionality of Kong Gateway. They can be applied to different entities (i.e. Routes, Services, etc.).
 
-![kong_service](/static/images/kong_plugin.png)
+![kong_plugin](/static/images/kong_plugin.png)
 
 Kong Gateway provides 90+ plugins out of the box and allows for Custom Plugins to be created 
 
-![kong_service](/static/images/kong_plugin_categories.png)
+![kong_plugin_categories](/static/images/kong_plugin_categories.png)
 
 

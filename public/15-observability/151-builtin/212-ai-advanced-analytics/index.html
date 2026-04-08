@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Konnect Analytics also provides an AI Gateway dashboard template. It includes is specific AI-based metrics such as:
+GenAI Model Usage Count AI Status Code Token Usage Statistics by Provider Cost per Consumer GenAI total cost The AI Proxy and AI Proxy Advanced plugins logging configuration In order to get the LLM metrics, we need to configure the AI Proxy or AI Proxy Advanced plugins with specific parameter. Doing so, the Data Plane will then report the Control Plane with the generated metrics and the dashboard will be updated.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Konnect AI Analytics :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Konnect Analytics also provides an AI Gateway dashboard template. It includes is specific AI-based metrics such as:
+GenAI Model Usage Count AI Status Code Token Usage Statistics by Provider Cost per Consumer GenAI total cost The AI Proxy and AI Proxy Advanced plugins logging configuration In order to get the LLM metrics, we need to configure the AI Proxy or AI Proxy Advanced plugins with specific parameter. Doing so, the Data Plane will then report the Control Plane with the generated metrics and the dashboard will be updated.">
+    <meta property="og:url" content="http://localhost:1313/15-observability/151-builtin/212-ai-advanced-analytics/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Konnect AI Analytics :: API Management with Kong Konnect">
+    <meta property="og:description" content="Konnect Analytics also provides an AI Gateway dashboard template. It includes is specific AI-based metrics such as:
+GenAI Model Usage Count AI Status Code Token Usage Statistics by Provider Cost per Consumer GenAI total cost The AI Proxy and AI Proxy Advanced plugins logging configuration In order to get the LLM metrics, we need to configure the AI Proxy or AI Proxy Advanced plugins with specific parameter. Doing so, the Data Plane will then report the Control Plane with the generated metrics and the dashboard will be updated.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Konnect Observability">
+    <meta itemprop="name" content="Konnect AI Analytics :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Konnect Analytics also provides an AI Gateway dashboard template. It includes is specific AI-based metrics such as:
+GenAI Model Usage Count AI Status Code Token Usage Statistics by Provider Cost per Consumer GenAI total cost The AI Proxy and AI Proxy Advanced plugins logging configuration In order to get the LLM metrics, we need to configure the AI Proxy or AI Proxy Advanced plugins with specific parameter. Doing so, the Data Plane will then report the Control Plane with the generated metrics and the dashboard will be updated.">
+    <meta itemprop="wordCount" content="479">
+    <title>Konnect AI Analytics :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
+    <script src="/js/search-lunr.js?1775663873" defer></script>
+    <script src="/js/search.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
+    <link href="/css/theme.css?1775663873" rel="stylesheet">
+    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/15-observability\/151-builtin\/212-ai-advanced-analytics\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/15-observability/151-builtin/212-ai-advanced-analytics/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#the-ai-proxy-and-ai-proxy-advanced-plugins-logging-configuration">The <strong>AI Proxy</strong> and <strong>AI Proxy Advanced</strong> plugins logging configuration</a></li>
+        <li><a href="#input-and-output-cost-metrics">Input and Output cost metrics</a></li>
+        <li><a href="#configure-the-ai-proxy-plugin-with-logging">Configure the <strong>AI Proxy</strong> plugin with logging</a></li>
+        <li><a href="#create-an-ai-gateway-dashboard">Create an AI Gateway Dashboard</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/index.html"><span itemprop="name">Konnect Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/151-builtin/index.html"><span itemprop="name">Konnect Built-In Observability</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Konnect AI Analytics</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-observability/151-builtin/210-advanced-analytics/index.html" title="Konnect Advanced Analytics (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-observability/151-builtin/220-debugger/index.html" title="Konnect Debugger (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 15-observability" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="konnect-ai-analytics">Konnect AI Analytics</h1>
+
+<p><strong>Konnect Analytics</strong> also provides an <strong>AI Gateway</strong> dashboard template. It includes is specific AI-based metrics such as:</p>
+<ul>
+<li>GenAI Model Usage Count</li>
+<li>AI Status Code</li>
+<li>Token Usage Statistics by Provider</li>
+<li>Cost per Consumer</li>
+<li>GenAI total cost</li>
+</ul>
+<h3 id="the-ai-proxy-and-ai-proxy-advanced-plugins-logging-configuration">The <strong>AI Proxy</strong> and <strong>AI Proxy Advanced</strong> plugins logging configuration</h3>
+<p>In order to get the LLM metrics, we need to configure the <strong>AI Proxy</strong> or <strong>AI Proxy Advanced plugins</strong> with specific parameter. Doing so, the Data Plane will then report the Control Plane with the generated metrics and the dashboard will be updated.</p>
+<p>For example, the <strong>AI Proxy</strong> plugin provide these <a href="https://developer.konghq.com/plugins/ai-proxy/reference/#schema--config-logging" rel="external" target="_blank">logging configuration</a> parameters. Same configurations are also available for the <strong>AI Proxy Advanced</strong> plugin.</p>
+<ul>
+<li><strong>log_statistics</strong>: If enabled (and supported by the driver), will add model usage and token metrics into the Kong log plugin(s) output.</li>
+<li><strong>log_payloads</strong>: If enabled, will log the request and response body into the Kong log plugin(s) output.</li>
+</ul>
+<h3 id="input-and-output-cost-metrics">Input and Output cost metrics</h3>
+<p>Specifically to costs, the plugin also has the following parameters. Those parameters tell the plugin how to report the Control Plane with consumption costs as well.</p>
+<ul>
+<li><strong>input_cost</strong>: Defines the cost per 1M tokens in your prompt.</li>
+<li><strong>output_cost</strong>: Defines the cost per 1M tokens in the output of the AI.</li>
+</ul>
+<h3 id="configure-the-ai-proxy-plugin-with-logging">Configure the <strong>AI Proxy</strong> plugin with logging</h3>
+<p>Let&rsquo;s review the original <strong>AI Proxy</strong> configuration we used before. This version has:</p>
+<ul>
+<li><code>logging</code> section asking the plugin to generate LLM metrics</li>
+<li><code>input_cost</code> and <code>output_cost</code> to generate cost-based metrics</li>
+<li><code>key-auth</code> plugin and <code>consumers</code> section to protect the Kong Route as well as generate metrics based on Kong Consumers.</li>
+</ul>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; ai-proxy-logging.yaml &laquo; &lsquo;EOF&rsquo;
+_format_version: &ldquo;3.0&rdquo;
+_konnect:
+control_plane_name: kong-aws
+_info:
+select_tags:</p>
+<ul>
+<li>bedrock
+services:</li>
+<li>name: service1
+host: localhost
+port: 32000
+routes:
+<ul>
+<li>name: route1
+paths:
+<ul>
+<li>/bedrock-route
+plugins:</li>
+<li>name: ai-proxy
+instance_name: &ldquo;ai-proxy-bedrock&rdquo;
+config:
+auth:
+allow_override: false
+route_type: &ldquo;llm/v1/chat&rdquo;
+model:
+provider: &ldquo;bedrock&rdquo;
+name: &ldquo;us.amazon.nova-micro-v1:0&rdquo;
+options:
+bedrock:
+aws_region: &ldquo;us-west-2&rdquo;
+input_cost: 1000
+output_cost: 3000
+logging:
+log_statistics: true
+log_payloads: true</li>
+<li>name: key-auth
+instance_name: key-auth-bedrock
+enabled: true
+consumers:</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>keyauth_credentials:
+<ul>
+<li>key: &ldquo;123456&rdquo;
+username: user1
+EOF
+:::</li>
+</ul>
+</li>
+</ul>
+<p>Note that, this time, we&rsquo;ve added the <code>logging</code> section to our declaration as well as the cost based parameters. Submit it with <code>deck</code>:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+deck gateway sync &ndash;konnect-token $PAT ai-proxy-logging.yaml
+:::</p>
+<p>Now, if you consume the Route the plugin will generate metrics and the Data Plane will push them to the Control Plane.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -s -X POST <br>
+&ndash;url $DATA_PLANE_LB/bedrock-route <br>
+&ndash;header &lsquo;Content-Type: application/json&rsquo; <br>
+&ndash;header &lsquo;apikey: 123456&rsquo; <br>
+&ndash;data &lsquo;{
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;what is pi?&rdquo;
+}
+]
+}&rsquo; | jq
+:::</p>
+<h3 id="create-an-ai-gateway-dashboard">Create an AI Gateway Dashboard</h3>
+<p>Now, let&rsquo;s create a dashboard to see those metrics. Go to <strong>Dashboards</strong> inside <strong>Observability</strong> Konnect menu option. Click on <strong>Create dashboard</strong> -&gt; <strong>Create from template</strong>. You should see the <strong>Create from template</strong> page with the <strong>AI Gateway dashboard</strong> option available:</p>
+<p><a href="#R-image-8d038730c1d130e2ef662f74ae0ee4be" class="lightbox-link"><img alt="ai_dashboard_template" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_dashboard_template.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8d038730c1d130e2ef662f74ae0ee4be"><img alt="ai_dashboard_template" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_dashboard_template.png"></a></p>
+<p>Click <strong>Use template</strong>. You should see your dashboard with the AI Metrics:</p>
+<p><a href="#R-image-2559555b1b067538c1613e93cf54b62e" class="lightbox-link"><img alt="ai_dashboard_template" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_dashboard.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2559555b1b067538c1613e93cf54b62e"><img alt="ai_dashboard_template" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_dashboard.png"></a></p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu">
+            <li class="parent alwaysopen " data-nav-id="/15-observability/151-builtin/index.html"><a class="padding" href="/15-observability/151-builtin/index.html">Konnect Built-In Observability</a><ul id="R-subsections-a4fec0a5ed2f3f0a719a19774f0776d6" class="collapsible-menu">
+            <li class="" data-nav-id="/15-observability/151-builtin/210-advanced-analytics/index.html"><a class="padding" href="/15-observability/151-builtin/210-advanced-analytics/index.html">Konnect Advanced Analytics</a></li>
+            <li class="active " data-nav-id="/15-observability/151-builtin/212-ai-advanced-analytics/index.html"><a class="padding" href="/15-observability/151-builtin/212-ai-advanced-analytics/index.html">Konnect AI Analytics</a></li>
+            <li class="" data-nav-id="/15-observability/151-builtin/220-debugger/index.html"><a class="padding" href="/15-observability/151-builtin/220-debugger/index.html">Konnect Debugger</a></li></ul></li>
+            <li class="alwaysopen " data-nav-id="/15-observability/152-external/index.html"><a class="padding" href="/15-observability/152-external/index.html">External Observability Stack</a><ul id="R-subsections-27aa679ae000912af8e851aee02e1715" class="collapsible-menu"></ul></li></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
+    <script src="/js/theme.js?1775663873" defer></script>
+  </body>
+</html>

@@ -8,17 +8,17 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/12-api-gateway/15-use-cases/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Proxy Caching</title>
-      <link>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</link>
+      <title>Proxy Caching and Rate Limiting</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching_rate-limiting/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching/index.html</guid>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/150-proxy-caching_rate-limiting/index.html</guid>
       <description>Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</description>
     </item>
     <item>
-      <title>API Key Authentication</title>
-      <link>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</link>
+      <title>API Key Authentication and Kong Consumer</title>
+      <link>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication_kong-consumer/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication/index.html</guid>
+      <guid>http://localhost:1313/12-api-gateway/15-use-cases/151-key-authentication_kong-consumer/index.html</guid>
       <description>To get started with API Authentication, let’s implement a basic Key Authentication mechanism. API Keys are one of the foundamental security mechanisms provided by Konnect. In order to consume an API, the consumer should inject a previously created API Key in the header of the request. The API consumption is allowed if the Gateway recognizes the API Key. Consumers add their API key either in a query string parameter, a header, or a request body to authenticate their requests and consume the application.</description>
     </item>
     <item>

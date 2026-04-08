@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html</link>
+    <description>MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.&#xA;On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kong Identity</title>
+      <link>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html</guid>
+      <description>Kong Identity enables you to use Konnect to generate, authenticate, and authorize API access. Specifically, Kong Identity can be used for machine-to-machine authentication. You can use Kong Identity to:&#xA;Create authorization servers per region Issue and validate access tokens Integrate secure authentication into your Kong Gateway APIs Introspection Flow This section describes the OAuth Token Introspection implemented by Kong MCP Gateway and Kong Identity as the Identity Provider.&#xA;Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.</description>
+    </item>
+    <item>
+      <title>AI MCP OAuth2 plugin configuration</title>
+      <link>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html</guid>
+      <description>Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::&#xA;The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.&#xA;routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:</description>
+    </item>
+    <item>
+      <title>Test the MCP Tools</title>
+      <link>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html</guid>
+      <description>Since we have all components in place, we can test the new MCP Tool. Here’s the new code:&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-mcp-kong-identity.py « ‘EOF’ import asyncio import os import json&#xA;from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client&#xA;import aiohttp&#xA;data_plane_lb = os.getenv(“DATA_PLANE_LB”);&#xA;kong_dp = os.getenv(“DATA_PLANE_LB”); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;&#xA;print(“kong_dp_route”) print(kong_dp_route)&#xA;KONG_IDENTITY_URL = os.getenv(“ISSUER_URL”); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(“DECK_CLIENT_ID”) client_secret = os.getenv(“DECK_CLIENT_SECRET”)&#xA;print (“KONG_IDENTITY: &#34; + token_url) print (“CLIENT_ID: &#34; + client_id) print (“CLIENT_SECRET: &#34; + client_secret)</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
+The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
+The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
+    <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
+The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong MCP Gateway">
+    <meta itemprop="name" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
+The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
+    <meta itemprop="wordCount" content="565">
+    <title>AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
+    <script src="/js/search-lunr.js?1775663873" defer></script>
+    <script src="/js/search.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
+    <link href="/css/theme.css?1775663873" rel="stylesheet">
+    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/14-mcp-gateway\/184-use-cases\/183-oauth2-kongidentity\/2-mcp-oauth2-plugin\/index.html';
+      window.relearn.relBasePath='..\/..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#download-the-new-deck-file">Download the new decK file</a></li>
+        <li><a href="#submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</a></li>
+        <li><a href="#exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI MCP OAuth2 plugin configuration</span><meta itemprop="position" content="5"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html" title="Kong Identity (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html" title="Test the MCP Tools (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 14-mcp-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="ai-mcp-oauth2-plugin-configuration">AI MCP OAuth2 plugin configuration</h1>
+
+<h3 id="download-the-new-deck-file">Download the new decK file</h3>
+<ul>
+<li>Download the <strong>marketplace_mcp_oauth_kong_identity.yaml</strong> Kong decK spec file.</li>
+</ul>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl &lsquo;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&rsquo; &ndash;output ./marketplace_mcp_oauth_kong_identity.yaml
+:::</p>
+<p>The declaration extends the <code>mcp-listener-route</code>, responsible for aggregating the MCP Tools, with the <strong>AI MCP OAuth2</strong> plugin.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>routes:
+  - name: mcp-listener-route
+    paths:
+    - /mcp-listener
+    plugins:
+      - name: ai-mcp-proxy
+        config:
+          mode: listener
+          server:
+            tag: mcp-tools
+            timeout: 45000
+          max_request_body_size: 32768
+      - name: ai-mcp-oauth2
+        enabled: true
+        config:
+          resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }}
+          authorization_servers:
+          - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }}
+          introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }}
+          client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }}
+          client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }}
+          insecure_relaxed_audience_validation: true</code></pre></div>
+<p>It refers to some <strong>Kong Identity</strong> endpoints and secrets, besides the actual Authorization URL. Let&rsquo;s go through them:</p>
+<ul>
+<li>
+<p><strong>resource</strong>: that&rsquo;s the <strong>MCP Tool URL</strong>, exposed by the Kong Data Plane. Considering our declaration should be like this: <code>http://$DATA_PLANE_LB/mcp-listener</code>.</p>
+</li>
+<li>
+<p><strong>authorization_servers</strong>: that&rsquo;s the Kong Identity Authorization endpoint. Although it&rsquo;s required, for Client Credentials Grant, it&rsquo;s ignored. It should be something like: <code>https://4bim7lj9i47ef25x.us.identity.konghq.com/auth/authorize</code></p>
+</li>
+<li>
+<p><strong>introspection_endpoint</strong>: that&rsquo;s the Kong Identity Introspection endpoint. In our case, <code>https://4bim7lj9i47ef25x.us.identity.konghq.com/auth/introspect</code></p>
+</li>
+<li>
+<p><strong>client_id</strong> and <strong>client_secret</strong>: these are the secrets of an existing Kong Identity Client.</p>
+</li>
+</ul>
+<h3 id="submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</h3>
+<p>Before submiting the new declaration we have set the decK environment variables:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+export DECK_MCP_AUTH_URL=http://$DATA_PLANE_LB/mcp-listener
+export DECK_KONG_IDENTITY_AUTHZ_URL=$ISSUER_URL/authorize
+export DECK_KONG_IDENTITY_INTROSPECTION_URL=$ISSUER_URL/introspect
+export DECK_CLIENT_ID=$CLIENT_ID
+export DECK_CLIENT_SECRET=$CLIENT_SECRET
+:::</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT marketplace_mcp_oauth_kong_identity.yaml
+:::</p>
+<h3 id="exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</h3>
+<p>To exercise the Introspection Endpoint, let&rsquo;s send some requests to Kong Identity, acting as the Consumer and the Gateway.</p>
+<h4 id="token-endpoint">Token Endpoint</h4>
+<p>In the first request, we play the Consumer role, using the <a href="https://oauth.net/2/grant-types/client-credentials/" rel="external" target="_blank"><strong>Client Credentials Grant</strong></a> to get our Access Token</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+TOKEN=$(curl -s -X POST &ldquo;$ISSUER_URL/oauth/token&rdquo; <br>
+-H &ldquo;Content-Type: application/x-www-form-urlencoded&rdquo; <br>
+-d &ldquo;grant_type=client_credentials&rdquo; <br>
+-d &ldquo;client_id=$CLIENT_ID&rdquo; <br>
+-d &ldquo;client_secret=$CLIENT_SECRET&rdquo; <br>
+-d &ldquo;scope=scope1&rdquo; | jq -r &lsquo;.access_token&rsquo;)
+:::</p>
+<p>You can decode the Access Token with:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+echo $TOKEN | jwt decode -
+:::</p>
+<p>You should get an output like this. The <code>sub</code> field represents the same <code>client_id</code>.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
+------------
+{
+  &#34;typ&#34;: &#34;JWT&#34;,
+  &#34;alg&#34;: &#34;RS256&#34;,
+  &#34;kid&#34;: &#34;0c6b4da3-e954-43fb-b435-29df04f40bdf&#34;
+}
+
+Token claims
+------------
+{
+  &#34;aud&#34;: [
+    &#34;http://mcp_tools.dev&#34;
+  ],
+  &#34;claim1&#34;: &#34;claim1&#34;,
+  &#34;client_id&#34;: &#34;p4aih3vylfgl3d8a&#34;,
+  &#34;exp&#34;: 1771350984,
+  &#34;iat&#34;: 1771350924,
+  &#34;iss&#34;: &#34;https://lpjwyco0nr07jrva.us.identity.konghq.com/auth&#34;,
+  &#34;jti&#34;: &#34;019c6cbe-1de8-7bb4-b1a4-85c5864a1eb0&#34;,
+  &#34;nbf&#34;: 1771350924,
+  &#34;scope&#34;: &#34;scope1&#34;,
+  &#34;sub&#34;: &#34;p4aih3vylfgl3d8a&#34;
+}</code></pre></div>
+<p>You can check all tokens issued by a given Client ID:
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -sX GET &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens"</a> -H &ldquo;Authorization: Bearer $PAT&rdquo; | jq
+:::</p>
+<p>If you send a request asking for a now existing <strong>scope</strong>, Kong Identity will reply back with an error:</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -s -X POST &ldquo;$ISSUER_URL/oauth/token&rdquo; <br>
+-H &ldquo;Content-Type: application/x-www-form-urlencoded&rdquo; <br>
+-d &ldquo;grant_type=client_credentials&rdquo; <br>
+-d &ldquo;client_id=$CLIENT_ID&rdquo; <br>
+-d &ldquo;client_secret=$CLIENT_SECRET&rdquo; <br>
+-d &ldquo;scope=non-existing-scope&rdquo;
+:::</p>
+<p>Expected result:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{&#34;error&#34;:&#34;invalid_scope&#34;}</code></pre></div>
+<h4 id="introspection-endpoint">Introspection Endpoint</h4>
+<p>Now, playing the Gateway role, we are going to consume the Introspection Endpoint asking the IdP to validate the Access Token. We use the <a href="https://curl.se/docs/manpage.html#-u" rel="external" target="_blank"><code>-u</code> <strong>curl</strong> option</a> to specify our Client Id and Client Secret.</p>
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+curl -s -X POST &ldquo;$ISSUER_URL/introspect&rdquo; <br>
+-d &ldquo;token=$TOKEN&rdquo; <br>
+-u &ldquo;$CLIENT_ID:$CLIENT_SECRET&rdquo; | jq
+:::</p>
+<p>Here&rsquo;s a typical response. The “active” at the bottom says the plugin is still good.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+  &#34;active&#34;: true,
+  &#34;claim1&#34;: &#34;claim1&#34;,
+  &#34;client_id&#34;: &#34;p4aih3vylfgl3d8a&#34;,
+  &#34;scope&#34;: &#34;scope1&#34;
+}</code></pre></div>
+<p>However, if you wait for the Access Token timeout (in our case, the defined it as 30 seconds), the Endpoint returns a different output saying so:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+  &#34;active&#34;: false
+}</code></pre></div>
+<p>Make sure you unset your <code>TOKEN</code> environment variable:
+:::code{showCopyAction=true showLineNumbers=false language=shell}
+unset TOKEN
+:::</p>
+<p>You can now click <strong>Next</strong> to proceed further.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu">
+            <li class="" data-nav-id="/14-mcp-gateway/181-strands-mcp/index.html"><a class="padding" href="/14-mcp-gateway/181-strands-mcp/index.html">Strands Agent and MCP</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/182-introduction/index.html"><a class="padding" href="/14-mcp-gateway/182-introduction/index.html">MCP Introduction</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/183-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/183-mcp-gateway/index.html">Kong MCP Gateway and Plugins</a></li>
+            <li class="parent alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/index.html">Use Cases</a><ul id="R-subsections-a964ef3d890ecbc315e7f04ebff0d291" class="collapsible-menu">
+            <li class="alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html">Convert Kong Gateway Services into MCP Tools</a><ul id="R-subsections-d8fbd2d4a08990c8bc79ef2f96b5e3f6" class="collapsible-menu"></ul></li>
+            <li class="parent alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html">Implement the OAuth 2 specification for MCP servers with Kong Identity</a><ul id="R-subsections-842aac9bdf7afee40866586fd2a507ec" class="collapsible-menu">
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html">Kong Identity</a></li>
+            <li class="active " data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">AI MCP OAuth2 plugin configuration</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html">Test the MCP Tools</a></li></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html">Securing existing MCP Servers</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
+    <script src="/js/theme.js?1775663873" defer></script>
+  </body>
+</html>

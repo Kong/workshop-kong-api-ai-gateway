@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Konnect Observability :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/15-observability/index.html</link>
+    <description>This part of the workshop is dedicated to Observability, exploring:&#xA;Built-in capabilities provided by Konnect Kong Data Plane plugins to integrate with external Observability infrastructures such as Dynatrace or Honeycomb.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/15-observability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Konnect Built-In Observability</title>
+      <link>http://localhost:1313/15-observability/151-builtin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/15-observability/151-builtin/index.html</guid>
+      <description>Basically Konnect provides two main Builtin Observability services:&#xA;Konnect Advanced Analytics: it is a real-time, contextual analytics platform that provides insights into API health, performance, and usage.&#xA;Konnect AI Analytics: it is a real-time, contextual analytics platform that provides insights into API health, performance, and usage.&#xA;Konnect Debugger: it provides a connected debugging experience and real-time trace-level visibility into API traffic.</description>
+    </item>
+    <item>
+      <title>External Observability Stack</title>
+      <link>http://localhost:1313/15-observability/152-external/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/15-observability/152-external/index.html</guid>
+      <description>The external Observability infrastructure we are going to use is based on the OpenTelemetry standard and it comprises:&#xA;OTel Collector: implements the component responsible for receiving, processing and exporting telemetry data. Loki: plays the log processing role and receiving all requests and responses processed by the Kong API and AI Gateway Data Plane. Prometheus: responsible for scraping and storing the metrics the Kong API and AI Gateway generate. Grafana: used to query and analyze logs and metrics. Jaeger: distributed tracing platform.</description>
+    </item>
+  </channel>
+</rss>

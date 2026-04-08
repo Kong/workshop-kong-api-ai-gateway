@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>18-Mcp-Gateways :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/18-mcp-gateway/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/18-mcp-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convert Kong Gateway Services into MCP Tools</title>
+      <link>http://localhost:1313/18-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/18-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html</guid>
+      <description>In order to implement this use case we are going to expose a sample application implementing a Marketplace.&#xA;Here are the steps to implement the use case:&#xA;Use the Kong Mocking plugin to mock an OpenAPI spec (OAS) as Kong Gateway Services and Routes. Apply AI MCP Proxy plugin to convert and expose the Kong Services as MCP Tools. You can now click Next to proceed further.</description>
+    </item>
+    <item>
+      <title>Use Cases</title>
+      <link>http://localhost:1313/18-mcp-gateway/184-use-cases/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/18-mcp-gateway/184-use-cases/index.html</guid>
+      <description>In this chapter we are going to explore the following common use cases we typically implement by the MCP Gateway.&#xA;Converting Kong Gateway Services into MCP Servers Consuming and protecting existing MCP Servers through Kong MCP Gateway These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.&#xA;You can now click Next to begin the module.</description>
+    </item>
+    <item>
+      <title>Implement the OAuth 2 specification for MCP servers with Kong Identity</title>
+      <link>http://localhost:1313/18-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/18-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html</guid>
+      <description>MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.&#xA;On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.</description>
+    </item>
+  </channel>
+</rss>

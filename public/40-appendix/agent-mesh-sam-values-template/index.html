@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ~/sam-vars.template « ‘EOF’
+Solace Agent Mesh (SAM) Custom Configuration Replace all placeholder values with your actual configuration SAM Core Configuration sam:
+Enable enterprise features (agent builder, etc.) enterprise: false
+Disable authorization for dev/quickstart (allows access without OIDC) ⚠️ NOT RECOMMENDED for production use authorization: enabled: false
+DNS name for accessing SAM (must be DNS-resolvable and point to LoadBalancer IP) dnsName: “0.0.0.0” # TODO: Replace with your actual DNS name">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SAM Values Template for Solace Agent Mesh :: API Management with Kong Konnect">
+    <meta name="twitter:description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ~/sam-vars.template « ‘EOF’
+Solace Agent Mesh (SAM) Custom Configuration Replace all placeholder values with your actual configuration SAM Core Configuration sam:
+Enable enterprise features (agent builder, etc.) enterprise: false
+Disable authorization for dev/quickstart (allows access without OIDC) ⚠️ NOT RECOMMENDED for production use authorization: enabled: false
+DNS name for accessing SAM (must be DNS-resolvable and point to LoadBalancer IP) dnsName: “0.0.0.0” # TODO: Replace with your actual DNS name">
+    <meta property="og:url" content="http://localhost:1313/40-appendix/agent-mesh-sam-values-template/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="SAM Values Template for Solace Agent Mesh :: API Management with Kong Konnect">
+    <meta property="og:description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ~/sam-vars.template « ‘EOF’
+Solace Agent Mesh (SAM) Custom Configuration Replace all placeholder values with your actual configuration SAM Core Configuration sam:
+Enable enterprise features (agent builder, etc.) enterprise: false
+Disable authorization for dev/quickstart (allows access without OIDC) ⚠️ NOT RECOMMENDED for production use authorization: enabled: false
+DNS name for accessing SAM (must be DNS-resolvable and point to LoadBalancer IP) dnsName: “0.0.0.0” # TODO: Replace with your actual DNS name">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Appendix">
+    <meta itemprop="name" content="SAM Values Template for Solace Agent Mesh :: API Management with Kong Konnect">
+    <meta itemprop="description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; ~/sam-vars.template « ‘EOF’
+Solace Agent Mesh (SAM) Custom Configuration Replace all placeholder values with your actual configuration SAM Core Configuration sam:
+Enable enterprise features (agent builder, etc.) enterprise: false
+Disable authorization for dev/quickstart (allows access without OIDC) ⚠️ NOT RECOMMENDED for production use authorization: enabled: false
+DNS name for accessing SAM (must be DNS-resolvable and point to LoadBalancer IP) dnsName: “0.0.0.0” # TODO: Replace with your actual DNS name">
+    <meta itemprop="wordCount" content="394">
+    <title>SAM Values Template for Solace Agent Mesh :: API Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1775663945" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775663945" defer></script>
+    <script src="/js/search-lunr.js?1775663945" defer></script>
+    <script src="/js/search.js?1775663945" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1775663945";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1775663945" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663945" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775663945" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775663945" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663945" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663945" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663945" rel="stylesheet">
+    <link href="/css/theme.css?1775663945" rel="stylesheet">
+    <link href="/css/format-html.css?1775663945" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/40-appendix\/agent-mesh-sam-values-template\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/40-appendix/agent-mesh-sam-values-template/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/40-appendix/index.html"><span itemprop="name">Appendix</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">SAM Values Template for Solace Agent Mesh</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/40-appendix/agent-mesh-ai-proxy/index.html" title="LLM Proxy for Solace Agent Mesh (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/40-appendix/agent-mesh-agent-values-template/index.html" title="Marketplace Agent Values Template for Solace Agent Mesh (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 40-appendix" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="sam-values-template-for-solace-agent-mesh">SAM Values Template for Solace Agent Mesh</h1>
+
+<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
+cat &gt; ~/sam-vars.template &laquo; &lsquo;EOF&rsquo;</p>
+<h1 id="solace-agent-mesh-sam-custom-configuration">Solace Agent Mesh (SAM) Custom Configuration</h1>
+<h1 id="replace-all-placeholder-values-with-your-actual-configuration">Replace all placeholder values with your actual configuration</h1>
+<h1 id="sam-core-configuration">SAM Core Configuration</h1>
+<p>sam:</p>
+<h1 id="enable-enterprise-features-agent-builder-etc">Enable enterprise features (agent builder, etc.)</h1>
+<p>enterprise: false</p>
+<h1 id="disable-authorization-for-devquickstart-allows-access-without-oidc">Disable authorization for dev/quickstart (allows access without OIDC)</h1>
+<h1 id="-not-recommended-for-production-use">⚠️ NOT RECOMMENDED for production use</h1>
+<p>authorization:
+enabled: false</p>
+<h1 id="dns-name-for-accessing-sam-must-be-dns-resolvable-and-point-to-loadbalancer-ip">DNS name for accessing SAM (must be DNS-resolvable and point to LoadBalancer IP)</h1>
+<p>dnsName: &ldquo;0.0.0.0&rdquo;  # TODO: Replace with your actual DNS name</p>
+<h1 id="secret-key-for-session-management-generate-a-secure-random-string">Secret key for session management (generate a secure random string)</h1>
+<p>sessionSecretKey: &ldquo;change-me-to-a-secure-random-string&rdquo;</p>
+<h1 id="solace-broker-configuration">Solace Broker Configuration</h1>
+<p>broker:
+url: &ldquo;${SOLACE_BROKER_URL}&rdquo; # e.g., wss://mr2zq0g0f1.messaging.solace.cloud:443
+clientUsername: &ldquo;solace-cloud-client&rdquo;
+password: &ldquo;${SOLACE_BROKER_PASSWORD}&rdquo;
+vpn: &ldquo;${SOLACE_BROKER_VPN}&rdquo;</p>
+<h1 id="llm-service-configuration-eg-openai">LLM Service Configuration (e.g., OpenAI)</h1>
+<p>llmService:
+planningModel: &ldquo;openai/${MODEL_NAME}&rdquo; # e.g., &ldquo;gpt-4o&rdquo;
+generalModel: &ldquo;openai/${MODEL_NAME}&rdquo; # e.g., &ldquo;gpt-4o&rdquo;
+reportModel: &ldquo;reportModel&rdquo; # e.g., &ldquo;gpt-4o&rdquo;
+imageModel: &ldquo;imageModel&rdquo; # e.g., &ldquo;dall-e-3&rdquo;
+transcriptionModel: &ldquo;transcriptionModel&rdquo; # e.g., &ldquo;whisper-1&rdquo;
+llmServiceEndpoint: &ldquo;http://${DATA_PLANE_LB}/bedrock-route&rdquo;
+llmServiceApiKey: &ldquo;nokey&rdquo;</p>
+<h1 id="kubernetes-service-configuration">Kubernetes Service Configuration</h1>
+<p>service:
+type: LoadBalancer  # Options: LoadBalancer, ClusterIP, NodePort
+annotations:
+# AWS NLB example
+service.beta.kubernetes.io/aws-load-balancer-type: &ldquo;nlb-ip&rdquo;
+service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+tls:
+enabled: false
+passphrase: &quot;&quot;  # Optional: Add if your TLS key is encrypted</p>
+<h1 id="heading">=============================================================================</h1>
+<h1 id="container-image-registry">CONTAINER IMAGE REGISTRY</h1>
+<h1 id="heading-1">=============================================================================</h1>
+<h1 id="use-solaces-private-gcr-registry-for-all-images-requires-imagepullsecret">Use Solace&rsquo;s private GCR registry for all images (requires imagePullSecret)</h1>
+<h1 id="comment-out-to-use-default-docker-hub-registry">Comment out to use default Docker Hub registry</h1>
+<p>global:</p>
+<h1 id="imageregistry-gcriogcp-maas-prod">imageRegistry: gcr.io/gcp-maas-prod</h1>
+<h1 id="heading-2">=============================================================================</h1>
+<h1 id="bundled-persistence-postgresql--seaweedfs">BUNDLED PERSISTENCE (PostgreSQL + SeaweedFS)</h1>
+<h1 id="heading-3">=============================================================================</h1>
+<h1 id="deploy-in-cluster-postgresql-and-seaweedfs-for-data-persistence">Deploy in-cluster PostgreSQL and SeaweedFS for data persistence</h1>
+<h1 id="for-production-consider-using-external-managed-services-instead">For production, consider using external managed services instead</h1>
+<h1 id="see">See: <a href="https://solaceproducts.github.io/solace-agent-mesh-helm-quickstart/docs/persistence" rel="external" target="_blank">https://solaceproducts.github.io/solace-agent-mesh-helm-quickstart/docs/persistence</a></h1>
+<p>persistence:
+enabled: true
+namespaceId: &ldquo;solace-agent-mesh-no-auth&rdquo;  # Must be unique per SAM installation</p>
+<h1 id="heading-4">=============================================================================</h1>
+<h1 id="persistence-layer-overrides-optional">PERSISTENCE LAYER OVERRIDES (Optional)</h1>
+<h1 id="heading-5">=============================================================================</h1>
+<h1 id="when-using-solaces-gcr-registry-specify-gcr-specific-image-tags">When using Solace&rsquo;s GCR registry, specify GCR-specific image tags</h1>
+<h1 id="when-using-docker-hub-these-overrides-are-not-needed">When using Docker Hub, these overrides are not needed</h1>
+<p>persistence-layer:
+postgresql:
+image:
+tag: &ldquo;18.0-trixie&rdquo;  # GCR tag (Docker Hub default: &ldquo;18.0&rdquo;)
+# persistence:
+#   storageClassName: &ldquo;gp2&rdquo;  # e.g., gp3 for AWS EBS
+#   size: &ldquo;5Gi&rdquo;  # Default: 10Gi
+# persistence:
+#   storageClassName: &ldquo;gp3&rdquo;  # Optional: Kubernetes storage class (e.g., gp3 for AWS EBS)
+seaweedfs:
+# image:
+#   tag: &ldquo;3.97-compliant&rdquo;  # GCR tag (Docker Hub default: &ldquo;3.97&rdquo;)
+# persistence:
+#   storageClassName: &ldquo;gp2&rdquo;
+#   size: &ldquo;5Gi&rdquo;  # Default: 20Gi
+# persistence:
+#   storageClassName: &ldquo;gp3&rdquo;  # Optional: Kubernetes storage class</p>
+<h1 id="sam-deployment-configuration">SAM Deployment Configuration</h1>
+<p>samDeployment:</p>
+<p>resources:
+sam:
+requests:
+cpu: 500m
+memory: 512Mi
+limits:
+cpu: 500m
+memory: 1024Mi
+agentDeployer:
+requests:
+cpu: 100m
+memory: 256Mi
+limits:
+cpu: 200m
+memory: 512Mi</p>
+<h1 id="main-sam-image">Main SAM Image</h1>
+<p>image:
+repository: solace/solace-agent-mesh
+tag: 1.15.37
+pullPolicy: Always</p>
+<h1 id="agent-deployer-image">Agent Deployer image</h1>
+<h1 id="this-container-is-responsible-for-deploying-and-managing-agents">This container is responsible for deploying and managing agents</h1>
+<p>agentDeployer:
+image:
+repository: gcr.io/gcp-maas-prod/sam-agent-deployer
+tag: 1.1.4
+pullPolicy: Always
+EOF
+:::</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu">
+            <li class="" data-nav-id="/40-appendix/transcript-snippet/index.html"><a class="padding" href="/40-appendix/transcript-snippet/index.html">Transcript Snippet</a></li>
+            <li class="" data-nav-id="/40-appendix/ingest-update/index.html"><a class="padding" href="/40-appendix/ingest-update/index.html">Ingest Update</a></li>
+            <li class="" data-nav-id="/40-appendix/marketplace-mock/index.html"><a class="padding" href="/40-appendix/marketplace-mock/index.html">Marketplace Mock</a></li>
+            <li class="" data-nav-id="/40-appendix/marketplace-mcp/index.html"><a class="padding" href="/40-appendix/marketplace-mcp/index.html">Marketplace MCP</a></li>
+            <li class="" data-nav-id="/40-appendix/marketplace-oauth/index.html"><a class="padding" href="/40-appendix/marketplace-oauth/index.html">Marketplace OAuth</a></li>
+            <li class="" data-nav-id="/40-appendix/marketplace-mcp-logging/index.html"><a class="padding" href="/40-appendix/marketplace-mcp-logging/index.html">Marketplace MCP Logging</a></li>
+            <li class="" data-nav-id="/40-appendix/agent-mesh-ai-proxy/index.html"><a class="padding" href="/40-appendix/agent-mesh-ai-proxy/index.html">LLM Proxy for Solace Agent Mesh</a></li>
+            <li class="active " data-nav-id="/40-appendix/agent-mesh-sam-values-template/index.html"><a class="padding" href="/40-appendix/agent-mesh-sam-values-template/index.html">SAM Values Template for Solace Agent Mesh</a></li>
+            <li class="" data-nav-id="/40-appendix/agent-mesh-agent-values-template/index.html"><a class="padding" href="/40-appendix/agent-mesh-agent-values-template/index.html">Marketplace Agent Values Template for Solace Agent Mesh</a></li></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1775663945" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663945" defer></script>
+    <script src="/js/theme.js?1775663945" defer></script>
+  </body>
+</html>

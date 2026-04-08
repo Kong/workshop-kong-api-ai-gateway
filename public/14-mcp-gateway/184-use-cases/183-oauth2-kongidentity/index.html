@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.
+On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.
+On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.">
+    <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html">
+    <meta property="og:site_name" content="API Management with Kong Konnect">
+    <meta property="og:title" content="Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect">
+    <meta property="og:description" content="MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.
+On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect">
+    <meta itemprop="description" content="MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.
+On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.">
+    <meta itemprop="wordCount" content="1751">
+    <title>Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect</title>
+    <link href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.xml" rel="alternate" type="application/rss+xml" title="Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect">
+    <link href="/css/auto-complete/auto-complete.min.css?1775663873" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775663873" defer></script>
+    <script src="/js/search-lunr.js?1775663873" defer></script>
+    <script src="/js/search.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1775663873";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775663873" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775663873" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775663873" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775663873" rel="stylesheet">
+    <link href="/css/theme.css?1775663873" rel="stylesheet">
+    <link href="/css/format-html.css?1775663873" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/14-mcp-gateway\/184-use-cases\/183-oauth2-kongidentity\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#mcp-authorization">MCP Authorization</a></li>
+        <li><a href="#oauth2-fundamentals">OAuth2 fundamentals</a></li>
+        <li><a href="#kong-aimcp-gateway-and-kong-identity-implementation">Kong AI/MCP Gateway and Kong Identity Implementation</a></li>
+        <li><a href="#oauth-and-openid-connect">OAuth and OpenId Connect</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/180-convert-gateway-services/3-agent-mcp/index.html" title="Test the MCP Tools and LLM with a Strands Agent (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html" title="Kong Identity (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 14-mcp-gateway" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="implement-the-oauth-2-specification-for-mcp-servers-with-kong-identity">Implement the OAuth 2 specification for MCP servers with Kong Identity</h1>
+
+<h3 id="mcp-authorization">MCP Authorization</h3>
+<p>As you might have noticed, until now, there&rsquo;s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement <a href="https://developer.konghq.com/plugins/?category=authentication" rel="external" target="_blank">Authentication</a> and <a href="https://developer.konghq.com/plugins/?category=security" rel="external" target="_blank">Security</a> processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.</p>
+<p>On the other hand, the MCP community has defined <a href="https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization" rel="external" target="_blank">Authorization specifications</a>, based on <a href="https://oauth.net/2" rel="external" target="_blank">OAuth 2</a> standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the <a href="https://developer.konghq.com/plugins/ai-mcp-oauth2" rel="external" target="_blank">AI MCP OAuth2 Plugin</a>.</p>
+<p>Kong offers <a href="https://developer.konghq.com/kong-identity/" rel="external" target="_blank">Kong Identity</a> which enables you to use Konnect to generate, authenticate, and authorize API access and MCP Tool consumption. In this module, we will configure the <strong>AI MCP OAuth2</strong> plugin to use Kong Identity as the external Identity Provider, which is responsible for issuing Access Tokens and validating them during the MCP Tool consuming time. The Access Token validation follows the <a href="https://oauth.net/2/token-introspection/" rel="external" target="_blank"><strong>OAuth2 Token Introspection</strong></a> specification which defines a protocol that returns information about an Access Token.</p>
+<h3 id="oauth2-fundamentals">OAuth2 fundamentals</h3>
+<h4 id="oauth2-actors">OAuth2 Actors</h4>
+<p>The <a href="https://datatracker.ietf.org/doc/html/rfc6749" rel="external" target="_blank"><strong>OAuth2 Authorization Framework</strong></a> defines the following Actors:</p>
+<ul>
+<li><strong>Client</strong>: Usually a program. The Client obtains an Access Token from the Authorization Server. In our implementation, this role is played by the <strong>MCP Consumer</strong>.</li>
+<li><strong>Resource Owner (RO)</strong>: The End-User participant. Usually a user but can also be a machine/service.</li>
+<li><strong>Authorization Server (AS)</strong>: Handles the End-User (RO) authentication, obtains consent and issues tokens with claims about the authentication event to the RP. In our implementation, this role is played by <strong>Kong Identity</strong>.</li>
+<li><strong>Resource Server (RS)</strong>: The server hosting protected resources accessible with Access Tokens (e.g. an API or a web page). RS is responsbible for validating the Access Token, enforcing scopes/permissions and returning protected data. This role is played by <strong>Kong Data Plane</strong>. The <strong>Kong Data Plane</strong> validates the token through the <strong>Token Introspection</strong> Flow.</li>
+</ul>
+<h4 id="authorization-grant">Authorization Grant</h4>
+<p>An <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-1.3" rel="external" target="_blank"><strong>Authorization Grant</strong></a> is a credential representing the RO&rsquo;s authorization (to access its protected resources) used by the client to obtain an Access Token. This specification defines four Grant Types:</p>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.1" rel="external" target="_blank"><strong>Authorization Code</strong></a>: Used in web and mobile apps involving a user. Client receives a code, then exchanges it for an Access Token.</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.2" rel="external" target="_blank"><strong>Implicit</strong></a>: Designed for browser-based apps, discouraged due to security concerns.</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.3" rel="external" target="_blank"><strong>Resource Owner Password Credentials</strong></a>: Largely deprecated in modern systems. Client collects user’s username/password and Access Token returned directly.</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4" rel="external" target="_blank"><strong>Client Credentials</strong></a>: Used for backend services and machine-to-machine communication.</li>
+</ul>
+<h4 id="the-client-credentials-grant">The Client Credentials Grant</h4>
+<p>The use case described later is going to use the <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4" rel="external" target="_blank"><strong>Client Credentials Grant</strong></a> which has a simple flow:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>     +--------+                               +---------------+
+     |        |--(A)----- Token Request -----&gt;| Authorization |
+     |        |                               |     Server    |
+     |        |&lt;-(B)----- Access Token -------|               |
+     |        |                               +---------------+
+     | Client |
+     |        |                               +---------------+
+     |        |--(C)----- Access Token ------&gt;|    Resource   |
+     |        |                               |     Server    |
+     |        |&lt;-(D)--- Protected Resource ---|               |
+     +--------+                               +---------------+</code></pre></div>
+<ul>
+<li><strong>(A)</strong>: The Client requests an Access Token by authenticating with the Authorization Server (AS) and presenting the &ldquo;Client Credentials Authorization Grant&rdquo;.</li>
+<li><strong>(B)</strong>: The AS authenticates the Client and validates the Authorization Grant, and if valid, issues an Access Token.</li>
+<li><strong>(C)</strong>: The Client requests the protected resource from the Resource Server (RS) and authenticates by presenting the Access Token.</li>
+<li><strong>(D)</strong>: Through the Introspection Flow, the RS validates the Access Token, and, if valid, serves the request.</li>
+</ul>
+<h4 id="oauth2-main-concepts">OAuth2 main concepts</h4>
+<ul>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-1.4" rel="external" target="_blank"><strong>Access Tokens</strong></a> are credentials used to access protected resources. An access token is a string representing an authorization issued to the client. It can be Opaque, JWT, Random String, etc.</p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7519" rel="external" target="_blank"><strong>JWT</strong></a> is a string representing a set of claims as a JSON object</p>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4" rel="external" target="_blank"><strong>Claim</strong></a> is a piece of information asserted about a subject. A claim is represented as a <strong>name/value</strong> pair consisting of a <strong>Claim Name</strong> and a <strong>Claim Value</strong>. Typical and standardized claims defined in JWT based Access Tokens are:</p>
+<ul>
+<li><code>iss</code>: it specifies the issuer of the access token</li>
+<li><code>sub</code>: it identifies the principal that is the subject of the JWT</li>
+<li><code>exp</code>: it identifies the expiration time</li>
+<li><code>iat</code>: the &ldquo;issued at&rdquo; claim identifies the time at which the token issued</li>
+<li><code>nbf</code>: the &ldquo;not before&rdquo; claim identifies the time before which the token must not be accepted</li>
+<li><code>jti</code>: the &ldquo;JWT ID&rdquo; claim provides a unique identifier for the JWT. That&rsquo;s useful to prevent collisions when managing multiple issuers.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3" rel="external" target="_blank"><strong>Audience</strong></a> is a claim which defines the recipients that the tokens are intended for. It identifies the API or resource server that should accept the token. This becomes the <code>‘aud’</code> claim in an Access Token. If a user authenticates to access <code>app1</code> but attempts to use that token to access <code>app2</code>, checking the <code>aud</code> claim will reject the request.</p>
+</li>
+<li>
+<p><a href="https://oauth.net/2/scope/" rel="external" target="_blank"><strong>Scope</strong></a> is a mechanism in OAuth 2 to limit an application&rsquo;s access to a user&rsquo;s account. The access token issued to the application will be limited to the scopes granted. It&rsquo;s not part of the JWT specification. Identity Providers, playing the Authorization Server role like Kong Identity, implement and add <strong>scopes</strong> to their JWT based Access Tokens using, for example:</p>
+</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+  &#34;iss&#34;: &#34;https://lpjwyco0nr07jrva.us.identity.konghq.com/auth&#34;,
+  &#34;aud&#34;: [
+    &#34;http://mcp_tools.dev&#34;
+  ],
+  &#34;sub&#34;: &#34;p4aih3vylfgl3d8a&#34;,
+  &#34;scope&#34;: &#34;orders:read orders:write&#34;,
+  &#34;exp&#34;: 1771350984,
+  &#34;iat&#34;: 1771350924
+}</code></pre></div>
+<h4 id="token-issuing-and-validation">Token Issuing and Validation</h4>
+<p>For the <strong>Client Credentials Grant</strong>, the Client sends an <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4.2" rel="external" target="_blank"><strong>Access Token Request</strong></a> to the <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.2" rel="external" target="_blank"><strong>Token Endpoint</strong></a> (<code>/token</code>), typically exposed by the <strong>Authorization Server</strong>. The request may have, optionally, the <strong>scope</strong> the Client is interested in. If the Client has all necessary permissions to request the <strong>scope</strong>, then the Access Token generated will have the <strong>scope</strong> required. Otherwise, the Client receives a specific error.</p>
+<p>When receiving the Access Token, the <strong>Resource Server</strong>, among several things, parse and evalutated the <strong>scope</strong> field in the Access Token to make sure the Access Token is valid and the request can be processed. For the Kong Identity implementation, we are going to use the <a href="https://oauth.net/2/token-introspection" rel="external" target="_blank"><strong>OAuth2 Token Introspection</strong></a> Flow, implemented by the <strong>AI MCP OAuth2</strong> plugin. To validate the Access Token, the <strong>AI MCP OAuth2</strong> plugin sends an <a href="https://datatracker.ietf.org/doc/html/rfc7662#section-2.1" rel="external" target="_blank"><strong>Introspection Request</strong></a> to the <a href="https://datatracker.ietf.org/doc/html/rfc7662#section-2" rel="external" target="_blank"><strong>Introspection Endpoint</strong></a> (<code>/introspect</code>).</p>
+<p>Obs.: As an alternative to <strong>Introspection</strong>, Access Tokens can be issued in a structured format that is understood by both the Authorization Server (<strong>Kong Identity</strong>) and the Resource Server (<strong>Kong Data Plane</strong>). The <a href="https://datatracker.ietf.org/doc/html/rfc9068" rel="external" target="_blank"><strong>JWT Profile for OAuth 2.0 Access Tokens</strong></a> standardizes the use of JSON Web Tokens (JWTs) as Access Tokens. With this approach, the Kong Data Plane (RS) can validate the Access Token locally, by verifying its signature and evaluating its claims, without making a network call to the <strong>Kong Identity</strong> (AS). You can use the <a href="https://developer.konghq.com/plugins/openid-connect/" rel="external" target="_blank"><strong>OpenID Connect</strong></a> plugin to implement this validation.</p>
+<h3 id="kong-aimcp-gateway-and-kong-identity-implementation">Kong AI/MCP Gateway and Kong Identity Implementation</h3>
+<p>This use case implementation has the following steps:</p>
+<ul>
+<li>Create a new <strong>Kong Identity Authorization Server</strong>.</li>
+<li>Apply the new <strong>decK</strong> declaration to use the <strong>AI MCP OAuth2</strong> plugin.</li>
+<li>Consume the LLM and Tools with the <strong>mcp.client.streamable_http</strong> Python package.</li>
+</ul>
+<p>The following diagram shows the relationship between the Kong AI Gateway and the Identity Provider (IdP) for the Introspection flow. It&rsquo;s based on the original <strong>Protocol Flow</strong>:</p>
+<p><a href="#R-image-b4bfd8dae5fef4e6001d430fae3f4363" class="lightbox-link"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b4bfd8dae5fef4e6001d430fae3f4363"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png"></a></p>
+<ol>
+<li>The MCP Consumer, implementing the Client Credentials Grant, presents its credentials (Client ID + Client Secret) to the IdP.</li>
+<li>The IdP authenticates the Consumer, issues an Access Token and returns it to the MCP Consumer.</li>
+<li>The MCP Consumer sends a request to the Gateway with the Access Token injected.</li>
+<li>The AI/MCP Gateway sends a request to the IdP&rsquo;s Introspection Endpoint to get the Access Token validated.</li>
+<li>If the Token is still valid the Gateway calls the Tool.</li>
+</ol>
+<p>It’s important to notice that one of the main benefits provided by an architecture like this is to follow the <strong>Separation of Concerns</strong> principle:</p>
+<ul>
+<li>Identity Provider: responsible for User and Application Authentication, Tokenization, MFA, multiples User Databases abstraction, etc.</li>
+<li>Gateway: responsible for exposing the Upstream Services, MCP Servers and GenAI models, controlling their consumption through an extensive list of policies besides Authentication including Rate Limiting, Caching, Log Processing, etc.</li>
+</ul>
+<h3 id="oauth-and-openid-connect">OAuth and <a href="https://openid.net" rel="external" target="_blank">OpenId Connect</a></h3>
+<p>We are going to use the <strong>AI MCP OAuth2</strong> plugin and the <strong>Client Credentials Grant</strong>, so no <strong>ID Tokens</strong> will be generated. However, as a clarificatiion, let&rsquo;s have a brief comparison between the two specs:</p>
+<p><strong>OAuth</strong> is fundamentatlly an Authorization Framework. The Access Token does not know your Identity, just that it has permissions.</p>
+<p>On the other hand, <a href="https://openid.net/specs/openid-connect-core-1_0-36.html" rel="external" target="_blank"><strong>OpenId Connect (OIDC)</strong></a> is another set of specification defining an Authentication layer on top of OAuth. In other words, OpenId Connect internally uses the same OAuth flows. Having said that, <strong>OpenId Connect</strong> and <strong>ID Token</strong> make sense for Grants where we have user involved, like the <strong>Authorization Code Grant</strong>. The <strong>Client Credentials Grant</strong>, used before, is fundamentally defined for machine-to-machine communitacation so no user identity is involved.</p>
+<p>In this sense, OpenId Connect, adds some new concepts:</p>
+<ul>
+<li><a href="https://openid.net/specs/openid-connect-core-1_0-36.html#IDToken" rel="external" target="_blank">ID Token</a>, based on JWT</li>
+<li>New endpoints like, for example:
+<ul>
+<li><a href="https://openid.net/specs/openid-connect-core-1_0-36.html#UserInfo" rel="external" target="_blank">&quot;/userinfo&quot;</a></li>
+<li><a href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig" rel="external" target="_blank">&quot;/.well-known/openid-configuration&quot;</a></li>
+</ul>
+</li>
+<li>New terminology:
+<ul>
+<li><strong>OpenID Connect Provider (OP)</strong>: It&rsquo;s the Identity Provider. That&rsquo;s the term for the &ldquo;Authorization Server&rdquo;. Kong Identity plays that role.</li>
+<li><strong>Replying Party (RP)</strong>: It&rsquo;s the OpenID Connect term for “client”. That&rsquo;s the application that trusts the <strong>OP</strong> and validades the ID Token. Kong Data Plane plays that role.</li>
+</ul>
+</li>
+<li>Specific <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#ScopeClaims" rel="external" target="_blank">&ldquo;scopes&rdquo; and &ldquo;claims&rdquo;</a> related to identities.</li>
+</ul>
+<h4 id="access-tokens-and-id-tokens">Access Tokens and ID Tokens</h4>
+<p>As an example, here a comparison between Access Tokens (defined by OAuth) and ID Token (defined by OpenId Connect)</p>
+<ul>
+<li><strong>Access Token</strong>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+  &#34;iss&#34;: &#34;https://lpjwyco0nr07jrva.us.identity.konghq.com/auth&#34;,
+  &#34;aud&#34;: [
+    &#34;http://mcp_tools.dev&#34;
+  ],
+  &#34;sub&#34;: &#34;p4aih3vylfgl3d8a&#34;,
+  &#34;scope&#34;: &#34;scope1&#34;,
+  &#34;exp&#34;: 1771350984,
+  &#34;iat&#34;: 1771350924
+}</code></pre></div>
+<ul>
+<li><strong>ID Token</strong>:</li>
+</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
+  &#34;iss&#34;: &#34;https://lpjwyco0nr07jrva.us.identity.konghq.com/auth&#34;,
+  &#34;aud&#34;: [
+    &#34;http://mcp_tools.dev&#34;
+  ],
+  &#34;sub&#34;: &#34;p4aih3vylfgl3d8a&#34;,
+  &#34;email&#34;: &#34;claudio.acquaviva@gmail.com&#34;,
+  &#34;email_verified&#34;: true,
+  &#34;name&#34;: &#34;Claudio Acquaviva&#34;,
+  &#34;nonce&#34;: &#34;n-0S6_WzA2Mj&#34;,
+  &#34;exp&#34;: 1771350984,
+  &#34;iat&#34;: 1771350924
+}</code></pre></div>
+<p>Taking the <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#CodeFlowAuth" rel="external" target="_blank"><strong>Authorization Code Grant</strong></a> as an example, the Client sends an <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#AuthRequest" rel="external" target="_blank"><strong>OpenId Connect Authentication Request</strong></a> to the <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#AuthorizationEndpoint" rel="external" target="_blank"><strong>OAuth Authorization Endpoint</strong></a> (<code>/authorize</code>), with the <strong>scope</strong> parameter as <code>openid</code>, and gets an <strong>Authorization Code</strong>. The Client then sends a request with the <strong>Authorization Code</strong> to the <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#TokenEndpoint" rel="external" target="_blank"><strong>Token Endpoint</strong></a> to get the Access Token, an ID Token, this time.</p>
+<h4 id="scope-and-claims">Scope and Claims</h4>
+<p>Also, differently to what happens to the OAuth <strong>scopes</strong> and <strong>claims</strong>, the <a href="https://openid.net/specs/openid-connect-core-1_0-36.html#ScopeClaims" rel="external" target="_blank">OpenId Connect Claims and Scopes</a> are related and play a distinct role. For example:</p>
+<ul>
+<li>The <strong>scope</strong> <code>profile</code> are related to the <strong>claims</strong> like <code>name</code> and <code>birthdate</code> claims.</li>
+<li>The <strong>scope</strong> <code>email</code> which requests access to the <code>email</code> and <code>email_verified</code> claims.</li>
+</ul>
+<p>So, as you can see, in <strong>OpenId Connect</strong>, the ID Token does not have a <strong>scope</strong> defined. In fact, when a Client sends the <strong>OpenId Connect Authentication Request</strong>, it includes the <strong>scope</strong> it is interested in. At the end of the flow, the ID Token will have the <strong>claims</strong> related to the <strong>scope</strong> required.</p>
+<p>You can now click <strong>Next</strong> to proceed further.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu">
+            <li class="" data-nav-id="/14-mcp-gateway/181-strands-mcp/index.html"><a class="padding" href="/14-mcp-gateway/181-strands-mcp/index.html">Strands Agent and MCP</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/182-introduction/index.html"><a class="padding" href="/14-mcp-gateway/182-introduction/index.html">MCP Introduction</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/183-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/183-mcp-gateway/index.html">Kong MCP Gateway and Plugins</a></li>
+            <li class="parent alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/index.html">Use Cases</a><ul id="R-subsections-a964ef3d890ecbc315e7f04ebff0d291" class="collapsible-menu">
+            <li class="alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/180-convert-gateway-services/index.html">Convert Kong Gateway Services into MCP Tools</a><ul id="R-subsections-d8fbd2d4a08990c8bc79ef2f96b5e3f6" class="collapsible-menu"></ul></li>
+            <li class="active parent alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html">Implement the OAuth 2 specification for MCP servers with Kong Identity</a><ul id="R-subsections-842aac9bdf7afee40866586fd2a507ec" class="collapsible-menu">
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html">Kong Identity</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">AI MCP OAuth2 plugin configuration</a></li>
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html">Test the MCP Tools</a></li></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html">Securing existing MCP Servers</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1775663873" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775663873" defer></script>
+    <script src="/js/theme.js?1775663873" defer></script>
+  </body>
+</html>

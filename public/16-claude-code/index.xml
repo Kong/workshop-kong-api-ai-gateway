@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/16-claude-code/index.html</link>
+    <description>In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.&#xA;The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.&#xA;The tutorial goes through the following steps:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/16-claude-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure Kong AI Gateway</title>
+      <link>http://localhost:1313/16-claude-code/191-configure-kong-ai-gateway/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-claude-code/191-configure-kong-ai-gateway/index.html</guid>
+      <description>Configure Kong AI Gateway with Bedrock’s Anthropic Claude Sonnet 4 model, Mocking Services and MCP Tools Make sure you Kong AI Gateway with the right configuration including Anthropic Model, Mocking Services and MCP Tools. This decK declaration is quite similar to the one you used before. The only difference is that the new one has the AI logging configuration set.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-control-plane-name kong-aws –konnect-token $PAT marketplace_mcp_logging.yaml :::</description>
+    </item>
+    <item>
+      <title>Configure Claude Code</title>
+      <link>http://localhost:1313/16-claude-code/192-configure-claudecode/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-claude-code/192-configure-claudecode/index.html</guid>
+      <description>Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. The configuration tell Claude Code to use Bedrock and Claude Opus 4.6.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} mkdir claudecode-aws cd claudecode-aws&#xA;cat &gt; .env.claude « ‘EOF’ export AWS_REGION=us-west-2 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF :::&#xA;You can get this settings with: :::code{showCopyAction=true showLineNumbers=false language=shell} . ./.env.claude :::&#xA;Test Claude Code: :::code{showCopyAction=true showLineNumbers=false language=shell} claude –version :::</description>
+    </item>
+    <item>
+      <title>Create the Strands Agent</title>
+      <link>http://localhost:1313/16-claude-code/193-create-agent/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-claude-code/193-create-agent/index.html</guid>
+      <description>Instruct Claude Code Now we are going to ask Claude Code to create the Strands Agent consuming Kong AI Gateway, Claude Opus 4.6 LLM and the MCP Server.&#xA;Copy the following instructions and paste them to the Claude Code prompt.&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named “proxy1” deployed in the “kong” namespace. . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands’ OpenAI Model Provider. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. :::</description>
+    </item>
+    <item>
+      <title>Run the Strands Agent</title>
+      <link>http://localhost:1313/16-claude-code/194-run-agent/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/16-claude-code/194-run-agent/index.html</guid>
+      <description>Set your Python environment Now, you need to set your local Python environment to tell it you have a new application:&#xA;:::code{showCopyAction=true showLineNumbers=false language=shell} . ./.venv/bin/activate :::&#xA;Run the Agent :::code{showCopyAction=true showLineNumbers=false language=shell} python3 strands_kong_agent.py :::&#xA;You should see the Agent response and a prompt:&#xA;============================================================ Strands Agent → Kong AI Gateway → Amazon Bedrock MCP tools served via Kong AI Gateway ============================================================ Type your message (or &#34;quit&#34; to exit): You: Type the same question you did before:</description>
+    </item>
+  </channel>
+</rss>

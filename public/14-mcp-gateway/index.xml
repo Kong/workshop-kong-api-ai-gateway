@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong MCP Gateway :: API Management with Kong Konnect</title>
+    <link>http://localhost:1313/14-mcp-gateway/index.html</link>
+    <description>In this third part of the workshop we are going to explore the MCP capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/14-mcp-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Strands Agent and MCP</title>
+      <link>http://localhost:1313/14-mcp-gateway/181-strands-mcp/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/181-strands-mcp/index.html</guid>
+      <description>Strands Agent One nice approach to understand a new techonology component is to outline the problem it addresses. In order to see it, let’s create a basic AI Agent written in Strands.&#xA;Strands Agents, the Python-based framework for building agents, was introduced by AWS in May, 2025. Strands makes the integration with tools, GenAI models and services straightforward by providing a consistent way for agents to interact with external systems. It simplifies how developers orchestrate tools, gather context, and orchestrate reasoning, turning complex multi-service workflows into maintainable, event-driven agent logic.</description>
+    </item>
+    <item>
+      <title>MCP Introduction</title>
+      <link>http://localhost:1313/14-mcp-gateway/182-introduction/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/182-introduction/index.html</guid>
+      <description>We’ve seen a lot of momentum around the Model Context Protocol (MCP), the new standard proposed by Anthropic in November 2024.&#xA;As described in its official portal, MCP follows a client-server architecture where an AI application (tool or AI Agent) connects to MCP Servers. The MCP specification defines three participants as illustrated above in the diagram taken from the MCP portal:&#xA;MCP Host: The AI application (tool, application, agent) that coordinates and manages one or multiple MCP clients MCP Client: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use MCP Server: A program that provides context to MCP clients</description>
+    </item>
+    <item>
+      <title>Kong MCP Gateway and Plugins</title>
+      <link>http://localhost:1313/14-mcp-gateway/183-mcp-gateway/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/183-mcp-gateway/index.html</guid>
+      <description>Kong MCP Gateway With Kong MCP Gateway we expose and secure all MCP Servers in a single place. Also, the MCP Gateway controls the consumption of the MCP Servers with OAuth 2.1, as described in the MCP documentation portal.&#xA;Kong MCP Plugins In this part we will explore the two new plugins introduced by Kong AI Gateway:&#xA;AI MCP Proxy plugin: it works as a protocol bridge, translating between MCP and HTTP so that MCP-compatible clients can either call existing APIs or interact with upstream MCP servers through Kong AI MCP OAuth2 plugin: implements the OAuth 2.0 specification for MCP servers Further Reading What is a MCP Gateway? Kong AI/MCP Gateway and Kong MCP Server Technical Breakdown AI Agent with Strands SDK, Kong AI/MCP Gateway &amp; Amazon Bedrock You can now click Next to proceed further.</description>
+    </item>
+    <item>
+      <title>Use Cases</title>
+      <link>http://localhost:1313/14-mcp-gateway/184-use-cases/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/14-mcp-gateway/184-use-cases/index.html</guid>
+      <description>In this chapter we are going to explore the following common use cases we typically implement by the MCP Gateway.&#xA;Converting Kong Gateway Services into MCP Servers Consuming and protecting existing MCP Servers through Kong MCP Gateway These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.&#xA;You can now click Next to begin the module.</description>
+    </item>
+  </channel>
+</rss>
