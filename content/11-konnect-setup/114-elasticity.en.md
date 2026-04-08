@@ -18,7 +18,7 @@ kubectl get service -n kong
 ```
 NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
 dataplane-admin-dataplane1-wjk92   ClusterIP      None            <none>        8444/TCP                     4d21h
-proxy1                             LoadBalancer   10.110.77.48    127.0.0.1     80:32462/TCP,443:31666/TCP   4d21h
+proxy-kong-workshop                LoadBalancer   10.110.77.48    127.0.0.1     80:32462/TCP,443:31666/TCP   4d21h
 ```
 
 Notice, at this point in the workshop, there is only one pod taking data plane traffic.
@@ -30,8 +30,8 @@ kubectl get pod -n kong -o wide
 **Sample Output**
 
 ```
-NAME                                          READY   STATUS    RESTARTS      AGE     IP            NODE       NOMINATED NODE   READINESS GATES
-dataplane-dataplane1-2pvw2-67fbd76d98-jxhfd   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   <none>           <none>
+NAME                                                READY   STATUS    RESTARTS      AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-kx9gr   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   <none>           <none>
 ```
 
 ### Manual Scaling Out
@@ -43,24 +43,24 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 3
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF
 {{</highlight>}}
@@ -74,43 +74,43 @@ kubectl get pod -n kong -o wide
 **Sample Output**
 
 ```
-NAME                                          READY   STATUS    RESTARTS   AGE     IP              NODE                                          NOMINATED NODE   READINESS GATES
-dataplane-dataplane1-ch6g9-6889fdf76b-5gjh9   1/1     Running   0          20h     192.168.61.40   ip-192-168-44-68.us-east-2.compute.internal   <none>           <none>
-dataplane-dataplane1-ch6g9-6889fdf76b-9gt4s   1/1     Running   0          6m15s   192.168.52.45   ip-192-168-44-68.us-east-2.compute.internal   <none>           <none>
-dataplane-dataplane1-ch6g9-6889fdf76b-mrjdx   1/1     Running   0          6m15s   192.168.36.12   ip-192-168-44-68.us-east-2.compute.internal   <none>           <none>
+NAME                                                READY   STATUS    RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-kx9gr   1/1     Running   0          2m50s   10.244.0.8    minikube   <none>           <none>
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-mbmvv   1/1     Running   0          35s     10.244.0.11   minikube   <none>           <none>
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-ngks2   1/1     Running   0          35s     10.244.0.9    minikube   <none>           <none>
 ```
 
 As we can see, the 2 new Pods have been created and are up and running. If we check our Kubernetes Service again, we will see it has been updated with the new IP addresses. That allows the Service to implement Load Balancing across the Pod replicas.
 
 {{<highlight>}}
-kubectl describe service proxy1 -n kong
+kubectl describe service proxy-kong-workshop -n kong
 {{</highlight>}}
 
 **Sample Output**
 
 ```
-Name:                     proxy1
+Name:                     proxy-kong-workshop
 Namespace:                kong
-Labels:                   app=dataplane1
+Labels:                   app=kong-workshop-dp
                           gateway-operator.konghq.com/dataplane-service-state=live
                           gateway-operator.konghq.com/dataplane-service-type=ingress
                           gateway-operator.konghq.com/managed-by=dataplane
 Annotations:              <none>
-Selector:                 app=dataplane1,gateway-operator.konghq.com/selector=8525cad1-ca9c-42c5-9c19-a053a25ff580
+Selector:                 app=kong-workshop-dp,gateway-operator.konghq.com/selector=381aa153-c89d-4306-99a3-f8e87926322c
 Type:                     LoadBalancer
 IP Family Policy:         SingleStack
 IP Families:              IPv4
-IP:                       10.110.155.140
-IPs:                      10.110.155.140
+IP:                       10.110.242.209
+IPs:                      10.110.242.209
 LoadBalancer Ingress:     127.0.0.1 (VIP)
 Port:                     http  80/TCP
 TargetPort:               8000/TCP
-NodePort:                 http  30164/TCP
-Endpoints:                10.244.0.89:8000,10.244.0.91:8000,10.244.0.90:8000
+NodePort:                 http  32269/TCP
+Endpoints:                10.244.0.8:8000,10.244.0.9:8000,10.244.0.11:8000
 Port:                     https  443/TCP
 TargetPort:               8443/TCP
-NodePort:                 https  32512/TCP
-Endpoints:                10.244.0.89:8443,10.244.0.91:8443,10.244.0.90:8443
+NodePort:                 https  30668/TCP
+Endpoints:                10.244.0.8:8443,10.244.0.9:8443,10.244.0.11:8443
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Internal Traffic Policy:  Cluster
@@ -124,24 +124,24 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 1
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF
 {{</highlight>}}
@@ -183,19 +183,19 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
          resources:
            requests:
              memory: "300Mi"
@@ -214,6 +214,11 @@ spec:
            target:
              type: Utilization
              averageUtilization: 20
+ network:
+   services:
+     ingress:
+       name: proxy-kong-workshop
+       type: LoadBalancer
 EOF
 {{</highlight>}}
 
@@ -230,8 +235,8 @@ kubectl get pod -n kong
 **Sample Output**
 
 ```
-NAME                                          READY   STATUS    RESTARTS   AGE
-dataplane-dataplane1-ch6g9-5fb9c6484b-kklw5   1/1     Running   0          73s
+NAME.                                               READY   STATUS    RESTARTS   AGE
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj   1/1     Running   0          8s
 ```
 
 You can check the HPA status with:
@@ -257,7 +262,7 @@ spec:
   containers:
   - name: fortio
     image: fortio/fortio
-    args: ["load", "-c", "100", "-qps", "500", "-t", "20m", "-allow-initial-errors", "http://proxy1.kong.svc.cluster.local:80/route1/get"]
+    args: ["load", "-c", "100", "-qps", "500", "-t", "20m", "-allow-initial-errors", "http://proxy-kong-workshop.kong.svc.cluster.local:80/route1/get"]
 EOF
 {{</highlight>}}
 
@@ -268,12 +273,12 @@ Eventually, HPA will start a new replica:
 
 ```
 % kubectl get hpa -n kong
-NAME         REFERENCE                               TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-dataplane1   Deployment/dataplane-dataplane1-ch6g9   cpu: 2%/75%   1         20        2          14m
+NAME               REFERENCE                                     TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-9hfk9   cpu: 24%/20%   1         20        1          3m50s
 
 % kubectl get pod -n kong -o json | jq -r '.items[].metadata.name'
-dataplane-dataplane1-ch6g9-8c6c9cfcd-qbqp5
-dataplane-dataplane1-ch6g9-8c6c9cfcd-rxcwm
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-wchn8
 ```
 
 If you delete the Fortio pod, HPA should terminate one pod and get back to 1 replica only.
@@ -291,24 +296,24 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 1
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF
 {{</highlight>}}

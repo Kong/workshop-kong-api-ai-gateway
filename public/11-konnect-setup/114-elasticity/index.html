@@ -3,13 +3,13 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.150.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="One of the most important capabilities provided by Kubernetes is to easily scale out a Deployment. With a single command we can create or terminate pod replicas in order to optimally support a given throughput.
 This capability is especially interesting for Kubernetes applications like Kong for Kubernetes Ingress Controller.
 Here’s our deployment before scaling it out:
 kubectl get service -n kong Sample Output
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy1 LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy-kong-workshop LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Data Plane Elasticity :: API Management with Kong Konnect">
@@ -17,7 +17,7 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 Cl
 This capability is especially interesting for Kubernetes applications like Kong for Kubernetes Ingress Controller.
 Here’s our deployment before scaling it out:
 kubectl get service -n kong Sample Output
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy1 LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy-kong-workshop LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
     <meta property="og:url" content="http://localhost:1313/11-konnect-setup/114-elasticity/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Data Plane Elasticity :: API Management with Kong Konnect">
@@ -25,7 +25,7 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 Cl
 This capability is especially interesting for Kubernetes applications like Kong for Kubernetes Ingress Controller.
 Here’s our deployment before scaling it out:
 kubectl get service -n kong Sample Output
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy1 LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy-kong-workshop LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Konnect Setup">
@@ -34,29 +34,29 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 Cl
 This capability is especially interesting for Kubernetes applications like Kong for Kubernetes Ingress Controller.
 Here’s our deployment before scaling it out:
 kubectl get service -n kong Sample Output
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy1 LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
-    <meta itemprop="wordCount" content="1006">
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 ClusterIP None &lt;none&gt; 8444/TCP 4d21h proxy-kong-workshop LoadBalancer 10.110.77.48 127.0.0.1 80:32462/TCP,443:31666/TCP 4d21h Notice, at this point in the workshop, there is only one pod taking data plane traffic.">
+    <meta itemprop="wordCount" content="1013">
     <title>Data Plane Elasticity :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1758906348" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1758906348" defer></script>
-    <script src="/js/search-lunr.js?1758906348" defer></script>
-    <script src="/js/search.js?1758906348" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775654881" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775654881" defer></script>
+    <script src="/js/search-lunr.js?1775654881" defer></script>
+    <script src="/js/search.js?1775654881" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1758906348";
+      window.relearn.index_js_url="/searchindex.en.js?1775654881";
     </script>
-    <script src="/js/lunr/lunr.min.js?1758906348" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1758906348" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1758906348" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1758906348" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775654881" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775654881" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775654881" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775654881" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758906348" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1758906348" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1758906348" rel="stylesheet">
-    <link href="/css/theme.css?1758906348" rel="stylesheet">
-    <link href="/css/format-html.css?1758906348" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775654881" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775654881" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775654881" rel="stylesheet">
+    <link href="/css/theme.css?1775654881" rel="stylesheet">
+    <link href="/css/format-html.css?1775654881" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -172,37 +172,37 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE dataplane-admin-dataplane1-wjk92 Cl
 <p><strong>Sample Output</strong></p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
 dataplane-admin-dataplane1-wjk92   ClusterIP      None            &lt;none&gt;        8444/TCP                     4d21h
-proxy1                             LoadBalancer   10.110.77.48    127.0.0.1     80:32462/TCP,443:31666/TCP   4d21h</code></pre></div>
+proxy-kong-workshop                LoadBalancer   10.110.77.48    127.0.0.1     80:32462/TCP,443:31666/TCP   4d21h</code></pre></div>
 <p>Notice, at this point in the workshop, there is only one pod taking data plane traffic.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl get pod -n kong -o wide</code></pre></div>
 
 <p><strong>Sample Output</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                                          READY   STATUS    RESTARTS      AGE     IP            NODE       NOMINATED NODE   READINESS GATES
-dataplane-dataplane1-2pvw2-67fbd76d98-jxhfd   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   &lt;none&gt;           &lt;none&gt;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                                                READY   STATUS    RESTARTS      AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-kx9gr   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   &lt;none&gt;           &lt;none&gt;</code></pre></div>
 <h3 id="manual-scaling-out">Manual Scaling Out</h3>
 <p>Now, let&rsquo;s scale the deployment out creating 3 replicas of the pod</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &lt;&lt;EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 3
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF</code></pre></div>
 
@@ -210,36 +210,36 @@ EOF</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl get pod -n kong -o wide</code></pre></div>
 
 <p><strong>Sample Output</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                                          READY   STATUS    RESTARTS   AGE     IP              NODE                                          NOMINATED NODE   READINESS GATES
-dataplane-dataplane1-ch6g9-6889fdf76b-5gjh9   1/1     Running   0          20h     192.168.61.40   ip-192-168-44-68.us-east-2.compute.internal   &lt;none&gt;           &lt;none&gt;
-dataplane-dataplane1-ch6g9-6889fdf76b-9gt4s   1/1     Running   0          6m15s   192.168.52.45   ip-192-168-44-68.us-east-2.compute.internal   &lt;none&gt;           &lt;none&gt;
-dataplane-dataplane1-ch6g9-6889fdf76b-mrjdx   1/1     Running   0          6m15s   192.168.36.12   ip-192-168-44-68.us-east-2.compute.internal   &lt;none&gt;           &lt;none&gt;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                                                READY   STATUS    RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-kx9gr   1/1     Running   0          2m50s   10.244.0.8    minikube   &lt;none&gt;           &lt;none&gt;
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-mbmvv   1/1     Running   0          35s     10.244.0.11   minikube   &lt;none&gt;           &lt;none&gt;
+dataplane-kong-workshop-dp-9hfk9-5f477c5696-ngks2   1/1     Running   0          35s     10.244.0.9    minikube   &lt;none&gt;           &lt;none&gt;</code></pre></div>
 <p>As we can see, the 2 new Pods have been created and are up and running. If we check our Kubernetes Service again, we will see it has been updated with the new IP addresses. That allows the Service to implement Load Balancing across the Pod replicas.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl describe service proxy1 -n kong</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl describe service proxy-kong-workshop -n kong</code></pre></div>
 
 <p><strong>Sample Output</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Name:                     proxy1
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Name:                     proxy-kong-workshop
 Namespace:                kong
-Labels:                   app=dataplane1
+Labels:                   app=kong-workshop-dp
                           gateway-operator.konghq.com/dataplane-service-state=live
                           gateway-operator.konghq.com/dataplane-service-type=ingress
                           gateway-operator.konghq.com/managed-by=dataplane
 Annotations:              &lt;none&gt;
-Selector:                 app=dataplane1,gateway-operator.konghq.com/selector=8525cad1-ca9c-42c5-9c19-a053a25ff580
+Selector:                 app=kong-workshop-dp,gateway-operator.konghq.com/selector=381aa153-c89d-4306-99a3-f8e87926322c
 Type:                     LoadBalancer
 IP Family Policy:         SingleStack
 IP Families:              IPv4
-IP:                       10.110.155.140
-IPs:                      10.110.155.140
+IP:                       10.110.242.209
+IPs:                      10.110.242.209
 LoadBalancer Ingress:     127.0.0.1 (VIP)
 Port:                     http  80/TCP
 TargetPort:               8000/TCP
-NodePort:                 http  30164/TCP
-Endpoints:                10.244.0.89:8000,10.244.0.91:8000,10.244.0.90:8000
+NodePort:                 http  32269/TCP
+Endpoints:                10.244.0.8:8000,10.244.0.9:8000,10.244.0.11:8000
 Port:                     https  443/TCP
 TargetPort:               8443/TCP
-NodePort:                 https  32512/TCP
-Endpoints:                10.244.0.89:8443,10.244.0.91:8443,10.244.0.90:8443
+NodePort:                 https  30668/TCP
+Endpoints:                10.244.0.8:8443,10.244.0.9:8443,10.244.0.11:8443
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Internal Traffic Policy:  Cluster
@@ -249,24 +249,24 @@ Events:                   &lt;none&gt;</code></pre></div>
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 1
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF</code></pre></div>
 
@@ -289,19 +289,19 @@ EOF</code></pre></div>
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
          resources:
            requests:
              memory: &#34;300Mi&#34;
@@ -320,6 +320,11 @@ spec:
            target:
              type: Utilization
              averageUtilization: 20
+ network:
+   services:
+     ingress:
+       name: proxy-kong-workshop
+       type: LoadBalancer
 EOF</code></pre></div>
 
 <h4 id="checking-hpa">Checking HPA</h4>
@@ -327,8 +332,8 @@ EOF</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl get pod -n kong</code></pre></div>
 
 <p><strong>Sample Output</strong></p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                                          READY   STATUS    RESTARTS   AGE
-dataplane-dataplane1-ch6g9-5fb9c6484b-kklw5   1/1     Running   0          73s</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME.                                               READY   STATUS    RESTARTS   AGE
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj   1/1     Running   0          8s</code></pre></div>
 <p>You can check the HPA status with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl get hpa -n kong</code></pre></div>
 
@@ -345,18 +350,18 @@ spec:
   containers:
   - name: fortio
     image: fortio/fortio
-    args: [&#34;load&#34;, &#34;-c&#34;, &#34;100&#34;, &#34;-qps&#34;, &#34;500&#34;, &#34;-t&#34;, &#34;20m&#34;, &#34;-allow-initial-errors&#34;, &#34;http://proxy1.kong.svc.cluster.local:80/route1/get&#34;]
+    args: [&#34;load&#34;, &#34;-c&#34;, &#34;100&#34;, &#34;-qps&#34;, &#34;500&#34;, &#34;-t&#34;, &#34;20m&#34;, &#34;-allow-initial-errors&#34;, &#34;http://proxy-kong-workshop.kong.svc.cluster.local:80/route1/get&#34;]
 EOF</code></pre></div>
 
 <p><strong>Sample Output</strong></p>
 <p>Eventually, HPA will start a new replica:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get hpa -n kong
-NAME         REFERENCE                               TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-dataplane1   Deployment/dataplane-dataplane1-ch6g9   cpu: 2%/75%   1         20        2          14m
+NAME               REFERENCE                                     TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+kong-workshop-dp   Deployment/dataplane-kong-workshop-dp-9hfk9   cpu: 24%/20%   1         20        1          3m50s
 
 % kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata.name&#39;
-dataplane-dataplane1-ch6g9-8c6c9cfcd-qbqp5
-dataplane-dataplane1-ch6g9-8c6c9cfcd-rxcwm</code></pre></div>
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-9h6mj
+dataplane-kong-workshop-dp-9hfk9-84b465f8bc-wchn8</code></pre></div>
 <p>If you delete the Fortio pod, HPA should terminate one pod and get back to 1 replica only.
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete pod fortio</code></pre></div>
 </p>
@@ -366,24 +371,24 @@ dataplane-dataplane1-ch6g9-8c6c9cfcd-rxcwm</code></pre></div>
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
- name: dataplane1
+ name: kong-workshop-dp
  namespace: kong
 spec:
  extensions:
  - kind: KonnectExtension
-   name: konnect-config1
+   name: konnect-config-workshop
    group: konnect.konghq.com
  deployment:
    podTemplateSpec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.11
+         image: kong/kong-gateway:3.14
    replicas: 1
  network:
    services:
      ingress:
-       name: proxy1
+       name: proxy-kong-workshop
        type: LoadBalancer
 EOF</code></pre></div>
 
@@ -438,7 +443,7 @@ EOF</code></pre></div>
             <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="parent " data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu">
-            <li class="" data-nav-id="/11-konnect-setup/111-kgo-installation/index.html"><a class="padding" href="/11-konnect-setup/111-kgo-installation/index.html">Kong Gateway Operator</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/111-ko-installation/index.html"><a class="padding" href="/11-konnect-setup/111-ko-installation/index.html">Kong Operator</a></li>
             <li class="" data-nav-id="/11-konnect-setup/112-personal-access-token/index.html"><a class="padding" href="/11-konnect-setup/112-personal-access-token/index.html">PAT - Personal Access Token</a></li>
             <li class="" data-nav-id="/11-konnect-setup/113-cp-dp/index.html"><a class="padding" href="/11-konnect-setup/113-cp-dp/index.html">Control Plane and Data Plane</a></li>
             <li class="active " data-nav-id="/11-konnect-setup/114-elasticity/index.html"><a class="padding" href="/11-konnect-setup/114-elasticity/index.html">Data Plane Elasticity</a></li></ul></li>
@@ -464,8 +469,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1758906348" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1758906348" defer></script>
-    <script src="/js/theme.js?1758906348" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775654881" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775654881" defer></script>
+    <script src="/js/theme.js?1775654881" defer></script>
   </body>
 </html>

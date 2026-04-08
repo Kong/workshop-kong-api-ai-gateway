@@ -18,7 +18,7 @@ helm install redis-stack redis-stack/redis-stack -n redis --create-namespace
 Check the installation:
 ```
 $ kubectl exec $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-server --version
-Redis server v=7.4.5 sha=00000000:0 malloc=libc bits=64 build=d2e5921793838dd
+Redis server v=7.4.7 sha=00000000:0 malloc=libc bits=64 build=35af8276b891a7b7
 ```
 
 If you want to uninstall it:
@@ -51,7 +51,7 @@ helm install ollama ollama-helm/ollama \
 Check the version and models
 ```
 $ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version
-ollama version is 0.12.2
+ollama version is 0.19.0
 
 
 $ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama list

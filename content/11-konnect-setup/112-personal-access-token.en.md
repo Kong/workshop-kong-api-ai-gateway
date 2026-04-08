@@ -3,7 +3,7 @@ title : "PAT - Personal Access Token"
 weight : 112
 ---
 
-KGO requires a [Konnect Personal Access Token (PAT)](https://docs.konghq.com/konnect/org-management/access-tokens/) for creating the Control Plane. To generate your PAT,  click on your initials in the upper right corner of the Konnect home page, then select **Personal Access Tokens**. Click on **+ Generate Token**, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.
+Kong Operator requires a [Konnect Personal Access Token (PAT)](https://developer.konghq.com/konnect-api/#personal-access-tokens) for creating the Control Plane. To generate your PAT,  click on your initials in the upper right corner of the Konnect home page, then select **Personal Access Tokens**. Click on **+ Generate Token**, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.
 
 ![pat](/static/images/pat.png)
 

@@ -11,7 +11,7 @@ This chapter will walk you through
 
 Here's a Reference Architecture that will be implemented in this workshop:
 
-![kong](/static/images/ref_arch.png)
+![kong](/static/images/ref_arch_new.png)
 
 * Kong Konnect Control Plane: responsible for managing your APIs
 * Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers.
