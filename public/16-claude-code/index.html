@@ -10,45 +10,45 @@ The tutorial leverages the new Claude Opus 4.6, the best coding model provided b
 The tutorial goes through the following steps:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="Kong AI/MCP Gateway, Claude Code and Anthropic :: API Management with Kong Konnect">
     <meta name="twitter:description" content="In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.
 The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.
 The tutorial goes through the following steps:">
     <meta property="og:url" content="http://localhost:1313/16-claude-code/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect">
+    <meta property="og:title" content="Kong AI/MCP Gateway, Claude Code and Anthropic :: API Management with Kong Konnect">
     <meta property="og:description" content="In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.
 The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.
 The tutorial goes through the following steps:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Kong AI/MCP Gateway, Claude Code and Anthropic :: API Management with Kong Konnect">
     <meta itemprop="description" content="In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.
 The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.
 The tutorial goes through the following steps:">
-    <meta itemprop="wordCount" content="168">
-    <title>Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect</title>
-    <link href="/16-claude-code/index.xml" rel="alternate" type="application/rss+xml" title="Kong AI/MCP Gateway, Claude Code and Amazon Bedrock :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1775665677" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775665677" defer></script>
-    <script src="/js/search-lunr.js?1775665677" defer></script>
-    <script src="/js/search.js?1775665677" defer></script>
+    <meta itemprop="wordCount" content="167">
+    <title>Kong AI/MCP Gateway, Claude Code and Anthropic :: API Management with Kong Konnect</title>
+    <link href="/16-claude-code/index.xml" rel="alternate" type="application/rss+xml" title="Kong AI/MCP Gateway, Claude Code and Anthropic :: API Management with Kong Konnect">
+    <link href="/css/auto-complete/auto-complete.min.css?1775671880" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775671880" defer></script>
+    <script src="/js/search-lunr.js?1775671880" defer></script>
+    <script src="/js/search.js?1775671880" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775665677";
+      window.relearn.index_js_url="/searchindex.en.js?1775671880";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775665677" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775665677" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775665677" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775665677" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775671880" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775671880" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775671880" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775671880" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775665677" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775665677" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775665677" rel="stylesheet">
-    <link href="/css/theme.css?1775665677" rel="stylesheet">
-    <link href="/css/format-html.css?1775665677" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775671880" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775671880" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775671880" rel="stylesheet">
+    <link href="/css/theme.css?1775671880" rel="stylesheet">
+    <link href="/css/format-html.css?1775671880" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -119,7 +119,7 @@ The tutorial goes through the following steps:">
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong AI/MCP Gateway, Claude Code and Anthropic</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-observability/152-external/227-otel_collector_logs/index.html" title="OTel Collector and Logs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -144,13 +144,13 @@ The tutorial goes through the following steps:">
   <header class="headline">
   </header>
 
-<h1 id="kong-aimcp-gateway-claude-code-and-amazon-bedrock">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</h1>
+<h1 id="kong-aimcp-gateway-claude-code-and-anthropic">Kong AI/MCP Gateway, Claude Code and Anthropic</h1>
 
 <p>In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use <a href="https://code.claude.com/" rel="external" target="_blank"><strong>Claude Code</strong></a> to accelerate your AI Agent developement process.</p>
 <p>The tutorial leverages the new <a href="https://www.anthropic.com/news/claude-opus-4-6" rel="external" target="_blank"><strong>Claude Opus 4.6</strong></a>, the best coding model provided by <strong>Anthropic</strong> and available in <a href="https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock" rel="external" target="_blank"><strong>Bedrock</strong></a>.</p>
 <p>The tutorial goes through the following steps:</p>
 <ul>
-<li>Configure <strong>Kong AI Gateway</strong> to work with <strong>Amazon Bedrock</strong></li>
+<li>Configure <strong>Kong AI Gateway</strong> to work with <strong>Anthropic</strong></li>
 <li>Configure <strong>Claude Code</strong> to work with <strong>Kong AI Gateway</strong></li>
 <li>Work with <strong>Claude Code</strong> to consume <strong>Kong AI Gateway</strong> and the LLMs and MCP Servers sitting behind it and create a <strong>Strands Agent</strong> code.</li>
 <li>Test the <strong>Strands Agent</strong>.</li>
@@ -160,8 +160,8 @@ The tutorial goes through the following steps:">
 <li>Strands Agent Code Generation</li>
 <li>Strands Agent Runtime</li>
 </ul>
-<p><a href="#R-image-12627a042e020f29d12fb1c72b332369" class="lightbox-link"><img alt="ClaudeCode" class="lazy lightbox figure-image" loading="lazy" src="/static/images/claude_code.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-12627a042e020f29d12fb1c72b332369"><img alt="ClaudeCode" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/claude_code.png"></a></p>
+<p><a href="#R-image-c658c7832014f5c841459911e1e9fdad" class="lightbox-link"><img alt="ClaudeCode" class="lazy lightbox figure-image" loading="lazy" src="/static/images/claude_code.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c658c7832014f5c841459911e1e9fdad"><img alt="ClaudeCode" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/claude_code.png"></a></p>
 <h1 id="further-reading">Further Reading</h1>
 <ul>
 <li><a href="https://code.claude.com/docs/en/quickstart" rel="external" target="_blank">Claude Code Quickstart</a></li>
@@ -221,7 +221,7 @@ The tutorial goes through the following steps:">
             <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
-            <li class="active parent " data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu">
+            <li class="active parent " data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu">
             <li class="" data-nav-id="/16-claude-code/191-configure-kong-ai-gateway/index.html"><a class="padding" href="/16-claude-code/191-configure-kong-ai-gateway/index.html">Configure Kong AI Gateway</a></li>
             <li class="" data-nav-id="/16-claude-code/192-configure-claudecode/index.html"><a class="padding" href="/16-claude-code/192-configure-claudecode/index.html">Configure Claude Code</a></li>
             <li class="" data-nav-id="/16-claude-code/193-create-agent/index.html"><a class="padding" href="/16-claude-code/193-create-agent/index.html">Create the Strands Agent</a></li>
@@ -247,8 +247,8 @@ The tutorial goes through the following steps:">
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775665677" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775665677" defer></script>
-    <script src="/js/theme.js?1775665677" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775671880" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775671880" defer></script>
+    <script src="/js/theme.js?1775671880" defer></script>
   </body>
 </html>

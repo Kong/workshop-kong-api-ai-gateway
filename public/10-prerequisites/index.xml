@@ -19,7 +19,7 @@
       <link>http://localhost:1313/10-prerequisites/podman_minikube/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/10-prerequisites/podman_minikube/index.html</guid>
-      <description>We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.&#xA;Podmang 5.6.1 Minikube 1.36 Podman 5.6.1 Here are the instructions to install Podman and the installation package for 5.6.1 version.&#xA;Initialize a machine:&#xA;podman machine init You can start Podman with:&#xA;podman machine set --memory 8196 --rootful podman machine start Check the version:</description>
+      <description>We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.&#xA;Podmang 5.8.1 Minikube 1.38.1 Podman 5.8.1 Here are the instructions to install Podman and the installation package for 5.8.1 version.&#xA;Initialize a machine:&#xA;podman machine init You can start Podman with:&#xA;podman machine set --memory 8196 --rootful podman machine start Check the version:</description>
     </item>
     <item>
       <title>Redis and Ollama</title>

@@ -1,5 +1,5 @@
 ---
-title : "Kong AI/MCP Gateway, Claude Code and Amazon Bedrock"
+title : "Kong AI/MCP Gateway, Claude Code and Anthropic"
 weight : 160
 ---
 
@@ -9,7 +9,7 @@ The tutorial leverages the new [**Claude Opus 4.6**](https://www.anthropic.com/n
 
 
 The tutorial goes through the following steps:
-* Configure **Kong AI Gateway** to work with **Amazon Bedrock**
+* Configure **Kong AI Gateway** to work with **Anthropic**
 * Configure **Claude Code** to work with **Kong AI Gateway**
 * Work with **Claude Code** to consume **Kong AI Gateway** and the LLMs and MCP Servers sitting behind it and create a **Strands Agent** code.
 * Test the **Strands Agent**.

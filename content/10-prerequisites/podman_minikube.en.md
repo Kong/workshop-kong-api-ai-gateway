@@ -4,14 +4,14 @@ weight : 104
 ---
 
 We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-* Podmang 5.6.1
-* Minikube 1.36
+* Podmang 5.8.1
+* Minikube 1.38.1
 
 
 
-### Podman 5.6.1
+### Podman 5.8.1
 
-Here are the [instructions](https://podman.io/docs/installation) to install Podman and the installation package for [5.6.1 version](https://github.com/containers/podman/releases/tag/v5.6.1).
+Here are the [instructions](https://podman.io/docs/installation) to install Podman and the installation package for [5.8.1 version](https://github.com/containers/podman/releases/tag/v5.8.1).
 
 
 Initialize a machine:
@@ -31,22 +31,22 @@ Check the version:
 
 ```
 $ podman --version
-podman version 5.6.1
+podman version 5.8.1
 ```
 
-### Minikube 1.36
+### Minikube 1.38.1
 
 You can install it with:
 
 ```
-curl -LO https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-darwin-arm64
+curl -LO https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-darwin-arm64
 sudo install minikube-darwin-arm64 /usr/local/bin/minikube
 ```
 
 ```
 $ minikube version
-minikube version: v1.36.0
-commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
+minikube version: v1.38.1
+commit: c93a4cb9311efc66b90d33ea03f75f2c4120e9b0
 ```
 
 
