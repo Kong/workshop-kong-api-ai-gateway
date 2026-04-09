@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="The Kong Konnect platform provides a cloud management control plane (CP), which manages all service configurations. Through specific communication channels, it propagates those configurations to all runtime data planes (DP), which store the configurations in a LMDB database. These data plane nodes can be installed anywhere, on-premise or in AWS.
 For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs, MCPs or GenAI models. While routing requests and providing responses, policies can be applied with plugins as necessary.">
@@ -25,26 +25,26 @@ For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data p
 For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs, MCPs or GenAI models. While routing requests and providing responses, policies can be applied with plugins as necessary.">
     <meta itemprop="wordCount" content="493">
     <title>Kong Konnect Architectural Overview :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775669630" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775669630" defer></script>
-    <script src="/js/search-lunr.js?1775669630" defer></script>
-    <script src="/js/search.js?1775669630" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
+    <script src="/js/search-lunr.js?1775732224" defer></script>
+    <script src="/js/search.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775669630";
+      window.relearn.index_js_url="/searchindex.en.js?1775732224";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775669630" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775669630" rel="stylesheet">
-    <link href="/css/theme.css?1775669630" rel="stylesheet">
-    <link href="/css/format-html.css?1775669630" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775732224" rel="stylesheet">
+    <link href="/css/theme.css?1775732224" rel="stylesheet">
+    <link href="/css/format-html.css?1775732224" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -150,29 +150,29 @@ For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data p
 <h1 id="kong-konnect-architectural-overview">Kong Konnect Architectural Overview</h1>
 
 <p>The Kong Konnect platform provides a cloud management control plane (CP), which manages all service configurations. Through specific <a href="https://developer.konghq.com/gateway/cp-dp-communication/" rel="external" target="_blank">communication channels</a>, it propagates those configurations to all runtime data planes (DP), which store the configurations in a <a href="https://konghq.com/blog/engineering/new-storage-engine-for-kong-hybrid-and-db-less-deployments" rel="external" target="_blank">LMDB database</a>. These data plane nodes can be installed anywhere, on-premise or in AWS.</p>
-<p><a href="#R-image-3fd0d0ef21db24703093e70667dd376b" class="lightbox-link"><img alt="Konnect Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-introduction-new.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3fd0d0ef21db24703093e70667dd376b"><img alt="Konnect Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-introduction-new.png"></a></p>
+<p><a href="#R-image-5892316b1a8e6650162ff690b7869448" class="lightbox-link"><img alt="Konnect Architecture" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-introduction-new.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5892316b1a8e6650162ff690b7869448"><img alt="Konnect Architecture" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-introduction-new.png"></a></p>
 <p>For today&rsquo;s workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs, MCPs or GenAI models. While routing requests and providing responses, policies can be applied with plugins as necessary.</p>
 <h1 id="kong-gateway">Kong Gateway</h1>
 <p>Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. An API gateway is a reverse proxy that lets you manage, configure, and route requests to your APIs.</p>
 <p>Kong Gateway runs in front of any RESTful API and can be extended through modules and plugins. It’s designed to run on decentralized architectures, including hybrid-cloud and multi-cloud deployments.</p>
-<p><a href="#R-image-02422222dcd182f5b040ea8bfa4e7b4d" class="lightbox-link"><img alt="Kong Gateway architecture diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-02422222dcd182f5b040ea8bfa4e7b4d"><img alt="Kong Gateway architecture diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway.png"></a></p>
+<p><a href="#R-image-576e9b2adc71782ad5834bf9d255b05d" class="lightbox-link"><img alt="Kong Gateway architecture diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-576e9b2adc71782ad5834bf9d255b05d"><img alt="Kong Gateway architecture diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway.png"></a></p>
 <h1 id="gateway-manager-control-plane">Gateway Manager (Control Plane)</h1>
 <p>Gateway Manager empowers your teams to securely collaborate and manage their own set of runtimes and services without the risk of impacting other teams and projects. Gateway Manager instantly provisions hosted Kong Gateway control planes and supports securely attaching Kong Gateway data planes from your cloud or hybrid environments.</p>
 <p>Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including API-based (OpenID Connect, Open Policy Agent, Mutual TLS, and more) and IA-based (Semantic Caching, RAG Injector, Prompt Guard, etc.)</p>
-<p><a href="#R-image-bbcb013a7e626e1c75cbfdd00af5b6a2" class="lightbox-link"><img alt="Kong Gateway Manager control plane dashboard" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway_cp.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-bbcb013a7e626e1c75cbfdd00af5b6a2"><img alt="Kong Gateway Manager control plane dashboard" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway_cp.png"></a></p>
+<p><a href="#R-image-71c8b61404d0bd66679580654a932195" class="lightbox-link"><img alt="Kong Gateway Manager control plane dashboard" class="lazy lightbox figure-image" loading="lazy" src="/static/images/gateway_cp.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-71c8b61404d0bd66679580654a932195"><img alt="Kong Gateway Manager control plane dashboard" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/gateway_cp.png"></a></p>
 <h1 id="konnect-applications">Konnect Applications</h1>
 <p>Kong Konnect features are described in this section, including modules and plugins that extend and enhance the functionality of the Kong Konnect platform.</p>
 <h2 id="advanced-analytics">Advanced Analytics</h2>
 <p>Use Analytics to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with Kong Gateway plugins that enable streaming monitoring metrics to third-party analytics providers.</p>
-<p><a href="#R-image-b64f41a7c30c7b04e6fa9cd1b689e6c7" class="lightbox-link"><img alt="Konnect Advanced Analytics API usage summary dashboard" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-api-usage-summary.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b64f41a7c30c7b04e6fa9cd1b689e6c7"><img alt="Konnect Advanced Analytics API usage summary dashboard" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-api-usage-summary.png"></a></p>
+<p><a href="#R-image-9ea781462ee4021edb38e8ee704f834a" class="lightbox-link"><img alt="Konnect Advanced Analytics API usage summary dashboard" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-api-usage-summary.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9ea781462ee4021edb38e8ee704f834a"><img alt="Konnect Advanced Analytics API usage summary dashboard" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-api-usage-summary.png"></a></p>
 <h2 id="dev-portal">Dev Portal</h2>
 <p>Streamline developer onboarding with the Dev Portal, which offers a self-service developer experience to discover, register, and consume published services from your Service Hub catalog. This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services. Enable application registration to automatically secure your APIs with a variety of authorization providers.</p>
-<p><a href="#R-image-cd920575e0598c12482715332c45dff8" class="lightbox-link"><img alt="Kong Dev Portal creation page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/create-portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cd920575e0598c12482715332c45dff8"><img alt="Kong Dev Portal creation page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/create-portal.png"></a></p>
+<p><a href="#R-image-e3fa00c2fe4f76fd01f153222346b11b" class="lightbox-link"><img alt="Kong Dev Portal creation page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/create-portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e3fa00c2fe4f76fd01f153222346b11b"><img alt="Kong Dev Portal creation page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/create-portal.png"></a></p>
 <h2 id="catalog">Catalog</h2>
 <p>A centralized catalog of all services running in your Konnect organization. It provides a centralized catalog of all services and APIs running in your organization. By integrating with internal applications, like Gateway Manager and Mesh Manager, and external tools, like GitHub and PagerDuty, it offers a 360-degree overview of your services, including:</p>
 <ul>
@@ -244,7 +244,7 @@ For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data p
             <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
@@ -266,8 +266,8 @@ For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data p
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775669630" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775669630" defer></script>
-    <script src="/js/theme.js?1775669630" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775732224" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775732224" defer></script>
+    <script src="/js/theme.js?1775732224" defer></script>
   </body>
 </html>

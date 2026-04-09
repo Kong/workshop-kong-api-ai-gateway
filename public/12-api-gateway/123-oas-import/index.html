@@ -5,26 +5,26 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.
-Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.">
+    <meta name="description" content="For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.
+Download the bankong.yaml spec. In your Control Plane, click on Import via OAS spec. Choose the bankong.yaml spec and click Continue. Review the Import Summary and click Import Notice the Services and Routes that will be imported Notice declarative representation of this import as well (more on this later) You should see your new Kong Service and Routes:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Konnect Developer Portal :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.
-Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.">
-    <meta property="og:url" content="http://localhost:1313/19-developer-portal/index.html">
+    <meta name="twitter:title" content="Import an OpenAPI specification - optional :: API Management with Kong Konnect">
+    <meta name="twitter:description" content="For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.
+Download the bankong.yaml spec. In your Control Plane, click on Import via OAS spec. Choose the bankong.yaml spec and click Continue. Review the Import Summary and click Import Notice the Services and Routes that will be imported Notice declarative representation of this import as well (more on this later) You should see your new Kong Service and Routes:">
+    <meta property="og:url" content="http://localhost:1313/12-api-gateway/123-oas-import/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Konnect Developer Portal :: API Management with Kong Konnect">
-    <meta property="og:description" content="The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.
-Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.">
+    <meta property="og:title" content="Import an OpenAPI specification - optional :: API Management with Kong Konnect">
+    <meta property="og:description" content="For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.
+Download the bankong.yaml spec. In your Control Plane, click on Import via OAS spec. Choose the bankong.yaml spec and click Continue. Review the Import Summary and click Import Notice the Services and Routes that will be imported Notice declarative representation of this import as well (more on this later) You should see your new Kong Service and Routes:">
     <meta property="og:locale" content="en_us">
-    <meta property="og:type" content="website">
-    <meta itemprop="name" content="Konnect Developer Portal :: API Management with Kong Konnect">
-    <meta itemprop="description" content="The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.
-Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.">
-    <meta itemprop="wordCount" content="222">
-    <title>Konnect Developer Portal :: API Management with Kong Konnect</title>
-    <link href="/19-developer-portal/index.xml" rel="alternate" type="application/rss+xml" title="Konnect Developer Portal :: API Management with Kong Konnect">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong API Gateway">
+    <meta itemprop="name" content="Import an OpenAPI specification - optional :: API Management with Kong Konnect">
+    <meta itemprop="description" content="For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.
+Download the bankong.yaml spec. In your Control Plane, click on Import via OAS spec. Choose the bankong.yaml spec and click Continue. Review the Import Summary and click Import Notice the Services and Routes that will be imported Notice declarative representation of this import as well (more on this later) You should see your new Kong Service and Routes:">
+    <meta itemprop="wordCount" content="214">
+    <title>Import an OpenAPI specification - optional :: API Management with Kong Konnect</title>
     <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
     <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
     <script src="/js/search-lunr.js?1775732224" defer></script>
@@ -49,9 +49,9 @@ Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specificatio
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = ``;
-      window.relearn.path='\/19-developer-portal\/index.html';
-      window.relearn.relBasePath='..';
-      window.relearn.relBaseUri='..';
+      window.relearn.path='\/12-api-gateway\/123-oas-import\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
       window.relearn.absBaseUri='http:\/\/localhost:1313';
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
@@ -99,7 +99,7 @@ Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specificatio
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/19-developer-portal/index.html">
+  <body class="mobile-support html" data-url="/12-api-gateway/123-oas-import/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -110,17 +110,26 @@ Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specificatio
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#test-the-api-deployment">Test the API Deployment</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Konnect Developer Portal</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Import an OpenAPI specification - optional</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/18-apiops-deck/index.html" title="APIOps and decK (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/122-first-kong-service-route/index.html" title="Create your first Kong Gateway Service and Kong Route using decK (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/19-developer-portal/192-portal-application/index.html" title="Developer Self-Service and Application Registration (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/index.html" title="Use Cases (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -134,62 +143,67 @@ Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specificatio
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable 19-developer-portal" tabindex="-1">
+      <main id="R-body-inner" class="highlightable 12-api-gateway" tabindex="-1">
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
   </header>
 
-<h1 id="konnect-developer-portal">Konnect Developer Portal</h1>
+<h1 id="import-an-openapi-specification---optional">Import an OpenAPI specification - optional</h1>
 
-<p>The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.</p>
-<p>Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.</p>
-<p>Konnect Developer Portal provides an extensive list of benefits to <strong>Developers</strong> as well as <strong>Organizations</strong>:</p>
-<p><strong>Developers</strong></p>
+<p>For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.</p>
 <ul>
-<li>Accelerates Onboarding:
-<ul>
-<li>Self-service and instant access to documentation of APIs and testing tools</li>
+<li>Download the <a href="/code/bankong.yaml">bankong.yaml</a> spec.</li>
+<li>In your Control Plane, click on <strong>Import via OAS spec</strong>.</li>
+<li>Choose the <code>bankong.yaml</code> spec and click <strong>Continue</strong>.</li>
+<li>Review the Import Summary and click Import</li>
+<li>Notice the Services and Routes that will be imported</li>
+<li>Notice declarative representation of this import as well (more on this later)</li>
 </ul>
-</li>
-<li>Empowers Innovation through discovery of APIs and usage instructions
-<ul>
-<li>Build applications faster</li>
-<li>Foster culture of innovation</li>
-</ul>
-</li>
-<li>Improve Developer Experience
-<ul>
-<li>Discovery of APIs</li>
-<li>In browser testing and troubleshooting tools</li>
-</ul>
-</li>
-</ul>
-<p><strong>Organizations</strong></p>
-<ul>
-<li>Drives API Adoption
-<ul>
-<li>Public or Partner facing portal markets APIs, fueling innovation and new revenue streams</li>
-</ul>
-</li>
-<li>Reduces Support Overhead
-<ul>
-<li>Comprehensive and searchable documentation and self-service tools shifts the burden of support</li>
-</ul>
-</li>
-<li>Ensures Governance and Security
-<ul>
-<li>Portal acts as single source of truth</li>
-<li>Ensures developers are using the correct, approved versions of APIs and adhering to policies</li>
-</ul>
-</li>
-<li>Enhances Collaboration</li>
-</ul>
-<p>This section is divided into two parts:</p>
-<ol>
-<li>Create a Developer Portal and publish an API</li>
-<li>Use Developer self-service capability to create and consume Portal Applications.</li>
-</ol>
+<p>You should see your new Kong Service and Routes:</p>
+<p><a href="#R-image-54f2660be3c3c500028d84e037aec79b" class="lightbox-link"><img alt="bankong" class="lazy lightbox figure-image" loading="lazy" src="/static/images/bankong-service-route.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-54f2660be3c3c500028d84e037aec79b"><img alt="bankong" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/bankong-service-route.png"></a></p>
+<h3 id="test-the-api-deployment">Test the API Deployment</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i $DATA_PLANE_LB/transactions</code></pre></div>
+<p>You should get a response from the API. Notice the <code>x-kong-*</code> headers like <code>request id</code>, <code>proxy latency</code>, <code>upstream latency</code>. Run the request again, what do you notice about the proxy latency now?</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/2 200 
+content-type: application/json; charset=utf-8
+content-length: 517
+x-kong-request-id: 79d76d16883197392033bd590536481b
+x-powered-by: Express
+vary: Origin, Accept-Encoding
+access-control-allow-credentials: true
+cache-control: no-cache
+pragma: no-cache
+expires: -1
+x-content-type-options: nosniff
+etag: W/&#34;205-u4o2XSHOR6oYVCAyD/5BTbm6Xgk&#34;
+date: Tue, 23 Sep 2025 11:58:13 GMT
+server: kong/3.11.0.1-enterprise-edition
+x-kong-upstream-latency: 39
+x-kong-proxy-latency: 1
+via: 1.1 kong/3.11.0.1-enterprise-edition, 1.1 kong/3.11.0.0-enterprise-edition
+
+[
+  {
+    &#34;source&#34;: &#34;DE8412325587359375895&#34;,
+    &#34;senderName&#34;: &#34;Max Mustermann&#34;,
+    &#34;destination&#34;: &#34;GR872659435350353&#34;,
+    &#34;amount&#34;: 10.2,
+    &#34;currency&#34;: &#34;EUR&#34;,
+    &#34;subject&#34;: &#34;The money we have talked about&#34;,
+    &#34;id&#34;: &#34;b88f7029-fa93-41a5-9462-4884e544bf63&#34;
+  },
+  {
+    &#34;source&#34;: &#34;UK8412325587359375895&#34;,
+    &#34;senderName&#34;: &#34;Mister Smith&#34;,
+    &#34;destination&#34;: &#34;GR872559435350353&#34;,
+    &#34;amount&#34;: 10000,
+    &#34;currency&#34;: &#34;EUR&#34;,
+    &#34;subject&#34;: &#34;Invoice #34078ja&#34;,
+    &#34;id&#34;: &#34;143aadce-f995-4503-ba6e-01ed01c6af88&#34;
+  }
+]</code></pre></div>
 
   <footer class="footline">
   </footer>
@@ -240,16 +254,18 @@ Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specificatio
             <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu">
+            <li class="" data-nav-id="/12-api-gateway/121-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/121-kong-service-route/index.html">Kong Gateway Service, Kong Route and Kong Plugin</a></li>
+            <li class="" data-nav-id="/12-api-gateway/122-first-kong-service-route/index.html"><a class="padding" href="/12-api-gateway/122-first-kong-service-route/index.html">Create your first Kong Gateway Service and Kong Route using decK</a></li>
+            <li class="active " data-nav-id="/12-api-gateway/123-oas-import/index.html"><a class="padding" href="/12-api-gateway/123-oas-import/index.html">Import an OpenAPI specification - optional</a></li>
+            <li class="alwaysopen " data-nav-id="/12-api-gateway/15-use-cases/index.html"><a class="padding" href="/12-api-gateway/15-use-cases/index.html">Use Cases</a><ul id="R-subsections-d072a953a914cdb4c69798f4d5bdaaed" class="collapsible-menu"></ul></li></ul></li>
             <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
-            <li class="active parent " data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu">
-            <li class="" data-nav-id="/19-developer-portal/192-portal-application/index.html"><a class="padding" href="/19-developer-portal/192-portal-application/index.html">Developer Self-Service and Application Registration</a></li>
-            <li class="" data-nav-id="/19-developer-portal/191-api-publication/index.html"><a class="padding" href="/19-developer-portal/191-api-publication/index.html">Dev Portal creation and API publication</a></li></ul></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
           </ul>
         </div>

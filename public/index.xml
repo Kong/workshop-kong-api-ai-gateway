@@ -57,7 +57,7 @@
       <description>This part of the workshop is dedicated to Observability, exploring:&#xA;Built-in capabilities provided by Konnect Kong Data Plane plugins to integrate with external Observability infrastructures such as Dynatrace or Honeycomb.</description>
     </item>
     <item>
-      <title>Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</title>
+      <title>Kong AI/MCP Gateway, Claude Code and Anthropic</title>
       <link>http://localhost:1313/16-claude-code/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-claude-code/index.html</guid>

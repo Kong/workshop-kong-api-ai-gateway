@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Kong’s AI assistant, KAi, can detect issues, suggest fixes, and accelerate your workflows all without leaving the Konnect UI. KAi is enabled by default for Konnect Plus and trial accounts. KAi is always disabled by default. You can enable KAi by enabling it in Konnect Labs, inside the Organization menu option.
 KAi can help you do the following:
@@ -29,26 +29,26 @@ Run a debug session to analyze API performance issues Provides recommendations t
     <meta itemprop="wordCount" content="392">
     <title>Kong AI Assistant &amp; Kong Konnect MCP Server :: API Management with Kong Konnect</title>
     <link href="/17-kai-kongmcpserver/index.xml" rel="alternate" type="application/rss+xml" title="Kong AI Assistant &amp; Kong Konnect MCP Server :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1775669630" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775669630" defer></script>
-    <script src="/js/search-lunr.js?1775669630" defer></script>
-    <script src="/js/search.js?1775669630" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
+    <script src="/js/search-lunr.js?1775732224" defer></script>
+    <script src="/js/search.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775669630";
+      window.relearn.index_js_url="/searchindex.en.js?1775732224";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775669630" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775669630" rel="stylesheet">
-    <link href="/css/theme.css?1775669630" rel="stylesheet">
-    <link href="/css/format-html.css?1775669630" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775732224" rel="stylesheet">
+    <link href="/css/theme.css?1775732224" rel="stylesheet">
+    <link href="/css/format-html.css?1775732224" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -172,13 +172,13 @@ Run a debug session to analyze API performance issues Provides recommendations t
 The KAi agent uses backend LLMs for reasoning and natural language tasks. It also uses a Konnect MCP server to provide information about Konnect and the user’s entities and data. Because the MCP server is authenticated via the logged-in user’s session, it only has access to data and resources that the user themselves has permission to access.</li>
 </ul>
 <p>KAi also has access to Kong’s documentation and support knowledge base, so it can provide guidance on configuration, architecture, and troubleshooting.</p>
-<p><a href="#R-image-5858db73d58b6016083f07572987fbd1" class="lightbox-link"><img alt="Kai" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kai.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5858db73d58b6016083f07572987fbd1"><img alt="Kai" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kai.png"></a></p>
+<p><a href="#R-image-5fd82e9a2c17e68dd570b7e81df612ed" class="lightbox-link"><img alt="Kai" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kai.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5fd82e9a2c17e68dd570b7e81df612ed"><img alt="Kai" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kai.png"></a></p>
 <h3 id="how-to-interact-with-kai-in-the-ui">How to interact with KAi in the UI</h3>
 <p>To start a chat with KAi, click the sparkle icon ✨ on the top right of the Konnect UI.</p>
 <p>KAi is context-sensitive, so if you navigate to a control plane or Gateway Service, KAi will use that entity context to answer questions. You can create a new session from the Active session dropdown menu by selecting “New conversation”. Each user is limited to three sessions. To delete a session, click the action menu icon next to the session and click Delete.</p>
-<p><a href="#R-image-39de9ef9d3ae6deaf8cb1a81e9858972" class="lightbox-link"><img alt="Kai" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kai_ui.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-39de9ef9d3ae6deaf8cb1a81e9858972"><img alt="Kai" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kai_ui.png"></a></p>
+<p><a href="#R-image-3d752e4fec1e2f2ef31d92b5023befcf" class="lightbox-link"><img alt="Kai" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kai_ui.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3d752e4fec1e2f2ef31d92b5023befcf"><img alt="Kai" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kai_ui.png"></a></p>
 <h3 id="use-the-konnect-mcp-server-with-external-tools">Use the Konnect MCP Server with external tools</h3>
 <p>The same Konnect MCP Server that powers KAi is available for use with external AI assistants and IDE copilots. This allows you to interact with your Konnect resources directly from your development environment.</p>
 <p>With the MCP server, you can:</p>
@@ -188,8 +188,8 @@ The KAi agent uses backend LLMs for reasoning and natural language tasks. It als
 <li>Search Kong documentation</li>
 <li>Analyze API traffic</li>
 </ul>
-<p><a href="#R-image-d4e39a7d8f9dde8df33f79deeacc8d0b" class="lightbox-link"><img alt="Konnect MCP Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-mcp-architecture.svg" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d4e39a7d8f9dde8df33f79deeacc8d0b"><img alt="Konnect MCP Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-mcp-architecture.svg"></a></p>
+<p><a href="#R-image-a34201b59132c3c7399f3cc405e0799a" class="lightbox-link"><img alt="Konnect MCP Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/konnect-mcp-architecture.svg" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a34201b59132c3c7399f3cc405e0799a"><img alt="Konnect MCP Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/konnect-mcp-architecture.svg"></a></p>
 <p>Learn how to configure the <a href="https://developer.konghq.com/konnect-platform/konnect-mcp/" rel="external" target="_blank">Kong Konnect MCP server</a></p>
 
   <footer class="footline">
@@ -245,7 +245,7 @@ The KAi agent uses backend LLMs for reasoning and natural language tasks. It als
             <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
             <li class="active " data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
@@ -267,8 +267,8 @@ The KAi agent uses backend LLMs for reasoning and natural language tasks. It als
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775669630" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775669630" defer></script>
-    <script src="/js/theme.js?1775669630" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775732224" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775732224" defer></script>
+    <script src="/js/theme.js?1775732224" defer></script>
   </body>
 </html>

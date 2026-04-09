@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="We’ve seen a lot of momentum around the Model Context Protocol (MCP), the new standard proposed by Anthropic in November 2024.
 As described in its official portal, MCP follows a client-server architecture where an AI application (tool or AI Agent) connects to MCP Servers. The MCP specification defines three participants as illustrated above in the diagram taken from the MCP portal:
@@ -29,26 +29,26 @@ As described in its official portal, MCP follows a client-server architecture wh
 MCP Host: The AI application (tool, application, agent) that coordinates and manages one or multiple MCP clients MCP Client: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use MCP Server: A program that provides context to MCP clients">
     <meta itemprop="wordCount" content="634">
     <title>MCP Introduction :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775669630" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775669630" defer></script>
-    <script src="/js/search-lunr.js?1775669630" defer></script>
-    <script src="/js/search.js?1775669630" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
+    <script src="/js/search-lunr.js?1775732224" defer></script>
+    <script src="/js/search.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775669630";
+      window.relearn.index_js_url="/searchindex.en.js?1775732224";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775669630" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775669630" rel="stylesheet">
-    <link href="/css/theme.css?1775669630" rel="stylesheet">
-    <link href="/css/format-html.css?1775669630" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775732224" rel="stylesheet">
+    <link href="/css/theme.css?1775732224" rel="stylesheet">
+    <link href="/css/format-html.css?1775732224" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -160,8 +160,8 @@ MCP Host: The AI application (tool, application, agent) that coordinates and man
 <li><strong>MCP Client</strong>: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use</li>
 <li><strong>MCP Server</strong>: A program that provides context to MCP clients</li>
 </ul>
-<p><a href="#R-image-a3d3347856e801efc77196f012948192" class="lightbox-link"><img alt="MCP Client-Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_client_server.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a3d3347856e801efc77196f012948192"><img alt="MCP Client-Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_client_server.png"></a></p>
+<p><a href="#R-image-7acaf98b69ddf576e2caa3a70d93eae9" class="lightbox-link"><img alt="MCP Client-Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_client_server.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7acaf98b69ddf576e2caa3a70d93eae9"><img alt="MCP Client-Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_client_server.png"></a></p>
 <p>Each MCP Server is responsible for exposing <a href="https://modelcontextprotocol.io/docs/learn/architecture#primitives" rel="external" target="_blank">MCP primitives</a> to the Clients:</p>
 <ul>
 <li><strong>Tools</strong>: functions that a MCP Client can invoke.</li>
@@ -187,8 +187,8 @@ MCP Host: The AI application (tool, application, agent) that coordinates and man
 <h2 id="mcp-and-llm-sequence-diagram">MCP and LLM Sequence Diagram</h2>
 <p>With the introduction of MCP, it&rsquo;s important to understand the relationship between the Tools and the GenAI models.</p>
 <p>The diagram below describes what happens when an Agent sends a request like &ldquo;What&rsquo;s the weather in San Francisco today?&rdquo;:</p>
-<p><a href="#R-image-d057cb9ea95e072ed4c7f62c5feb8df6" class="lightbox-link"><img alt="MCP Sequence Diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d057cb9ea95e072ed4c7f62c5feb8df6"><img alt="MCP Sequence Diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png"></a></p>
+<p><a href="#R-image-cffd77727eb2e926e53487465e48dbb6" class="lightbox-link"><img alt="MCP Sequence Diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cffd77727eb2e926e53487465e48dbb6"><img alt="MCP Sequence Diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png"></a></p>
 <ol>
 <li>The MCP Client, inside the Agent, connects the MCP Server(s) to ensure it has up-to-date tool definitions.</li>
 <li>When the User sends a message (&ldquo;What&rsquo;s the weather in SF?&rdquo;), the MCP Client sends it to the LLM, injecting the tools list it got from the the MCP Server. The LLM, considering the messages and tools, replies back instructing the MCP Client on what tool, including its parameters, the MCP Client should actually call. In our case, <code>get_weather{&quot;city&quot;: &quot;SF&quot;}</code>.</li>
@@ -265,7 +265,7 @@ MCP Host: The AI application (tool, application, agent) that coordinates and man
             <li class="" data-nav-id="/14-mcp-gateway/183-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/183-mcp-gateway/index.html">Kong MCP Gateway and Plugins</a></li>
             <li class="alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/index.html">Use Cases</a><ul id="R-subsections-a964ef3d890ecbc315e7f04ebff0d291" class="collapsible-menu"></ul></li></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
@@ -287,8 +287,8 @@ MCP Host: The AI application (tool, application, agent) that coordinates and man
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775669630" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775669630" defer></script>
-    <script src="/js/theme.js?1775669630" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775732224" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775732224" defer></script>
+    <script src="/js/theme.js?1775732224" defer></script>
   </body>
 </html>

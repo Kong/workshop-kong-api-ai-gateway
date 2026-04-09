@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="The Mocking plugin allows you to provide mock endpoints to test APIs in development against your existing services. The Mocking plugin leverages standards based on the Open API Specification (OAS) for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.
 In this first step we are just creating a Kong Gateway Service and a Kong Route with the Kong Mocking Plugin and the OpenAPI Spec. The next step will convert the Kong Gateway Service into MCP Tools.">
@@ -25,26 +25,26 @@ In this first step we are just creating a Kong Gateway Service and a Kong Route 
 In this first step we are just creating a Kong Gateway Service and a Kong Route with the Kong Mocking Plugin and the OpenAPI Spec. The next step will convert the Kong Gateway Service into MCP Tools.">
     <meta itemprop="wordCount" content="613">
     <title>Mock Kong Gateway Services with OpenAPI Spec :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775669630" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775669630" defer></script>
-    <script src="/js/search-lunr.js?1775669630" defer></script>
-    <script src="/js/search.js?1775669630" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
+    <script src="/js/search-lunr.js?1775732224" defer></script>
+    <script src="/js/search.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775669630";
+      window.relearn.index_js_url="/searchindex.en.js?1775732224";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775669630" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775669630" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775732224" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775669630" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775669630" rel="stylesheet">
-    <link href="/css/theme.css?1775669630" rel="stylesheet">
-    <link href="/css/format-html.css?1775669630" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775732224" rel="stylesheet">
+    <link href="/css/theme.css?1775732224" rel="stylesheet">
+    <link href="/css/format-html.css?1775732224" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -157,8 +157,8 @@ In this first step we are just creating a Kong Gateway Service and a Kong Route 
 <p>The Mocking plugin allows you to provide mock endpoints to test APIs in development against your existing services. The Mocking plugin leverages standards based on the Open API Specification (OAS) for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.</p>
 <p>In this first step we are just creating a Kong Gateway Service and a Kong Route with the <a href="https://developer.konghq.com/plugins/mocking/" rel="external" target="_blank"><strong>Kong Mocking Plugin</strong></a> and the OpenAPI Spec. The next step will convert the Kong Gateway Service into MCP Tools.</p>
 <p>Here&rsquo;s the architecture:</p>
-<p><a href="#R-image-7d89087a7fd75c6073a746846be7363b" class="lightbox-link"><img alt="marketplace_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_arch.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7d89087a7fd75c6073a746846be7363b"><img alt="marketplace_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_arch.png"></a></p>
+<p><a href="#R-image-23c9c6481f32ddc1ca10d91686d98f8f" class="lightbox-link"><img alt="marketplace_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_arch.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-23c9c6481f32ddc1ca10d91686d98f8f"><img alt="marketplace_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_arch.png"></a></p>
 <h3 id="download-the-deck-declaration-with-kong-mocking-plugin-and-openapi-spec">Download the decK declaration with Kong Mocking Plugin and OpenAPI Spec</h3>
 <ul>
 <li>Download the <strong>marketplace_mock.yaml</strong> Kong decK spec file.</li>
@@ -172,8 +172,8 @@ deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-tok
 deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT marketplace_mock.yaml
 :::</p>
 <p>You should see your a new Kong Service and Route. Particularly, the Kong Route has the <strong>Mocking Plugin</strong> enabled.</p>
-<p><a href="#R-image-7a0fed42e25c2950abf7e49f7891ac7e" class="lightbox-link"><img alt="martetplace_service_route" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_service_route.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7a0fed42e25c2950abf7e49f7891ac7e"><img alt="martetplace_service_route" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_service_route.png"></a></p>
+<p><a href="#R-image-b124c948788b241f6af7cd453c7b3fd7" class="lightbox-link"><img alt="martetplace_service_route" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_service_route.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b124c948788b241f6af7cd453c7b3fd7"><img alt="martetplace_service_route" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_service_route.png"></a></p>
 <h3 id="check-the-deck-file-and-test-the-kong-route">Check the decK file and test the Kong Route</h3>
 <p>Just like anyother spec, The decK file has an initial section defining the Kong Gateway Service and Kong Route:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>_format_version: &#34;3.0&#34;
@@ -385,7 +385,7 @@ curl -s $DATA_PLANE_LB/orders | jq
             <li class="alwaysopen " data-nav-id="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html">Implement the OAuth 2 specification for MCP servers with Kong Identity</a><ul id="R-subsections-842aac9bdf7afee40866586fd2a507ec" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html"><a class="padding" href="/14-mcp-gateway/184-use-cases/184-proxy-mcp-server/index.html">Securing existing MCP Servers</a></li></ul></li></ul></li>
             <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Amazon Bedrock</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
@@ -407,8 +407,8 @@ curl -s $DATA_PLANE_LB/orders | jq
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775669630" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775669630" defer></script>
-    <script src="/js/theme.js?1775669630" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775732224" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775732224" defer></script>
+    <script src="/js/theme.js?1775732224" defer></script>
   </body>
 </html>

@@ -15,11 +15,18 @@
       <description>Kong Gateway can proxy:&#xA;Layer 7 protocol, including: REST, GraphQL, gRPC, Websocket, SOAP, Kafka Layer 4 TCP and UDP Streaming Kong Gateway Service Gateway Services represent the upstream services in your system. These applications are the business logic components of your system responsible for responding to requests.&#xA;The configuration of a Gateway Service defines the connectivity details between the Kong Gateway and the upstream service, along with other metadata. Generally, you should map one Gateway Service to each upstream service.</description>
     </item>
     <item>
-      <title>Create your first Kong Gateway Service and Kong Route</title>
-      <link>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</link>
+      <title>Create your first Kong Gateway Service and Kong Route using decK</title>
+      <link>http://localhost:1313/12-api-gateway/122-first-kong-service-route/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/122-kong-service-route/index.html</guid>
+      <guid>http://localhost:1313/12-api-gateway/122-first-kong-service-route/index.html</guid>
       <description>For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.&#xA;Deploy the Application Deploy the application using the following declaration with both Kubernetes Deployment and Service.&#xA;cat &lt;&lt;EOF | kubectl apply -f - apiVersion: v1 kind: Service metadata: name: httpbin namespace: kong labels: app: httpbin spec: type: ClusterIP ports: - name: http port: 8000 targetPort: 80 selector: app: httpbin --- apiVersion: apps/v1 kind: Deployment metadata: name: httpbin namespace: kong spec: replicas: 1 selector: matchLabels: app: httpbin version: v1 template: metadata: labels: app: httpbin version: v1 spec: containers: - image: docker.io/kong/httpbin imagePullPolicy: IfNotPresent name: httpbin ports: - containerPort: 8000 EOF Check the Deployment Observe Kubernetes Services in kong namespace kubectl get service httpbin -n kong Sample Output</description>
+    </item>
+    <item>
+      <title>Import an OpenAPI specification - optional</title>
+      <link>http://localhost:1313/12-api-gateway/123-oas-import/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/12-api-gateway/123-oas-import/index.html</guid>
+      <description>For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.&#xA;Download the bankong.yaml spec. In your Control Plane, click on Import via OAS spec. Choose the bankong.yaml spec and click Continue. Review the Import Summary and click Import Notice the Services and Routes that will be imported Notice declarative representation of this import as well (more on this later) You should see your new Kong Service and Routes:</description>
     </item>
     <item>
       <title>Use Cases</title>

@@ -1,5 +1,5 @@
 ---
-title : "AI Semantic Prompt Guard plugin"
+title : "AI Semantic Prompt Guard"
 weight : 4
 ---
 

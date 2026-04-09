@@ -1,5 +1,5 @@
 ---
-title : "Create your first Kong Gateway Service and Kong Route"
+title : "Create your first Kong Gateway Service and Kong Route using decK"
 weight : 122
 ---
 
@@ -92,7 +92,7 @@ httpbin-5c69574c95-xq76q                     1/1     Running   0          20h
 
 #### Ping Konnect with decK
 
-Before start using decK, you should ping Konnect to check if the connecting is up. Note we assume you have the PAT environment variable set. Please, refer to the previous section to learn how to issue a PAT.
+Before start using [**decK**](https://developer.konghq.com/deck/), you should ping Konnect to check if the connecting is up. Note we assume you have the PAT environment variable set. Please, refer to the previous section to learn how to issue a PAT.
 
 {{<highlight>}}
 deck gateway ping --konnect-control-plane-name kong-workshop --konnect-token $PAT

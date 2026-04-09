@@ -29,7 +29,7 @@
       <description>The AI Prompt Guard plugin lets you to configure a series of PCRE-compatible regular expressions as allow or deny lists, to guard against misuse of llm/v1/chat or llm/v1/completions requests.&#xA;You can use this plugin to allow or block specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via Kong Gateway. It does this by scanning all chat messages (where the role is user) for the specific expressions set. You can use a combination of allow and deny rules to preserve integrity and compliance when serving an LLM service using Kong Gateway.</description>
     </item>
     <item>
-      <title>AI Semantic Prompt Guard plugin</title>
+      <title>AI Semantic Prompt Guard</title>
       <link>http://localhost:1313/13-ai-gateway/17-use-cases/151-prompt-engineering/4-semantic-prompt-guard/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/13-ai-gateway/17-use-cases/151-prompt-engineering/4-semantic-prompt-guard/index.html</guid>
