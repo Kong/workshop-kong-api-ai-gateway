@@ -24,7 +24,7 @@ In this workshop, you will:
     * Observability
     <!-- * Invoke AWS Lambda -->
 
-* And the following AI Gateway use cases
+* The following AI Gateway use cases
     * Prompt Engineering
     * LLM-based Request and Reponse transformation
     * Semantic Caching
@@ -32,11 +32,9 @@ In this workshop, you will:
     * Semantic Routing
     * RAG - Retrieval-Augmented Generation
 
-# Expected Duration
+* And the following MCP Gateway use cases
+    * Convert Kong Gateway Services into MCP Tools
+    * Implement OAuth 2 specification for MCP Servers with Kong Identity
+    * Securing existing MCP Server
+    * Kong AI/MCP Gateway, Claude Code and Anthropic
 
-* Workshop Introduction (15 minutes)
-* Architectural Walkthrough (10 minutes)
-* Sample Application and initial use case (15 minutes)
-* Addressing API and AI Gateway use cases (90 minutes)
-* Observability (30 minutes)
-* Next Steps and Cleanup (5 min)

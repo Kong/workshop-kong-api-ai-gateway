@@ -10,7 +10,7 @@ With our Control Plane created and Data Plane layer deployed it's time to create
 * Enable Kong Plugins to the Kong Route or Kong Service.
 * Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them.
 
-With [decK](https://docs.konghq.com/deck/) (declarations for Kong) you can manage Kong Konnect configuration in a declaratively way.
+With [**decK** (declarations for Kong)](https://docs.konghq.com/deck/) you can manage Kong Konnect configuration in a declaratively way.
 
 decK operates on state files. decK state files describe the configuration of Kong API Gateway. State files encapsulate the complete configuration of Kong in a declarative format, including services, routes, plugins, consumers, and other entities that define how requests are processed and routed through Kong.
 
