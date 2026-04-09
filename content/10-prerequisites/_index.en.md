@@ -49,8 +49,8 @@ In this workshop, we will use the following command line utilities
 The Kong AI Gateway use cases consume and protect LLMs running on [**Ollama**](https://github.com/ollama)
 
 
-### OpenAI
-Some AI use cases also use OpenAI's Embeddings and LLMs. Please make sure you have an OpenAI API key.
+### OpenAI & Anthropic
+Some AI use cases also use OpenAI's Embeddings and LLMs. Other use cases are based on Anthropic Models and Claude Code. Please make sure you have an OpenAI and Anthropic API keys.
 
 
 

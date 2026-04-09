@@ -33,26 +33,26 @@ Download the new decK file Download the marketplace_mcp.yaml Kong decK spec file
 Submit the decK declaration to your Control Plane :::code{showCopyAction=true showLineNumbers=false language=shell} deck gateway reset –konnect-control-plane-name kong-aws –konnect-token $PAT -f deck gateway sync –konnect-control-plane-name kong-aws –konnect-token $PAT marketplace_mcp.yaml :::">
     <meta itemprop="wordCount" content="605">
     <title>Convert Kong Gateway Services into MCP Tools :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775732224" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775732224" defer></script>
-    <script src="/js/search-lunr.js?1775732224" defer></script>
-    <script src="/js/search.js?1775732224" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775739011" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775739011" defer></script>
+    <script src="/js/search-lunr.js?1775739011" defer></script>
+    <script src="/js/search.js?1775739011" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775732224";
+      window.relearn.index_js_url="/searchindex.en.js?1775739011";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775732224" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775732224" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775732224" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775732224" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775739011" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775739011" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775739011" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775739011" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775732224" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775732224" rel="stylesheet">
-    <link href="/css/theme.css?1775732224" rel="stylesheet">
-    <link href="/css/format-html.css?1775732224" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775739011" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775739011" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775739011" rel="stylesheet">
+    <link href="/css/theme.css?1775739011" rel="stylesheet">
+    <link href="/css/format-html.css?1775739011" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -165,8 +165,8 @@ Submit the decK declaration to your Control Plane :::code{showCopyAction=true sh
 
 <p>Now, we are going to use the <a href="https://developer.konghq.com/plugins/ai-mcp-proxy/" rel="external" target="_blank">AI MCP Proxy</a> plugin to convert the Kong Gateway Service into MCP Tools.</p>
 <p>Here&rsquo;s the new architecture:</p>
-<p><a href="#R-image-2badad2e318549dae25c1d5b8051a436" class="lightbox-link"><img alt="marketplace_mcp_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_mcp_arch.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2badad2e318549dae25c1d5b8051a436"><img alt="marketplace_mcp_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_mcp_arch.png"></a></p>
+<p><a href="#R-image-4ba4f06008730992a6f3dd09f1b4f20a" class="lightbox-link"><img alt="marketplace_mcp_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_mcp_arch.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4ba4f06008730992a6f3dd09f1b4f20a"><img alt="marketplace_mcp_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_mcp_arch.png"></a></p>
 <h3 id="download-the-new-deck-file">Download the new decK file</h3>
 <ul>
 <li>Download the <strong>marketplace_mcp.yaml</strong> Kong decK spec file.</li>
@@ -186,8 +186,8 @@ deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-toke
 </ul>
 <h2 id="ai-proxy-advanced-plugin">AI Proxy Advanced Plugin</h2>
 <p>The <strong>ai-proxy-advanced-service</strong> Kong Gateway Service has a Kong Route with the <strong>AI Proxy Advanced</strong> Plugin enabled. That&rsquo;s how we solve the LLM flow with Bedrock.</p>
-<p><a href="#R-image-d0ba16d0a29d2b37be169d084c1c9780" class="lightbox-link"><img alt="marketplace_bedrock" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_bedrock.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d0ba16d0a29d2b37be169d084c1c9780"><img alt="marketplace_bedrock" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_bedrock.png"></a></p>
+<p><a href="#R-image-953a12b61bbdff8f73f17c7acbd108c6" class="lightbox-link"><img alt="marketplace_bedrock" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_bedrock.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-953a12b61bbdff8f73f17c7acbd108c6"><img alt="marketplace_bedrock" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_bedrock.png"></a></p>
 <p>In fact, this Service specification follows the same structured the Services we previously created. Here&rsquo;s the snippet:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>- name: ai-proxy-advanced-service
   host: localhost
@@ -216,8 +216,8 @@ deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-toke
             log_statistics: true</code></pre></div>
 <h2 id="ai-mcp-proxy-plugin">AI MCP Proxy Plugin</h2>
 <p>On the other hand, the <strong>marketplace</strong> Kong Gateway Service has another Kong Route with the <strong>AI MCP Proxy</strong> Plugin enabled. This plugin solves the MCP flow with the Kong Gateway Service.</p>
-<p><a href="#R-image-8b3920907d2acdcb59dab7a343690b50" class="lightbox-link"><img alt="Marketplace MCP service configuration" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_mcp.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8b3920907d2acdcb59dab7a343690b50"><img alt="Marketplace MCP service configuration" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_mcp.png"></a></p>
+<p><a href="#R-image-3036d3976b816bcd556d79b4603d3a5f" class="lightbox-link"><img alt="Marketplace MCP service configuration" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_mcp.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3036d3976b816bcd556d79b4603d3a5f"><img alt="Marketplace MCP service configuration" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_mcp.png"></a></p>
 <p>Let&rsquo;s check the <strong>marketplace</strong> Kong Gateway Service spec now. The first thing to note is that the Service has, besides the <strong>Mocking</strong> Plugin, the <strong>AI MCP Proxy</strong> Plugin. The <strong>Mocking</strong> Plugin has exactly the specifiction with the same OpenAPI Specification.</p>
 <p>The <strong>AI MCP Proxy</strong> Plugin defines the MCP abstractions based on the Kong Gateway Service. In fact, the plugin configuration defines two MCP Tools:</p>
 <ul>
@@ -379,8 +379,8 @@ deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-toke
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775732224" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775732224" defer></script>
-    <script src="/js/theme.js?1775732224" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775739011" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775739011" defer></script>
+    <script src="/js/theme.js?1775739011" defer></script>
   </body>
 </html>

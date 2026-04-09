@@ -19,7 +19,7 @@ Inside the **New AI Gateway** page do the following:
 
 Inside the **Overview** page click **Connect LLM*** and do the following:
 * For the **Connect to LLM** popup box leave the **LLM Provider** box with its default values, ``OpenAI``. Open the box if you want to check all LLMs supported by Kong AI Gateway.
-* We are going to expose the OpenAI's **gpt-4** model, so, for the **Enter a model** box, also leave its default value.
+* We are going to expose the OpenAI's **gpt-5.2** model, so, for the **Enter a model** box, also leave its default value.
 * Finally, for the **API Key** box, paste your OpenAI's API Key. Note you can store you API Key in you vault and leverage the [vault support](https://developer.konghq.com/gateway/entities/vault/) provided by Konnect. Click **Save**.
 
 
@@ -38,11 +38,11 @@ For now, we are not going to apply any AI based plugin so, inside the **Overview
 
 ![Test your setup](/static/images/ai_gateway_test_your_setup.png)
 
-Use the **Copy** button to copy the request, paste it into your terminal changing ``<YOUR_HOST_NAME>>`` with your ``DATA_PLANE_URL`` environment variable and send it to your Data Plane:
+Use the **Copy** button to copy the request, paste it into your terminal changing ``<YOUR_HOST_NAME>>`` with your ``DATA_PLANE_LB`` environment variable and send it to your Data Plane:
 
 
 ```
-curl -X POST $DATA_PLANE_LB/openai-route \
+curl -kX POST https://$DATA_PLANE_LB/openai-route \
 -H 'Content-Type: application/json' \
 -d '{
   "messages": [
@@ -60,7 +60,7 @@ curl -X POST $DATA_PLANE_LB/openai-route \
 The AI Gateway Konnect UI is the easiest way to configure your Control Plane with new AI Gateway and plugins. Behind the scenes, Konnect creates all Kong Objects required to implement the AI Gateway. For example, if you get back to your **API Gateway** menu option, you'll see you have three Kong Object defined:
 * Kong Gateway Service
 * Kong Route, with the your Route configuration, including the ``/openai-route`` path.
-* Kong Plugin with the **Kong AI Proxy Advanced** plugin with the necessary configuration to hit OpenAI and consume its ``gpt-4`` model.
+* Kong Plugin with the **Kong AI Proxy Advanced** plugin with the necessary configuration to hit OpenAI and consume its ``gpt-5.2`` model.
 
 For example, here's your **Kong AI Proxy Advanced** configuration page:
 
