@@ -25,26 +25,26 @@ cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import 
 cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import os import json from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client import aiohttp data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;) client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;) print (&#34;KONG_IDENTITY: &#34; &#43; token_url) print (&#34;CLIENT_ID: &#34; &#43; client_id) print (&#34;CLIENT_SECRET: &#34; &#43; client_secret) async def get_access_token(): &#34;&#34;&#34; Fetch OAuth2 token using Client Credentials grant. &#34;&#34;&#34; token_data = os.getenv(&#34;TOKEN&#34;) if token_data is not None: print(&#34;Env Var Token is set&#34;) return token_data async with aiohttp.ClientSession() as http: async with http.post( token_url, data={ &#34;grant_type&#34;: &#34;client_credentials&#34;, &#34;client_id&#34;: client_id, &#34;client_secret&#34;: client_secret, }, headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;} ) as resp: if resp.status != 200: raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;) token_data = await resp.json() return token_data[&#34;access_token&#34;] async def main(): token = await get_access_token() print(&#34;Received OAuth Access Token&#34;) print(token) # Connect to a streamable HTTP server async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,): print(&#34;Create a session using the client streams&#34;) async with ClientSession(read_stream, write_stream) as session: print(&#34;Initialize the connection&#34;) await session.initialize() print(&#34;List available tools&#34;) tools = await session.list_tools() print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;) print(f&#34;Executing tool: marketplace-route-1&#34;) result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;}); print(result) if __name__ == &#34;__main__&#34;: asyncio.run(main()) EOF The code checks if the environment variable TOKEN is set. If it’s not, the code goes to Kong Identity, through the Client Credentials Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the AI MCP OAuth2 plugin hits Keycloak using the Introspection flow to see if the token is still valid.">
     <meta itemprop="wordCount" content="404">
     <title>Test the MCP Tools :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926399" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926399" defer></script>
-    <script src="/js/search-lunr.js?1775926399" defer></script>
-    <script src="/js/search.js?1775926399" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775926517" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775926517" defer></script>
+    <script src="/js/search-lunr.js?1775926517" defer></script>
+    <script src="/js/search.js?1775926517" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926399";
+      window.relearn.index_js_url="/searchindex.en.js?1775926517";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926399" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926399" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926399" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775926517" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926399" rel="stylesheet">
-    <link href="/css/theme.css?1775926399" rel="stylesheet">
-    <link href="/css/format-html.css?1775926399" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926517" rel="stylesheet">
+    <link href="/css/theme.css?1775926517" rel="stylesheet">
+    <link href="/css/format-html.css?1775926517" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -335,8 +335,8 @@ meta=None content=[TextContent(type=&#39;text&#39;, text=&#39;[{&#34;fullName&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926399" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926399" defer></script>
-    <script src="/js/theme.js?1775926399" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775926517" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926517" defer></script>
+    <script src="/js/theme.js?1775926517" defer></script>
   </body>
 </html>

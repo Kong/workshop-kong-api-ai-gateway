@@ -8,17 +8,17 @@ weight : 191
 
 Make sure you Kong AI Gateway with the right configuration including Anthropic Model, Mocking Services and MCP Tools. This **decK** declaration is quite similar to the one you used before. The only difference is that the new one has the AI logging configuration set.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mcp_logging.yaml
-:::
+```
 
 
 ### Configure Kong AI Gateway to consume Amazon Bedrock
 
 Configure Kong AI Gateway to consume the **Claude Opus 4.6** model
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > claude-code.yaml << 'EOF'
 _format_version: "3.0"
 _info:
@@ -57,15 +57,15 @@ services:
         llm_format: anthropic
         max_request_body_size: 262144
 EOF
-:::
+```
 
 
 Apply the declaration with decK:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --select-tag claude-code --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT claude-code.yaml
-:::
+```
 
 
 ### Check Kong Gateway Service and Kong Routes

@@ -10,7 +10,7 @@ Create a file named **.env.claude** with the following settings. The configurati
 
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 mkdir claudecode-aws
 cd claudecode-aws
 
@@ -19,26 +19,26 @@ export AWS_REGION=us-west-2
 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1
 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic
 EOF
-:::
+```
 
 You can get this settings with:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 . ./.env.claude
-:::
+```
 
 Test **Claude Code**:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 claude --version
-:::
+```
 
 
 ### Start Claude Code for the first time
 
 Assuming you have **Claude Code** installed locally, run:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 claude
-:::
+```
 
 You shoul see the Claude Code welcome prompt:
 

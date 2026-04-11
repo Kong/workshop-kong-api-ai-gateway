@@ -8,17 +8,17 @@ weight : 194
 
 Now, you need to set your local Python environment to tell it you have a new application:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 . ./.venv/bin/activate
-:::
+```
 
 
 
 ### Run the Agent
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 python3 strands_kong_agent.py
-:::
+```
 
 You should see the Agent response and a prompt:
 
@@ -37,9 +37,9 @@ You:
 Type the same question you did before:
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 list all orders made by Alice 
-:::
+```
 
 
 You should see similar responses:
@@ -66,15 +66,15 @@ You:
 
 
 You can try other prompts like:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 how about Ian Walker's?
-:::
+```
 
 or
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 and Claudio's?
-:::
+```
 
 
 Type ``ˆC`` to exit.

@@ -9,13 +9,13 @@ Now we are going to ask **Claude Code** to create the Strands Agent consuming Ko
 
 Copy the following instructions and paste them to the **Claude Code** prompt.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 Write a Strands Agent code to consume Kong AI Gateway.
 Follow these instructions:
 . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named "proxy1" deployed in the "kong" namespace.
 . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands' OpenAI Model Provider.
 . The Kong AI Gateway Route for the MCP Server is /mcp-listener.
-:::
+```
 
 
 You should see:
@@ -131,9 +131,9 @@ Here's a snippet of **Claude Code** output showing that the Agent code has been 
 
 Now copy the following instruction and paste it to the **Claude Code** prompt:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 Playing the Agent role, ask Kong AI Gateway to list all orders made by Alice Johnson
-:::
+```
 
 
 The result should be something like this:
@@ -181,9 +181,9 @@ The result should be something like this:
 
 Now you are ok to quit **Claude Code**. Type or copy-and-paste the following command:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 quit
-:::
+```
 
 
 You should get redirected to your terminal.
