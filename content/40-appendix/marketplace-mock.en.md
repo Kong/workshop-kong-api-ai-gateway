@@ -3,7 +3,7 @@ title : "Marketplace Mock"
 weight : 501
 ---
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > marketplace_mock.yaml << 'EOF'
 _format_version: "3.0"
 services:
@@ -437,4 +437,4 @@ services:
                             value:
                               error: User not found
 EOF
-:::
+```

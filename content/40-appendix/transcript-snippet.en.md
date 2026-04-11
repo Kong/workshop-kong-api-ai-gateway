@@ -3,7 +3,7 @@ title : "Transcript Snippet"
 weight : 401
 ---
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > SED1683-Kong-short.txt << 'EOF'
 EPISODE 1683
 
@@ -39,4 +39,4 @@ The APIs are the system of record of everything the organization does. A platfor
 
 0:15:13 LA: Yeah, so let's start with governance.
 EOF
-:::
+```

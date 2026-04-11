@@ -5,46 +5,42 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; marketplace_mock.yaml « ‘EOF’ _format_version: “3.0” services:
-name: marketplace url: http://localhost:32000 routes: name: marketplace-route paths: / plugins: name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: ‘200’: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: ‘200’: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: ‘200’: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: “Orders for Alice Johnson (userId: a1b2c3d4)” value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: “Orders for Bob Smith (userId: e5f6g7h8)” value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: “Orders for Charlie Lee (userId: i9j0k1l2)” value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: “Orders for Diana Evans (userId: m3n4o5p6)” value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: “Orders for Ethan Brown (userId: q7r8s9t0)” value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: “Orders for Fiona Clark (userId: u1v2w3x4)” value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: “Orders for Julia Turner (userId: k7l8m9n0)” value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: “Orders for Ian Walker (userId: g3h4i5j6)” value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: “Orders for Hannah Lewis (userId: c9d0e1f2)” value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: “Orders for George Harris (userId: y5z6a7b8)” value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF :::">
+    <meta name="description" content="cat &gt; marketplace_mock.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; services: - name: marketplace url: http://localhost:32000 routes: - name: marketplace-route paths: - / plugins: - name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: &#39;200&#39;: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: &#39;200&#39;: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: &#39;200&#39;: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: &#34;Orders for Alice Johnson (userId: a1b2c3d4)&#34; value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: &#34;Orders for Bob Smith (userId: e5f6g7h8)&#34; value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: &#34;Orders for Charlie Lee (userId: i9j0k1l2)&#34; value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: &#34;Orders for Diana Evans (userId: m3n4o5p6)&#34; value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: &#34;Orders for Ethan Brown (userId: q7r8s9t0)&#34; value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: &#34;Orders for Fiona Clark (userId: u1v2w3x4)&#34; value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: &#34;Orders for Julia Turner (userId: k7l8m9n0)&#34; value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: &#34;Orders for Ian Walker (userId: g3h4i5j6)&#34; value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: &#34;Orders for Hannah Lewis (userId: c9d0e1f2)&#34; value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: &#34;Orders for George Harris (userId: y5z6a7b8)&#34; value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Marketplace Mock :: API Management with Kong Konnect">
-    <meta name="twitter:description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; marketplace_mock.yaml « ‘EOF’ _format_version: “3.0” services:
-name: marketplace url: http://localhost:32000 routes: name: marketplace-route paths: / plugins: name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: ‘200’: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: ‘200’: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: ‘200’: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: “Orders for Alice Johnson (userId: a1b2c3d4)” value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: “Orders for Bob Smith (userId: e5f6g7h8)” value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: “Orders for Charlie Lee (userId: i9j0k1l2)” value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: “Orders for Diana Evans (userId: m3n4o5p6)” value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: “Orders for Ethan Brown (userId: q7r8s9t0)” value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: “Orders for Fiona Clark (userId: u1v2w3x4)” value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: “Orders for Julia Turner (userId: k7l8m9n0)” value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: “Orders for Ian Walker (userId: g3h4i5j6)” value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: “Orders for Hannah Lewis (userId: c9d0e1f2)” value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: “Orders for George Harris (userId: y5z6a7b8)” value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF :::">
+    <meta name="twitter:description" content="cat &gt; marketplace_mock.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; services: - name: marketplace url: http://localhost:32000 routes: - name: marketplace-route paths: - / plugins: - name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: &#39;200&#39;: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: &#39;200&#39;: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: &#39;200&#39;: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: &#34;Orders for Alice Johnson (userId: a1b2c3d4)&#34; value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: &#34;Orders for Bob Smith (userId: e5f6g7h8)&#34; value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: &#34;Orders for Charlie Lee (userId: i9j0k1l2)&#34; value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: &#34;Orders for Diana Evans (userId: m3n4o5p6)&#34; value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: &#34;Orders for Ethan Brown (userId: q7r8s9t0)&#34; value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: &#34;Orders for Fiona Clark (userId: u1v2w3x4)&#34; value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: &#34;Orders for Julia Turner (userId: k7l8m9n0)&#34; value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: &#34;Orders for Ian Walker (userId: g3h4i5j6)&#34; value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: &#34;Orders for Hannah Lewis (userId: c9d0e1f2)&#34; value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: &#34;Orders for George Harris (userId: y5z6a7b8)&#34; value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF">
     <meta property="og:url" content="http://localhost:1313/40-appendix/marketplace-mock/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Marketplace Mock :: API Management with Kong Konnect">
-    <meta property="og:description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; marketplace_mock.yaml « ‘EOF’ _format_version: “3.0” services:
-name: marketplace url: http://localhost:32000 routes: name: marketplace-route paths: / plugins: name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: ‘200’: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: ‘200’: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: ‘200’: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: “Orders for Alice Johnson (userId: a1b2c3d4)” value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: “Orders for Bob Smith (userId: e5f6g7h8)” value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: “Orders for Charlie Lee (userId: i9j0k1l2)” value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: “Orders for Diana Evans (userId: m3n4o5p6)” value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: “Orders for Ethan Brown (userId: q7r8s9t0)” value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: “Orders for Fiona Clark (userId: u1v2w3x4)” value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: “Orders for Julia Turner (userId: k7l8m9n0)” value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: “Orders for Ian Walker (userId: g3h4i5j6)” value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: “Orders for Hannah Lewis (userId: c9d0e1f2)” value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: “Orders for George Harris (userId: y5z6a7b8)” value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF :::">
+    <meta property="og:description" content="cat &gt; marketplace_mock.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; services: - name: marketplace url: http://localhost:32000 routes: - name: marketplace-route paths: - / plugins: - name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: &#39;200&#39;: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: &#39;200&#39;: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: &#39;200&#39;: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: &#34;Orders for Alice Johnson (userId: a1b2c3d4)&#34; value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: &#34;Orders for Bob Smith (userId: e5f6g7h8)&#34; value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: &#34;Orders for Charlie Lee (userId: i9j0k1l2)&#34; value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: &#34;Orders for Diana Evans (userId: m3n4o5p6)&#34; value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: &#34;Orders for Ethan Brown (userId: q7r8s9t0)&#34; value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: &#34;Orders for Fiona Clark (userId: u1v2w3x4)&#34; value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: &#34;Orders for Julia Turner (userId: k7l8m9n0)&#34; value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: &#34;Orders for Ian Walker (userId: g3h4i5j6)&#34; value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: &#34;Orders for Hannah Lewis (userId: c9d0e1f2)&#34; value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: &#34;Orders for George Harris (userId: y5z6a7b8)&#34; value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Appendix">
     <meta itemprop="name" content="Marketplace Mock :: API Management with Kong Konnect">
-    <meta itemprop="description" content=":::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; marketplace_mock.yaml « ‘EOF’ _format_version: “3.0” services:
-name: marketplace url: http://localhost:32000 routes: name: marketplace-route paths: / plugins: name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: ‘200’: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: ‘200’: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: ‘200’: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: ‘200’: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: “Orders for Alice Johnson (userId: a1b2c3d4)” value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: “Orders for Bob Smith (userId: e5f6g7h8)” value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: “Orders for Charlie Lee (userId: i9j0k1l2)” value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: “Orders for Diana Evans (userId: m3n4o5p6)” value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: “Orders for Ethan Brown (userId: q7r8s9t0)” value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: “Orders for Fiona Clark (userId: u1v2w3x4)” value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: “Orders for Julia Turner (userId: k7l8m9n0)” value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: “Orders for Ian Walker (userId: g3h4i5j6)” value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: “Orders for Hannah Lewis (userId: c9d0e1f2)” value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: “Orders for George Harris (userId: y5z6a7b8)” value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 ‘404’: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF :::">
+    <meta itemprop="description" content="cat &gt; marketplace_mock.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; services: - name: marketplace url: http://localhost:32000 routes: - name: marketplace-route paths: - / plugins: - name: mocking instance_name: marketplace-mock enabled: true config: api_specification: |- openapi: 3.0.0 info: title: Sample Users API version: 1.1.0 description: A sample API for managing users and orders in a mock marketplace. servers: - url: http://localhost:3000 description: Local development server paths: /: get: summary: Root endpoint description: Returns the name of the API. responses: &#39;200&#39;: description: API name content: application/json: schema: type: object properties: name: type: string example: Sample Users API examples: root: summary: API root response value: name: Sample Users API /users: get: summary: List all users description: Retrieves a list of all users. responses: &#39;200&#39;: description: List of users content: application/json: schema: type: array items: type: object properties: id: type: string fullName: type: string examples: allUsers: summary: Complete list of all users value: - id: a1b2c3d4 fullName: Alice Johnson - id: e5f6g7h8 fullName: Bob Smith - id: i9j0k1l2 fullName: Charlie Lee - id: m3n4o5p6 fullName: Diana Evans - id: q7r8s9t0 fullName: Ethan Brown - id: u1v2w3x4 fullName: Fiona Clark - id: y5z6a7b8 fullName: George Harris - id: c9d0e1f2 fullName: Hannah Lewis - id: g3h4i5j6 fullName: Ian Walker - id: k7l8m9n0 fullName: Julia Turner /users/{id}: get: summary: Get a user by ID description: Retrieves details for a specific user by their ID. parameters: - name: id in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: User details content: application/json: schema: type: object properties: id: type: string fullName: type: string examples: alice: summary: Alice Johnson user value: id: a1b2c3d4 fullName: Alice Johnson bob: summary: Bob Smith user value: id: e5f6g7h8 fullName: Bob Smith charlie: summary: Charlie Lee user value: id: i9j0k1l2 fullName: Charlie Lee diana: summary: Diana Evans user value: id: m3n4o5p6 fullName: Diana Evans ethan: summary: Ethan Brown user value: id: q7r8s9t0 fullName: Ethan Brown fiona: summary: Fiona Clark user value: id: u1v2w3x4 fullName: Fiona Clark george: summary: George Harris user value: id: y5z6a7b8 fullName: George Harris hannah: summary: Hannah Lewis user value: id: c9d0e1f2 fullName: Hannah Lewis ian: summary: Ian Walker user value: id: g3h4i5j6 fullName: Ian Walker julia: summary: Julia Turner user value: id: k7l8m9n0 fullName: Julia Turner &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found /orders: get: summary: List all orders description: Retrieves a list of all orders. responses: &#39;200&#39;: description: List of all orders content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: allOrders: summary: Complete list of all orders value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 /users/{userId}/orders: get: summary: List orders for a user description: Retrieves all orders for a specific user by their ID. parameters: - name: userId in: path required: true description: The unique ID of the user schema: type: string responses: &#39;200&#39;: description: List of orders for the user content: application/json: schema: type: array items: type: object properties: id: type: string name: type: string userId: type: string examples: aliceOrders: summary: &#34;Orders for Alice Johnson (userId: a1b2c3d4)&#34; value: - id: ord001 name: Sugar (50kg) userId: a1b2c3d4 - id: ord002 name: Cleaning Supplies Pack userId: a1b2c3d4 - id: ord003 name: Canned Tomatoes (100 cans) userId: a1b2c3d4 bobOrders: summary: &#34;Orders for Bob Smith (userId: e5f6g7h8)&#34; value: - id: ord004 name: Flour (100kg) userId: e5f6g7h8 - id: ord005 name: Dish Soap (10 bottles) userId: e5f6g7h8 - id: ord006 name: Salt (25kg) userId: e5f6g7h8 charlieOrders: summary: &#34;Orders for Charlie Lee (userId: i9j0k1l2)&#34; value: - id: ord007 name: Olive Oil (20L) userId: i9j0k1l2 - id: ord008 name: Baking Powder (10kg) userId: i9j0k1l2 dianaOrders: summary: &#34;Orders for Diana Evans (userId: m3n4o5p6)&#34; value: - id: ord009 name: Rice (200kg) userId: m3n4o5p6 - id: ord010 name: Vegetable Oil (15L) userId: m3n4o5p6 - id: ord011 name: Pasta (80kg) userId: m3n4o5p6 - id: ord012 name: Canned Beans (50 cans) userId: m3n4o5p6 ethanOrders: summary: &#34;Orders for Ethan Brown (userId: q7r8s9t0)&#34; value: - id: ord013 name: Toilet Paper (Case of 48) userId: q7r8s9t0 - id: ord014 name: Hand Sanitizer (20 bottles) userId: q7r8s9t0 fionaOrders: summary: &#34;Orders for Fiona Clark (userId: u1v2w3x4)&#34; value: - id: ord015 name: Laundry Detergent (10L) userId: u1v2w3x4 - id: ord016 name: Trash Bags (100 ct) userId: u1v2w3x4 - id: ord017 name: Disinfectant Spray (5 bottles) userId: u1v2w3x4 juliaOrders: summary: &#34;Orders for Julia Turner (userId: k7l8m9n0)&#34; value: - id: ord018 name: Coffee Beans (30kg) userId: k7l8m9n0 - id: ord019 name: Tea Bags (500ct) userId: k7l8m9n0 - id: ord020 name: Condensed Milk (40 cans) userId: k7l8m9n0 ianOrders: summary: &#34;Orders for Ian Walker (userId: g3h4i5j6)&#34; value: - id: ord021 name: Paper Towels (24 rolls) userId: g3h4i5j6 - id: ord022 name: Broom &amp; Mop Set userId: g3h4i5j6 hannahOrders: summary: &#34;Orders for Hannah Lewis (userId: c9d0e1f2)&#34; value: - id: ord023 name: Cereal (20 boxes) userId: c9d0e1f2 - id: ord024 name: Powdered Milk (10kg) userId: c9d0e1f2 - id: ord025 name: Snacks Variety Pack userId: c9d0e1f2 georgeOrders: summary: &#34;Orders for George Harris (userId: y5z6a7b8)&#34; value: - id: ord026 name: Cooking Gas Cylinder userId: y5z6a7b8 - id: ord027 name: Napkins (1000ct) userId: y5z6a7b8 &#39;404&#39;: description: User not found content: application/json: schema: type: object properties: error: type: string examples: notFound: summary: Error when user does not exist value: error: User not found EOF">
     <meta itemprop="wordCount" content="1125">
     <title>Marketplace Mock :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775925047" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775925047" defer></script>
-    <script src="/js/search-lunr.js?1775925047" defer></script>
-    <script src="/js/search.js?1775925047" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775925669" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775925669" defer></script>
+    <script src="/js/search-lunr.js?1775925669" defer></script>
+    <script src="/js/search.js?1775925669" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775925047";
+      window.relearn.index_js_url="/searchindex.en.js?1775925669";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775925047" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925047" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775925047" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775925047" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775925669" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925669" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775925669" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775925669" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925047" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925047" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925047" rel="stylesheet">
-    <link href="/css/theme.css?1775925047" rel="stylesheet">
-    <link href="/css/format-html.css?1775925047" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925669" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925669" rel="stylesheet">
+    <link href="/css/theme.css?1775925669" rel="stylesheet">
+    <link href="/css/format-html.css?1775925669" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -142,449 +138,439 @@ name: marketplace url: http://localhost:32000 routes: name: marketplace-route pa
 
 <h1 id="marketplace-mock">Marketplace Mock</h1>
 
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; marketplace_mock.yaml &laquo; &lsquo;EOF&rsquo;
-_format_version: &ldquo;3.0&rdquo;
-services:</p>
-<ul>
-<li>name: marketplace
-url: http://localhost:32000
-routes:
-<ul>
-<li>name: marketplace-route
-paths:
-<ul>
-<li>/
-plugins:</li>
-<li>name: mocking
-instance_name: marketplace-mock
-enabled: true
-config:
-api_specification: |-
-openapi: 3.0.0
-info:
-title: Sample Users API
-version: 1.1.0
-description: A sample API for managing users and orders in a mock marketplace.
-servers:
-- url: http://localhost:3000
-description: Local development server
-paths:
-/:
-get:
-summary: Root endpoint
-description: Returns the name of the API.
-responses:
-&lsquo;200&rsquo;:
-description: API name
-content:
-application/json:
-schema:
-type: object
-properties:
-name:
-type: string
-example: Sample Users API
-examples:
-root:
-summary: API root response
-value:
-name: Sample Users API
-/users:
-get:
-summary: List all users
-description: Retrieves a list of all users.
-responses:
-&lsquo;200&rsquo;:
-description: List of users
-content:
-application/json:
-schema:
-type: array
-items:
-type: object
-properties:
-id:
-type: string
-fullName:
-type: string
-examples:
-allUsers:
-summary: Complete list of all users
-value:
-- id: a1b2c3d4
-fullName: Alice Johnson
-- id: e5f6g7h8
-fullName: Bob Smith
-- id: i9j0k1l2
-fullName: Charlie Lee
-- id: m3n4o5p6
-fullName: Diana Evans
-- id: q7r8s9t0
-fullName: Ethan Brown
-- id: u1v2w3x4
-fullName: Fiona Clark
-- id: y5z6a7b8
-fullName: George Harris
-- id: c9d0e1f2
-fullName: Hannah Lewis
-- id: g3h4i5j6
-fullName: Ian Walker
-- id: k7l8m9n0
-fullName: Julia Turner
-/users/{id}:
-get:
-summary: Get a user by ID
-description: Retrieves details for a specific user by their ID.
-parameters:
-- name: id
-in: path
-required: true
-description: The unique ID of the user
-schema:
-type: string
-responses:
-&lsquo;200&rsquo;:
-description: User details
-content:
-application/json:
-schema:
-type: object
-properties:
-id:
-type: string
-fullName:
-type: string
-examples:
-alice:
-summary: Alice Johnson user
-value:
-id: a1b2c3d4
-fullName: Alice Johnson
-bob:
-summary: Bob Smith user
-value:
-id: e5f6g7h8
-fullName: Bob Smith
-charlie:
-summary: Charlie Lee user
-value:
-id: i9j0k1l2
-fullName: Charlie Lee
-diana:
-summary: Diana Evans user
-value:
-id: m3n4o5p6
-fullName: Diana Evans
-ethan:
-summary: Ethan Brown user
-value:
-id: q7r8s9t0
-fullName: Ethan Brown
-fiona:
-summary: Fiona Clark user
-value:
-id: u1v2w3x4
-fullName: Fiona Clark
-george:
-summary: George Harris user
-value:
-id: y5z6a7b8
-fullName: George Harris
-hannah:
-summary: Hannah Lewis user
-value:
-id: c9d0e1f2
-fullName: Hannah Lewis
-ian:
-summary: Ian Walker user
-value:
-id: g3h4i5j6
-fullName: Ian Walker
-julia:
-summary: Julia Turner user
-value:
-id: k7l8m9n0
-fullName: Julia Turner
-&lsquo;404&rsquo;:
-description: User not found
-content:
-application/json:
-schema:
-type: object
-properties:
-error:
-type: string
-examples:
-notFound:
-summary: Error when user does not exist
-value:
-error: User not found
-/orders:
-get:
-summary: List all orders
-description: Retrieves a list of all orders.
-responses:
-&lsquo;200&rsquo;:
-description: List of all orders
-content:
-application/json:
-schema:
-type: array
-items:
-type: object
-properties:
-id:
-type: string
-name:
-type: string
-userId:
-type: string
-examples:
-allOrders:
-summary: Complete list of all orders
-value:
-- id: ord001
-name: Sugar (50kg)
-userId: a1b2c3d4
-- id: ord002
-name: Cleaning Supplies Pack
-userId: a1b2c3d4
-- id: ord003
-name: Canned Tomatoes (100 cans)
-userId: a1b2c3d4
-- id: ord004
-name: Flour (100kg)
-userId: e5f6g7h8
-- id: ord005
-name: Dish Soap (10 bottles)
-userId: e5f6g7h8
-- id: ord006
-name: Salt (25kg)
-userId: e5f6g7h8
-- id: ord007
-name: Olive Oil (20L)
-userId: i9j0k1l2
-- id: ord008
-name: Baking Powder (10kg)
-userId: i9j0k1l2
-- id: ord009
-name: Rice (200kg)
-userId: m3n4o5p6
-- id: ord010
-name: Vegetable Oil (15L)
-userId: m3n4o5p6
-- id: ord011
-name: Pasta (80kg)
-userId: m3n4o5p6
-- id: ord012
-name: Canned Beans (50 cans)
-userId: m3n4o5p6
-- id: ord013
-name: Toilet Paper (Case of 48)
-userId: q7r8s9t0
-- id: ord014
-name: Hand Sanitizer (20 bottles)
-userId: q7r8s9t0
-- id: ord015
-name: Laundry Detergent (10L)
-userId: u1v2w3x4
-- id: ord016
-name: Trash Bags (100 ct)
-userId: u1v2w3x4
-- id: ord017
-name: Disinfectant Spray (5 bottles)
-userId: u1v2w3x4
-- id: ord018
-name: Coffee Beans (30kg)
-userId: k7l8m9n0
-- id: ord019
-name: Tea Bags (500ct)
-userId: k7l8m9n0
-- id: ord020
-name: Condensed Milk (40 cans)
-userId: k7l8m9n0
-- id: ord021
-name: Paper Towels (24 rolls)
-userId: g3h4i5j6
-- id: ord022
-name: Broom &amp; Mop Set
-userId: g3h4i5j6
-- id: ord023
-name: Cereal (20 boxes)
-userId: c9d0e1f2
-- id: ord024
-name: Powdered Milk (10kg)
-userId: c9d0e1f2
-- id: ord025
-name: Snacks Variety Pack
-userId: c9d0e1f2
-- id: ord026
-name: Cooking Gas Cylinder
-userId: y5z6a7b8
-- id: ord027
-name: Napkins (1000ct)
-userId: y5z6a7b8
-/users/{userId}/orders:
-get:
-summary: List orders for a user
-description: Retrieves all orders for a specific user by their ID.
-parameters:
-- name: userId
-in: path
-required: true
-description: The unique ID of the user
-schema:
-type: string
-responses:
-&lsquo;200&rsquo;:
-description: List of orders for the user
-content:
-application/json:
-schema:
-type: array
-items:
-type: object
-properties:
-id:
-type: string
-name:
-type: string
-userId:
-type: string
-examples:
-aliceOrders:
-summary: &ldquo;Orders for Alice Johnson (userId: a1b2c3d4)&rdquo;
-value:
-- id: ord001
-name: Sugar (50kg)
-userId: a1b2c3d4
-- id: ord002
-name: Cleaning Supplies Pack
-userId: a1b2c3d4
-- id: ord003
-name: Canned Tomatoes (100 cans)
-userId: a1b2c3d4
-bobOrders:
-summary: &ldquo;Orders for Bob Smith (userId: e5f6g7h8)&rdquo;
-value:
-- id: ord004
-name: Flour (100kg)
-userId: e5f6g7h8
-- id: ord005
-name: Dish Soap (10 bottles)
-userId: e5f6g7h8
-- id: ord006
-name: Salt (25kg)
-userId: e5f6g7h8
-charlieOrders:
-summary: &ldquo;Orders for Charlie Lee (userId: i9j0k1l2)&rdquo;
-value:
-- id: ord007
-name: Olive Oil (20L)
-userId: i9j0k1l2
-- id: ord008
-name: Baking Powder (10kg)
-userId: i9j0k1l2
-dianaOrders:
-summary: &ldquo;Orders for Diana Evans (userId: m3n4o5p6)&rdquo;
-value:
-- id: ord009
-name: Rice (200kg)
-userId: m3n4o5p6
-- id: ord010
-name: Vegetable Oil (15L)
-userId: m3n4o5p6
-- id: ord011
-name: Pasta (80kg)
-userId: m3n4o5p6
-- id: ord012
-name: Canned Beans (50 cans)
-userId: m3n4o5p6
-ethanOrders:
-summary: &ldquo;Orders for Ethan Brown (userId: q7r8s9t0)&rdquo;
-value:
-- id: ord013
-name: Toilet Paper (Case of 48)
-userId: q7r8s9t0
-- id: ord014
-name: Hand Sanitizer (20 bottles)
-userId: q7r8s9t0
-fionaOrders:
-summary: &ldquo;Orders for Fiona Clark (userId: u1v2w3x4)&rdquo;
-value:
-- id: ord015
-name: Laundry Detergent (10L)
-userId: u1v2w3x4
-- id: ord016
-name: Trash Bags (100 ct)
-userId: u1v2w3x4
-- id: ord017
-name: Disinfectant Spray (5 bottles)
-userId: u1v2w3x4
-juliaOrders:
-summary: &ldquo;Orders for Julia Turner (userId: k7l8m9n0)&rdquo;
-value:
-- id: ord018
-name: Coffee Beans (30kg)
-userId: k7l8m9n0
-- id: ord019
-name: Tea Bags (500ct)
-userId: k7l8m9n0
-- id: ord020
-name: Condensed Milk (40 cans)
-userId: k7l8m9n0
-ianOrders:
-summary: &ldquo;Orders for Ian Walker (userId: g3h4i5j6)&rdquo;
-value:
-- id: ord021
-name: Paper Towels (24 rolls)
-userId: g3h4i5j6
-- id: ord022
-name: Broom &amp; Mop Set
-userId: g3h4i5j6
-hannahOrders:
-summary: &ldquo;Orders for Hannah Lewis (userId: c9d0e1f2)&rdquo;
-value:
-- id: ord023
-name: Cereal (20 boxes)
-userId: c9d0e1f2
-- id: ord024
-name: Powdered Milk (10kg)
-userId: c9d0e1f2
-- id: ord025
-name: Snacks Variety Pack
-userId: c9d0e1f2
-georgeOrders:
-summary: &ldquo;Orders for George Harris (userId: y5z6a7b8)&rdquo;
-value:
-- id: ord026
-name: Cooking Gas Cylinder
-userId: y5z6a7b8
-- id: ord027
-name: Napkins (1000ct)
-userId: y5z6a7b8
-&lsquo;404&rsquo;:
-description: User not found
-content:
-application/json:
-schema:
-type: object
-properties:
-error:
-type: string
-examples:
-notFound:
-summary: Error when user does not exist
-value:
-error: User not found
-EOF
-:::</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; marketplace_mock.yaml &lt;&lt; &#39;EOF&#39;
+_format_version: &#34;3.0&#34;
+services:
+- name: marketplace
+  url: http://localhost:32000
+  routes:
+  - name: marketplace-route
+    paths:
+    - /
+    plugins:
+    - name: mocking
+      instance_name: marketplace-mock
+      enabled: true
+      config:
+        api_specification: |-
+          openapi: 3.0.0
+          info:
+            title: Sample Users API
+            version: 1.1.0
+            description: A sample API for managing users and orders in a mock marketplace.
+          servers:
+            - url: http://localhost:3000
+              description: Local development server
+          paths:
+            /:
+              get:
+                summary: Root endpoint
+                description: Returns the name of the API.
+                responses:
+                  &#39;200&#39;:
+                    description: API name
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: Sample Users API
+                        examples:
+                          root:
+                            summary: API root response
+                            value:
+                              name: Sample Users API
+            /users:
+              get:
+                summary: List all users
+                description: Retrieves a list of all users.
+                responses:
+                  &#39;200&#39;:
+                    description: List of users
+                    content:
+                      application/json:
+                        schema:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              fullName:
+                                type: string
+                        examples:
+                          allUsers:
+                            summary: Complete list of all users
+                            value:
+                              - id: a1b2c3d4
+                                fullName: Alice Johnson
+                              - id: e5f6g7h8
+                                fullName: Bob Smith
+                              - id: i9j0k1l2
+                                fullName: Charlie Lee
+                              - id: m3n4o5p6
+                                fullName: Diana Evans
+                              - id: q7r8s9t0
+                                fullName: Ethan Brown
+                              - id: u1v2w3x4
+                                fullName: Fiona Clark
+                              - id: y5z6a7b8
+                                fullName: George Harris
+                              - id: c9d0e1f2
+                                fullName: Hannah Lewis
+                              - id: g3h4i5j6
+                                fullName: Ian Walker
+                              - id: k7l8m9n0
+                                fullName: Julia Turner
+            /users/{id}:
+              get:
+                summary: Get a user by ID
+                description: Retrieves details for a specific user by their ID.
+                parameters:
+                  - name: id
+                    in: path
+                    required: true
+                    description: The unique ID of the user
+                    schema:
+                      type: string
+                responses:
+                  &#39;200&#39;:
+                    description: User details
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            fullName:
+                              type: string
+                        examples:
+                          alice:
+                            summary: Alice Johnson user
+                            value:
+                              id: a1b2c3d4
+                              fullName: Alice Johnson
+                          bob:
+                            summary: Bob Smith user
+                            value:
+                              id: e5f6g7h8
+                              fullName: Bob Smith
+                          charlie:
+                            summary: Charlie Lee user
+                            value:
+                              id: i9j0k1l2
+                              fullName: Charlie Lee
+                          diana:
+                            summary: Diana Evans user
+                            value:
+                              id: m3n4o5p6
+                              fullName: Diana Evans
+                          ethan:
+                            summary: Ethan Brown user
+                            value:
+                              id: q7r8s9t0
+                              fullName: Ethan Brown
+                          fiona:
+                            summary: Fiona Clark user
+                            value:
+                              id: u1v2w3x4
+                              fullName: Fiona Clark
+                          george:
+                            summary: George Harris user
+                            value:
+                              id: y5z6a7b8
+                              fullName: George Harris
+                          hannah:
+                            summary: Hannah Lewis user
+                            value:
+                              id: c9d0e1f2
+                              fullName: Hannah Lewis
+                          ian:
+                            summary: Ian Walker user
+                            value:
+                              id: g3h4i5j6
+                              fullName: Ian Walker
+                          julia:
+                            summary: Julia Turner user
+                            value:
+                              id: k7l8m9n0
+                              fullName: Julia Turner
+                  &#39;404&#39;:
+                    description: User not found
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            error:
+                              type: string
+                        examples:
+                          notFound:
+                            summary: Error when user does not exist
+                            value:
+                              error: User not found
+            /orders:
+              get:
+                summary: List all orders
+                description: Retrieves a list of all orders.
+                responses:
+                  &#39;200&#39;:
+                    description: List of all orders
+                    content:
+                      application/json:
+                        schema:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                              userId:
+                                type: string
+                        examples:
+                          allOrders:
+                            summary: Complete list of all orders
+                            value:
+                              - id: ord001
+                                name: Sugar (50kg)
+                                userId: a1b2c3d4
+                              - id: ord002
+                                name: Cleaning Supplies Pack
+                                userId: a1b2c3d4
+                              - id: ord003
+                                name: Canned Tomatoes (100 cans)
+                                userId: a1b2c3d4
+                              - id: ord004
+                                name: Flour (100kg)
+                                userId: e5f6g7h8
+                              - id: ord005
+                                name: Dish Soap (10 bottles)
+                                userId: e5f6g7h8
+                              - id: ord006
+                                name: Salt (25kg)
+                                userId: e5f6g7h8
+                              - id: ord007
+                                name: Olive Oil (20L)
+                                userId: i9j0k1l2
+                              - id: ord008
+                                name: Baking Powder (10kg)
+                                userId: i9j0k1l2
+                              - id: ord009
+                                name: Rice (200kg)
+                                userId: m3n4o5p6
+                              - id: ord010
+                                name: Vegetable Oil (15L)
+                                userId: m3n4o5p6
+                              - id: ord011
+                                name: Pasta (80kg)
+                                userId: m3n4o5p6
+                              - id: ord012
+                                name: Canned Beans (50 cans)
+                                userId: m3n4o5p6
+                              - id: ord013
+                                name: Toilet Paper (Case of 48)
+                                userId: q7r8s9t0
+                              - id: ord014
+                                name: Hand Sanitizer (20 bottles)
+                                userId: q7r8s9t0
+                              - id: ord015
+                                name: Laundry Detergent (10L)
+                                userId: u1v2w3x4
+                              - id: ord016
+                                name: Trash Bags (100 ct)
+                                userId: u1v2w3x4
+                              - id: ord017
+                                name: Disinfectant Spray (5 bottles)
+                                userId: u1v2w3x4
+                              - id: ord018
+                                name: Coffee Beans (30kg)
+                                userId: k7l8m9n0
+                              - id: ord019
+                                name: Tea Bags (500ct)
+                                userId: k7l8m9n0
+                              - id: ord020
+                                name: Condensed Milk (40 cans)
+                                userId: k7l8m9n0
+                              - id: ord021
+                                name: Paper Towels (24 rolls)
+                                userId: g3h4i5j6
+                              - id: ord022
+                                name: Broom &amp; Mop Set
+                                userId: g3h4i5j6
+                              - id: ord023
+                                name: Cereal (20 boxes)
+                                userId: c9d0e1f2
+                              - id: ord024
+                                name: Powdered Milk (10kg)
+                                userId: c9d0e1f2
+                              - id: ord025
+                                name: Snacks Variety Pack
+                                userId: c9d0e1f2
+                              - id: ord026
+                                name: Cooking Gas Cylinder
+                                userId: y5z6a7b8
+                              - id: ord027
+                                name: Napkins (1000ct)
+                                userId: y5z6a7b8
+            /users/{userId}/orders:
+              get:
+                summary: List orders for a user
+                description: Retrieves all orders for a specific user by their ID.
+                parameters:
+                  - name: userId
+                    in: path
+                    required: true
+                    description: The unique ID of the user
+                    schema:
+                      type: string
+                responses:
+                  &#39;200&#39;:
+                    description: List of orders for the user
+                    content:
+                      application/json:
+                        schema:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                              userId:
+                                type: string
+                        examples:
+                          aliceOrders:
+                            summary: &#34;Orders for Alice Johnson (userId: a1b2c3d4)&#34;
+                            value:
+                              - id: ord001
+                                name: Sugar (50kg)
+                                userId: a1b2c3d4
+                              - id: ord002
+                                name: Cleaning Supplies Pack
+                                userId: a1b2c3d4
+                              - id: ord003
+                                name: Canned Tomatoes (100 cans)
+                                userId: a1b2c3d4
+                          bobOrders:
+                            summary: &#34;Orders for Bob Smith (userId: e5f6g7h8)&#34;
+                            value:
+                              - id: ord004
+                                name: Flour (100kg)
+                                userId: e5f6g7h8
+                              - id: ord005
+                                name: Dish Soap (10 bottles)
+                                userId: e5f6g7h8
+                              - id: ord006
+                                name: Salt (25kg)
+                                userId: e5f6g7h8
+                          charlieOrders:
+                            summary: &#34;Orders for Charlie Lee (userId: i9j0k1l2)&#34;
+                            value:
+                              - id: ord007
+                                name: Olive Oil (20L)
+                                userId: i9j0k1l2
+                              - id: ord008
+                                name: Baking Powder (10kg)
+                                userId: i9j0k1l2
+                          dianaOrders:
+                            summary: &#34;Orders for Diana Evans (userId: m3n4o5p6)&#34;
+                            value:
+                              - id: ord009
+                                name: Rice (200kg)
+                                userId: m3n4o5p6
+                              - id: ord010
+                                name: Vegetable Oil (15L)
+                                userId: m3n4o5p6
+                              - id: ord011
+                                name: Pasta (80kg)
+                                userId: m3n4o5p6
+                              - id: ord012
+                                name: Canned Beans (50 cans)
+                                userId: m3n4o5p6
+                          ethanOrders:
+                            summary: &#34;Orders for Ethan Brown (userId: q7r8s9t0)&#34;
+                            value:
+                              - id: ord013
+                                name: Toilet Paper (Case of 48)
+                                userId: q7r8s9t0
+                              - id: ord014
+                                name: Hand Sanitizer (20 bottles)
+                                userId: q7r8s9t0
+                          fionaOrders:
+                            summary: &#34;Orders for Fiona Clark (userId: u1v2w3x4)&#34;
+                            value:
+                              - id: ord015
+                                name: Laundry Detergent (10L)
+                                userId: u1v2w3x4
+                              - id: ord016
+                                name: Trash Bags (100 ct)
+                                userId: u1v2w3x4
+                              - id: ord017
+                                name: Disinfectant Spray (5 bottles)
+                                userId: u1v2w3x4
+                          juliaOrders:
+                            summary: &#34;Orders for Julia Turner (userId: k7l8m9n0)&#34;
+                            value:
+                              - id: ord018
+                                name: Coffee Beans (30kg)
+                                userId: k7l8m9n0
+                              - id: ord019
+                                name: Tea Bags (500ct)
+                                userId: k7l8m9n0
+                              - id: ord020
+                                name: Condensed Milk (40 cans)
+                                userId: k7l8m9n0
+                          ianOrders:
+                            summary: &#34;Orders for Ian Walker (userId: g3h4i5j6)&#34;
+                            value:
+                              - id: ord021
+                                name: Paper Towels (24 rolls)
+                                userId: g3h4i5j6
+                              - id: ord022
+                                name: Broom &amp; Mop Set
+                                userId: g3h4i5j6
+                          hannahOrders:
+                            summary: &#34;Orders for Hannah Lewis (userId: c9d0e1f2)&#34;
+                            value:
+                              - id: ord023
+                                name: Cereal (20 boxes)
+                                userId: c9d0e1f2
+                              - id: ord024
+                                name: Powdered Milk (10kg)
+                                userId: c9d0e1f2
+                              - id: ord025
+                                name: Snacks Variety Pack
+                                userId: c9d0e1f2
+                          georgeOrders:
+                            summary: &#34;Orders for George Harris (userId: y5z6a7b8)&#34;
+                            value:
+                              - id: ord026
+                                name: Cooking Gas Cylinder
+                                userId: y5z6a7b8
+                              - id: ord027
+                                name: Napkins (1000ct)
+                                userId: y5z6a7b8
+                  &#39;404&#39;:
+                    description: User not found
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            error:
+                              type: string
+                        examples:
+                          notFound:
+                            summary: Error when user does not exist
+                            value:
+                              error: User not found
+EOF</code></pre></div>
 
   <footer class="footline">
   </footer>
@@ -667,8 +653,8 @@ EOF
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775925047" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925047" defer></script>
-    <script src="/js/theme.js?1775925047" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775925669" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925669" defer></script>
+    <script src="/js/theme.js?1775925669" defer></script>
   </body>
 </html>

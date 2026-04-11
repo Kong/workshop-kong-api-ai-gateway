@@ -3,7 +3,7 @@ title : "Marketplace MCP"
 weight : 502
 ---
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > marketplace_mcp.yaml << 'EOF'
 _format_version: "3.0"
 routes:
@@ -513,4 +513,4 @@ services:
                             value:
                               error: User not found
 EOF
-:::
+```

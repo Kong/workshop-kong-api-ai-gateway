@@ -3,7 +3,7 @@ title : "Marketplace OAuth"
 weight : 503
 ---
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > marketplace_mcp_oauth_kong_identity.yaml << 'EOF'
 _format_version: "3.0"
 routes:
@@ -524,4 +524,4 @@ services:
                             value:
                               error: User not found
 EOF
-:::
+```

@@ -3,7 +3,7 @@ title : "Ingest Update"
 weight : 402
 ---
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ingest_update.lua << 'EOF'
 local embeddings = require("kong.llm.embeddings")
 local uuid = require("kong.tools.utils").uuid
@@ -86,4 +86,4 @@ end
   
 ngx.log(ngx.INFO, "Update completed")
 EOF
-:::
+```
