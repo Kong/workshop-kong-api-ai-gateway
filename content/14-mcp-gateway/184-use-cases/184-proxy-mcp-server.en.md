@@ -21,7 +21,7 @@ That's where the second AI MCP Proxy use case comes in: to proxy MCP requests to
 
 Here’s our new decK declaration:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > mcp-proxy.yaml << 'EOF'
 _format_version: "3.0"
 _info:
@@ -48,7 +48,7 @@ services:
           headers:
           - "Authorization: Bearer ${{ env "DECK_PAT" }}"
 EOF
-:::
+```
 
 
 
@@ -57,17 +57,17 @@ The declaration creates a new Kong Gateway Service based on the Kong MCP Server 
 The AI MCP Proxy plugin is one more time configured, but this time with the config mode as “passthrough-listener”, meaning the MCP Gateway will listen for incoming MCP requests and proxies them to the upstream URL of the Gateway Service (```https://us.mcp.konghq.com```). The main benefit is the MCP observability metrics generation for traffic.
 
 Before applying the declaration create the ``DECK_PAT`` environment variable:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 export DECK_PAT=$PAT
-:::
+```
 
 
 Apply the declaration with decK:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mcp-proxy.yaml
-:::
+```
 
 ## Kong Insomnia
 
@@ -76,9 +76,9 @@ This time, to consume the external MCP Server, we are going to use [**Insomnia**
 Inside Insomnia, start a new or use an existing Project. Click on “+” for MCP Client.
 
 For the HTTP box, add your Kong AI Gateway Data Plane URL with the path for the Kong MCP Server we just defined, in our case, ```/mcp```. You can echo your environment variable to get it:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 echo $DATA_PLANE_LB
-:::
+```
 
 The final address should be something like: ```http://a7fb7e5eb13cb421a9fa958344897e19-1135449162.us-west-2.elb.amazonaws.com```
 
@@ -106,7 +106,7 @@ AWS provides a long list of MCP Servers. A particularly interesting one is the A
 
 A similar decK declaration can be used to consume it:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > mcp-proxy.yaml << 'EOF'
 _format_version: "3.0"
 _info:
@@ -127,14 +127,14 @@ services:
       config:
         mode: passthrough-listener
 EOF
-:::
+```
 
 Apply the declaration with decK:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mcp-proxy.yaml
-:::
+```
 
 
 Go back to **Insomnia** and click “Connect”. You should see on the list of available Tools on your left. Choose “aws__read_documentation".

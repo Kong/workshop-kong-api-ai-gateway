@@ -6,73 +6,45 @@
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Since we have all components in place, we can test the new MCP Tool. Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-mcp-kong-identity.py « ‘EOF’ import asyncio import os import json
-from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client
-import aiohttp
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = os.getenv(“DATA_PLANE_LB”); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-KONG_IDENTITY_URL = os.getenv(“ISSUER_URL”); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(“DECK_CLIENT_ID”) client_secret = os.getenv(“DECK_CLIENT_SECRET”)
-print (“KONG_IDENTITY: &#34; &#43; token_url) print (“CLIENT_ID: &#34; &#43; client_id) print (“CLIENT_SECRET: &#34; &#43; client_secret)">
+cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import os import json from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client import aiohttp data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;) client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;) print (&#34;KONG_IDENTITY: &#34; &#43; token_url) print (&#34;CLIENT_ID: &#34; &#43; client_id) print (&#34;CLIENT_SECRET: &#34; &#43; client_secret) async def get_access_token(): &#34;&#34;&#34; Fetch OAuth2 token using Client Credentials grant. &#34;&#34;&#34; token_data = os.getenv(&#34;TOKEN&#34;) if token_data is not None: print(&#34;Env Var Token is set&#34;) return token_data async with aiohttp.ClientSession() as http: async with http.post( token_url, data={ &#34;grant_type&#34;: &#34;client_credentials&#34;, &#34;client_id&#34;: client_id, &#34;client_secret&#34;: client_secret, }, headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;} ) as resp: if resp.status != 200: raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;) token_data = await resp.json() return token_data[&#34;access_token&#34;] async def main(): token = await get_access_token() print(&#34;Received OAuth Access Token&#34;) print(token) # Connect to a streamable HTTP server async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,): print(&#34;Create a session using the client streams&#34;) async with ClientSession(read_stream, write_stream) as session: print(&#34;Initialize the connection&#34;) await session.initialize() print(&#34;List available tools&#34;) tools = await session.list_tools() print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;) print(f&#34;Executing tool: marketplace-route-1&#34;) result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;}); print(result) if __name__ == &#34;__main__&#34;: asyncio.run(main()) EOF The code checks if the environment variable TOKEN is set. If it’s not, the code goes to Kong Identity, through the Client Credentials Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the AI MCP OAuth2 plugin hits Keycloak using the Introspection flow to see if the token is still valid.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Test the MCP Tools :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Since we have all components in place, we can test the new MCP Tool. Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-mcp-kong-identity.py « ‘EOF’ import asyncio import os import json
-from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client
-import aiohttp
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = os.getenv(“DATA_PLANE_LB”); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-KONG_IDENTITY_URL = os.getenv(“ISSUER_URL”); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(“DECK_CLIENT_ID”) client_secret = os.getenv(“DECK_CLIENT_SECRET”)
-print (“KONG_IDENTITY: &#34; &#43; token_url) print (“CLIENT_ID: &#34; &#43; client_id) print (“CLIENT_SECRET: &#34; &#43; client_secret)">
+cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import os import json from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client import aiohttp data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;) client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;) print (&#34;KONG_IDENTITY: &#34; &#43; token_url) print (&#34;CLIENT_ID: &#34; &#43; client_id) print (&#34;CLIENT_SECRET: &#34; &#43; client_secret) async def get_access_token(): &#34;&#34;&#34; Fetch OAuth2 token using Client Credentials grant. &#34;&#34;&#34; token_data = os.getenv(&#34;TOKEN&#34;) if token_data is not None: print(&#34;Env Var Token is set&#34;) return token_data async with aiohttp.ClientSession() as http: async with http.post( token_url, data={ &#34;grant_type&#34;: &#34;client_credentials&#34;, &#34;client_id&#34;: client_id, &#34;client_secret&#34;: client_secret, }, headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;} ) as resp: if resp.status != 200: raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;) token_data = await resp.json() return token_data[&#34;access_token&#34;] async def main(): token = await get_access_token() print(&#34;Received OAuth Access Token&#34;) print(token) # Connect to a streamable HTTP server async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,): print(&#34;Create a session using the client streams&#34;) async with ClientSession(read_stream, write_stream) as session: print(&#34;Initialize the connection&#34;) await session.initialize() print(&#34;List available tools&#34;) tools = await session.list_tools() print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;) print(f&#34;Executing tool: marketplace-route-1&#34;) result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;}); print(result) if __name__ == &#34;__main__&#34;: asyncio.run(main()) EOF The code checks if the environment variable TOKEN is set. If it’s not, the code goes to Kong Identity, through the Client Credentials Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the AI MCP OAuth2 plugin hits Keycloak using the Introspection flow to see if the token is still valid.">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/3-mcp-test/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Test the MCP Tools :: API Management with Kong Konnect">
     <meta property="og:description" content="Since we have all components in place, we can test the new MCP Tool. Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-mcp-kong-identity.py « ‘EOF’ import asyncio import os import json
-from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client
-import aiohttp
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = os.getenv(“DATA_PLANE_LB”); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-KONG_IDENTITY_URL = os.getenv(“ISSUER_URL”); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(“DECK_CLIENT_ID”) client_secret = os.getenv(“DECK_CLIENT_SECRET”)
-print (“KONG_IDENTITY: &#34; &#43; token_url) print (“CLIENT_ID: &#34; &#43; client_id) print (“CLIENT_SECRET: &#34; &#43; client_secret)">
+cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import os import json from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client import aiohttp data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;) client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;) print (&#34;KONG_IDENTITY: &#34; &#43; token_url) print (&#34;CLIENT_ID: &#34; &#43; client_id) print (&#34;CLIENT_SECRET: &#34; &#43; client_secret) async def get_access_token(): &#34;&#34;&#34; Fetch OAuth2 token using Client Credentials grant. &#34;&#34;&#34; token_data = os.getenv(&#34;TOKEN&#34;) if token_data is not None: print(&#34;Env Var Token is set&#34;) return token_data async with aiohttp.ClientSession() as http: async with http.post( token_url, data={ &#34;grant_type&#34;: &#34;client_credentials&#34;, &#34;client_id&#34;: client_id, &#34;client_secret&#34;: client_secret, }, headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;} ) as resp: if resp.status != 200: raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;) token_data = await resp.json() return token_data[&#34;access_token&#34;] async def main(): token = await get_access_token() print(&#34;Received OAuth Access Token&#34;) print(token) # Connect to a streamable HTTP server async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,): print(&#34;Create a session using the client streams&#34;) async with ClientSession(read_stream, write_stream) as session: print(&#34;Initialize the connection&#34;) await session.initialize() print(&#34;List available tools&#34;) tools = await session.list_tools() print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;) print(f&#34;Executing tool: marketplace-route-1&#34;) result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;}); print(result) if __name__ == &#34;__main__&#34;: asyncio.run(main()) EOF The code checks if the environment variable TOKEN is set. If it’s not, the code goes to Kong Identity, through the Client Credentials Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the AI MCP OAuth2 plugin hits Keycloak using the Introspection flow to see if the token is still valid.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
     <meta itemprop="name" content="Test the MCP Tools :: API Management with Kong Konnect">
     <meta itemprop="description" content="Since we have all components in place, we can test the new MCP Tool. Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-mcp-kong-identity.py « ‘EOF’ import asyncio import os import json
-from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client
-import aiohttp
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = os.getenv(“DATA_PLANE_LB”); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-KONG_IDENTITY_URL = os.getenv(“ISSUER_URL”); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(“DECK_CLIENT_ID”) client_secret = os.getenv(“DECK_CLIENT_SECRET”)
-print (“KONG_IDENTITY: &#34; &#43; token_url) print (“CLIENT_ID: &#34; &#43; client_id) print (“CLIENT_SECRET: &#34; &#43; client_secret)">
-    <meta itemprop="wordCount" content="412">
+cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39; import asyncio import os import json from mcp import ClientSession from mcp.client.streamable_http import streamablehttp_client import aiohttp data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;); token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34; client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;) client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;) print (&#34;KONG_IDENTITY: &#34; &#43; token_url) print (&#34;CLIENT_ID: &#34; &#43; client_id) print (&#34;CLIENT_SECRET: &#34; &#43; client_secret) async def get_access_token(): &#34;&#34;&#34; Fetch OAuth2 token using Client Credentials grant. &#34;&#34;&#34; token_data = os.getenv(&#34;TOKEN&#34;) if token_data is not None: print(&#34;Env Var Token is set&#34;) return token_data async with aiohttp.ClientSession() as http: async with http.post( token_url, data={ &#34;grant_type&#34;: &#34;client_credentials&#34;, &#34;client_id&#34;: client_id, &#34;client_secret&#34;: client_secret, }, headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;} ) as resp: if resp.status != 200: raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;) token_data = await resp.json() return token_data[&#34;access_token&#34;] async def main(): token = await get_access_token() print(&#34;Received OAuth Access Token&#34;) print(token) # Connect to a streamable HTTP server async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,): print(&#34;Create a session using the client streams&#34;) async with ClientSession(read_stream, write_stream) as session: print(&#34;Initialize the connection&#34;) await session.initialize() print(&#34;List available tools&#34;) tools = await session.list_tools() print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;) print(f&#34;Executing tool: marketplace-route-1&#34;) result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;}); print(result) if __name__ == &#34;__main__&#34;: asyncio.run(main()) EOF The code checks if the environment variable TOKEN is set. If it’s not, the code goes to Kong Identity, through the Client Credentials Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the AI MCP OAuth2 plugin hits Keycloak using the Introspection flow to see if the token is still valid.">
+    <meta itemprop="wordCount" content="404">
     <title>Test the MCP Tools :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775925550" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775925550" defer></script>
-    <script src="/js/search-lunr.js?1775925550" defer></script>
-    <script src="/js/search.js?1775925550" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775926399" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775926399" defer></script>
+    <script src="/js/search-lunr.js?1775926399" defer></script>
+    <script src="/js/search.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775925550";
+      window.relearn.index_js_url="/searchindex.en.js?1775926399";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775925550" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925550" rel="stylesheet">
-    <link href="/css/theme.css?1775925550" rel="stylesheet">
-    <link href="/css/format-html.css?1775925550" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926399" rel="stylesheet">
+    <link href="/css/theme.css?1775926399" rel="stylesheet">
+    <link href="/css/format-html.css?1775926399" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -180,77 +152,87 @@ print (“KONG_IDENTITY: &#34; &#43; token_url) print (“CLIENT_ID: &#34; &#43;
 <h1 id="test-the-mcp-tools">Test the MCP Tools</h1>
 
 <p>Since we have all components in place, we can test the new MCP Tool. Here&rsquo;s the new code:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; kong-mcp-kong-identity.py &laquo; &lsquo;EOF&rsquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-mcp-kong-identity.py &lt;&lt; &#39;EOF&#39;
 import asyncio
 import os
-import json</p>
-<p>from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client</p>
-<p>import aiohttp</p>
-<p>data_plane_lb = os.getenv(&ldquo;DATA_PLANE_LB&rdquo;);</p>
-<p>kong_dp = os.getenv(&ldquo;DATA_PLANE_LB&rdquo;);
-kong_dp_route = f&quot;http://{data_plane_lb}/mcp-listener&quot;</p>
-<p>print(&ldquo;kong_dp_route&rdquo;)
-print(kong_dp_route)</p>
-<p>KONG_IDENTITY_URL = os.getenv(&ldquo;ISSUER_URL&rdquo;);
-token_url = f&quot;{KONG_IDENTITY_URL}/oauth/token&quot;
-client_id = os.getenv(&ldquo;DECK_CLIENT_ID&rdquo;)
-client_secret = os.getenv(&ldquo;DECK_CLIENT_SECRET&rdquo;)</p>
-<p>print (&ldquo;KONG_IDENTITY: &quot; + token_url)
-print (&ldquo;CLIENT_ID: &quot; + client_id)
-print (&ldquo;CLIENT_SECRET: &quot; + client_secret)</p>
-<p>async def get_access_token():
-&quot;&rdquo;&rdquo;
-Fetch OAuth2 token using Client Credentials grant.
-&quot;&rdquo;&quot;
-token_data = os.getenv(&ldquo;TOKEN&rdquo;)
-if token_data is not None:
-print(&ldquo;Env Var Token is set&rdquo;)
-return token_data</p>
-<pre><code>async with aiohttp.ClientSession() as http:
-    async with http.post(
-        token_url,
-        data={
-            &quot;grant_type&quot;: &quot;client_credentials&quot;,
-            &quot;client_id&quot;: client_id,
-            &quot;client_secret&quot;: client_secret,
-        },
-        headers={&quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;}
-    ) as resp:
-        if resp.status != 200:
-            raise RuntimeError(f&quot;OAuth token error: {resp.status} {await resp.text()}&quot;)
-        token_data = await resp.json()
-        return token_data[&quot;access_token&quot;]
-</code></pre>
-<p>async def main():
-token = await get_access_token()
-print(&ldquo;Received OAuth Access Token&rdquo;)
-print(token)</p>
-<pre><code># Connect to a streamable HTTP server
-async with streamablehttp_client(kong_dp_route, headers={&quot;Authorization&quot;: f&quot;Bearer {token}&quot;}) as (read_stream, write_stream, _,):
-    print(&quot;Create a session using the client streams&quot;)
-    async with ClientSession(read_stream, write_stream) as session:
-        print(&quot;Initialize the connection&quot;)
-        await session.initialize()
-        print(&quot;List available tools&quot;)
-        tools = await session.list_tools()
-        print(f&quot;Available tools: {[tool.name for tool in tools.tools]}&quot;)
+import json
 
-        print(f&quot;Executing tool: marketplace-route-1&quot;)
-        result = await session.call_tool(&quot;marketplace-route-1&quot;, {&quot;query_id&quot;: &quot;u1v2w3x4&quot;});
-        print(result)
-</code></pre>
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
-asyncio.run(main())
-EOF
-:::</p>
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+import aiohttp
+
+data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;);
+
+kong_dp = os.getenv(&#34;DATA_PLANE_LB&#34;);
+kong_dp_route = f&#34;http://{data_plane_lb}/mcp-listener&#34;
+
+print(&#34;kong_dp_route&#34;)
+print(kong_dp_route)
+
+
+KONG_IDENTITY_URL = os.getenv(&#34;ISSUER_URL&#34;);
+token_url = f&#34;{KONG_IDENTITY_URL}/oauth/token&#34;
+client_id = os.getenv(&#34;DECK_CLIENT_ID&#34;)
+client_secret = os.getenv(&#34;DECK_CLIENT_SECRET&#34;)
+
+print (&#34;KONG_IDENTITY: &#34; + token_url)
+print (&#34;CLIENT_ID: &#34; + client_id)
+print (&#34;CLIENT_SECRET: &#34; + client_secret)
+
+
+async def get_access_token():
+    &#34;&#34;&#34;
+    Fetch OAuth2 token using Client Credentials grant.
+    &#34;&#34;&#34;
+    token_data = os.getenv(&#34;TOKEN&#34;)
+    if token_data is not None:
+        print(&#34;Env Var Token is set&#34;)
+        return token_data
+
+    async with aiohttp.ClientSession() as http:
+        async with http.post(
+            token_url,
+            data={
+                &#34;grant_type&#34;: &#34;client_credentials&#34;,
+                &#34;client_id&#34;: client_id,
+                &#34;client_secret&#34;: client_secret,
+            },
+            headers={&#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;}
+        ) as resp:
+            if resp.status != 200:
+                raise RuntimeError(f&#34;OAuth token error: {resp.status} {await resp.text()}&#34;)
+            token_data = await resp.json()
+            return token_data[&#34;access_token&#34;]
+
+
+async def main():
+    token = await get_access_token()
+    print(&#34;Received OAuth Access Token&#34;)
+    print(token)
+
+    # Connect to a streamable HTTP server
+    async with streamablehttp_client(kong_dp_route, headers={&#34;Authorization&#34;: f&#34;Bearer {token}&#34;}) as (read_stream, write_stream, _,):
+        print(&#34;Create a session using the client streams&#34;)
+        async with ClientSession(read_stream, write_stream) as session:
+            print(&#34;Initialize the connection&#34;)
+            await session.initialize()
+            print(&#34;List available tools&#34;)
+            tools = await session.list_tools()
+            print(f&#34;Available tools: {[tool.name for tool in tools.tools]}&#34;)
+
+            print(f&#34;Executing tool: marketplace-route-1&#34;)
+            result = await session.call_tool(&#34;marketplace-route-1&#34;, {&#34;query_id&#34;: &#34;u1v2w3x4&#34;});
+            print(result)
+
+
+if __name__ == &#34;__main__&#34;:
+    asyncio.run(main())
+EOF</code></pre></div>
 <p>The code checks if the environment variable <code>TOKEN</code> is set. If it&rsquo;s not, the code goes to Kong Identity, through the <strong>Client Credentials</strong> Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the <strong>AI MCP OAuth2</strong> plugin hits Keycloak using the <strong>Introspection</strong> flow to see if the token is still valid.</p>
 <h3 id="test-the-mcp-tool">Test the MCP Tool</h3>
 <p>If run the code with:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-python3 kong-mcp-kong-identity.py
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>python3 kong-mcp-kong-identity.py</code></pre></div>
 <p>You should see a response similar to this. Note the agent lists the two MCP Tools created and managed by the Kong MCP Gateway:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kong_dp_route
 http://a7fb7e5eb13cb421a9fa958344897e19-1135449162.us-west-2.elb.amazonaws.com/mcp-listener
@@ -353,8 +335,8 @@ meta=None content=[TextContent(type=&#39;text&#39;, text=&#39;[{&#34;fullName&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775925550" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925550" defer></script>
-    <script src="/js/theme.js?1775925550" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775926399" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926399" defer></script>
+    <script src="/js/theme.js?1775926399" defer></script>
   </body>
 </html>

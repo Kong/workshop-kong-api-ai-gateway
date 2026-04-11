@@ -21,7 +21,7 @@ Before you can configure the **AI MCP OAuth2** plugin, you must first create an 
 
 Create an auth server using the [``/v1/auth-servers``](https://developer.konghq.com/api/konnect/kong-identity/v1/#/operations/createAuthServer) endpoint. Note each AuthN Server has an audience specified.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX POST "https://us.api.konghq.com/v1/auth-servers" \
   -H "Authorization: Bearer $PAT"\
   -H "Content-Type: application/json" \
@@ -30,7 +30,7 @@ curl -sX POST "https://us.api.konghq.com/v1/auth-servers" \
     "audience": "http://mcp_tools.dev",
     "description": "AuthZ Server 1"
   }' | jq
-:::
+```
 
 You should get a response like this:
 
@@ -106,9 +106,9 @@ Expected response
 
 Export your scope ID:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 export SCOPE_ID=$(curl -sX GET "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes" -H "Authorization: Bearer $PAT" | jq -r '.data[0].id')
-:::
+```
 
 
 
@@ -117,7 +117,7 @@ export SCOPE_ID=$(curl -sX GET "https://us.api.konghq.com/v1/auth-servers/$AUTHZ
 Configure a custom claim using the [``/v1/auth-servers/$AUTHZ_SERVER_ID/claims``](https://developer.konghq.com/api/konnect/kong-identity/v1/#/operations/createAuthServerClaim) endpoint. A custom claim can be include in the tokens or inside a scope.
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/claims" \
   -H "Authorization: Bearer $PAT" \
   -H "Content-Type: application/json" \
@@ -131,7 +131,7 @@ curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/claims
     ],
     "enabled": true
   }' | jq
-:::
+```
 
 Expected output:
 
@@ -157,7 +157,7 @@ The client is the machine-to-machine credential. In this tutorial, Konnect will 
 
 Configure the client using the [``/v1/auth-servers/$AUTHZ_SERVER_ID/clients``](https://developer.konghq.com/api/konnect/kong-identity/v1/#/operations/createAuthServerClient) endpoint. Note the the Access Token duration has a timeout of 60 seconds:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients" \
   -H "Authorization: Bearer $PAT"\
   -H "Content-Type: application/json" \
@@ -177,7 +177,7 @@ curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/client
       "token"
     ]
   }' | jq
-:::
+```
 
 Expected output:
 
@@ -225,9 +225,9 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n
 Kong Identity provides the standard endpoint ```$ISSUER_URL/.well-known/openid-configuration``` where you can get these and several other Kong Identity configuration parameters.
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s $ISSUER_URL/.well-known/openid-configuration | jq
-:::
+```
 
 Typical response:
 
@@ -300,18 +300,3 @@ You can also check the Konnect UI with your Authorization Server and its Clients
 
 
 ![Kong Identity configuration page](/static/images/kong_identity.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

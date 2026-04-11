@@ -7,9 +7,9 @@ weight : 20
 
 * Download the **marketplace_mcp_oauth_kong_identity.yaml** Kong decK spec file.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl 'http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml' --output ./marketplace_mcp_oauth_kong_identity.yaml
-:::
+```
 
 
 
@@ -57,19 +57,19 @@ It refers to some **Kong Identity** endpoints and secrets, besides the actual Au
 
 Before submiting the new declaration we have set the decK environment variables:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 export DECK_MCP_AUTH_URL=http://$DATA_PLANE_LB/mcp-listener
 export DECK_KONG_IDENTITY_AUTHZ_URL=$ISSUER_URL/authorize
 export DECK_KONG_IDENTITY_INTROSPECTION_URL=$ISSUER_URL/introspect
 export DECK_CLIENT_ID=$CLIENT_ID
 export DECK_CLIENT_SECRET=$CLIENT_SECRET
-:::
+```
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mcp_oauth_kong_identity.yaml
-:::
+```
 
 
 
@@ -81,22 +81,22 @@ To exercise the Introspection Endpoint, let's send some requests to Kong Identit
 
 In the first request, we play the Consumer role, using the [**Client Credentials Grant**](https://oauth.net/2/grant-types/client-credentials/) to get our Access Token
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 TOKEN=$(curl -s -X POST "$ISSUER_URL/oauth/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials" \
   -d "client_id=$CLIENT_ID" \
   -d "client_secret=$CLIENT_SECRET" \
   -d "scope=scope1" | jq -r '.access_token')
-:::
+```
 
 
 
 You can decode the Access Token with:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 echo $TOKEN | jwt decode -
-:::
+```
 
 You should get an output like this. The ``sub`` field represents the same ``client_id``.
 
@@ -130,21 +130,21 @@ Token claims
 
 
 You can check all tokens issued by a given Client ID:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX GET "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens" -H "Authorization: Bearer $PAT" | jq
-:::
+```
 
 
 If you send a request asking for a now existing **scope**, Kong Identity will reply back with an error:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST "$ISSUER_URL/oauth/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials" \
   -d "client_id=$CLIENT_ID" \
   -d "client_secret=$CLIENT_SECRET" \
   -d "scope=non-existing-scope"
-:::
+```
 
 Expected result:
 
@@ -156,11 +156,11 @@ Expected result:
 
 Now, playing the Gateway role, we are going to consume the Introspection Endpoint asking the IdP to validate the Access Token. We use the [``-u`` **curl** option](https://curl.se/docs/manpage.html#-u) to specify our Client Id and Client Secret.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST "$ISSUER_URL/introspect" \
   -d "token=$TOKEN" \
   -u "$CLIENT_ID:$CLIENT_SECRET" | jq
-:::
+```
 
 
 Here's a typical response. The “active” at the bottom says the plugin is still good.
@@ -187,9 +187,9 @@ However, if you wait for the Access Token timeout (in our case, the defined it a
 
 
 Make sure you unset your ``TOKEN`` environment variable:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 unset TOKEN
-:::
+```
 
 
 

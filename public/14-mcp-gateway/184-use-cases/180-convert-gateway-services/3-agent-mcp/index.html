@@ -7,64 +7,48 @@
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Since we have all components in place, we can extend our Strands Agent to take advantage of the MCP Tools
 Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-aws-agent.py « ‘EOF’ from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-openai_model = OpenAIModel( client_args={ “base_url”: kong_dp_route, “api_key”: “dummy” }, model_id=“us.anthropic.claude-sonnet-4-20250514-v1:0” )">
+cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39; from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) openai_model = OpenAIModel( client_args={ &#34;base_url&#34;: kong_dp_route, &#34;api_key&#34;: &#34;dummy&#34; }, model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34; ) streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&#34;{kong_dp}/mcp-listener&#34;)) with streamable_http_mcp_listener_client: tools = streamable_http_mcp_listener_client.list_tools_sync() for tool in tools: print(tool.tool_spec) agent = Agent(model=openai_model, tools=tools) agent(&#34;List all orders made by Alice Johnson&#34;) EOF The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the “/mcp-listener” path.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Test the MCP Tools and LLM with a Strands Agent :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Since we have all components in place, we can extend our Strands Agent to take advantage of the MCP Tools
 Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-aws-agent.py « ‘EOF’ from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-openai_model = OpenAIModel( client_args={ “base_url”: kong_dp_route, “api_key”: “dummy” }, model_id=“us.anthropic.claude-sonnet-4-20250514-v1:0” )">
+cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39; from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) openai_model = OpenAIModel( client_args={ &#34;base_url&#34;: kong_dp_route, &#34;api_key&#34;: &#34;dummy&#34; }, model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34; ) streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&#34;{kong_dp}/mcp-listener&#34;)) with streamable_http_mcp_listener_client: tools = streamable_http_mcp_listener_client.list_tools_sync() for tool in tools: print(tool.tool_spec) agent = Agent(model=openai_model, tools=tools) agent(&#34;List all orders made by Alice Johnson&#34;) EOF The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the “/mcp-listener” path.">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/180-convert-gateway-services/3-agent-mcp/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Test the MCP Tools and LLM with a Strands Agent :: API Management with Kong Konnect">
     <meta property="og:description" content="Since we have all components in place, we can extend our Strands Agent to take advantage of the MCP Tools
 Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-aws-agent.py « ‘EOF’ from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-openai_model = OpenAIModel( client_args={ “base_url”: kong_dp_route, “api_key”: “dummy” }, model_id=“us.anthropic.claude-sonnet-4-20250514-v1:0” )">
+cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39; from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) openai_model = OpenAIModel( client_args={ &#34;base_url&#34;: kong_dp_route, &#34;api_key&#34;: &#34;dummy&#34; }, model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34; ) streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&#34;{kong_dp}/mcp-listener&#34;)) with streamable_http_mcp_listener_client: tools = streamable_http_mcp_listener_client.list_tools_sync() for tool in tools: print(tool.tool_spec) agent = Agent(model=openai_model, tools=tools) agent(&#34;List all orders made by Alice Johnson&#34;) EOF The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the “/mcp-listener” path.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
     <meta itemprop="name" content="Test the MCP Tools and LLM with a Strands Agent :: API Management with Kong Konnect">
     <meta itemprop="description" content="Since we have all components in place, we can extend our Strands Agent to take advantage of the MCP Tools
 Here’s the new code:
-:::code{showCopyAction=true showLineNumbers=false language=shell} cat &gt; kong-aws-agent.py « ‘EOF’ from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os
-data_plane_lb = os.getenv(“DATA_PLANE_LB”);
-kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
-print(“kong_dp_route”) print(kong_dp_route)
-openai_model = OpenAIModel( client_args={ “base_url”: kong_dp_route, “api_key”: “dummy” }, model_id=“us.anthropic.claude-sonnet-4-20250514-v1:0” )">
-    <meta itemprop="wordCount" content="378">
+cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39; from strands import Agent from strands.models.openai import OpenAIModel from strands.tools.mcp import MCPClient from mcp.client.streamable_http import streamablehttp_client import os data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;); kong_dp = f&#34;http://{data_plane_lb}&#34; kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34; print(&#34;kong_dp_route&#34;) print(kong_dp_route) openai_model = OpenAIModel( client_args={ &#34;base_url&#34;: kong_dp_route, &#34;api_key&#34;: &#34;dummy&#34; }, model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34; ) streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&#34;{kong_dp}/mcp-listener&#34;)) with streamable_http_mcp_listener_client: tools = streamable_http_mcp_listener_client.list_tools_sync() for tool in tools: print(tool.tool_spec) agent = Agent(model=openai_model, tools=tools) agent(&#34;List all orders made by Alice Johnson&#34;) EOF The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the “/mcp-listener” path.">
+    <meta itemprop="wordCount" content="370">
     <title>Test the MCP Tools and LLM with a Strands Agent :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775925550" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775925550" defer></script>
-    <script src="/js/search-lunr.js?1775925550" defer></script>
-    <script src="/js/search.js?1775925550" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775926399" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775926399" defer></script>
+    <script src="/js/search-lunr.js?1775926399" defer></script>
+    <script src="/js/search.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775925550";
+      window.relearn.index_js_url="/searchindex.en.js?1775926399";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775925550" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925550" rel="stylesheet">
-    <link href="/css/theme.css?1775925550" rel="stylesheet">
-    <link href="/css/format-html.css?1775925550" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926399" rel="stylesheet">
+    <link href="/css/theme.css?1775926399" rel="stylesheet">
+    <link href="/css/format-html.css?1775926399" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -173,41 +157,46 @@ openai_model = OpenAIModel( client_args={ “base_url”: kong_dp_route, “api_
 
 <p>Since we have all components in place, we can extend our Strands Agent to take advantage of the MCP Tools</p>
 <p>Here&rsquo;s the new code:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-cat &gt; kong-aws-agent.py &laquo; &lsquo;EOF&rsquo;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39;
 from strands import Agent
 from strands.models.openai import OpenAIModel
 from strands.tools.mcp import MCPClient
 from mcp.client.streamable_http import streamablehttp_client
-import os</p>
-<p>data_plane_lb = os.getenv(&ldquo;DATA_PLANE_LB&rdquo;);</p>
-<p>kong_dp = f&quot;http://{data_plane_lb}&quot;
-kong_dp_route = f&quot;http://{data_plane_lb}/bedrock-route&quot;</p>
-<p>print(&ldquo;kong_dp_route&rdquo;)
-print(kong_dp_route)</p>
-<p>openai_model = OpenAIModel(
-client_args={
-&ldquo;base_url&rdquo;: kong_dp_route,
-&ldquo;api_key&rdquo;: &ldquo;dummy&rdquo;
-},
-model_id=&ldquo;us.anthropic.claude-sonnet-4-20250514-v1:0&rdquo;
-)</p>
-<p>streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&quot;{kong_dp}/mcp-listener&quot;))</p>
-<p>with streamable_http_mcp_listener_client:
-tools = streamable_http_mcp_listener_client.list_tools_sync()
-for tool in tools:
-print(tool.tool_spec)</p>
-<pre><code>agent = Agent(model=openai_model, tools=tools)
-agent(&quot;List all orders made by Alice Johnson&quot;)
-</code></pre>
-<p>EOF
-:::</p>
+import os
+
+
+data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;);
+
+kong_dp = f&#34;http://{data_plane_lb}&#34;
+kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
+
+print(&#34;kong_dp_route&#34;)
+print(kong_dp_route)
+
+
+openai_model = OpenAIModel(
+  client_args={
+      &#34;base_url&#34;: kong_dp_route,
+      &#34;api_key&#34;: &#34;dummy&#34;
+  },
+  model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34;
+)
+
+
+streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f&#34;{kong_dp}/mcp-listener&#34;))
+
+with streamable_http_mcp_listener_client:
+    tools = streamable_http_mcp_listener_client.list_tools_sync()
+    for tool in tools:
+      print(tool.tool_spec)
+
+    agent = Agent(model=openai_model, tools=tools)
+    agent(&#34;List all orders made by Alice Johnson&#34;)
+EOF</code></pre></div>
 <p>The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the &ldquo;/mcp-listener&rdquo; path.</p>
 <h3 id="test-the-api-deployment">Test the API Deployment</h3>
 <p>If run the code with:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-python3 kong-aws-agent.py
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>python3 kong-aws-agent.py</code></pre></div>
 <p>You should see a response similar to this.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kong_dp_route
 http://aef50357c38e142b9ad6986d4f828dd5-1505142468.us-west-2.elb.amazonaws.com/bedrock-route
@@ -329,8 +318,8 @@ Alice Johnson has made a total of 3 orders, consisting of bulk food items and cl
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775925550" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925550" defer></script>
-    <script src="/js/theme.js?1775925550" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775926399" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926399" defer></script>
+    <script src="/js/theme.js?1775926399" defer></script>
   </body>
 </html>

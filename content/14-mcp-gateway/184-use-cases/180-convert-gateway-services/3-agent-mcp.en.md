@@ -7,7 +7,7 @@ Since we have all components in place, we can extend our Strands Agent to take a
 
 Here's the new code:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > kong-aws-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
@@ -44,7 +44,7 @@ with streamable_http_mcp_listener_client:
     agent = Agent(model=openai_model, tools=tools)
     agent("List all orders made by Alice Johnson")
 EOF
-:::
+```
 
 
 The main update here is the inclusion the of Serviceless Route we created in the previous step which defines the "/mcp-listener" path.
@@ -54,9 +54,9 @@ The main update here is the inclusion the of Serviceless Route we created in the
 
 If run the code with:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 python3 kong-aws-agent.py
-:::
+```
 
 You should see a response similar to this.
 

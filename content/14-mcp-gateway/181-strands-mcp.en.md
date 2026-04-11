@@ -15,13 +15,13 @@ Strands Agents, the Python-based framework for building agents, was introduced b
 
 We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 uv init kong-aws-strands
 uv venv
 source .venv/bin/activate
 uv pip install 'strands-agents[openai]'
 uv pip install aiohttp
-:::
+```
 
 
 
@@ -29,7 +29,7 @@ uv pip install aiohttp
 
 We have to configure Kong AI Gateway to consume Bedrock
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-proxy-advanced.yaml << 'EOF'
 _format_version: "3.0"
 _info:
@@ -61,20 +61,20 @@ services:
           auth:
             allow_override: false
 EOF
-:::
+```
 
 Apply the declaration with decK:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT ai-proxy-advanced.yaml
-:::
+```
 
 
 
 ##### Consume the Kong Route
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
   --url $DATA_PLANE_LB/bedrock-route \
   --header 'Content-Type: application/json' \
@@ -86,12 +86,12 @@ curl -s -X POST \
        }
      ]
    }' | jq
-:::
+```
 
 #### Strands Code
 Now, here's a basic Strands Agent consuming Kong AI Gateway:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > kong-aws-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
@@ -120,13 +120,13 @@ openai_model = OpenAIModel(
 agent = Agent(model=openai_model)
 agent("Who is Aldous Huxley?")
 EOF
-:::
+```
 
 
 
 The prompt is very simple, so the LLM will be able to respond it. However if you change the code and ask something like **"List all orders made by Alice Johnson"** you'll see a different behaviour.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > kong-aws-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
@@ -155,14 +155,14 @@ openai_model = OpenAIModel(
 agent = Agent(model=openai_model)
 agent("List all orders made by Alice Johnson")
 EOF
-:::
+```
 
 
 #### Execute the code
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 python3 kong-aws-agent.py
-:::
+```
 
 * Typical response
 ```

@@ -15,17 +15,17 @@ Here's the new architecture:
 * Download the **marketplace_mcp.yaml** Kong decK spec file.
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl 'http://localhost:8080/builds/static/code/marketplace_mcp.yaml' --output ./marketplace_mcp.yaml
-:::
+```
 
 
 ### Submit the decK declaration to your Control Plane
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mcp.yaml
-:::
+```
 
 You should see two Kong Gateway Services now:
 * **ai-proxy-advanced-service**

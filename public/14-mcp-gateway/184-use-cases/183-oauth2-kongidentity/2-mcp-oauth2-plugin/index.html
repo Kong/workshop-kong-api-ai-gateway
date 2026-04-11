@@ -5,50 +5,46 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
-The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta name="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
-The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
-The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
     <meta itemprop="name" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. :::code{showCopyAction=true showLineNumbers=false language=shell} curl ‘http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml’ –output ./marketplace_mcp_oauth_kong_identity.yaml :::
-The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
-    <meta itemprop="wordCount" content="565">
+    <meta itemprop="wordCount" content="541">
     <title>AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775925550" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775925550" defer></script>
-    <script src="/js/search-lunr.js?1775925550" defer></script>
-    <script src="/js/search.js?1775925550" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775926399" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775926399" defer></script>
+    <script src="/js/search-lunr.js?1775926399" defer></script>
+    <script src="/js/search.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775925550";
+      window.relearn.index_js_url="/searchindex.en.js?1775926399";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775925550" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775925550" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775926399" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775926399" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925550" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925550" rel="stylesheet">
-    <link href="/css/theme.css?1775925550" rel="stylesheet">
-    <link href="/css/format-html.css?1775925550" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926399" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926399" rel="stylesheet">
+    <link href="/css/theme.css?1775926399" rel="stylesheet">
+    <link href="/css/format-html.css?1775926399" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -161,9 +157,7 @@ routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mc
 <ul>
 <li>Download the <strong>marketplace_mcp_oauth_kong_identity.yaml</strong> Kong decK spec file.</li>
 </ul>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl &lsquo;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&rsquo; &ndash;output ./marketplace_mcp_oauth_kong_identity.yaml
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml</code></pre></div>
 <p>The declaration extends the <code>mcp-listener-route</code>, responsible for aggregating the MCP Tools, with the <strong>AI MCP OAuth2</strong> plugin.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>routes:
   - name: mcp-listener-route
@@ -204,33 +198,25 @@ curl &lsquo;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_
 </ul>
 <h3 id="submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</h3>
 <p>Before submiting the new declaration we have set the decK environment variables:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-export DECK_MCP_AUTH_URL=http://$DATA_PLANE_LB/mcp-listener
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export DECK_MCP_AUTH_URL=http://$DATA_PLANE_LB/mcp-listener
 export DECK_KONG_IDENTITY_AUTHZ_URL=$ISSUER_URL/authorize
 export DECK_KONG_IDENTITY_INTROSPECTION_URL=$ISSUER_URL/introspect
 export DECK_CLIENT_ID=$CLIENT_ID
-export DECK_CLIENT_SECRET=$CLIENT_SECRET
-:::</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
-deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT marketplace_mcp_oauth_kong_identity.yaml
-:::</p>
+export DECK_CLIENT_SECRET=$CLIENT_SECRET</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mcp_oauth_kong_identity.yaml</code></pre></div>
 <h3 id="exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</h3>
 <p>To exercise the Introspection Endpoint, let&rsquo;s send some requests to Kong Identity, acting as the Consumer and the Gateway.</p>
 <h4 id="token-endpoint">Token Endpoint</h4>
 <p>In the first request, we play the Consumer role, using the <a href="https://oauth.net/2/grant-types/client-credentials/" rel="external" target="_blank"><strong>Client Credentials Grant</strong></a> to get our Access Token</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-TOKEN=$(curl -s -X POST &ldquo;$ISSUER_URL/oauth/token&rdquo; <br>
--H &ldquo;Content-Type: application/x-www-form-urlencoded&rdquo; <br>
--d &ldquo;grant_type=client_credentials&rdquo; <br>
--d &ldquo;client_id=$CLIENT_ID&rdquo; <br>
--d &ldquo;client_secret=$CLIENT_SECRET&rdquo; <br>
--d &ldquo;scope=scope1&rdquo; | jq -r &lsquo;.access_token&rsquo;)
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TOKEN=$(curl -s -X POST &#34;$ISSUER_URL/oauth/token&#34; \
+  -H &#34;Content-Type: application/x-www-form-urlencoded&#34; \
+  -d &#34;grant_type=client_credentials&#34; \
+  -d &#34;client_id=$CLIENT_ID&#34; \
+  -d &#34;client_secret=$CLIENT_SECRET&#34; \
+  -d &#34;scope=scope1&#34; | jq -r &#39;.access_token&#39;)</code></pre></div>
 <p>You can decode the Access Token with:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-echo $TOKEN | jwt decode -
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo $TOKEN | jwt decode -</code></pre></div>
 <p>You should get an output like this. The <code>sub</code> field represents the same <code>client_id</code>.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
 ------------
@@ -256,28 +242,22 @@ Token claims
   &#34;scope&#34;: &#34;scope1&#34;,
   &#34;sub&#34;: &#34;p4aih3vylfgl3d8a&#34;
 }</code></pre></div>
-<p>You can check all tokens issued by a given Client ID:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -sX GET &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens"</a> -H &ldquo;Authorization: Bearer $PAT&rdquo; | jq
-:::</p>
+<p>You can check all tokens issued by a given Client ID:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET &#34;https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/clients/$CLIENT_ID/tokens&#34; -H &#34;Authorization: Bearer $PAT&#34; | jq</code></pre></div>
 <p>If you send a request asking for a now existing <strong>scope</strong>, Kong Identity will reply back with an error:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST &ldquo;$ISSUER_URL/oauth/token&rdquo; <br>
--H &ldquo;Content-Type: application/x-www-form-urlencoded&rdquo; <br>
--d &ldquo;grant_type=client_credentials&rdquo; <br>
--d &ldquo;client_id=$CLIENT_ID&rdquo; <br>
--d &ldquo;client_secret=$CLIENT_SECRET&rdquo; <br>
--d &ldquo;scope=non-existing-scope&rdquo;
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#34;$ISSUER_URL/oauth/token&#34; \
+  -H &#34;Content-Type: application/x-www-form-urlencoded&#34; \
+  -d &#34;grant_type=client_credentials&#34; \
+  -d &#34;client_id=$CLIENT_ID&#34; \
+  -d &#34;client_secret=$CLIENT_SECRET&#34; \
+  -d &#34;scope=non-existing-scope&#34;</code></pre></div>
 <p>Expected result:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{&#34;error&#34;:&#34;invalid_scope&#34;}</code></pre></div>
 <h4 id="introspection-endpoint">Introspection Endpoint</h4>
 <p>Now, playing the Gateway role, we are going to consume the Introspection Endpoint asking the IdP to validate the Access Token. We use the <a href="https://curl.se/docs/manpage.html#-u" rel="external" target="_blank"><code>-u</code> <strong>curl</strong> option</a> to specify our Client Id and Client Secret.</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -s -X POST &ldquo;$ISSUER_URL/introspect&rdquo; <br>
--d &ldquo;token=$TOKEN&rdquo; <br>
--u &ldquo;$CLIENT_ID:$CLIENT_SECRET&rdquo; | jq
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#34;$ISSUER_URL/introspect&#34; \
+  -d &#34;token=$TOKEN&#34; \
+  -u &#34;$CLIENT_ID:$CLIENT_SECRET&#34; | jq</code></pre></div>
 <p>Here&rsquo;s a typical response. The “active” at the bottom says the plugin is still good.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
   &#34;active&#34;: true,
@@ -289,10 +269,8 @@ curl -s -X POST &ldquo;$ISSUER_URL/introspect&rdquo; <br>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
   &#34;active&#34;: false
 }</code></pre></div>
-<p>Make sure you unset your <code>TOKEN</code> environment variable:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-unset TOKEN
-:::</p>
+<p>Make sure you unset your <code>TOKEN</code> environment variable:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>unset TOKEN</code></pre></div>
 <p>You can now click <strong>Next</strong> to proceed further.</p>
 
   <footer class="footline">
@@ -380,8 +358,8 @@ unset TOKEN
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775925550" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925550" defer></script>
-    <script src="/js/theme.js?1775925550" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775926399" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926399" defer></script>
+    <script src="/js/theme.js?1775926399" defer></script>
   </body>
 </html>

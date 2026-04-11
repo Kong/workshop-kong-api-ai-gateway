@@ -5,7 +5,7 @@ weight : 30
 
 Since we have all components in place, we can test the new MCP Tool. Here's the new code:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > kong-mcp-kong-identity.py << 'EOF'
 import asyncio
 import os
@@ -83,7 +83,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 EOF
-:::
+```
 
 
 The code checks if the environment variable ```TOKEN``` is set. If it's not, the code goes to Kong Identity, through the **Client Credentials** Grant and get one. If the variables exists, the code uses it. To establish connections with the MCP Server, the **AI MCP OAuth2** plugin hits Keycloak using the **Introspection** flow to see if the token is still valid.
@@ -94,9 +94,9 @@ The code checks if the environment variable ```TOKEN``` is set. If it's not, the
 
 If run the code with:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 python3 kong-mcp-kong-identity.py
-:::
+```
 
 You should see a response similar to this. Note the agent lists the two MCP Tools created and managed by the Kong MCP Gateway:
 

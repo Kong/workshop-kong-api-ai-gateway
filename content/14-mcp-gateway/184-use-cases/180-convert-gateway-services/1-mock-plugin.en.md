@@ -16,18 +16,18 @@ Here's the architecture:
 
 * Download the **marketplace_mock.yaml** Kong decK spec file.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl 'http://localhost:8080/builds/static/code/marketplace_mock.yaml' --output ./marketplace_mock.yaml
-:::
+```
 
 
 
 ### Submit the decK declaration to your Control Plane
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mock.yaml
-:::
+```
 
 You should see your a new Kong Service and Route. Particularly, the Kong Route has the **Mocking Plugin** enabled.
 
@@ -95,9 +95,9 @@ The Kong Route has the **Kong Mocking Plugin** enabled. The Plugin configuration
 ```
 
 Each path defines, inside the **examples** section, the values the plugin should return when it receives a request with the given path. For example, if you send the following request:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s $DATA_PLANE_LB/users | jq
-:::
+```
 
 You should get a response like:
 ```
@@ -196,9 +196,9 @@ Here's the snippet of the decK declaration for the **/users** path:
 ### Test the API Deployment
 
 You can also send requests like this, for example:
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s $DATA_PLANE_LB/orders | jq
-:::
+```
 
 
 
