@@ -20,7 +20,7 @@ metadata:
   name: collector-kong
   namespace: opentelemetry-operator-system
 spec:
-  image: otel/opentelemetry-collector-contrib:0.132.2
+  image: otel/opentelemetry-collector-contrib:0.149.0
   mode: deployment
   config:
     receivers:
@@ -33,7 +33,7 @@ spec:
 
     exporters:
       otlphttp:
-        endpoint: http://jaeger-collector.jaeger:4318
+        endpoint: http://jaeger.jaeger:4318
       #debug:
       #  verbosity: detailed
 
@@ -82,8 +82,7 @@ collector-kong-collector   ClusterIP   10.102.44.48   <none>        4317/TCP,431
 #### Update the DataPlane with tracing instrumentations
 
 ```
-kubectl delete dataplane dataplane1 -n kong
-
+kubectl delete dataplane kong-workshop-dp -n kong
 ```
 
 ```
@@ -91,19 +90,19 @@ cat <<EOF | kubectl apply -f -
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
-  name: dataplane1
-  namespace: kong
+ name: kong-workshop-dp
+ namespace: kong
 spec:
   extensions:
   - kind: KonnectExtension
-    name: konnect-config1
+    name: konnect-config-workshop
     group: konnect.konghq.com
   deployment:
     podTemplateSpec:
       spec:
         containers:
         - name: proxy
-          image: kong/kong-gateway:3.11
+          image: kong/kong-gateway:3.14
           env:
           - name: KONG_TRACING_INSTRUMENTATIONS
             value: all
@@ -112,8 +111,14 @@ spec:
   network:
     services:
       ingress:
-        name: proxy1
+        name: proxy-kong-workshop
         type: LoadBalancer
+  #       type: NodePort
+  #       ports:
+  #       - port: 80
+  #         nodePort: 30080
+  #       - port: 443
+  #         nodePort: 30443
 EOF
 ```
 

@@ -13,7 +13,7 @@ Use the [Cert-Manager Helm Charts](https://cert-manager.io/docs/installation/hel
 ```
 helm install \
   cert-manager oci://quay.io/jetstack/charts/cert-manager \
-  --version v1.18.2 \
+  --version v1.20.1 \
   --namespace cert-manager \
   --create-namespace \
   --set crds.enabled=true
@@ -24,6 +24,7 @@ Now we're going to use the [OpenTelemetry Helm Charts](https://github.com/open-t
 
 ```
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+helm repo update
 ```
 
 

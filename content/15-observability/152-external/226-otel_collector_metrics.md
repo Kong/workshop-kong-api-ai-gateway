@@ -85,7 +85,7 @@ spec:
 
     exporters:
       otlphttp/jaeger:
-        endpoint: http://jaeger-collector.jaeger:4318
+        endpoint: http://jaeger.jaeger:4318
       otlphttp/prometheus:
         endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
       prometheus:
@@ -188,7 +188,6 @@ Delete the current collector first and instantiate a new one simply submitting t
 
 ```
 kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
-
 kubectl apply -f otelcollector.yaml
 ```
 
@@ -257,6 +256,30 @@ deck gateway sync --konnect-token $PAT httpbin.yaml
 curl -v $DATA_PLANE_LB/httpbin-route/get
 ```
 
+
+### Check Kong Data Plane's Prometheus endpoint
+
+Using “port-forward”, send a request to the collector's Prometheus endpoint. In a terminal run:
+
+```
+kubectl port-forward $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-"))' | jq -r '.name') -n kong 8100
+```
+
+Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.
+```
+http :8100/metrics
+```
+
+You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here's a snippet of the output:
+
+```
+# HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong
+# TYPE kong_http_requests_total counter
+kong_http_requests_total{service="httpbin-service",route="httpbin-route",code="200",source="service",type="",workspace="default",consumer=""} 1
+```
+
+
+
 ### Check OTel Collector's Prometheus endpoint
 
 Using “port-forward”, send a request to the collector's Prometheus endpoint. In a terminal run:
@@ -270,7 +293,7 @@ Continue navigating the Application to see some metrics getting generated. In an
 http :8889/metrics
 ```
 
-You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here's a snippet of the output:
+You should see the same Kong metrics:
 
 ```
 # HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong

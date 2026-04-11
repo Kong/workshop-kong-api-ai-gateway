@@ -27,28 +27,28 @@ kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].
     <meta itemprop="description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
 You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
-    <meta itemprop="wordCount" content="995">
+    <meta itemprop="wordCount" content="1083">
     <title>OTel Collector and Metrics :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775770329" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775770329" defer></script>
-    <script src="/js/search-lunr.js?1775770329" defer></script>
-    <script src="/js/search.js?1775770329" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1775925105" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1775925105" defer></script>
+    <script src="/js/search-lunr.js?1775925105" defer></script>
+    <script src="/js/search.js?1775925105" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775770329";
+      window.relearn.index_js_url="/searchindex.en.js?1775925105";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775770329" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775770329" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775770329" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775770329" defer></script>
+    <script src="/js/lunr/lunr.min.js?1775925105" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1775925105" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1775925105" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1775925105" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775770329" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775770329" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775770329" rel="stylesheet">
-    <link href="/css/theme.css?1775770329" rel="stylesheet">
-    <link href="/css/format-html.css?1775770329" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925105" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775925105" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775925105" rel="stylesheet">
+    <link href="/css/theme.css?1775925105" rel="stylesheet">
+    <link href="/css/format-html.css?1775925105" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -122,6 +122,7 @@ kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].
         <li><a href="#new-collector-configuration">New collector configuration</a></li>
         <li><a href="#configure-the-prometheus-plugins">Configure the Prometheus Plugins</a></li>
         <li><a href="#consume-the-kong-route">Consume the Kong Route</a></li>
+        <li><a href="#check-kong-data-planes-prometheus-endpoint">Check Kong Data Plane&rsquo;s Prometheus endpoint</a></li>
         <li><a href="#check-otel-collectors-prometheus-endpoint">Check OTel Collector&rsquo;s Prometheus endpoint</a></li>
         <li><a href="#check-prometheus">Check Prometheus</a></li>
         <li><a href="#check-metrics-in-grafana">Check Metrics in Grafana</a></li>
@@ -222,7 +223,7 @@ spec:
 
     exporters:
       otlphttp/jaeger:
-        endpoint: http://jaeger-collector.jaeger:4318
+        endpoint: http://jaeger.jaeger:4318
       otlphttp/prometheus:
         endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
       prometheus:
@@ -303,7 +304,6 @@ EOF</code></pre></div>
 <h4 id="deploy-the-collector">Deploy the collector</h4>
 <p>Delete the current collector first and instantiate a new one simply submitting the declaration:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
-
 kubectl apply -f otelcollector.yaml</code></pre></div>
 <p>Interestingly enough, the collector service now listens to three ports:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>% kubectl get service collector-kong-collector -n opentelemetry-operator-system 
@@ -356,12 +356,21 @@ EOF</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 <h3 id="consume-the-kong-route">Consume the Kong Route</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
+<h3 id="check-kong-data-planes-prometheus-endpoint">Check Kong Data Plane&rsquo;s Prometheus endpoint</h3>
+<p>Using “port-forward”, send a request to the collector&rsquo;s Prometheus endpoint. In a terminal run:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl port-forward $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong 8100</code></pre></div>
+<p>Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http :8100/metrics</code></pre></div>
+<p>You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here&rsquo;s a snippet of the output:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong
+# TYPE kong_http_requests_total counter
+kong_http_requests_total{service=&#34;httpbin-service&#34;,route=&#34;httpbin-route&#34;,code=&#34;200&#34;,source=&#34;service&#34;,type=&#34;&#34;,workspace=&#34;default&#34;,consumer=&#34;&#34;} 1</code></pre></div>
 <h3 id="check-otel-collectors-prometheus-endpoint">Check OTel Collector&rsquo;s Prometheus endpoint</h3>
 <p>Using “port-forward”, send a request to the collector&rsquo;s Prometheus endpoint. In a terminal run:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl port-forward service/collector-kong-collector -n opentelemetry-operator-system 8889</code></pre></div>
 <p>Continue navigating the Application to see some metrics getting generated. In another terminal send a request to Prometheus’ endpoint.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http :8889/metrics</code></pre></div>
-<p>You should see several related Kong metrics including, for example, Histogram metrics like “kong_kong_latency_ms_bucket”, “kong_request_latency_ms_bucket” and “kong_upstream_latency_ms_bucket”. Maybe one of the most important is “kong_http_requests_total” where we can see consumption metrics. Here&rsquo;s a snippet of the output:</p>
+<p>You should see the same Kong metrics:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code># HELP kong_http_requests_total HTTP status codes per consumer/service/route in Kong
 # TYPE kong_http_requests_total counter
 kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#34;,job=&#34;otel-collector&#34;,route=&#34;coupon_route&#34;,service=&#34;coupon_service&#34;,source=&#34;service&#34;,workspace=&#34;default&#34;} 1
@@ -373,8 +382,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <ul>
 <li>In the <strong>Query</strong> page you can see all metrics produced by Kong Prometheus plugin and pushed by the OTel Collector. Choose <code>kong_http_requests_total</code>.</li>
 </ul>
-<p><a href="#R-image-a4bff696094c4abd55832b641b18e2ea" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a4bff696094c4abd55832b641b18e2ea"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
+<p><a href="#R-image-e00c377961fd428212f43218d210e5e3" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e00c377961fd428212f43218d210e5e3"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
 <h3 id="check-metrics-in-grafana">Check Metrics in Grafana</h3>
 <p>In Grafana UI:</p>
 <ul>
@@ -383,8 +392,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <li>Inside the &ldquo;metrics&rdquo; box you should see all new Kong metrics. Choose <code>kong_http_requests_total</code>.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see the metric there.</li>
 </ul>
-<p><a href="#R-image-c42857fdb7c71774530ddb86d828ec88" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c42857fdb7c71774530ddb86d828ec88"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
+<p><a href="#R-image-72a5a17035e6179c806c798373d71744" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-72a5a17035e6179c806c798373d71744"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -470,8 +479,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775770329" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775770329" defer></script>
-    <script src="/js/theme.js?1775770329" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1775925105" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775925105" defer></script>
+    <script src="/js/theme.js?1775925105" defer></script>
   </body>
 </html>

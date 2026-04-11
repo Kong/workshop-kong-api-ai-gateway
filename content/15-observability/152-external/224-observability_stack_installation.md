@@ -5,20 +5,27 @@ weight : 224
 
 #### Jaeger Installation
 
-We are going to use the [Jaeger Helm Charts](https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger)
+We are going to use the [Jaeger Helm Charts](https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger). Add its repo:
+
+```
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+helm repo update
+```
 
 Save the ```values.yaml``` Jaeger provides as an example:
-
 ```
 wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml
 ```
+
+
+
 
 And use it to install Jaeger 2.9.0
 ```
 helm install jaeger jaegertracing/jaeger -n jaeger \
   --create-namespace \
   --set allInOne.image.repository=jaegertracing/jaeger \
-  --set allInOne.image.tag=2.9.0 \
+  --set allInOne.image.tag=2.17.0 \
   --values ./jaeger-values.yaml
 
 kubectl patch deployment jaeger -n jaeger --type json \
@@ -44,6 +51,7 @@ Add the [Helm Charts](https://github.com/prometheus-community/helm-charts) repo 
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
 ```
 
 Again, after the installation, we should have two new Minikube tunnels defined:
@@ -79,6 +87,8 @@ deploymentMode: SingleBinary
 
 singleBinary:
   replicas: 1
+  service:
+    type: LoadBalancer
   persistence:
     enabled: false
   canary:
@@ -96,7 +106,7 @@ loki:
   commonConfig:
     replication_factor: 1
   image:
-    tag: 3.5.3
+    tag: 3.7.1
   auth_enabled: false
   memberlist:
     enable: false
@@ -105,7 +115,6 @@ loki:
     filesystem:
       chunks_directory: /var/loki/chunks
       rules_directory: /var/loki/rules
-
   schemaConfig:
     configs:
       - from: "2024-04-01"
@@ -115,16 +124,20 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
-
   limits_config:
     allow_structured_metadata: true
     volume_enabled: true
-
   ruler:
     enable_api: true
-
   pattern_ingester:
     enabled: true
+  otlp_config:
+    resource_attributes:
+      attributes_config:
+      - action: index_label
+        attributes:
+        - service.name
+
 
 chunksCache:
   enabled: false
@@ -167,6 +180,10 @@ EOF
 ```
 
 
+        - service_name
+        - service-name
+
+
 Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.
 
 
@@ -176,14 +193,6 @@ helm install loki grafana/loki \
   --namespace=loki --create-namespace \
   -f loki-values.yaml
 ```
-
-```
-kubectl patch svc loki \
-  -n loki \
-  -p '{"spec": {"type": "LoadBalancer"}}'
-```
-
-
 
 
 
@@ -209,7 +218,7 @@ helm upgrade --install grafana grafana/grafana \
 --set datasources."datasources\.yaml".apiVersion=1 \
 --set datasources."datasources\.yaml".datasources[0].name=Jaeger \
 --set datasources."datasources\.yaml".datasources[0].type=jaeger \
---set datasources."datasources\.yaml".datasources[0].url=http://jaeger-query.jaeger:16686 \
+--set datasources."datasources\.yaml".datasources[0].url=http://jaeger.jaeger:16686 \
 --set datasources."datasources\.yaml".datasources[0].access=proxy \
 --set datasources."datasources\.yaml".datasources[1].name=Prometheus \
 --set datasources."datasources\.yaml".datasources[1].type=prometheus \

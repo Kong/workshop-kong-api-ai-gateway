@@ -71,9 +71,16 @@ spec:
         operators:
           - type: json_parser
 
+    processors:
+      resource:
+        attributes:
+          - action: upsert
+            key: service.name
+            value: kong-gateway
+            
     exporters:
       otlphttp/jaeger:
-        endpoint: http://jaeger-collector.jaeger:4318
+        endpoint: http://jaeger.jaeger:4318
       otlphttp/prometheus:
         endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
       otlphttp/loki:
@@ -93,6 +100,7 @@ spec:
           exporters: [otlphttp/prometheus, prometheus]
         logs:
           receivers: [tcplog]
+          processors: [resource]
           exporters: [otlphttp/loki]
 EOF
 ```
@@ -101,13 +109,15 @@ The declaration has critical parameters defined:
 
 * A new TCP Receiver has been added, listening to the port 54525, used by the Kong Gateway TCP Log Plugin. It uses the “json_parser” operator to send formatted data to Loki.
 * Still inside the “service” section we have included the new “logs” pipeline. Its “receivers” are set to “tcplog” to get data from the TCP Log Kong Gateway Plugin. Its “exporters” is set to a different “otlphttp/loki” which sends data to the [Loki endpoint](https://grafana.com/docs/loki/latest/send-data/otel/).
+* Loki requires a specific format for [log ingestion](https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs). The Loki exporter handles the log shipping to Loki.
+* The ``processor`` hardcodes the "kong-gateway" as the Loki Service Name.
+
 
 ### Deploy the collector
 Delete the current collector first and instantiate a new one simply submitting the declaration:
 
 ```
 kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
-
 kubectl apply -f otelcollector.yaml
 ```
 
@@ -163,14 +173,6 @@ services:
     config:
       host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
       port: 54525
-      custom_fields_by_lua:
-        streams: local ts=string.format('%18.0f', os.time()*1000000000) local log_payload         =
-          kong.log.serialize() local service = log_payload['service'] or 'noService'
-          local cjson         =
-          require "cjson" local payload_string = cjson.encode(log_payload) local
-          t         = { {stream = {gateway='kong-gateway', service_name=service['name']},
-          values={{ts,         payload_string}}} } return
-          t
   routes:
   - name: httpbin-route
     tags:
@@ -180,48 +182,13 @@ services:
 EOF
 ```
 
-Loki requires a specific format for [log ingestion](https://grafana.com/docs/loki/latest/reference/loki-http-api/#ingest-logs). The Lua code inside the ``custom_fields_for_lua`` parameter processes the log to be supported by Loki.
 
-### Update the DataPlane with new Lua configuration
-
-The **cjon** Lua function, used by the **TCP Log** plugin is considered ``untrusted`` so we need to configure the Data Plane with the ``KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES`` paramenter to accept it.
-
+Submit the new plugin declaration with:
 ```
-kubectl delete dataplane dataplane1 -n kong
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-token $PAT httpbin.yaml
 ```
 
-```
-cat <<EOF | kubectl apply -f -
-apiVersion: gateway-operator.konghq.com/v1beta1
-kind: DataPlane
-metadata:
-  name: dataplane1
-  namespace: kong
-spec:
-  extensions:
-  - kind: KonnectExtension
-    name: konnect-config1
-    group: konnect.konghq.com
-  deployment:
-    podTemplateSpec:
-      spec:
-        containers:
-        - name: proxy
-          image: kong/kong-gateway:3.11
-          env:
-          - name: KONG_TRACING_INSTRUMENTATIONS
-            value: all
-          - name: KONG_TRACING_SAMPLING_RATE
-            value: "1.0"
-          - name: KONG_UNTRUSTED_LUA_SANDBOX_REQUIRES
-            value: cjson
-  network:
-    services:
-      ingress:
-        name: proxy1
-        type: LoadBalancer
-EOF
-```
 
 
 ### Consume the Kong Route
