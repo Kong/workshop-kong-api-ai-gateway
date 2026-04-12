@@ -14,19 +14,15 @@ Here's the architecture:
 
 ### Download the decK declaration with Kong Mocking Plugin and OpenAPI Spec
 
-* Download the **marketplace_mock.yaml** Kong decK spec file.
-
-```
-curl 'http://localhost:8080/builds/static/code/marketplace_mock.yaml' --output ./marketplace_mock.yaml
-```
+* Download the [**marketplace_mock.yaml**](/code/marketplace_mock.yaml) spec.
 
 
 
 ### Submit the decK declaration to your Control Plane
 
 ```
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mock.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT marketplace_mock.yaml
 ```
 
 You should see your a new Kong Service and Route. Particularly, the Kong Route has the **Mocking Plugin** enabled.

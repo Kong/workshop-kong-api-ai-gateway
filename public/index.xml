@@ -61,7 +61,7 @@
       <link>http://localhost:1313/16-claude-code/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/16-claude-code/index.html</guid>
-      <description>In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Bedrock LLMs and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.&#xA;The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic and available in Bedrock.&#xA;The tutorial goes through the following steps:</description>
+      <description>In this part of the workshop we are going to consume the infrastructure abstracted by Kong AI Gateway, including Anthropic LLM models and the MCP Server and its two MCP Tools. We will present an introductory tutorial to learn how to use Claude Code to accelerate your AI Agent developement process.&#xA;The tutorial leverages the new Claude Opus 4.6, the best coding model provided by Anthropic.&#xA;The tutorial goes through the following steps:</description>
     </item>
     <item>
       <title>Kong AI Assistant &amp; Kong Konnect MCP Server</title>

@@ -8,7 +8,7 @@ Since we have all components in place, we can extend our Strands Agent to take a
 Here's the new code:
 
 ```
-cat > kong-aws-agent.py << 'EOF'
+cat > kong-workshop-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
 from strands.tools.mcp import MCPClient
@@ -19,7 +19,7 @@ import os
 data_plane_lb = os.getenv("DATA_PLANE_LB");
 
 kong_dp = f"http://{data_plane_lb}"
-kong_dp_route = f"http://{data_plane_lb}/bedrock-route"
+kong_dp_route = f"http://{data_plane_lb}/anthropic-route"
 
 print("kong_dp_route")
 print(kong_dp_route)
@@ -28,11 +28,10 @@ print(kong_dp_route)
 openai_model = OpenAIModel(
   client_args={
       "base_url": kong_dp_route,
-      "api_key": "dummy"
+      "api_key": "dummy",
   },
-  model_id="us.anthropic.claude-sonnet-4-20250514-v1:0"
+  model_id="claude-sonnet-4-6",
 )
-
 
 streamable_http_mcp_listener_client = MCPClient(lambda: streamablehttp_client(f"{kong_dp}/mcp-listener"))
 
@@ -55,7 +54,7 @@ The main update here is the inclusion the of Serviceless Route we created in the
 If run the code with:
 
 ```
-python3 kong-aws-agent.py
+python3 kong-workshop-agent.py
 ```
 
 You should see a response similar to this.

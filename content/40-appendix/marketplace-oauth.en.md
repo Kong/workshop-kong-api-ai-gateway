@@ -36,24 +36,29 @@ services:
   host: localhost
   port: 32000
   routes:
-  - name: bedrock-route
+  - name: anthropic-route
     paths:
-    - /bedrock-route
+    - /anthropic-route
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced-anthropic
       enabled: true
       config:
         targets:
         - model:
-            provider: bedrock
-            name: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+            provider: anthropic
+            name: claude-sonnet-4-6
             options:
-              bedrock:
-                aws_region: us-west-2
+              anthropic_version: '2023-06-01'
+              max_tokens: 512
+              temperature: 1.0
           route_type: "llm/v1/chat"
           auth:
-            allow_override: false
+            header_name: x-api-key
+            header_value: ${{ env "DECK_ANTHROPIC_API_KEY" }}
+          logging:
+            log_payloads: true
+            log_statistics: true
 - name: marketplace
   url: http://localhost:32000
   routes:

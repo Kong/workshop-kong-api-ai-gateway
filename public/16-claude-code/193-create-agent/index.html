@@ -7,48 +7,48 @@
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Instruct Claude Code Now we are going to ask Claude Code to create the Strands Agent consuming Kong AI Gateway, Claude Opus 4.6 LLM and the MCP Server.
 Copy the following instructions and paste them to the Claude Code prompt.
-Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands&#39; OpenAI Model Provider. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. You should see:">
+Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named &#34;proxy-kong-workshop &#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. . The Kong AI Gateway Route for LLM is /anthropic-route. . Use the Strands&#39; OpenAI Model Provider to connect to Kong AI Gateway. Anthropic requires a tool to connect. So for the /v1/messsages requests use with a dummy tool to connect to this endpoint.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Create the Strands Agent :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Instruct Claude Code Now we are going to ask Claude Code to create the Strands Agent consuming Kong AI Gateway, Claude Opus 4.6 LLM and the MCP Server.
 Copy the following instructions and paste them to the Claude Code prompt.
-Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands&#39; OpenAI Model Provider. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. You should see:">
+Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named &#34;proxy-kong-workshop &#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. . The Kong AI Gateway Route for LLM is /anthropic-route. . Use the Strands&#39; OpenAI Model Provider to connect to Kong AI Gateway. Anthropic requires a tool to connect. So for the /v1/messsages requests use with a dummy tool to connect to this endpoint.">
     <meta property="og:url" content="http://localhost:1313/16-claude-code/193-create-agent/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Create the Strands Agent :: API Management with Kong Konnect">
     <meta property="og:description" content="Instruct Claude Code Now we are going to ask Claude Code to create the Strands Agent consuming Kong AI Gateway, Claude Opus 4.6 LLM and the MCP Server.
 Copy the following instructions and paste them to the Claude Code prompt.
-Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands&#39; OpenAI Model Provider. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. You should see:">
+Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named &#34;proxy-kong-workshop &#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. . The Kong AI Gateway Route for LLM is /anthropic-route. . Use the Strands&#39; OpenAI Model Provider to connect to Kong AI Gateway. Anthropic requires a tool to connect. So for the /v1/messsages requests use with a dummy tool to connect to this endpoint.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong AI/MCP Gateway, Claude Code and Anthropic">
     <meta itemprop="name" content="Create the Strands Agent :: API Management with Kong Konnect">
     <meta itemprop="description" content="Instruct Claude Code Now we are going to ask Claude Code to create the Strands Agent consuming Kong AI Gateway, Claude Opus 4.6 LLM and the MCP Server.
 Copy the following instructions and paste them to the Claude Code prompt.
-Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands&#39; OpenAI Model Provider. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. You should see:">
-    <meta itemprop="wordCount" content="997">
+Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions: . Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named &#34;proxy-kong-workshop &#34; deployed in the &#34;kong&#34; namespace. . The Kong AI Gateway Route for the MCP Server is /mcp-listener. . The Kong AI Gateway Route for LLM is /anthropic-route. . Use the Strands&#39; OpenAI Model Provider to connect to Kong AI Gateway. Anthropic requires a tool to connect. So for the /v1/messsages requests use with a dummy tool to connect to this endpoint.">
+    <meta itemprop="wordCount" content="1089">
     <title>Create the Strands Agent :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926607" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926607" defer></script>
-    <script src="/js/search-lunr.js?1775926607" defer></script>
-    <script src="/js/search.js?1775926607" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776014414" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776014414" defer></script>
+    <script src="/js/search-lunr.js?1776014414" defer></script>
+    <script src="/js/search.js?1776014414" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926607";
+      window.relearn.index_js_url="/searchindex.en.js?1776014414";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926607" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776014414" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926607" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926607" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926607" rel="stylesheet">
-    <link href="/css/theme.css?1775926607" rel="stylesheet">
-    <link href="/css/format-html.css?1775926607" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776014414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776014414" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776014414" rel="stylesheet">
+    <link href="/css/theme.css?1776014414" rel="stylesheet">
+    <link href="/css/format-html.css?1776014414" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -162,135 +162,169 @@ Write a Strands Agent code to consume Kong AI Gateway. Follow these instructions
 <p>Copy the following instructions and paste them to the <strong>Claude Code</strong> prompt.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Write a Strands Agent code to consume Kong AI Gateway.
 Follow these instructions:
-. Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace.
-. The Kong AI Gateway Route for LLM is /bedrock-route. Use Strands&#39; OpenAI Model Provider.
-. The Kong AI Gateway Route for the MCP Server is /mcp-listener.</code></pre></div>
+. Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named &#34;proxy-kong-workshop &#34; deployed in the &#34;kong&#34; namespace.
+. The Kong AI Gateway Route for the MCP Server is /mcp-listener.
+. The Kong AI Gateway Route for LLM is /anthropic-route.
+. Use the Strands&#39; OpenAI Model Provider to connect to Kong AI Gateway.</code></pre></div>
+<p>Anthropic requires a tool to connect. So for the /v1/messsages requests use  with a dummy tool to connect to this endpoint.</p>
+<p>. Show the /v1/messages request before sending them.</p>
 <p>You should see:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>❯ [Pasted text #1 +4 lines]                     </code></pre></div>
 <p>Press <code>enter</code>.</p>
 <h3 id="grant-permissions-to-claude-code">Grant permissions to Claude Code</h3>
 <p><strong>Claude Code</strong> will then start asking multiple questions asking for permissions to run the necessary commands to craft the Agent. For example, to execute <code>kubectl</code>, <code>pip</code>, etc.</p>
 <p>As an example, here&rsquo;s the first question <strong>Claude Code</strong> will ask you:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>╭─── Claude Code v2.1.45 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                             │ Tips for getting started                                                                                                                                     │
-│                Welcome back!                │ Run /init to create a CLAUDE.md file with instructions for Claude                                                                                            │
-│                                             │ ─────────────────────────────────────────────────────────────────                                                                                            │
-│                                             │ Recent activity                                                                                                                                              │
-│                  ▗ ▗   ▖ ▖                  │ No recent activity                                                                                                                                           │
-│                                             │                                                                                                                                                              │
-│                    ▘▘ ▝▝                    │                                                                                                                                                              │
-│        Opus 4.6 · API Usage Billing         │                                                                                                                                                              │
-│   ~/kong/kong-tech/Tech/AI/ClaudeCode/aws   │                                                                                                                                                              │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+<pre style="font-size: 0.7em">
+╭─── Claude Code v2.1.104 ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                      Tips for getting started                                          │
+│                 Welcome back Acqua!                  Run /init to create a CLAUDE.md file with instructions for Claude │
+│                                                      ───────────────────────────────────────────────────────────────── │
+│                      ▗ ▗   ▖ ▖                       Recent activity                                                   │
+│                                                      No recent activity                                                │
+│                        ▘▘ ▝▝                                                                                           │
+│ Opus 4.6 · API Usage Billing · Acqua’s Individual                                                                      │
+│ Org                                                                                                                    │
+│   ~/…/GitHub/Workshops/temp/claudecode-workshop                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
-  Welcome to Opus 4.6         
-              
 ❯ /status                                                                                                                                                                                                     
-  ⎿  Status dialog dismissed                                                                                                                                                                                  
-                                                                                                                                                                                                              
-❯ Write a Strands Agent code to consume Kong AI Gateway.                                                                                                                                                      
-  Follow these instructions:                                                                                                                                                                                  
-  . Kong AI Gateway is running on Amazon EKS and exposed by an AWS ELB. Look for a Kubernetes service named &#34;proxy1&#34; deployed in the &#34;kong&#34; namespace.                                                        
-  . The Kong AI Gateway Route for LLM is /bedrock-route and the Route for the MCP Server is /mcp-listener.                                                                                                    
-   
-⏺ Let me start by exploring the current directory and getting the Kong AI Gateway endpoint from Kubernetes.                                                                                                   
-                                                                                                                                                                                                              
-⏺ Read 1 file (ctrl+o to expand)                                                                                                                                                                              
-                                                                                                                                                                                                              
-⏺ Bash(kubectl get svc proxy1 -n kong -o jsonpath=&#39;{.status.loadBalancer.ingress[0].hostname}&#39;)                                                                                                               
-  ⎿  Running…                                                                                                                                                                                                 
-                                                                                                                                                                                                              
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- Bash command                                                                                                                                                                                                 
-                                                                                                                
-   kubectl get svc proxy1 -n kong -o jsonpath=&#39;{.status.loadBalancer.ingress[0].hostname}&#39;                                                                                                                    
-   Get ELB hostname for Kong AI Gateway                                                                                                                                                                       
-                                                                                                                                                                                                              
- Do you want to proceed?                                                                                                                                                                                      
- ❯ 1. Yes                                                                                                                                                                                                     
-   2. Yes, and don&#39;t ask again for kubectl get commands in /Users/claudioacquaviva/kong/kong-tech/Tech/AI/ClaudeCode/aws
-   3. No
+  ⎿  Status dialog dismissed                              
 
- Esc to cancel · Tab to amend               </code></pre></div>
+❯ Write a Strands Agent code to consume Kong AI Gateway.
+  Follow these instructions: 
+  . Kong AI Gateway is running on my local Minikube cluster and exposed by a Load Balancer. Look for a Kubernetes service named "proxy-kong-workshop " deployed in the "kong" namespace.                                                                                     
+  . The Kong AI Gateway Route for the MCP Server is /mcp-listener.                                                                                                                                                                                                           
+  . The Kong AI Gateway Route for LLM is /anthropic-route.                                                                                                                                                                                                                   
+  . Use the Strands' OpenAI Model Provider to connect to Kong AI Gateway.                                                                                                                                                                                                    
+
+⏺ Let me get the Kong service details and research the Strands SDK in parallel.
+
+⏺ Bash(kubectl get svc proxy-kong-workshop -n kong -o json 2>&1)
+  ⎿  {
+         "apiVersion": "v1",
+         "kind": "Service",
+     … +71 lines (ctrl+o to expand)
+
+⏺ Agent(Research Strands Agents SDK)
+  ⎿  Done (40 tool uses · 54.7k tokens · 3m 32s)
+  (ctrl+o to expand)
+
+⏺ Good. Here's what I've gathered:
+
+  - Kong Gateway endpoint: http://127.0.0.1:80 (LoadBalancer IP from the proxy-kong-workshop service)
+  - LLM route: /anthropic-route
+  - MCP route: /mcp-listener
+  - Strands SDK: Uses OpenAIModel with client_args for custom base_url, and MCPClient with streamablehttp_client for MCP tools.
+
+  Let me check the existing project structure, then write the code.
+
+  Read 1 file, listed 1 directory (ctrl+o to expand)
+
+⏺ Now let me write the Strands Agent code and a requirements file.
+
+⏺ Write(requirements.txt)
+  ⎿  Wrote 1 lines to requirements.txt
+      1 strands-agents[openai]
+
+⏺ Write(strands_kong_agent.py)
+  ⎿  Wrote 68 lines to strands_kong_agent.py
+       1 """
+       2 Strands Agent consuming Kong AI Gateway.
+       3
+       4 Kong AI Gateway is running on a local Minikube cluster, exposed via a LoadBalancer
+       5 at http://127.0.0.1:80. The gateway provides:
+       6   - /anthropic-route  -> LLM proxy (OpenAI-compatible)
+       7   - /mcp-listener     -> MCP Server (Streamable HTTP)
+       8 """
+       9
+      10 from strands import Agent
+     … +58 lines (ctrl+o to expand)
+
+⏺ Done. I've created two files:
+
+  strands_kong_agent.py
+
+  The agent is wired to your Kong AI Gateway at http://127.0.0.1:80 with:
+
+  1. LLM via OpenAI Model Provider — connects to http://127.0.0.1:80/anthropic-route/v1 using OpenAIModel with client_args for the custom base URL. Kong handles upstream auth, so the API key is a placeholder.
+  2. MCP Tools via Streamable HTTP — connects to http://127.0.0.1:80/mcp-listener using MCPClient with streamablehttp_client. Tools are discovered automatically on startup.
+  3. Interactive loop — prints the discovered MCP tools, then lets you chat with the agent.
+
+  requirements.txt
+
+  strands-agents[openai]
+
+  The [openai] extra pulls in the OpenAI SDK, and mcp is already a core dependency.
+
+  To run it
+
+  pip install -r requirements.txt
+  python strands_kong_agent.py
+</pre>
 <p>Grant permissions to all requests.</p>
 <h3 id="wait-for-the-code-creation-process-to-complete">Wait for the code creation process to complete</h3>
 <p><strong>Claude Code</strong> will perform several tasks to craft the Strands Agent code, including installing the Strands Agent Python package, connecting to Kong AI Gateway, etc.</p>
 <p>As <strong>Claude Code</strong> runs and you grant permissions to it, you can check your directory. Eventually, <strong>Claude Code</strong> will create a new file, named <code>strands_kong_agent.py </code>. Besides, a new <code>venv</code> directory will be created with all Python settings you should use to run the Agent in your terminal.</p>
 <p>Here&rsquo;s a snippet of <strong>Claude Code</strong> output showing that the Agent code has been created.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>⏺ The file is at strands_kong_agent.py and is fully working. Here&#39;s a summary of the architecture and how it works:
-                                                                                                                                                                                                              
-  Architecture                                              
-                                                                                                                                                                                                              
-  Strands Agent                                             
-      ├── LLM (OpenAIModel) ──→ Kong /bedrock-route ──→ Amazon Bedrock (Claude Sonnet)                                                                                                                        
-      └── Tools (MCPClient)  ──→ Kong /mcp-listener  ──→ Upstream API services                                                                                                                                
-
-  Key components in the code
-  Component: OpenAIModel with client_args
-  What it does: Connects to Kong&#39;s OpenAI-compatible chat completions endpoint at /bedrock-route. Kong&#39;s ai-proxy plugin translates this to Bedrock upstream. No API key needed — Kong handles Bedrock auth.
-  ────────────────────────────────────────
-  Component: MCPClient with streamablehttp_client
-  What it does: Connects to Kong&#39;s MCP server at /mcp-listener using Streamable HTTP transport. Kong exposes two MCP tools: marketplace-route-1 (list users) and marketplace-route-2 (get orders by user ID).
-  ────────────────────────────────────────
-  Component: Agent
-  What it does: Wires model + MCP tools together with a system prompt. The agent autonomously decides when to call MCP tools based on user input.
-  Tested results
-
-  - &#34;List all users&#34; — agent called marketplace-route-1, returned 10 users
-  - &#34;Get orders for user a1b2c3d4&#34; — agent called marketplace-route-2, returned 3 orders
-
-  Run it with:
-
-  source venv/bin/activate
+<pre style="font-size: 0.7em">
+⏺ Done. I've created two files:                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                             
+  strands_kong_agent.py                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                             
+  The agent is wired to your Kong AI Gateway at http://127.0.0.1:80 with:
+                                                 
+  1. LLM via OpenAI Model Provider — connects to http://127.0.0.1:80/anthropic-route/v1 using OpenAIModel with client_args for the custom base URL. Kong handles upstream auth, so the API key is a placeholder.                                                             
+  2. MCP Tools via Streamable HTTP — connects to http://127.0.0.1:80/mcp-listener using MCPClient with streamablehttp_client. Tools are discovered automatically on startup.
+  3. Interactive loop — prints the discovered MCP tools, then lets you chat with the agent.                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                             
+  requirements.txt                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                             
+  strands-agents[openai]                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                             
+  The [openai] extra pulls in the OpenAI SDK, and mcp is already a core dependency.                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                             
+  To run it                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                             
+  pip install -r requirements.txt
   python strands_kong_agent.py
-
-✻ Worked for 6m 4s
-
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-❯ commit this
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-  ⏵⏵ accept edits on (shift+tab to cycle)</code></pre></div>
+                                                                                                                                                                                                                                                                             
+✻ Crunched for 3m 22s                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                             
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                                                                                            
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ accept edits on (shift+tab to cycle)
+</pre>
 <h3 id="test-the-agent-inside-claude-code">Test the Agent inside Claude Code</h3>
 <p>Now copy the following instruction and paste it to the <strong>Claude Code</strong> prompt:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Playing the Agent role, ask Kong AI Gateway to list all orders made by Alice Johnson</code></pre></div>
 <p>The result should be something like this:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>❯ Playing the Agent role, ask Kong AI Gateway to list all orders made by Alice Johnson                                                                                                                        
-                                                                                                                
-⏺ Bash(source /Users/claudioacquaviva/kong/kong-tech/Tech/AI/ClaudeCode/aws/venv/bin/activate &amp;&amp; echo &#34;List all orders made by Alice Johnson&#34; | python /Users/claudioac…)                                     
-  ⎿  Error: Exit code 1                                                                                                                                                                                       
-     ============================================================
-       Strands Agent → Kong AI Gateway → Amazon Bedrock                                                                                                                                                       
-       MCP tools served via Kong AI Gateway                                                                     
-     ============================================================                                                                                                                                             
-                                                                                                                                                                                                              
-     Type your message (or &#34;quit&#34; to exit):                                                                                                                                                                   
-                                                                                                                                                                                                              
-     You:                                                                                                                                                                                                     
-     I&#39;ll help you find all orders made by Alice Johnson. First, let me get the user information to find Alice Johnson&#39;s user ID, then retrieve her orders.                                                   
-     … +21 lines (ctrl+o to see all)                                                                                                                                                                          
-                                                                                                                                                                                                              
-⏺ The agent autonomously chained two MCP tool calls through Kong AI Gateway:                                                                                                                                  
-                                                                                                                                                                                                              
-  1. Tool #1 — marketplace-route-1 (Get users): looked up all users to find Alice Johnson&#39;s user ID → a1b2c3d4                                                                                                
-  2. Tool #2 — marketplace-route-2 (Get orders): fetched orders for user a1b2c3d4                                                                                                                             
-   
-  Alice Johnson&#39;s Orders                                                                                                                                                                                      
-  ┌──────────┬────────────────────────────┐                 
-  │ Order ID │            Item            │
-  ├──────────┼────────────────────────────┤
-  │ ord001   │ Sugar (50kg)               │
-  ├──────────┼────────────────────────────┤
-  │ ord002   │ Cleaning Supplies Pack     │
-  ├──────────┼────────────────────────────┤
-  │ ord003   │ Canned Tomatoes (100 cans) │
-  └──────────┴────────────────────────────┘
-  The agent resolved the name-to-ID mapping on its own — the user asked by name (&#34;Alice Johnson&#34;) and the agent figured out it needed to first query the users list, extract her ID, then use that ID to fetch
-   orders. Both requests flowed through Kong AI Gateway&#39;s MCP endpoint at /mcp-listener.
-
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-❯ Now list all orders made by Bob Smith
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-  ⏵⏵ accept edits on (shift+tab to cycle)</code></pre></div>
+<pre style="font-size: 0.7em">
+⏺ The agent ran successfully. Here's what happened:                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                             
+  1. MCP tool discovery — found 2 tools: marketplace-route-1 and marketplace-route-2                                                                                                                                                                                         
+  2. Tool call #1 (marketplace-route-1) — looked up Alice Johnson's user ID (a1b2c3d4)                                                                                                                                                                                       
+  3. Tool call #2 (marketplace-route-2) — fetched her orders using that ID                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                             
+  Alice Johnson's orders:                                                                                                                                                                                                                                                    
+                                                            
+  ┌─────┬──────────┬────────────────────────────┐                                                                                                                                                                                                                            
+  │  #  │ Order ID │            Item            │           
+  ├─────┼──────────┼────────────────────────────┤
+  │ 1   │ ord001   │ Sugar (50kg)               │
+  ├─────┼──────────┼────────────────────────────┤
+  │ 2   │ ord002   │ Cleaning Supplies Pack     │
+  ├─────┼──────────┼────────────────────────────┤
+  │ 3   │ ord003   │ Canned Tomatoes (100 cans) │
+  └─────┴──────────┴────────────────────────────┘                                                                                                                                                                                                                            
+  
+  The Strands Agent successfully consumed both Kong AI Gateway routes — /anthropic-route for the LLM and /mcp-listener for the MCP tools.                                                                                                                                    
+                                                            
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ accept edits on (shift+tab to cycle)           
+</pre>
 <p>Now you are ok to quit <strong>Claude Code</strong>. Type or copy-and-paste the following command:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>quit</code></pre></div>
 <p>You should get redirected to your terminal.</p>
@@ -375,8 +409,8 @@ Follow these instructions:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926607" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926607" defer></script>
-    <script src="/js/theme.js?1775926607" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776014414" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776014414" defer></script>
+    <script src="/js/theme.js?1776014414" defer></script>
   </body>
 </html>

@@ -52,23 +52,23 @@ You should get a response like this:
 
 ##### Check your AuthZ Server
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX GET "https://us.api.konghq.com/v1/auth-servers" \
   -H "Authorization: Bearer $PAT" | jq
-:::
+```
 
 Get the AuthZ Server Id:
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 export AUTHZ_SERVER_ID=$(curl -sX GET "https://us.api.konghq.com/v1/auth-servers" -H "Authorization: Bearer $PAT" | jq -r '.data[0].id')
-:::
+```
 
 Get the Issuer URL:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 export ISSUER_URL=$(curl -sX GET "https://us.api.konghq.com/v1/auth-servers" -H "Authorization: Bearer $PAT" | jq -r '.data[0].issuer')
-:::
+```
 
 
 
@@ -76,7 +76,7 @@ export ISSUER_URL=$(curl -sX GET "https://us.api.konghq.com/v1/auth-servers" -H 
 
 Configure a scope in your auth server using the [``/v1/auth-servers/$AUTHZ_SERVER_ID/scopes``](https://developer.konghq.com/api/konnect/kong-identity/v1/#/operations/createAuthServerScope) endpoint:
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes" \
   -H "Authorization: Bearer $PAT"\
   -H "Content-Type: application/json" \
@@ -87,7 +87,7 @@ curl -sX POST "https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes
     "include_in_metadata": false,
     "enabled": true
   }' | jq
-:::
+```
 
 Expected response
 

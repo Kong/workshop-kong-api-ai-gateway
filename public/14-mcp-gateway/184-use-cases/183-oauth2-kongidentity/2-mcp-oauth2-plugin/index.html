@@ -5,46 +5,46 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta name="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
     <meta itemprop="name" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
-    <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml Kong decK spec file. curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
+    <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
-    <meta itemprop="wordCount" content="541">
+    <meta itemprop="wordCount" content="534">
     <title>AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926517" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926517" defer></script>
-    <script src="/js/search-lunr.js?1775926517" defer></script>
-    <script src="/js/search.js?1775926517" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
+    <script src="/js/search-lunr.js?1776013317" defer></script>
+    <script src="/js/search.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926517";
+      window.relearn.index_js_url="/searchindex.en.js?1776013317";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926517" rel="stylesheet">
-    <link href="/css/theme.css?1775926517" rel="stylesheet">
-    <link href="/css/format-html.css?1775926517" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
+    <link href="/css/theme.css?1776013317" rel="stylesheet">
+    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -155,9 +155,8 @@ routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mc
 
 <h3 id="download-the-new-deck-file">Download the new decK file</h3>
 <ul>
-<li>Download the <strong>marketplace_mcp_oauth_kong_identity.yaml</strong> Kong decK spec file.</li>
+<li>Download the <a href="/code/marketplace_mcp_oauth_kong_identity.yaml"><strong>marketplace_mcp_oauth_kong_identity.yaml</strong></a> spec.</li>
 </ul>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl &#39;http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml&#39; --output ./marketplace_mcp_oauth_kong_identity.yaml</code></pre></div>
 <p>The declaration extends the <code>mcp-listener-route</code>, responsible for aggregating the MCP Tools, with the <strong>AI MCP OAuth2</strong> plugin.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>routes:
   - name: mcp-listener-route
@@ -358,8 +357,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926517" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926517" defer></script>
-    <script src="/js/theme.js?1775926517" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
+    <script src="/js/theme.js?1776013317" defer></script>
   </body>
 </html>

@@ -27,28 +27,28 @@ Create the Authorization Server in Kong Identity Before you can configure the AI
     <meta itemprop="description" content="Kong Identity enables you to use Konnect to generate, authenticate, and authorize API access. Specifically, Kong Identity can be used for machine-to-machine authentication. You can use Kong Identity to:
 Create authorization servers per region Issue and validate access tokens Integrate secure authentication into your Kong Gateway APIs Introspection Flow This section describes the OAuth Token Introspection implemented by Kong MCP Gateway and Kong Identity as the Identity Provider.
 Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.">
-    <meta itemprop="wordCount" content="740">
+    <meta itemprop="wordCount" content="727">
     <title>Kong Identity :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926517" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926517" defer></script>
-    <script src="/js/search-lunr.js?1775926517" defer></script>
-    <script src="/js/search.js?1775926517" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
+    <script src="/js/search-lunr.js?1776013317" defer></script>
+    <script src="/js/search.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926517";
+      window.relearn.index_js_url="/searchindex.en.js?1776013317";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926517" rel="stylesheet">
-    <link href="/css/theme.css?1775926517" rel="stylesheet">
-    <link href="/css/format-html.css?1775926517" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
+    <link href="/css/theme.css?1776013317" rel="stylesheet">
+    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -198,32 +198,24 @@ Create the Authorization Server in Kong Identity Before you can configure the AI
   &#34;updated_at&#34;: &#34;2026-02-17T17:42:23.194606Z&#34;
 }</code></pre></div>
 <h5 id="check-your-authz-server">Check your AuthZ Server</h5>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -sX GET &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers"</a> <br>
--H &ldquo;Authorization: Bearer $PAT&rdquo; | jq
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET &#34;https://us.api.konghq.com/v1/auth-servers&#34; \
+  -H &#34;Authorization: Bearer $PAT&#34; | jq</code></pre></div>
 <p>Get the AuthZ Server Id:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-export AUTHZ_SERVER_ID=$(curl -sX GET &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers"</a> -H &ldquo;Authorization: Bearer $PAT&rdquo; | jq -r &lsquo;.data[0].id&rsquo;)
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export AUTHZ_SERVER_ID=$(curl -sX GET &#34;https://us.api.konghq.com/v1/auth-servers&#34; -H &#34;Authorization: Bearer $PAT&#34; | jq -r &#39;.data[0].id&#39;)</code></pre></div>
 <p>Get the Issuer URL:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-export ISSUER_URL=$(curl -sX GET &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers"</a> -H &ldquo;Authorization: Bearer $PAT&rdquo; | jq -r &lsquo;.data[0].issuer&rsquo;)
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export ISSUER_URL=$(curl -sX GET &#34;https://us.api.konghq.com/v1/auth-servers&#34; -H &#34;Authorization: Bearer $PAT&#34; | jq -r &#39;.data[0].issuer&#39;)</code></pre></div>
 <h3 id="configure-the-authz-server-with-scopes">Configure the AuthZ server with scopes</h3>
 <p>Configure a scope in your auth server using the <a href="https://developer.konghq.com/api/konnect/kong-identity/v1/#/operations/createAuthServerScope" rel="external" target="_blank"><code>/v1/auth-servers/$AUTHZ_SERVER_ID/scopes</code></a> endpoint:</p>
-<p>:::code{showCopyAction=true showLineNumbers=false language=shell}
-curl -sX POST &ldquo;<a href="https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes%22" rel="external" target="_blank">https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes"</a> <br>
--H &ldquo;Authorization: Bearer $PAT&rdquo;<br>
--H &ldquo;Content-Type: application/json&rdquo; <br>
-&ndash;json &lsquo;{
-&ldquo;name&rdquo;: &ldquo;scope1&rdquo;,
-&ldquo;description&rdquo;: &ldquo;scope1&rdquo;,
-&ldquo;default&rdquo;: false,
-&ldquo;include_in_metadata&rdquo;: false,
-&ldquo;enabled&rdquo;: true
-}&rsquo; | jq
-:::</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX POST &#34;https://us.api.konghq.com/v1/auth-servers/$AUTHZ_SERVER_ID/scopes&#34; \
+  -H &#34;Authorization: Bearer $PAT&#34;\
+  -H &#34;Content-Type: application/json&#34; \
+  --json &#39;{
+    &#34;name&#34;: &#34;scope1&#34;,
+    &#34;description&#34;: &#34;scope1&#34;,
+    &#34;default&#34;: false,
+    &#34;include_in_metadata&#34;: false,
+    &#34;enabled&#34;: true
+  }&#39; | jq</code></pre></div>
 <p>Expected response</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
   &#34;created_at&#34;: &#34;2026-02-17T17:44:20.009421Z&#34;,
@@ -385,8 +377,8 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n</code></pre></div>
 }</code></pre></div>
 <h4 id="kong-identity-user-interface">Kong Identity User Interface</h4>
 <p>You can also check the Konnect UI with your Authorization Server and its Clients, Scopes and Claims defined:</p>
-<p><a href="#R-image-9637e06cf34e0ca040c2d4869056c892" class="lightbox-link"><img alt="Kong Identity configuration page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_identity.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9637e06cf34e0ca040c2d4869056c892"><img alt="Kong Identity configuration page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_identity.png"></a></p>
+<p><a href="#R-image-4cc04f06a43066da9f38550b78124659" class="lightbox-link"><img alt="Kong Identity configuration page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_identity.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4cc04f06a43066da9f38550b78124659"><img alt="Kong Identity configuration page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_identity.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -473,8 +465,8 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926517" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926517" defer></script>
-    <script src="/js/theme.js?1775926517" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
+    <script src="/js/theme.js?1776013317" defer></script>
   </body>
 </html>

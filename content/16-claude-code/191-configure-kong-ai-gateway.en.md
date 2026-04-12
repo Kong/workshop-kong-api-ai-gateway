@@ -4,7 +4,7 @@ weight : 191
 ---
 
 
-### Configure Kong AI Gateway with Bedrock's Anthropic Claude Sonnet 4 model, Mocking Services and MCP Tools
+### Configure Kong AI Gateway with Anthropic Claude Sonnet 4 model, Mocking Services and MCP Tools
 
 Make sure you Kong AI Gateway with the right configuration including Anthropic Model, Mocking Services and MCP Tools. This **decK** declaration is quite similar to the one you used before. The only difference is that the new one has the AI logging configuration set.
 
@@ -24,8 +24,6 @@ _format_version: "3.0"
 _info:
   select_tags:
   - claude-code
-_konnect:
-  control_plane_name: kong-aws
 services:
 - name: claude-code-service
   url: http://localhost:32000
@@ -38,23 +36,22 @@ services:
       instance_name: ai-proxy-advanced-claude-code
       enabled: true
       config:
+        llm_format: anthropic
         targets:
         - model:
-            provider: bedrock
-            name: us.anthropic.claude-opus-4-6-v1
+            provider: anthropic
+            name: claude-opus-4-6
             options:
-              anthropic_version: bedrock-2023-05-31
-              bedrock:
-                aws_region: "us-west-2"
+              anthropic_version: '2023-06-01'
               input_cost: 2000
               output_cost: 2500
           route_type: llm/v1/chat
+          auth:
+            header_name: x-api-key
+            header_value: ${{ env "DECK_ANTHROPIC_API_KEY" }}
           logging:
             log_statistics: true
             log_payloads: false
-          auth:
-            allow_override: false
-        llm_format: anthropic
         max_request_body_size: 262144
 EOF
 ```
@@ -63,8 +60,8 @@ EOF
 Apply the declaration with decK:
 
 ```
-deck gateway reset --konnect-control-plane-name kong-aws --select-tag claude-code --konnect-token $PAT -f
-deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT claude-code.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --select-tag claude-code --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT claude-code.yaml
 ```
 
 

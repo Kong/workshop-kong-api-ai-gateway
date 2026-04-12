@@ -4,15 +4,6 @@ weight : 194
 ---
 
 
-### Set your Python environment
-
-Now, you need to set your local Python environment to tell it you have a new application:
-
-```
-. ./.venv/bin/activate
-```
-
-
 
 ### Run the Agent
 
@@ -22,62 +13,26 @@ python3 strands_kong_agent.py
 
 You should see the Agent response and a prompt:
 
-```
-============================================================
-  Strands Agent → Kong AI Gateway → Amazon Bedrock
-  MCP tools served via Kong AI Gateway
-============================================================
-
-Type your message (or "quit" to exit):
-
-You: 
-```
-
-
-Type the same question you did before:
-
-
-```
-list all orders made by Alice 
-```
-
-
-You should see similar responses:
-
-```
-You: list all orders made by Alice 
-
-I'll help you find all orders made by Alice. First, let me get the users to find Alice's user ID, then retrieve her orders.
+<pre style="font-size: 0.7em">
+MCP tools available: ['marketplace-route-1', 'marketplace-route-2']
+Sure! Let me start by finding Alice Johnson's user ID.
 Tool #1: marketplace-route-1
-I found Alice Johnson with ID "a1b2c3d4". Now let me get her orders:
+original_stop_reason=<end_turn>, new_stop_reason=<tool_use> | overriding stop reason due to toolUse blocks in response
+Alice Johnson's user ID is **a1b2c3d4**. Now let me fetch her orders!
 Tool #2: marketplace-route-2
-## Orders made by Alice Johnson:
+original_stop_reason=<end_turn>, new_stop_reason=<tool_use> | overriding stop reason due to toolUse blocks in response
+Here are all the orders made by **Alice Johnson** (User ID: `a1b2c3d4`):
 
-Based on the search results, Alice Johnson (ID: a1b2c3d4) has made **3 orders**:
+| # | Order ID | Item |
+|---|----------|------|
+| 1 | ord001 | Sugar (50kg) |
+| 2 | ord002 | Cleaning Supplies Pack |
+| 3 | ord003 | Canned Tomatoes (100 cans) |
 
-1. **Order #ord001** - Sugar (50kg)
-2. **Order #ord002** - Cleaning Supplies Pack  
-3. **Order #ord003** - Canned Tomatoes (100 cans)
+Alice Johnson has placed a total of **3 orders**. Let me know if you'd like more details or want to take any action on these orders!
+Agent: 
+</pre>
 
-Alice's orders include a mix of food items (sugar and canned tomatoes) and household supplies (cleaning supplies pack).
-
-You: 
-```
-
-
-You can try other prompts like:
-```
-how about Ian Walker's?
-```
-
-or
-
-```
-and Claudio's?
-```
-
-
-Type ``ˆC`` to exit.
 
 
 

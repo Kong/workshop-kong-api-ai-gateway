@@ -7,3 +7,5 @@ title = 'API Management with Kong Konnect'
     path = 'github.com/McShelby/hugo-theme-relearn'
 [params]
   themeVariant = "blue"
+[markup.goldmark.renderer]
+  unsafe = true

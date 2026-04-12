@@ -6,18 +6,17 @@ weight : 192
 
 ### Create a Claude Code configuration file to consume Kong AI Gateway
 
-Create a file named **.env.claude** with the following settings. The configuration tell **Claude Code** to use **Bedrock** and [**Claude Opus 4.6**](https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6).
+Create a file named **.env.claude** with the following settings. Check the [**Claude Opus 4.6**](https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6) documentation to learn more.
 
 
 
 ```
-mkdir claudecode-aws
-cd claudecode-aws
+mkdir claudecode-workshop
+cd claudecode-workshop
 
 cat > .env.claude << 'EOF'
-export AWS_REGION=us-west-2
-export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1
-export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic
+export ANTHROPIC_MODEL=claude-opus-4-6
+export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic
 EOF
 ```
 
@@ -43,8 +42,8 @@ claude
 You shoul see the Claude Code welcome prompt:
 
 
-```
-Welcome to Claude Code v2.1.45
+<pre style="font-size: 0.75em">
+Welcome to Claude Code v2.1.104
 …………………………………………………………………………………………………………………………………………………………
 
      *                                       █████▓▓░
@@ -73,14 +72,14 @@ Welcome to Claude Code v2.1.45
    5. Dark mode (ANSI colors only)
    6. Light mode (ANSI colors only)
 
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  1  function greet() {
- 2 -  console.log("Hello, World!");                                                                                                                                                                           
- 2 +  console.log("Hello, Claude!");                                                                                                                                                                          
+ 2 -  console.log("Hello, World!");
+ 2 +  console.log("Hello, Claude!");                                                  
  3  }
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  Syntax theme: Monokai Extended (ctrl+t to disable)
-```
+</pre>
 
 Choose the mode, enable the recommended settings, trust the current folder you are and use high effort mode.
 
@@ -90,40 +89,44 @@ Choose the mode, enable the recommended settings, trust the current folder you a
 
 Now you should see the main menu page. Type ``/status`` and check if **Claude Code** is configured to use Bedrock and Claude Opus 4.6 model:
 
-```
+<pre style="font-size: 0.7em">
+╭─── Claude Code v2.1.104 ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting started                                          │
+│                 Welcome back Acqua!                │ Run /init to create a CLAUDE.md file with instructions for Claude │
+│                                                    │ ───────────────────────────────────────────────────────────────── │
+│                      ▗ ▗   ▖ ▖                     │ Recent activity                                                   │
+│                                                    │ No recent activity                                                │
+│                        ▘▘ ▝▝                       │                                                                   │
+│ Opus 4.6 · API Usage Billing · Acqua’s Individual  │                                                                   │
+│ Org                                                │                                                                   │
+│   ~/…/GitHub/Workshops/temp/claudecode-workshop    │                                                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                                                                                                                                                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯  
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ? for shortcuts
+</pre>
 
-╭─── Claude Code v2.1.45 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                             │ Tips for getting started                                                                                                                                     │
-│                Welcome back!                │ Run /init to create a CLAUDE.md file with instructions for Claude                                                                                            │
-│                                             │ ─────────────────────────────────────────────────────────────────                                                                                            │
-│                                             │ Recent activity                                                                                                                                              │
-│                  ▗ ▗   ▖ ▖                  │ No recent activity                                                                                                                                           │
-│                                             │                                                                                                                                                              │
-│                    ▘▘ ▝▝                    │                                                                                                                                                              │
-│        Opus 4.6 · API Usage Billing         │                                                                                                                                                              │
-│   ~/kong/kong-tech/Tech/AI/ClaudeCode/aws   │                                                                                                                                                              │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
-  Welcome to Opus 4.6         
-              
-❯ /status                                                                                                                                                                                                     
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  Settings:  Status   Config   Usage  (←/→ or tab to cycle)                                                                                                                                                   
-                                                                                                                       
-                                                                            
-  Version: 2.1.45                                                           
-  Session name: /rename to add a name                                                                                                                                                                         
-  Session ID: 67f58aab-b020-46c8-9245-9341b3507861                                                                                                                                                            
-  cwd: /Users/claudioacquaviva/kong/kong-tech/Tech/AI/ClaudeCode/aws
-  API provider: AWS Bedrock
-  AWS region: us-west-2
 
-  Model: us.anthropic.claude-opus-4-6-v1
-  Memory:
+<pre style="font-size: 0.75em">
+❯ /status
+────
+   Status   Config   Usage                                                                                                                                                                                                                                                 
+                                                                                                                     
+  Version: 2.1.87                                                               
+  Session name: /rename to add a name                                                      
+  Session ID: 1c124aae-594a-48fd-b8db-6b4663dcc16b                                                                                                                                                                                                                           
+  cwd: /Users/claudioacquaviva/kong/kong-github/GitHub/Workshops/temp/claudecode-workshop
+  Auth token: none
+  API key: ANTHROPIC_API_KEY
+  Anthropic base URL: http://127.0.0.1/anthropic
+
+  Model: claude-opus-4-6
   Setting sources:
   Esc to cancel
-```
+</pre>
 
 
 Type ``esc`` to return to **Claude Code** prompt.

@@ -13,14 +13,15 @@ Strands Agents, the Python-based framework for building agents, was introduced b
 
 #### Python setup
 
-We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP.
+We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP. Make sure you have your **DECK_ANTHROPIC_API_KEY** env variable set.
 
 ```
-uv init kong-aws-strands
+uv init kong-workshop-strands
 uv venv
 source .venv/bin/activate
 uv pip install 'strands-agents[openai]'
 uv pip install aiohttp
+cd kong-workshop-strands
 ```
 
 
@@ -34,40 +35,42 @@ cat > ai-proxy-advanced.yaml << 'EOF'
 _format_version: "3.0"
 _info:
   select_tags:
-  - bedrock
+  - anthropic
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: ai-proxy-advanced-service
   host: localhost
   port: 32000
   routes:
-  - name: bedrock-route
+  - name: anthropic-route
     paths:
-    - /bedrock-route
+    - /anthropic-route
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced-anthropic
       enabled: true
       config:
         targets:
         - model:
-            provider: bedrock
-            name: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+            provider: anthropic
+            name: claude-sonnet-4-6
             options:
-              bedrock:
-                aws_region: us-west-2
+              anthropic_version: '2023-06-01'
+              max_tokens: 512
+              temperature: 1.0
           route_type: "llm/v1/chat"
           auth:
-            allow_override: false
+            header_name: x-api-key
+            header_value: ${{ env "DECK_ANTHROPIC_API_KEY" }}
 EOF
 ```
 
 Apply the declaration with decK:
 
 ```
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT ai-proxy-advanced.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT ai-proxy-advanced.yaml
 ```
 
 
@@ -76,7 +79,7 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT ai-
 
 ```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/anthropic-route \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [
@@ -92,17 +95,26 @@ curl -s -X POST \
 Now, here's a basic Strands Agent consuming Kong AI Gateway:
 
 ```
-cat > kong-aws-agent.py << 'EOF'
+cat > kong-workshop-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
+from strands.tools import tool
+
 
 import os
+
+
+
+@tool
+def dummy_tool():
+    return null
+
 
 
 data_plane_lb = os.getenv("DATA_PLANE_LB");
 
 kong_dp = f"http://{data_plane_lb}"
-kong_dp_route = f"http://{data_plane_lb}/bedrock-route"
+kong_dp_route = f"http://{data_plane_lb}/anthropic-route"
 
 print("kong_dp_route")
 print(kong_dp_route)
@@ -111,13 +123,14 @@ print(kong_dp_route)
 openai_model = OpenAIModel(
   client_args={
       "base_url": kong_dp_route,
-      "api_key": "dummy"
+      "api_key": "dummy",
   },
-  model_id="us.anthropic.claude-sonnet-4-20250514-v1:0"
+  model_id="claude-sonnet-4-6",
+  # max_tokens=1024,
 )
 
 
-agent = Agent(model=openai_model)
+agent = Agent(model=openai_model, tools=[dummy_tool])
 agent("Who is Aldous Huxley?")
 EOF
 ```
@@ -127,17 +140,26 @@ EOF
 The prompt is very simple, so the LLM will be able to respond it. However if you change the code and ask something like **"List all orders made by Alice Johnson"** you'll see a different behaviour.
 
 ```
-cat > kong-aws-agent.py << 'EOF'
+cat > kong-workshop-agent.py << 'EOF'
 from strands import Agent
 from strands.models.openai import OpenAIModel
+from strands.tools import tool
+
 
 import os
+
+
+
+@tool
+def dummy_tool():
+    return null
+
 
 
 data_plane_lb = os.getenv("DATA_PLANE_LB");
 
 kong_dp = f"http://{data_plane_lb}"
-kong_dp_route = f"http://{data_plane_lb}/bedrock-route"
+kong_dp_route = f"http://{data_plane_lb}/anthropic-route"
 
 print("kong_dp_route")
 print(kong_dp_route)
@@ -146,13 +168,13 @@ print(kong_dp_route)
 openai_model = OpenAIModel(
   client_args={
       "base_url": kong_dp_route,
-      "api_key": "dummy"
+      "api_key": "dummy",
   },
-  model_id="us.anthropic.claude-sonnet-4-20250514-v1:0"
+  model_id="claude-sonnet-4-6",
 )
 
 
-agent = Agent(model=openai_model)
+agent = Agent(model=openai_model, tools=[dummy_tool])
 agent("List all orders made by Alice Johnson")
 EOF
 ```
@@ -161,29 +183,23 @@ EOF
 #### Execute the code
 
 ```
-python3 kong-aws-agent.py
+python3 kong-workshop-agent.py
 ```
 
 * Typical response
 ```
 kong_dp_route
-http://aef50357c38e142b9ad6986d4f828dd5-1505142468.us-west-2.elb.amazonaws.com/bedrock-route
-I don't have access to any order database or customer information system, so I cannot provide a list of orders made by Alice Johnson or any other customer. 
+http://127.0.0.1/anthropic-route
+I'm sorry, but I don't have a tool available to look up or retrieve order information for customers like Alice Johnson. The only tool I have access to is a **dummy tool** that doesn't support querying order data.
 
-To get this information, you would need to:
+To find all orders made by Alice Johnson, I'd suggest:
+1. **Checking your Order Management System (OMS)** directly.
+2. **Querying your database** using something like:
+   sql
+   SELECT * FROM orders WHERE customer_name = 'Alice Johnson';
+3. **Contacting your support or data team** who may have access to customer order records.
 
-1. **Check your e-commerce platform** (like Shopify, WooCommerce, Magento, etc.)
-2. **Query your customer database** directly
-3. **Use your order management system**
-4. **Contact your customer service team**
-
-If you're looking to query a database yourself, you might use SQL like:
-sql
-SELECT * FROM orders 
-WHERE customer_name = 'Alice Johnson';
-
-
-Or if you have a specific platform or system you're working with, I'd be happy to help you figure out how to retrieve that information from your particular setup.
+If you can provide me with the right tools or data, I'd be happy to help further!
 ```
 
 

@@ -5,54 +5,54 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. The configuration tell Claude Code to use Bedrock and Claude Opus 4.6.
-mkdir claudecode-aws cd claudecode-aws cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export AWS_REGION=us-west-2 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
+    <meta name="description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. Check the Claude Opus 4.6 documentation to learn more.
+mkdir claudecode-workshop cd claudecode-workshop cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export ANTHROPIC_MODEL=claude-opus-4-6 export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
 . ./.env.claude Test Claude Code:
 claude --version Start Claude Code for the first time Assuming you have Claude Code installed locally, run:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Configure Claude Code :: API Management with Kong Konnect">
-    <meta name="twitter:description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. The configuration tell Claude Code to use Bedrock and Claude Opus 4.6.
-mkdir claudecode-aws cd claudecode-aws cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export AWS_REGION=us-west-2 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
+    <meta name="twitter:description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. Check the Claude Opus 4.6 documentation to learn more.
+mkdir claudecode-workshop cd claudecode-workshop cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export ANTHROPIC_MODEL=claude-opus-4-6 export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
 . ./.env.claude Test Claude Code:
 claude --version Start Claude Code for the first time Assuming you have Claude Code installed locally, run:">
     <meta property="og:url" content="http://localhost:1313/16-claude-code/192-configure-claudecode/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Configure Claude Code :: API Management with Kong Konnect">
-    <meta property="og:description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. The configuration tell Claude Code to use Bedrock and Claude Opus 4.6.
-mkdir claudecode-aws cd claudecode-aws cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export AWS_REGION=us-west-2 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
+    <meta property="og:description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. Check the Claude Opus 4.6 documentation to learn more.
+mkdir claudecode-workshop cd claudecode-workshop cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export ANTHROPIC_MODEL=claude-opus-4-6 export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
 . ./.env.claude Test Claude Code:
 claude --version Start Claude Code for the first time Assuming you have Claude Code installed locally, run:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong AI/MCP Gateway, Claude Code and Anthropic">
     <meta itemprop="name" content="Configure Claude Code :: API Management with Kong Konnect">
-    <meta itemprop="description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. The configuration tell Claude Code to use Bedrock and Claude Opus 4.6.
-mkdir claudecode-aws cd claudecode-aws cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export AWS_REGION=us-west-2 export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1 export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
+    <meta itemprop="description" content="Create a Claude Code configuration file to consume Kong AI Gateway Create a file named .env.claude with the following settings. Check the Claude Opus 4.6 documentation to learn more.
+mkdir claudecode-workshop cd claudecode-workshop cat &gt; .env.claude &lt;&lt; &#39;EOF&#39; export ANTHROPIC_MODEL=claude-opus-4-6 export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic EOF You can get this settings with:
 . ./.env.claude Test Claude Code:
 claude --version Start Claude Code for the first time Assuming you have Claude Code installed locally, run:">
-    <meta itemprop="wordCount" content="366">
+    <meta itemprop="wordCount" content="363">
     <title>Configure Claude Code :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926607" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926607" defer></script>
-    <script src="/js/search-lunr.js?1775926607" defer></script>
-    <script src="/js/search.js?1775926607" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776014414" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776014414" defer></script>
+    <script src="/js/search-lunr.js?1776014414" defer></script>
+    <script src="/js/search.js?1776014414" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926607";
+      window.relearn.index_js_url="/searchindex.en.js?1776014414";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926607" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926607" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776014414" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776014414" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926607" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926607" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926607" rel="stylesheet">
-    <link href="/css/theme.css?1775926607" rel="stylesheet">
-    <link href="/css/format-html.css?1775926607" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776014414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776014414" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776014414" rel="stylesheet">
+    <link href="/css/theme.css?1776014414" rel="stylesheet">
+    <link href="/css/format-html.css?1776014414" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -162,14 +162,13 @@ claude --version Start Claude Code for the first time Assuming you have Claude C
 <h1 id="configure-claude-code">Configure Claude Code</h1>
 
 <h3 id="create-a-claude-code-configuration-file-to-consume-kong-ai-gateway">Create a Claude Code configuration file to consume Kong AI Gateway</h3>
-<p>Create a file named <strong>.env.claude</strong> with the following settings. The configuration tell <strong>Claude Code</strong> to use <strong>Bedrock</strong> and <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6" rel="external" target="_blank"><strong>Claude Opus 4.6</strong></a>.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mkdir claudecode-aws
-cd claudecode-aws
+<p>Create a file named <strong>.env.claude</strong> with the following settings. Check the <a href="https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6" rel="external" target="_blank"><strong>Claude Opus 4.6</strong></a> documentation to learn more.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>mkdir claudecode-workshop
+cd claudecode-workshop
 
 cat &gt; .env.claude &lt;&lt; &#39;EOF&#39;
-export AWS_REGION=us-west-2
-export ANTHROPIC_MODEL=us.anthropic.claude-opus-4-6-v1
-export ANTHROPIC_BEDROCK_BASE_URL=http://$DATA_PLANE_LB/anthropic
+export ANTHROPIC_MODEL=claude-opus-4-6
+export ANTHROPIC_BASE_URL=http://$DATA_PLANE_LB/anthropic
 EOF</code></pre></div>
 <p>You can get this settings with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>. ./.env.claude</code></pre></div>
@@ -179,7 +178,8 @@ EOF</code></pre></div>
 <p>Assuming you have <strong>Claude Code</strong> installed locally, run:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>claude</code></pre></div>
 <p>You shoul see the Claude Code welcome prompt:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Welcome to Claude Code v2.1.45
+<pre style="font-size: 0.75em">
+Welcome to Claude Code v2.1.104
 …………………………………………………………………………………………………………………………………………………………
 
      *                                       █████▓▓░
@@ -196,7 +196,7 @@ EOF</code></pre></div>
                       *
 …………………         ………………………………………………………………………………………………………………
 
- Let&#39;s get started.
+ Let's get started.
 
  Choose the text style that looks best with your terminal
  To change this later, run /theme
@@ -208,47 +208,52 @@ EOF</code></pre></div>
    5. Dark mode (ANSI colors only)
    6. Light mode (ANSI colors only)
 
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  1  function greet() {
- 2 -  console.log(&#34;Hello, World!&#34;);                                                                                                                                                                           
- 2 +  console.log(&#34;Hello, Claude!&#34;);                                                                                                                                                                          
+ 2 -  console.log("Hello, World!");
+ 2 +  console.log("Hello, Claude!");                                                  
  3  }
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
- Syntax theme: Monokai Extended (ctrl+t to disable)</code></pre></div>
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ Syntax theme: Monokai Extended (ctrl+t to disable)
+</pre>
 <p>Choose the mode, enable the recommended settings, trust the current folder you are and use high effort mode.</p>
 <h3 id="check-the-configuration">Check the configuration</h3>
 <p>Now you should see the main menu page. Type <code>/status</code> and check if <strong>Claude Code</strong> is configured to use Bedrock and Claude Opus 4.6 model:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>╭─── Claude Code v2.1.45 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│                                             │ Tips for getting started                                                                                                                                     │
-│                Welcome back!                │ Run /init to create a CLAUDE.md file with instructions for Claude                                                                                            │
-│                                             │ ─────────────────────────────────────────────────────────────────                                                                                            │
-│                                             │ Recent activity                                                                                                                                              │
-│                  ▗ ▗   ▖ ▖                  │ No recent activity                                                                                                                                           │
-│                                             │                                                                                                                                                              │
-│                    ▘▘ ▝▝                    │                                                                                                                                                              │
-│        Opus 4.6 · API Usage Billing         │                                                                                                                                                              │
-│   ~/kong/kong-tech/Tech/AI/ClaudeCode/aws   │                                                                                                                                                              │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+<pre style="font-size: 0.7em">
+╭─── Claude Code v2.1.104 ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting started                                          │
+│                 Welcome back Acqua!                │ Run /init to create a CLAUDE.md file with instructions for Claude │
+│                                                    │ ───────────────────────────────────────────────────────────────── │
+│                      ▗ ▗   ▖ ▖                     │ Recent activity                                                   │
+│                                                    │ No recent activity                                                │
+│                        ▘▘ ▝▝                       │                                                                   │
+│ Opus 4.6 · API Usage Billing · Acqua’s Individual  │                                                                   │
+│ Org                                                │                                                                   │
+│   ~/…/GitHub/Workshops/temp/claudecode-workshop    │                                                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                                                                                                                                                    
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯  
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ? for shortcuts
+</pre>
+<pre style="font-size: 0.75em">
+❯ /status
+────
+   Status   Config   Usage                                                                                                                                                                                                                                                 
+                                                                                                                     
+  Version: 2.1.87                                                               
+  Session name: /rename to add a name                                                      
+  Session ID: 1c124aae-594a-48fd-b8db-6b4663dcc16b                                                                                                                                                                                                                           
+  cwd: /Users/claudioacquaviva/kong/kong-github/GitHub/Workshops/temp/claudecode-workshop
+  Auth token: none
+  API key: ANTHROPIC_API_KEY
+  Anthropic base URL: http://127.0.0.1/anthropic
 
-  Welcome to Opus 4.6         
-              
-❯ /status                                                                                                                                                                                                     
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
- ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-  Settings:  Status   Config   Usage  (←/→ or tab to cycle)                                                                                                                                                   
-                                                                                                                       
-                                                                            
-  Version: 2.1.45                                                           
-  Session name: /rename to add a name                                                                                                                                                                         
-  Session ID: 67f58aab-b020-46c8-9245-9341b3507861                                                                                                                                                            
-  cwd: /Users/claudioacquaviva/kong/kong-tech/Tech/AI/ClaudeCode/aws
-  API provider: AWS Bedrock
-  AWS region: us-west-2
-
-  Model: us.anthropic.claude-opus-4-6-v1
-  Memory:
+  Model: claude-opus-4-6
   Setting sources:
-  Esc to cancel</code></pre></div>
+  Esc to cancel
+</pre>
 <p>Type <code>esc</code> to return to <strong>Claude Code</strong> prompt.</p>
 <p>You can now click <strong>Next</strong> to proceed further.</p>
 
@@ -331,8 +336,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926607" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926607" defer></script>
-    <script src="/js/theme.js?1775926607" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776014414" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776014414" defer></script>
+    <script src="/js/theme.js?1776014414" defer></script>
   </body>
 </html>

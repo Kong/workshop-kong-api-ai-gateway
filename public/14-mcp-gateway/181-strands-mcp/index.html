@@ -23,28 +23,28 @@ Strands Agents, the Python-based framework for building agents, was introduced b
     <meta itemprop="name" content="Strands Agent and MCP :: API Management with Kong Konnect">
     <meta itemprop="description" content="Strands Agent One nice approach to understand a new techonology component is to outline the problem it addresses. In order to see it, let’s create a basic AI Agent written in Strands.
 Strands Agents, the Python-based framework for building agents, was introduced by AWS in May, 2025. Strands makes the integration with tools, GenAI models and services straightforward by providing a consistent way for agents to interact with external systems. It simplifies how developers orchestrate tools, gather context, and orchestrate reasoning, turning complex multi-service workflows into maintainable, event-driven agent logic.">
-    <meta itemprop="wordCount" content="590">
+    <meta itemprop="wordCount" content="620">
     <title>Strands Agent and MCP :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1775926517" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1775926517" defer></script>
-    <script src="/js/search-lunr.js?1775926517" defer></script>
-    <script src="/js/search.js?1775926517" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
+    <script src="/js/search-lunr.js?1776013317" defer></script>
+    <script src="/js/search.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1775926517";
+      window.relearn.index_js_url="/searchindex.en.js?1776013317";
     </script>
-    <script src="/js/lunr/lunr.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1775926517" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1775926517" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1775926517" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1775926517" rel="stylesheet">
-    <link href="/css/theme.css?1775926517" rel="stylesheet">
-    <link href="/css/format-html.css?1775926517" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
+    <link href="/css/theme.css?1776013317" rel="stylesheet">
+    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -160,51 +160,54 @@ Strands Agents, the Python-based framework for building agents, was introduced b
 <p>One nice approach to understand a new techonology component is to outline the problem it addresses. In order to see it, let&rsquo;s create a basic AI Agent written in <a href="https://strandsagents.com/" rel="external" target="_blank">Strands</a>.</p>
 <p>Strands Agents, the Python-based framework for building agents, was introduced by AWS in May, 2025. Strands makes the integration with tools, GenAI models and services straightforward by providing a consistent way for agents to interact with external systems. It simplifies how developers orchestrate tools, gather context, and orchestrate reasoning, turning complex multi-service workflows into maintainable, event-driven agent logic.</p>
 <h4 id="python-setup">Python setup</h4>
-<p>We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>uv init kong-aws-strands
+<p>We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP. Make sure you have your <strong>DECK_ANTHROPIC_API_KEY</strong> env variable set.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>uv init kong-workshop-strands
 uv venv
 source .venv/bin/activate
 uv pip install &#39;strands-agents[openai]&#39;
-uv pip install aiohttp</code></pre></div>
+uv pip install aiohttp
+cd kong-workshop-strands</code></pre></div>
 <h2 id="kong-ai-proxy-advanced-plugin">Kong AI Proxy Advanced plugin</h2>
 <p>We have to configure Kong AI Gateway to consume Bedrock</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
 _info:
   select_tags:
-  - bedrock
+  - anthropic
 _konnect:
-  control_plane_name: kong-aws
+  control_plane_name: kong-workshop
 services:
 - name: ai-proxy-advanced-service
   host: localhost
   port: 32000
   routes:
-  - name: bedrock-route
+  - name: anthropic-route
     paths:
-    - /bedrock-route
+    - /anthropic-route
     plugins:
     - name: ai-proxy-advanced
-      instance_name: ai-proxy-advanced-bedrock
+      instance_name: ai-proxy-advanced-anthropic
       enabled: true
       config:
         targets:
         - model:
-            provider: bedrock
-            name: &#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34;
+            provider: anthropic
+            name: claude-sonnet-4-6
             options:
-              bedrock:
-                aws_region: us-west-2
+              anthropic_version: &#39;2023-06-01&#39;
+              max_tokens: 512
+              temperature: 1.0
           route_type: &#34;llm/v1/chat&#34;
           auth:
-            allow_override: false
+            header_name: x-api-key
+            header_value: ${{ env &#34;DECK_ANTHROPIC_API_KEY&#34; }}
 EOF</code></pre></div>
 <p>Apply the declaration with decK:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
 <h5 id="consume-the-kong-route">Consume the Kong Route</h5>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/anthropic-route \
   --header &#39;Content-Type: application/json&#39; \
   --data &#39;{
      &#34;messages&#34;: [
@@ -216,17 +219,26 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT ai-
    }&#39; | jq</code></pre></div>
 <h4 id="strands-code">Strands Code</h4>
 <p>Now, here&rsquo;s a basic Strands Agent consuming Kong AI Gateway:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-workshop-agent.py &lt;&lt; &#39;EOF&#39;
 from strands import Agent
 from strands.models.openai import OpenAIModel
+from strands.tools import tool
+
 
 import os
+
+
+
+@tool
+def dummy_tool():
+    return null
+
 
 
 data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;);
 
 kong_dp = f&#34;http://{data_plane_lb}&#34;
-kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
+kong_dp_route = f&#34;http://{data_plane_lb}/anthropic-route&#34;
 
 print(&#34;kong_dp_route&#34;)
 print(kong_dp_route)
@@ -235,27 +247,37 @@ print(kong_dp_route)
 openai_model = OpenAIModel(
   client_args={
       &#34;base_url&#34;: kong_dp_route,
-      &#34;api_key&#34;: &#34;dummy&#34;
+      &#34;api_key&#34;: &#34;dummy&#34;,
   },
-  model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34;
+  model_id=&#34;claude-sonnet-4-6&#34;,
+  # max_tokens=1024,
 )
 
 
-agent = Agent(model=openai_model)
+agent = Agent(model=openai_model, tools=[dummy_tool])
 agent(&#34;Who is Aldous Huxley?&#34;)
 EOF</code></pre></div>
 <p>The prompt is very simple, so the LLM will be able to respond it. However if you change the code and ask something like <strong>&ldquo;List all orders made by Alice Johnson&rdquo;</strong> you&rsquo;ll see a different behaviour.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-aws-agent.py &lt;&lt; &#39;EOF&#39;
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; kong-workshop-agent.py &lt;&lt; &#39;EOF&#39;
 from strands import Agent
 from strands.models.openai import OpenAIModel
+from strands.tools import tool
+
 
 import os
+
+
+
+@tool
+def dummy_tool():
+    return null
+
 
 
 data_plane_lb = os.getenv(&#34;DATA_PLANE_LB&#34;);
 
 kong_dp = f&#34;http://{data_plane_lb}&#34;
-kong_dp_route = f&#34;http://{data_plane_lb}/bedrock-route&#34;
+kong_dp_route = f&#34;http://{data_plane_lb}/anthropic-route&#34;
 
 print(&#34;kong_dp_route&#34;)
 print(kong_dp_route)
@@ -264,38 +286,32 @@ print(kong_dp_route)
 openai_model = OpenAIModel(
   client_args={
       &#34;base_url&#34;: kong_dp_route,
-      &#34;api_key&#34;: &#34;dummy&#34;
+      &#34;api_key&#34;: &#34;dummy&#34;,
   },
-  model_id=&#34;us.anthropic.claude-sonnet-4-20250514-v1:0&#34;
+  model_id=&#34;claude-sonnet-4-6&#34;,
 )
 
 
-agent = Agent(model=openai_model)
+agent = Agent(model=openai_model, tools=[dummy_tool])
 agent(&#34;List all orders made by Alice Johnson&#34;)
 EOF</code></pre></div>
 <h4 id="execute-the-code">Execute the code</h4>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>python3 kong-aws-agent.py</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>python3 kong-workshop-agent.py</code></pre></div>
 <ul>
 <li>Typical response</li>
 </ul>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kong_dp_route
-http://aef50357c38e142b9ad6986d4f828dd5-1505142468.us-west-2.elb.amazonaws.com/bedrock-route
-I don&#39;t have access to any order database or customer information system, so I cannot provide a list of orders made by Alice Johnson or any other customer. 
+http://127.0.0.1/anthropic-route
+I&#39;m sorry, but I don&#39;t have a tool available to look up or retrieve order information for customers like Alice Johnson. The only tool I have access to is a **dummy tool** that doesn&#39;t support querying order data.
 
-To get this information, you would need to:
+To find all orders made by Alice Johnson, I&#39;d suggest:
+1. **Checking your Order Management System (OMS)** directly.
+2. **Querying your database** using something like:
+   sql
+   SELECT * FROM orders WHERE customer_name = &#39;Alice Johnson&#39;;
+3. **Contacting your support or data team** who may have access to customer order records.
 
-1. **Check your e-commerce platform** (like Shopify, WooCommerce, Magento, etc.)
-2. **Query your customer database** directly
-3. **Use your order management system**
-4. **Contact your customer service team**
-
-If you&#39;re looking to query a database yourself, you might use SQL like:
-sql
-SELECT * FROM orders 
-WHERE customer_name = &#39;Alice Johnson&#39;;
-
-
-Or if you have a specific platform or system you&#39;re working with, I&#39;d be happy to help you figure out how to retrieve that information from your particular setup.</code></pre></div>
+If you can provide me with the right tools or data, I&#39;d be happy to help further!</code></pre></div>
 <p>That&rsquo;s one of the main reasons why we should add Tools to our Agent. In fact, LLMs are not able to process prompts like this without setting some context. By context, we mean artifacts like transcripts or documents, presentations or functions so the LLM can respond accordingly. That&rsquo;s the purpose of MCPs: to provide a standardized mechanism for LLMs to access some context.</p>
 <p>You can now click <strong>Next</strong> to proceed further.</p>
 
@@ -378,8 +394,8 @@ Or if you have a specific platform or system you&#39;re working with, I&#39;d be
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1775926517" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1775926517" defer></script>
-    <script src="/js/theme.js?1775926517" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
+    <script src="/js/theme.js?1776013317" defer></script>
   </body>
 </html>

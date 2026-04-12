@@ -5,12 +5,7 @@ weight : 20
 
 ### Download the new decK file
 
-* Download the **marketplace_mcp_oauth_kong_identity.yaml** Kong decK spec file.
-
-```
-curl 'http://localhost:8080/builds/static/code/marketplace_mcp_oauth_kong_identity.yaml' --output ./marketplace_mcp_oauth_kong_identity.yaml
-```
-
+* Download the [**marketplace_mcp_oauth_kong_identity.yaml**](/code/marketplace_mcp_oauth_kong_identity.yaml) spec.
 
 
 The declaration extends the ```mcp-listener-route```, responsible for aggregating the MCP Tools, with the **AI MCP OAuth2** plugin.
