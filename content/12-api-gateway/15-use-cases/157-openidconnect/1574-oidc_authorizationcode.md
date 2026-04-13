@@ -15,8 +15,8 @@ curl http://localhost:8080/realms/kong/.well-known/openid-configuration | jq
 
 The most important ones are the endpoints necessary to implement the Grant:
 
-{{<highlight>}}
-cat > oidc.yaml << 'EOF'
+```
+cat > oidc.yaml << EOF
 _format_version: "3.0"
 _konnect:
   control_plane_name: kong-workshop
@@ -37,11 +37,11 @@ services:
       config:
         auth_methods: ["authorization_code"]
         redirect_uri:
-        - http://localhost/oidc-route/get
-        client_id: ["kong_id"]
-        client_secret: ["RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"]
-        issuer: http://127.0.0.1:8080/realms/kong
-        authorization_endpoint: http://127.0.0.1:8080/realms/kong/protocol/openid-connect/auth
+        - http://localhost:80/oidc-route/get
+        client_id: ["client1"]
+        client_secret: [$CLIENT_SECRET]
+        issuer: http://localhost:8080/realms/kong
+        authorization_endpoint: http://localhost:8080/realms/kong/protocol/openid-connect/auth
         token_endpoint: http://keycloak.keycloak:8080/realms/kong/protocol/openid-connect/token
         extra_jwks_uris: ["http://keycloak.keycloak.svc.cluster.local:8080/realms/kong/protocol/openid-connect/certs"]
         consumer_optional: false
@@ -50,15 +50,17 @@ services:
 consumers:
 - username: consumer1
 EOF
-{{</highlight>}}
+```
+
 
 An important observation here is that we have the OpenId Connect plugin configured with the Kong Consumer mapping. The ```consumer_claim``` setting specifies that the plugin will take the ```preferred_username``` field from the Access Token to map it to some Kong Consumer. The Kong Consumer chosen is the one that has the same ```preferred_username``` as its ```username```. The declaration above configures the OIDC plugin as well as creates the necessary consumer. Later on you can apply plugin to the Kong Consumer to define specific policies.
 
 
 Submit the declaration
-{{<highlight>}}
-deck gateway sync --konnect-token $PAT oidc.yaml
-{{</highlight>}}
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml
+```
 
 
 
@@ -66,9 +68,9 @@ deck gateway sync --konnect-token $PAT oidc.yaml
 
 Redirect your browser the following URL. Since you haven't been authenticated, you will be redirected to Keycloak's Authentication page:
 
-{{<highlight>}}
-http://localhost/oidc-route/get
-{{</highlight>}}
+```
+open -a "Google Chrome" "http://localhost:80/oidc-route/get"
+```
 
 ![keycloak_auth](/static/images/keycloak_auth.png)
 

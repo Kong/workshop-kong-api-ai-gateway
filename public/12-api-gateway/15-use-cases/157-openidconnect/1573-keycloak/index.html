@@ -6,49 +6,57 @@
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
-Keycloak Installation Run the following command to deploy Keycloak:
-wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+Keycloak Installation Download the keycloak.yaml spec.
+kubectl apply -f keycloak.yaml Check the Kubernetes deployment
+kubectl get all -n keycloak You should see something like this:
+NAME READY STATUS RESTARTS AGE pod/keycloak-0 1/1 Running 0 12s pod/postgres-5cbbfb67bc-gthd9 1/1 Running 0 12s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keycloak LoadBalancer 10.103.60.212 127.0.0.1 8080:32396/TCP 12s service/keycloak-discovery ClusterIP None &lt;none&gt; &lt;none&gt; 12s service/postgres ClusterIP 10.110.93.239 &lt;none&gt; 5432/TCP 12s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/postgres 1/1 1 1 12s NAME DESIRED CURRENT READY AGE replicaset.apps/postgres-5cbbfb67bc 1 1 1 12s NAME READY AGE statefulset.apps/keycloak 1/1 12s Get the Keycloak Load Balancer export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;) Make sure the Load Balancer has been provisioned:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Keycloak :: API Management with Kong Konnect">
     <meta name="twitter:description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
-Keycloak Installation Run the following command to deploy Keycloak:
-wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+Keycloak Installation Download the keycloak.yaml spec.
+kubectl apply -f keycloak.yaml Check the Kubernetes deployment
+kubectl get all -n keycloak You should see something like this:
+NAME READY STATUS RESTARTS AGE pod/keycloak-0 1/1 Running 0 12s pod/postgres-5cbbfb67bc-gthd9 1/1 Running 0 12s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keycloak LoadBalancer 10.103.60.212 127.0.0.1 8080:32396/TCP 12s service/keycloak-discovery ClusterIP None &lt;none&gt; &lt;none&gt; 12s service/postgres ClusterIP 10.110.93.239 &lt;none&gt; 5432/TCP 12s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/postgres 1/1 1 1 12s NAME DESIRED CURRENT READY AGE replicaset.apps/postgres-5cbbfb67bc 1 1 1 12s NAME READY AGE statefulset.apps/keycloak 1/1 12s Get the Keycloak Load Balancer export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;) Make sure the Load Balancer has been provisioned:">
     <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/1573-keycloak/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Keycloak :: API Management with Kong Konnect">
     <meta property="og:description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
-Keycloak Installation Run the following command to deploy Keycloak:
-wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
+Keycloak Installation Download the keycloak.yaml spec.
+kubectl apply -f keycloak.yaml Check the Kubernetes deployment
+kubectl get all -n keycloak You should see something like this:
+NAME READY STATUS RESTARTS AGE pod/keycloak-0 1/1 Running 0 12s pod/postgres-5cbbfb67bc-gthd9 1/1 Running 0 12s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keycloak LoadBalancer 10.103.60.212 127.0.0.1 8080:32396/TCP 12s service/keycloak-discovery ClusterIP None &lt;none&gt; &lt;none&gt; 12s service/postgres ClusterIP 10.110.93.239 &lt;none&gt; 5432/TCP 12s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/postgres 1/1 1 1 12s NAME DESIRED CURRENT READY AGE replicaset.apps/postgres-5cbbfb67bc 1 1 1 12s NAME READY AGE statefulset.apps/keycloak 1/1 12s Get the Keycloak Load Balancer export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;) Make sure the Load Balancer has been provisioned:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
     <meta itemprop="name" content="Keycloak :: API Management with Kong Konnect">
     <meta itemprop="description" content="The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and Keycloak as the Identity Provider. Let’s start installing Keycloak in our Kubernetes Cluster.
-Keycloak Installation Run the following command to deploy Keycloak:
-wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml kubectl create namespace keycloak kubectl apply -n keycloak -f keycloak.yaml Keycloak “Realm” definition All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak’s external IP address:">
-    <meta itemprop="wordCount" content="458">
+Keycloak Installation Download the keycloak.yaml spec.
+kubectl apply -f keycloak.yaml Check the Kubernetes deployment
+kubectl get all -n keycloak You should see something like this:
+NAME READY STATUS RESTARTS AGE pod/keycloak-0 1/1 Running 0 12s pod/postgres-5cbbfb67bc-gthd9 1/1 Running 0 12s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keycloak LoadBalancer 10.103.60.212 127.0.0.1 8080:32396/TCP 12s service/keycloak-discovery ClusterIP None &lt;none&gt; &lt;none&gt; 12s service/postgres ClusterIP 10.110.93.239 &lt;none&gt; 5432/TCP 12s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/postgres 1/1 1 1 12s NAME DESIRED CURRENT READY AGE replicaset.apps/postgres-5cbbfb67bc 1 1 1 12s NAME READY AGE statefulset.apps/keycloak 1/1 12s Get the Keycloak Load Balancer export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;) Make sure the Load Balancer has been provisioned:">
+    <meta itemprop="wordCount" content="599">
     <title>Keycloak :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1776077747" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776077747" defer></script>
-    <script src="/js/search-lunr.js?1776077747" defer></script>
-    <script src="/js/search.js?1776077747" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776090854" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776090854" defer></script>
+    <script src="/js/search-lunr.js?1776090854" defer></script>
+    <script src="/js/search.js?1776090854" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776077747";
+      window.relearn.index_js_url="/searchindex.en.js?1776090854";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776077747" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776077747" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776077747" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776077747" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776090854" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776090854" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776090854" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776090854" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776077747" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776077747" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776077747" rel="stylesheet">
-    <link href="/css/theme.css?1776077747" rel="stylesheet">
-    <link href="/css/format-html.css?1776077747" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776090854" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776090854" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776090854" rel="stylesheet">
+    <link href="/css/theme.css?1776090854" rel="stylesheet">
+    <link href="/css/format-html.css?1776090854" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -120,9 +128,8 @@ wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/
     <li>
       <ul>
         <li><a href="#keycloak-installation">Keycloak Installation</a></li>
-        <li><a href="#keycloak-realm-definition">Keycloak &ldquo;Realm&rdquo; definition</a></li>
+        <li><a href="#create-a-keycloak-realm-and-a-client-id-and-client-secret-pair">Create a Keycloak Realm and a Client-Id and Client-Secret pair</a></li>
         <li><a href="#test-the-keycloak-endpoint">Test the Keycloak Endpoint</a></li>
-        <li><a href="#user-creation">User creation</a></li>
       </ul>
     </li>
   </ul>
@@ -160,73 +167,144 @@ wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/
 
 <p>The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and <a href="https://www.keycloak.org/" rel="external" target="_blank">Keycloak</a> as the Identity Provider. Let&rsquo;s start installing Keycloak in our Kubernetes Cluster.</p>
 <h3 id="keycloak-installation">Keycloak Installation</h3>
-<p>Run the following command to deploy Keycloak:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml</code></pre></div>
+<p>Download the <a href="/code/keycloak.yaml">keycloak.yaml</a> spec.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl apply -f keycloak.yaml</code></pre></div>
+<p>Check the Kubernetes deployment</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl get all -n keycloak</code></pre></div>
+<p>You should see something like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>NAME                            READY   STATUS    RESTARTS   AGE
+pod/keycloak-0                  1/1     Running   0          12s
+pod/postgres-5cbbfb67bc-gthd9   1/1     Running   0          12s
 
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>yq &#39;select(.kind == &#34;Service&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.type = &#34;LoadBalancer&#34;&#39; -i keycloak.yaml
-yq &#39;select(.kind == &#34;StatefulSet&#34; and .metadata.name == &#34;keycloak&#34;) |= .spec.replicas = 1&#39; -i keycloak.yaml</code></pre></div>
+NAME                         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/keycloak             LoadBalancer   10.103.60.212   127.0.0.1     8080:32396/TCP   12s
+service/keycloak-discovery   ClusterIP      None            &lt;none&gt;        &lt;none&gt;           12s
+service/postgres             ClusterIP      10.110.93.239   &lt;none&gt;        5432/TCP         12s
 
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace keycloak
-kubectl apply -n keycloak -f keycloak.yaml</code></pre></div>
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/postgres   1/1     1            1           12s
 
-<h3 id="keycloak-realm-definition">Keycloak &ldquo;Realm&rdquo; definition</h3>
-<p>All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak&rsquo;s external IP address:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http://localhost:8080</code></pre></div>
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/postgres-5cbbfb67bc   1         1         1       12s
 
-<p>To login use the admin&rsquo;s credentials: <code>admin/admin</code>. Click on <strong>Manage realms</strong> we can create a new <code>realm</code>. Create a <code>realm</code> called <strong>kong</strong>.</p>
-<h6 id="client_idclient_secret-creation">Client_Id/Client_Secret creation</h6>
-<p>For both OAuth grants we need a <strong>cliend_id</strong> and <strong>client_secret</strong> pair. Clicking on <strong>Clients</strong> and <strong>Create client</strong> we can define a new <code>client</code> representing Kong.</p>
-<p>Choose <code>kong_id</code> for the new <strong>Client ID</strong>. The configurations should be the following:</p>
+NAME                        READY   AGE
+statefulset.apps/keycloak   1/1     12s</code></pre></div>
+<h4 id="get-the-keycloak-load-balancer">Get the Keycloak Load Balancer</h4>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;)</code></pre></div>
+<p>Make sure the Load Balancer has been provisioned:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET http://$KEYCLOAK_LB:8080/realms/master/.well-known/openid-configuration | jq -r &#39;.issuer&#39;</code></pre></div>
+<p>You should get a response like this:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>http://127.0.0.1:8080/realms/master</code></pre></div>
+<h3 id="create-a-keycloak-realm-and-a-client-id-and-client-secret-pair">Create a Keycloak Realm and a Client-Id and Client-Secret pair</h3>
+<p>The following commands do the following:</p>
 <ul>
-<li><strong>Capability config</strong>
+<li>Issue a Keycloak Token:</li>
+<li>Create a new Keycloak Realm named as <strong>kong</strong></li>
+<li>Create a Client-Id named as <strong>client1</strong>. The <code>serviceAccountsEnbled</code>parameter grants the Client-Id the support for the <a href="https://oauth.net/2/grant-types/client-credentials/" rel="external" target="_blank"><strong>Client Credentials Grant</strong></a>. That&rsquo;s the Client-Id we are going to use for coming configurations.</li>
+<li>Get the Id of the Client-Id <strong>client1</strong></li>
+<li>Add redirect URIs. That is used for the <strong>Authorization Code</strong> Grant</li>
+<li>Specifically for the Authorization Code Grant, a Keycloak user.</li>
+</ul>
+<p>Click on Credentials and Set password. Type kong for both Password and Password confirmation fields. Turn Temporary to off and click on Save and Save Password.</p>
 <ul>
-<li>Client authentication: on (Access Type: public)</li>
-<li>Authentication flow -&gt; Service accounts role: on (this allows us to implement the OAuth &ldquo;Client Credentials&rdquo; Grant)</li>
+<li>Create a Client-Secret for the Client-Id <strong>client1</strong>. The Client-Secret is stored in the <strong>CLIENT_SECRET</strong> environment variable.</li>
 </ul>
-</li>
-<li><strong>Login settings</strong>
-<ul>
-<li>Valid Redirect URIs: <code>http://localhost/oidc-route/get</code>. This parameter is needed in the OAuth Authorization Code Grant. It defines which URIs are allowed to redirect users to Keycloak.</li>
-</ul>
-</li>
-</ul>
-<p>Click on <strong>Save</strong>.</p>
-<p>To get your <code>client_secret</code>, click on the <strong>Credentials</strong> option shown in the horizontal menu. Take note of the <code>client_secret</code>, for example: <strong>RVXO9SOJskjw4LeVupjRbIMJIAyyil8j</strong></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+  -d &#34;client_id=admin-cli&#34; \
+  -d &#34;username=admin&#34; \
+  -d &#34;password=admin&#34; \
+  -d &#34;grant_type=password&#34; \
+  | jq -r .access_token)
+
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;realm&#34;: &#34;kong&#34;,
+    &#34;accessTokenLifespan&#34;: 60,
+    &#34;enabled&#34;: true
+  }&#39;
+
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;clientId&#34;: &#34;client1&#34;,
+    &#34;enabled&#34;: true,
+    &#34;serviceAccountsEnabled&#34;: true
+  }&#39;
+
+ID=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients?clientId=client1&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  | jq -r &#39;.[0].id&#39;)
+
+
+curl -X PUT &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;clientId&#34;: &#34;client1&#34;,
+    &#34;enabled&#34;: true,
+    &#34;redirectUris&#34;: [
+      &#34;http://localhost:80/oidc-route/get&#34;,
+      &#34;http://localhost/oidc-route/get&#34;
+    ]
+  }&#39;
+
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;username&#34;: &#34;consumer1&#34;,
+    &#34;email&#34;: &#34;claudio.acquaviva@gmail.com&#34;,
+    &#34;firstName&#34;: &#34;Claudio&#34;,
+    &#34;lastName&#34;: &#34;Acquaviva&#34;,
+    &#34;enabled&#34;: true,
+    &#34;credentials&#34;: [{
+      &#34;type&#34;: &#34;password&#34;,
+      &#34;value&#34;: &#34;kong&#34;,
+      &#34;temporary&#34;: false
+    }]
+  }&#39;
+
+CLIENT_SECRET=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID/client-secret&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  | jq -r &#39;.value&#39;)</code></pre></div>
+<p>Check you Keycloak installation redirecting your browser to:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>open -a &#34;Google Chrome&#34; &#34;http://localhost:8080&#34;</code></pre></div>
+<p><a href="#R-image-a579e4c1dea2410f870a75ace44e7708" class="lightbox-link"><img alt="keycloak" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a579e4c1dea2410f870a75ace44e7708"><img alt="keycloak" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak.png"></a></p>
 <h3 id="test-the-keycloak-endpoint">Test the Keycloak Endpoint</h3>
 <p>You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the <strong>client_id/client_secret</strong> pair you have just created. You should get an Access Token as a result. Use <code>jwt</code> to decode the Access Token. Make sure you have jwt installed on your environment. For example:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#39;http://localhost:8080/realms/kong/protocol/openid-connect/token&#39; \
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
---data-urlencode &#39;client_id=kong_id&#39; \
---data-urlencode &#39;client_secret=RVXO9SOJskjw4LeVupjRbIMJIAyyil8j&#39; \
+--data-urlencode &#39;client_id=client1&#39; \
+--data-urlencode &#34;client_secret=$CLIENT_SECRET&#34; \
 --data-urlencode &#39;grant_type=client_credentials&#39; | jq -r &#39;.access_token&#39; | jwt decode -</code></pre></div>
-
 <p>Expected Output:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
 ------------
 {
   &#34;typ&#34;: &#34;JWT&#34;,
   &#34;alg&#34;: &#34;RS256&#34;,
-  &#34;kid&#34;: &#34;JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY&#34;
+  &#34;kid&#34;: &#34;weLczjdEl67i4hvg_DTf6TcvYPPiCFIl_cXCYcoZKns&#34;
 }
 
 Token claims
 ------------
 {
   &#34;acr&#34;: &#34;1&#34;,
-  &#34;allowed-origins&#34;: [
-    &#34;/*&#34;
-  ],
   &#34;aud&#34;: &#34;account&#34;,
-  &#34;azp&#34;: &#34;kong_id&#34;,
+  &#34;azp&#34;: &#34;client1&#34;,
   &#34;clientAddress&#34;: &#34;10.244.0.1&#34;,
   &#34;clientHost&#34;: &#34;10.244.0.1&#34;,
-  &#34;client_id&#34;: &#34;kong_id&#34;,
+  &#34;client_id&#34;: &#34;client1&#34;,
   &#34;email_verified&#34;: false,
-  &#34;exp&#34;: 1754940732,
-  &#34;iat&#34;: 1754940432,
+  &#34;exp&#34;: 1776083123,
+  &#34;iat&#34;: 1776082823,
   &#34;iss&#34;: &#34;http://localhost:8080/realms/kong&#34;,
-  &#34;jti&#34;: &#34;trrtcc:e2550f41-801f-e8e2-99b5-cc90a3648091&#34;,
-  &#34;preferred_username&#34;: &#34;service-account-kong_id&#34;,
+  &#34;jti&#34;: &#34;trrtcc:f60fa4a6-f6df-71c3-7b14-730f2c2382b5&#34;,
+  &#34;preferred_username&#34;: &#34;service-account-client1&#34;,
   &#34;realm_access&#34;: {
     &#34;roles&#34;: [
       &#34;offline_access&#34;,
@@ -243,13 +321,10 @@ Token claims
       ]
     }
   },
-  &#34;scope&#34;: &#34;email profile&#34;,
-  &#34;sub&#34;: &#34;e7b5a37b-d06a-4b40-92d7-36f09768ed79&#34;,
+  &#34;scope&#34;: &#34;profile email&#34;,
+  &#34;sub&#34;: &#34;ecbbd65d-94d6-4a03-b1de-c4db2cf50ee4&#34;,
   &#34;typ&#34;: &#34;Bearer&#34;
 }</code></pre></div>
-<h3 id="user-creation">User creation</h3>
-<p>Now, specifically for the <strong>Authorization Code Grant</strong>, we need to create a Keycloak user. You can do it by clicking on <strong>Users</strong> and <strong>Create new user</strong>. Choose <code>consumer1</code> for the <strong>Username</strong> and click on <strong>Create</strong>:</p>
-<p>Click on <strong>Credentials</strong> and <strong>Set password</strong>. Type <code>kong</code> for both <strong>Password</strong> and <strong>Password confirmation</strong> fields. Turn <strong>Temporary</strong> to <code>off</code> and click on <strong>Save</strong> and <strong>Save Password</strong>.</p>
 
   <footer class="footline">
   </footer>
@@ -341,8 +416,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776077747" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776077747" defer></script>
-    <script src="/js/theme.js?1776077747" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776090854" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776090854" defer></script>
+    <script src="/js/theme.js?1776090854" defer></script>
   </body>
 </html>

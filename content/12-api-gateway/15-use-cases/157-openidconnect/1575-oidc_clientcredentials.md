@@ -12,8 +12,6 @@ The main use case for the OAuth Client Credentials Grant is to address applicati
 {{<highlight>}}
 cat > oidc.yaml << 'EOF'
 _format_version: "3.0"
-_konnect:
-  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -37,7 +35,7 @@ services:
         consumer_claim: ["client_id"]
         consumer_by: ["username"]
 consumers:
-- username: kong_id
+- username: client1
 EOF
 {{</highlight>}}
 
@@ -46,7 +44,7 @@ Note that we are going to map the Access Token to the Kong Consumer based on the
 Submit the declaration
 {{<highlight>}}
 deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT oidc.yaml
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml
 {{</highlight>}}
 
 
@@ -54,7 +52,7 @@ deck gateway sync --konnect-token $PAT oidc.yaml
 #### Verification
 
 ```
-curl -sX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+curl -sX GET http://localhost/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
 ```
 
 Expected Output
@@ -64,7 +62,7 @@ Token header
 {
   "typ": "JWT",
   "alg": "RS256",
-  "kid": "JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY"
+  "kid": "weLczjdEl67i4hvg_DTf6TcvYPPiCFIl_cXCYcoZKns"
 }
 
 Token claims
@@ -72,19 +70,20 @@ Token claims
 {
   "acr": "1",
   "allowed-origins": [
-    "/*"
+    "http://localhost:80",
+    "http://localhost"
   ],
   "aud": "account",
-  "azp": "kong_id",
-  "clientAddress": "10.244.0.106",
-  "clientHost": "10.244.0.106",
-  "client_id": "kong_id",
+  "azp": "client1",
+  "clientAddress": "10.244.0.48",
+  "clientHost": "10.244.0.48",
+  "client_id": "client1",
   "email_verified": false,
-  "exp": 1754944713,
-  "iat": 1754944413,
+  "exp": 1776087001,
+  "iat": 1776086701,
   "iss": "http://keycloak.keycloak:8080/realms/kong",
-  "jti": "trrtcc:643cf4cd-44ae-2a3f-d664-6580b274a108",
-  "preferred_username": "service-account-kong_id",
+  "jti": "trrtcc:ad95a7dd-7f85-fb21-0fc6-535a1914aafb",
+  "preferred_username": "service-account-client1",
   "realm_access": {
     "roles": [
       "offline_access",
@@ -101,8 +100,8 @@ Token claims
       ]
     }
   },
-  "scope": "openid email profile",
-  "sub": "e7b5a37b-d06a-4b40-92d7-36f09768ed79",
+  "scope": "openid profile email",
+  "sub": "ecbbd65d-94d6-4a03-b1de-c4db2cf50ee4",
   "typ": "Bearer"
 }
 ```

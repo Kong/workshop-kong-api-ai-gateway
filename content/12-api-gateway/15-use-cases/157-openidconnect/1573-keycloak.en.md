@@ -3,73 +3,168 @@ title : "Keycloak"
 weight : 1573
 ---
 
+
 The two next topics describe Authorization Code OAuth and Client Credentials grants implemented by Kong Konnect and [Keycloak](https://www.keycloak.org/) as the Identity Provider. Let's start installing Keycloak in our Kubernetes Cluster.
+
+
 
 
 ### Keycloak Installation
 
-Run the following command to deploy Keycloak:
-
-{{<highlight>}}
-wget https://raw.githubusercontent.com/keycloak/keycloak-quickstarts/refs/heads/main/kubernetes/keycloak.yaml
-{{</highlight>}}
-
-{{<highlight>}}
-yq 'select(.kind == "Service" and .metadata.name == "keycloak") |= .spec.type = "LoadBalancer"' -i keycloak.yaml
-yq 'select(.kind == "StatefulSet" and .metadata.name == "keycloak") |= .spec.replicas = 1' -i keycloak.yaml
-{{</highlight>}}
+Download the [keycloak.yaml](/code/keycloak.yaml) spec.
 
 
+```
+kubectl apply -f keycloak.yaml
+```
 
 
-{{<highlight>}}
-kubectl create namespace keycloak
-kubectl apply -n keycloak -f keycloak.yaml
-{{</highlight>}}
+Check the Kubernetes deployment
+```
+kubectl get all -n keycloak
+```
+
+You should see something like this:
+```
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/keycloak-0                  1/1     Running   0          12s
+pod/postgres-5cbbfb67bc-gthd9   1/1     Running   0          12s
+
+NAME                         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/keycloak             LoadBalancer   10.103.60.212   127.0.0.1     8080:32396/TCP   12s
+service/keycloak-discovery   ClusterIP      None            <none>        <none>           12s
+service/postgres             ClusterIP      10.110.93.239   <none>        5432/TCP         12s
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/postgres   1/1     1            1           12s
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/postgres-5cbbfb67bc   1         1         1       12s
+
+NAME                        READY   AGE
+statefulset.apps/keycloak   1/1     12s
+```
 
 
+#### Get the Keycloak Load Balancer
+
+```
+export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath='{.status.loadBalancer.ingress[0].ip}')
+```
+
+Make sure the Load Balancer has been provisioned:
+
+```
+curl -sX GET http://$KEYCLOAK_LB:8080/realms/master/.well-known/openid-configuration | jq -r '.issuer'
+```
+
+You should get a response like this:
+```
+http://127.0.0.1:8080/realms/master
+
+```
 
 
-### Keycloak "Realm" definition
+### Create a Keycloak Realm and a Client-Id and Client-Secret pair
 
-All our configuration will be done in a specific Keycloak Realm. Direct your browser to the Keycloak's external IP address:
+The following commands do the following:
+* Issue a Keycloak Token:
+* Create a new Keycloak Realm named as **kong**
+* Create a Client-Id named as **client1**. The ```serviceAccountsEnbled```parameter grants the Client-Id the support for the [**Client Credentials Grant**](https://oauth.net/2/grant-types/client-credentials/). That's the Client-Id we are going to use for coming configurations.
+* Get the Id of the Client-Id **client1**
+* Add redirect URIs. That is used for the **Authorization Code** Grant
+* Specifically for the Authorization Code Grant, a Keycloak user.
 
-{{<highlight>}}
-http://localhost:8080
-{{</highlight>}}
+Click on Credentials and Set password. Type kong for both Password and Password confirmation fields. Turn Temporary to off and click on Save and Save Password.
+* Create a Client-Secret for the Client-Id **client1**. The Client-Secret is stored in the **CLIENT_SECRET** environment variable.
+
+```
+TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+  -d "client_id=admin-cli" \
+  -d "username=admin" \
+  -d "password=admin" \
+  -d "grant_type=password" \
+  | jq -r .access_token)
+
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "realm": "kong",
+    "accessTokenLifespan": 60,
+    "enabled": true
+  }'
+
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientId": "client1",
+    "enabled": true,
+    "serviceAccountsEnabled": true
+  }'
+
+ID=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients?clientId=client1" \
+  -H "Authorization: Bearer $TOKEN" \
+  | jq -r '.[0].id')
 
 
-To login use the admin's credentials: ```admin/admin```. Click on **Manage realms** we can create a new ```realm```. Create a ```realm``` called **kong**.
+curl -X PUT "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientId": "client1",
+    "enabled": true,
+    "redirectUris": [
+      "http://localhost:80/oidc-route/get",
+      "http://localhost/oidc-route/get"
+    ]
+  }'
 
-###### Client_Id/Client_Secret creation
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "consumer1",
+    "email": "claudio.acquaviva@gmail.com",
+    "firstName": "Claudio",
+    "lastName": "Acquaviva",
+    "enabled": true,
+    "credentials": [{
+      "type": "password",
+      "value": "kong",
+      "temporary": false
+    }]
+  }'
 
-For both OAuth grants we need a **cliend_id** and **client_secret** pair. Clicking on **Clients** and **Create client** we can define a new ```client``` representing Kong.
+CLIENT_SECRET=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID/client-secret" \
+  -H "Authorization: Bearer $TOKEN" \
+  | jq -r '.value')
+```
 
-Choose ```kong_id``` for the new **Client ID**. The configurations should be the following:
-* **Capability config**
-  * Client authentication: on (Access Type: public)
-  * Authentication flow -> Service accounts role: on (this allows us to implement the OAuth "Client Credentials" Grant)
-* **Login settings**
-  * Valid Redirect URIs: ```http://localhost/oidc-route/get```. This parameter is needed in the OAuth Authorization Code Grant. It defines which URIs are allowed to redirect users to Keycloak.
+Check you Keycloak installation redirecting your browser to:
 
-Click on **Save**.
+```
+open -a "Google Chrome" "http://localhost:8080"
+```
 
 
-To get your ```client_secret```, click on the **Credentials** option shown in the horizontal menu. Take note of the ```client_secret```, for example: **RVXO9SOJskjw4LeVupjRbIMJIAyyil8j**
-
+![keycloak](/static/images/keycloak.png)
 
 
 ### Test the Keycloak Endpoint
 
 You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the **client_id/client_secret** pair you have just created. You should get an Access Token as a result. Use ```jwt``` to decode the Access Token. Make sure you have jwt installed on your environment. For example:
 
-{{<highlight>}}
+```
 curl -s -X POST 'http://localhost:8080/realms/kong/protocol/openid-connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=kong_id' \
---data-urlencode 'client_secret=RVXO9SOJskjw4LeVupjRbIMJIAyyil8j' \
+--data-urlencode 'client_id=client1' \
+--data-urlencode "client_secret=$CLIENT_SECRET" \
 --data-urlencode 'grant_type=client_credentials' | jq -r '.access_token' | jwt decode -
-{{</highlight>}}
+```
+
+
 
 Expected Output:
 ```
@@ -78,27 +173,24 @@ Token header
 {
   "typ": "JWT",
   "alg": "RS256",
-  "kid": "JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY"
+  "kid": "weLczjdEl67i4hvg_DTf6TcvYPPiCFIl_cXCYcoZKns"
 }
 
 Token claims
 ------------
 {
   "acr": "1",
-  "allowed-origins": [
-    "/*"
-  ],
   "aud": "account",
-  "azp": "kong_id",
+  "azp": "client1",
   "clientAddress": "10.244.0.1",
   "clientHost": "10.244.0.1",
-  "client_id": "kong_id",
+  "client_id": "client1",
   "email_verified": false,
-  "exp": 1754940732,
-  "iat": 1754940432,
+  "exp": 1776083123,
+  "iat": 1776082823,
   "iss": "http://localhost:8080/realms/kong",
-  "jti": "trrtcc:e2550f41-801f-e8e2-99b5-cc90a3648091",
-  "preferred_username": "service-account-kong_id",
+  "jti": "trrtcc:f60fa4a6-f6df-71c3-7b14-730f2c2382b5",
+  "preferred_username": "service-account-client1",
   "realm_access": {
     "roles": [
       "offline_access",
@@ -115,17 +207,10 @@ Token claims
       ]
     }
   },
-  "scope": "email profile",
-  "sub": "e7b5a37b-d06a-4b40-92d7-36f09768ed79",
+  "scope": "profile email",
+  "sub": "ecbbd65d-94d6-4a03-b1de-c4db2cf50ee4",
   "typ": "Bearer"
 }
 ```
-
-
-
-### User creation
-Now, specifically for the **Authorization Code Grant**, we need to create a Keycloak user. You can do it by clicking on **Users** and **Create new user**. Choose ```consumer1``` for the **Username** and click on **Create**:
-
-Click on **Credentials** and **Set password**. Type ```kong``` for both **Password** and **Password confirmation** fields. Turn **Temporary** to ``off`` and click on **Save** and **Save Password**.
 
 

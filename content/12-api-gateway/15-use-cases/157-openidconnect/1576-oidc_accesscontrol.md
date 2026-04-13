@@ -6,14 +6,14 @@ weight : 1576
 So far, we have used the OpenID Connect plugin to implement Authentication processes only.
 
 
-* The aud (Audience) claim comes from the JWT specification in [RFC 7519]. It allows the receiving party to verify whether a given JWT was intended for them. Per the specification, the aud value can be a single string or an array of strings.
+* The **aud** (Audience) claim comes from the JWT specification in [RFC 7519]. It allows the receiving party to verify whether a given JWT was intended for them. Per the specification, the aud value can be a single string or an array of strings.
 
-aud - Identifies the audience (resource URI or server) that this access token is intended for.
+**aud** - Identifies the audience (resource URI or server) that this access token is intended for.
 
 
-* The scope claim originates from the OAuth 2.0 specification in [RFC 6749]. It defines the range of access granted by an access token, limiting it to specific claims or user data. For example, you might not want a third-party client to query any arbitrary resource using an OAuth 2.0 access token. Instead, the scope claim restricts the token’s permissions to a predefined set of resources or operations.
+* The **scope** claim originates from the OAuth 2.0 specification in [RFC 6749]. It defines the range of access granted by an access token, limiting it to specific claims or user data. For example, you might not want a third-party client to query any arbitrary resource using an OAuth 2.0 access token. Instead, the scope claim restricts the token’s permissions to a predefined set of resources or operations.
 
-scp - Array of scopes that are granted to this access token.
+**scp** - Array of scopes that are granted to this access token.
 
 The OpenID Connect plugin supports some [coarse-grained authorization](https://developer.konghq.com/plugins/openid-connect/#authorization) mechanisms:
 * Claims-based authorization
@@ -29,7 +29,7 @@ This section is going to show how to use the plugin to implement an Authorizatio
 
 #### Installing OpenID Connect Plugin
 
-{{<highlight>}}
+```
 cat > oidc.yaml << 'EOF'
 _format_version: "3.0"
 _konnect:
@@ -58,47 +58,129 @@ services:
         consumer_by: ["username"]
         audience_required: ["gold"]
 consumers:
-- username: kong_id
+- username: client1
 EOF
-{{</highlight>}}
+```
 
 Submit the declaration
-{{<highlight>}}
-deck gateway sync --konnect-token $PAT oidc.yaml
-{{</highlight>}}
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml
+```
 
 
 
 If we try to consume the Kong Route we are going to get an new error:
 
 ```
-curl -iX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"
+curl -iX GET http://localhost/oidc-route/get -u "client1:$CLIENT_SECRET"
 ```
 
 ```
 HTTP/1.1 403 Forbidden
-Date: Mon, 11 Aug 2025 20:39:14 GMT
+Date: Mon, 13 Apr 2026 13:33:51 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 WWW-Authenticate: Bearer realm="keycloak.keycloak", error="insufficient_scope"
 Content-Length: 23
-X-Kong-Response-Latency: 38
-Server: kong/3.11.0.2-enterprise-edition
-X-Kong-Request-Id: 19afd85ac97a9657b4920a3f69c8783e
+X-Kong-Response-Latency: 14
+Server: kong/3.14.0.1-enterprise-edition
+X-Kong-Request-Id: 994c85374cf460665518623ef7914a00
 
 {"message":"Forbidden"}
 ```
 
 Note that the response describes the reason why we cannot consume the Route.
 
-#### Create the Keycloak Client Scope
-1. The first thing to do is to create a Client Scope in Keycloak. Go to the **kong** realm and click the **Client scopes** option in the left menu. Name the Client Scope as ``kong_scope`` and click "Save".
+#### Issue a new Admin Token
 
-2. Click the **Mappers** tab now and choose **Configure a new mapper**. Choose **Audience** and name it as ``kong_mapper``. For the **Included Custom Audience** field type ``gold``, which is the audience the plugin has been configured. Click Save.
+The custom scope creation process requires a Keycloak Token. You might get error as the Token gets expired. Execute the following command to issue a new Token and proceed with the process.
 
-3. Now click on the **Clients** option in the left menu and choose our ``kong_id`` client. Client the **Client scopes** tab and add the new ``kong_scope`` we just created it as ``Default``:
+```
+TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+  -d "client_id=admin-cli" \
+  -d "username=admin" \
+  -d "password=admin" \
+  -d "grant_type=password" \
+  | jq -r .access_token)
+```
 
-4. As you can see in our previous requests, Keycloak adds, by default, the ``account`` audience as ``aud``: ``account`` field inside the Access Token. One last optional step is to remove it, so the token should have our "gold" audience only. To do that, click the default ``<client_id>-dedicated`` Client Scope (in our case, ``kong_id-dedicated``) and its Scope tab. Inside the **Scope** tab, turn the "Full scope allowed" option off.
+
+#### Create the new Keycloak Custom Client Scope
+
+###### 1. Client Scope
+The first thing to do is to create a Client Scope in Keycloak. Go to the **kong** realm and click the **Client scopes** option in the left menu. Name the Client Scope as ``kong_scope`` and click "Save".
+
+CLI version
+```
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/client-scopes \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "kong_scope",
+    "protocol": "openid-connect"
+  }'
+```
+
+
+###### 2. Client Scope Mapper
+Click the **Mappers** tab now and choose **Configure a new mapper**. Choose **Audience** and name it as ``kong_mapper``. For the **Included Custom Audience** field type ``gold``, which is the audience the plugin has been configured. Click Save.
+
+CLI version
+```
+SCOPE_ID=$(curl -s http://$KEYCLOAK_LB:8080/admin/realms/kong/client-scopes \
+  -H "Authorization: Bearer $TOKEN" | jq -r '.[] | select(.name=="kong_scope") | .id')
+```
+
+```
+curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/client-scopes/$SCOPE_ID/protocol-mappers/models \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "kong_mapper",
+    "protocol": "openid-connect",
+    "protocolMapper": "oidc-audience-mapper",
+    "consentRequired": false,
+    "config": {
+      "included.custom.audience": "gold",
+      "id.token.claim": "true",
+      "access.token.claim": "true"
+    }
+  }'
+```
+
+###### 3. Apply the Custom Scope to the Client
+Now click on the **Clients** option in the left menu and choose our ``client1`` client. Client the **Client scopes** tab and add the new ``kong_scope`` we just created it as ``Default``:
+
+CLI version
+
+```
+CLIENT_UUID=$(curl -s http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
+  -H "Authorization: Bearer $TOKEN" | jq -r '.[] | select(.clientId=="client1") | .id')
+```
+
+```
+curl -X PUT http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$CLIENT_UUID/default-client-scopes/$SCOPE_ID \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+
+###### 4. Disable **Full scope allowed**
+As you can see in our previous requests, Keycloak adds, by default, the ``account`` audience as ``aud``: ``account`` field inside the Access Token. One last optional step is to remove it, so the token should have our "gold" audience only. To do that, click the default ``<client_id>-dedicated`` Client Scope (in our case, ``client1-dedicated``) and its Scope tab. Inside the **Scope** tab, turn the "Full scope allowed" option off.
+
+CLI version
+
+```
+curl -X PUT http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$CLIENT_UUID \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientId": "client1",
+    "fullScopeAllowed": false
+  }'
+```
+
+
 
 
 #### Test the Keycloak Endpoint
@@ -107,8 +189,8 @@ Send a request to Keycloak again to test the new configuration:
 ```
 curl -s -X POST 'http://localhost:8080/realms/kong/protocol/openid-connect/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=kong_id' \
---data-urlencode 'client_secret=RVXO9SOJskjw4LeVupjRbIMJIAyyil8j' \
+--data-urlencode 'client_id=client1' \
+--data-urlencode "client_secret=$CLIENT_SECRET" \
 --data-urlencode 'grant_type=client_credentials' | jq -r '.access_token' | jwt decode - | grep aud
 ```
 
@@ -122,7 +204,7 @@ Expected output
 You should be able to consumer the Kong Route now.
 
 ```
-curl -sX GET http://localhost:80/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"| jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+curl -sX GET http://localhost:80/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
 ```
 
 Expected output
@@ -132,7 +214,7 @@ Token header
 {
   "typ": "JWT",
   "alg": "RS256",
-  "kid": "JIao4TIXpSwJxcukz6W0hK8qc_vuYf6HrmGsDmT6kzY"
+  "kid": "weLczjdEl67i4hvg_DTf6TcvYPPiCFIl_cXCYcoZKns"
 }
 
 Token claims
@@ -140,21 +222,22 @@ Token claims
 {
   "acr": "1",
   "allowed-origins": [
-    "/*"
+    "http://localhost:80",
+    "http://localhost"
   ],
   "aud": "gold",
-  "azp": "kong_id",
-  "clientAddress": "10.244.0.106",
-  "clientHost": "10.244.0.106",
-  "client_id": "kong_id",
+  "azp": "client1",
+  "clientAddress": "10.244.0.48",
+  "clientHost": "10.244.0.48",
+  "client_id": "client1",
   "email_verified": false,
-  "exp": 1754945838,
-  "iat": 1754945538,
+  "exp": 1776089031,
+  "iat": 1776088731,
   "iss": "http://keycloak.keycloak:8080/realms/kong",
-  "jti": "trrtcc:332fad95-49bc-f8c7-7f1b-e4ef7d7b0973",
-  "preferred_username": "service-account-kong_id",
-  "scope": "openid email profile",
-  "sub": "e7b5a37b-d06a-4b40-92d7-36f09768ed79",
+  "jti": "trrtcc:cb49d176-f5af-69bf-9f46-a2001a837556",
+  "preferred_username": "service-account-client1",
+  "scope": "openid profile email",
+  "sub": "9ec92c29-d881-4365-8f3f-92cf7b2996ff",
   "typ": "Bearer"
 }
 ```
