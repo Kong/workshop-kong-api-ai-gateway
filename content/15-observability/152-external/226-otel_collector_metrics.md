@@ -157,30 +157,6 @@ EOF
 ```
 
 
-
-```
-cat <<EOF | kubectl apply -f -
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: collector
-  namespace: opentelemetry-operator-system 
-  labels:
-    app.kubernetes.io/name: kong
-spec:
- selector:
-   matchLabels:
-     gateway-operator.konghq.com/dataplane-service-type: ingress
- endpoints:
- - targetPort: metrics
-   scheme: http
- jobLabel: kong
- namespaceSelector:
-   matchNames:
-     - kong
-EOF
-```
-
 Finally, note that the OTel Collector configuration is deployed using the Service Account with ``serviceAccount: collector`` and then it will be able to scrape the endpoint exposed by Kong Gateway.
 
 #### Deploy the collector

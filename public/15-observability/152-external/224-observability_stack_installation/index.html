@@ -6,53 +6,49 @@
     <meta name="generator" content="Hugo 0.160.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Jaeger Installation We are going to use the Jaeger Helm Charts. Add its repo:
-helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:">
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update And use it to install Jaeger
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --set livenessProbe.initialDelaySeconds=30 \ --set livenessProbe.periodSeconds=15 \ --set readinessProbe.initialDelaySeconds=30 \ --set readinessProbe.periodSeconds=15 \ --set provisionDataStore.cassandra=false \ --set storage.type=memory \ --set agent.enabled=false \ --set collector.enabled=false \ --set query.enabled=false \ --set service.type=ClusterIP Check Jaeger’s log with:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Observability Stack Installation :: API Management with Kong Konnect">
     <meta name="twitter:description" content="Jaeger Installation We are going to use the Jaeger Helm Charts. Add its repo:
-helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:">
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update And use it to install Jaeger
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --set livenessProbe.initialDelaySeconds=30 \ --set livenessProbe.periodSeconds=15 \ --set readinessProbe.initialDelaySeconds=30 \ --set readinessProbe.periodSeconds=15 \ --set provisionDataStore.cassandra=false \ --set storage.type=memory \ --set agent.enabled=false \ --set collector.enabled=false \ --set query.enabled=false \ --set service.type=ClusterIP Check Jaeger’s log with:">
     <meta property="og:url" content="http://localhost:1313/15-observability/152-external/224-observability_stack_installation/index.html">
     <meta property="og:site_name" content="API Management with Kong Konnect">
     <meta property="og:title" content="Observability Stack Installation :: API Management with Kong Konnect">
     <meta property="og:description" content="Jaeger Installation We are going to use the Jaeger Helm Charts. Add its repo:
-helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:">
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update And use it to install Jaeger
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --set livenessProbe.initialDelaySeconds=30 \ --set livenessProbe.periodSeconds=15 \ --set readinessProbe.initialDelaySeconds=30 \ --set readinessProbe.periodSeconds=15 \ --set provisionDataStore.cassandra=false \ --set storage.type=memory \ --set agent.enabled=false \ --set collector.enabled=false \ --set query.enabled=false \ --set service.type=ClusterIP Check Jaeger’s log with:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Konnect Observability">
     <meta itemprop="name" content="Observability Stack Installation :: API Management with Kong Konnect">
     <meta itemprop="description" content="Jaeger Installation We are going to use the Jaeger Helm Charts. Add its repo:
-helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update Save the values.yaml Jaeger provides as an example:
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml And use it to install Jaeger 2.9.0
-helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --values ./jaeger-values.yaml kubectl patch deployment jaeger -n jaeger --type json \ -p=&#39;[ {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;}, {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;} ]&#39; Check Jaeger’s log with:">
-    <meta itemprop="wordCount" content="519">
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts helm repo update And use it to install Jaeger
+helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set allInOne.image.repository=jaegertracing/jaeger \ --set allInOne.image.tag=2.17.0 \ --set livenessProbe.initialDelaySeconds=30 \ --set livenessProbe.periodSeconds=15 \ --set readinessProbe.initialDelaySeconds=30 \ --set readinessProbe.periodSeconds=15 \ --set provisionDataStore.cassandra=false \ --set storage.type=memory \ --set agent.enabled=false \ --set collector.enabled=false \ --set query.enabled=false \ --set service.type=ClusterIP Check Jaeger’s log with:">
+    <meta itemprop="wordCount" content="405">
     <title>Observability Stack Installation :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
-    <script src="/js/search-lunr.js?1776013317" defer></script>
-    <script src="/js/search.js?1776013317" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776076636" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776076636" defer></script>
+    <script src="/js/search-lunr.js?1776076636" defer></script>
+    <script src="/js/search.js?1776076636" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776013317";
+      window.relearn.index_js_url="/searchindex.en.js?1776076636";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776076636" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776076636" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776076636" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776076636" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
-    <link href="/css/theme.css?1776013317" rel="stylesheet">
-    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776076636" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776076636" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776076636" rel="stylesheet">
+    <link href="/css/theme.css?1776076636" rel="stylesheet">
+    <link href="/css/format-html.css?1776076636" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -154,20 +150,21 @@ helm install jaeger jaegertracing/jaeger -n jaeger \ --create-namespace \ --set 
 <p>We are going to use the <a href="https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger" rel="external" target="_blank">Jaeger Helm Charts</a>. Add its repo:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo update</code></pre></div>
-<p>Save the <code>values.yaml</code> Jaeger provides as an example:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml</code></pre></div>
-<p>And use it to install Jaeger 2.9.0</p>
+<p>And use it to install Jaeger</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install jaeger jaegertracing/jaeger -n jaeger \
   --create-namespace \
   --set allInOne.image.repository=jaegertracing/jaeger \
   --set allInOne.image.tag=2.17.0 \
-  --values ./jaeger-values.yaml
-
-kubectl patch deployment jaeger -n jaeger --type json \
-  -p=&#39;[
-    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/readinessProbe&#34;},
-    {&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/livenessProbe&#34;}
-  ]&#39;</code></pre></div>
+  --set livenessProbe.initialDelaySeconds=30 \
+  --set livenessProbe.periodSeconds=15 \
+  --set readinessProbe.initialDelaySeconds=30 \
+  --set readinessProbe.periodSeconds=15 \
+  --set provisionDataStore.cassandra=false \
+  --set storage.type=memory \
+  --set agent.enabled=false \
+  --set collector.enabled=false \
+  --set query.enabled=false \
+  --set service.type=ClusterIP</code></pre></div>
 <p>Check Jaeger&rsquo;s log with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;jaeger-&#34;))&#39; | jq -r &#39;.name&#39;) -n jaeger</code></pre></div>
 <h4 id="prometheus-installation">Prometheus Installation</h4>
@@ -182,118 +179,42 @@ helm repo update</code></pre></div>
 --set prometheus.service.type=LoadBalancer \
 --set prometheus.service.port=9090 \
 --set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
---set prometheus.prometheusSpec.additionalArgs[0].value=</code></pre></div>
+--set prometheus.prometheusSpec.additionalArgs[0].value=&#34;&#34;</code></pre></div>
 <h4 id="loki-installation">Loki Installation</h4>
 <p>First, add the <a href="https://github.com/grafana/loki/blob/main/production/helm/loki/README.md" rel="external" target="_blank">Helm Charts</a>. Read the <a href="https://grafana.com/docs/loki/next/setup/install/helm/" rel="external" target="_blank">documentation</a> to learn more.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update</code></pre></div>
-<p>Now, create a <code>loki-values.yaml</code> with the deployment configuration. We are using a simple monolithic <a href="https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/" rel="external" target="_blank"><strong>SingleBinary</strong></a> option.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; loki-values.yaml &lt;&lt; &#39;EOF&#39;
-deploymentMode: SingleBinary
-
-singleBinary:
-  replicas: 1
-  service:
-    type: LoadBalancer
-  persistence:
-    enabled: false
-  canary:
-    enabled: false
-    args:
-      - -log-output=false
-  extraVolumeMounts:
-    - name: loki-storage
-      mountPath: /var/loki
-  extraVolumes:
-    - name: loki-storage
-      emptyDir: {}
-
-loki:
-  commonConfig:
-    replication_factor: 1
-  image:
-    tag: 3.7.1
-  auth_enabled: false
-  memberlist:
-    enable: false
-  storage:
-    type: filesystem
-    filesystem:
-      chunks_directory: /var/loki/chunks
-      rules_directory: /var/loki/rules
-  schemaConfig:
-    configs:
-      - from: &#34;2024-04-01&#34;
-        store: tsdb
-        object_store: filesystem
-        schema: v13
-        index:
-          prefix: loki_index_
-          period: 24h
-  limits_config:
-    allow_structured_metadata: true
-    volume_enabled: true
-  ruler:
-    enable_api: true
-  pattern_ingester:
-    enabled: true
-  otlp_config:
-    resource_attributes:
-      attributes_config:
-      - action: index_label
-        attributes:
-        - service.name
-
-
-chunksCache:
-  enabled: false
-
-resultsCache:
-  enabled: false
-
-indexGateway:
-  enabled: false
-
-minio:
-  enabled: false
-
-gateway:
-  enabled: false
-
-backend:
-  replicas: 0
-read:
-  replicas: 0
-write:
-  replicas: 0
-ingester:
-  replicas: 0
-querier:
-  replicas: 0
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
-EOF</code></pre></div>
-<pre><code>    - service_name
-    - service-name
-</code></pre>
-<p>Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  -f loki-values.yaml</code></pre></div>
+<p>Install Loki with the following Helm command.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade --install loki grafana/loki \
+--namespace loki \
+--create-namespace \
+--set deploymentMode=SingleBinary \
+--set singleBinary.replicas=1 \
+--set singleBinary.persistence.enabled=false \
+--set singleBinary.extraVolumeMounts[0].name=loki-storage \
+--set singleBinary.extraVolumeMounts[0].mountPath=/var/loki \
+--set singleBinary.extraVolumes[0].name=loki-storage \
+--set-json &#39;singleBinary.extraVolumes[0].emptyDir={}&#39; \
+--set loki.image.tag=3.7.1 \
+--set loki.auth_enabled=false \
+--set loki.commonConfig.replication_factor=1 \
+--set loki.storage.type=filesystem \
+--set loki.useTestSchema=true \
+--set loki.limits_config.allow_structured_metadata=true \
+--set loki.otlp_config.resource_attributes.attributes_config[0].action=index_label \
+--set loki.otlp_config.resource_attributes.attributes_config[0].attributes[0]=service.name \
+--set chunksCache.enabled=false \
+--set resultsCache.enabled=false \
+--set minio.enabled=false \
+--set gateway.enabled=false \
+--set read.replicas=0 \
+--set write.replicas=0 \
+--set backend.replicas=0</code></pre></div>
 <h4 id="grafana-installation">Grafana Installation</h4>
 <p>The Grafana installation <a href="https://github.com/grafana/helm-charts/" rel="external" target="_blank">Helm</a> commands creates the Data Sources for the 3 components, Jaeger, Prometheus and Loki, using their specific Kubernetes FQDN endpoints.</p>
 <p>Add the repo:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add grafana https://grafana.github.io/helm-charts</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update</code></pre></div>
 <p>Deploy Grafana and three Data Sources.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>helm upgrade --install grafana grafana/grafana \
 --namespace grafana \
@@ -410,8 +331,8 @@ kubectl delete namespace grafana</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
-    <script src="/js/theme.js?1776013317" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776076636" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776076636" defer></script>
+    <script src="/js/theme.js?1776076636" defer></script>
   </body>
 </html>

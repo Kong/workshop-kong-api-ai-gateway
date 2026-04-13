@@ -12,28 +12,27 @@ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo update
 ```
 
-Save the ```values.yaml``` Jaeger provides as an example:
-```
-wget -O jaeger-values.yaml https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml
-```
 
-
-
-
-And use it to install Jaeger 2.9.0
+And use it to install Jaeger
 ```
 helm install jaeger jaegertracing/jaeger -n jaeger \
   --create-namespace \
   --set allInOne.image.repository=jaegertracing/jaeger \
   --set allInOne.image.tag=2.17.0 \
-  --values ./jaeger-values.yaml
-
-kubectl patch deployment jaeger -n jaeger --type json \
-  -p='[
-    {"op": "remove", "path": "/spec/template/spec/containers/0/readinessProbe"},
-    {"op": "remove", "path": "/spec/template/spec/containers/0/livenessProbe"}
-  ]'
+  --set livenessProbe.initialDelaySeconds=30 \
+  --set livenessProbe.periodSeconds=15 \
+  --set readinessProbe.initialDelaySeconds=30 \
+  --set readinessProbe.periodSeconds=15 \
+  --set provisionDataStore.cassandra=false \
+  --set storage.type=memory \
+  --set agent.enabled=false \
+  --set collector.enabled=false \
+  --set query.enabled=false \
+  --set service.type=ClusterIP
 ```
+
+
+
 
 Check Jaeger's log with:
 
@@ -63,7 +62,7 @@ helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack
 --set prometheus.service.type=LoadBalancer \
 --set prometheus.service.port=9090 \
 --set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver \
---set prometheus.prometheusSpec.additionalArgs[0].value=
+--set prometheus.prometheusSpec.additionalArgs[0].value=""
 ```
 
 
@@ -79,120 +78,39 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
-Now, create a ``loki-values.yaml`` with the deployment configuration. We are using a simple monolithic [**SingleBinary**](https://grafana.com/docs/loki/latest/setup/install/helm/install-monolithic/) option.
+
+Install Loki with the following Helm command.
 
 ```
-cat > loki-values.yaml << 'EOF'
-deploymentMode: SingleBinary
-
-singleBinary:
-  replicas: 1
-  service:
-    type: LoadBalancer
-  persistence:
-    enabled: false
-  canary:
-    enabled: false
-    args:
-      - -log-output=false
-  extraVolumeMounts:
-    - name: loki-storage
-      mountPath: /var/loki
-  extraVolumes:
-    - name: loki-storage
-      emptyDir: {}
-
-loki:
-  commonConfig:
-    replication_factor: 1
-  image:
-    tag: 3.7.1
-  auth_enabled: false
-  memberlist:
-    enable: false
-  storage:
-    type: filesystem
-    filesystem:
-      chunks_directory: /var/loki/chunks
-      rules_directory: /var/loki/rules
-  schemaConfig:
-    configs:
-      - from: "2024-04-01"
-        store: tsdb
-        object_store: filesystem
-        schema: v13
-        index:
-          prefix: loki_index_
-          period: 24h
-  limits_config:
-    allow_structured_metadata: true
-    volume_enabled: true
-  ruler:
-    enable_api: true
-  pattern_ingester:
-    enabled: true
-  otlp_config:
-    resource_attributes:
-      attributes_config:
-      - action: index_label
-        attributes:
-        - service.name
-
-
-chunksCache:
-  enabled: false
-
-resultsCache:
-  enabled: false
-
-indexGateway:
-  enabled: false
-
-minio:
-  enabled: false
-
-gateway:
-  enabled: false
-
-backend:
-  replicas: 0
-read:
-  replicas: 0
-write:
-  replicas: 0
-ingester:
-  replicas: 0
-querier:
-  replicas: 0
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
-EOF
+helm upgrade --install loki grafana/loki \
+--namespace loki \
+--create-namespace \
+--set deploymentMode=SingleBinary \
+--set singleBinary.replicas=1 \
+--set singleBinary.persistence.enabled=false \
+--set singleBinary.extraVolumeMounts[0].name=loki-storage \
+--set singleBinary.extraVolumeMounts[0].mountPath=/var/loki \
+--set singleBinary.extraVolumes[0].name=loki-storage \
+--set-json 'singleBinary.extraVolumes[0].emptyDir={}' \
+--set loki.image.tag=3.7.1 \
+--set loki.auth_enabled=false \
+--set loki.commonConfig.replication_factor=1 \
+--set loki.storage.type=filesystem \
+--set loki.useTestSchema=true \
+--set loki.limits_config.allow_structured_metadata=true \
+--set loki.otlp_config.resource_attributes.attributes_config[0].action=index_label \
+--set loki.otlp_config.resource_attributes.attributes_config[0].attributes[0]=service.name \
+--set chunksCache.enabled=false \
+--set resultsCache.enabled=false \
+--set minio.enabled=false \
+--set gateway.enabled=false \
+--set read.replicas=0 \
+--set write.replicas=0 \
+--set backend.replicas=0
 ```
 
 
-        - service_name
-        - service-name
 
-
-Install Loki with the following Helm command. Since we are exposing it with a Load Balancer, Minikube will start a new tunnel for the port 3100.
-
-
-
-```
-helm install loki grafana/loki \
-  --namespace=loki --create-namespace \
-  -f loki-values.yaml
-```
 
 
 
@@ -203,6 +121,7 @@ The Grafana installation [Helm](https://github.com/grafana/helm-charts/) command
 Add the repo:
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
 ```
 
 Deploy Grafana and three Data Sources.

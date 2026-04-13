@@ -21,26 +21,26 @@
     <meta itemprop="description" content="cat &gt; ingest_update.lua &lt;&lt; &#39;EOF&#39; local embeddings = require(&#34;kong.llm.embeddings&#34;) local uuid = require(&#34;kong.tools.utils&#34;).uuid local vectordb = require(&#34;kong.llm.vectordb&#34;) local function get_plugin_by_id(id) local row, err = kong.db.plugins:select( {id = id}, { workspace = ngx.null, show_ws_id = true, expand_partials = true } ) if err then return nil, err end return row end local function ingest_chunk(conf, content) local err local metadata = { ingest_duration = ngx.now(), } -- vectordb driver init local vectordb_driver do vectordb_driver, err = vectordb.new(conf.vectordb.strategy, conf.vectordb_namespace, conf. vectordb) if err then return nil, &#34;Failed to load the &#39;&#34; .. conf.vectordb.strategy .. &#34;&#39; vector database driver: &#34; .. err end end -- embeddings init local embeddings_driver, err = embeddings.new(conf.embeddings, conf.vectordb.dimensions) if err then return nil, &#34;Failed to instantiate embeddings driver: &#34; .. err end local embeddings_vector, embeddings_tokens_count, err = embeddings_driver:generate(content) if err then return nil, &#34;Failed to generate embeddings: &#34; .. err end metadata.embeddings_tokens_count = embeddings_tokens_count if #embeddings_vector ~= conf.vectordb.dimensions then return nil, &#34;Embedding dimensions do not match the configured vector database. Embeddings were &#34; .. #embeddings_vector .. &#34; dimensions, but the vector database is configured for &#34; .. conf.vectordb.dimensions .. &#34; dimensions.&#34;, &#34;Embedding dimensions do not match the configured vector database&#34; end metadata.chunk_id = uuid() -- ingest chunk local _, err = vectordb_driver:insert(embeddings_vector, content, metadata.chunk_id) if err then return nil, &#34;Failed to insert chunk: &#34; .. err end return true end assert(#args == 3, &#34;2 arguments expected&#34;) local plugin_id, content = args[2], args[3] local plugin, err = get_plugin_by_id(plugin_id) if err then ngx.log(ngx.ERR, &#34;Failed to get plugin: &#34; .. err) return end if not plugin then ngx.log(ngx.ERR, &#34;Plugin not found&#34;) return end local _, err = ingest_chunk(plugin.config, content) if err then ngx.log(ngx.ERR, &#34;Failed to ingest: &#34; .. err) return end ngx.log(ngx.INFO, &#34;Update completed&#34;) EOF">
     <meta itemprop="wordCount" content="283">
     <title>Ingest Update :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
-    <script src="/js/search-lunr.js?1776013317" defer></script>
-    <script src="/js/search.js?1776013317" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776048320" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776048320" defer></script>
+    <script src="/js/search-lunr.js?1776048320" defer></script>
+    <script src="/js/search.js?1776048320" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776013317";
+      window.relearn.index_js_url="/searchindex.en.js?1776048320";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776048320" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
-    <link href="/css/theme.css?1776013317" rel="stylesheet">
-    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776048320" rel="stylesheet">
+    <link href="/css/theme.css?1776048320" rel="stylesheet">
+    <link href="/css/format-html.css?1776048320" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -302,8 +302,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
-    <script src="/js/theme.js?1776013317" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776048320" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776048320" defer></script>
+    <script src="/js/theme.js?1776048320" defer></script>
   </body>
 </html>

@@ -9,15 +9,6 @@ We still need to add logs to our environment where [Loki](https://github.com/gra
 
 
 
-Hit the port to make sure Loki is ready to accept requests:
-
-```
-curl http://localhost:3100/ready
-```
-
-
-
-
 ### New collector configuration
 
 ```
@@ -135,8 +126,6 @@ Add the Prometheus and TCP Log plugins to our decK declaration and submit it to 
 ```
 cat > httpbin.yaml << 'EOF'
 _format_version: "3.0"
-_konnect:
-  control_plane_name: kong-workshop
 _info:
   select_tags:
   - httpbin-service-route
@@ -186,7 +175,7 @@ EOF
 Submit the new plugin declaration with:
 ```
 deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT httpbin.yaml
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT httpbin.yaml
 ```
 
 

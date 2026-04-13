@@ -25,26 +25,26 @@ In this first step we are just creating a Kong Gateway Service and a Kong Route 
 In this first step we are just creating a Kong Gateway Service and a Kong Route with the Kong Mocking Plugin and the OpenAPI Spec. The next step will convert the Kong Gateway Service into MCP Tools.">
     <meta itemprop="wordCount" content="590">
     <title>Mock Kong Gateway Services with OpenAPI Spec :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1776013317" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776013317" defer></script>
-    <script src="/js/search-lunr.js?1776013317" defer></script>
-    <script src="/js/search.js?1776013317" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776048320" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776048320" defer></script>
+    <script src="/js/search-lunr.js?1776048320" defer></script>
+    <script src="/js/search.js?1776048320" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776013317";
+      window.relearn.index_js_url="/searchindex.en.js?1776048320";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776013317" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776013317" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776048320" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776013317" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776013317" rel="stylesheet">
-    <link href="/css/theme.css?1776013317" rel="stylesheet">
-    <link href="/css/format-html.css?1776013317" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776048320" rel="stylesheet">
+    <link href="/css/theme.css?1776048320" rel="stylesheet">
+    <link href="/css/format-html.css?1776048320" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -157,8 +157,8 @@ In this first step we are just creating a Kong Gateway Service and a Kong Route 
 <p>The Mocking plugin allows you to provide mock endpoints to test APIs in development against your existing services. The Mocking plugin leverages standards based on the Open API Specification (OAS) for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.</p>
 <p>In this first step we are just creating a Kong Gateway Service and a Kong Route with the <a href="https://developer.konghq.com/plugins/mocking/" rel="external" target="_blank"><strong>Kong Mocking Plugin</strong></a> and the OpenAPI Spec. The next step will convert the Kong Gateway Service into MCP Tools.</p>
 <p>Here&rsquo;s the architecture:</p>
-<p><a href="#R-image-1f900f9ed07fdf8fb148e625007b7d09" class="lightbox-link"><img alt="marketplace_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_arch.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1f900f9ed07fdf8fb148e625007b7d09"><img alt="marketplace_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_arch.png"></a></p>
+<p><a href="#R-image-4290c551ad16cf686b4527990a26d4d5" class="lightbox-link"><img alt="marketplace_arch" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_arch.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4290c551ad16cf686b4527990a26d4d5"><img alt="marketplace_arch" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_arch.png"></a></p>
 <h3 id="download-the-deck-declaration-with-kong-mocking-plugin-and-openapi-spec">Download the decK declaration with Kong Mocking Plugin and OpenAPI Spec</h3>
 <ul>
 <li>Download the <a href="/code/marketplace_mock.yaml"><strong>marketplace_mock.yaml</strong></a> spec.</li>
@@ -167,8 +167,8 @@ In this first step we are just creating a Kong Gateway Service and a Kong Route 
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT marketplace_mock.yaml</code></pre></div>
 <p>You should see your a new Kong Service and Route. Particularly, the Kong Route has the <strong>Mocking Plugin</strong> enabled.</p>
-<p><a href="#R-image-238fcbf0c47105833a349d37c613ad3f" class="lightbox-link"><img alt="martetplace_service_route" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_service_route.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-238fcbf0c47105833a349d37c613ad3f"><img alt="martetplace_service_route" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_service_route.png"></a></p>
+<p><a href="#R-image-405bcc3f20dfa0857d5fec8f22fefe40" class="lightbox-link"><img alt="martetplace_service_route" class="lazy lightbox figure-image" loading="lazy" src="/static/images/marketplace_service_route.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-405bcc3f20dfa0857d5fec8f22fefe40"><img alt="martetplace_service_route" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/marketplace_service_route.png"></a></p>
 <h3 id="check-the-deck-file-and-test-the-kong-route">Check the decK file and test the Kong Route</h3>
 <p>Just like anyother spec, The decK file has an initial section defining the Kong Gateway Service and Kong Route:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>_format_version: &#34;3.0&#34;
@@ -398,8 +398,8 @@ services:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776013317" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776013317" defer></script>
-    <script src="/js/theme.js?1776013317" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776048320" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776048320" defer></script>
+    <script src="/js/theme.js?1776048320" defer></script>
   </body>
 </html>
