@@ -25,26 +25,26 @@ So far, you have your API published in the portal. However, there’s no control
     <meta itemprop="wordCount" content="765">
     <title>Developer Self-Service and Application Registration :: API Management with Kong Konnect</title>
     <link href="/19-developer-portal/192-portal-application/index.xml" rel="alternate" type="application/rss+xml" title="Developer Self-Service and Application Registration :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1776048320" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776048320" defer></script>
-    <script src="/js/search-lunr.js?1776048320" defer></script>
-    <script src="/js/search.js?1776048320" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776077596" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776077596" defer></script>
+    <script src="/js/search-lunr.js?1776077596" defer></script>
+    <script src="/js/search.js?1776077596" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776048320";
+      window.relearn.index_js_url="/searchindex.en.js?1776077596";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776048320" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776048320" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776048320" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776048320" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776077596" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776077596" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776077596" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776077596" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776048320" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776048320" rel="stylesheet">
-    <link href="/css/theme.css?1776048320" rel="stylesheet">
-    <link href="/css/format-html.css?1776048320" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776077596" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776077596" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776077596" rel="stylesheet">
+    <link href="/css/theme.css?1776077596" rel="stylesheet">
+    <link href="/css/format-html.css?1776077596" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -167,11 +167,11 @@ So far, you have your API published in the portal. However, there’s no control
 <h3 id="link-the-api-to-your-gateway-service">Link the API to your Gateway Service.</h3>
 <p>When you link a service with an API, Konnect automatically adds the Konnect Application Auth (KAA) plugin on that Service. The KAA plugin is responsible for applying authentication and authorization on the Service. The authentication strategy that you select for the API defines how clients authenticate. After linking to the Konnect Gateway Service, developers can create applications and generate credentials, e.g. API keys.</p>
 <p>Play the Administrator role again and click on <strong>APIs</strong> inside the <strong>Dev Portal</strong> menu option. Choose your API. Click in the <strong>Gateway Service</strong> tab and link the API to your Kong Gateway Service, created in the <code>kong-workshop</code> Control Plane.</p>
-<p><a href="#R-image-e592e395883d67d3ab55bfc712b21534" class="lightbox-link"><img alt="link_gateway_service" class="lazy lightbox figure-image" loading="lazy" src="/static/images/link_gateway_service.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e592e395883d67d3ab55bfc712b21534"><img alt="link_gateway_service" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/link_gateway_service.png"></a></p>
+<p><a href="#R-image-038090ac14be81f390e49ef8da004648" class="lightbox-link"><img alt="link_gateway_service" class="lazy lightbox figure-image" loading="lazy" src="/static/images/link_gateway_service.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-038090ac14be81f390e49ef8da004648"><img alt="link_gateway_service" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/link_gateway_service.png"></a></p>
 <p>As a developer, if you try to consume the API from the Dev Portal you are going to get a <code>401</code> error code, meaning the Dev Portal is controlling the Authentication mechanism which is, by default, based on API Keys.</p>
-<p><a href="#R-image-ed304e0005758feec3536326b44a7eac" class="lightbox-link"><img alt="401_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/401_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ed304e0005758feec3536326b44a7eac"><img alt="401_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/401_dev_portal.png"></a></p>
+<p><a href="#R-image-8eb96e9da534571ab7b86eecc7ea6204" class="lightbox-link"><img alt="401_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/401_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eb96e9da534571ab7b86eecc7ea6204"><img alt="401_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/401_dev_portal.png"></a></p>
 <h3 id="turn-rbac-on-in-your-portal">Turn RBAC on in your Portal</h3>
 <p>In order to control the API consumption we are going to turn the RBAC security model in our portal. That will allow to define which developer can consume the API.</p>
 <ol>
@@ -186,8 +186,8 @@ So far, you have your API published in the portal. However, there’s no control
 </li>
 </ol>
 <p>That means your team has only one developer who has permissions to consumer your API.</p>
-<p><a href="#R-image-71dd2ee4124b17dfd734927fec9cb2bb" class="lightbox-link"><img alt="team_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/team_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-71dd2ee4124b17dfd734927fec9cb2bb"><img alt="team_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/team_dev_portal.png"></a></p>
+<p><a href="#R-image-285c47cbfb6fe22104d6531cd082f859" class="lightbox-link"><img alt="team_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/team_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-285c47cbfb6fe22104d6531cd082f859"><img alt="team_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/team_dev_portal.png"></a></p>
 <ol start="4">
 <li>As a developer, if you try to consume the API again, you will still get the <code>401</code> error code.</li>
 </ol>
@@ -195,13 +195,13 @@ So far, you have your API published in the portal. However, there’s no control
 <ol>
 <li>Play the developer role again. Inside the API page, click “Use this API” and create an application, named <code>app1</code> (the Auth strategy is the default - API Key Auth). Click <strong>Create and use API</strong>.</li>
 </ol>
-<p><a href="#R-image-cde1bc909f7eb32e68090e6958296901" class="lightbox-link"><img alt="app_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cde1bc909f7eb32e68090e6958296901"><img alt="app_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_dev_portal.png"></a></p>
+<p><a href="#R-image-639b78adfd847d2d655cad846c4da8bc" class="lightbox-link"><img alt="app_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-639b78adfd847d2d655cad846c4da8bc"><img alt="app_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_dev_portal.png"></a></p>
 <ol start="2">
 <li>Copy the Credential (e.g. vuOeFHUiR9oSc2fDLRvJDrJvd8ZLJJbh) and click <strong>Copy and close</strong></li>
 </ol>
-<p><a href="#R-image-76e4a6b9bf859554cf895eb919d788a3" class="lightbox-link"><img alt="credential_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/credential_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-76e4a6b9bf859554cf895eb919d788a3"><img alt="credential_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/credential_dev_portal.png"></a></p>
+<p><a href="#R-image-eba378b602e6969842e742aad75d3ba4" class="lightbox-link"><img alt="credential_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/credential_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eba378b602e6969842e742aad75d3ba4"><img alt="credential_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/credential_dev_portal.png"></a></p>
 <ol start="3">
 <li>Add your API Key in the Authentication box. You will still get the <code>401</code> error code if you try to consume the API again.</li>
 </ol>
@@ -209,13 +209,13 @@ So far, you have your API published in the portal. However, there’s no control
 <ol>
 <li>As the administrator get back to the <strong>Access and approvals</strong> menu option inside your portal. Click the <strong>App Registration</strong> tab and approve the application.</li>
 </ol>
-<p><a href="#R-image-dba2a06229157b85929d46e8911a5009" class="lightbox-link"><img alt="app_approval_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_approval_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dba2a06229157b85929d46e8911a5009"><img alt="app_approval_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_approval_dev_portal.png"></a></p>
+<p><a href="#R-image-bfd13970cf8dae2ba66b7c69a0e6f8bc" class="lightbox-link"><img alt="app_approval_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_approval_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bfd13970cf8dae2ba66b7c69a0e6f8bc"><img alt="app_approval_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_approval_dev_portal.png"></a></p>
 <ol start="2">
 <li>As the developer, you should be finally able to consume the API inside the Dev Portal.</li>
 </ol>
-<p><a href="#R-image-458f6f7d9c125059629fc2c0758df1b5" class="lightbox-link"><img alt="app_consumption_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_consumption_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-458f6f7d9c125059629fc2c0758df1b5"><img alt="app_consumption_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_consumption_dev_portal.png"></a></p>
+<p><a href="#R-image-a0b43bf4491c865549d3f1bb1264d712" class="lightbox-link"><img alt="app_consumption_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_consumption_dev_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a0b43bf4491c865549d3f1bb1264d712"><img alt="app_consumption_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_consumption_dev_portal.png"></a></p>
 <h3 id="check-your-application">Check your Application</h3>
 <ol>
 <li>
@@ -225,8 +225,8 @@ So far, you have your API published in the portal. However, there’s no control
 <p>You should see the applications you&rsquo;ve created. In our case, there&rsquo;s only one, <code>app1</code>.</p>
 </li>
 </ol>
-<p><a href="#R-image-a678dcfa59dec5390447a530b121d25f" class="lightbox-link"><img alt="app_self_service" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_self_service.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a678dcfa59dec5390447a530b121d25f"><img alt="app_self_service" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_self_service.png"></a></p>
+<p><a href="#R-image-937b3fd9bd24ba9513b5281af84c11a7" class="lightbox-link"><img alt="app_self_service" class="lazy lightbox figure-image" loading="lazy" src="/static/images/app_self_service.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-937b3fd9bd24ba9513b5281af84c11a7"><img alt="app_self_service" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/app_self_service.png"></a></p>
 <ol start="3">
 <li>
 <p>Click on the application. You will see three tabs avaiable. The first one, <strong>APIs</strong>, you can see all APIs defined for the application. In our case, only the <code>httpbin</code> API has been used.</p>
@@ -336,8 +336,8 @@ So far, you have your API published in the portal. However, there’s no control
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776048320" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776048320" defer></script>
-    <script src="/js/theme.js?1776048320" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776077596" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776077596" defer></script>
+    <script src="/js/theme.js?1776077596" defer></script>
   </body>
 </html>

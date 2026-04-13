@@ -39,66 +39,64 @@ Let's review the original **AI Proxy** configuration we used before. This versio
 * ``input_cost`` and ``output_cost`` to generate cost-based metrics
 * ``key-auth`` plugin and ``consumers`` section to protect the Kong Route as well as generate metrics based on Kong Consumers.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 cat > ai-proxy-logging.yaml << 'EOF'
 _format_version: "3.0"
-_konnect:
-  control_plane_name: kong-aws
 _info:
   select_tags:
-  - bedrock
+  - anthropic
 services:
 - name: service1
   host: localhost
   port: 32000
   routes:
-  - name: route1
+  - name: openai-route
     paths:
-    - /bedrock-route
+    - /openai-route
     plugins:
     - name: ai-proxy
-      instance_name: "ai-proxy-bedrock"
+      instance_name: ai-proxy-openai
       config:
+        route_type: llm/v1/chat
         auth:
-          allow_override: false
-        route_type: "llm/v1/chat"
+          header_name: Authorization
+          header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
         model:
-          provider: "bedrock"
-          name: "us.amazon.nova-micro-v1:0"
+          provider: openai
+          name: gpt-5
           options:
-            bedrock:
-              aws_region: "us-west-2"
+            temperature: 1.0
             input_cost: 1000
             output_cost: 3000
         logging:
             log_statistics: true
             log_payloads: true
     - name: key-auth
-      instance_name: key-auth-bedrock
+      instance_name: key-auth-openai
       enabled: true
 consumers:
 - keyauth_credentials:
   - key: "123456"
   username: user1
 EOF
-:::
+```
 
 
 Note that, this time, we've added the ``logging`` section to our declaration as well as the cost based parameters. Submit it with ``deck``:
 
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
-deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-proxy-logging.yaml
-:::
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT ai-proxy-logging.yaml
+```
 
 
 
 Now, if you consume the Route the plugin will generate metrics and the Data Plane will push them to the Control Plane.
 
-:::code{showCopyAction=true showLineNumbers=false language=shell}
+```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
   --data '{
@@ -109,7 +107,7 @@ curl -s -X POST \
        }
      ]
    }' | jq
-:::
+```
 
 
 
