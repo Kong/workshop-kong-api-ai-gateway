@@ -72,8 +72,8 @@ The following commands do the following:
 * Create a new Keycloak Realm named as **kong**
 * Create a Client-Id named as **client1**. The ```serviceAccountsEnbled```parameter grants the Client-Id the support for the [**Client Credentials Grant**](https://oauth.net/2/grant-types/client-credentials/). That's the Client-Id we are going to use for coming configurations.
 * Get the Id of the Client-Id **client1**
-* Add redirect URIs. That is used for the **Authorization Code** Grant
-* Specifically for the Authorization Code Grant, a Keycloak user.
+* Add redirect URIs. That is used for the [**Authorization Code Grant**](https://oauth.net/2/grant-types/authorization-code/)
+* Specifically for the **Authorization Code Grant**, a Keycloak user.
 
 Click on Credentials and Set password. Type kong for both Password and Password confirmation fields. Turn Temporary to off and click on Save and Save Password.
 * Create a Client-Secret for the Client-Id **client1**. The Client-Secret is stored in the **CLIENT_SECRET** environment variable.
