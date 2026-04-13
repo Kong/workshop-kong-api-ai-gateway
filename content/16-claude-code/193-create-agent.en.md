@@ -19,13 +19,9 @@ Follow these instructions:
 ```
 
 
- Anthropic requires a tool to connect. So for the /v1/messsages requests use  with a dummy tool to connect to this endpoint.
-
-. Show the /v1/messages request before sending them.
-
 You should see:
 ```
-❯ [Pasted text #1 +4 lines]                     
+❯ [Pasted text #1 +5 lines]                     
 ```
 
 Press ``enter``.
