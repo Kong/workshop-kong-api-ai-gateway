@@ -25,26 +25,26 @@ Kong MCP Server The Kong MCP Server was introduced last April, 2025 and it’s a
 Kong MCP Server The Kong MCP Server was introduced last April, 2025 and it’s available in GitHub. The Kong MCP Server allows you to interact with Konnect and get current configuration about your Control Planes, Kong Objects (Service, Routes, Plugins, Consumers), etc.">
     <meta itemprop="wordCount" content="685">
     <title>Securing existing MCP Servers :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1776090912" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776090912" defer></script>
-    <script src="/js/search-lunr.js?1776090912" defer></script>
-    <script src="/js/search.js?1776090912" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1776098789" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1776098789" defer></script>
+    <script src="/js/search-lunr.js?1776098789" defer></script>
+    <script src="/js/search.js?1776098789" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776090912";
+      window.relearn.index_js_url="/searchindex.en.js?1776098789";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776090912" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776090912" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776090912" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776090912" defer></script>
+    <script src="/js/lunr/lunr.min.js?1776098789" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1776098789" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1776098789" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1776098789" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776090912" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776090912" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776090912" rel="stylesheet">
-    <link href="/css/theme.css?1776090912" rel="stylesheet">
-    <link href="/css/format-html.css?1776090912" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776098789" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776098789" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776098789" rel="stylesheet">
+    <link href="/css/theme.css?1776098789" rel="stylesheet">
+    <link href="/css/format-html.css?1776098789" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -159,8 +159,8 @@ Kong MCP Server The Kong MCP Server was introduced last April, 2025 and it’s a
 <h4 id="proxy-mcp-requests-with-mcp-gateway">Proxy MCP requests with MCP Gateway</h4>
 <p>You can consume the Kong MCP Server directly using the URL <code>https://us.mcp.konghq.com/</code>, adding your PAT. Once you have the Kong MCP Gateway configured, you can start consuming it just like you did with the MCP Server we crafted before. However, we want this MCP Server to sit behind the MCP Gateway and get controlled by it.</p>
 <p>That&rsquo;s where the second AI MCP Proxy use case comes in: to proxy MCP requests to existing MCP Server. The architecture is illustrated below:</p>
-<p><a href="#R-image-65190f0edca34a3c828a450d75aaed77" class="lightbox-link"><img alt="Kong MCP Servers overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_servers.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-65190f0edca34a3c828a450d75aaed77"><img alt="Kong MCP Servers overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_servers.png"></a></p>
+<p><a href="#R-image-2e2cdd9eef320a588088939930878f52" class="lightbox-link"><img alt="Kong MCP Servers overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_servers.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2e2cdd9eef320a588088939930878f52"><img alt="Kong MCP Servers overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_servers.png"></a></p>
 <p>Here’s our new decK declaration:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; mcp-proxy.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
@@ -206,8 +206,8 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mcp
 cause: self signed certificate</code></pre></div>
 <p>Click the &ldquo;Disable SSL Validation&rdquo; button and turn the &ldquo;SSL Certification Validation&rdquo; toggle off.</p>
 <p>Click the &ldquo;Connect&rdquo; button again. You should see the list of available Tools on your left. If you choose “GetControlPlane” and you should see a collection of boxes with all parameters available to run the Tool. Type <code>list</code> inside the &ldquo;operation&rdquo; box. Click “Call Tool” and see the results:</p>
-<p><a href="#R-image-e0c0696cf23c466fb1d2ff7bde952574" class="lightbox-link"><img alt="insomnia_kong_mcp_server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/insomnia_kong_mcp_server.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e0c0696cf23c466fb1d2ff7bde952574"><img alt="insomnia_kong_mcp_server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/insomnia_kong_mcp_server.png"></a></p>
+<p><a href="#R-image-92fab48ae278b146b138cd1fea62a30b" class="lightbox-link"><img alt="insomnia_kong_mcp_server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/insomnia_kong_mcp_server.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-92fab48ae278b146b138cd1fea62a30b"><img alt="insomnia_kong_mcp_server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/insomnia_kong_mcp_server.png"></a></p>
 <p>Click “Disconnect”.</p>
 <h2 id="aws-knowledge-mcp-server">AWS Knowledge MCP Server</h2>
 <p>AWS provides a long list of MCP Servers. A particularly interesting one is the AWS Knowledge MCP Server which provides real-time access to AWS documentation.</p>
@@ -238,8 +238,8 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mcp
 <p>Go back to <strong>Insomnia</strong> and click “Connect”. You should see on the list of available Tools on your left. Choose “aws__read_documentation&quot;.</p>
 <p>In the middle pane, inside the “url” box type: <a href="https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html" rel="external" target="_blank">https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html</a> or any AWS documentation link. Click “Call Tool”.</p>
 <p>Click “Call Tool” and see the results:</p>
-<p><a href="#R-image-2fd91c917e000b3884644374adf88c7c" class="lightbox-link"><img alt="insomnia_aws_mcp_server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/insomnia_aws_mcp_server.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2fd91c917e000b3884644374adf88c7c"><img alt="insomnia_aws_mcp_server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/insomnia_aws_mcp_server.png"></a></p>
+<p><a href="#R-image-0cb3001b38a6880dfe28ce9c5f709655" class="lightbox-link"><img alt="insomnia_aws_mcp_server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/insomnia_aws_mcp_server.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0cb3001b38a6880dfe28ce9c5f709655"><img alt="insomnia_aws_mcp_server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/insomnia_aws_mcp_server.png"></a></p>
 <p>Click “Disconnect”.</p>
 <p>You can now click <strong>Next</strong> to proceed further.</p>
 
@@ -325,8 +325,8 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mcp
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776090912" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776090912" defer></script>
-    <script src="/js/theme.js?1776090912" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1776098789" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776098789" defer></script>
+    <script src="/js/theme.js?1776098789" defer></script>
   </body>
 </html>
