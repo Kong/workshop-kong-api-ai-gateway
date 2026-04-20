@@ -19,7 +19,7 @@ We are going to run a basic Strands Agent, written in Python, to better understa
 uv init kong-workshop-strands
 uv venv
 source .venv/bin/activate
-uv pip install 'strands-agents[openai]'
+uv pip install 'strands-agents[openai]==1.23.0'
 uv pip install aiohttp
 cd kong-workshop-strands
 ```
