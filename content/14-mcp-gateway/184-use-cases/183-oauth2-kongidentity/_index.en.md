@@ -150,7 +150,8 @@ In this sense, OpenId Connect, adds some new concepts:
     * ["/.well-known/openid-configuration"](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig)
 * New terminology:
     * **OpenID Connect Provider (OP)**: It's the Identity Provider. That's the term for the "Authorization Server". Kong Identity plays that role.
-    * **Replying Party (RP)**: It's the OpenID Connect term for “client”. That's the application that trusts the **OP** and validades the ID Token. Kong Data Plane plays that role.
+    * **Relying Party (RP)**: It's the OpenID Connect term for “client”. That's the application that trusts the **OP** and validades the ID Token. Kong Data Plane plays the **Relying Party** (RP) role whenever Kong itself performs the OpenID Connect login flow and relies on the ID Token issued by the **OpenID Connect Provider** (OP).
+
 * Specific ["scopes" and "claims"](https://openid.net/specs/openid-connect-core-1_0-36.html#ScopeClaims) related to identities.
 
 
