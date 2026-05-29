@@ -19,8 +19,8 @@ The [**OAuth2 Authorization Framework**](https://datatracker.ietf.org/doc/html/r
 
 * **Client**: Usually a program. The Client obtains an Access Token from the Authorization Server. In our implementation, this role is played by the **MCP Consumer**.
 * **Resource Owner (RO)**: The End-User participant. Usually a user but can also be a machine/service.
-* **Authorization Server (AS)**: Handles the End-User (RO) authentication, obtains consent and issues tokens with claims about the authentication event to the RP. In our implementation, this role is played by **Kong Identity**.
-* **Resource Server (RS)**: The server hosting protected resources accessible with Access Tokens (e.g. an API or a web page). RS is responsbible for validating the Access Token, enforcing scopes/permissions and returning protected data. This role is played by **Kong Data Plane**. The **Kong Data Plane** validates the token through the **Token Introspection** Flow.
+* **Authorization Server (AS)**: It authenticates the **Resource Owner**, obtains authorization/consent when required, and issues tokens (authorization codes, access tokens, ID tokens, refresh tokens) to the client. In our implementation, this role is played by **Kong Identity**.
+* **Resource Server (RS)**: The server hosting protected resources (e.g. an API or a web page) that can be accessed using Access Tokens. The **Resource Server** validates Access Tokens, enforces authorization policies, and returns protected resources to authorized clients. In this architecture, the **Kong Data Plane** acts as the **Resource Server**. Kong validates opaque Access Tokens through **OAuth 2.0 Token Introspection** with the **Authorization Server** and enforces the scopes and claims returned by the introspection response before forwarding requests to upstream services.
 
 
 #### Authorization Grant
