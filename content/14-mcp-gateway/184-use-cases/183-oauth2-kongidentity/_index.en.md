@@ -53,7 +53,7 @@ The use case described later is going to use the [**Client Credentials Grant**](
 ```
 * **(A)**: The Client requests an Access Token by authenticating with the Authorization Server (AS) and presenting the "Client Credentials Authorization Grant".
 * **(B)**: The AS authenticates the Client and validates the Authorization Grant, and if valid, issues an Access Token.
-* **(C)**: The Client requests the protected resource from the Resource Server (RS) and authenticates by presenting the Access Token.
+* **(C)**: The Client [accesses](https://datatracker.ietf.org/doc/html/rfc6749#section-7) the protected resource by sending a request to the Resource Server (RS) presenting the Access Token as a [Bearer Token](https://datatracker.ietf.org/doc/html/rfc6750).
 * **(D)**: Through the Introspection Flow, the RS validates the Access Token, and, if valid, serves the request.
 
 
