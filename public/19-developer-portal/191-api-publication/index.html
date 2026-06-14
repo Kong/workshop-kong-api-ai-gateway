@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.160.1">
+    <meta name="generator" content="Hugo 0.163.1">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed
 Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com Create a Kong Route with path / Globally enable the CORS plugin to your Control Plane. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Dev Portal menu option and click &#43; Create a new portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Save Click Go to overview. You should see the Overview page of your portal Check the Portal configuration: User authentication: Konnect built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the build-in option, it can be configured as OIDC or SAML. Default authentication strategy: key-auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.">
@@ -25,26 +25,26 @@ Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com 
     <meta itemprop="wordCount" content="686">
     <title>Dev Portal creation and API publication :: API Management with Kong Konnect</title>
     <link href="/19-developer-portal/191-api-publication/index.xml" rel="alternate" type="application/rss+xml" title="Dev Portal creation and API publication :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1776098789" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1776098789" defer></script>
-    <script src="/js/search-lunr.js?1776098789" defer></script>
-    <script src="/js/search.js?1776098789" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1781475332" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1781475332" defer></script>
+    <script src="/js/search-lunr.js?1781475332" defer></script>
+    <script src="/js/search.js?1781475332" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1776098789";
+      window.relearn.index_js_url="/searchindex.en.js?1781475332";
     </script>
-    <script src="/js/lunr/lunr.min.js?1776098789" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1776098789" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1776098789" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1776098789" defer></script>
+    <script src="/js/lunr/lunr.min.js?1781475332" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1781475332" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1781475332" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1781475332" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776098789" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1776098789" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1776098789" rel="stylesheet">
-    <link href="/css/theme.css?1776098789" rel="stylesheet">
-    <link href="/css/format-html.css?1776098789" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1781475332" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1781475332" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1781475332" rel="stylesheet">
+    <link href="/css/theme.css?1781475332" rel="stylesheet">
+    <link href="/css/format-html.css?1781475332" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -167,11 +167,11 @@ Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com 
 <ol>
 <li>Choose the <strong>Dev Portal</strong> menu option and click <strong>+ Create a new portal</strong>.</li>
 <li>Create a <strong>Private Portal</strong> named <code>portal1</code>. In the <strong>New Portal</strong> page accept the default values and click <strong>Save</strong>
-<a href="#R-image-5cc08b7eb80fc572d8f6f826eb3565fb" class="lightbox-link"><img alt="portal1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5cc08b7eb80fc572d8f6f826eb3565fb"><img alt="portal1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1.png"></a></li>
+<a href="#R-image-4d7741429a093d841fcc051037f654af" class="lightbox-link"><img alt="portal1" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4d7741429a093d841fcc051037f654af"><img alt="portal1" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1.png"></a></li>
 <li>Click <strong>Go to overview</strong>. You should see the <strong>Overview</strong> page of your portal
-<a href="#R-image-d3886b704ab6f88780ccba0303349cd8" class="lightbox-link"><img alt="portal1_overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_overview.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d3886b704ab6f88780ccba0303349cd8"><img alt="portal1_overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_overview.png"></a></li>
+<a href="#R-image-c803d2d3b05253954a8a570c388b8072" class="lightbox-link"><img alt="portal1_overview" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_overview.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c803d2d3b05253954a8a570c388b8072"><img alt="portal1_overview" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_overview.png"></a></li>
 <li>Check the Portal configuration:</li>
 </ol>
 <ul>
@@ -183,22 +183,22 @@ Kong Service and Route Create a Kong Service based on http://httpbin.konghq.com 
 <li>Sign Up</li>
 </ol>
 <p>If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there&rsquo;s no developer created, click <strong>Sing up</strong> and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.</p>
-<p><a href="#R-image-a932e150e6166e47da5d9270f606f339" class="lightbox-link"><img alt="portal1_signup" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_signup.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a932e150e6166e47da5d9270f606f339"><img alt="portal1_signup" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_signup.png"></a></p>
+<p><a href="#R-image-6654e8a400239fe573e9b2d222e03b3d" class="lightbox-link"><img alt="portal1_signup" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_signup.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6654e8a400239fe573e9b2d222e03b3d"><img alt="portal1_signup" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_signup.png"></a></p>
 <p>Check your email and click the <strong>Confirm your email address</strong>. Still playing the developer role, you should get redirected to the Dev Portal to define your password.</p>
 <p>After creating the password, if you try to login, you&rsquo;ll receive an error message saying &ldquo;Your account is disabled or pending approval&rdquo;. That&rsquo;s because, by default, the Dev Portal was created with the <strong>Auto approved developers</strong> option disabled, meaning the administrator has to manually approve the new developers registrations.</p>
 <ol start="2">
 <li>Approve the Developer registration</li>
 </ol>
 <p>Getting back to the Dev Portal Administrator role, return to the <strong>Dev Portal</strong> menu option and choose <strong>Access and approvals</strong>. You can approve the new developer registration in the page:</p>
-<p><a href="#R-image-4d23e43df719b78ca8493839ee7d4e6b" class="lightbox-link"><img alt="portal1_developer_approval" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_developer_approval.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4d23e43df719b78ca8493839ee7d4e6b"><img alt="portal1_developer_approval" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_developer_approval.png"></a></p>
+<p><a href="#R-image-1106e4f702421b0fb132f255c30b2413" class="lightbox-link"><img alt="portal1_developer_approval" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_developer_approval.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1106e4f702421b0fb132f255c30b2413"><img alt="portal1_developer_approval" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_developer_approval.png"></a></p>
 <ol start="3">
 <li>Login to the Dev Portal</li>
 </ol>
 <p>Playing the Developer role again, try to login to the Dev Portal one more time. You should get redirected to the Dev Portal home page. Click the <strong>API</strong> tab. You are supposed to get an empty page since we don&rsquo;t have any API published.</p>
-<p><a href="#R-image-ee723a3dee33632848e1b9ebd296026f" class="lightbox-link"><img alt="portal1_no_apis" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_no_apis.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ee723a3dee33632848e1b9ebd296026f"><img alt="portal1_no_apis" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_no_apis.png"></a></p>
+<p><a href="#R-image-cc29194f37525c6339d1a59737adbe36" class="lightbox-link"><img alt="portal1_no_apis" class="lazy lightbox figure-image" loading="lazy" src="/static/images/portal1_no_apis.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc29194f37525c6339d1a59737adbe36"><img alt="portal1_no_apis" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/portal1_no_apis.png"></a></p>
 <h3 id="api-creation">API creation</h3>
 <ol>
 <li>Prepare your OpenAPI specification</li>
@@ -231,38 +231,38 @@ security:
 <li>Create your API</li>
 </ol>
 <p>Choose the <strong>APIs</strong> menu option inside <strong>Dev Portal</strong> and click <strong>+ New API</strong>. Upload your <code>httpbin_orig.yaml</code> and click <strong>Create</strong>. You should see your <code>httpbin</code> API page:</p>
-<p><a href="#R-image-544d8a8231e984c8b1bfd7f62b77328f" class="lightbox-link"><img alt="httpbin_api" class="lazy lightbox figure-image" loading="lazy" src="/static/images/httpbin_api.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-544d8a8231e984c8b1bfd7f62b77328f"><img alt="httpbin_api" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/httpbin_api.png"></a></p>
+<p><a href="#R-image-c612c112367960444889493b9cb41c0a" class="lightbox-link"><img alt="httpbin_api" class="lazy lightbox figure-image" loading="lazy" src="/static/images/httpbin_api.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c612c112367960444889493b9cb41c0a"><img alt="httpbin_api" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/httpbin_api.png"></a></p>
 <ol start="3">
 <li>Test your API</li>
 </ol>
 <p>Click the <strong>API Specification</strong> tab. Click <strong>try it!</strong> in the <strong>Returns Origin IP</strong></p>
-<p><a href="#R-image-d883f391a9e3a5d93a0d4cefb942345d" class="lightbox-link"><img alt="tryit" class="lazy lightbox figure-image" loading="lazy" src="/static/images/tryit.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d883f391a9e3a5d93a0d4cefb942345d"><img alt="tryit" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/tryit.png"></a></p>
+<p><a href="#R-image-6e4af266f6aea101845e67eab6730f02" class="lightbox-link"><img alt="tryit" class="lazy lightbox figure-image" loading="lazy" src="/static/images/tryit.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6e4af266f6aea101845e67eab6730f02"><img alt="tryit" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/tryit.png"></a></p>
 <ol start="4">
 <li>Add a documentation</li>
 </ol>
 <p>Click the <strong>Documentation</strong> tab. Create a new and empty document page with both name and slug as <code>doc1</code>. Click <strong>edit</strong> and type some documentation. Click <strong>save</strong> and switch the <strong>Published</strong> toggle on.</p>
-<p><a href="#R-image-8a74c6eeabf11500b82c892d5f0a3da9" class="lightbox-link"><img alt="api_documentation" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_documentation.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8a74c6eeabf11500b82c892d5f0a3da9"><img alt="api_documentation" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_documentation.png"></a></p>
+<p><a href="#R-image-391a83f6b54bfacf0376b5243fdad36f" class="lightbox-link"><img alt="api_documentation" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_documentation.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-391a83f6b54bfacf0376b5243fdad36f"><img alt="api_documentation" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_documentation.png"></a></p>
 <h3 id="api-publication">API Publication</h3>
 <ol>
 <li>Go to the <strong>Portals</strong> tab and click <strong>Publish API</strong>. Choose <code>portal1</code>and make sure you have the <strong>API visibility</strong> set as <code>Private</code>. Click <strong>Publish API</strong>.</li>
 </ol>
 <p>You should see the <code>portal1</code> listed inside the tab.</p>
-<p><a href="#R-image-f789825b7b1766e3b01d7536aee75cd9" class="lightbox-link"><img alt="api_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f789825b7b1766e3b01d7536aee75cd9"><img alt="api_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_portal.png"></a></p>
+<p><a href="#R-image-f43bbb0849f0b924ded5785436dfef22" class="lightbox-link"><img alt="api_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_portal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f43bbb0849f0b924ded5785436dfef22"><img alt="api_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_portal.png"></a></p>
 <ol start="2">
 <li>You are going to play the Developer role again. Click on the URL shown in the <strong>Portals</strong> tab to get redirected to the Dev Portal. Login to it, if needed.</li>
 </ol>
 <p>Inside the Dev Portal home page, click the <strong>APIs</strong> tab. You should see the API you&rsquo;ve just published.</p>
-<p><a href="#R-image-916e6122857f434e15f1b38978b42d31" class="lightbox-link"><img alt="api_devportal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-916e6122857f434e15f1b38978b42d31"><img alt="api_devportal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal.png"></a></p>
+<p><a href="#R-image-0fb263e61d6c034c2aa34c85114e62ca" class="lightbox-link"><img alt="api_devportal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0fb263e61d6c034c2aa34c85114e62ca"><img alt="api_devportal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal.png"></a></p>
 <ol start="3">
 <li>Click <strong>View APIs</strong>. You should see the documentation page with the data you entered before. Click <strong>Overview</strong> to see the <code>httpbin</code> API specification rendered in the page. Click <strong>Try it</strong> for <strong>Returns Origin IP</strong> to send a request to the Data Plane and consume the API.</li>
 </ol>
-<p><a href="#R-image-3d4e9ed1b51cb193dd54a550197d2591" class="lightbox-link"><img alt="api_devportal_return" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal_return.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3d4e9ed1b51cb193dd54a550197d2591"><img alt="api_devportal_return" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal_return.png"></a></p>
+<p><a href="#R-image-d2a8e94c2c81ebb768a6caf2b0f0ab47" class="lightbox-link"><img alt="api_devportal_return" class="lazy lightbox figure-image" loading="lazy" src="/static/images/api_devportal_return.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d2a8e94c2c81ebb768a6caf2b0f0ab47"><img alt="api_devportal_return" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/api_devportal_return.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -341,8 +341,8 @@ security:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1776098789" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1776098789" defer></script>
-    <script src="/js/theme.js?1776098789" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1781475332" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1781475332" defer></script>
+    <script src="/js/theme.js?1781475332" defer></script>
   </body>
 </html>
