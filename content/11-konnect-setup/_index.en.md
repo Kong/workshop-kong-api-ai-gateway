@@ -5,7 +5,7 @@ weight : 110
 
 This chapter will walk you through
 
-* Konnect Control Plane and Data Plane creation using Kong Gateway Operator (KGO).
+* Konnect Control Plane and Data Plane creation using Kong Operator (KO).
 * Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. 
 * Access Kong data plane through Minikube tunnel
 
