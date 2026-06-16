@@ -77,7 +77,7 @@ The use case described later is going to use the [**Client Credentials Grant**](
   * ``jti``: the "JWT ID" claim provides a unique identifier for the JWT. That's useful to prevent collisions when managing multiple issuers.
 
 
-* [**Audience**](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3) is a claim which defines the recipients that the tokens are intended for. It identifies the API or resource server that should accept the token. This becomes the ``‘aud’`` claim in an Access Token. If a user authenticates to access ``app1`` but attempts to use that token to access ``app2``, checking the ``aud`` claim will reject the request.
+* [**Audience**](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3) is a claim which defines the recipients that the tokens are intended for. It identifies the API or resource server that should accept the token. This becomes the ``‘aud’`` claim in an Access Token. If an user authenticates to access ``app1`` but attempts to use that token to access ``app2``, checking the ``aud`` claim will reject the request.
 
 
 * [**Scope**](https://oauth.net/2/scope/) is a mechanism in OAuth 2 to limit an application's access to a user's account. The access token issued to the application will be limited to the scopes granted. It's not part of the JWT specification. Identity Providers, playing the Authorization Server role like Kong Identity, implement and add **scopes** to their JWT based Access Tokens using, for example:
