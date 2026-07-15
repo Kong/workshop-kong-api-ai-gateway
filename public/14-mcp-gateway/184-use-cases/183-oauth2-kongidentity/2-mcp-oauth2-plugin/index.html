@@ -9,42 +9,42 @@
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="AI MCP OAuth2 plugin configuration :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/2-mcp-oauth2-plugin/index.html">
-    <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="AI MCP OAuth2 plugin configuration :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
-    <meta itemprop="name" content="AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect">
+    <meta itemprop="name" content="AI MCP OAuth2 plugin configuration :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="Download the new decK file Download the marketplace_mcp_oauth_kong_identity.yaml spec. The declaration extends the mcp-listener-route, responsible for aggregating the MCP Tools, with the AI MCP OAuth2 plugin.
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta itemprop="wordCount" content="534">
-    <title>AI MCP OAuth2 plugin configuration :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784139776" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784139776" defer></script>
-    <script src="/js/search-lunr.js?1784139776" defer></script>
-    <script src="/js/search.js?1784139776" defer></script>
+    <title>AI MCP OAuth2 plugin configuration :: API and AI Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
+    <script src="/js/search-lunr.js?1784150032" defer></script>
+    <script src="/js/search.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784139776";
+      window.relearn.index_js_url="/searchindex.en.js?1784150032";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784139776" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139776" rel="stylesheet">
-    <link href="/css/theme.css?1784139776" rel="stylesheet">
-    <link href="/css/format-html.css?1784139776" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
+    <link href="/css/theme.css?1784150032" rel="stylesheet">
+    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -747,7 +747,7 @@ aside#R-sidebar,
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI MCP OAuth2 plugin configuration</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">AI MCP OAuth2 plugin configuration</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html" title="Kong Identity (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -904,7 +904,7 @@ Token claims
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
           <a id="R-logo" class="R-default" href="/index.html">
-            <div class="logo-title">API Management with Kong Konnect</div>
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
           </a>
         </div>
         <search><form action="/search/index.html" method="get">
@@ -978,8 +978,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784139776" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139776" defer></script>
-    <script src="/js/theme.js?1784139776" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
+    <script src="/js/theme.js?1784150032" defer></script>
   </body>
 </html>

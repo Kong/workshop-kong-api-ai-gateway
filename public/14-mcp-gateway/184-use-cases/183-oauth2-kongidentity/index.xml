@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Implement the OAuth 2 specification for MCP servers with Kong Identity :: API Management with Kong Konnect</title>
+    <title>Implement the OAuth 2 specification for MCP servers with Kong Identity :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html</link>
     <description>MCP Authorization As you might have noticed, until now, there’s no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement Authentication and Security processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.&#xA;On the other hand, the MCP community has defined Authorization specifications, based on OAuth 2 standards. To be fully compliant with the specs, the Kong AI Gateway provides a second plugin, responsible for implementing those specs: the AI MCP OAuth2 Plugin.</description>
     <generator>Hugo</generator>

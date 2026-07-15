@@ -1,11 +1,11 @@
 ---
-title: "API Management with Kong Konnect"
+title: "API and AI Management with Kong Konnect"
 weight: 0
 ---
 
 # Introduction
 
-Kong Konnect is an API lifecycle management platform delivered as a service. The management plane is hosted in the cloud by Kong, while the runtime environments are deployed in your personal environment. Management plane enables customers to securely execute API management activities such as create API routes, define services etc. Runtime environments connect with the management plane using mutual transport layer authentication (mTLS), receive the updates and take customer facing API traffic.
+Kong Konnect unifies and manages APIs, LLMs, events, and microservices with a single, centralized management plane, giving you consistent visibility and control across your entire API ecosystem. It uniquely combines a control plane, managed by Kong and hosted in the cloud, with the versatility of managing the data plane on your terms—either self-managed or through Kong, within your preferred network environment.
 
 # Learning Objectives
 

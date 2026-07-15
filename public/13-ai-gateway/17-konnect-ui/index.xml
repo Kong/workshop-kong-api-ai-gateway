@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Konnect AI Gateway User Interface :: API Management with Kong Konnect</title>
+    <title>Konnect AI Gateway User Interface :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/13-ai-gateway/17-konnect-ui/index.html</link>
     <description>AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.&#xA;Key features include:&#xA;Routing and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.</description>
     <generator>Hugo</generator>

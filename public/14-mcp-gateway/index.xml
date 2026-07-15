@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kong MCP Gateway :: API Management with Kong Konnect</title>
+    <title>Kong MCP Gateway :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/14-mcp-gateway/index.html</link>
     <description>In this third part of the workshop we are going to explore the MCP capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
     <generator>Hugo</generator>

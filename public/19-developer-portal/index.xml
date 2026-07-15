@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Konnect Developer Portal :: API Management with Kong Konnect</title>
+    <title>Konnect Developer Portal :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/19-developer-portal/index.html</link>
     <description>The Konnect Developer Portal is a customizable website for developers to locate, access, and consume API services. It enables developers to browse and search API documentation, try API operations, and manage their own credentials. The Portal supports both internal and external APIs through flexible deployment options.&#xA;Dev Portal APIs allow you to publish APIs using OpenAPI or AsyncAPI specifications and Markdown documentation. You can provide highly customizable content at both the site and API level to offer additional context to developers.</description>
     <generator>Hugo</generator>

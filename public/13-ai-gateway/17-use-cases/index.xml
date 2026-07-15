@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Use Cases :: API Management with Kong Konnect</title>
+    <title>Use Cases :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/13-ai-gateway/17-use-cases/index.html</link>
     <description>In this chapter we are going to explore the following common use cases we typically implement at the API Gateway Layer.&#xA;Simple AI Gateway Proxy Prompt Engineering AI Request and Response Tranformers AI Semantic Cache AI Rate Limiting AI Proxy Advanced and load balancing algoritms RAG These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong AI plugins on the Plugin Hub.</description>
     <generator>Hugo</generator>

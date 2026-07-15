@@ -9,42 +9,42 @@
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: kong-workshop-dp namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config-workshop group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.14 replicas: 3 network: services: ingress: name: proxy-kong-workshop type: LoadBalancer EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Scale Kong for Kubernetes to multiple pods :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="Scale Kong for Kubernetes to multiple pods :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="Let’s scale out the Kong Data Plane deployment to 3 pods, for scalability and redundancy:
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: kong-workshop-dp namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config-workshop group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.14 replicas: 3 network: services: ingress: name: proxy-kong-workshop type: LoadBalancer EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta property="og:url" content="http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1564-scale-kong-for-kubernetes-to-multiple-pods/index.html">
-    <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Scale Kong for Kubernetes to multiple pods :: API Management with Kong Konnect">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="Scale Kong for Kubernetes to multiple pods :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="Let’s scale out the Kong Data Plane deployment to 3 pods, for scalability and redundancy:
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: kong-workshop-dp namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config-workshop group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.14 replicas: 3 network: services: ingress: name: proxy-kong-workshop type: LoadBalancer EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong API Gateway">
-    <meta itemprop="name" content="Scale Kong for Kubernetes to multiple pods :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Scale Kong for Kubernetes to multiple pods :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="Let’s scale out the Kong Data Plane deployment to 3 pods, for scalability and redundancy:
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: kong-workshop-dp namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config-workshop group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.14 replicas: 3 network: services: ingress: name: proxy-kong-workshop type: LoadBalancer EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta itemprop="wordCount" content="375">
-    <title>Scale Kong for Kubernetes to multiple pods :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784139776" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784139776" defer></script>
-    <script src="/js/search-lunr.js?1784139776" defer></script>
-    <script src="/js/search.js?1784139776" defer></script>
+    <title>Scale Kong for Kubernetes to multiple pods :: API and AI Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
+    <script src="/js/search-lunr.js?1784150032" defer></script>
+    <script src="/js/search.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784139776";
+      window.relearn.index_js_url="/searchindex.en.js?1784150032";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784139776" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139776" rel="stylesheet">
-    <link href="/css/theme.css?1784139776" rel="stylesheet">
-    <link href="/css/format-html.css?1784139776" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
+    <link href="/css/theme.css?1784150032" rel="stylesheet">
+    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -746,7 +746,7 @@ aside#R-sidebar,
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><span itemprop="name">Rate Limiting Using Redis</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Scale Kong for Kubernetes to multiple pods</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/index.html"><span itemprop="name">Kong API Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html"><span itemprop="name">Rate Limiting Using Redis</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Scale Kong for Kubernetes to multiple pods</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/1563-setup-rate-limiting-plugin/index.html" title="Set up Rate Limiting plugin (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -810,8 +810,8 @@ dataplane-dataplane1-qdc66-84d7746bbf-kpbpl   1/1     Running   0          26s
 httpbin-5c69574c95-xq76q                      1/1     Running   0          6d19h</code></pre></div>
 <h3 id="check-konnect-runtime-group">Check Konnect Runtime Group</h3>
 <p>Similarly you can see new Runtime Instances connected to your Runtime Group</p>
-<p><a href="#R-image-ba469deb947dfa17bd95db5f96ff1ca8" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ba469deb947dfa17bd95db5f96ff1ca8"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
+<p><a href="#R-image-3bced77531999273e9286d24a073ea7b" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3bced77531999273e9286d24a073ea7b"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
 <h4 id="verify-traffic-control">Verify traffic control</h4>
 <p>Test the rate-limiting policy by executing the following command and observing the rate-limit headers.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -I $DATA_PLANE_LB/rate-limiting-route/get</code></pre></div>
@@ -851,7 +851,7 @@ X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942</code></pre></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
           <a id="R-logo" class="R-default" href="/index.html">
-            <div class="logo-title">API Management with Kong Konnect</div>
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
           </a>
         </div>
         <search><form action="/search/index.html" method="get">
@@ -929,8 +929,8 @@ X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784139776" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139776" defer></script>
-    <script src="/js/theme.js?1784139776" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
+    <script src="/js/theme.js?1784150032" defer></script>
   </body>
 </html>

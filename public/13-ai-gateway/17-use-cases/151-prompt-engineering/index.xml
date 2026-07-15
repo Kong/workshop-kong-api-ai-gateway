@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Prompt Engineering :: API Management with Kong Konnect</title>
+    <title>Prompt Engineering :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/13-ai-gateway/17-use-cases/151-prompt-engineering/index.html</link>
     <description>For Prompt Engineering use cases, Kong AI Gateway provides:&#xA;AI Prompt Decorator plugin: it injects messages at the start or end of a caller’s chat history. AI Prompt Guard plugin: it lets you configure a series of PCRE-compatible regular expressions to allow and block specific prompts, words, phrases, or otherwise and have more control over the LLM. AI Prompt Template plugin: it’s responsible for pre-configuring AI prompts to users All plugins extend the functionality of the AI Proxy plugin, and requires AI Proxy to be configured first.</description>
     <generator>Hugo</generator>

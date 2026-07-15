@@ -10,45 +10,45 @@ Create authorization servers per region Issue and validate access tokens Integra
 Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Kong Identity :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="Kong Identity :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="Kong Identity enables you to use Konnect to generate, authenticate, and authorize API access. Specifically, Kong Identity can be used for machine-to-machine authentication. You can use Kong Identity to:
 Create authorization servers per region Issue and validate access tokens Integrate secure authentication into your Kong Gateway APIs Introspection Flow This section describes the OAuth Token Introspection implemented by Kong MCP Gateway and Kong Identity as the Identity Provider.
 Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.">
     <meta property="og:url" content="http://localhost:1313/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/1-kong-identity/index.html">
-    <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Kong Identity :: API Management with Kong Konnect">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="Kong Identity :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="Kong Identity enables you to use Konnect to generate, authenticate, and authorize API access. Specifically, Kong Identity can be used for machine-to-machine authentication. You can use Kong Identity to:
 Create authorization servers per region Issue and validate access tokens Integrate secure authentication into your Kong Gateway APIs Introspection Flow This section describes the OAuth Token Introspection implemented by Kong MCP Gateway and Kong Identity as the Identity Provider.
 Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Kong MCP Gateway">
-    <meta itemprop="name" content="Kong Identity :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Kong Identity :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="Kong Identity enables you to use Konnect to generate, authenticate, and authorize API access. Specifically, Kong Identity can be used for machine-to-machine authentication. You can use Kong Identity to:
 Create authorization servers per region Issue and validate access tokens Integrate secure authentication into your Kong Gateway APIs Introspection Flow This section describes the OAuth Token Introspection implemented by Kong MCP Gateway and Kong Identity as the Identity Provider.
 Create the Authorization Server in Kong Identity Before you can configure the AI MCP OAuth2 plugin, you must first create an Authorization Server in Kong Identity. The AuthZ Server name is unique per each organization and each Konnect region. You can use the Kong Identity UI to create your AuthZ Server. However, we are going to exercise the Kong Identity REST Admin APIs to do it. Make sure you still have the PAT environment variable set.">
     <meta itemprop="wordCount" content="727">
-    <title>Kong Identity :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784139776" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784139776" defer></script>
-    <script src="/js/search-lunr.js?1784139776" defer></script>
-    <script src="/js/search.js?1784139776" defer></script>
+    <title>Kong Identity :: API and AI Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
+    <script src="/js/search-lunr.js?1784150032" defer></script>
+    <script src="/js/search.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784139776";
+      window.relearn.index_js_url="/searchindex.en.js?1784150032";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784139776" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139776" rel="stylesheet">
-    <link href="/css/theme.css?1784139776" rel="stylesheet">
-    <link href="/css/format-html.css?1784139776" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
+    <link href="/css/theme.css?1784150032" rel="stylesheet">
+    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -758,7 +758,7 @@ aside#R-sidebar,
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong Identity</span><meta itemprop="position" content="5"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/index.html"><span itemprop="name">Kong MCP Gateway</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/index.html"><span itemprop="name">Use Cases</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html"><span itemprop="name">Implement the OAuth 2 specification for MCP servers with Kong Identity</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Kong Identity</span><meta itemprop="position" content="5"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.html" title="Implement the OAuth 2 specification for MCP servers with Kong Identity (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -998,8 +998,8 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n</code></pre></div>
 }</code></pre></div>
 <h4 id="kong-identity-user-interface">Kong Identity User Interface</h4>
 <p>You can also check the Konnect UI with your Authorization Server and its Clients, Scopes and Claims defined:</p>
-<p><a href="#R-image-d531e98af162bf85ba39bc7ee5db6ad6" class="lightbox-link"><img alt="Kong Identity configuration page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_identity.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d531e98af162bf85ba39bc7ee5db6ad6"><img alt="Kong Identity configuration page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_identity.png"></a></p>
+<p><a href="#R-image-2239ba83c55bd089dca9cc1bbe070aa1" class="lightbox-link"><img alt="Kong Identity configuration page" class="lazy lightbox figure-image" loading="lazy" src="/static/images/kong_identity.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2239ba83c55bd089dca9cc1bbe070aa1"><img alt="Kong Identity configuration page" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/kong_identity.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -1012,7 +1012,7 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n</code></pre></div>
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
           <a id="R-logo" class="R-default" href="/index.html">
-            <div class="logo-title">API Management with Kong Konnect</div>
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
           </a>
         </div>
         <search><form action="/search/index.html" method="get">
@@ -1086,8 +1086,8 @@ export CLIENT_SECRET=7o85r56b48aiba4hrxc60i6n</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784139776" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139776" defer></script>
-    <script src="/js/theme.js?1784139776" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
+    <script src="/js/theme.js?1784150032" defer></script>
   </body>
 </html>

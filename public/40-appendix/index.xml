@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Appendix :: API Management with Kong Konnect</title>
+    <title>Appendix :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/40-appendix/index.html</link>
     <description>Here are the manifests we used throughout the workshop&#xA;RAG Injector Mocking Plugin, AI MCP Proxy Plugin and AI MCP OAuth2 Plugin Logging LLM Proxy for Solace Agent Mesh</description>
     <generator>Hugo</generator>

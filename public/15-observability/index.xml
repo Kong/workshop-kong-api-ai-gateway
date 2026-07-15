@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Konnect Observability :: API Management with Kong Konnect</title>
+    <title>Konnect Observability :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/15-observability/index.html</link>
     <description>This part of the workshop is dedicated to Observability, exploring:&#xA;Built-in capabilities provided by Konnect Kong Data Plane plugins to integrate with external Observability infrastructures such as Dynatrace or Honeycomb.</description>
     <generator>Hugo</generator>

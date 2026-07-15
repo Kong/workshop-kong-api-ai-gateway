@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rate Limiting Using Redis :: API Management with Kong Konnect</title>
+    <title>Rate Limiting Using Redis :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/12-api-gateway/15-use-cases/156-rate-limiting-using-redis/index.html</link>
     <description>Kong can rate-limit your traffic without any external dependency. In such a case, Kong stores the request counters in-memory and each Kong node applies the rate-limiting policy independently. There is no synchronization of information being done in this case. But if Redis is available in your cluster, Kong can take advantage of it and synchronize the rate-limit information across multiple Kong nodes and enforce a slightly different rate-limiting policy.&#xA;This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.</description>
     <generator>Hugo</generator>

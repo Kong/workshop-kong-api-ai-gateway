@@ -10,45 +10,45 @@ Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Ko
 Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Konnect Setup :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="Konnect Setup :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="This chapter will walk you through
 Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:
 Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:">
     <meta property="og:url" content="http://localhost:1313/11-konnect-setup/index.html">
-    <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="Konnect Setup :: API Management with Kong Konnect">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="Konnect Setup :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="This chapter will walk you through
 Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:
 Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Konnect Setup :: API Management with Kong Konnect">
+    <meta itemprop="name" content="Konnect Setup :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="This chapter will walk you through
 Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:
 Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:">
     <meta itemprop="wordCount" content="380">
-    <title>Konnect Setup :: API Management with Kong Konnect</title>
-    <link href="/11-konnect-setup/index.xml" rel="alternate" type="application/rss+xml" title="Konnect Setup :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1784139776" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784139776" defer></script>
-    <script src="/js/search-lunr.js?1784139776" defer></script>
-    <script src="/js/search.js?1784139776" defer></script>
+    <title>Konnect Setup :: API and AI Management with Kong Konnect</title>
+    <link href="/11-konnect-setup/index.xml" rel="alternate" type="application/rss+xml" title="Konnect Setup :: API and AI Management with Kong Konnect">
+    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
+    <script src="/js/search-lunr.js?1784150032" defer></script>
+    <script src="/js/search.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784139776";
+      window.relearn.index_js_url="/searchindex.en.js?1784150032";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784139776" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139776" rel="stylesheet">
-    <link href="/css/theme.css?1784139776" rel="stylesheet">
-    <link href="/css/format-html.css?1784139776" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
+    <link href="/css/theme.css?1784150032" rel="stylesheet">
+    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -749,7 +749,7 @@ aside#R-sidebar,
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Konnect Setup</span><meta itemprop="position" content="2"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Konnect Setup</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/architecture/index.html" title="Kong Konnect Architectural Overview (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -783,8 +783,8 @@ aside#R-sidebar,
 <li>Access Kong data plane through Minikube tunnel</li>
 </ul>
 <p>Here&rsquo;s a Reference Architecture that will be implemented in this workshop:</p>
-<p><a href="#R-image-55494ff26c932e6d00aaa1a6cfc3132d" class="lightbox-link"><img alt="kong" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ref_arch_new.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-55494ff26c932e6d00aaa1a6cfc3132d"><img alt="kong" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ref_arch_new.png"></a></p>
+<p><a href="#R-image-7719f446e15b5ef6e3b7002760f6c893" class="lightbox-link"><img alt="kong" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ref_arch_new.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7719f446e15b5ef6e3b7002760f6c893"><img alt="kong" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ref_arch_new.png"></a></p>
 <ul>
 <li>Kong Konnect Control Plane: responsible for managing your APIs</li>
 <li>Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers.</li>
@@ -820,7 +820,7 @@ aside#R-sidebar,
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
           <a id="R-logo" class="R-default" href="/index.html">
-            <div class="logo-title">API Management with Kong Konnect</div>
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
           </a>
         </div>
         <search><form action="/search/index.html" method="get">
@@ -887,8 +887,8 @@ aside#R-sidebar,
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784139776" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139776" defer></script>
-    <script src="/js/theme.js?1784139776" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
+    <script src="/js/theme.js?1784150032" defer></script>
   </body>
 </html>

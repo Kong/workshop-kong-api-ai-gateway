@@ -10,45 +10,45 @@ You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OTel Collector and Metrics :: API Management with Kong Konnect">
+    <meta name="twitter:title" content="OTel Collector and Metrics :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
 You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
     <meta property="og:url" content="http://localhost:1313/15-observability/152-external/226-otel_collector_metrics/index.html">
-    <meta property="og:site_name" content="API Management with Kong Konnect">
-    <meta property="og:title" content="OTel Collector and Metrics :: API Management with Kong Konnect">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="OTel Collector and Metrics :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
 You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Konnect Observability">
-    <meta itemprop="name" content="OTel Collector and Metrics :: API Management with Kong Konnect">
+    <meta itemprop="name" content="OTel Collector and Metrics :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="Now, let’s add Metrics to our environment. Kong has supported Prometheus-based metrics for a long time through the Prometheus Plugin. In an OpenTelemetry configuration scenario the plugin is an option, where we could add a specific “prometheusreceiver” to the collector configuration. The receiver is responsible for scraping the Data Plane’s Status API, which, by default, is configured with the :8100/metrics endpoint.
 You can check the port with:
 kubectl get pod -o yaml $(kubectl get pod -n kong -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;dataplane-&#34;))&#39; | jq -r &#39;.name&#39;) -n kong | yq &#39;.spec.containers[].env[] | select(.name == &#34;KONG_STATUS_LISTEN&#34;)&#39; Expected result:">
     <meta itemprop="wordCount" content="1046">
-    <title>OTel Collector and Metrics :: API Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784139776" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784139776" defer></script>
-    <script src="/js/search-lunr.js?1784139776" defer></script>
-    <script src="/js/search.js?1784139776" defer></script>
+    <title>OTel Collector and Metrics :: API and AI Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
+    <script src="/js/search-lunr.js?1784150032" defer></script>
+    <script src="/js/search.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784139776";
+      window.relearn.index_js_url="/searchindex.en.js?1784150032";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784139776" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784139776" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139776" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139776" rel="stylesheet">
-    <link href="/css/theme.css?1784139776" rel="stylesheet">
-    <link href="/css/format-html.css?1784139776" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
+    <link href="/css/theme.css?1784150032" rel="stylesheet">
+    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -755,7 +755,7 @@ aside#R-sidebar,
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/index.html"><span itemprop="name">Konnect Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/152-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OTel Collector and Metrics</span><meta itemprop="position" content="4"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/index.html"><span itemprop="name">Konnect Observability</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/15-observability/152-external/index.html"><span itemprop="name">External Observability Stack</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OTel Collector and Metrics</span><meta itemprop="position" content="4"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/15-observability/152-external/225-otel_collector_tracing/index.html" title="OTel Collector and Tracing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -983,8 +983,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <ul>
 <li>In the <strong>Query</strong> page you can see all metrics produced by Kong Prometheus plugin and pushed by the OTel Collector. Choose <code>kong_http_requests_total</code>.</li>
 </ul>
-<p><a href="#R-image-7e9e4a56ba153011aa87951c0aa52b2c" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7e9e4a56ba153011aa87951c0aa52b2c"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
+<p><a href="#R-image-f969481012f27561df99cf73bb168cd2" class="lightbox-link"><img alt="prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f969481012f27561df99cf73bb168cd2"><img alt="prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/prometheus.png"></a></p>
 <h3 id="check-metrics-in-grafana">Check Metrics in Grafana</h3>
 <p>In Grafana UI:</p>
 <ul>
@@ -993,8 +993,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <li>Inside the &ldquo;metrics&rdquo; box you should see all new Kong metrics. Choose <code>kong_http_requests_total</code>.</li>
 <li>Click &ldquo;Run query&rdquo;. You should see the metric there.</li>
 </ul>
-<p><a href="#R-image-887d6b43fda364387500a08a49a4a298" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-887d6b43fda364387500a08a49a4a298"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
+<p><a href="#R-image-c8d292e22c0ad680516756fb5c186118" class="lightbox-link"><img alt="grafana_prometheus" class="lazy lightbox figure-image" loading="lazy" src="/static/images/grafana_prometheus.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c8d292e22c0ad680516756fb5c186118"><img alt="grafana_prometheus" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/grafana_prometheus.png"></a></p>
 
   <footer class="footline">
   </footer>
@@ -1007,7 +1007,7 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
       <div id="R-header-wrapper" class="default-animation">
         <div id="R-header" class="default-animation">
           <a id="R-logo" class="R-default" href="/index.html">
-            <div class="logo-title">API Management with Kong Konnect</div>
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
           </a>
         </div>
         <search><form action="/search/index.html" method="get">
@@ -1080,8 +1080,8 @@ kong_http_requests_total{code=&#34;200&#34;,instance=&#34;192.168.76.233:8100&#3
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784139776" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139776" defer></script>
-    <script src="/js/theme.js?1784139776" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
+    <script src="/js/theme.js?1784150032" defer></script>
   </body>
 </html>

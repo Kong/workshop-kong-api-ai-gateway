@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kong AI Gateway :: API Management with Kong Konnect</title>
+    <title>Kong AI Gateway :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/13-ai-gateway/index.html</link>
     <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. At the same, new MCP standards have emerged to add contexts to AI Agents more easily.&#xA;Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely:&#xA;LLM Gateway: While AI providers don’t conform to a standard API specification, the Kong LLM Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality. MCP Gateway: It sits side-by-side with the Kong LLM Gateway and it is responsible for converting Kong Gateway Services into MCP Servers as well as proxying and protecting existing MCP Servers. You can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.</description>
     <generator>Hugo</generator>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>OpenID Connect :: API Management with Kong Konnect</title>
+    <title>OpenID Connect :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/12-api-gateway/15-use-cases/157-openidconnect/index.html</link>
     <description>For advanced and enterprise class requirements, OpenID Connect (OIDC) is the preferred option to implement API consumer Authentication. OIDC also provides mechanisms to implement Authorization. In fact, when applying OIDC to secure the APIs, we’re delegating the Authentication process to the external Identity Provider entity.&#xA;OpenID Connect is an authentication protocol built on top of OAuth 2.0 and JWT - JSON Web Token to add login and profile information about the identity who is logged in.</description>
     <generator>Hugo</generator>
