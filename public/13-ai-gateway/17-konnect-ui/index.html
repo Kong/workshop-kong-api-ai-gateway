@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.163.1">
+    <meta name="generator" content="Hugo 0.164.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs using the Konnect platform.
 Key features include:
@@ -29,26 +29,26 @@ Routing and load balancing: Assign Gateway Services and define how traffic is di
     <meta itemprop="wordCount" content="108">
     <title>Konnect AI Gateway User Interface :: API Management with Kong Konnect</title>
     <link href="/13-ai-gateway/17-konnect-ui/index.xml" rel="alternate" type="application/rss+xml" title="Konnect AI Gateway User Interface :: API Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1781475332" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1781475332" defer></script>
-    <script src="/js/search-lunr.js?1781475332" defer></script>
-    <script src="/js/search.js?1781475332" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1784139662" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1784139662" defer></script>
+    <script src="/js/search-lunr.js?1784139662" defer></script>
+    <script src="/js/search.js?1784139662" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1781475332";
+      window.relearn.index_js_url="/searchindex.en.js?1784139662";
     </script>
-    <script src="/js/lunr/lunr.min.js?1781475332" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1781475332" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1781475332" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1781475332" defer></script>
+    <script src="/js/lunr/lunr.min.js?1784139662" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1784139662" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1784139662" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1784139662" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1781475332" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1781475332" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1781475332" rel="stylesheet">
-    <link href="/css/theme.css?1781475332" rel="stylesheet">
-    <link href="/css/format-html.css?1781475332" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139662" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784139662" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784139662" rel="stylesheet">
+    <link href="/css/theme.css?1784139662" rel="stylesheet">
+    <link href="/css/format-html.css?1784139662" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -75,7 +75,7 @@ Routing and load balancing: Assign Gateway Services and define how traffic is di
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
       // variant stuff
-      window.relearn.themevariants = [ 'blue' ];
+      window.relearn.themevariants = [ 'auto' ];
       window.relearn.customvariantname = "my-custom-variant";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
@@ -101,7 +101,628 @@ Routing and load balancing: Assign Gateway Services and define how traffic is di
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
-    </script>
+    </script><!DOCTYPE html>
+<html><head><style id="qw-theme">:root {
+  --color-bg: #faf9fc;
+  --color-text: #131920;
+  --color-navbar-bg: #f9f9fb;
+  --color-bg-chat-view: #fcfcfd;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f9fafb;
+  --color-bg-hover: #f3f4f6;
+  --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-active: #e5e7eb;
+  --color-border: rgba(0, 0, 0, .12);
+  --color-border-light: rgba(0, 0, 0, .06);
+  --color-border-strong: #d1d5db;
+  --color-primary: #4200db;
+  --color-primary-dark: #35009e;
+  --color-primary-light: #8575ff;
+  --color-primary-bg: #e8e6ff;
+  --color-primary-hover-border: #35009e;
+  --color-nav-icon-active: #4200db;
+  --color-nav-hover-border: #4200db;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent);
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent);
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent);
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent);
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent);
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent);
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent);
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent);
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent);
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent);
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent);
+  --color-focus-ring: color-mix(in srgb, #4200db 50%, transparent);
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent);
+  --color-accent: #4200db;
+  --color-accent-foreground: #4200db;
+  --color-accent-dark: #35009e;
+  --color-accent-light: #e8e6ff;
+  --color-accent-inverse: #ffffff;
+  --color-link: #4200db;
+  --color-primary-gradient-end: #e8e6ff;
+  --color-primary-bg-solid: #e8e6ff;
+  --color-user-bubble: #F3F3F7;
+  --color-user-bubble-text: #131920;
+  --color-text-secondary: #5e5e5e;
+  --color-text-tertiary: #656871;
+  --color-text-muted: #9ca3af;
+  --color-text-on-primary: #ffffff;
+  --color-success: #00802f;
+  --color-success-dark: #00471e;
+  --color-success-light: #d9ffd6;
+  --color-success-hover: #005c26;
+  --color-success-bg: #e6f5eb;
+  --color-success-border: #b3d9bf;
+  --color-success-foreground: #00802f;
+  --color-success-dark-foreground: #00471e;
+  --color-success-text: #00471e;
+  --color-error: #db0000;
+  --color-error-dark: #700000;
+  --color-error-light: #ffe0e0;
+  --color-error-hover: #ffe0e0;
+  --color-error-bg: #fceaea;
+  --color-error-border: #f2cccc;
+  --color-error-active-border: #db0000;
+  --color-error-foreground: #db0000;
+  --color-error-dark-foreground: #700000;
+  --color-error-inverse: #ffffff;
+  --color-error-text: #700000;
+  --color-warning: #f2b100;
+  --color-warning-dark: #573a00;
+  --color-warning-light: #fffbbd;
+  --color-warning-hover: #db9200;
+  --color-warning-bg: #fef7e6;
+  --color-warning-border: #f9dfa3;
+  --color-warning-foreground: #f2b100;
+  --color-warning-dark-foreground: #573a00;
+  --color-warning-inverse: #573a00;
+  --color-surface-warning: #fffbbd;
+  --color-text-warning: #573a00;
+  --color-info: #006ce0;
+  --color-info-dark: #002a66;
+  --color-info-light: #d1f1ff;
+  --color-info-hover: #003b8f;
+  --color-info-bg: #ebf3fc;
+  --color-info-border: #b3d1f0;
+  --color-info-foreground: #006ce0;
+  --color-info-dark-foreground: #002a66;
+  --color-info-inverse: #ffffff;
+  --color-overlay: rgba(0, 0, 0, .5);
+  --color-shadow: rgba(0, 0, 0, .08);
+  --color-hover: rgba(0, 0, 0, .05);
+  --color-tooltip-bg: rgba(0, 0, 0, .85);
+  --color-tooltip-text: #ffffff;
+  --color-voice-purple: #8575ff;
+  --color-voice-purple-dark: #4200db;
+  --color-voice-purple-light: #8575ff;
+  --color-voice-red: #db0000;
+  --color-voice-red-dark: #700000;
+  --color-voice-amber: #f2b100;
+  --color-voice-purple-glow: rgba(66, 0, 219, .4);
+  --color-voice-red-glow: rgba(219, 0, 0, .4);
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  --text-2xs: .5625rem;
+  --text-xs: .625rem;
+  --text-sm: .6875rem;
+  --text-base: .75rem;
+  --text-md: .8125rem;
+  --text-lg: .875rem;
+  --text-xl: 1rem;
+  --text-2xl: 1.125rem;
+  --text-3xl: 1.25rem;
+  --text-4xl: 1.5rem;
+  --text-5xl: 2rem;
+  --spacing-1: calc(.25rem * 1);
+  --spacing-1-5: calc(.25rem * 1.5);
+  --spacing-2: calc(.25rem * 2);
+  --spacing-3: calc(.25rem * 3);
+  --spacing-4: calc(.25rem * 4);
+  --spacing-5: calc(.25rem * 5);
+  --spacing-6: calc(.25rem * 6);
+  --spacing-7: calc(.25rem * 7);
+  --spacing-8: calc(.25rem * 8);
+  --spacing-9: calc(.25rem * 9);
+  --spacing-10: calc(.25rem * 10);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 8px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, .08);
+  --color-success-bg-solid: #d9ffd6;
+  --color-error-bg-solid: #ffe0e0;
+  --color-error-border-solid: #ffe0e0;
+  --color-warning-bg-solid: #fffbbd;
+  --color-warning-text: #573a00;
+  --color-info-bg-solid: #d1f1ff;
+  --color-info-bg-solid-alt: #d1f1ff;
+  --color-info-text: #002a66;
+  --color-info-text-alt: #002a66;
+  --color-emerald: #10b981;
+  --color-teal: #4ecdc4;
+  --color-code-bg: #F3F3F7;
+  --color-code-header-bg: #f1f3f5;
+  --color-code-text: #24292e;
+  --color-code-border: #e1e4e8;
+  --color-code-muted: #6a737d;
+  --color-inline-code-bg: #F3F3F7;
+  --color-inline-code-text: #24292e;
+  --color-inline-code-border: #e1e4e8;
+  --color-scrollbar-thumb: #d1d5db;
+  --color-scrollbar-track: transparent;
+  --color-graph-node-text: #333333;
+  --color-graph-node-text-dim: #7F8C8D;
+  --color-graph-edge-default: #95A5A6;
+  --color-graph-edge-cross: #E67E22;
+  --color-graph-edge-text: #666666;
+  --color-graph-edge-stroke: #ffffff;
+  --color-graph-highlight-bg: #FF6B6B;
+  --color-graph-highlight-border: #E74C3C;
+  --color-graph-search-bg: #FFD700;
+  --color-graph-search-border: #FFA500;
+  --color-graph-focus-border: #C0392B;
+  --color-graph-external-border: #95A5A6;
+  --color-graph-cat-file: #3498DB;
+  --color-graph-cat-folder: #7F8C8D;
+  --color-graph-cat-file-aggregate: #2980B9;
+  --color-graph-cat-class: #9B59B6;
+  --color-graph-cat-function: #2ECC71;
+  --color-graph-cat-method: #1ABC9C;
+  --color-graph-cat-variable: #F39C12;
+  --color-graph-cat-import: #D35400;
+  --color-graph-cat-module: #5B6ABF;
+  --color-graph-cat-concept: #E74C3C;
+  --color-graph-cat-person: #FF6B6B;
+  --color-graph-cat-org: #4ECDC4;
+  --color-graph-cat-organization: #4ECDC4;
+  --color-graph-cat-product: #A29BFE;
+  --color-graph-cat-metric: #FD79A8;
+  --color-graph-cat-location: #34495E;
+  --color-graph-cat-date: #E056A0;
+  --color-graph-cat-code: #3498DB;
+  --color-graph-cat-doc: #7F8C8D;
+  --color-graph-cat-url: #00B894;
+  --color-graph-cat-email: #6C5CE7;
+  --color-graph-cat-unknown: #BDC3C7;
+  --color-graph-rel-contains: #BDC3C7;
+  --color-graph-rel-extends: #9B59B6;
+  --color-graph-rel-implements: #3498DB;
+  --color-graph-rel-imports: #E67E22;
+  --color-graph-rel-uses: #2ECC71;
+  --color-graph-rel-calls: #27AE60;
+  --color-graph-rel-references: #F39C12;
+  --color-graph-rel-related-to: #95A5A6;
+  --color-graph-rel-works-on: #E74C3C;
+  --color-graph-rel-owns: #1ABC9C;
+  --color-graph-rel-depends-on: #E67E22;
+  --color-graph-rel-parent-of: #BDC3C7;
+  --qs-content: #fff;
+  --qs-main: #fff;
+  --qs-primary-foreground: #131920;
+  --qs-secondary-foreground: #656871;
+  --qs-tertiary-foreground: #9ca3af;
+  --qs-placeholder-foreground: #8c8c94;
+  --qs-divider: #dedee3;
+  --qs-default-border: #8c8c94;
+  --qs-neutral-soft: #b4b4bb;
+  --qs-neutral-gray-50: #f9fafb;
+  --qs-tertiary-background: #f9fafb;
+  --qs-action-hover: #f3f3f7;
+  --qs-primary-default: #4200db;
+  --qs-primary-dark: #35009e;
+  --qs-primary-light: #e8e6ff;
+  --qs-success-default: #00802f;
+  --qs-error-default: #db0000;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-base-letter-spacing: .15px;
+  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029;
+  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029;
+  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029;
+  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029;
+  --qs-width-modal-sm: 384px;
+  --qs-width-modal-md: 600px;
+  --qs-width-modal-lg: 1136px;
+  --qs-grid-gap: 16px;
+  --qs-grid-gap-xl: 24px;
+  --qs-primary-medium: #8575ff;
+  --qs-primary-inverse: #fff;
+  --qs-neutral-lightest: #f9f9fb;
+  --qs-neutral-light: #f3f3f7;
+  --qs-neutral-default: #dedee3;
+  --qs-neutral-medium: #8c8c94;
+  --qs-neutral-deep: #656871;
+  --qs-neutral-dark: #333843;
+  --qs-neutral-strong: #131920;
+  --qs-neutral-white: #fff;
+  --qs-neutral-black: #000;
+  --qs-success-medium: #005c26;
+  --qs-success-dark: #00471e;
+  --qs-success-light: #d9ffd6;
+  --qs-success-inverse: #fff;
+  --qs-info-default: #006ce0;
+  --qs-info-medium: #003b8f;
+  --qs-info-dark: #002a66;
+  --qs-info-light: #d1f1ff;
+  --qs-info-inverse: #fff;
+  --qs-warning-default: #f2b100;
+  --qs-warning-medium: #db9200;
+  --qs-warning-dark: #573a00;
+  --qs-warning-light: #fffbbd;
+  --qs-warning-inverse: #573a00;
+  --qs-warning-experimental: #f2b100;
+  --qs-warning-experimental-light: #fffbbd;
+  --qs-warning-experimental-light-foreground: #fffbbd;
+  --qs-error-medium: #900;
+  --qs-error-dark: #700000;
+  --qs-error-light: #ffe0e0;
+  --qs-error-inverse: #fff;
+  --qs-connection-default: #db3300;
+  --qs-connection-soft: #ff997a;
+  --qs-connection-light: #ffe0d6;
+  --qs-connection-dark: #661800;
+  --qs-automation-default: #b3008f;
+  --qs-automation-medium: #d600ba;
+  --qs-automation-soft: #ff94f1;
+  --qs-automation-light: #ffe0fb;
+  --qs-automation-dark: #660052;
+  --qs-insight-default: #a000b8;
+  --qs-insight-soft: #f299ff;
+  --qs-insight-light: #fce6ff;
+  --qs-insight-dark: #590066;
+  --qs-visualization-default: #7300e5;
+  --qs-visualization-soft: #d4a8ff;
+  --qs-visualization-light: #f2e5ff;
+  --qs-visualization-dark: #45008a;
+  --qs-spice: #ff9800;
+  --qs-coachmark: #006ce0;
+  --qs-brand: #fff;
+  --qs-brand-foreground: #131920;
+  --qs-brand-navbar: #131920;
+  --qs-brand-navbar-foreground: #fff;
+  --qs-brand-navbar-light: #dedee3;
+  --qs-brand-navbar-dark: #000;
+  --qs-application-navbar: #4200db;
+  --qs-application-navbar-foreground: #fff;
+  --qs-application-navbar-light: #e8e6ff;
+  --qs-application-navbar-dark: #35009e;
+  --qs-dimension: #4200db;
+  --qs-dimension-foreground: #fff;
+  --qs-dimension-experimental: #4200db;
+  --qs-dimension-experimental-foreground: #4200db;
+  --qs-measure: #00802f;
+  --qs-measure-foreground: #fff;
+  --qs-measure-experimental: #f2b100;
+  --qs-measure-experimental-foreground: #f2b100;
+  --qs-content-inverse: #333843;
+  --qs-content-inverse-active: #131920;
+  --qs-secondary: #dedee3;
+  --qs-disabled: #8c8c94;
+  --qs-divider-light: #f3f3f7;
+  --qs-hover-border: #333843;
+  --qs-active-border: #4200db;
+  --qs-disabled-border: #dedee3;
+  --qs-error-border: #ffe0e0;
+  --qs-error-active-border: #db0000;
+  --qs-disabled-foreground: #b4b4bb;
+  --qs-primary-inverse-foreground: #fff;
+  --qs-error-foreground: #db0000;
+  --qs-contrast-foreground: #131920;
+  --qs-main-foreground: #131920;
+  --qs-main-secondary-foreground: #656871;
+  --qs-action-disabled: #f3f3f7;
+  --qs-action-active: #e8e6ff;
+  --qs-default-badge: #dedee3;
+  --qs-tag-default: #dedee3;
+  --qs-tag-soft-border: #b4b4bb;
+  --qs-focus-offset: 1px;
+  --qs-toggle-tile-sm: calc(.25rem * 8);
+  --qs-toggle-tile-md: calc(.25rem * 12);
+  --qs-toggle-tile-lg: calc(.25rem * 15);
+  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029;
+  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029;
+  --react-pdf-text-layer: 1;
+  --highlight-bg-color: rgba(180, 0, 170, 1);
+  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
+  --react-pdf-annotation-layer: 1;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+  --input-focus-border-color: Highlight;
+  --input-focus-outline: 1px solid Canvas;
+  --input-unfocused-border-color: transparent;
+  --input-disabled-border-color: transparent;
+  --input-hover-border-color: black;
+  --link-outline: none;
+  color-scheme: light;
+}
+body { background: var(--color-bg); color: var(--color-text); }
+a { color: var(--color-link, var(--color-primary)); }</style><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+ 
+#R-sidebar #R-homelinks a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+#R-sidebar #R-homelinks a::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 80px !important;
+  height: 26px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 126 40'%3E%3Cg fill='%23CCFF00'%3E%3Cpath d='m14.7 32.947-1.1 1.39 2.487 3.872L15.828 40h10.553l.73-1.79-4.244-5.263zM20.47 9.382l-3.816 6.657 18.618 21.948-.53 2.013h8.54l1.546-7.14L24.905 9.379z'/%3E%3Cpath d='m23.006 4.378-1.816 3.33h4.504l7.73 9.164 4.595-3.76v-2.387l-1.596-2.234 1.18-1.223L28.383 0zM9.147 22.928H6.63L0 31.313V40h7.112l1.257-1.627 5.487-7.078h7.937l2.444-3.73-8.606-10.176z'/%3E%3C/g%3E%3Cpath fill='%23FFFFFF' fill-rule='evenodd' d='M77.122 27.387h6.192v-9.46h-6.192zm.217 3.784c-1.724 0-2.62-.279-3.357-1.046-1.108-1.11-1.538-2.651-1.538-7.431s.43-6.321 1.538-7.462c.71-.74 1.633-1.02 3.357-1.02h5.758c1.723 0 2.619.28 3.356 1.02 1.109 1.14 1.538 2.651 1.538 7.462s-.43 6.322-1.538 7.43c-.737.772-1.633 1.047-3.356 1.047zM101.997 19.559v11.608h4.709V19.185c0-2.486-.276-3.379-.986-4.055-.647-.646-1.574-.937-3.021-.937l-4.142.012-2.374 2.136v-2.136H91.49v16.958h4.709V17.92h5.79v1.632zM65.077 9.54h5.608l-8.054 10.164 8.393 11.463h-5.947l-6.386-9.004-1.514-.008v9.012h-5.049V9.54h5.049v8.382h1.514zM121.161 14.21v2.135l-2.375-2.136-3.534-.012c-1.692 0-2.685.292-3.455 1.027-1.017 1.042-1.51 3.324-1.51 7.502 0 4.177.402 6.365 1.384 7.38.769.735 1.684 1.062 3.503 1.062h5.975l.008 2.427-8.295.015.008.996 2.142 2.368h6.484c1.723 0 2.709-.307 3.325-.952.769-.799 1.076-1.294 1.076-4.21V14.214h-4.74zm.031 13.158H115v-9.445h6.188v9.445z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: left center !important;
+  flex-shrink: 0 !important;
+}
+
+ 
+#R-sidebar #R-homelinks a {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 16px 16px !important;
+}
+
+ 
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  background: #000F06 !important;
+  color: #D7DED4 !important;
+}
+
+ 
+aside#R-sidebar,
+#R-sidebar {
+  background: #000F06 !important;
+  border-right: 1px solid #4A4D49 !important;
+}
+
+ 
+#R-sidebar .searchbox {
+  border: 1px solid #4A4D49 !important;
+  background: #101110 !important;
+  border-radius: 0 !important;
+  margin: 10px 12px !important;
+  padding: 0 !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+#R-sidebar .searchbox input.search-by,
+#R-sidebar input#R-search-by {
+  background: transparent !important;
+  border: none !important;
+  color: #D7DED4 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+  height: 100% !important;
+  flex: 1 !important;
+  outline: none !important;
+}
+
+#R-sidebar .searchbox input::placeholder {
+  color: #858983 !important;
+}
+
+#R-sidebar .searchbox button.search-detail,
+#R-sidebar .searchbox button.search-clear {
+  background: transparent !important;
+  border: none !important;
+  color: #858983 !important;
+  padding: 0 8px !important;
+  height: 100% !important;
+  width: auto !important;
+  min-width: auto !important;
+  font-size: 12px !important;
+}
+
+#R-sidebar .searchbox button:hover {
+  color: #CCFF00 !important;
+}
+
+ 
+#R-sidebar ul li a,
+#R-sidebar .topics a {
+  color: #B7BDB5 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+#R-sidebar ul li a:hover,
+#R-sidebar .topics a:hover {
+  color: #FFFFFF !important;
+}
+
+#R-sidebar ul li.active > a,
+#R-sidebar .topics li.active > a {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  background: rgba(204, 255, 0, 0.08) !important;
+}
+
+#R-sidebar .footercontainer {
+  border-top: 1px solid #4A4D49 !important;
+  color: #858983 !important;
+  font-size: 10px !important;
+}
+
+ 
+#R-topbar {
+  background: #000F06 !important;
+  border-bottom: 1px solid #4A4D49 !important;
+}
+
+#R-topbar a {
+  color: #B7BDB5 !important;
+}
+
+#R-topbar a:hover {
+  color: #CCFF00 !important;
+}
+
+ 
+#R-body,
+#R-body-inner {
+  background: #000F06 !important;
+}
+
+#R-body h1, #R-body-inner h1,
+#R-body h2, #R-body-inner h2,
+#R-body h3, #R-body-inner h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  text-transform: none !important;
+  letter-spacing: -0.5px !important;
+}
+
+#R-body h1, #R-body-inner h1 {
+  font-size: 32px !important;
+  line-height: 1.2 !important;
+}
+
+#R-body h2, #R-body-inner h2 {
+  font-size: 24px !important;
+  margin-top: 36px !important;
+}
+
+#R-body h3, #R-body-inner h3 {
+  font-size: 18px !important;
+}
+
+#R-body p, #R-body-inner p {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #D7DED4 !important;
+}
+
+#R-body strong {
+  color: #FFFFFF !important;
+}
+
+ 
+#R-body a, #R-body-inner a {
+  color: #CCFF00 !important;
+  text-decoration: none !important;
+}
+
+#R-body a:hover {
+  color: #e6ff66 !important;
+  text-decoration: underline !important;
+}
+
+ 
+#R-body li::marker {
+  color: #CCFF00 !important;
+}
+
+#R-body li {
+  color: #D7DED4 !important;
+}
+
+ 
+#R-body pre {
+  background: #101110 !important;
+  border: 1px solid #4A4D49 !important;
+  border-radius: 0 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  padding: 16px 20px !important;
+  color: #D7DED4 !important;
+}
+
+#R-body pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #D7DED4 !important;
+}
+
+#R-body code {
+  background: rgba(204, 255, 0, 0.06) !important;
+  border: 1px solid rgba(204, 255, 0, 0.15) !important;
+  border-radius: 0 !important;
+  padding: 1px 5px !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 12px !important;
+  color: #CCFF00 !important;
+}
+
+ 
+#R-body table {
+  background: #101110 !important;
+  border: 1px solid #4A4D49 !important;
+}
+
+#R-body th {
+  background: #2D2E2C !important;
+  color: #FFFFFF !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #4A4D49 !important;
+}
+
+#R-body td {
+  padding: 8px 14px !important;
+  border-bottom: 1px solid #4A4D49 !important;
+  color: #D7DED4 !important;
+}
+
+ 
+#R-body blockquote {
+  border-left: 3px solid #CCFF00 !important;
+  background: rgba(204, 255, 0, 0.03) !important;
+  padding: 14px 18px !important;
+  border-radius: 0 !important;
+}
+
+ 
+.copy-to-clipboard-button {
+  background: #4A4D49 !important;
+  border: none !important;
+  color: #B7BDB5 !important;
+  border-radius: 0 !important;
+}
+
+.copy-to-clipboard-button:hover {
+  background: #CCFF00 !important;
+  color: #000F06 !important;
+}
+
+ 
+#R-body-inner {
+  background-image:
+    linear-gradient(rgba(74, 77, 73, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 77, 73, 0.06) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+
+ 
+::selection {
+  background: rgba(204, 255, 0, 0.25);
+  color: #FFFFFF;
+}
+
+ 
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #000F06; }
+::-webkit-scrollbar-thumb { background: #4A4D49; }
+</style>
+</head><body></body></html>
   </head>
   <body class="mobile-support html" data-url="/13-ai-gateway/17-konnect-ui/index.html">
     <div id="R-body" class="default-animation">
@@ -236,8 +857,8 @@ Routing and load balancing: Assign Gateway Services and define how traffic is di
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1781475332" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1781475332" defer></script>
-    <script src="/js/theme.js?1781475332" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1784139662" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784139662" defer></script>
+    <script src="/js/theme.js?1784139662" defer></script>
   </body>
 </html>
