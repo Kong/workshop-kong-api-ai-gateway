@@ -34,7 +34,7 @@ You should see a new Kong Service and Route. Particularly, the Kong Route has th
 
 ### Check the decK file and test the Kong Route
 
-Just like anyother spec, The decK file has an initial section defining the Kong Gateway Service and Kong Route:
+Just like any other spec, the decK file has an initial section defining the Kong Gateway Service and Kong Route:
 ```
 _format_version: "3.0"
 services:
