@@ -25,7 +25,7 @@ deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $P
 deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT marketplace_mock.yaml
 ```
 
-You should see your a new Kong Service and Route. Particularly, the Kong Route has the **Mocking Plugin** enabled.
+You should see a new Kong Service and Route. Particularly, the Kong Route has the **Mocking Plugin** enabled.
 
 ![martetplace_service_route](/static/images/marketplace_service_route.png)
 
