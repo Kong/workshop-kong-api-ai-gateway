@@ -5,7 +5,7 @@ weight : 180
 
 ## Concept
 
-APIOps applies DevOps principles (automation, version control, CI/CD) to API lifecycle management. Here's a diagrama describing an APIOps lifecycle with Kong Technologies.
+APIOps applies DevOps principles (automation, version control, CI/CD) to API lifecycle management. Here's a diagram describing an APIOps lifecycle with Kong Technologies.
 
 
 ![apiops](/static/images/apiops.png)

@@ -4,7 +4,7 @@ weight : 104
 ---
 
 We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-* Podmang 5.8.1
+* Podman 5.8.1
 * Minikube 1.38.1
 
 
