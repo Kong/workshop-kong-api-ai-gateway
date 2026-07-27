@@ -28,7 +28,7 @@ cd kong-workshop-strands
 
 ## Kong AI Proxy Advanced plugin
 
-We have to configure Kong AI Gateway to consume Bedrock
+We have to configure Kong AI Gateway to consume **Anthropic**
 
 ```
 cat > ai-proxy-advanced.yaml << 'EOF'
