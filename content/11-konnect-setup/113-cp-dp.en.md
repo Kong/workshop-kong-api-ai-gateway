@@ -128,18 +128,20 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
  network:
    services:
      ingress:
        name: proxy-kong-workshop
        type: LoadBalancer
 #       type: NodePort
-#       ports:
-#       - port: 80
-#         nodePort: 30080
-#       - port: 443
-#         nodePort: 30443
+       ports:
+       - name: http
+         port: 8000
+         nodePort: 30080
+       - name: https
+         port: 8443
+         nodePort: 30443
 EOF
 {{</highlight>}}
 
@@ -147,7 +149,7 @@ EOF
 It takes some minutes to get the Load Balancer provisioned and avaiable. Get its domain name with:
 
 {{<highlight>}}
-export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.status.loadBalancer.ingress[].ip}')
+export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.status.loadBalancer.ingress[].ip}'):$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.spec.ports[?(@.name=="http")].port}')
 {{</highlight>}}
 
 View the load balancer DNS as

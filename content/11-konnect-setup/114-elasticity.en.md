@@ -55,7 +55,7 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
    replicas: 3
  network:
    services:
@@ -136,7 +136,7 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
    replicas: 1
  network:
    services:
@@ -195,7 +195,7 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
          resources:
            requests:
              memory: "300Mi"
@@ -308,7 +308,7 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
    replicas: 1
  network:
    services:

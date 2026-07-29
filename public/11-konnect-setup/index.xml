@@ -12,7 +12,7 @@
       <link>http://localhost:1313/11-konnect-setup/111-ko-installation/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/11-konnect-setup/111-ko-installation/index.html</guid>
-      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install ko kong/kong-operator \ -n kong-system \ --create-namespace \ --set image.tag=2.1.3 \ --set kubernetes-configuration-crds.enabled= \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;ko-kong-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete Kong Operator If you want to delete Kong Operator run:</description>
+      <description>Install the Operator To get started let’s install the Operator:&#xA;helm repo add kong https://charts.konghq.com helm repo update kong helm upgrade --install ko kong/kong-operator \ -n kong-system \ --create-namespace \ --set image.tag=2.2.3 \ --set env.ENABLE_CONTROLLER_KONNECT=true You can check the Operator’s log with: kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;ko-kong-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system Delete Kong Operator If you want to delete Kong Operator run:</description>
     </item>
     <item>
       <title>Control Plane and Data Plane</title>

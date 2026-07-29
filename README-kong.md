@@ -25,6 +25,10 @@ Combination #2
 Podman 5.8.1
 Minikube 1.38.1
 
+Combination #3
+Podman 6.0.2
+Minikube 1.38.1
+
 
 
 --- Docker & Minikube - Linux

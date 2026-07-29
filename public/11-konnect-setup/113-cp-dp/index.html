@@ -19,28 +19,28 @@
     <meta property="article:section" content="Konnect Setup">
     <meta itemprop="name" content="Control Plane and Data Plane :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="Konnect PAT - Personal Access Token Kong Operator requires a Konnect Personal Access Token (PAT) for creating the Control Plane. To generate your PAT, click on your initials in the upper right corner of the Konnect home page, then select Personal Access Tokens. Click on &#43; Generate Token, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.">
-    <meta itemprop="wordCount" content="546">
+    <meta itemprop="wordCount" content="551">
     <title>Control Plane and Data Plane :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
-    <script src="/js/search-lunr.js?1784150032" defer></script>
-    <script src="/js/search.js?1784150032" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785350894" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785350894" defer></script>
+    <script src="/js/search-lunr.js?1785350894" defer></script>
+    <script src="/js/search.js?1785350894" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784150032";
+      window.relearn.index_js_url="/searchindex.en.js?1785350894";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785350894" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785350894" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785350894" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785350894" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
-    <link href="/css/theme.css?1784150032" rel="stylesheet">
-    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785350894" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785350894" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785350894" rel="stylesheet">
+    <link href="/css/theme.css?1785350894" rel="stylesheet">
+    <link href="/css/format-html.css?1785350894" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -761,8 +761,8 @@ aside#R-sidebar,
 
 <h4 id="konnect-pat---personal-access-token">Konnect PAT - Personal Access Token</h4>
 <p>Kong Operator requires a <a href="https://developer.konghq.com/konnect-api/#personal-access-tokens" rel="external" target="_blank">Konnect Personal Access Token (PAT)</a> for creating the Control Plane. To generate your PAT,  click on your initials in the upper right corner of the Konnect home page, then select <strong>Personal Access Tokens</strong>. Click on <strong>+ Generate Token</strong>, name your PAT, set its expiration time, and be sure to copy and save it, as Konnect won’t display it again.</p>
-<p><a href="#R-image-c83bf537c7c9efa42aea9cb57fed8318" class="lightbox-link"><img alt="pat" class="lazy lightbox figure-image" loading="lazy" src="/static/images/pat.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c83bf537c7c9efa42aea9cb57fed8318"><img alt="pat" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/pat.png"></a></p>
+<p><a href="#R-image-dbc318abbb51b54035879b3d49f11eb7" class="lightbox-link"><img alt="pat" class="lazy lightbox figure-image" loading="lazy" src="/static/images/pat.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dbc318abbb51b54035879b3d49f11eb7"><img alt="pat" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/pat.png"></a></p>
 
 <details open class=" box cstyle notices note">
   <summary class="box-label" tabindex="-1">
@@ -855,22 +855,24 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
  network:
    services:
      ingress:
        name: proxy-kong-workshop
        type: LoadBalancer
 #       type: NodePort
-#       ports:
-#       - port: 80
-#         nodePort: 30080
-#       - port: 443
-#         nodePort: 30443
+       ports:
+       - name: http
+         port: 8000
+         nodePort: 30080
+       - name: https
+         port: 8443
+         nodePort: 30443
 EOF</code></pre></div>
 
 <p>It takes some minutes to get the Load Balancer provisioned and avaiable. Get its domain name with:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath=&#39;{.status.loadBalancer.ingress[].ip}&#39;)</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath=&#39;{.status.loadBalancer.ingress[].ip}&#39;):$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath=&#39;{.spec.ports[?(@.name==&#34;http&#34;)].port}&#39;)</code></pre></div>
 
 <p>View the load balancer DNS as</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo $DATA_PLANE_LB</code></pre></div>
@@ -979,8 +981,8 @@ kubectl delete konnectapiauthconfiguration konnect-api-auth-conf -n kong</code><
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
-    <script src="/js/theme.js?1784150032" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785350894" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785350894" defer></script>
+    <script src="/js/theme.js?1785350894" defer></script>
   </body>
 </html>

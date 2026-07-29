@@ -6,7 +6,7 @@
     <meta name="generator" content="Hugo 0.164.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
     <meta name="description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-Podmang 5.8.1 Minikube 1.38.1 Podman 5.8.1 Here are the instructions to install Podman and the installation package for 5.8.1 version.
+Podman 6.0.2 Minikube 1.38.1 Podman 6.0.2 Here are the instructions to install Podman and the installation package for 6.0.2 version.
 Initialize a machine:
 podman machine init You can start Podman with:
 podman machine set --memory 8196 --rootful podman machine start Check the version:">
@@ -14,7 +14,7 @@ podman machine set --memory 8196 --rootful podman machine start Check the versio
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Podman and Minikube :: API and AI Management with Kong Konnect">
     <meta name="twitter:description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-Podmang 5.8.1 Minikube 1.38.1 Podman 5.8.1 Here are the instructions to install Podman and the installation package for 5.8.1 version.
+Podman 6.0.2 Minikube 1.38.1 Podman 6.0.2 Here are the instructions to install Podman and the installation package for 6.0.2 version.
 Initialize a machine:
 podman machine init You can start Podman with:
 podman machine set --memory 8196 --rootful podman machine start Check the version:">
@@ -22,7 +22,7 @@ podman machine set --memory 8196 --rootful podman machine start Check the versio
     <meta property="og:site_name" content="API and AI Management with Kong Konnect">
     <meta property="og:title" content="Podman and Minikube :: API and AI Management with Kong Konnect">
     <meta property="og:description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-Podmang 5.8.1 Minikube 1.38.1 Podman 5.8.1 Here are the instructions to install Podman and the installation package for 5.8.1 version.
+Podman 6.0.2 Minikube 1.38.1 Podman 6.0.2 Here are the instructions to install Podman and the installation package for 6.0.2 version.
 Initialize a machine:
 podman machine init You can start Podman with:
 podman machine set --memory 8196 --rootful podman machine start Check the version:">
@@ -31,32 +31,32 @@ podman machine set --memory 8196 --rootful podman machine start Check the versio
     <meta property="article:section" content="Prerequisites">
     <meta itemprop="name" content="Podman and Minikube :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.
-Podmang 5.8.1 Minikube 1.38.1 Podman 5.8.1 Here are the instructions to install Podman and the installation package for 5.8.1 version.
+Podman 6.0.2 Minikube 1.38.1 Podman 6.0.2 Here are the instructions to install Podman and the installation package for 6.0.2 version.
 Initialize a machine:
 podman machine init You can start Podman with:
 podman machine set --memory 8196 --rootful podman machine start Check the version:">
     <meta itemprop="wordCount" content="298">
     <title>Podman and Minikube :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1784150032" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1784150032" defer></script>
-    <script src="/js/search-lunr.js?1784150032" defer></script>
-    <script src="/js/search.js?1784150032" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785350699" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785350699" defer></script>
+    <script src="/js/search-lunr.js?1785350699" defer></script>
+    <script src="/js/search.js?1785350699" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1784150032";
+      window.relearn.index_js_url="/searchindex.en.js?1785350699";
     </script>
-    <script src="/js/lunr/lunr.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1784150032" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1784150032" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785350699" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785350699" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785350699" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785350699" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1784150032" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1784150032" rel="stylesheet">
-    <link href="/css/theme.css?1784150032" rel="stylesheet">
-    <link href="/css/format-html.css?1784150032" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785350699" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785350699" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785350699" rel="stylesheet">
+    <link href="/css/theme.css?1785350699" rel="stylesheet">
+    <link href="/css/format-html.css?1785350699" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -748,7 +748,7 @@ aside#R-sidebar,
   <ul>
     <li>
       <ul>
-        <li><a href="#podman-581">Podman 5.8.1</a></li>
+        <li><a href="#podman-602">Podman 6.0.2</a></li>
         <li><a href="#minikube-1381">Minikube 1.38.1</a></li>
       </ul>
     </li>
@@ -787,11 +787,11 @@ aside#R-sidebar,
 
 <p>We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.</p>
 <ul>
-<li>Podmang 5.8.1</li>
+<li>Podman 6.0.2</li>
 <li>Minikube 1.38.1</li>
 </ul>
-<h3 id="podman-581">Podman 5.8.1</h3>
-<p>Here are the <a href="https://podman.io/docs/installation" rel="external" target="_blank">instructions</a> to install Podman and the installation package for <a href="https://github.com/containers/podman/releases/tag/v5.8.1" rel="external" target="_blank">5.8.1 version</a>.</p>
+<h3 id="podman-602">Podman 6.0.2</h3>
+<p>Here are the <a href="https://podman.io/docs/installation" rel="external" target="_blank">instructions</a> to install Podman and the installation package for <a href="https://github.com/containers/podman/releases/tag/v6.0.2" rel="external" target="_blank">6.0.2 version</a>.</p>
 <p>Initialize a machine:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>podman machine init</code></pre></div>
 <p>You can start Podman with:</p>
@@ -799,7 +799,7 @@ aside#R-sidebar,
 podman machine start</code></pre></div>
 <p>Check the version:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>$ podman --version
-podman version 5.8.1</code></pre></div>
+podman version 6.0.2</code></pre></div>
 <h3 id="minikube-1381">Minikube 1.38.1</h3>
 <p>You can install it with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -LO https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-darwin-arm64
@@ -922,8 +922,8 @@ kube-system   replicaset.apps/coredns-7d764666f9   1         1         1       7
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1784150032" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1784150032" defer></script>
-    <script src="/js/theme.js?1784150032" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785350699" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785350699" defer></script>
+    <script src="/js/theme.js?1785350699" defer></script>
   </body>
 </html>
