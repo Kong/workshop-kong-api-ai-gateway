@@ -5,7 +5,7 @@ weight : 122
 
 For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.
 
-#### Deploy the Application
+### Deploy the Application
 
 Deploy the application using the following declaration with both Kubernetes Deployment and Service.
 
@@ -62,7 +62,7 @@ kubectl delete deployment httpbin
 
 
 
-###### Check the Deployment
+### Check the Deployment
 
 * Observe Kubernetes Services in `kong` namespace
 
@@ -90,7 +90,7 @@ httpbin-5c69574c95-xq76q                     1/1     Running   0          20h
 ```
 
 
-#### Ping Konnect with decK
+### Ping Konnect with decK
 
 Before start using [**decK**](https://developer.konghq.com/deck/), you should ping Konnect to check if the connecting is up. Note we assume you have the PAT environment variable set. Please, refer to the previous section to learn how to issue a PAT.
 
@@ -105,7 +105,7 @@ Successfully Konnected to the Kong organization!
 ```
 
 
-#### Create a Kong Gateway Service and Kong Route
+### Create a Kong Gateway Service and Kong Route
 
 Create the following declaration first. Remarks:
 * Note the ``host`` and ``port`` refers to the HTTPbin's Kubernetes Service FQDN (Fully Qualified Domain Name), in our case ``http://httpbin.kong.svc.cluster.local:8000``.
@@ -131,7 +131,7 @@ EOF
 {{</highlight>}}
 
 
-#### Submit the declaration
+### Submit the declaration
 
 Now, you can use the following command to sync your Konnect Control Plane with the declaration. Note that all other existing objects will be deleted.
 
@@ -160,7 +160,7 @@ deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 ::: -->
 
 
-#### Consume the Route
+### Consume the Route
 
 We are to use the same ELB provisioned during the Data Plane deployment:
 

@@ -21,26 +21,26 @@
     <meta itemprop="description" content="Proxy Caching provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.">
     <meta itemprop="wordCount" content="1093">
     <title>Proxy Caching and Rate Limiting :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785345387" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785345387" defer></script>
-    <script src="/js/search-lunr.js?1785345387" defer></script>
-    <script src="/js/search.js?1785345387" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785367387" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785367387" defer></script>
+    <script src="/js/search-lunr.js?1785367387" defer></script>
+    <script src="/js/search.js?1785367387" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785345387";
+      window.relearn.index_js_url="/searchindex.en.js?1785367387";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785345387" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785345387" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785345387" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785345387" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785367387" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785367387" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785367387" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785367387" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785345387" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785345387" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785345387" rel="stylesheet">
-    <link href="/css/theme.css?1785345387" rel="stylesheet">
-    <link href="/css/format-html.css?1785345387" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785367387" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785367387" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785367387" rel="stylesheet">
+    <link href="/css/theme.css?1785367387" rel="stylesheet">
+    <link href="/css/format-html.css?1785367387" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -730,12 +730,22 @@ aside#R-sidebar,
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#kong-gateway-plugin-list">Kong Gateway Plugin list</a></li>
+    <li><a href="#enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</a>
       <ul>
-        <li><a href="#kong-gateway-plugin-list">Kong Gateway Plugin list</a></li>
-        <li><a href="#enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</a></li>
-        <li><a href="#enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</a></li>
-        <li><a href="#enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</a></li>
+        <li><a href="#submit-the-new-declaration">Submit the new declaration</a></li>
+        <li><a href="#consume-the-service">Consume the Service</a></li>
+      </ul>
+    </li>
+    <li><a href="#enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</a>
+      <ul>
+        <li><a href="#submit-the-declaration">Submit the declaration</a></li>
+        <li><a href="#consume-the-service-1">Consume the Service</a></li>
+      </ul>
+    </li>
+    <li><a href="#enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</a>
+      <ul>
+        <li><a href="#submit-the-declaration-1">Submit the declaration</a></li>
       </ul>
     </li>
   </ul>
@@ -772,11 +782,11 @@ aside#R-sidebar,
 <h1 id="proxy-caching-and-rate-limiting">Proxy Caching and Rate Limiting</h1>
 
 <p><a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">Proxy Caching</a> provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.</p>
-<h3 id="kong-gateway-plugin-list">Kong Gateway Plugin list</h3>
+<h2 id="kong-gateway-plugin-list">Kong Gateway Plugin list</h2>
 <p>Before enabling the <strong>Proxy Caching</strong>, let&rsquo;s check the list of plugins Konnect provides. Inside the <code>kong-workshop</code> Control Plane, click on <strong>Plugins</strong> menu option and <strong>+ New plugin</strong>. You should the following page with all plugins available:</p>
-<p><a href="#R-image-b5e8581efb174e32b0d5a96c2498db75" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b5e8581efb174e32b0d5a96c2498db75"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
-<h3 id="enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</h3>
+<p><a href="#R-image-24af674f2a1c0a9e96fb3d4052aa5318" class="lightbox-link"><img alt="proxy_cache" class="lazy lightbox figure-image" loading="lazy" src="/static/images/plugins.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-24af674f2a1c0a9e96fb3d4052aa5318"><img alt="proxy_cache" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/plugins.png"></a></p>
+<h2 id="enabling-a-kong-plugin-on-a-kong-service">Enabling a Kong Plugin on a Kong Service</h2>
 <p>Create another declaration with <code>plugins</code> option. With this option you can enable and configure the plugin on your Kong Service.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
@@ -811,7 +821,7 @@ EOF</code></pre></div>
 <li><strong>cache_ttl</strong> with <code>30</code>, which means the plugin will clear all data that reached this time limit.</li>
 </ul>
 <p>All plugin configuration paramenters are described inside <strong><a href="https://docs.konghq.com/hub/" rel="external" target="_blank">Kong Plugin Hub</a></strong> portal, in its specific <a href="https://docs.konghq.com/hub/kong-inc/proxy-cache/" rel="external" target="_blank">documentation page</a>.</p>
-<h4 id="submit-the-new-declaration">Submit the new declaration</h4>
+<h3 id="submit-the-new-declaration">Submit the new declaration</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 
 <p><strong>Expected Output</strong></p>
@@ -820,7 +830,7 @@ Summary:
   Created: 1
   Updated: 0
   Deleted: 0</code></pre></div>
-<h4 id="consume-the-service">Consume the Service</h4>
+<h3 id="consume-the-service">Consume the Service</h3>
 <p>If you consume the service again, you&rsquo;ll see some new headers describing the caching status:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
 
@@ -878,7 +888,7 @@ Summary:
 &lt; 
 {&#34;args&#34;:{},&#34;headers&#34;:{&#34;Accept&#34;:&#34;*/*&#34;,&#34;Connection&#34;:&#34;keep-alive&#34;,&#34;Host&#34;:&#34;httpbin.kong.svc.cluster.local:8000&#34;,&#34;User-Agent&#34;:&#34;curl/8.7.1&#34;,&#34;X-Forwarded-Host&#34;:&#34;127.0.0.1&#34;,&#34;X-Forwarded-Path&#34;:&#34;/httpbin-route/get&#34;,&#34;X-Forwarded-Prefix&#34;:&#34;/httpbin-route&#34;,&#34;X-Kong-Request-Id&#34;:&#34;2228de44dadd2e6126d82c4fb2e43961&#34;},&#34;origin&#34;:&#34;10.244.0.1&#34;,&#34;url&#34;:&#34;http://httpbin.kong.svc.cluster.local:8000/get&#34;}
 * Connection #0 to host 127.0.0.1 left intact</code></pre></div>
-<h3 id="enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</h3>
+<h2 id="enabling-a-kong-plugin-on-a-kong-route">Enabling a Kong Plugin on a Kong Route</h2>
 <p>Now, we are going to define a Rate Limiting policy for our Service. This time, you are going to enable the <strong>Rate Limiting</strong> plugin to the Kong Route, not to the Kong Gateway Service. In this sense, new Routes defined for the Service will not have the Rate Limiting plugin enabled, only the Proxy Caching.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
@@ -915,10 +925,10 @@ EOF</code></pre></div>
 <ul>
 <li><strong>minute</strong> as <code>3</code>, which means the Route can be consumed only 3 times a given minute.</li>
 </ul>
-<h4 id="submit-the-declaration">Submit the declaration</h4>
+<h3 id="submit-the-declaration">Submit the declaration</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 
-<h4 id="consume-the-service-1">Consume the Service</h4>
+<h3 id="consume-the-service-1">Consume the Service</h3>
 <p>If you consume the service again, you&rsquo;ll see, besides the caching related headers, new ones describing the status of current rate limiting policy:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -v $DATA_PLANE_LB/httpbin-route/get</code></pre></div>
 
@@ -982,7 +992,7 @@ EOF</code></pre></div>
   &#34;request_id&#34;:&#34;ce56eb67161a85678126a00ef59e6159&#34;
 * Connection #0 to host 127.0.0.1 left intact
 }</code></pre></div>
-<h3 id="enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</h3>
+<h2 id="enabling-a-kong-plugin-globally">Enabling a Kong Plugin globally</h2>
 <p>Besides scoping a plugin to a Kong Service or Route, we can apply it globally also. When we do it so, all Services ans Routes will enforce the police described by the plugin.</p>
 <p>For example, let&rsquo;s apply the Proxy Caching plugin globally.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; httpbin.yaml &lt;&lt; &#39;EOF&#39;
@@ -1016,7 +1026,7 @@ services:
         minute: 3
 EOF</code></pre></div>
 
-<h4 id="submit-the-declaration-1">Submit the declaration</h4>
+<h3 id="submit-the-declaration-1">Submit the declaration</h3>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT httpbin.yaml</code></pre></div>
 
 <p>After testing the configuration reset the Control Plane:</p>
@@ -1110,8 +1120,8 @@ EOF</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785345387" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785345387" defer></script>
-    <script src="/js/theme.js?1785345387" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785367387" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785367387" defer></script>
+    <script src="/js/theme.js?1785367387" defer></script>
   </body>
 </html>

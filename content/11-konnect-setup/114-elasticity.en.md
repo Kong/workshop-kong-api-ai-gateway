@@ -34,7 +34,7 @@ NAME                                                READY   STATUS    RESTARTS  
 dataplane-kong-workshop-dp-9hfk9-5f477c5696-kx9gr   1/1     Running   1 (40h ago)   4d21h   10.244.0.82   minikube   <none>           <none>
 ```
 
-### Manual Scaling Out
+## Manual Scaling Out
 
 Now, let's scale the deployment out creating 3 replicas of the pod
 
@@ -146,7 +146,7 @@ spec:
 EOF
 {{</highlight>}}
 
-### HPA - Horizontal Autoscaler
+## HPA - Horizontal Autoscaler
 
 HPA (“Horizontal Pod Autoscaler”) is the Kubernetes resource to automatically control the number of replicas of Pods. With HPA, Kubernetes is able to support the requests produced by the consumers, keeping a given Service Level.
 
@@ -156,7 +156,7 @@ HPA is described at https://kubernetes.io/docs/tasks/run-application/horizontal-
 
 Kubernetes defines its own units for cpu and memory. You can read more about it at: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/. We use these units to set our Deployments with HPA.
 
-#### Metrics Server
+### Metrics Server
 
 HPA relies no the Metrics Server to control the number of replicas of a given deployment. Check it as follows:
 
@@ -172,7 +172,7 @@ Now you should see two *metrics-server-* pods in *Running* state
 metrics-server-7fbb699795-5qqp5
 ```
 
-#### Turn HPA on
+### Turn HPA on
 
 Still using the Operator, let's upgrade our Data Plane deployment including new and specific settings for HPA. The new settings are defining the ammount of CPU and memory each Pod should allocate. At the same time, the "scaling" sets are telling HPA how to proceed to instantiate new Pod replicas.
 
@@ -224,7 +224,7 @@ EOF
 
 
 
-#### Checking HPA
+### Checking HPA
 
 After submitting the command check the Deployment again. Since we're not consume the Data Plane, we are supposed to see a single Pod running. In the next sections we're going to send requests to the Data Plane and new Pod will get created to handle them.
 
@@ -319,7 +319,7 @@ EOF
 {{</highlight>}}
 
 
-#### Further Reading
+### Further Reading
 
 * [Kong Konnect Data Plane Elasticity: Pod Autoscaling with VPA](https://konghq.com/blog/engineering/data-plane-elasticity-eks-1-29-pod-autoscaling-with-vpa)
 * [Kong Konnect Data Plane Pod Autoscaling with HPA](https://konghq.com/blog/engineering/pod-autoscaling-with-hpa-on-eks-1-29)

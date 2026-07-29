@@ -3,7 +3,7 @@ title : "Kong Operator"
 weight : 111
 ---
 
-#### Install the Operator
+### Install the Operator
 
 To get started let's install the Operator:
 
@@ -28,7 +28,7 @@ kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r '.items[].metad
 {{</highlight>}}
 
 
-#### Delete Kong Operator
+### Delete Kong Operator
 
 If you want to delete Kong Operator run:
 ```

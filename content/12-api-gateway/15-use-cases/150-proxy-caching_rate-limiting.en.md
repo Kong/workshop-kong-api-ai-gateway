@@ -5,13 +5,13 @@ weight : 150
 
 [Proxy Caching](https://docs.konghq.com/hub/kong-inc/proxy-cache/) provides a reverse proxy cache implementation for Kong. It caches response entities based on configurable response code and content type, as well as request method. It can cache per-Consumer or per-API. Cache entities are stored for a configurable period of time, after which subsequent requests to the same resource will re-fetch and re-store the resource. Cache entities can also be forcefully purged via the Admin API prior to their expiration time.
 
-### Kong Gateway Plugin list
+## Kong Gateway Plugin list
 
 Before enabling the **Proxy Caching**, let's check the list of plugins Konnect provides. Inside the ``kong-workshop`` Control Plane, click on **Plugins** menu option and **+ New plugin**. You should the following page with all plugins available:
 
 ![proxy_cache](/static/images/plugins.png)
 
-### Enabling a Kong Plugin on a Kong Service
+## Enabling a Kong Plugin on a Kong Service
 Create another declaration with ``plugins`` option. With this option you can enable and configure the plugin on your Kong Service.
 
 {{<highlight>}}
@@ -50,7 +50,7 @@ For the plugin configuration we used the following settings:
 
 All plugin configuration paramenters are described inside **[Kong Plugin Hub](https://docs.konghq.com/hub/)** portal, in its specific [documentation page](https://docs.konghq.com/hub/kong-inc/proxy-cache/).
 
-#### Submit the new declaration
+### Submit the new declaration
 {{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
 {{</highlight>}}
@@ -65,7 +65,7 @@ Summary:
 ```
 
 
-#### Consume the Service
+### Consume the Service
 
 If you consume the service again, you'll see some new headers describing the caching status:
 
@@ -135,7 +135,7 @@ If we send a new request, the Runtime Instance has all it needs to satify the re
 * Connection #0 to host 127.0.0.1 left intact
 ```
 
-### Enabling a Kong Plugin on a Kong Route
+## Enabling a Kong Plugin on a Kong Route
 
 Now, we are going to define a Rate Limiting policy for our Service. This time, you are going to enable the **Rate Limiting** plugin to the Kong Route, not to the Kong Gateway Service. In this sense, new Routes defined for the Service will not have the Rate Limiting plugin enabled, only the Proxy Caching.
 
@@ -177,13 +177,13 @@ The configuration includes:
 
 
 
-#### Submit the declaration
+### Submit the declaration
 {{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
 {{</highlight>}}
 
 
-#### Consume the Service
+### Consume the Service
 
 If you consume the service again, you'll see, besides the caching related headers, new ones describing the status of current rate limiting policy:
 
@@ -259,7 +259,7 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 }
 ```
 
-### Enabling a Kong Plugin globally
+## Enabling a Kong Plugin globally
 
 Besides scoping a plugin to a Kong Service or Route, we can apply it globally also. When we do it so, all Services ans Routes will enforce the police described by the plugin.
 
@@ -299,7 +299,7 @@ EOF
 {{</highlight>}}
 
 
-#### Submit the declaration
+### Submit the declaration
 {{<highlight>}}
 deck gateway sync --konnect-token $PAT httpbin.yaml
 {{</highlight>}}

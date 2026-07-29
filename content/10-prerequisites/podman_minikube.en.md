@@ -52,7 +52,7 @@ commit: c93a4cb9311efc66b90d33ea03f75f2c4120e9b0
 
 
 
-##### Start your cluster
+### Start your cluster
 
 
 ```
@@ -62,7 +62,7 @@ minikube start --driver=podman --memory='no-limit' --container-runtime=container
 
 
 
-##### Check your cluster
+### Check your cluster
 
 Use should see your cluster running with:
 
