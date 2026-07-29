@@ -11,7 +11,7 @@ One nice approach to understand a new techonology component is to outline the pr
 Strands Agents, the Python-based framework for building agents, was introduced by AWS in May, 2025. Strands makes the integration with tools, GenAI models and services straightforward by providing a consistent way for agents to interact with external systems. It simplifies how developers orchestrate tools, gather context, and orchestrate reasoning, turning complex multi-service workflows into maintainable, event-driven agent logic.
 
 
-#### Python setup
+### Python setup
 
 We are going to run a basic Strands Agent, written in Python, to better understand the purpose of MCP. Make sure you have your **DECK_ANTHROPIC_API_KEY** env variable set.
 
@@ -75,7 +75,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 
 
 
-##### Consume the Kong Route
+### Consume the Kong Route
 
 ```
 curl -s -X POST \
@@ -91,7 +91,7 @@ curl -s -X POST \
    }' | jq
 ```
 
-#### Strands Code
+### Strands Code
 Now, here's a basic Strands Agent consuming Kong AI Gateway:
 
 ```
@@ -180,7 +180,7 @@ EOF
 ```
 
 
-#### Execute the code
+### Execute the code
 
 ```
 python3 kong-workshop-agent.py

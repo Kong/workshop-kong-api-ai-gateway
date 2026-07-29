@@ -146,6 +146,6 @@ The [**AI Semantic Response Guard**](https://developer.konghq.com/plugins/ai-sem
 
 
 
-# Further Reading
+## Further Reading
 
 * [Embedding-based similarity matching in Kong AI gateway plugins](https://developer.konghq.com/ai-gateway/semantic-similarity/)

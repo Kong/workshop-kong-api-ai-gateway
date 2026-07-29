@@ -10,7 +10,7 @@ In this section, you will configure the Request Callout plugin on the Kong Route
 * The email of the user is returned and is added as a new header to the request.
 * The request is sent to httpbin application which echoes the number of hits.
 
-#### Hit dummyjson Service
+### Hit dummyjson Service
 Just to get an idea of the ``dummyjson`` response, send the following request:
 
 {{<highlight>}}
@@ -20,7 +20,7 @@ curl -s "https://dummyjson.com/users/1" | jq -r '.email'
 You should get a number like **43555**, which represents the number of total hits related to **Miles Davis**
 
 
-#### Create the Request Callout Plugin
+### Create the Request Callout Plugin
 
 Take the plugins declaration and enable the **Request Callout** plugin to the Route.
 
@@ -86,7 +86,7 @@ deck gateway sync --konnect-token $PAT request-callout.yaml
 {{</highlight>}}
 
 
-### Verify
+## Verify
 Send the request to Kong and check the response
 
 {{<highlight>}}
@@ -126,7 +126,7 @@ curl -s "$DATA_PLANE_LB/request-callout-route/get" -H 'X-User-ID: 2'
 
 
 
-#### Cleanup
+### Cleanup
 
 Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.
 

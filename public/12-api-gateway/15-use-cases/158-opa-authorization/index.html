@@ -21,26 +21,26 @@
     <meta itemprop="description" content="OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let’s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That’s the main purpose of the Open Policy Agent - OPA engine.">
     <meta itemprop="wordCount" content="923">
     <title>OPA (Open Policy Agent) :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785366914" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785366914" defer></script>
-    <script src="/js/search-lunr.js?1785366914" defer></script>
-    <script src="/js/search.js?1785366914" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785367931" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785367931" defer></script>
+    <script src="/js/search-lunr.js?1785367931" defer></script>
+    <script src="/js/search.js?1785367931" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785366914";
+      window.relearn.index_js_url="/searchindex.en.js?1785367931";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785366914" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785367931" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785367931" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785367931" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785367931" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785366914" rel="stylesheet">
-    <link href="/css/theme.css?1785366914" rel="stylesheet">
-    <link href="/css/format-html.css?1785366914" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785367931" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785367931" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785367931" rel="stylesheet">
+    <link href="/css/theme.css?1785367931" rel="stylesheet">
+    <link href="/css/format-html.css?1785367931" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -733,6 +733,9 @@ aside#R-sidebar,
     <li>
       <ul>
         <li><a href="#opa-installation">OPA Installation</a></li>
+        <li><a href="#create-the-authorization-policy">Create the Authorization Policy</a></li>
+        <li><a href="#enable-the-opa-plugin-to-the-kong-route">Enable the OPA plugin to the Kong Route</a></li>
+        <li><a href="#consume-the-kong-route">Consume the Kong Route</a></li>
       </ul>
     </li>
   </ul>
@@ -771,8 +774,8 @@ aside#R-sidebar,
 <p>OAuth and OpenID Connect are great and recommended options to implement not just Authentication and Authorization processes. However, there are some use cases where the Authorization policies require a bit of business logic. For example, let&rsquo;s say we want to prevent our API Consumers from consuming applications, protected by the Gateway, during weekends. In cases like this, one nice possibility is to have a specific layer taking care of the Authorization policies. That&rsquo;s the main purpose of the <a href="https://www.openpolicyagent.org" rel="external" target="_blank">Open Policy Agent - OPA</a> engine.</p>
 <p>In fact, such a decision is simply applying the same Separation of Concerns principle to get two independent layers implementing, each one of them, the Authentication and Authorization policies. Our architecture topology would look slightly different now.</p>
 <p>On the other hand, as we stated in the beginning of the chapter, it is not the case to remove the Authorization policies from the OAuth/OIDC layer. There will be different abstraction levels for the policies: some of them, possibly coarse-grained enterprise class ones, should still be implemented by the OAuth/OIDC layer. Fine-grained policies, instead, would be better implemented by the specific Authorization layer.</p>
-<p><a href="#R-image-e69a4ec195b6fe3a283f2b575c3d2d17" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e69a4ec195b6fe3a283f2b575c3d2d17"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
+<p><a href="#R-image-a88f80e6784f831c2dd613ae001f218c" class="lightbox-link"><img alt="keycloak_opa" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak_opa.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a88f80e6784f831c2dd613ae001f218c"><img alt="keycloak_opa" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak_opa.png"></a></p>
 <h3 id="opa-installation">OPA Installation</h3>
 <p>Create another namespace, this time to install OPA</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl create namespace opa</code></pre></div>
@@ -850,7 +853,7 @@ kubectl delete deployment opa -n opa</code></pre></div>
 <p>As expected, there no policies available:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{&#34;result&#34;:[]}</code></pre></div>
-<h4 id="create-the-authorization-policy">Create the Authorization Policy</h4>
+<h3 id="create-the-authorization-policy">Create the Authorization Policy</h3>
 <p>OPA uses <a href="https://www.openpolicyagent.org/docs/latest/#rego" rel="external" target="_blank">Rego</a> language for Policy definition. Here&rsquo;s the policy we are going to create:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; jwt.rego &lt;&lt; &#39;EOF&#39;
 package jwt
@@ -887,7 +890,7 @@ EOF</code></pre></div>
 <p>Check the policy with:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies | jq -r &#39;.result[].id&#39;</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X GET http://localhost:8181/v1/policies/jwt | jq -r &#39;.result.raw&#39;</code></pre></div>
-<h4 id="enable-the-opa-plugin-to-the-kong-route">Enable the OPA plugin to the Kong Route</h4>
+<h3 id="enable-the-opa-plugin-to-the-kong-route">Enable the OPA plugin to the Kong Route</h3>
 <p>Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the <strong>opa_path</strong> parameter refers to the <code>allow</code> function defined in the policy. The <strong>opa_host</strong> and <strong>opa_port</strong> are references to the OPA Kubernetes Service&rsquo;s FQDN.</p>
 <p>Since we are going to move the Authorization policy to OPA, we are also returning our OpenID Connect plugin to the original Client Credentials state, with no <strong>audience_required</strong> configuration:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; oidc.yaml &lt;&lt; &#39;EOF&#39;
@@ -930,7 +933,7 @@ EOF</code></pre></div>
 <p>Submit the declaration
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway sync --konnect-token $PAT oidc.yaml</code></pre></div>
 </p>
-<h4 id="consume-the-kong-route">Consume the Kong Route</h4>
+<h3 id="consume-the-kong-route">Consume the Kong Route</h3>
 <p>A new error code should be returned if we try to consume the Route:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -siX GET http://localhost/oidc-route/get -u &#34;kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j&#34;</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 403 Forbidden
@@ -1064,8 +1067,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785366914" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785366914" defer></script>
-    <script src="/js/theme.js?1785366914" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785367931" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785367931" defer></script>
+    <script src="/js/theme.js?1785367931" defer></script>
   </body>
 </html>

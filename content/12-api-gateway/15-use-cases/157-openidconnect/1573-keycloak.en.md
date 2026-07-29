@@ -9,7 +9,7 @@ The two next topics describe Authorization Code OAuth and Client Credentials gra
 
 
 
-### Keycloak Installation
+## Keycloak Installation
 
 Download the [keycloak.yaml](/code/keycloak.yaml) spec.
 
@@ -46,7 +46,7 @@ statefulset.apps/keycloak   1/1     12s
 ```
 
 
-#### Get the Keycloak Load Balancer
+### Get the Keycloak Load Balancer
 
 ```
 export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath='{.status.loadBalancer.ingress[0].ip}')
@@ -65,7 +65,7 @@ http://127.0.0.1:8080/realms/master
 ```
 
 
-### Create a Keycloak Realm and a Client-Id and Client-Secret pair
+## Create a Keycloak Realm and a Client-Id and Client-Secret pair
 
 The following commands do the following:
 * Issue a Keycloak Token:
@@ -152,7 +152,7 @@ open -a "Google Chrome" "http://localhost:8080"
 ![keycloak](/static/images/keycloak.png)
 
 
-### Test the Keycloak Endpoint
+## Test the Keycloak Endpoint
 
 You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the **client_id/client_secret** pair you have just created. You should get an Access Token as a result. Use ```jwt``` to decode the Access Token. Make sure you have jwt installed on your environment. For example:
 

@@ -7,7 +7,7 @@ Kong can rate-limit your traffic without any external dependency. In such a case
 
 This section walks through the steps of using Redis for rate-limiting in a multi-node Kong deployment.
 
-#### High Level Tasks
+### High Level Tasks
 You will complete the following:
 * Set up rate-limiting plugin
 * Scale Kong for Kubernetes to multiple pods

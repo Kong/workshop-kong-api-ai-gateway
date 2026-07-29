@@ -7,9 +7,9 @@ Here's a nice introduction of [OTel Collector and Jaeger](https://www.jaegertrac
 
 
 
-#### OpenTelemetry Collector instantiation
+## OpenTelemetry Collector instantiation
 
-##### Create a collector declaration
+### Create a collector declaration
 To get started we're going to manage Traces first. Later on, we'll enhance the collector to process both Metrics and Logs. Here's the declaration:
 
 ```
@@ -53,7 +53,7 @@ The declaration has critical parameters defined:
 * The “exporters” section used the endpoint and the API Token to send data to Jaeger. You can check the Jaeger's APIs [here](https://www.jaegertracing.io/docs/latest/architecture/apis/).
 * The “service” section defines the Pipeline.
 
-##### Deploy the collector
+### Deploy the collector
 
 ```
 kubectl apply -f otelcollector.yaml
@@ -79,7 +79,7 @@ collector-kong-collector   ClusterIP   10.102.44.48   <none>        4317/TCP,431
 ```
 
 
-#### Update the DataPlane with tracing instrumentations
+## Update the DataPlane with tracing instrumentations
 
 ```
 kubectl delete dataplane kong-workshop-dp -n kong
@@ -122,7 +122,7 @@ spec:
 EOF
 ```
 
-#### Apply the OTel Plugin to the Kong Service and consume the Kong Route
+## Apply the OTel Plugin to the Kong Service and consume the Kong Route
 
 ```
 cat > httpbin.yaml << 'EOF'
@@ -172,7 +172,7 @@ curl -v $DATA_PLANE_LB/httpbin-route/get
 
 
 
-#### Use Grafana to see your traces
+### Use Grafana to see your traces
 
 
 By default, Grafana administrador's credentials are: ```admin/prom-operator```
@@ -187,7 +187,7 @@ open -a "Google Chrome" "http://localhost:3000"
 Use the ``admin/admin`` as the **username** and **password**. You will be asked to change your password.
 
 
-##### Check the Traces
+#### Check the Traces
 
 
 * Click "Explore" in the left-side menu.

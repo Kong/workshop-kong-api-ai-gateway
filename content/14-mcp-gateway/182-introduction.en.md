@@ -65,7 +65,7 @@ AWS provides the [**Generative AI Atlas**](https://awslabs.github.io/generative-
 The specific paper [**Model Context Protocol (MCP): Dynamic External Context Access**](https://awslabs.github.io/generative-ai-atlas/topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_11_mcp/mcp.html) presents a nice introduction to **MCP** including some comparison with **RAG**. It's worth reading.
 
 
-# Further Reading
+## Further Reading
 * [What is MCP?](https://konghq.com/blog/learning-center/what-is-mcp)
 
 

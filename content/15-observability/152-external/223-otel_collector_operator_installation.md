@@ -5,7 +5,7 @@ weight : 223
 
 To deploy the OpenTelemetry Collector and to get better control over it, we're going to do it through the OpenTelemetry Kubernetes Operator. In fact, the collector is also capable of auto-instrument applications and services using OpenTelemetry instrumentation libraries.
 
-#### Installing Cert-Manager
+### Installing Cert-Manager
 The OpenTelemetry Operator requires [Cert-Manager](https://cert-manager.io/) to be installed in your Kubernetes cluster. The Cert-Manager can then issue certificates to be used by the communication between the Kubernetes API Server and the existing webhook included in the operator.
 
 Use the [Cert-Manager Helm Charts](https://cert-manager.io/docs/installation/helm/) to get it installed.
@@ -19,7 +19,7 @@ helm install \
   --set crds.enabled=true
 ```
 
-#### Installing OpenTelemetry Operator
+## Installing OpenTelemetry Operator
 Now we're going to use the [OpenTelemetry Helm Charts](https://github.com/open-telemetry/opentelemetry-helm-charts) to install it. Add its repo:
 
 ```

@@ -3,7 +3,7 @@ title : "Observability Stack Installation"
 weight : 224
 ---
 
-#### Jaeger Installation
+### Jaeger Installation
 
 We are going to use the [Jaeger Helm Charts](https://github.com/jaegertracing/helm-charts/tree/v2/charts/jaeger). Add its repo:
 
@@ -44,7 +44,7 @@ kubectl logs -f $(kubectl get pod -n jaeger -o json | jq -r '.items[].metadata |
 
 
 
-#### Prometheus Installation
+### Prometheus Installation
 
 Add the [Helm Charts](https://github.com/prometheus-community/helm-charts) repo first:
 
@@ -69,7 +69,7 @@ helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack
 
 
 
-#### Loki Installation
+### Loki Installation
 
 First, add the [Helm Charts](https://github.com/grafana/loki/blob/main/production/helm/loki/README.md). Read the [documentation](https://grafana.com/docs/loki/next/setup/install/helm/) to learn more.
 
@@ -114,7 +114,7 @@ helm upgrade --install loki grafana/loki \
 
 
 
-#### Grafana Installation
+### Grafana Installation
 
 The Grafana installation [Helm](https://github.com/grafana/helm-charts/) commands creates the Data Sources for the 3 components, Jaeger, Prometheus and Loki, using their specific Kubernetes FQDN endpoints.
 
@@ -152,7 +152,7 @@ helm upgrade --install grafana grafana/grafana \
 
 
 
-#### Uninstall
+### Uninstall
 
 If you want to uninstall them run:
 

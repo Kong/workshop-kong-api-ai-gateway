@@ -5,7 +5,7 @@ weight : 1574
 
 This page describes a configuration of the [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/). Check the [OpenID Connect plugin documentation](https://developer.konghq.com/plugins/openid-connect/#authorization-code-flow) to learn more about it.
 
-#### Installing OpenID Connect Plugin
+### Installing OpenID Connect Plugin
 
 All Keycloak settings are available for the OIDC plugin in the following address:
 
@@ -64,7 +64,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 
 
 
-#### Verification
+### Verification
 
 Redirect your browser the following URL. Since you haven't been authenticated, you will be redirected to Keycloak's Authentication page:
 

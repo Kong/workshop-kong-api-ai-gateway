@@ -36,7 +36,7 @@ EOF
 
 
 
-#### Wait for replicas to deploy
+### Wait for replicas to deploy
 It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.
 
 {{<highlight>}}
@@ -51,7 +51,7 @@ dataplane-dataplane1-qdc66-84d7746bbf-kpbpl   1/1     Running   0          26s
 httpbin-5c69574c95-xq76q                      1/1     Running   0          6d19h
 ```
 
-### Check Konnect Runtime Group
+## Check Konnect Runtime Group
 
 Similarly you can see new Runtime Instances connected to your Runtime Group
 
@@ -59,7 +59,7 @@ Similarly you can see new Runtime Instances connected to your Runtime Group
 
 
 
-#### Verify traffic control
+### Verify traffic control
 Test the rate-limiting policy by executing the following command and observing the rate-limit headers.
 
 {{<highlight>}}
@@ -88,10 +88,10 @@ Via: 1.1 kong/3.11.0.2-enterprise-edition
 X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942
 ```
 
-#### Results
+### Results
 You will observe that the rate-limit is not consistent anymore and you can make more than 5 requests in a minute.
 
 To understand this behavior, we need to understand how we have configured Kong. In the current policy, each Kong node is tracking a rate-limit in-memory and it will allow 5 requests to go through for a client. There is no synchronization of the rate-limit information across Kong nodes. In use-cases where rate-limiting is used as a protection mechanism and to avoid over-loading your services, each Kong node tracking it's own counter for requests is good enough as a malicious user will hit rate-limits on all nodes eventually. Or if the load-balance in-front of Kong is performing some sort of deterministic hashing of requests such that the same Kong node always receives the requests from a client, then we won't have this problem at all.
 
-#### Whats Next ?
+### Whats Next ?
 In some cases, a synchronization of information that each Kong node maintains in-memory is needed. For that purpose, Redis can be used. Let's go ahead and set this up next.

@@ -4,7 +4,7 @@ weight : 5
 ---
 
 
-#### Semantic
+### Semantic
 
 The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
 

@@ -13,7 +13,7 @@ Key benefits:
 * Fast time to insight: Retrieve critical API metrics in less than a second.
 * Reduced cost of ownership: A turn-key analytics solution without third-party dependencies.
 
-### Enabling data ingestion
+## Enabling data ingestion
 
 Manage data ingestion from any Control Plane Dashboard using the **Advanced Analytics** toggle. This toggle lets you enable or disable data collection for your API traffic per control plane.
 
@@ -25,7 +25,7 @@ Modes:
 * **Off**: Advanced analytics collection stops, but basic API metrics remain available in Gateway Manager, and can still be used for custom reports.
 
 
-### Explorer Interface
+## Explorer Interface
 
 The Explorer interface displays API usage data gathered by Konnect Analytics from your Data Plane nodes. You can use this tool to:
 
@@ -43,19 +43,19 @@ The Analytics Explorer also lets you save the output as a custom report.
 
 Check the [**Advanced Analytics Explorer documentation**](https://developer.konghq.com/advanced-analytics/explorer/) to learn more.
 
-### Dashboards
+## Dashboards
 
 The **Summary Dashboard** shows performance and health statistics of all your APIs across your organization on a single page and provides insights into your Service usage.
 
 ![summary_dashboard](/static/images/summary_dashboard.png)
 
 
-### Custom Dashboards
+## Custom Dashboards
 
 Advanced Analytics includes the ability to build organization-specific views with Custom Dashboards. You can create them from scratch or use existing templates. The functionality is powered by a robust [API](https://developer.konghq.com/api/konnect/analytics-dashboards/), and [Terraform integration](https://developer.konghq.com/how-to/automate-dashboard-terraform/).
 
 
-##### Create a dashboard
+### Create a dashboard
 You can create custom dashboards either from scratch or from a template. In this tutorial, we’ll use a template.
 
 To create a custom dashboard, do the following:
@@ -68,7 +68,7 @@ This creates a new template with pre-configured tiles.
 
 ![custom_dashboard](/static/images/custom_dashboard.png)
 
-##### Add a filter
+### Add a filter
 
 Filters help you narrow down the data shown in charts without modifying individual tiles.
 
@@ -87,7 +87,7 @@ Check the [**Advanced Analytics Custom Dashboards documentation**](https://devel
 
 
 
-### Requests
+## Requests
 
 The **Requests** options shows all requests that have been processed by the Data Planes. For example, here's the requests processed by the Data Planes created for the ``kong-workshop`` Control Plane.
 

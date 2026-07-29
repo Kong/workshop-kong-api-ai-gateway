@@ -115,7 +115,7 @@ Before sending request, you can scan the Redis database:
 kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-cli --scan
 ```
 
-##### 1st Request
+### 1st Request
 
 Since we don't have any cached data, the first request is going to return "Miss":
 
@@ -205,7 +205,7 @@ X-Kong-Request-Id: 8fd73d1623140f675ed93b0dcb4aeb16
 ```
 
 
-##### Check Redis again
+### Check Redis again
 
 The Redis database has an entry now:
 ```
@@ -220,7 +220,7 @@ kubectl exec -it $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.n
 
 
 
-##### 2nd Request
+### 2nd Request
 The Semantic Cache plugin will use the cached data for similar requests:
 
 ```
@@ -258,7 +258,7 @@ X-Kong-Request-Id: 2debcb5db5e6f3637bef912cca963a5d
 ```
 
 
-##### 3rd Request
+### 3rd Request
 As expected, for a non-related request, the AI Gateway will hit the LLM to satisfy the query:
 
 ```
@@ -349,7 +349,7 @@ X-Kong-Request-Id: b5fadb69431d1234d8bbd53a71abc559
 
 
 
-##### Check Redis again
+### Check Redis again
 
 Redis database has two entries now:
 

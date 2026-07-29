@@ -110,7 +110,7 @@ The declaration has critical parameters defined:
   * It also includes the ``otlphttp/prometheus`` exporter responsible for pushing the metrics to Prometheus using its specific [OTLP endpoint](https://prometheus.io/docs/guides/opentelemetry/).
 
 
-#### Kubernetes Service Account for Prometheus Receiver
+### Kubernetes Service Account for Prometheus Receiver
 The OTel Collector [Prometheus Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/prometheusreceiver/README.md) fully supports the [scraping configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) defined by Prometheus. The receiver, more precisely, uses the [``pod``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#pod) role of the Kubernetes Service Discovery configurations ([``kubernetes_sd_config``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)). Specific [``relabel_config``](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config) settings with “regex” expressions allow the receiver to discover Kubernetes Pods that belong to the Kong Data Plane deployment.
 
 One of the relabeling configs is related to the port 8100, named ``metrics``. This port configuration is part of the Data Plane deployment we used to get it running. 
@@ -159,7 +159,7 @@ EOF
 
 Finally, note that the OTel Collector configuration is deployed using the Service Account with ``serviceAccount: collector`` and then it will be able to scrape the endpoint exposed by Kong Gateway.
 
-#### Deploy the collector
+### Deploy the collector
 Delete the current collector first and instantiate a new one simply submitting the declaration:
 
 ```

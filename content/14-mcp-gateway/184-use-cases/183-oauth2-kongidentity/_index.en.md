@@ -3,7 +3,7 @@ title : "Implement the OAuth 2 specification for MCP servers with Kong Identity"
 weight : 1830
 ---
 
-### MCP Authorization
+## MCP Authorization
 
 As you might have noticed, until now, there's no security mechanism defined to protect the MCP Tool exposed by the Kong AI Gateway. As usual, you can take advantage of the historical plugins the Kong API Gateway provides to implement [Authentication](https://developer.konghq.com/plugins/?category=authentication) and [Security](https://developer.konghq.com/plugins/?category=security) processes to your MCP Tool, such as Key Auth, OpenID Connect, Open Policy Agent, etc.
 
@@ -11,9 +11,9 @@ On the other hand, the MCP community has defined [Authorization specifications](
 
 Kong offers [Kong Identity](https://developer.konghq.com/kong-identity/) which enables you to use Konnect to generate, authenticate, and authorize API access and MCP Tool consumption. In this module, we will configure the **AI MCP OAuth2** plugin to use Kong Identity as the external Identity Provider, which is responsible for issuing Access Tokens and validating them during the MCP Tool consuming time. The Access Token validation follows the [**OAuth2 Token Introspection**](https://oauth.net/2/token-introspection/) specification which defines a protocol that returns information about an Access Token.
 
-### OAuth2 fundamentals
+## OAuth2 fundamentals
 
-#### OAuth2 Actors
+### OAuth2 Actors
 
 The [**OAuth2 Authorization Framework**](https://datatracker.ietf.org/doc/html/rfc6749) defines the following Actors:
 
@@ -23,7 +23,7 @@ The [**OAuth2 Authorization Framework**](https://datatracker.ietf.org/doc/html/r
 * **Resource Server (RS)**: The server hosting protected resources (e.g. an API or a web page) that can be accessed using Access Tokens. The **Resource Server** validates Access Tokens, enforces authorization policies, and returns protected resources to authorized clients. In this architecture, the **Kong Data Plane** acts as the **Resource Server**. Kong validates opaque Access Tokens through **OAuth 2.0 Token Introspection** with the **Authorization Server** and enforces the scopes and claims returned by the introspection response before forwarding requests to upstream services.
 
 
-#### Authorization Grant
+### Authorization Grant
 
 An [**Authorization Grant**](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3) is a credential representing the RO's authorization (to access its protected resources) used by the client to obtain an Access Token. This specification defines four Grant Types:
 
@@ -34,7 +34,7 @@ An [**Authorization Grant**](https://datatracker.ietf.org/doc/html/rfc6749#secti
 	
 
 
-#### The Client Credentials Grant
+### The Client Credentials Grant
 
 The use case described later is going to use the [**Client Credentials Grant**](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) which has a simple flow:
 
@@ -59,7 +59,7 @@ The use case described later is going to use the [**Client Credentials Grant**](
 
 
 
-#### OAuth2 main concepts
+### OAuth2 main concepts
 
 * [**Access Tokens**](https://datatracker.ietf.org/doc/html/rfc6749#section-1.4) are credentials used to access protected resources. An access token is a string representing an authorization issued to the client. It can be Opaque, JWT, Random String, etc.
 
@@ -94,7 +94,7 @@ The use case described later is going to use the [**Client Credentials Grant**](
 }
 ```
 
-#### Token Issuing and Validation
+### Token Issuing and Validation
 
 For the **Client Credentials Grant**, the Client sends an [**Access Token Request**](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4.2) to the [**Token Endpoint**](https://datatracker.ietf.org/doc/html/rfc6749#section-3.2) (``/token``), typically exposed by the **Authorization Server**. The request may have, optionally, the **scope** the Client is interested in. If the Client has all necessary permissions to request the **scope**, then the Access Token generated will have the **scope** required. Otherwise, the Client receives a specific error.
 
@@ -104,7 +104,7 @@ Obs.: As an alternative to **Introspection**, Access Tokens can be issued in a s
 
 
 
-### Kong AI/MCP Gateway and Kong Identity Implementation
+## Kong AI/MCP Gateway and Kong Identity Implementation
 
 This use case implementation has the following steps:
 * Create a new **Kong Identity Authorization Server**.
@@ -134,7 +134,7 @@ It’s important to notice that one of the main benefits provided by an architec
 
 
 
-### OAuth and [OpenId Connect](https://openid.net)
+## OAuth and [OpenId Connect](https://openid.net)
 
 We are going to use the **AI MCP OAuth2** plugin and the **Client Credentials Grant**, so no **ID Tokens** will be generated. However, as a clarificatiion, let's have a brief comparison between the two specs:
 
@@ -157,7 +157,7 @@ In this sense, OpenId Connect, adds some new concepts:
 
 
 
-#### Access Tokens and ID Tokens
+### Access Tokens and ID Tokens
 
 As an example, here a comparison between Access Tokens (defined by OAuth) and ID Token (defined by OpenId Connect)
 
@@ -197,7 +197,7 @@ As an example, here a comparison between Access Tokens (defined by OAuth) and ID
 Taking the [**Authorization Code Grant**](https://openid.net/specs/openid-connect-core-1_0-36.html#CodeFlowAuth) as an example, the Client sends an [**OpenId Connect Authentication Request**](https://openid.net/specs/openid-connect-core-1_0-36.html#AuthRequest) to the [**OAuth Authorization Endpoint**](https://openid.net/specs/openid-connect-core-1_0-36.html#AuthorizationEndpoint) (``/authorize``), with the **scope** parameter as ``openid``, and gets an **Authorization Code**. The Client then sends a request with the **Authorization Code** to the [**Token Endpoint**](https://openid.net/specs/openid-connect-core-1_0-36.html#TokenEndpoint) to get the Access Token, an ID Token, this time.
 
 
-#### Scope and Claims
+### Scope and Claims
 
 Also, differently to what happens to the OAuth **scopes** and **claims**, the [OpenId Connect Claims and Scopes](https://openid.net/specs/openid-connect-core-1_0-36.html#ScopeClaims) are related and play a distinct role. For example:
 

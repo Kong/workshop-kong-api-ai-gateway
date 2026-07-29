@@ -7,7 +7,7 @@ This page describes a configuration of the [Client Credentials Grant](https://oa
 
 The main use case for the OAuth Client Credentials Grant is to address application authentication rather than user authentication. In such a scenario, authentication processes based on userid and password are not feasible. Instead, applications should deal with Client IDs and Client Secrets to authenticate and get a token.
 
-#### Installing OpenID Connect Plugin
+### Installing OpenID Connect Plugin
 
 {{<highlight>}}
 cat > oidc.yaml << 'EOF'
@@ -49,7 +49,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 
 
 
-#### Verification
+### Verification
 
 ```
 curl -sX GET http://localhost/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -

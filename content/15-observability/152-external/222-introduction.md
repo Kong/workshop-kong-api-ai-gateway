@@ -10,13 +10,13 @@ Observability focuses mainly on three core pillars:
 * Traces: Visual paths that requests follow as they traverse through different system components, enabling end-to-end analysis of transactions and interactions
 
 
-#### OpenTelemetry
+### OpenTelemetry
 
 Here's a concise definition of OpenTelemetry, available on its [website](https://opentelemetry.io/docs/):
 
 “OpenTelemetry, also known as OTel, is a vendor-neutral open source Observability framework for instrumenting, generating, collecting, and exporting telemetry data such as traces, metrics, and logs.”
 
-#### OTel Collector
+### OTel Collector
 The OTel specification comprises several [components](https://opentelemetry.io/docs/what-is-opentelemetry/#main-opentelemetry-components), including, for example, the [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). From the architecture perspective, one of the main components is the OpenTelemetry Collector, which is responsible for receiving, processing, and exporting telemetry data. The following diagram is taken from the official [OpenTelemetry Collector documentation page](https://opentelemetry.io/docs/collector/).
 
 ![otel_collector](/static/images/otel-collector.svg)

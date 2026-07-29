@@ -4,7 +4,7 @@ weight : 4
 ---
 
 
-#### Lowest Latency policy
+### Lowest Latency policy
 
 The lowest-latency algorithm is based on the response time for each model. It distributes requests to models with the lowest response time.
 
@@ -76,7 +76,7 @@ curl -s -X POST \
    }' | jq
 ```
 
-#### Lowest Usage policy
+### Lowest Usage policy
 
 The lowest-usage algorithm in **AI Proxy Advanced** is based on the volume of usage for each model. It balances the load by distributing requests to models with the lowest usage, measured by factors such as prompt token counts, response token counts, or other resource metrics.
 

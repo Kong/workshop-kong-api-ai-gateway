@@ -27,7 +27,7 @@ This section is going to show how to use the plugin to implement an Authorizatio
 
 
 
-#### Installing OpenID Connect Plugin
+## Installing OpenID Connect Plugin
 
 ```
 cat > oidc.yaml << 'EOF'
@@ -92,7 +92,7 @@ X-Kong-Request-Id: 994c85374cf460665518623ef7914a00
 
 Note that the response describes the reason why we cannot consume the Route.
 
-#### Issue a new Admin Token
+## Issue a new Admin Token
 
 The custom scope creation process requires a Keycloak Token. You might get error as the Token gets expired. Execute the following command to issue a new Token and proceed with the process.
 
@@ -106,9 +106,9 @@ TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/t
 ```
 
 
-#### Create the new Keycloak Custom Client Scope
+## Create the new Keycloak Custom Client Scope
 
-###### 1. Client Scope
+### 1. Client Scope
 The first thing to do is to create a Client Scope in Keycloak. Go to the **kong** realm and click the **Client scopes** option in the left menu. Name the Client Scope as ``kong_scope`` and click "Save".
 
 CLI version
@@ -123,7 +123,7 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/client-scopes \
 ```
 
 
-###### 2. Client Scope Mapper
+### 2. Client Scope Mapper
 Click the **Mappers** tab now and choose **Configure a new mapper**. Choose **Audience** and name it as ``kong_mapper``. For the **Included Custom Audience** field type ``gold``, which is the audience the plugin has been configured. Click Save.
 
 CLI version
@@ -149,7 +149,7 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/client-scopes/$SCOPE_ID/
   }'
 ```
 
-###### 3. Apply the Custom Scope to the Client
+### 3. Apply the Custom Scope to the Client
 Now click on the **Clients** option in the left menu and choose our ``client1`` client. Client the **Client scopes** tab and add the new ``kong_scope`` we just created it as ``Default``:
 
 CLI version
@@ -165,7 +165,7 @@ curl -X PUT http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$CLIENT_UUID/defa
 ```
 
 
-###### 4. Disable **Full scope allowed**
+### 4. Disable **Full scope allowed**
 As you can see in our previous requests, Keycloak adds, by default, the ``account`` audience as ``aud``: ``account`` field inside the Access Token. One last optional step is to remove it, so the token should have our "gold" audience only. To do that, click the default ``<client_id>-dedicated`` Client Scope (in our case, ``client1-dedicated``) and its Scope tab. Inside the **Scope** tab, turn the "Full scope allowed" option off.
 
 CLI version
@@ -183,7 +183,7 @@ curl -X PUT http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$CLIENT_UUID \
 
 
 
-#### Test the Keycloak Endpoint
+## Test the Keycloak Endpoint
 Send a request to Keycloak again to test the new configuration:
 
 ```
@@ -200,7 +200,7 @@ Expected output
 ```
 
 
-#### Consume the Kong Route again
+## Consume the Kong Route again
 You should be able to consumer the Kong Route now.
 
 ```

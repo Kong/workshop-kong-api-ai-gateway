@@ -4,7 +4,7 @@ weight : 1563
 ---
 
 
-#### Add Rate Limiting plugin
+### Add Rate Limiting plugin
 
 Just like you did before, add the **Rate Limiting** plugin on the Route setting **Minute** as 5 requests per minute, and set the identifier to **Service**.
 
@@ -43,7 +43,7 @@ deck gateway sync --konnect-token $PAT rate-limiting.yaml
 
 
 
-#### Verify traffic control
+### Verify traffic control
 
 Again, test the rate-limiting policy by executing the following command multiple times and observe the rate-limit headers in the response, specially, `X-RateLimit-Remaining-Minute`, `RateLimit-Reset` and `Retry-After` :
 
@@ -93,5 +93,5 @@ Server: kong/3.11.0.2-enterprise-edition
 X-Kong-Request-Id: c01dcb02ea13676ca5e49e7e1c40982b
 ```
 
-### Results
+## Results
 As there is a single Kong Data Plane Runtime instance running, Kong correctly imposes the rate-limit and you can make only 5 requests in a minute.

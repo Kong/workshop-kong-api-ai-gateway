@@ -50,7 +50,7 @@ You should get a response like this:
 }
 ```
 
-##### Check your AuthZ Server
+### Check your AuthZ Server
 
 ```
 curl -sX GET "https://us.api.konghq.com/v1/auth-servers" \
@@ -294,7 +294,7 @@ Typical response:
 ```
 
 
-#### Kong Identity User Interface
+### Kong Identity User Interface
 
 You can also check the Konnect UI with your Authorization Server and its Clients, Scopes and Claims defined:
 

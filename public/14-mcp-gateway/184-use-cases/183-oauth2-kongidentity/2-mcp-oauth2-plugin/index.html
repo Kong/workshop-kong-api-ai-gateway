@@ -25,26 +25,26 @@ routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mc
 routes: - name: mcp-listener-route paths: - /mcp-listener plugins: - name: ai-mcp-proxy config: mode: listener server: tag: mcp-tools timeout: 45000 max_request_body_size: 32768 - name: ai-mcp-oauth2 enabled: true config: resource: ${{ env &#34;DECK_MCP_AUTH_URL&#34; }} authorization_servers: - ${{ env &#34;DECK_KONG_IDENTITY_AUTHZ_URL&#34; }} introspection_endpoint: ${{ env &#34;DECK_KONG_IDENTITY_INTROSPECTION_URL&#34; }} client_id: ${{ env &#34;DECK_CLIENT_ID&#34; }} client_secret: ${{ env &#34;DECK_CLIENT_SECRET&#34; }} insecure_relaxed_audience_validation: true It refers to some Kong Identity endpoints and secrets, besides the actual Authorization URL. Let’s go through them:">
     <meta itemprop="wordCount" content="534">
     <title>AI MCP OAuth2 plugin configuration :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785366914" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785366914" defer></script>
-    <script src="/js/search-lunr.js?1785366914" defer></script>
-    <script src="/js/search.js?1785366914" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785368555" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785368555" defer></script>
+    <script src="/js/search-lunr.js?1785368555" defer></script>
+    <script src="/js/search.js?1785368555" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785366914";
+      window.relearn.index_js_url="/searchindex.en.js?1785368555";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785366914" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785368555" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785368555" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785368555" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785368555" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785366914" rel="stylesheet">
-    <link href="/css/theme.css?1785366914" rel="stylesheet">
-    <link href="/css/format-html.css?1785366914" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368555" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368555" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785368555" rel="stylesheet">
+    <link href="/css/theme.css?1785368555" rel="stylesheet">
+    <link href="/css/format-html.css?1785368555" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -734,11 +734,12 @@ aside#R-sidebar,
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#download-the-new-deck-file">Download the new decK file</a></li>
+    <li><a href="#submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</a></li>
+    <li><a href="#exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</a>
       <ul>
-        <li><a href="#download-the-new-deck-file">Download the new decK file</a></li>
-        <li><a href="#submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</a></li>
-        <li><a href="#exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</a></li>
+        <li><a href="#token-endpoint">Token Endpoint</a></li>
+        <li><a href="#introspection-endpoint">Introspection Endpoint</a></li>
       </ul>
     </li>
   </ul>
@@ -774,7 +775,7 @@ aside#R-sidebar,
 
 <h1 id="ai-mcp-oauth2-plugin-configuration">AI MCP OAuth2 plugin configuration</h1>
 
-<h3 id="download-the-new-deck-file">Download the new decK file</h3>
+<h2 id="download-the-new-deck-file">Download the new decK file</h2>
 <ul>
 <li>Download the <a href="/code/marketplace_mcp_oauth_kong_identity.yaml"><strong>marketplace_mcp_oauth_kong_identity.yaml</strong></a> spec.</li>
 </ul>
@@ -816,7 +817,7 @@ aside#R-sidebar,
 <p><strong>client_id</strong> and <strong>client_secret</strong>: these are the secrets of an existing Kong Identity Client.</p>
 </li>
 </ul>
-<h3 id="submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</h3>
+<h2 id="submit-the-deck-declaration-to-your-control-plane">Submit the decK declaration to your Control Plane</h2>
 <p>Before submiting the new declaration we have set the decK environment variables:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export DECK_MCP_AUTH_URL=http://$DATA_PLANE_LB/mcp-listener
 export DECK_KONG_IDENTITY_AUTHZ_URL=$ISSUER_URL/authorize
@@ -825,9 +826,9 @@ export DECK_CLIENT_ID=$CLIENT_ID
 export DECK_CLIENT_SECRET=$CLIENT_SECRET</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-aws --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT marketplace_mcp_oauth_kong_identity.yaml</code></pre></div>
-<h3 id="exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</h3>
+<h2 id="exploring-the-token-and-introspection-endpoints">Exploring the Token and Introspection Endpoints</h2>
 <p>To exercise the Introspection Endpoint, let&rsquo;s send some requests to Kong Identity, acting as the Consumer and the Gateway.</p>
-<h4 id="token-endpoint">Token Endpoint</h4>
+<h3 id="token-endpoint">Token Endpoint</h3>
 <p>In the first request, we play the Consumer role, using the <a href="https://oauth.net/2/grant-types/client-credentials/" rel="external" target="_blank"><strong>Client Credentials Grant</strong></a> to get our Access Token</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TOKEN=$(curl -s -X POST &#34;$ISSUER_URL/oauth/token&#34; \
   -H &#34;Content-Type: application/x-www-form-urlencoded&#34; \
@@ -873,7 +874,7 @@ Token claims
   -d &#34;scope=non-existing-scope&#34;</code></pre></div>
 <p>Expected result:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{&#34;error&#34;:&#34;invalid_scope&#34;}</code></pre></div>
-<h4 id="introspection-endpoint">Introspection Endpoint</h4>
+<h3 id="introspection-endpoint">Introspection Endpoint</h3>
 <p>Now, playing the Gateway role, we are going to consume the Introspection Endpoint asking the IdP to validate the Access Token. We use the <a href="https://curl.se/docs/manpage.html#-u" rel="external" target="_blank"><code>-u</code> <strong>curl</strong> option</a> to specify our Client Id and Client Secret.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#34;$ISSUER_URL/introspect&#34; \
   -d &#34;token=$TOKEN&#34; \
@@ -978,8 +979,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785366914" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785366914" defer></script>
-    <script src="/js/theme.js?1785366914" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785368555" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785368555" defer></script>
+    <script src="/js/theme.js?1785368555" defer></script>
   </body>
 </html>

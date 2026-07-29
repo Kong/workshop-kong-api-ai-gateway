@@ -21,7 +21,7 @@ It's important then to be able to define specific policies for each one of these
 Doing that, the Data Plane is capable to not just protect the Route but to identify the consumer based on the key injected to enforce specific policies to the consumer. Keep in mind that a Consumer might have other plugins also enabled such as [TCP Log](https://docs.konghq.com/hub/kong-inc/tcp-log/), etc.
 
 
-#### New Consumer and AI Rate Limiting Advanced plugin Policies
+### New Consumer and AI Rate Limiting Advanced plugin Policies
 
 Then, create the second ``consumer2``, just like you did with the first one, with the ``987654`` key. Both Kong Consumers have the **AI Rate Limiting Advanced** plugin enabled with specific configurations.
 
@@ -110,7 +110,7 @@ deck gateway sync --konnect-token $PAT ai-key-auth-rate-limiting-advanced.yaml
 ```
 
 
-#### Use both Kong Consumers
+### Use both Kong Consumers
 
 If you will, you can inject both keys to your requests.
 

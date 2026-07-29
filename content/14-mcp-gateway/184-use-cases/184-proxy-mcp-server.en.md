@@ -11,7 +11,7 @@ The Kong MCP Server was introduced last April, 2025 and it's available in GitHub
 
 
 
-#### Proxy MCP requests with MCP Gateway
+### Proxy MCP requests with MCP Gateway
 
 You can consume the Kong MCP Server directly using the URL ``https://us.mcp.konghq.com/``, adding your PAT. Once you have the Kong MCP Gateway configured, you can start consuming it just like you did with the MCP Server we crafted before. However, we want this MCP Server to sit behind the MCP Gateway and get controlled by it.
 

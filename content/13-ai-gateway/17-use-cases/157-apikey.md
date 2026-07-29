@@ -6,7 +6,7 @@ weight : 157
 In this section, you will configure the **Key-Auth** plugin on the Kong Route to protect Amazon Bedrock.
 
 
-#### Add Kong Key Authentication plugin and Kong Consumer
+### Add Kong Key Authentication plugin and Kong Consumer
 
 Add a KongPlugin resource for authentication, specifically the **Key-Auth** plugin. Note that, besides describing the plugin configuration, the declaration also creates a **Kong Consumer**, named ``user1``, with an API Key (``123456``) as its credential.
 
@@ -72,7 +72,7 @@ deck gateway sync --konnect-token $PAT ai-key-auth.yaml
 
 
 
-#### Verify authentication is required
+### Verify authentication is required
 New requests now require authentication
 
 ```
@@ -110,7 +110,7 @@ X-Kong-Request-Id: fd1bc16647271a20b7245b0cc9eb5052
 }
 ```
 
-#### Send another request with an API key
+### Send another request with an API key
 
 Use the apikey to pass authentication to access the services.
 

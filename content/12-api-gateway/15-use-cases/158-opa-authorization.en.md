@@ -122,7 +122,7 @@ curl -s -X GET http://localhost:8181/v1/policies
 {"result":[]}
 ```
 
-#### Create the Authorization Policy
+### Create the Authorization Policy
 OPA uses [Rego](https://www.openpolicyagent.org/docs/latest/#rego) language for Policy definition. Here's the policy we are going to create:
 
 ```
@@ -173,7 +173,7 @@ curl -s -X GET http://localhost:8181/v1/policies/jwt | jq -r '.result.raw'
 ```
 
 
-#### Enable the OPA plugin to the Kong Route
+### Enable the OPA plugin to the Kong Route
 
 Just like we did for the other plugins, we can enable the OPA plugin with a request like this. Note the **opa_path** parameter refers to the ``allow`` function defined in the policy. The **opa_host** and **opa_port** are references to the OPA Kubernetes Service's FQDN.
 
@@ -228,7 +228,7 @@ deck gateway sync --konnect-token $PAT oidc.yaml
 {{</highlight>}}
 
 
-#### Consume the Kong Route
+### Consume the Kong Route
 A new error code should be returned if we try to consume the Route:
 
 ```

@@ -29,26 +29,26 @@ Add Kong Key Authentication plugin and Kong Consumer Add a KongPlugin resource f
 cat &gt; ai-key-auth.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _konnect: control_plane_name: kong-workshop _info: select_tags: - llm services: - name: service1 host: localhost port: 32000 routes: - name: ollama-route paths: - /ollama-route plugins: - name: ai-proxy instance_name: ai-proxy-ollama config: route_type: llm/v1/chat model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat - name: openai-route paths: - /openai-route plugins: - name: ai-proxy instance_name: ai-proxy-openai config: route_type: llm/v1/chat auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} model: provider: openai name: gpt-4.1 options: temperature: 1.0 - name: key-auth instance_name: key-auth-bedrock enabled: true consumers: - keyauth_credentials: - key: &#34;123456&#34; username: user1 EOF Apply the declaration with decK:">
     <meta itemprop="wordCount" content="339">
     <title>Key Auth :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785366914" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785366914" defer></script>
-    <script src="/js/search-lunr.js?1785366914" defer></script>
-    <script src="/js/search.js?1785366914" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785368350" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785368350" defer></script>
+    <script src="/js/search-lunr.js?1785368350" defer></script>
+    <script src="/js/search.js?1785368350" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785366914";
+      window.relearn.index_js_url="/searchindex.en.js?1785368350";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785366914" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785368350" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785368350" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785368350" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785368350" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785366914" rel="stylesheet">
-    <link href="/css/theme.css?1785366914" rel="stylesheet">
-    <link href="/css/format-html.css?1785366914" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368350" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368350" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785368350" rel="stylesheet">
+    <link href="/css/theme.css?1785368350" rel="stylesheet">
+    <link href="/css/format-html.css?1785368350" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -735,7 +735,18 @@ aside#R-sidebar,
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#add-kong-key-authentication-plugin-and-kong-consumer">Add Kong Key Authentication plugin and Kong Consumer</a></li>
+        <li><a href="#verify-authentication-is-required">Verify authentication is required</a></li>
+        <li><a href="#send-another-request-with-an-api-key">Send another request with an API key</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
@@ -768,7 +779,7 @@ aside#R-sidebar,
 <h1 id="key-auth">Key Auth</h1>
 
 <p>In this section, you will configure the <strong>Key-Auth</strong> plugin on the Kong Route to protect Amazon Bedrock.</p>
-<h4 id="add-kong-key-authentication-plugin-and-kong-consumer">Add Kong Key Authentication plugin and Kong Consumer</h4>
+<h3 id="add-kong-key-authentication-plugin-and-kong-consumer">Add Kong Key Authentication plugin and Kong Consumer</h3>
 <p>Add a KongPlugin resource for authentication, specifically the <strong>Key-Auth</strong> plugin. Note that, besides describing the plugin configuration, the declaration also creates a <strong>Kong Consumer</strong>, named <code>user1</code>, with an API Key (<code>123456</code>) as its credential.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>cat &gt; ai-key-auth.yaml &lt;&lt; &#39;EOF&#39;
 _format_version: &#34;3.0&#34;
@@ -823,7 +834,7 @@ EOF</code></pre></div>
 <p>Apply the declaration with decK:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-token $PAT ai-key-auth.yaml</code></pre></div>
-<h4 id="verify-authentication-is-required">Verify authentication is required</h4>
+<h3 id="verify-authentication-is-required">Verify authentication is required</h3>
 <p>New requests now require authentication</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -854,7 +865,7 @@ X-Kong-Request-Id: fd1bc16647271a20b7245b0cc9eb5052
   &#34;message&#34;:&#34;No API key found in request&#34;,
   &#34;request_id&#34;:&#34;fd1bc16647271a20b7245b0cc9eb5052&#34;
 }</code></pre></div>
-<h4 id="send-another-request-with-an-api-key">Send another request with an API key</h4>
+<h3 id="send-another-request-with-an-api-key">Send another request with an API key</h3>
 <p>Use the apikey to pass authentication to access the services.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -956,8 +967,8 @@ X-Kong-Request-Id: fd1bc16647271a20b7245b0cc9eb5052
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785366914" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785366914" defer></script>
-    <script src="/js/theme.js?1785366914" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785368350" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785368350" defer></script>
+    <script src="/js/theme.js?1785368350" defer></script>
   </body>
 </html>

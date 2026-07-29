@@ -182,7 +182,7 @@ curl -s -X POST \
 ```
 
 
-##### AI Proxy configuration parameters
+### AI Proxy configuration parameters
 
 The **AI Proxy** plugin is responsible for a variety of topics. For example:
 

@@ -20,7 +20,7 @@ In this part we will explore the two new plugins introduced by Kong AI Gateway:
 
 
 
-# Further Reading
+## Further Reading
 * [What is a MCP Gateway?](https://konghq.com/blog/learning-center/what-is-a-mcp-gateway)
 * [Kong AI/MCP Gateway and Kong MCP Server Technical Breakdown](https://konghq.com/blog/engineering/ai-gateway-mcp-gateway-mcp-server-breakdown)
 * [AI Agent with Strands SDK, Kong AI/MCP Gateway & Amazon Bedrock](https://konghq.com/blog/engineering/ai-agent-with-strands-kong-aimcp-gateway-bedrock)

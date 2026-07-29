@@ -8,7 +8,7 @@ The [Response Transformer](https://docs.konghq.com/hub/kong-inc/response-transfo
 In this section, you will configure the Response Transformer plugin on the Kong Route. Specifically, you will configure Kong Konnect to add a new header "demo: injected-by-kong" before responding to the client.
 
 
-#### Create the Response Transformer Plugin
+### Create the Response Transformer Plugin
 
 Take the plugins declaration and enable the **Response Transformer** plugin to the Route.
 
@@ -45,7 +45,7 @@ deck gateway sync --konnect-token $PAT response-transformer.yaml
 {{</highlight>}}
 
 
-### Verify
+## Verify
 Test to make sure Kong transforms the request to the echo server and httpbin server. 
 
 {{<highlight>}}
@@ -72,7 +72,7 @@ X-Kong-Request-Id: 6d294407e61075665321d07709210e3a
 **Expected Results** Notice that ``demo: injected-by-kong`` is injected in the header.
 
 
-#### Cleanup
+### Cleanup
 
 Reset the Control Plane to ensure that the plugins do not interfere with any other modules in the workshop for demo purposes and each workshop module code continues to function independently.
 

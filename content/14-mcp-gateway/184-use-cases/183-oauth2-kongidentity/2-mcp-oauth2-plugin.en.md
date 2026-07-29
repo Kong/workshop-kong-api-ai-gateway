@@ -3,7 +3,7 @@ title : "AI MCP OAuth2 plugin configuration"
 weight : 20
 ---
 
-### Download the new decK file
+## Download the new decK file
 
 * Download the [**marketplace_mcp_oauth_kong_identity.yaml**](/code/marketplace_mcp_oauth_kong_identity.yaml) spec.
 
@@ -48,7 +48,7 @@ It refers to some **Kong Identity** endpoints and secrets, besides the actual Au
 
 
 
-### Submit the decK declaration to your Control Plane
+## Submit the decK declaration to your Control Plane
 
 Before submiting the new declaration we have set the decK environment variables:
 
@@ -68,11 +68,11 @@ deck gateway sync --konnect-control-plane-name kong-aws --konnect-token $PAT mar
 
 
 
-### Exploring the Token and Introspection Endpoints
+## Exploring the Token and Introspection Endpoints
 
 To exercise the Introspection Endpoint, let's send some requests to Kong Identity, acting as the Consumer and the Gateway.
 
-#### Token Endpoint
+### Token Endpoint
 
 In the first request, we play the Consumer role, using the [**Client Credentials Grant**](https://oauth.net/2/grant-types/client-credentials/) to get our Access Token
 
@@ -147,7 +147,7 @@ Expected result:
 {"error":"invalid_scope"}
 ```
 
-#### Introspection Endpoint
+### Introspection Endpoint
 
 Now, playing the Gateway role, we are going to consume the Introspection Endpoint asking the IdP to validate the Access Token. We use the [``-u`` **curl** option](https://curl.se/docs/manpage.html#-u) to specify our Client Id and Client Secret.
 

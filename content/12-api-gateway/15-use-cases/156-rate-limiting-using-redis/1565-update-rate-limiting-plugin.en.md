@@ -4,7 +4,7 @@ weight : 1565
 ---
 
 
-#### Update the Rate Limiting Plugin
+### Update the Rate Limiting Plugin
 Let's update our Kong Plugin configuration to use Redis as a data store rather than each Kong node storing the counter information in-memory. As a reminder, Redis was installed previously and it is available in the EKS cluster.
 
 Here's the new declaration:
@@ -49,7 +49,7 @@ deck gateway sync --konnect-token $PAT rate-limiting.yaml
 
 
 
-#### Test it
+### Test it
 
 Execute the following commands more than 5 times.
 
@@ -82,7 +82,7 @@ X-Kong-Request-Id: b1c6ee6da33a042a51eeca1b5fb4f150
 
 
 
-#### Reduce the number of replicas
+### Reduce the number of replicas
 
 {{<highlight>}}
 cat <<EOF | kubectl apply -f -

@@ -25,26 +25,26 @@ When a new request is made, the system can retrieve and reuse previously cached 
 When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience.">
     <meta itemprop="wordCount" content="1753">
     <title>AI Semantic Cache :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785366914" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785366914" defer></script>
-    <script src="/js/search-lunr.js?1785366914" defer></script>
-    <script src="/js/search.js?1785366914" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785368330" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785368330" defer></script>
+    <script src="/js/search-lunr.js?1785368330" defer></script>
+    <script src="/js/search.js?1785368330" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785366914";
+      window.relearn.index_js_url="/searchindex.en.js?1785368330";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785366914" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785366914" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785368330" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785368330" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785368330" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785368330" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785366914" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785366914" rel="stylesheet">
-    <link href="/css/theme.css?1785366914" rel="stylesheet">
-    <link href="/css/format-html.css?1785366914" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368330" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785368330" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785368330" rel="stylesheet">
+    <link href="/css/theme.css?1785368330" rel="stylesheet">
+    <link href="/css/format-html.css?1785368330" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -740,6 +740,11 @@ aside#R-sidebar,
         <li><a href="#redis-as-a-vector-database">Redis as a Vector database</a></li>
         <li><a href="#apply-the-semantic-cache-plugin">Apply the Semantic Cache plugin</a></li>
         <li><a href="#check-redis">Check Redis</a></li>
+        <li><a href="#1st-request">1st Request</a></li>
+        <li><a href="#check-redis-again">Check Redis again</a></li>
+        <li><a href="#2nd-request">2nd Request</a></li>
+        <li><a href="#3rd-request">3rd Request</a></li>
+        <li><a href="#check-redis-again-1">Check Redis again</a></li>
       </ul>
     </li>
   </ul>
@@ -785,8 +790,8 @@ aside#R-sidebar,
 </ul>
 <h3 id="how-it-works">How it works</h3>
 <p>The diagram below illustrates the semantic caching mechanism implemented by the <strong>AI Semantic Cache</strong> plugin.</p>
-<p><a href="#R-image-56639f33f6fd110050097f2813d8f0a7" class="lightbox-link"><img alt="semantic_cache_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_cache_plugin.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-56639f33f6fd110050097f2813d8f0a7"><img alt="semantic_cache_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_cache_plugin.png"></a></p>
+<p><a href="#R-image-00cbf42e401f2c46b26a18d7e1a771e8" class="lightbox-link"><img alt="semantic_cache_plugin" class="lazy lightbox figure-image" loading="lazy" src="/static/images/semantic_cache_plugin.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-00cbf42e401f2c46b26a18d7e1a771e8"><img alt="semantic_cache_plugin" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/semantic_cache_plugin.png"></a></p>
 <p>The process involves three parts: request handling, embedding generation, and response caching.</p>
 <ul>
 <li>First, a user starts a chat request with the LLM. The <strong>AI Semantic Cache</strong> plugin queries the vector database to see if there are any semantically similar requests that have already been cached. If there is a match, the vector database returns the cached response to the user.</li>
@@ -867,7 +872,7 @@ deck gateway sync --konnect-token $PAT ai-semantic-cache.yaml</code></pre></div>
 <h3 id="check-redis">Check Redis</h3>
 <p>Before sending request, you can scan the Redis database:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
-<h5 id="1st-request">1st Request</h5>
+<h3 id="1st-request">1st Request</h3>
 <p>Since we don&rsquo;t have any cached data, the first request is going to return &ldquo;Miss&rdquo;:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -950,14 +955,14 @@ X-Kong-Request-Id: 8fd73d1623140f675ed93b0dcb4aeb16
   &#34;service_tier&#34;: &#34;default&#34;,
   &#34;system_fingerprint&#34;: &#34;fp_51e1070cf2&#34;
 }</code></pre></div>
-<h5 id="check-redis-again">Check Redis again</h5>
+<h3 id="check-redis-again">Check Redis again</h3>
 <p>The Redis database has an entry now:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <ul>
 <li>Expected response</li>
 </ul>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>&#34;kong_semantic_cache:c6dbe643-42af-421a-a094-de7735ebff12:openai-gpt-4.1:2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36&#34;</code></pre></div>
-<h5 id="2nd-request">2nd Request</h5>
+<h3 id="2nd-request">2nd Request</h3>
 <p>The Semantic Cache plugin will use the cached data for similar requests:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -987,7 +992,7 @@ Server: kong/3.11.0.2-enterprise-edition
 X-Kong-Request-Id: 2debcb5db5e6f3637bef912cca963a5d
 
 {&#34;object&#34;:&#34;chat.completion&#34;,&#34;created&#34;:1755010061,&#34;id&#34;:&#34;2351ee4c78c607bf3c6123e98680647d3601e1b054b783cb589e05cf3d163e36&#34;,&#34;usage&#34;:{&#34;completion_tokens&#34;:264,&#34;prompt_tokens_details&#34;:{&#34;cached_tokens&#34;:0,&#34;audio_tokens&#34;:0},&#34;completion_tokens_details&#34;:{&#34;accepted_prediction_tokens&#34;:0,&#34;audio_tokens&#34;:0,&#34;rejected_prediction_tokens&#34;:0,&#34;reasoning_tokens&#34;:0},&#34;total_tokens&#34;:277,&#34;prompt_tokens&#34;:13},&#34;model&#34;:&#34;gpt-4.1-2025-04-14&#34;,&#34;service_tier&#34;:&#34;default&#34;,&#34;system_fingerprint&#34;:&#34;fp_51e1070cf2&#34;,&#34;choices&#34;:[{&#34;finish_reason&#34;:&#34;stop&#34;,&#34;index&#34;:0,&#34;logprobs&#34;:null,&#34;message&#34;:{&#34;annotations&#34;:{},&#34;role&#34;:&#34;assistant&#34;,&#34;refusal&#34;:null,&#34;content&#34;:&#34;**Jimi Hendrix** (full name: James Marshall Hendrix, born November 27, 1942 – died September 18, 1970) was an American guitarist, singer, and songwriter, widely regarded as one of the most influential electric guitarists in the history of popular music. Emerging in the late 1960s, Hendrix revolutionized the way the guitar was played, using feedback, distortion, and an array of innovative techniques that transformed rock, blues, and psychedelic music.\n\nHendrix rose to fame with his band, **The Jimi Hendrix Experience**, delivering classic albums such as *Are You Experienced* (1967) and *Electric Ladyland* (1968). His groundbreaking performances included a legendary rendition of \&#34;The Star-Spangled Banner\&#34; at Woodstock in 1969.\n\nDespite his career only spanning about four years, Hendrix&#39;s influence endures through his recordings and his impact on generations of musicians. He was posthumously inducted into the Rock and Roll Hall of Fame in 1992. Some of his most famous songs include \&#34;Purple Haze,\&#34; \&#34;Hey Joe,\&#34; \&#34;Voodoo Child (Slight Return),\&#34; and \&#34;All Along the Watchtower.\&#34; Hendrix died at the age of 27, becoming one of the most iconic members of the so-called \&#34;27 Club.\&#34;&#34;}}]}</code></pre></div>
-<h5 id="3rd-request">3rd Request</h5>
+<h3 id="3rd-request">3rd Request</h3>
 <p>As expected, for a non-related request, the AI Gateway will hit the LLM to satisfy the query:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -i -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -1070,7 +1075,7 @@ X-Kong-Request-Id: b5fadb69431d1234d8bbd53a71abc559
   &#34;service_tier&#34;: &#34;default&#34;,
   &#34;system_fingerprint&#34;: &#34;fp_799e4ca3f1&#34;
 }</code></pre></div>
-<h5 id="check-redis-again-1">Check Redis again</h5>
+<h3 id="check-redis-again-1">Check Redis again</h3>
 <p>Redis database has two entries now:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <ul>
@@ -1165,8 +1170,8 @@ X-Kong-Request-Id: b5fadb69431d1234d8bbd53a71abc559
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785366914" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785366914" defer></script>
-    <script src="/js/theme.js?1785366914" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785368330" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785368330" defer></script>
+    <script src="/js/theme.js?1785368330" defer></script>
   </body>
 </html>

@@ -13,7 +13,7 @@ Please, check the [**Key-Auth** plugin](https://docs.konghq.com/hub/kong-inc/key
 
 
 
-### Enable the Key Authentication Plugin on the Kong Route
+## Enable the Key Authentication Plugin on the Kong Route
 
 {{<highlight>}}
 cat > key-auth.yaml << 'EOF'
@@ -43,7 +43,7 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 
 
-#### Consume the Route
+### Consume the Route
 
 Now, if you try the Route, you'll get a specific **401** error code meaning that, since you don't have any API Key injected in your request, you are not allowd to consume it.
 
@@ -69,7 +69,7 @@ X-Kong-Request-Id: 1f8a6c1c9d0d1853d9db426588c1ce1c
 ```
 
 
-#### Create a Kong Consumer
+### Create a Kong Consumer
 
 In order to consume the Route we need to create a Kong Consumer. Here's its declaration:
 
@@ -107,7 +107,7 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 
 
-#### Consume the Route with the API Key
+### Consume the Route with the API Key
 
 Now, you need to inject the Key you've just created, as a header, in your requests. Using HTTPie, you can do it easily like this:
 
@@ -150,7 +150,7 @@ X-Kong-Request-Id: 688e271ea4cae5794bc1cb59ea3ec131
 * The header has to have the API Key name, which is, in our case, ``apikey``. That was the default name provided by Konnect when you enabled the **Key Authentication** on the Kong Route. You can change the plugin configuration, if you will.
 
 
-### Kong Consumer Policies
+## Kong Consumer Policies
 
 With the API Key policy in place, we can control the incoming requests. However, the policies implemented by the other plugins are the same regardless the consumer.
 
@@ -168,7 +168,7 @@ Doing that, the Data Plane is capable to not just protect the Route but to ident
 For this section we're implementing a Rate Limiting policy. Keep in mind that a Consumer might have other plugins also enabled such as [Request Transformer](https://docs.konghq.com/hub/kong-inc/request-transformer/), [TCP Log](https://docs.konghq.com/hub/kong-inc/tcp-log/), etc.
 
 
-#### New Consumer
+### New Consumer
 
 Create the second ``consumer2``, just like you did with the first one, with the ``987654`` key.
 
@@ -221,7 +221,7 @@ curl --head $DATA_PLANE_LB/key-auth-route/get -H 'apikey:987654'
 {{</highlight>}}
 
 
-#### Consumers' Policy
+### Consumers' Policy
 
 Now let's enhance the plugins declaration enabling the Rate Limiting plugin to each one of our consumers.
 
@@ -272,7 +272,7 @@ deck gateway sync --konnect-token $PAT key-auth.yaml
 
 
 
-#### Consumer the Route using different API Keys.
+### Consumer the Route using different API Keys.
 
 First of all let's consume the Route with the Consumer1's API Key:
 
@@ -387,7 +387,7 @@ X-Kong-Request-Id: f8602e2e2778f306fba41f1661ef554c
 
 Kong-gratulations! have now reached the end of this module by authenticating the API requests with a key and associating different consumers with policy plans. You can now click **Next** to proceed with the next module.
 
-### Optional Reading
+## Optional Reading
 
 Applying Kong Plugins on Services, Routes or Globally helps us to implement an extensive list of policies in the API Gateway layer. However, so far, we are not controlling who is sending the requests to the Data Plane. That is, anyone who has the Runtime Instance ELB address is capable to send requests to it and consumer the Services.
 

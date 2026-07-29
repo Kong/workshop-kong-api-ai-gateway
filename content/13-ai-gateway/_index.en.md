@@ -3,7 +3,7 @@ title : "Kong AI Gateway"
 weight : 130
 ---
 
-### Introduction
+## Introduction
 
 With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. At the same, new [MCP standards](https://modelcontextprotocol.io/) have emerged to add contexts to AI Agents more easily.
 
@@ -16,7 +16,7 @@ You can enable the AI Gateway features through a set of specialized plugins, usi
 ![Kong AI Gateway](/static/images/llm_mcp_gateway.png)
 
 
-### Distributed Architecture
+## Distributed Architecture
 
 This is exactly where Kong comes in and can support. Our customers are either fixing, or avoiding all together, the fragmentation and complexity that will keep the Agentic AI initiatives from making it to production at scale. 
 
@@ -26,7 +26,7 @@ Kong sits all over the data path.  We’ve been market leading across APIs.  We 
 ![Kong Distributed Architecture](/static/images/distributed_architecture.png)
 
 
-##### Universal API
+### Universal API
 
 Kong’s AI Gateway Universal API, delivered through the AI Proxy and AI Proxy Advanced plugins, simplifies AI model integration by providing a single, standardized interface for interacting with models across multiple providers.
 
@@ -39,7 +39,7 @@ Kong’s AI Gateway Universal API, delivered through the AI Proxy and AI Proxy A
 * Cross-plugin integration: Leverage AI in non-AI API workflows through other Kong Gateway plugins.
 
 
-##### High Level Tasks
+### High Level Tasks
 You will complete the following:
 * Set up Kong AI Proxy for LLM Integration
 * Implement Kong AI Plugins to secure prompt message
