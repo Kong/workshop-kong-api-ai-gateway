@@ -23,13 +23,20 @@ spec:
      spec:
        containers:
        - name: proxy
-         image: kong/kong-gateway:3.14
+         image: kong/kong-gateway:3.15
    replicas: 3
  network:
    services:
      ingress:
        name: proxy-kong-workshop
        type: LoadBalancer
+       ports:
+       - name: http
+         port: 8000
+         nodePort: 30080
+       - name: https
+         port: 8443
+         nodePort: 30443
 EOF
 {{</highlight>}}
 

@@ -29,11 +29,10 @@ Through the Gateway Manager, increase the security of your APIs with out-of-the-
 ![Kong Gateway Manager control plane dashboard](/static/images/gateway_cp.png)
 
 # Konnect Applications
-
 Kong Konnect features are described in this section, including modules and plugins that extend and enhance the functionality of the Kong Konnect platform.
 
-## Advanced Analytics
-Use Analytics to gain deep insights into service, route, and application usage and health monitoring data. Keep your finger on the pulse of the health of your API products with custom reports and contextual dashboards. In addition, you can enhance the native monitoring and analytics capabilities with Kong Gateway plugins that enable streaming monitoring metrics to third-party analytics providers.
+## Observability
+Konnect Observability is a real-time, highly contextual analytics platform that provides deep insights into API health, performance, and usage. It helps businesses optimize their API strategies and improve operational efficiency. This feature is offered as a premium service within Konnect.
 
 ![Konnect Advanced Analytics API usage summary dashboard](/static/images/konnect-api-usage-summary.png)
 
@@ -58,6 +57,6 @@ A centralized catalog of all services running in your Konnect organization. It p
 
 * [Kong Gateway](https://developer.konghq.com/gateway/)
 * [Gateway Manager](https://docs.konghq.com/konnect/gateway-manager/)
-* [Advanced Analytics](https://docs.konghq.com/konnect/analytics/)
+* [Observability](https://developer.konghq.com/observability/)
 * [Dev Portal](https://docs.konghq.com/konnect/dev-portal/)
 * [Catalog](https://developer.konghq.com/catalog/)
