@@ -35,28 +35,28 @@ Keycloak Installation Download the keycloak.yaml spec.
 kubectl apply -f keycloak.yaml Check the Kubernetes deployment
 kubectl get all -n keycloak You should see something like this:
 NAME READY STATUS RESTARTS AGE pod/keycloak-0 1/1 Running 0 12s pod/postgres-5cbbfb67bc-gthd9 1/1 Running 0 12s NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE service/keycloak LoadBalancer 10.103.60.212 127.0.0.1 8080:32396/TCP 12s service/keycloak-discovery ClusterIP None &lt;none&gt; &lt;none&gt; 12s service/postgres ClusterIP 10.110.93.239 &lt;none&gt; 5432/TCP 12s NAME READY UP-TO-DATE AVAILABLE AGE deployment.apps/postgres 1/1 1 1 12s NAME DESIRED CURRENT READY AGE replicaset.apps/postgres-5cbbfb67bc 1 1 1 12s NAME READY AGE statefulset.apps/keycloak 1/1 12s Get the Keycloak Load Balancer export KEYCLOAK_LB=$(kubectl get service keycloak -n keycloak --output=jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;) Make sure the Load Balancer has been provisioned:">
-    <meta itemprop="wordCount" content="599">
+    <meta itemprop="wordCount" content="781">
     <title>Keycloak :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785445333" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785445333" defer></script>
-    <script src="/js/search-lunr.js?1785445333" defer></script>
-    <script src="/js/search.js?1785445333" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785519454" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785519454" defer></script>
+    <script src="/js/search-lunr.js?1785519454" defer></script>
+    <script src="/js/search.js?1785519454" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785445333";
+      window.relearn.index_js_url="/searchindex.en.js?1785519454";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785445333" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785519454" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785445333" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785445333" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785445333" rel="stylesheet">
-    <link href="/css/theme.css?1785445333" rel="stylesheet">
-    <link href="/css/format-html.css?1785445333" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785519454" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785519454" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785519454" rel="stylesheet">
+    <link href="/css/theme.css?1785519454" rel="stylesheet">
+    <link href="/css/format-html.css?1785519454" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -830,22 +830,52 @@ statefulset.apps/keycloak   1/1     12s</code></pre></div>
 <ul>
 <li>Create a Client-Secret for the Client-Id <strong>client1</strong>. The Client-Secret is stored in the <strong>CLIENT_SECRET</strong> environment variable.</li>
 </ul>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>echo &#34;Get an Admin Token&#34;
+TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
   -d &#34;client_id=admin-cli&#34; \
   -d &#34;username=admin&#34; \
   -d &#34;password=admin&#34; \
   -d &#34;grant_type=password&#34; \
   | jq -r .access_token)
 
+
+echo &#34;Get the Admin CLI Id&#34;
+ADMIN_CLI_ID=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/master/clients?clientId=admin-cli&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34; | jq -r &#39;.[0].id&#39;)
+
+echo &#34;Get current admin-cli JSON config&#34;
+CLIENT_JSON=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/master/clients/$ADMIN_CLI_ID&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34;)
+
+echo &#34;Update Admin Token lifespan attribute while preserving existing config&#34;
+echo &#34;$CLIENT_JSON&#34; | jq &#39;.attributes[&#34;access.token.lifespan&#34;] = &#34;3600&#34;&#39; | \
+curl -X PUT &#34;http://$KEYCLOAK_LB:8080/admin/realms/master/clients/$ADMIN_CLI_ID&#34; \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d @-
+
+echo &#34;Issue a new Token with a longer expiration datetime&#34;
+TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+  -d &#34;client_id=admin-cli&#34; \
+  -d &#34;username=admin&#34; \
+  -d &#34;password=admin&#34; \
+  -d &#34;grant_type=password&#34; \
+  | jq -r .access_token)
+
+
+
+
+echo &#34;Create the Kong Realm&#34;
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   -H &#34;Content-Type: application/json&#34; \
   -d &#39;{
     &#34;realm&#34;: &#34;kong&#34;,
-    &#34;accessTokenLifespan&#34;: 60,
+    &#34;accessTokenLifespan&#34;: 3600,
     &#34;enabled&#34;: true
   }&#39;
 
+echo &#34;Create the client1 Client&#34;
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   -H &#34;Content-Type: application/json&#34; \
@@ -855,11 +885,14 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
     &#34;serviceAccountsEnabled&#34;: true
   }&#39;
 
+
+echo &#34;Create the Client internal Id&#34;
 ID=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients?clientId=client1&#34; \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   | jq -r &#39;.[0].id&#39;)
 
 
+echo &#34;Define the redirect URI for the Client&#34;
 curl -X PUT &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID&#34; \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   -H &#34;Content-Type: application/json&#34; \
@@ -867,11 +900,12 @@ curl -X PUT &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID&#34; \
     &#34;clientId&#34;: &#34;client1&#34;,
     &#34;enabled&#34;: true,
     &#34;redirectUris&#34;: [
-      &#34;http://localhost:80/oidc-route/get&#34;,
-      &#34;http://localhost/oidc-route/get&#34;
+      &#34;http://&#39;&#34;$DATA_PLANE_LB&#34;&#39;/oidc-route/get&#34;
     ]
   }&#39;
 
+
+echo &#34;Define the username for password for the Client&#34;
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   -H &#34;Content-Type: application/json&#34; \
@@ -888,16 +922,21 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
     }]
   }&#39;
 
+
+echo &#34;Get the Client Secret&#34;
 CLIENT_SECRET=$(curl -s &#34;http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID/client-secret&#34; \
   -H &#34;Authorization: Bearer $TOKEN&#34; \
   | jq -r &#39;.value&#39;)</code></pre></div>
+<p>You can check the token&rsquo;s expiration datetime with</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>date -r $(echo &#34;$TOKEN&#34; | jq -R &#39;split(&#34;.&#34;)[1] | @base64d | fromjson | .exp&#39;)</code></pre></div>
 <p>Check you Keycloak installation redirecting your browser to:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>open -a &#34;Google Chrome&#34; &#34;http://localhost:8080&#34;</code></pre></div>
-<p><a href="#R-image-607cc65bf9a8a64dc940f1dc06355b39" class="lightbox-link"><img alt="keycloak" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-607cc65bf9a8a64dc940f1dc06355b39"><img alt="keycloak" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak.png"></a></p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>open -a &#34;Google Chrome&#34; &#34;http://$KEYCLOAK_LB:8080&#34;</code></pre></div>
+<p>Use <code>admin</code> and <code>admin</code> as the Keycloak Administrator&rsquo;s user id and password. Go to the <strong>kong</strong> realm and check the Clients.</p>
+<p><a href="#R-image-edd872fc6732c1831f7dde3d73c285f8" class="lightbox-link"><img alt="keycloak" class="lazy lightbox figure-image" loading="lazy" src="/static/images/keycloak.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-edd872fc6732c1831f7dde3d73c285f8"><img alt="keycloak" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/keycloak.png"></a></p>
 <h2 id="test-the-keycloak-endpoint">Test the Keycloak Endpoint</h2>
 <p>You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the <strong>client_id/client_secret</strong> pair you have just created. You should get an Access Token as a result. Use <code>jwt</code> to decode the Access Token. Make sure you have jwt installed on your environment. For example:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#39;http://localhost:8080/realms/kong/protocol/openid-connect/token&#39; \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST http://$KEYCLOAK_LB:8080/realms/kong/protocol/openid-connect/token \
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
 --data-urlencode &#39;client_id=client1&#39; \
 --data-urlencode &#34;client_secret=$CLIENT_SECRET&#34; \
@@ -1037,8 +1076,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785445333" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785445333" defer></script>
-    <script src="/js/theme.js?1785445333" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785519454" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785519454" defer></script>
+    <script src="/js/theme.js?1785519454" defer></script>
   </body>
 </html>

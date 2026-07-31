@@ -37,7 +37,7 @@ services:
       config:
         auth_methods: ["authorization_code"]
         redirect_uri:
-        - http://localhost:80/oidc-route/get
+        - http://${DATA_PLANE_LB}/oidc-route/get
         client_id: ["client1"]
         client_secret: [$CLIENT_SECRET]
         issuer: http://localhost:8080/realms/kong
@@ -47,6 +47,8 @@ services:
         consumer_optional: false
         consumer_claim: ["preferred_username"]
         consumer_by: ["username"]
+        cache_tokens_salt: "123456"
+        ssl_verify: true
 consumers:
 - username: consumer1
 EOF
@@ -69,7 +71,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 Redirect your browser the following URL. Since you haven't been authenticated, you will be redirected to Keycloak's Authentication page:
 
 ```
-open -a "Google Chrome" "http://localhost:80/oidc-route/get"
+open -a "Google Chrome" "http://$DATA_PLANE_LB/oidc-route/get"
 ```
 
 ![keycloak_auth](/static/images/keycloak_auth.png)

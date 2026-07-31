@@ -17,7 +17,7 @@ Just to get an idea of the ``dummyjson`` response, send the following request:
 curl -s "https://dummyjson.com/users/1" | jq -r '.email'
 {{</highlight>}}
 
-You should get a number like **43555**, which represents the number of total hits related to **Miles Davis**
+You should get **emily.johnson@x.dummyjson.com**
 
 
 ### Create the Request Callout Plugin

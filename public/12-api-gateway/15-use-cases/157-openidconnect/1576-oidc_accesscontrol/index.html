@@ -23,28 +23,28 @@ The aud (Audience) claim comes from the JWT specification in [RFC 7519]. It allo
     <meta itemprop="name" content="Authorization :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="So far, we have used the OpenID Connect plugin to implement Authentication processes only.
 The aud (Audience) claim comes from the JWT specification in [RFC 7519]. It allows the receiving party to verify whether a given JWT was intended for them. Per the specification, the aud value can be a single string or an array of strings. aud - Identifies the audience (resource URI or server) that this access token is intended for.">
-    <meta itemprop="wordCount" content="942">
+    <meta itemprop="wordCount" content="946">
     <title>Authorization :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1785445333" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785445333" defer></script>
-    <script src="/js/search-lunr.js?1785445333" defer></script>
-    <script src="/js/search.js?1785445333" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1785519454" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1785519454" defer></script>
+    <script src="/js/search-lunr.js?1785519454" defer></script>
+    <script src="/js/search.js?1785519454" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785445333";
+      window.relearn.index_js_url="/searchindex.en.js?1785519454";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785445333" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785445333" defer></script>
+    <script src="/js/lunr/lunr.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1785519454" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1785519454" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785445333" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785445333" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785445333" rel="stylesheet">
-    <link href="/css/theme.css?1785445333" rel="stylesheet">
-    <link href="/css/format-html.css?1785445333" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785519454" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785519454" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785519454" rel="stylesheet">
+    <link href="/css/theme.css?1785519454" rel="stylesheet">
+    <link href="/css/format-html.css?1785519454" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -824,6 +824,8 @@ services:
         consumer_claim: [&#34;client_id&#34;]
         consumer_by: [&#34;username&#34;]
         audience_required: [&#34;gold&#34;]
+        cache_tokens_salt: &#34;123456&#34;
+        ssl_verify: true
 consumers:
 - username: client1
 EOF</code></pre></div>
@@ -831,7 +833,7 @@ EOF</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
 deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml</code></pre></div>
 <p>If we try to consume the Kong Route we are going to get an new error:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -iX GET http://localhost/oidc-route/get -u &#34;client1:$CLIENT_SECRET&#34;</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -iX GET http://$DATA_PLANE_LB/oidc-route/get -u &#34;client1:$CLIENT_SECRET&#34;</code></pre></div>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>HTTP/1.1 403 Forbidden
 Date: Mon, 13 Apr 2026 13:33:51 GMT
 Content-Type: application/json; charset=utf-8
@@ -901,7 +903,7 @@ X-Kong-Request-Id: 994c85374cf460665518623ef7914a00
   }&#39;</code></pre></div>
 <h2 id="test-the-keycloak-endpoint">Test the Keycloak Endpoint</h2>
 <p>Send a request to Keycloak again to test the new configuration:</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST &#39;http://localhost:8080/realms/kong/protocol/openid-connect/token&#39; \
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST http://$KEYCLOAK_LB:8080/realms/kong/protocol/openid-connect/token \
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
 --data-urlencode &#39;client_id=client1&#39; \
 --data-urlencode &#34;client_secret=$CLIENT_SECRET&#34; \
@@ -910,7 +912,7 @@ X-Kong-Request-Id: 994c85374cf460665518623ef7914a00
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>  &#34;aud&#34;: &#34;gold&#34;,</code></pre></div>
 <h2 id="consume-the-kong-route-again">Consume the Kong Route again</h2>
 <p>You should be able to consumer the Kong Route now.</p>
-<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET http://localhost:80/oidc-route/get -u &#34;client1:$CLIENT_SECRET&#34; | jq -r &#39;.headers.Authorization&#39; | cut -d &#34; &#34; -f 2 | jwt decode -</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -sX GET http://$DATA_PLANE_LB/oidc-route/get -u &#34;client1:$CLIENT_SECRET&#34; | jq -r &#39;.headers.Authorization&#39; | cut -d &#34; &#34; -f 2 | jwt decode -</code></pre></div>
 <p>Expected output</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>Token header
 ------------
@@ -1035,8 +1037,8 @@ Token claims
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785445333" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785445333" defer></script>
-    <script src="/js/theme.js?1785445333" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1785519454" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785519454" defer></script>
+    <script src="/js/theme.js?1785519454" defer></script>
   </body>
 </html>

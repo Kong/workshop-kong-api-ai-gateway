@@ -208,6 +208,8 @@ services:
         consumer_optional: false
         consumer_claim: ["client_id"]
         consumer_by: ["username"]
+        cache_tokens_salt: "123456"
+        ssl_verify: true
     - name: opa
       instance_name: opa1
       config:
@@ -216,7 +218,7 @@ services:
         opa_host: "opa.opa.svc.cluster.local"
         opa_port: 8181
 consumers:
-- username: kong_id
+- username: client1
 EOF
 {{</highlight>}}
 
@@ -224,38 +226,46 @@ EOF
 
 Submit the declaration
 {{<highlight>}}
-deck gateway sync --konnect-token $PAT oidc.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml
 {{</highlight>}}
 
 
 ### Consume the Kong Route
+
 A new error code should be returned if we try to consume the Route:
 
 ```
-curl -siX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"
+curl -siX GET http://$DATA_PLANE_LB/oidc-route/get -u "client1:$CLIENT_SECRET"
 ```
 
 ```
 HTTP/1.1 403 Forbidden
-Date: Sat, 03 Aug 2024 22:02:37 GMT
+Date: Fri, 31 Jul 2026 16:30:17 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 26
-X-Kong-Response-Latency: 4
-Server: kong/3.7.1.2-enterprise-edition
-X-Kong-Request-Id: fa699046f7d21773b626a4311537e171
+X-Kong-Response-Latency: 2
+Server: kong/3.15.0.2-enterprise-edition
+X-Kong-Request-Id: bb7c024978419e68f121ea1ffde86a00
 
-{"message":"unauthorized"}
+{"message":"unauthorized"}%                                             
 ```
 
-This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak ``kong_mapper`` Client Scope Mapper and change the **Included Custom Audience** to ``silver``.
+This is due the audience required by OPA is different to the existing one defined in our Keycloak Client. Go to Keycloak ``kong_mapper`` Client Scope Mapper and change the Included Custom Audience to ``silver``.
 
+You may need to reload the plugin to refresh all caching:
+
+```
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PAT oidc.yaml
+```
 
 
 Assuming you are on a working day, OPA should allow you to consume the Route again.
 
 ```
-curl -sX GET http://localhost/oidc-route/get -u "kong_id:RVXO9SOJskjw4LeVupjRbIMJIAyyil8j"| jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+curl -sX GET http://$DATA_PLANE_LB/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
 ```
 
 ```
@@ -290,5 +300,8 @@ Token claims
   "typ": "Bearer"
 }
 ```
+
+Try to change the OPA policy with a different weekday to get an error.
+
 
 Kong-gratulations! have now reached the end of this module by authenticating your API requests with AWS Cognito. You can now click **Next** to proceed with the next module.

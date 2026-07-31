@@ -79,6 +79,7 @@ Click on Credentials and Set password. Type kong for both Password and Password 
 * Create a Client-Secret for the Client-Id **client1**. The Client-Secret is stored in the **CLIENT_SECRET** environment variable.
 
 ```
+echo "Get an Admin Token"
 TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
   -d "client_id=admin-cli" \
   -d "username=admin" \
@@ -86,15 +87,44 @@ TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/t
   -d "grant_type=password" \
   | jq -r .access_token)
 
+
+echo "Get the Admin CLI Id"
+ADMIN_CLI_ID=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/master/clients?clientId=admin-cli" \
+  -H "Authorization: Bearer $TOKEN" | jq -r '.[0].id')
+
+echo "Get current admin-cli JSON config"
+CLIENT_JSON=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/master/clients/$ADMIN_CLI_ID" \
+  -H "Authorization: Bearer $TOKEN")
+
+echo "Update Admin Token lifespan attribute while preserving existing config"
+echo "$CLIENT_JSON" | jq '.attributes["access.token.lifespan"] = "3600"' | \
+curl -X PUT "http://$KEYCLOAK_LB:8080/admin/realms/master/clients/$ADMIN_CLI_ID" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @-
+
+echo "Issue a new Token with a longer expiration datetime"
+TOKEN=$(curl -s http://$KEYCLOAK_LB:8080/realms/master/protocol/openid-connect/token \
+  -d "client_id=admin-cli" \
+  -d "username=admin" \
+  -d "password=admin" \
+  -d "grant_type=password" \
+  | jq -r .access_token)
+
+
+
+
+echo "Create the Kong Realm"
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "realm": "kong",
-    "accessTokenLifespan": 60,
+    "accessTokenLifespan": 3600,
     "enabled": true
   }'
 
+echo "Create the client1 Client"
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -104,11 +134,14 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/clients \
     "serviceAccountsEnabled": true
   }'
 
+
+echo "Create the Client internal Id"
 ID=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients?clientId=client1" \
   -H "Authorization: Bearer $TOKEN" \
   | jq -r '.[0].id')
 
 
+echo "Define the redirect URI for the Client"
 curl -X PUT "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -116,11 +149,12 @@ curl -X PUT "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID" \
     "clientId": "client1",
     "enabled": true,
     "redirectUris": [
-      "http://localhost:80/oidc-route/get",
-      "http://localhost/oidc-route/get"
+      "http://'"$DATA_PLANE_LB"'/oidc-route/get"
     ]
   }'
 
+
+echo "Define the username for password for the Client"
 curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -137,17 +171,27 @@ curl -X POST http://$KEYCLOAK_LB:8080/admin/realms/kong/users \
     }]
   }'
 
+
+echo "Get the Client Secret"
 CLIENT_SECRET=$(curl -s "http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$ID/client-secret" \
   -H "Authorization: Bearer $TOKEN" \
   | jq -r '.value')
 ```
 
+You can check the token's expiration datetime with
+
+```
+date -r $(echo "$TOKEN" | jq -R 'split(".")[1] | @base64d | fromjson | .exp')
+```
+
+
 Check you Keycloak installation redirecting your browser to:
 
 ```
-open -a "Google Chrome" "http://localhost:8080"
+open -a "Google Chrome" "http://$KEYCLOAK_LB:8080"
 ```
 
+Use ``admin`` and ``admin`` as the Keycloak Administrator's user id and password. Go to the **kong** realm and check the Clients.
 
 ![keycloak](/static/images/keycloak.png)
 
@@ -157,7 +201,7 @@ open -a "Google Chrome" "http://localhost:8080"
 You can check the Keycloak setting sending a request directly to its Token Endpoint, passing the **client_id/client_secret** pair you have just created. You should get an Access Token as a result. Use ```jwt``` to decode the Access Token. Make sure you have jwt installed on your environment. For example:
 
 ```
-curl -s -X POST 'http://localhost:8080/realms/kong/protocol/openid-connect/token' \
+curl -s -X POST http://$KEYCLOAK_LB:8080/realms/kong/protocol/openid-connect/token \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'client_id=client1' \
 --data-urlencode "client_secret=$CLIENT_SECRET" \

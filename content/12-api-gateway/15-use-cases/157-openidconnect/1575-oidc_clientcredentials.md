@@ -34,6 +34,8 @@ services:
         consumer_optional: false
         consumer_claim: ["client_id"]
         consumer_by: ["username"]
+        cache_tokens_salt: "123456"
+        ssl_verify: true
 consumers:
 - username: client1
 EOF
@@ -52,7 +54,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 ### Verification
 
 ```
-curl -sX GET http://localhost/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+curl -sX GET http://$DATA_PLANE_LB/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
 ```
 
 Expected Output

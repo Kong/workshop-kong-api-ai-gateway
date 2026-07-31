@@ -57,6 +57,8 @@ services:
         consumer_claim: ["client_id"]
         consumer_by: ["username"]
         audience_required: ["gold"]
+        cache_tokens_salt: "123456"
+        ssl_verify: true
 consumers:
 - username: client1
 EOF
@@ -73,7 +75,7 @@ deck gateway sync --konnect-control-plane-name kong-workshop --konnect-token $PA
 If we try to consume the Kong Route we are going to get an new error:
 
 ```
-curl -iX GET http://localhost/oidc-route/get -u "client1:$CLIENT_SECRET"
+curl -iX GET http://$DATA_PLANE_LB/oidc-route/get -u "client1:$CLIENT_SECRET"
 ```
 
 ```
@@ -187,7 +189,7 @@ curl -X PUT http://$KEYCLOAK_LB:8080/admin/realms/kong/clients/$CLIENT_UUID \
 Send a request to Keycloak again to test the new configuration:
 
 ```
-curl -s -X POST 'http://localhost:8080/realms/kong/protocol/openid-connect/token' \
+curl -s -X POST http://$KEYCLOAK_LB:8080/realms/kong/protocol/openid-connect/token \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'client_id=client1' \
 --data-urlencode "client_secret=$CLIENT_SECRET" \
@@ -204,7 +206,7 @@ Expected output
 You should be able to consumer the Kong Route now.
 
 ```
-curl -sX GET http://localhost:80/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
+curl -sX GET http://$DATA_PLANE_LB/oidc-route/get -u "client1:$CLIENT_SECRET" | jq -r '.headers.Authorization' | cut -d " " -f 2 | jwt decode -
 ```
 
 Expected output
