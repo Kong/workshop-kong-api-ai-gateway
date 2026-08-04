@@ -38,6 +38,14 @@ For now, we are not going to apply any AI based plugin so, inside the **Overview
 
 ![Test your setup](/static/images/ai_gateway_test_your_setup.png)
 
+
+Configure the environment variable with the ```https``` endpoint
+
+```
+export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.status.loadBalancer.ingress[].ip}'):$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.spec.ports[?(@.name=="https")].port}')
+```
+
+
 Use the **Copy** button to copy the request, paste it into your terminal changing ``<YOUR_HOST_NAME>>`` with your ``DATA_PLANE_LB`` environment variable and send it to your Data Plane:
 
 

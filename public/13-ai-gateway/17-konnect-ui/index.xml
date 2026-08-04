@@ -19,7 +19,7 @@
       <link>http://localhost:1313/13-ai-gateway/17-konnect-ui/172-decorator/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/13-ai-gateway/17-konnect-ui/172-decorator/index.html</guid>
-      <description>As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.&#xA;Choose your AI Gateway your created in the previous section.&#xA;Using the Konnect AI Manager UI we have two options:&#xA;Inside the Overview page, there’s a Add plugin option. If you click on it you see a popup window to configure the Decorator.&#xA;Inside the AI Gateway menu, there’s a Prompt Engineering option. If you click on it you’ll be able to configure two kinds of Prompt Engineering policies: Templates and Decorators</description>
+      <description>As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.&#xA;Choose your AI Gateway your created in the previous section.&#xA;Using the Konnect AI Manager UI we have two options:&#xA;Inside the Overview page, there’s a Add plugin option. If you click on it you see a popup window to configure the Decorator.&#xA;Inside the AI Gateway menu, there’s a Prompt management option. If you click on it you’ll be able to configure two kinds of Prompt Engineering policies: Templates and Decorators</description>
     </item>
   </channel>
 </rss>

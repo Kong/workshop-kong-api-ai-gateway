@@ -138,9 +138,11 @@ spec:
        ports:
        - name: http
          port: 8000
+         targetPort: 8000
          nodePort: 30080
        - name: https
          port: 8443
+         targetPort: 8443
          nodePort: 30443
 EOF
 {{</highlight>}}

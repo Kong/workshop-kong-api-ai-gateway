@@ -10,7 +10,7 @@ Choose your AI Gateway your created in the previous section.
 Using the Konnect AI Manager UI we have two options:
 1. Inside the Overview page, there's a **Add plugin** option. If you click on it you see a popup window to configure the Decorator.
 
-2. Inside the **AI Gateway** menu, there's a **Prompt Engineering** option. If you click on it you'll be able to configure two kinds of Prompt Engineering policies: **Templates** and **Decorators**
+2. Inside the **AI Gateway** menu, there's a **Prompt management** option. If you click on it you'll be able to configure two kinds of Prompt Engineering policies: **Templates** and **Decorators**
 
 We are going to use the option #2. So, click the **Decorators** tab and **+ Add decorator**.
 
