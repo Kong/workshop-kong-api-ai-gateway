@@ -25,26 +25,26 @@ On the other hand, the MCP community has defined Authorization specifications, b
     <meta itemprop="wordCount" content="1813">
     <title>Implement the OAuth 2 specification for MCP servers with Kong Identity :: API and AI Management with Kong Konnect</title>
     <link href="/14-mcp-gateway/184-use-cases/183-oauth2-kongidentity/index.xml" rel="alternate" type="application/rss+xml" title="Implement the OAuth 2 specification for MCP servers with Kong Identity :: API and AI Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1785802625" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1785802625" defer></script>
-    <script src="/js/search-lunr.js?1785802625" defer></script>
-    <script src="/js/search.js?1785802625" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1786556879" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1786556879" defer></script>
+    <script src="/js/search-lunr.js?1786556879" defer></script>
+    <script src="/js/search.js?1786556879" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1785802625";
+      window.relearn.index_js_url="/searchindex.en.js?1786556879";
     </script>
-    <script src="/js/lunr/lunr.min.js?1785802625" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1785802625" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1785802625" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1785802625" defer></script>
+    <script src="/js/lunr/lunr.min.js?1786556879" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1786556879" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1786556879" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1786556879" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785802625" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1785802625" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1785802625" rel="stylesheet">
-    <link href="/css/theme.css?1785802625" rel="stylesheet">
-    <link href="/css/format-html.css?1785802625" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1786556879" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1786556879" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1786556879" rel="stylesheet">
+    <link href="/css/theme.css?1786556879" rel="stylesheet">
+    <link href="/css/format-html.css?1786556879" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -872,8 +872,8 @@ aside#R-sidebar,
 <li>Consume the LLM and Tools with the <strong>mcp.client.streamable_http</strong> Python package.</li>
 </ul>
 <p>The following diagram shows the relationship between the Kong AI Gateway and the Identity Provider (IdP) for the Introspection flow. It&rsquo;s based on the original <strong>Protocol Flow</strong>:</p>
-<p><a href="#R-image-24dc8acab605be4e48caa28da921c5dc" class="lightbox-link"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-24dc8acab605be4e48caa28da921c5dc"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png"></a></p>
+<p><a href="#R-image-3536bb59e04bc9e91e06708a8b98b385" class="lightbox-link"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox figure-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3536bb59e04bc9e91e06708a8b98b385"><img alt="Kong AI Gateway with Kong Identity integration" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/ai_gateway_kong_identity.png"></a></p>
 <ol>
 <li>The MCP Consumer, implementing the Client Credentials Grant, presents its credentials (Client ID + Client Secret) to the IdP.</li>
 <li>The IdP authenticates the Consumer, issues an Access Token and returns it to the MCP Consumer.</li>
@@ -890,7 +890,7 @@ aside#R-sidebar,
 <p>We are going to use the <strong>AI MCP OAuth2</strong> plugin and the <strong>Client Credentials Grant</strong>, so no <strong>ID Tokens</strong> will be generated. However, as a clarificatiion, let&rsquo;s have a brief comparison between the two specs:</p>
 <p><strong>OAuth</strong> is fundamentatlly an Authorization Framework. The Access Token does not know your Identity, just that it has permissions.</p>
 <p>On the other hand, <a href="https://openid.net/specs/openid-connect-core-1_0-36.html" rel="external" target="_blank"><strong>OpenId Connect (OIDC)</strong></a> is another set of specification defining an Authentication layer on top of OAuth. In other words, OpenId Connect internally uses the same OAuth flows. Having said that, <strong>OpenId Connect</strong> and <strong>ID Token</strong> make sense for Grants where we have user involved, like the <strong>Authorization Code Grant</strong>. The <strong>Client Credentials Grant</strong>, used before, is fundamentally defined for machine-to-machine communitacation so no user identity is involved.</p>
-<p>In this sense, OpenId Connect, adds some new concepts:</p>
+<p>In this sense, OpenId Connect adds some new concepts:</p>
 <ul>
 <li>
 <p><a href="https://openid.net/specs/openid-connect-core-1_0-36.html#IDToken" rel="external" target="_blank">ID Token</a>, based on JWT</p>
@@ -1039,8 +1039,8 @@ aside#R-sidebar,
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1785802625" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1785802625" defer></script>
-    <script src="/js/theme.js?1785802625" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1786556879" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1786556879" defer></script>
+    <script src="/js/theme.js?1786556879" defer></script>
   </body>
 </html>

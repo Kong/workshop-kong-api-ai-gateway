@@ -142,7 +142,7 @@ We are going to use the **AI MCP OAuth2** plugin and the **Client Credentials Gr
 
 On the other hand, [**OpenId Connect (OIDC)**](https://openid.net/specs/openid-connect-core-1_0-36.html) is another set of specification defining an Authentication layer on top of OAuth. In other words, OpenId Connect internally uses the same OAuth flows. Having said that, **OpenId Connect** and **ID Token** make sense for Grants where we have user involved, like the **Authorization Code Grant**. The **Client Credentials Grant**, used before, is fundamentally defined for machine-to-machine communitacation so no user identity is involved.
 
-In this sense, OpenId Connect, adds some new concepts:
+In this sense, OpenId Connect adds some new concepts:
 
 * [ID Token](https://openid.net/specs/openid-connect-core-1_0-36.html#IDToken), based on JWT
 * New endpoints like, for example:
