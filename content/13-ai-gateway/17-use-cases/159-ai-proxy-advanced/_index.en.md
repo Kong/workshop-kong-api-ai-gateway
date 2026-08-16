@@ -30,4 +30,8 @@ As a illustration here is the architecture where we are going to implement the m
 ![ai_proxy_advanced](/static/images/ai_proxy_advanced.png)
 
 
+
+## Further Reading
+* [Semantic Processing and Vector Similarity Search with Kong and Redis](https://konghq.com/blog/engineering/semantic-processing-and-vector-similarity-search-with-kong-and-redis)
+
 You can now click **Next** to proceed further.
