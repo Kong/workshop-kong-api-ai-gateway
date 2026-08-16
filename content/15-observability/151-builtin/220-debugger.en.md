@@ -66,12 +66,14 @@ To begin using the Debugger, ensure the following requirements are met:
 
 * Your data plane nodes are running Kong Gateway version 3.9.1 or later.
 * Logs require Kong Gateway version 3.11.0 or later.
-* Your Konnect data planes are hosted using self-managed hybrid, Dedicated Cloud Gateways, or serverless gateways. Kong Ingress Controller or Kong Native Event Proxy Gateways aren’t currently supported.
+* You need Debug Session Creator, Control Plane Admin, or Org Admin permissions to create debug sessions.
+* Your Konnect data planes are hosted using self-managed hybrid, Dedicated Cloud Gateways, or serverless gateways. Kong Ingress Controller or Kong Event Gateway Gateways aren’t currently supported.
 
-1. In Gateway Manager, select the control plane that contains the data plane to be traced.
-2. In the left navigation menu, click Debugger.
+1. In the Konnect sidebar, click Observability.
+2. In the Observability sidebar, click Debugger.
 3. Click New session.
-4. Define the sampling criteria and click Start Session.
+4. Define the sampling criteria.
+5. Click Start Session.
 
 Once the session starts, traces will be captured for requests that match the rule. Click a trace to view it in the span viewer.
 
