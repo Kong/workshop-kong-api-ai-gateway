@@ -1,0 +1,14 @@
+_format_version: "3.0"
+_konnect:
+  control_plane_name: kong-workshop
+_info:
+  select_tags:
+  - httpbin-service-route
+services:
+- name: httpbin-service
+  host: httpbin.kong.svc.cluster.local
+  port: 8000
+  routes:
+  - name: httpbin-route
+    paths:
+    - /httpbin-route

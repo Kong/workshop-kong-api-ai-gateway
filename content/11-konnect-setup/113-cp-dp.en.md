@@ -10,14 +10,19 @@ Kong Operator requires a [Konnect Personal Access Token (PAT)](https://developer
 ![pat](/static/images/pat.png)
 
 
-> [!NOTE]
+> [!ALERT]
+<span style="color:#d32f2f;">
 > Be sure to copy and save your PAT, as Konnect won’t display it again.
+</span>
+
+
 
 * Save PAT in an environment variables
 
 {{<highlight>}}
 export PAT=PASTE_THE_CONTENTS_OF_COPIED_PAT
 {{</highlight>}}
+
 
 
 
