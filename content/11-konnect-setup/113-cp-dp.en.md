@@ -98,7 +98,7 @@ If you go to Konnect UI > Gateway manager, you should see a new control plane na
 
 ### Data Plane deployment
 
-The next declaration instantiates a Data Plane connected to your Control Plane. It creates a [KonnectExtension](https://developer.konghq.com/operator/reference/custom-resources/#konnect-konghq-com-v1alpha2-konnectextension), asking KO to manage the certificate and private key provisioning automatically, and the actual Data Plane. The [Data Plane](https://developer.konghq.com/operator/reference/custom-resources/#gateway-operator-konghq-com-v1beta1-dataplane) declaration specifies the Docker image, in our case 3.14, as well as how the Kubernetes Service, related to the Data Plane, should be created. Also, we use the the Data Plane deployment refers to the Kubernetes Service Account we created before.
+The next declaration instantiates a Data Plane connected to your Control Plane. It creates a [KonnectExtension](https://developer.konghq.com/operator/reference/custom-resources/#konnect-konghq-com-v1alpha2-konnectextension), asking KO to manage the certificate and private key provisioning automatically, and the actual Data Plane. The [Data Plane](https://developer.konghq.com/operator/reference/custom-resources/#gateway-operator-konghq-com-v1beta1-dataplane) declaration specifies the Docker image, in our case 3.15, as well as how the Kubernetes Service, related to the Data Plane, should be created. Also, we use the the Data Plane deployment refers to the Kubernetes Service Account we created before.
 
 {{<highlight>}}
 cat <<EOF | kubectl apply -f -
