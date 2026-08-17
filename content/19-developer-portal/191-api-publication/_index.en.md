@@ -10,21 +10,23 @@ In this section we are going to cover the basic steps to get a Developer Portal 
 
 ### Kong Service and Route
 
-1. Create a Kong Service based on ``http://httpbin.konghq.com``
-2. Create a Kong Route with path ``/``
-3. Globally enable the CORS plugin to your Control Plane. That's needed to solve the relationship between the Dev Portal and the Upstream Service.
+1. Create a Kong Gateway Service based on ``http://httpbin.konghq.com``.
+2. Create a Kong Route with path ``/``. Don't forget to add the **HTTP** protocol to the Kong Route.
+3. Globally enable the CORS plugin to your Kong Gateway Service. That's needed to solve the relationship between the Dev Portal and the Upstream Service.
 
 
 ### Dev Portal creation
 
-1. Choose the **Dev Portal** menu option and click **+ Create a new portal**.
-2. Create a **Private Portal** named ``portal1``. In the **New Portal** page accept the default values and click **Save**
+1. Choose the **Portals** menu option inside **Dev Portal** and click **+  New portal**.
+2. Create a **Private Portal** named ``portal1``. In the **New Portal** page accept the default values and click **Create and continue**
 ![portal1](/static/images/portal1.png)
-3. Click **Go to overview**. You should see the **Overview** page of your portal
+3. In the **Customize appearance** page accept the default values and click **Save**.
+![portal1_customize_appearance](/static/images/portal1_customize_appearance.png)
+4. The Dev Portal is created. Click on **Go to overview**.
 ![portal1_overview](/static/images/portal1_overview.png)
 4. Check the Portal configuration:
-* **User authentication**: ``Konnect built-in`` - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the **build-in** option, it can be configured as **OIDC** or **SAML**.
-* **Default authentication strategy**: ``key-auth`` - That defines the mechanism to control the API consumption inside the Dev Portal.
+* **User authentication**: ``Konnect Built-in`` - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the **built-in** option, it can be configured as **OIDC** or **SAML**.
+* **Default authentication strategy**: ``Key-Auth`` - That defines the mechanism to control the API consumption inside the Dev Portal.
 
 ### Test your Dev Portal
 
@@ -40,14 +42,16 @@ After creating the password, if you try to login, you'll receive an error messag
 
 2. Approve the Developer registration
 
-Getting back to the Dev Portal Administrator role, return to the **Dev Portal** menu option and choose **Access and approvals**. You can approve the new developer registration in the page:
+Getting back to the Dev Portal Administrator role, return to the **Dev Portal** menu option and the choose **Developer** tab. You can approve the new developer registration in the page:
 
 ![portal1_developer_approval](/static/images/portal1_developer_approval.png)
 
 3. Login to the Dev Portal
 
-Playing the Developer role again, try to login to the Dev Portal one more time. You should get redirected to the Dev Portal home page. Click the **API** tab. You are supposed to get an empty page since we don't have any API published.
+Playing the Developer role again, try to login to the Dev Portal one more time. You should get redirected to the Dev Portal home page.
+![portal1_no_apis](/static/images/portal1_landing_page.png)
 
+If you scroll down you will see you don't have any API published.
 ![portal1_no_apis](/static/images/portal1_no_apis.png)
 
 
@@ -89,7 +93,7 @@ components:
 
 2. Create your API
 
-Choose the **APIs** menu option inside **Dev Portal** and click **+ New API**. Upload your ``httpbin_orig.yaml`` and click **Create**. You should see your ``httpbin`` API page:
+Choose the **APIs** menu option inside **Catalog** and click **+ Create API**. Upload your ``httpbin_orig.yaml`` and click **Create**. You should see your ``httpbin`` API page:
 
 ![httpbin_api](/static/images/httpbin_api.png)
 
@@ -97,14 +101,14 @@ Choose the **APIs** menu option inside **Dev Portal** and click **+ New API**. U
 
 3. Test your API
 
-Click the **API Specification** tab. Click **try it!** in the **Returns Origin IP**
+Click the **API Specification** tab. Choose the version and click **try it!** in the **Returns Origin IP**
 
 ![tryit](/static/images/tryit.png)
 
 
 4. Add a documentation
 
-Click the **Documentation** tab. Create a new and empty document page with both name and slug as ``doc1``. Click **edit** and type some documentation. Click **save** and switch the **Published** toggle on.
+Return to the ``httpbin`` API landing page and click the **Documentation** tab. Create a new and empty document page with both name and slug as ``doc1``. Type some documentation. Click **Save** and **Publish**.
 
 
 ![api_documentation](/static/images/api_documentation.png)
@@ -112,7 +116,7 @@ Click the **Documentation** tab. Create a new and empty document page with both 
 
 ### API Publication
 
-1. Go to the **Portals** tab and click **Publish API**. Choose ``portal1``and make sure you have the **API visibility** set as ``Private``. Click **Publish API**.
+1. Go back to **Portals** menu option, choose your portal and click **Published APIs** tab. Choose ``httpbin``as the API and make sure you have the **API visibility** set as ``Private``. Click **Publish API**.
 
 You should see the ``portal1`` listed inside the tab.
 
@@ -124,7 +128,7 @@ Inside the Dev Portal home page, click the **APIs** tab. You should see the API 
 
 ![api_devportal](/static/images/api_devportal.png)
 
-3. Click **View APIs**. You should see the documentation page with the data you entered before. Click **Overview** to see the ``httpbin`` API specification rendered in the page. Click **Try it** for **Returns Origin IP** to send a request to the Data Plane and consume the API.
+3. Click **View APIs**. You should see the documentation page with the data you entered before. Click on one of the Endpoints, e. g. ``Returns Origin IP``. Click **Try it** to send a request to the Data Plane and consume the API.
 
 ![api_devportal_return](/static/images/api_devportal_return.png)
 

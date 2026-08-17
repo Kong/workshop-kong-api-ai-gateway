@@ -1,6 +1,6 @@
 ---
 title : "Developer Self-Service and Application Registration"
-weight : 152
+weight : 192
 ---
 
 This section will explore the [**Developer self-service and App registration**](https://developer.konghq.com/dev-portal/self-service/) capabilities provided by Konnect Developer Portal.
