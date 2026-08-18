@@ -18,7 +18,7 @@ Developer self-service consists of two main components:
 
 When you link a service with an API, Konnect automatically adds the Konnect Application Auth (KAA) plugin on that Service. The KAA plugin is responsible for applying authentication and authorization on the Service. The authentication strategy that you select for the API defines how clients authenticate. After linking to the Konnect Gateway Service, developers can create applications and generate credentials, e.g. API keys.
 
-Play the Administrator role again and click on **APIs** inside the **Dev Portal** menu option. Choose your API. Click in the **Gateway Service** tab and link the API to your Kong Gateway Service, created in the ``kong-workshop`` Control Plane.
+Play the Administrator role again and click on **APIs** inside the **Catalog** menu option. Choose your API. Click in the **Gateway** tab and link the API to your Kong Gateway Service, created in the ``kong-workshop`` Control Plane. Make sure you choose the **Link to a single gateway service** link type.
 
 ![link_gateway_service](/static/images/link_gateway_service.png)
 
@@ -31,7 +31,7 @@ As a developer, if you try to consume the API from the Dev Portal you are going 
 
 In order to control the API consumption we are going to turn the RBAC security model in our portal. That will allow to define which developer can consume the API.
 
-1. As an administrator, click the **Access and approvals** menu option inside your Dev Portal. Click on the **Teams** tab and create a team, named ``team1``.
+1. As an administrator, go to your Portal configuration landing page and click the **Developers** tab. Inside the box, click the **Teams** tab and create a team, named ``team1``.
 
 2. Inside your team, click **Add developer** and add your developer to your team.
 
@@ -51,18 +51,18 @@ That means your team has only one developer who has permissions to consumer your
 ![app_dev_portal](/static/images/app_dev_portal.png)
 
 
-2. Copy the Credential (e.g. vuOeFHUiR9oSc2fDLRvJDrJvd8ZLJJbh) and click **Copy and close**
+2. Copy the Credential (e.g. DvXStm5j5CfPAbupqQbrMOqgwX8yjLD1) and click **Copy and close**. Click on the user icon on the top right corner of the Dev Portal page and choose **Applications**. You should see your application listed.
 
 ![credential_dev_portal](/static/images/credential_dev_portal.png)
 
 
-3. Add your API Key in the Authentication box. You will still get the ``401`` error code if you try to consume the API again.
+3. Try to consume the API again, adding your API Key in the Authentication box. You will still get the ``401`` error code if you try to consume the API again.
 
 
 
 ### Approve the Application
 
-1. As the administrator get back to the **Access and approvals** menu option inside your portal. Click the **App Registration** tab and approve the application.
+1. As the administrator get back to your Portal configuration landing page and click on **Applications** tab. Inside the box, choose the **API registrations** tab and approve the application.
 
 ![app_approval_dev_portal](/static/images/app_approval_dev_portal.png)
 
@@ -79,11 +79,13 @@ That means your team has only one developer who has permissions to consumer your
 
 ![app_self_service](/static/images/app_self_service.png)
 
-3. Click on the application. You will see three tabs avaiable. The first one, **APIs**, you can see all APIs defined for the application. In our case, only the ``httpbin`` API has been used.
+3. Click on the application. You will see fours tabs avaiable. The first one, **APIs**, you can see all APIs defined for the application. In our case, only the ``httpbin`` API has been used.
 
 4. The second tab, **Analytics**, provides observability data related to the API consumption.
 
 5. The third tab, **Credentials**, you can manage your credentials, e.g. delete the existing ones, issue new ones, etc.
+
+6. The fourth tab, **Settings**, you can manage the current Application configuration or delete it.
 
 
 
