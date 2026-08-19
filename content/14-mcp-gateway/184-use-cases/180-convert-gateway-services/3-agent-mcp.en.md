@@ -14,7 +14,8 @@ from strands.models.openai import OpenAIModel
 from strands.tools.mcp import MCPClient
 from mcp.client.streamable_http import streamablehttp_client
 import os
-
+import logging
+logging.getLogger("strands").setLevel(logging.ERROR)
 
 data_plane_lb = os.getenv("DATA_PLANE_LB");
 

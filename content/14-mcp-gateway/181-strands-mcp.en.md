@@ -17,10 +17,10 @@ We are going to run a basic Strands Agent, written in Python, to better understa
 
 ```
 uv init kong-workshop-strands
+cd kong-workshop-strands
 uv venv
 source .venv/bin/activate
 uv pip install 'strands-agents[openai]'
-cd kong-workshop-strands
 ```
 
 
@@ -125,7 +125,6 @@ openai_model = OpenAIModel(
       "api_key": "dummy",
   },
   model_id="claude-sonnet-4-6",
-  # max_tokens=1024,
 )
 
 
