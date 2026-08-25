@@ -3,7 +3,7 @@
   <channel>
     <title>Use Cases :: API and AI Management with Kong Konnect</title>
     <link>http://localhost:1313/14-mcp-gateway/184-use-cases/index.html</link>
-    <description>In this chapter we are going to explore the following common use cases we typically implement by the MCP Gateway.&#xA;Converting Kong Gateway Services into MCP Servers Consuming and protecting existing MCP Servers through Kong MCP Gateway These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.&#xA;You can now click Next to begin the module.</description>
+    <description>In this chapter we are going to explore the following common use cases we typically implement by the MCP Gateway.&#xA;Converting Kong Gateway Services into MCP Servers Consuming and protecting existing MCP Servers through Kong MCP Gateway These functionalities are extended by the use of Kong Plugins. You can find a full list of all Kong plugins on the Plugin Hub.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/14-mcp-gateway/184-use-cases/index.xml" rel="self" type="application/rss+xml" />
