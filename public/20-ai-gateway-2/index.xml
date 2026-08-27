@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong AI Gateway 2 :: API and AI Management with Kong Konnect</title>
+    <link>http://localhost:1313/20-ai-gateway-2/index.html</link>
+    <description>AI Gateway 2 introduces a dedicated Control Plane for AI workloads in Konnect. Instead of requiring users to manually build AI behavior on top of API Kong Gateway through proxy plugins, AI Gateway exposes first-class AI entities: Providers, Models, MCP Servers, and Agents.&#xA;Architecture</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/20-ai-gateway-2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Konnect AI Gateway 2 User Interface</title>
+      <link>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/index.html</guid>
+      <description>AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs, MCP Servers and Agents using the Konnect platform.&#xA;Key features include:&#xA;Routing and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.</description>
+    </item>
+    <item>
+      <title>kongctl</title>
+      <link>http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html</guid>
+      <description>This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.&#xA;So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.</description>
+    </item>
+  </channel>
+</rss>

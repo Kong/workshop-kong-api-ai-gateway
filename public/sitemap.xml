@@ -166,7 +166,13 @@
     <loc>http://localhost:1313/13-ai-gateway/17-konnect-ui/171-ai-manager/index.html</loc>
   </url>
   <url>
+    <loc>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/171-ai-manager/index.html</loc>
+  </url>
+  <url>
     <loc>http://localhost:1313/13-ai-gateway/17-konnect-ui/172-decorator/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/172-decorator/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/18-apiops-deck/index.html</loc>
@@ -194,6 +200,15 @@
   </url>
   <url>
     <loc>http://localhost:1313/16-claude-code/194-run-agent/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-ai-gateway-2/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/15-observability/152-external/index.html</loc>

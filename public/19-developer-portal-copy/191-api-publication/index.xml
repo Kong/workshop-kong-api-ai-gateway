@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dev Portal creation and API publication :: API and AI Management with Kong Konnect</title>
+    <link>http://localhost:1313/19-developer-portal-copy/191-api-publication/index.html</link>
+    <description>Basic Developer Portal implementation In this section we are going to cover the basic steps to get a Developer Portal deployed&#xA;Kong Service and Route Create a Kong Gateway Service based on http://httpbin.konghq.com. Create a Kong Route with path /. Don’t forget to add the HTTP protocol to the Kong Route. Globally enable the CORS plugin to your Kong Gateway Service. That’s needed to solve the relationship between the Dev Portal and the Upstream Service. Dev Portal creation Choose the Portals menu option inside Dev Portal and click + New portal. Create a Private Portal named portal1. In the New Portal page accept the default values and click Create and continue In the Customize appearance page accept the default values and click Save. The Dev Portal is created. Click on Go to overview. Check the Portal configuration: User authentication: Konnect Built-in - That defines the default mechanism the Dev Portal uses for the user authentication. Besides the built-in option, it can be configured as OIDC or SAML. Default authentication strategy: Key-Auth - That defines the mechanism to control the API consumption inside the Dev Portal. Test your Dev Portal Sign Up If you click on the Dev Portal URL, you will play the Developer role and see your new portal home page. Since there’s no developer created, click Sing up and register to the Portal. Type your name and use a real email since the Dev Portal will send a confirmation request to it.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/19-developer-portal-copy/191-api-publication/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

@@ -25,26 +25,26 @@ cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1b
 cat &lt;&lt;EOF | kubectl apply -f - apiVersion: gateway-operator.konghq.com/v1beta1 kind: DataPlane metadata: name: kong-workshop-dp namespace: kong spec: extensions: - kind: KonnectExtension name: konnect-config-workshop group: konnect.konghq.com deployment: podTemplateSpec: spec: containers: - name: proxy image: kong/kong-gateway:3.15 replicas: 3 network: services: ingress: name: proxy-kong-workshop type: LoadBalancer ports: - name: http port: 8000 nodePort: 30080 - name: https port: 8443 nodePort: 30443 EOF Wait for replicas to deploy It will take a couple minutes for the new pods to start up. Run the following command to show that the replicas are ready.">
     <meta itemprop="wordCount" content="390">
     <title>Scale Kong for Kubernetes to multiple pods :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1787661642" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1787661642" defer></script>
-    <script src="/js/search-lunr.js?1787661642" defer></script>
-    <script src="/js/search.js?1787661642" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1787856969" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1787856969" defer></script>
+    <script src="/js/search-lunr.js?1787856969" defer></script>
+    <script src="/js/search.js?1787856969" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1787661642";
+      window.relearn.index_js_url="/searchindex.en.js?1787856969";
     </script>
-    <script src="/js/lunr/lunr.min.js?1787661642" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1787661642" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1787661642" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1787661642" defer></script>
+    <script src="/js/lunr/lunr.min.js?1787856969" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1787856969" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1787856969" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1787856969" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787661642" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787661642" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1787661642" rel="stylesheet">
-    <link href="/css/theme.css?1787661642" rel="stylesheet">
-    <link href="/css/format-html.css?1787661642" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787856969" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787856969" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1787856969" rel="stylesheet">
+    <link href="/css/theme.css?1787856969" rel="stylesheet">
+    <link href="/css/format-html.css?1787856969" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -823,8 +823,8 @@ dataplane-dataplane1-qdc66-84d7746bbf-kpbpl   1/1     Running   0          26s
 httpbin-5c69574c95-xq76q                      1/1     Running   0          6d19h</code></pre></div>
 <h2 id="check-konnect-runtime-group">Check Konnect Runtime Group</h2>
 <p>Similarly you can see new Runtime Instances connected to your Runtime Group</p>
-<p><a href="#R-image-9902115f0893d7f3917aff6928de5e1c" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9902115f0893d7f3917aff6928de5e1c"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
+<p><a href="#R-image-77d734280ecbf65bd8a1d461b7876b43" class="lightbox-link"><img alt="3-runtime-instances" class="lazy lightbox figure-image" loading="lazy" src="/static/images/3-runtime-instances.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-77d734280ecbf65bd8a1d461b7876b43"><img alt="3-runtime-instances" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/3-runtime-instances.png"></a></p>
 <h3 id="verify-traffic-control">Verify traffic control</h3>
 <p>Test the rate-limiting policy by executing the following command and observing the rate-limit headers.</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -I $DATA_PLANE_LB/rate-limiting-route/get</code></pre></div>
@@ -924,6 +924,7 @@ X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942</code></pre></div>
             <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-ai-gateway-2/index.html"><a class="padding" href="/20-ai-gateway-2/index.html">Kong AI Gateway 2</a><ul id="R-subsections-98b73e8584bd32e6140807af65140166" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
           </ul>
         </div>
@@ -942,8 +943,8 @@ X-Kong-Request-Id: 278fcb4ae01a6e7fcc88ed701adaf942</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1787661642" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1787661642" defer></script>
-    <script src="/js/theme.js?1787661642" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1787856969" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1787856969" defer></script>
+    <script src="/js/theme.js?1787856969" defer></script>
   </body>
 </html>

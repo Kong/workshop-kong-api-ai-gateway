@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Konnect AI Gateway 2 User Interface :: API and AI Management with Kong Konnect</title>
+    <link>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/index.html</link>
+    <description>AI Manager in Konnect provides a unified control plane to create, manage, and monitor LLMs, MCP Servers and Agents using the Konnect platform.&#xA;Key features include:&#xA;Routing and load balancing: Assign Gateway Services and define how traffic is distributed across models. Streaming and authentication: Enable streaming responses and manage authentication through the AI Gateway. Access control: Create and apply access tiers to control how clients interact with LLMs. Usage analytics: Monitor request and token volumes, track error rates, and measure average latency with historical comparisons. Visual traffic maps: Explore interactive maps that show how requests flow between clients and models in real time. You can now click Next to begin the module.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/20-ai-gateway-2/201-konnect-ui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Manager</title>
+      <link>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/171-ai-manager/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/171-ai-manager/index.html</guid>
+      <description>Create the AI Gateway The AI Gateway menu option lets you to create a new instance. Click on the option and choose New AI Gateway button.&#xA;Inside the New AI Gateway page do the following:&#xA;Name your new AI Gateway as ai_gateway_1. You can label the new instance if you want. Click Next -&gt; In the Create AI Gateway page choose:&#xA;Self-managed to the question Where do you want to run your AI gateway? Docker to question How do you want to run your gateway? Click Next -&gt; In the next page:</description>
+    </item>
+    <item>
+      <title>Prompt Engineering - Decorator</title>
+      <link>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/172-decorator/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-ai-gateway-2/201-konnect-ui/172-decorator/index.html</guid>
+      <description>As a simple example, let’s implement a Prompt Engineering policy adding a Decorator to our Kong Gateway Service.&#xA;Choose your AI Gateway your created in the previous section:&#xA;Inside the AI Gateway Overview page, click the Models tab. Choose the model you’ve just created. Inside the Model Oveview page, click the Prompt engineering option. You’ll be able to configure two kinds of Prompt Engineering policies: Decorators and Templates Click the AI Prompt Decorator. Inside the AI Prompt Decorator page:</description>
+    </item>
+  </channel>
+</rss>
