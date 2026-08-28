@@ -3,6 +3,9 @@ title : "kongctl"
 weight : 202
 ---
 
+# kongctl
+
+
 This section will explore the [**Developer self-service and App registration**](https://developer.konghq.com/dev-portal/self-service/) capabilities provided by Konnect Developer Portal.
 
 So far, you have your API published in the portal. However, there's no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.
