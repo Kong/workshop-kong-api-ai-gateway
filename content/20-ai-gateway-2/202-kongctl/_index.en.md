@@ -1379,9 +1379,6 @@ ai_gateways:
           upstream:
             auth:
               type: aws
-                # access_key_id: "AKIAXAKB57VP2MX5M75Q"
-                # secret_access_key: "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"
-              # region: us-west-2
           logging:
             max_payload_size: 1048576
             payloads: true
