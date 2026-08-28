@@ -83,7 +83,9 @@ Inside the **Add Provider**:
 * Type ``Bearer <YOUR_OPENAI_API_KEY>`` for **Header value**.
 * Click **Create**.
 
-![OpenAI Config](/static/images/openai_config_aigw2.png)
+<!-- ![OpenAI Config](/static/images/openai_config_aigw2.png) -->
+<img src="/static/images/openai_config_aigw2.png" alt="OpenAI Config" width="400">
+
 
 * Inside the **Target model** popup box, choose an OpenAI mode, e.g., ``gpt-4o``.
 * Leave all other fields with the default values.
