@@ -76,10 +76,13 @@
     <loc>http://localhost:1313/12-api-gateway/121-kong-service-route/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/12-api-gateway/122-first-kong-service-route/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/123-first-kong-service-route/index.html</loc>
   </url>
   <url>
-    <loc>http://localhost:1313/12-api-gateway/123-oas-import/index.html</loc>
+    <loc>http://localhost:1313/12-api-gateway/122-deck/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/12-api-gateway/124-oas-import/index.html</loc>
   </url>
   <url>
     <loc>http://localhost:1313/13-ai-gateway/index.html</loc>

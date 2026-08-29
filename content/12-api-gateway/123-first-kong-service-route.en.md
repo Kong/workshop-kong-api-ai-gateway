@@ -1,6 +1,6 @@
 ---
 title : "Create your first Kong Gateway Service and Kong Route using decK"
-weight : 122
+weight : 123
 ---
 
 For the purpose of this workshop, you’ll create and expose a service to the HTTPbin API. HTTPbin is an echo-type application that returns requests back to the requester as responses.

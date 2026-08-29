@@ -5,46 +5,46 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.165.0">
     <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
-    <meta name="description" content="This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.
-So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.">
+    <meta name="description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="kongctl :: API and AI Management with Kong Konnect">
-    <meta name="twitter:description" content="This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.
-So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.">
+    <meta name="twitter:description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
     <meta property="og:url" content="http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html">
     <meta property="og:site_name" content="API and AI Management with Kong Konnect">
     <meta property="og:title" content="kongctl :: API and AI Management with Kong Konnect">
-    <meta property="og:description" content="This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.
-So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.">
+    <meta property="og:description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="kongctl :: API and AI Management with Kong Konnect">
-    <meta itemprop="description" content="This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.
-So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.">
-    <meta itemprop="wordCount" content="4252">
+    <meta itemprop="description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
+    <meta itemprop="wordCount" content="4217">
     <title>kongctl :: API and AI Management with Kong Konnect</title>
     <link href="/20-ai-gateway-2/202-kongctl/index.xml" rel="alternate" type="application/rss+xml" title="kongctl :: API and AI Management with Kong Konnect">
-    <link href="/css/auto-complete/auto-complete.min.css?1787946960" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1787946960" defer></script>
-    <script src="/js/search-lunr.js?1787946960" defer></script>
-    <script src="/js/search.js?1787946960" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1788032541" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788032541" defer></script>
+    <script src="/js/search-lunr.js?1788032541" defer></script>
+    <script src="/js/search.js?1788032541" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1787946960";
+      window.relearn.index_js_url="/searchindex.en.js?1788032541";
     </script>
-    <script src="/js/lunr/lunr.min.js?1787946960" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1787946960" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1787946960" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1787946960" defer></script>
+    <script src="/js/lunr/lunr.min.js?1788032541" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788032541" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788032541" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788032541" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787946960" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1787946960" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1787946960" rel="stylesheet">
-    <link href="/css/theme.css?1787946960" rel="stylesheet">
-    <link href="/css/format-html.css?1787946960" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788032541" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788032541" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788032541" rel="stylesheet">
+    <link href="/css/theme.css?1788032541" rel="stylesheet">
+    <link href="/css/format-html.css?1788032541" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -734,9 +734,8 @@ aside#R-sidebar,
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#commonly-used-kongctl-commands">Commonly Used kongctl Commands</a>
       <ul>
-        <li><a href="#link-the-api-to-your-gateway-service">Link the API to your Gateway Service.</a></li>
         <li><a href="#turn-rbac-on-in-your-portal">Turn RBAC on in your Portal</a></li>
       </ul>
     </li>
@@ -787,7 +786,7 @@ token: $PAT</a>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-ai-gateway-2/201-konnect-ui/172-decorator/index.html" title="Prompt Engineering - Decorator (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/40-appendix/index.html" title="Appendix (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-ai-gateway-2/204-kongctl/index.html" title="kongctl (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -809,21 +808,65 @@ token: $PAT</a>
 
 <h1 id="kongctl">kongctl</h1>
 
-<p>This section will explore the <a href="https://developer.konghq.com/dev-portal/self-service/" rel="external" target="_blank"><strong>Developer self-service and App registration</strong></a> capabilities provided by Konnect Developer Portal.</p>
-<p>So far, you have your API published in the portal. However, there&rsquo;s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.</p>
-<p>Developer self-service consists of two main components:</p>
-<ul>
-<li>User authentication: Allows users to access your Dev Portal by logging in. You can further customize what logged in users can see using RBAC.</li>
-<li>Application registration: Allows developers to use your APIs using credentials and create applications for them.</li>
-</ul>
-<h3 id="link-the-api-to-your-gateway-service">Link the API to your Gateway Service.</h3>
-<p>When you link a service with an API, Konnect automatically adds the Konnect Application Auth (KAA) plugin on that Service. The KAA plugin is responsible for applying authentication and authorization on the Service. The authentication strategy that you select for the API defines how clients authenticate. After linking to the Konnect Gateway Service, developers can create applications and generate credentials, e.g. API keys.</p>
-<p>Play the Administrator role again and click on <strong>APIs</strong> inside the <strong>Catalog</strong> menu option. Choose your API. Click in the <strong>Gateway</strong> tab and link the API to your Kong Gateway Service, created in the <code>kong-workshop</code> Control Plane. Make sure you choose the <strong>Link to a single gateway service</strong> link type.</p>
-<p><a href="#R-image-fb4744762943c40a8988b39df558eed0" class="lightbox-link"><img alt="link_gateway_service" class="lazy lightbox figure-image" loading="lazy" src="/static/images/link_gateway_service.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb4744762943c40a8988b39df558eed0"><img alt="link_gateway_service" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/link_gateway_service.png"></a></p>
-<p>As a developer, if you try to consume the API from the Dev Portal you are going to get a <code>401</code> error code, meaning the Dev Portal is controlling the Authentication mechanism which is, by default, based on API Keys.</p>
-<p><a href="#R-image-1042b51bd7aea57a84dbbf566709ccb3" class="lightbox-link"><img alt="401_dev_portal" class="lazy lightbox figure-image" loading="lazy" src="/static/images/401_dev_portal.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1042b51bd7aea57a84dbbf566709ccb3"><img alt="401_dev_portal" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/401_dev_portal.png"></a></p>
+<p><a href="https://developer.konghq.com/kongctl/" rel="external" target="_blank"><strong>kongctl</strong></a> is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.</p>
+<p>The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.</p>
+<p><strong>kongctl</strong> also ships installable AI agent skills that help coding agents generate, review, and operate kongctl configuration from a repository.</p>
+<p><strong>kongctl</strong> is one of multiple tools you can use to manage Konnect and Kong Gateway. To learn about other tools, see the <a href="https://developer.konghq.com/tools/" rel="external" target="_blank">tools page</a>.</p>
+<h2 id="commonly-used-kongctl-commands">Commonly Used kongctl Commands</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Command</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>kongctl --help</code></td>
+					<td>View all <code>kongctl</code> commands and options</td>
+			</tr>
+			<tr>
+					<td><code>kongctl login</code></td>
+					<td>Authenticate to Konnect with browser-based device flow</td>
+			</tr>
+			<tr>
+					<td><code>kongctl get apis</code></td>
+					<td>List all APIs in your Konnect organization</td>
+			</tr>
+			<tr>
+					<td><code>kongctl get api users-api --output json</code></td>
+					<td>Get details for a specific API with JSON output</td>
+			</tr>
+			<tr>
+					<td><code>kongctl api /v3/portals</code></td>
+					<td>Call Konnect APIs directly using current authentication</td>
+			</tr>
+			<tr>
+					<td><code>kongctl view</code></td>
+					<td>Launch an interactive terminal UI to explore resources</td>
+			</tr>
+			<tr>
+					<td><code>kongctl install skills</code></td>
+					<td>Install bundled AI agent skills in a repository</td>
+			</tr>
+			<tr>
+					<td><code>kongctl plan -f my-portals.yaml --output-file plan.json</code></td>
+					<td>Generate a plan from input configuration without invoking changes</td>
+			</tr>
+			<tr>
+					<td><code>kongctl apply -f my-portals.yaml -f my-apis.yaml</code></td>
+					<td>Apply changes from input configuration (create and update only)</td>
+			</tr>
+			<tr>
+					<td><code>kongctl sync -f konnect.yaml</code></td>
+					<td>Sync changes from input configuration (create, update, and delete)</td>
+			</tr>
+			<tr>
+					<td><code>kongctl diff --plan plan.json</code></td>
+					<td>Preview proposed changes from a generated plan</td>
+			</tr>
+	</tbody>
+</table>
 <h3 id="turn-rbac-on-in-your-portal">Turn RBAC on in your Portal</h3>
 <h2 id="eks">EKS</h2>
 <p><a href="https://aws.amazon.com/ec2/instance-types/" rel="external" target="_blank">https://aws.amazon.com/ec2/instance-types/</a>
@@ -2514,8 +2557,10 @@ error: User not found</li>
             <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
             <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/20-ai-gateway-2/index.html"><a class="padding" href="/20-ai-gateway-2/index.html">Kong AI Gateway 2</a><ul id="R-subsections-98b73e8584bd32e6140807af65140166" class="collapsible-menu">
+            <li class="" data-nav-id="/20-ai-gateway-2/206-first-ai-gateway/index.html"><a class="padding" href="/20-ai-gateway-2/206-first-ai-gateway/index.html">Create your first Kong Gateway Service and Kong Route using decK</a></li>
             <li class="alwaysopen " data-nav-id="/20-ai-gateway-2/201-konnect-ui/index.html"><a class="padding" href="/20-ai-gateway-2/201-konnect-ui/index.html">Konnect AI Gateway 2 User Interface</a><ul id="R-subsections-297c55250a54f38b0c2e6805a178cdb1" class="collapsible-menu"></ul></li>
-            <li class="active " data-nav-id="/20-ai-gateway-2/202-kongctl/index.html"><a class="padding" href="/20-ai-gateway-2/202-kongctl/index.html">kongctl</a></li></ul></li>
+            <li class="active " data-nav-id="/20-ai-gateway-2/202-kongctl/index.html"><a class="padding" href="/20-ai-gateway-2/202-kongctl/index.html">kongctl</a></li>
+            <li class="" data-nav-id="/20-ai-gateway-2/204-kongctl/index.html"><a class="padding" href="/20-ai-gateway-2/204-kongctl/index.html">kongctl</a></li></ul></li>
             <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
           </ul>
         </div>
@@ -2534,8 +2579,8 @@ error: User not found</li>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1787946960" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1787946960" defer></script>
-    <script src="/js/theme.js?1787946960" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1788032541" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788032541" defer></script>
+    <script src="/js/theme.js?1788032541" defer></script>
   </body>
 </html>

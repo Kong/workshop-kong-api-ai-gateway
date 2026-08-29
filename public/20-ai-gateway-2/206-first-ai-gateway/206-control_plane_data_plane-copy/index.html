@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.165.0">
+    <meta name="generator" content="Relearn 8.0.0+9803d5122ebb3276acea823f476e9eb44f607862">
+    <meta name="description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Create AI Gateway entities with kongctl :: API and AI Management with Kong Konnect">
+    <meta name="twitter:description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
+    <meta property="og:url" content="http://localhost:1313/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane-copy/index.html">
+    <meta property="og:site_name" content="API and AI Management with Kong Konnect">
+    <meta property="og:title" content="Create AI Gateway entities with kongctl :: API and AI Management with Kong Konnect">
+    <meta property="og:description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Kong AI Gateway 2">
+    <meta itemprop="name" content="Create AI Gateway entities with kongctl :: API and AI Management with Kong Konnect">
+    <meta itemprop="description" content="kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.
+The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.">
+    <meta itemprop="wordCount" content="4217">
+    <title>Create AI Gateway entities with kongctl :: API and AI Management with Kong Konnect</title>
+    <link href="/css/auto-complete/auto-complete.min.css?1788032986" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788032986" defer></script>
+    <script src="/js/search-lunr.js?1788032986" defer></script>
+    <script src="/js/search.js?1788032986" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/searchindex.en.js?1788032986";
+    </script>
+    <script src="/js/lunr/lunr.min.js?1788032986" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788032986" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788032986" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788032986" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788032986" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788032986" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788032986" rel="stylesheet">
+    <link href="/css/theme.css?1788032986" rel="stylesheet">
+    <link href="/css/format-html.css?1788032986" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = ``;
+      window.relearn.path='\/20-ai-gateway-2\/206-first-ai-gateway\/206-control_plane_data_plane-copy\/index.html';
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script><!DOCTYPE html>
+<html><head><style id="qw-theme">:root {
+  --color-bg: #faf9fc;
+  --color-text: #131920;
+  --color-navbar-bg: #f9f9fb;
+  --color-bg-chat-view: #fcfcfd;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f9fafb;
+  --color-bg-hover: #f3f4f6;
+  --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-active: #e5e7eb;
+  --color-border: rgba(0, 0, 0, .12);
+  --color-border-light: rgba(0, 0, 0, .06);
+  --color-border-strong: #d1d5db;
+  --color-primary: #4200db;
+  --color-primary-dark: #35009e;
+  --color-primary-light: #8575ff;
+  --color-primary-bg: #e8e6ff;
+  --color-primary-hover-border: #35009e;
+  --color-nav-icon-active: #4200db;
+  --color-nav-hover-border: #4200db;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent);
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent);
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent);
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent);
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent);
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent);
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent);
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent);
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent);
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent);
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent);
+  --color-focus-ring: color-mix(in srgb, #4200db 50%, transparent);
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent);
+  --color-accent: #4200db;
+  --color-accent-foreground: #4200db;
+  --color-accent-dark: #35009e;
+  --color-accent-light: #e8e6ff;
+  --color-accent-inverse: #ffffff;
+  --color-link: #4200db;
+  --color-primary-gradient-end: #e8e6ff;
+  --color-primary-bg-solid: #e8e6ff;
+  --color-user-bubble: #F3F3F7;
+  --color-user-bubble-text: #131920;
+  --color-text-secondary: #5e5e5e;
+  --color-text-tertiary: #656871;
+  --color-text-muted: #9ca3af;
+  --color-text-on-primary: #ffffff;
+  --color-success: #00802f;
+  --color-success-dark: #00471e;
+  --color-success-light: #d9ffd6;
+  --color-success-hover: #005c26;
+  --color-success-bg: #e6f5eb;
+  --color-success-border: #b3d9bf;
+  --color-success-foreground: #00802f;
+  --color-success-dark-foreground: #00471e;
+  --color-success-text: #00471e;
+  --color-error: #db0000;
+  --color-error-dark: #700000;
+  --color-error-light: #ffe0e0;
+  --color-error-hover: #ffe0e0;
+  --color-error-bg: #fceaea;
+  --color-error-border: #f2cccc;
+  --color-error-active-border: #db0000;
+  --color-error-foreground: #db0000;
+  --color-error-dark-foreground: #700000;
+  --color-error-inverse: #ffffff;
+  --color-error-text: #700000;
+  --color-warning: #f2b100;
+  --color-warning-dark: #573a00;
+  --color-warning-light: #fffbbd;
+  --color-warning-hover: #db9200;
+  --color-warning-bg: #fef7e6;
+  --color-warning-border: #f9dfa3;
+  --color-warning-foreground: #f2b100;
+  --color-warning-dark-foreground: #573a00;
+  --color-warning-inverse: #573a00;
+  --color-surface-warning: #fffbbd;
+  --color-text-warning: #573a00;
+  --color-info: #006ce0;
+  --color-info-dark: #002a66;
+  --color-info-light: #d1f1ff;
+  --color-info-hover: #003b8f;
+  --color-info-bg: #ebf3fc;
+  --color-info-border: #b3d1f0;
+  --color-info-foreground: #006ce0;
+  --color-info-dark-foreground: #002a66;
+  --color-info-inverse: #ffffff;
+  --color-overlay: rgba(0, 0, 0, .5);
+  --color-shadow: rgba(0, 0, 0, .08);
+  --color-hover: rgba(0, 0, 0, .05);
+  --color-tooltip-bg: rgba(0, 0, 0, .85);
+  --color-tooltip-text: #ffffff;
+  --color-voice-purple: #8575ff;
+  --color-voice-purple-dark: #4200db;
+  --color-voice-purple-light: #8575ff;
+  --color-voice-red: #db0000;
+  --color-voice-red-dark: #700000;
+  --color-voice-amber: #f2b100;
+  --color-voice-purple-glow: rgba(66, 0, 219, .4);
+  --color-voice-red-glow: rgba(219, 0, 0, .4);
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  --text-2xs: .5625rem;
+  --text-xs: .625rem;
+  --text-sm: .6875rem;
+  --text-base: .75rem;
+  --text-md: .8125rem;
+  --text-lg: .875rem;
+  --text-xl: 1rem;
+  --text-2xl: 1.125rem;
+  --text-3xl: 1.25rem;
+  --text-4xl: 1.5rem;
+  --text-5xl: 2rem;
+  --spacing-1: calc(.25rem * 1);
+  --spacing-1-5: calc(.25rem * 1.5);
+  --spacing-2: calc(.25rem * 2);
+  --spacing-3: calc(.25rem * 3);
+  --spacing-4: calc(.25rem * 4);
+  --spacing-5: calc(.25rem * 5);
+  --spacing-6: calc(.25rem * 6);
+  --spacing-7: calc(.25rem * 7);
+  --spacing-8: calc(.25rem * 8);
+  --spacing-9: calc(.25rem * 9);
+  --spacing-10: calc(.25rem * 10);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 8px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, .08);
+  --color-success-bg-solid: #d9ffd6;
+  --color-error-bg-solid: #ffe0e0;
+  --color-error-border-solid: #ffe0e0;
+  --color-warning-bg-solid: #fffbbd;
+  --color-warning-text: #573a00;
+  --color-info-bg-solid: #d1f1ff;
+  --color-info-bg-solid-alt: #d1f1ff;
+  --color-info-text: #002a66;
+  --color-info-text-alt: #002a66;
+  --color-emerald: #10b981;
+  --color-teal: #4ecdc4;
+  --color-code-bg: #F3F3F7;
+  --color-code-header-bg: #f1f3f5;
+  --color-code-text: #24292e;
+  --color-code-border: #e1e4e8;
+  --color-code-muted: #6a737d;
+  --color-inline-code-bg: #F3F3F7;
+  --color-inline-code-text: #24292e;
+  --color-inline-code-border: #e1e4e8;
+  --color-scrollbar-thumb: #d1d5db;
+  --color-scrollbar-track: transparent;
+  --color-graph-node-text: #333333;
+  --color-graph-node-text-dim: #7F8C8D;
+  --color-graph-edge-default: #95A5A6;
+  --color-graph-edge-cross: #E67E22;
+  --color-graph-edge-text: #666666;
+  --color-graph-edge-stroke: #ffffff;
+  --color-graph-highlight-bg: #FF6B6B;
+  --color-graph-highlight-border: #E74C3C;
+  --color-graph-search-bg: #FFD700;
+  --color-graph-search-border: #FFA500;
+  --color-graph-focus-border: #C0392B;
+  --color-graph-external-border: #95A5A6;
+  --color-graph-cat-file: #3498DB;
+  --color-graph-cat-folder: #7F8C8D;
+  --color-graph-cat-file-aggregate: #2980B9;
+  --color-graph-cat-class: #9B59B6;
+  --color-graph-cat-function: #2ECC71;
+  --color-graph-cat-method: #1ABC9C;
+  --color-graph-cat-variable: #F39C12;
+  --color-graph-cat-import: #D35400;
+  --color-graph-cat-module: #5B6ABF;
+  --color-graph-cat-concept: #E74C3C;
+  --color-graph-cat-person: #FF6B6B;
+  --color-graph-cat-org: #4ECDC4;
+  --color-graph-cat-organization: #4ECDC4;
+  --color-graph-cat-product: #A29BFE;
+  --color-graph-cat-metric: #FD79A8;
+  --color-graph-cat-location: #34495E;
+  --color-graph-cat-date: #E056A0;
+  --color-graph-cat-code: #3498DB;
+  --color-graph-cat-doc: #7F8C8D;
+  --color-graph-cat-url: #00B894;
+  --color-graph-cat-email: #6C5CE7;
+  --color-graph-cat-unknown: #BDC3C7;
+  --color-graph-rel-contains: #BDC3C7;
+  --color-graph-rel-extends: #9B59B6;
+  --color-graph-rel-implements: #3498DB;
+  --color-graph-rel-imports: #E67E22;
+  --color-graph-rel-uses: #2ECC71;
+  --color-graph-rel-calls: #27AE60;
+  --color-graph-rel-references: #F39C12;
+  --color-graph-rel-related-to: #95A5A6;
+  --color-graph-rel-works-on: #E74C3C;
+  --color-graph-rel-owns: #1ABC9C;
+  --color-graph-rel-depends-on: #E67E22;
+  --color-graph-rel-parent-of: #BDC3C7;
+  --qs-content: #fff;
+  --qs-main: #fff;
+  --qs-primary-foreground: #131920;
+  --qs-secondary-foreground: #656871;
+  --qs-tertiary-foreground: #9ca3af;
+  --qs-placeholder-foreground: #8c8c94;
+  --qs-divider: #dedee3;
+  --qs-default-border: #8c8c94;
+  --qs-neutral-soft: #b4b4bb;
+  --qs-neutral-gray-50: #f9fafb;
+  --qs-tertiary-background: #f9fafb;
+  --qs-action-hover: #f3f3f7;
+  --qs-primary-default: #4200db;
+  --qs-primary-dark: #35009e;
+  --qs-primary-light: #e8e6ff;
+  --qs-success-default: #00802f;
+  --qs-error-default: #db0000;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-base-letter-spacing: .15px;
+  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029;
+  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029;
+  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029;
+  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029;
+  --qs-width-modal-sm: 384px;
+  --qs-width-modal-md: 600px;
+  --qs-width-modal-lg: 1136px;
+  --qs-grid-gap: 16px;
+  --qs-grid-gap-xl: 24px;
+  --qs-primary-medium: #8575ff;
+  --qs-primary-inverse: #fff;
+  --qs-neutral-lightest: #f9f9fb;
+  --qs-neutral-light: #f3f3f7;
+  --qs-neutral-default: #dedee3;
+  --qs-neutral-medium: #8c8c94;
+  --qs-neutral-deep: #656871;
+  --qs-neutral-dark: #333843;
+  --qs-neutral-strong: #131920;
+  --qs-neutral-white: #fff;
+  --qs-neutral-black: #000;
+  --qs-success-medium: #005c26;
+  --qs-success-dark: #00471e;
+  --qs-success-light: #d9ffd6;
+  --qs-success-inverse: #fff;
+  --qs-info-default: #006ce0;
+  --qs-info-medium: #003b8f;
+  --qs-info-dark: #002a66;
+  --qs-info-light: #d1f1ff;
+  --qs-info-inverse: #fff;
+  --qs-warning-default: #f2b100;
+  --qs-warning-medium: #db9200;
+  --qs-warning-dark: #573a00;
+  --qs-warning-light: #fffbbd;
+  --qs-warning-inverse: #573a00;
+  --qs-warning-experimental: #f2b100;
+  --qs-warning-experimental-light: #fffbbd;
+  --qs-warning-experimental-light-foreground: #fffbbd;
+  --qs-error-medium: #900;
+  --qs-error-dark: #700000;
+  --qs-error-light: #ffe0e0;
+  --qs-error-inverse: #fff;
+  --qs-connection-default: #db3300;
+  --qs-connection-soft: #ff997a;
+  --qs-connection-light: #ffe0d6;
+  --qs-connection-dark: #661800;
+  --qs-automation-default: #b3008f;
+  --qs-automation-medium: #d600ba;
+  --qs-automation-soft: #ff94f1;
+  --qs-automation-light: #ffe0fb;
+  --qs-automation-dark: #660052;
+  --qs-insight-default: #a000b8;
+  --qs-insight-soft: #f299ff;
+  --qs-insight-light: #fce6ff;
+  --qs-insight-dark: #590066;
+  --qs-visualization-default: #7300e5;
+  --qs-visualization-soft: #d4a8ff;
+  --qs-visualization-light: #f2e5ff;
+  --qs-visualization-dark: #45008a;
+  --qs-spice: #ff9800;
+  --qs-coachmark: #006ce0;
+  --qs-brand: #fff;
+  --qs-brand-foreground: #131920;
+  --qs-brand-navbar: #131920;
+  --qs-brand-navbar-foreground: #fff;
+  --qs-brand-navbar-light: #dedee3;
+  --qs-brand-navbar-dark: #000;
+  --qs-application-navbar: #4200db;
+  --qs-application-navbar-foreground: #fff;
+  --qs-application-navbar-light: #e8e6ff;
+  --qs-application-navbar-dark: #35009e;
+  --qs-dimension: #4200db;
+  --qs-dimension-foreground: #fff;
+  --qs-dimension-experimental: #4200db;
+  --qs-dimension-experimental-foreground: #4200db;
+  --qs-measure: #00802f;
+  --qs-measure-foreground: #fff;
+  --qs-measure-experimental: #f2b100;
+  --qs-measure-experimental-foreground: #f2b100;
+  --qs-content-inverse: #333843;
+  --qs-content-inverse-active: #131920;
+  --qs-secondary: #dedee3;
+  --qs-disabled: #8c8c94;
+  --qs-divider-light: #f3f3f7;
+  --qs-hover-border: #333843;
+  --qs-active-border: #4200db;
+  --qs-disabled-border: #dedee3;
+  --qs-error-border: #ffe0e0;
+  --qs-error-active-border: #db0000;
+  --qs-disabled-foreground: #b4b4bb;
+  --qs-primary-inverse-foreground: #fff;
+  --qs-error-foreground: #db0000;
+  --qs-contrast-foreground: #131920;
+  --qs-main-foreground: #131920;
+  --qs-main-secondary-foreground: #656871;
+  --qs-action-disabled: #f3f3f7;
+  --qs-action-active: #e8e6ff;
+  --qs-default-badge: #dedee3;
+  --qs-tag-default: #dedee3;
+  --qs-tag-soft-border: #b4b4bb;
+  --qs-focus-offset: 1px;
+  --qs-toggle-tile-sm: calc(.25rem * 8);
+  --qs-toggle-tile-md: calc(.25rem * 12);
+  --qs-toggle-tile-lg: calc(.25rem * 15);
+  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029;
+  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029;
+  --react-pdf-text-layer: 1;
+  --highlight-bg-color: rgba(180, 0, 170, 1);
+  --highlight-selected-bg-color: rgba(0, 100, 0, 1);
+  --react-pdf-annotation-layer: 1;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+  --input-focus-border-color: Highlight;
+  --input-focus-outline: 1px solid Canvas;
+  --input-unfocused-border-color: transparent;
+  --input-disabled-border-color: transparent;
+  --input-hover-border-color: black;
+  --link-outline: none;
+  color-scheme: light;
+}
+body { background: var(--color-bg); color: var(--color-text); }
+a { color: var(--color-link, var(--color-primary)); }</style><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+ 
+#R-sidebar #R-homelinks a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+#R-sidebar #R-homelinks a::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 80px !important;
+  height: 26px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 126 40'%3E%3Cg fill='%23CCFF00'%3E%3Cpath d='m14.7 32.947-1.1 1.39 2.487 3.872L15.828 40h10.553l.73-1.79-4.244-5.263zM20.47 9.382l-3.816 6.657 18.618 21.948-.53 2.013h8.54l1.546-7.14L24.905 9.379z'/%3E%3Cpath d='m23.006 4.378-1.816 3.33h4.504l7.73 9.164 4.595-3.76v-2.387l-1.596-2.234 1.18-1.223L28.383 0zM9.147 22.928H6.63L0 31.313V40h7.112l1.257-1.627 5.487-7.078h7.937l2.444-3.73-8.606-10.176z'/%3E%3C/g%3E%3Cpath fill='%23FFFFFF' fill-rule='evenodd' d='M77.122 27.387h6.192v-9.46h-6.192zm.217 3.784c-1.724 0-2.62-.279-3.357-1.046-1.108-1.11-1.538-2.651-1.538-7.431s.43-6.321 1.538-7.462c.71-.74 1.633-1.02 3.357-1.02h5.758c1.723 0 2.619.28 3.356 1.02 1.109 1.14 1.538 2.651 1.538 7.462s-.43 6.322-1.538 7.43c-.737.772-1.633 1.047-3.356 1.047zM101.997 19.559v11.608h4.709V19.185c0-2.486-.276-3.379-.986-4.055-.647-.646-1.574-.937-3.021-.937l-4.142.012-2.374 2.136v-2.136H91.49v16.958h4.709V17.92h5.79v1.632zM65.077 9.54h5.608l-8.054 10.164 8.393 11.463h-5.947l-6.386-9.004-1.514-.008v9.012h-5.049V9.54h5.049v8.382h1.514zM121.161 14.21v2.135l-2.375-2.136-3.534-.012c-1.692 0-2.685.292-3.455 1.027-1.017 1.042-1.51 3.324-1.51 7.502 0 4.177.402 6.365 1.384 7.38.769.735 1.684 1.062 3.503 1.062h5.975l.008 2.427-8.295.015.008.996 2.142 2.368h6.484c1.723 0 2.709-.307 3.325-.952.769-.799 1.076-1.294 1.076-4.21V14.214h-4.74zm.031 13.158H115v-9.445h6.188v9.445z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: left center !important;
+  flex-shrink: 0 !important;
+}
+
+ 
+#R-sidebar #R-homelinks a {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 16px 16px !important;
+}
+
+ 
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  background: #000F06 !important;
+  color: #D7DED4 !important;
+}
+
+ 
+aside#R-sidebar,
+#R-sidebar {
+  background: #000F06 !important;
+  border-right: 1px solid #4A4D49 !important;
+}
+
+ 
+#R-sidebar .searchbox {
+  border: 1px solid #4A4D49 !important;
+  background: #101110 !important;
+  border-radius: 0 !important;
+  margin: 10px 12px !important;
+  padding: 0 !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+#R-sidebar .searchbox input.search-by,
+#R-sidebar input#R-search-by {
+  background: transparent !important;
+  border: none !important;
+  color: #D7DED4 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+  height: 100% !important;
+  flex: 1 !important;
+  outline: none !important;
+}
+
+#R-sidebar .searchbox input::placeholder {
+  color: #858983 !important;
+}
+
+#R-sidebar .searchbox button.search-detail,
+#R-sidebar .searchbox button.search-clear {
+  background: transparent !important;
+  border: none !important;
+  color: #858983 !important;
+  padding: 0 8px !important;
+  height: 100% !important;
+  width: auto !important;
+  min-width: auto !important;
+  font-size: 12px !important;
+}
+
+#R-sidebar .searchbox button:hover {
+  color: #CCFF00 !important;
+}
+
+ 
+#R-sidebar ul li a,
+#R-sidebar .topics a {
+  color: #B7BDB5 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+#R-sidebar ul li a:hover,
+#R-sidebar .topics a:hover {
+  color: #FFFFFF !important;
+}
+
+#R-sidebar ul li.active > a,
+#R-sidebar .topics li.active > a {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  background: rgba(204, 255, 0, 0.08) !important;
+}
+
+#R-sidebar .footercontainer {
+  border-top: 1px solid #4A4D49 !important;
+  color: #858983 !important;
+  font-size: 10px !important;
+}
+
+ 
+#R-topbar {
+  background: #000F06 !important;
+  border-bottom: 1px solid #4A4D49 !important;
+}
+
+#R-topbar a {
+  color: #B7BDB5 !important;
+}
+
+#R-topbar a:hover {
+  color: #CCFF00 !important;
+}
+
+ 
+#R-body,
+#R-body-inner {
+  background: #000F06 !important;
+}
+
+#R-body h1, #R-body-inner h1,
+#R-body h2, #R-body-inner h2,
+#R-body h3, #R-body-inner h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  text-transform: none !important;
+  letter-spacing: -0.5px !important;
+}
+
+#R-body h1, #R-body-inner h1 {
+  font-size: 32px !important;
+  line-height: 1.2 !important;
+}
+
+#R-body h2, #R-body-inner h2 {
+  font-size: 24px !important;
+  margin-top: 36px !important;
+}
+
+#R-body h3, #R-body-inner h3 {
+  font-size: 18px !important;
+}
+
+#R-body p, #R-body-inner p {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #D7DED4 !important;
+}
+
+#R-body strong {
+  color: #FFFFFF !important;
+}
+
+ 
+#R-body a, #R-body-inner a {
+  color: #CCFF00 !important;
+  text-decoration: none !important;
+}
+
+#R-body a:hover {
+  color: #e6ff66 !important;
+  text-decoration: underline !important;
+}
+
+ 
+#R-body li::marker {
+  color: #CCFF00 !important;
+}
+
+#R-body li {
+  color: #D7DED4 !important;
+}
+
+ 
+#R-body pre {
+  background: #101110 !important;
+  border: 1px solid #4A4D49 !important;
+  border-radius: 0 !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  padding: 16px 20px !important;
+  color: #D7DED4 !important;
+}
+
+#R-body pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #D7DED4 !important;
+}
+
+#R-body code {
+  background: rgba(204, 255, 0, 0.06) !important;
+  border: 1px solid rgba(204, 255, 0, 0.15) !important;
+  border-radius: 0 !important;
+  padding: 1px 5px !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 12px !important;
+  color: #CCFF00 !important;
+}
+
+ 
+#R-body table {
+  background: #101110 !important;
+  border: 1px solid #4A4D49 !important;
+}
+
+#R-body th {
+  background: #2D2E2C !important;
+  color: #FFFFFF !important;
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #4A4D49 !important;
+}
+
+#R-body td {
+  padding: 8px 14px !important;
+  border-bottom: 1px solid #4A4D49 !important;
+  color: #D7DED4 !important;
+}
+
+ 
+#R-body blockquote {
+  border-left: 3px solid #CCFF00 !important;
+  background: rgba(204, 255, 0, 0.03) !important;
+  padding: 14px 18px !important;
+  border-radius: 0 !important;
+}
+
+ 
+.copy-to-clipboard-button {
+  background: #4A4D49 !important;
+  border: none !important;
+  color: #B7BDB5 !important;
+  border-radius: 0 !important;
+}
+
+.copy-to-clipboard-button:hover {
+  background: #CCFF00 !important;
+  color: #000F06 !important;
+}
+
+ 
+#R-body-inner {
+  background-image:
+    linear-gradient(rgba(74, 77, 73, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 77, 73, 0.06) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+
+ 
+::selection {
+  background: rgba(204, 255, 0, 0.25);
+  color: #FFFFFF;
+}
+
+ 
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #000F06; }
+::-webkit-scrollbar-thumb { background: #4A4D49; }
+</style>
+</head><body></body></html>
+  </head>
+  <body class="mobile-support html" data-url="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane-copy/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#commonly-used-kongctl-commands">Commonly Used kongctl Commands</a>
+      <ul>
+        <li><a href="#turn-rbac-on-in-your-portal">Turn RBAC on in your Portal</a></li>
+      </ul>
+    </li>
+    <li><a href="#eks">EKS</a></li>
+    <li><a href="#pod-identity">Pod Identity</a></li>
+    <li><a href="#aws-load-balancer-controller">AWS Load Balancer Controller</a>
+      <ul>
+        <li><a href="#install-aws-load-balancer-controller">Install AWS Load Balancer Controller</a></li>
+        <li><a href="#aws-certificate-manager">AWS Certificate Manager</a></li>
+        <li><a href="#digital-certificate">Digital Certificate</a></li>
+      </ul>
+    </li>
+    <li><a href="#kong">Kong</a>
+      <ul>
+        <li><a href="#pod-identity-1">Pod Identity</a></li>
+        <li><a href="#define-podidentityassociation">Define PodIdentityAssociation</a></li>
+        <li><a href="#kong-operator">Kong Operator</a></li>
+        <li><a href="#control-plane">Control Plane</a></li>
+      </ul>
+    </li>
+    <li><a href="#token-pat">cat &laquo;EOF | kubectl apply -f -
+kind: Secret
+apiVersion: v1
+metadata:
+name: konnect-api-auth-secret
+namespace: kong
+labels:
+konghq.com/credential: konnect
+konghq.com/secret: &ldquo;true&rdquo;
+stringData:
+token: $PAT</a>
+      <ul>
+        <li><a href="#data-plane">Data Plane</a></li>
+        <li><a href="#route53">Route53</a></li>
+        <li><a href="#delete-cpdp">Delete CP/DP</a></li>
+      </ul>
+    </li>
+    <li><a href="#convert-deck-to-kongctl">Convert decK to kongctl</a></li>
+    <li><a href="#observability">Observability</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">API and AI Management with Kong Konnect</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-ai-gateway-2/index.html"><span itemprop="name">Kong AI Gateway 2</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/20-ai-gateway-2/206-first-ai-gateway/index.html"><span itemprop="name">Create your first Kong AI Gateway 2 with kongctl</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Create AI Gateway entities with kongctl</span><meta itemprop="position" content="4"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-ai-gateway-2/206-first-ai-gateway/index.html" title="Create your first Kong AI Gateway 2 with kongctl (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane/index.html" title="Create AI Gateway entities with kongctl (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable 20-ai-gateway-2" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="create-ai-gateway-entities-with-kongctl">Create AI Gateway entities with kongctl</h1>
+
+<p><a href="https://developer.konghq.com/kongctl/" rel="external" target="_blank"><strong>kongctl</strong></a> is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.</p>
+<p>The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.</p>
+<p><strong>kongctl</strong> also ships installable AI agent skills that help coding agents generate, review, and operate kongctl configuration from a repository.</p>
+<p><strong>kongctl</strong> is one of multiple tools you can use to manage Konnect and Kong Gateway. To learn about other tools, see the <a href="https://developer.konghq.com/tools/" rel="external" target="_blank">tools page</a>.</p>
+<h2 id="commonly-used-kongctl-commands">Commonly Used kongctl Commands</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Command</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>kongctl --help</code></td>
+					<td>View all <code>kongctl</code> commands and options</td>
+			</tr>
+			<tr>
+					<td><code>kongctl login</code></td>
+					<td>Authenticate to Konnect with browser-based device flow</td>
+			</tr>
+			<tr>
+					<td><code>kongctl get apis</code></td>
+					<td>List all APIs in your Konnect organization</td>
+			</tr>
+			<tr>
+					<td><code>kongctl get api users-api --output json</code></td>
+					<td>Get details for a specific API with JSON output</td>
+			</tr>
+			<tr>
+					<td><code>kongctl api /v3/portals</code></td>
+					<td>Call Konnect APIs directly using current authentication</td>
+			</tr>
+			<tr>
+					<td><code>kongctl view</code></td>
+					<td>Launch an interactive terminal UI to explore resources</td>
+			</tr>
+			<tr>
+					<td><code>kongctl install skills</code></td>
+					<td>Install bundled AI agent skills in a repository</td>
+			</tr>
+			<tr>
+					<td><code>kongctl plan -f my-portals.yaml --output-file plan.json</code></td>
+					<td>Generate a plan from input configuration without invoking changes</td>
+			</tr>
+			<tr>
+					<td><code>kongctl apply -f my-portals.yaml -f my-apis.yaml</code></td>
+					<td>Apply changes from input configuration (create and update only)</td>
+			</tr>
+			<tr>
+					<td><code>kongctl sync -f konnect.yaml</code></td>
+					<td>Sync changes from input configuration (create, update, and delete)</td>
+			</tr>
+			<tr>
+					<td><code>kongctl diff --plan plan.json</code></td>
+					<td>Preview proposed changes from a generated plan</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="turn-rbac-on-in-your-portal">Turn RBAC on in your Portal</h3>
+<h2 id="eks">EKS</h2>
+<p><a href="https://aws.amazon.com/ec2/instance-types/" rel="external" target="_blank">https://aws.amazon.com/ec2/instance-types/</a>
+<a href="https://aws.amazon.com/ec2/pricing/on-demand/" rel="external" target="_blank">https://aws.amazon.com/ec2/pricing/on-demand/</a></p>
+<p>eksctl delete cluster &ndash;name kongaigateway &ndash;region us-west-2</p>
+<p>eksctl create cluster &ndash;name kongaigateway &ndash;version 1.36 &ndash;region us-west-2 &ndash;nodegroup-name kong-node &ndash;node-type c8i.2xlarge &ndash;nodes 1</p>
+<p>ß</p>
+<h2 id="pod-identity">Pod Identity</h2>
+<p><a href="https://eksctl.io/usage/pod-identity-associations/#eks-add-ons-support-for-pod-identity-associations" rel="external" target="_blank">https://eksctl.io/usage/pod-identity-associations/#eks-add-ons-support-for-pod-identity-associations</a></p>
+<p>eksctl delete addon &ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;name eks-pod-identity-agent</p>
+<p>eksctl create addon &ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;name eks-pod-identity-agent</p>
+<p>eksctl get addons &ndash;cluster kong314 &ndash;region us-west-2</p>
+<h2 id="aws-load-balancer-controller">AWS Load Balancer Controller</h2>
+<p><a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/" rel="external" target="_blank">https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/</a>
+<a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/" rel="external" target="_blank">https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/annotations/</a></p>
+<p>export ACCOUNT_ID=&quot;$(aws sts get-caller-identity &ndash;query Account &ndash;output text)&quot;</p>
+<p>curl -O <a href="https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.16.0/docs/install/iam_policy.json" rel="external" target="_blank">https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.16.0/docs/install/iam_policy.json</a></p>
+<p>curl -O <a href="https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v3.0.0/docs/install/iam_policy.json" rel="external" target="_blank">https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v3.0.0/docs/install/iam_policy.json</a></p>
+<p>% aws iam list-policies | jq -r &lsquo;.Policies[] | select(.PolicyName == &ldquo;AWSLoadBalancerControllerIAMPolicy&rdquo;)&rsquo; | jq -r &lsquo;.Arn&rsquo;
+arn:aws:iam::$ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy</p>
+<p>aws iam list-policy-versions <br>
+&ndash;policy-arn arn:aws:iam::$ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy</p>
+<p>aws iam delete-policy-version <br>
+&ndash;policy-arn arn:aws:iam::$ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy <br>
+&ndash;version-id v1</p>
+<p>aws iam delete-policy &ndash;policy-arn arn:aws:iam::$ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy</p>
+<p>aws iam create-policy <br>
+&ndash;policy-name AWSLoadBalancerControllerIAMPolicy <br>
+&ndash;policy-document file://iam_policy.json</p>
+<h3 id="install-aws-load-balancer-controller">Install AWS Load Balancer Controller</h3>
+<p>//kubectl delete sa aws-load-balancer-controller -n kube-system
+//kubectl create sa aws-load-balancer-controller -n kube-system</p>
+<p>eksctl get podidentityassociation &ndash;cluster kong314 &ndash;region us-west-2 &ndash;namespace kube-system &ndash;output json</p>
+<p>helm repo update</p>
+<p>eksctl create podidentityassociation <br>
+&ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;namespace kube-system <br>
+&ndash;service-account-name aws-load-balancer-controller <br>
+&ndash;role-name AWSLoadBalancerControllerIAMRole-kongaigateway <br>
+&ndash;permission-policy-arns arn:aws:iam::$ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy</p>
+<p>helm uninstall aws-load-balancer-controller -n kube-system</p>
+<p>helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system <br>
+&ndash;set clusterName=kongaigateway <br>
+&ndash;set region=us-west-2 <br>
+&ndash;set serviceAccount.create=true <br>
+&ndash;set serviceAccount.name=aws-load-balancer-controller</p>
+<h3 id="aws-certificate-manager">AWS Certificate Manager</h3>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export AWS_DOMAIN=kong-demo.com</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>aws route53domains register-domain \
+  --domain-name $AWS_DOMAIN \
+  --duration-in-years 1 \
+  --auto-renew \
+  --admin-contact &#39;FirstName=Claudio,LastName=Acquaviva,ContactType=PERSON,OrganizationName=Partner Engineering Team,AddressLine1=150 Spear Street,City=San Francisco,State=CA,CountryCode=US,ZipCode=94105,PhoneNumber=+1.6282437512,Email=claudio.acquaviva@konghq.com&#39; \
+  --registrant-contact &#39;FirstName=Claudio,LastName=Acquaviva,ContactType=PERSON,OrganizationName=Partner Engineering Team,AddressLine1=150 Spear Street,City=San Francisco,State=CA,CountryCode=US,ZipCode=94105,PhoneNumber=+1.6282437512,Email=claudio.acquaviva@konghq.com&#39; \
+  --tech-contact &#39;FirstName=Claudio,LastName=Acquaviva,ContactType=PERSON,OrganizationName=Partner Engineering Team,AddressLine1=150 Spear Street,City=San Francisco,State=CA,CountryCode=US,ZipCode=94105,PhoneNumber=+1.6282437512,Email=claudio.acquaviva@konghq.com&#39; \
+  --privacy-protect-admin-contact \
+  --privacy-protect-registrant-contact \
+  --privacy-protect-tech-contact \
+  --region us-east-1</code></pre></div>
+<p>Check the Domain Registration status. Wait until it&rsquo;s been successfully registered.</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>export OPERATION_ID=$(aws route53domains list-operations \
+  --region us-east-1 \
+  --query &#34;Operations[?DomainName==&#39;$AWS_DOMAIN&#39;].{ID:OperationId,Type:Type,Status:Status}&#34; | jq -r &#39;.[0].ID&#39;)</code></pre></div>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>aws route53domains get-operation-detail \
+  --operation-id $OPERATION_ID \
+  --region us-east-1 | jq -r &#39;.Status&#39;</code></pre></div>
+<h3 id="digital-certificate">Digital Certificate</h3>
+<p>aws acm delete-certificate <br>
+&ndash;certificate-arn $CERTIFICATE_ARN <br>
+&ndash;region us-east-2</p>
+<p>aws acm request-certificate <br>
+&ndash;domain-name &ldquo;*.${AWS_DOMAIN}&rdquo; <br>
+&ndash;validation-method DNS <br>
+&ndash;region us-west-2</p>
+<p>aws acm list-certificates <br>
+&ndash;region us-west-2 <br>
+&ndash;query &lsquo;CertificateSummaryList[?contains(DomainName, <code>*.kong-demo.com</code>)]&rsquo; | jq -r &lsquo;.[].Status&rsquo;</p>
+<p>export CERTIFICATE_ARN=$(aws acm list-certificates &ndash;region us-west-2 <br>
+&ndash;query &lsquo;CertificateSummaryList[?contains(DomainName, <code>*.kong-demo.com</code>)]&rsquo; | jq -r &lsquo;.[].CertificateArn&rsquo;)</p>
+<p>You need to update the Route 53 domain with the CNAME Record Name and Record Value that AWS ACM generated for DNS validation of your certificate.</p>
+<p>export CERTIFICATE_ARN=$(aws acm list-certificates &ndash;region us-west-2 <br>
+&ndash;output json | <br>
+jq -r &ldquo;.CertificateSummaryList[] | select(.DomainName == &quot;*.${AWS_DOMAIN}&quot;) | .CertificateArn&rdquo;)</p>
+<p>export RESOURCE_RECORD_NAME=$(aws acm describe-certificate <br>
+&ndash;certificate-arn $CERTIFICATE_ARN <br>
+&ndash;query &ldquo;Certificate.DomainValidationOptions&rdquo; <br>
+&ndash;region us-west-2 | jq -r &lsquo;.[].ResourceRecord.Name&rsquo;)</p>
+<p>export RESOURCE_RECORD_VALUE=$(aws acm describe-certificate <br>
+&ndash;certificate-arn $CERTIFICATE_ARN <br>
+&ndash;query &ldquo;Certificate.DomainValidationOptions&rdquo; <br>
+&ndash;region us-west-2 | jq -r &lsquo;.[].ResourceRecord.Value&rsquo;)</p>
+<p>export HOSTED_ZONE_ID=$(aws route53 list-hosted-zones <br>
+&ndash;query &ldquo;HostedZones[?Name==&rsquo;$AWS_DOMAIN.&rsquo;].Id&rdquo; | jq -r &lsquo;.[]&rsquo; | cut -d&rsquo;/&rsquo; -f3)</p>
+<p>aws route53 change-resource-record-sets <br>
+&ndash;hosted-zone-id $HOSTED_ZONE_ID <br>
+&ndash;change-batch &lsquo;{
+&ldquo;Changes&rdquo;: [{
+&ldquo;Action&rdquo;: &ldquo;CREATE&rdquo;,
+&ldquo;ResourceRecordSet&rdquo;: {
+&ldquo;Name&rdquo;: &ldquo;&rsquo;&quot;$RESOURCE_RECORD_NAME&rdquo;&rsquo;&quot;,
+&ldquo;Type&rdquo;: &ldquo;CNAME&rdquo;,
+&ldquo;TTL&rdquo;: 300,
+&ldquo;ResourceRecords&rdquo;: [{&ldquo;Value&rdquo;: &ldquo;&rsquo;&quot;$RESOURCE_RECORD_VALUE&rdquo;&rsquo;&quot;}]
+}
+}]
+}&rsquo;</p>
+<p>Make sure the Digital Certificate has been issued with:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>aws acm list-certificates \
+  --region us-west-2 | \
+  jq -r &#34;.CertificateSummaryList[] | select(.DomainName == \&#34;*.${AWS_DOMAIN}\&#34;) | .Status&#34;</code></pre></div>
+<p>You should see:</p>
+<div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>ISSUE</code></pre></div>
+<h2 id="kong">Kong</h2>
+<h3 id="pod-identity-1">Pod Identity</h3>
+<p>aws iam create-policy <br>
+&ndash;policy-name bedrock-policy <br>
+&ndash;policy-document &lsquo;{
+&ldquo;Version&rdquo;: &ldquo;2012-10-17&rdquo;,
+&ldquo;Statement&rdquo;: [
+{
+&ldquo;Effect&rdquo;: &ldquo;Allow&rdquo;,
+&ldquo;Action&rdquo;: [
+&ldquo;bedrock:InvokeModel&rdquo;,
+&ldquo;bedrock:InvokeModelWithResponseStream&rdquo;,
+&ldquo;bedrock:ApplyGuardrail&rdquo;,
+&ldquo;bedrock-agentcore:InvokeAgentRuntime&rdquo;,
+&ldquo;bedrock-agentcore:GetAgentCard&rdquo;,
+&ldquo;secretsmanager:ListSecrets&rdquo;,
+&ldquo;secretsmanager:GetSecretValue&rdquo;
+],
+&ldquo;Resource&rdquo;: &ldquo;*&rdquo;
+}
+]
+}&rsquo;</p>
+<p>kubectl delete namespace kong</p>
+<p>kubectl create namespace kong
+kubectl create sa kaigateway-podid-sa -n kong</p>
+<h3 id="define-podidentityassociation">Define PodIdentityAssociation</h3>
+<p>eksctl get podidentityassociation <br>
+&ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;namespace kong</p>
+<p>eksctl create podidentityassociation <br>
+&ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;namespace kong <br>
+&ndash;service-account-name kaigateway-podid-sa <br>
+&ndash;role-name kaigateway-podid-role <br>
+&ndash;permission-policy-arns arn:aws:iam::$ACCOUNT_ID:policy/bedrock-policy</p>
+<p>If you want to delete the association</p>
+<p>eksctl delete podidentityassociation <br>
+&ndash;cluster kongaigateway <br>
+&ndash;region us-west-2 <br>
+&ndash;namespace kong <br>
+&ndash;service-account-name kaigateway-podid-sa</p>
+<h3 id="kong-operator">Kong Operator</h3>
+<p>Install the Operator
+<a href="https://github.com/kong/kong-operator" rel="external" target="_blank">https://github.com/kong/kong-operator</a>
+<a href="https://github.com/Kong/charts/blob/main/charts/kong-operator/README.md" rel="external" target="_blank">https://github.com/Kong/charts/blob/main/charts/kong-operator/README.md</a></p>
+<p>helm repo add kong <a href="https://charts.konghq.com" rel="external" target="_blank">https://charts.konghq.com</a>
+helm repo update
+helm search repo kong/kong-operator &ndash;versions &ndash;devel</p>
+<p>helm upgrade &ndash;install ko kong/kong-operator <br>
+-n kong-system <br>
+&ndash;create-namespace <br>
+&ndash;set image.tag=2.3.0-rc.3 <br>
+&ndash;version 1.4.0-rc.2 <br>
+&ndash;set env.ENABLE_CONTROLLER_KONNECT=true <br>
+&ndash;set env.ENABLE_CONTROLLER_AIGATEWAYDATAPLANE=true</p>
+<p>kubectl -n kong-system rollout status deployment/ko-kong-operator-controller-manager</p>
+<p>You can check the Operator’s log with:
+kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &lsquo;.items[].metadata | select(.name | startswith(&ldquo;ko-kong-operator&rdquo;))&rsquo; | jq -r &lsquo;.name&rsquo;) -n kong-system</p>
+<p>Delete Kong Operator</p>
+<p>helm uninstall kong-operator -n kong-system
+kubectl delete namespace kong-system</p>
+<p>export PAT=&lt;YOUR_PAT&gt;</p>
+<h3 id="control-plane">Control Plane</h3>
+<p><a href="https://developer.konghq.com/operator/konnect/crd/control-planes/hybrid/" rel="external" target="_blank">https://developer.konghq.com/operator/konnect/crd/control-planes/hybrid/</a></p>
+<h2 id="token-pat">cat &laquo;EOF | kubectl apply -f -
+kind: Secret
+apiVersion: v1
+metadata:
+name: konnect-api-auth-secret
+namespace: kong
+labels:
+konghq.com/credential: konnect
+konghq.com/secret: &ldquo;true&rdquo;
+stringData:
+token: $PAT</h2>
+<p>kind: KonnectAPIAuthConfiguration
+apiVersion: konnect.konghq.com/v1alpha1
+metadata:
+name: konnect-api-auth
+namespace: kong
+spec:
+type: secretRef
+secretRef:
+name: konnect-api-auth-secret
+serverURL: us.api.konghq.com
+EOF</p>
+<p>kubectl get konnectapiauthconfiguration konnect-api-auth-conf -n kong -o jsonpath=&rsquo;{.spec.token}&rsquo;</p>
+<p>The second CRD creates the new Control Plane:</p>
+<p>cat &laquo;EOF | kubectl apply -f -
+kind: KonnectAIGateway
+apiVersion: konnect.konghq.com/v1alpha1
+metadata:
+name: ai-gateway-1
+namespace: kong
+spec:
+apiSpec:
+name: ai-gateway-1
+displayName: Kong AI Gateway 2
+description: AI Gateway Control Plane
+konnect:
+authRef:
+name: konnect-api-auth
+EOF</p>
+<h3 id="data-plane">Data Plane</h3>
+<p><a href="https://developer.konghq.com/operator/dataplanes/get-started/hybrid/install/" rel="external" target="_blank">https://developer.konghq.com/operator/dataplanes/get-started/hybrid/install/</a>
+<a href="https://developer.konghq.com/operator/dataplanes/get-started/hybrid/deploy-dataplane/" rel="external" target="_blank">https://developer.konghq.com/operator/dataplanes/get-started/hybrid/deploy-dataplane/</a></p>
+<p>cat &laquo;EOF | kubectl apply -f -
+apiVersion: aigateway.konghq.com/v1alpha1
+kind: AIGatewayDataPlane
+metadata:
+name: ai-gateway-1-dp
+namespace: kong
+spec:
+controlPlaneRef:
+type: konnectNamespacedRef
+konnectNamespacedRef:
+name: ai-gateway-1
+deployment:
+replicas: 1
+podTemplateSpec:
+spec:
+containers:
+- name: aigw
+image: kong/kong-ai-gateway:2.0
+serviceAccountName: kaigateway-podid-sa
+network:
+services:
+ingress:
+#name: proxy-kong-aws
+type: LoadBalancer
+ports:
+- name: https
+port: 8443
+targetPort: 8000
+- name: http
+port: 8000
+targetPort: 8000
+annotations:
+&ldquo;service.beta.kubernetes.io/aws-load-balancer-type&rdquo;: &ldquo;nlb&rdquo;
+&ldquo;service.beta.kubernetes.io/aws-load-balancer-scheme&rdquo;: &ldquo;internet-facing&rdquo;
+&ldquo;service.beta.kubernetes.io/aws-load-balancer-nlb-target-type&rdquo;: &ldquo;ip&rdquo;
+service.beta.kubernetes.io/aws-load-balancer-ssl-cert: $CERTIFICATE_ARN
+service.beta.kubernetes.io/aws-load-balancer-ssl-ports: &ldquo;8443&rdquo;
+service.beta.kubernetes.io/aws-load-balancer-listen-ports: &lsquo;[{&ldquo;HTTP&rdquo;:8000},{&ldquo;HTTPS&rdquo;:8443}]&rsquo;
+service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-TLS-1-2-2017-01
+service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &ldquo;http&rdquo;
+EOF</p>
+<p>kubectl get -n kong dataplane kong-aws-dp <br>
+-o=jsonpath=&rsquo;{.status.conditions[?(@.type==&ldquo;Ready&rdquo;)]}&rsquo; | jq</p>
+<p>kubectl describe pod $(kubectl get pod -n kong -o json | jq -r &lsquo;.items[].metadata | select(.name | startswith(&ldquo;dataplane-kong-aws&rdquo;))&rsquo; | jq -r &lsquo;.name&rsquo;) -n kong</p>
+<p>kubectl logs -f $(kubectl get pod -n kong -o json | jq -r &lsquo;.items[].metadata | select(.name | startswith(&ldquo;ai-gateway-1-dp&rdquo;))&rsquo; | jq -r &lsquo;.name&rsquo;) -n kong</p>
+<p>kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
+kubectl delete konnectaigateway ai-gateway-1 -n kong</p>
+<h3 id="route53">Route53</h3>
+<p>Use the Load Balancer created during the deployment:</p>
+<p>kubectl get service -n kong
+NAME                                TYPE           CLUSTER-IP      EXTERNAL-IP                                                                 PORT(S)         AGE
+dataplane-admin-kong-aws-dp-pvrp5   ClusterIP      None            <none>                                                                      8444/TCP        49s
+proxy-kong-aws                      LoadBalancer   10.100.25.216   k8s-kong-proxykon-7e69891787-0916acbae65837b1.elb.us-west-2.amazonaws.com   443:30117/TCP   49s</p>
+<p>aws elbv2 describe-load-balancers <br>
+&ndash;region us-west-2 <br>
+&ndash;query &ldquo;LoadBalancers[0].LoadBalancerArn&rdquo; <br>
+&ndash;output text</p>
+<p>export DATA_PLANE_LB=$(kubectl get service -n kong ai-gateway-1-dp-ingress &ndash;output=jsonpath=&rsquo;{.status.loadBalancer.ingress[].hostname}&rsquo;)</p>
+<p>export LB_NAME=$(aws elbv2 describe-load-balancers <br>
+&ndash;region us-west-2 <br>
+&ndash;query &ldquo;LoadBalancers[?DNSName==&rsquo;$DATA_PLANE_LB&rsquo;].LoadBalancerName&rdquo; <br>
+&ndash;output text)</p>
+<p>export LB_ARN=$(aws elbv2 describe-load-balancers <br>
+&ndash;region us-west-2 <br>
+&ndash;query &ldquo;LoadBalancers[?DNSName==&rsquo;$DATA_PLANE_LB&rsquo;].LoadBalancerArn&rdquo; <br>
+&ndash;output text)</p>
+<p>aws elbv2 describe-listeners <br>
+&ndash;region us-west-2 <br>
+&ndash;load-balancer-arn $LB_ARN <br>
+&ndash;query &ldquo;Listeners[].{Port:Port,Protocol:Protocol}&rdquo; <br>
+&ndash;output table</p>
+<p>export HOSTED_ZONE_ID=$(aws route53 list-hosted-zones &ndash;query &ldquo;HostedZones[?Name==&lsquo;kong-demo.com.&rsquo;].Id&rdquo; | jq -r &lsquo;.[]&rsquo; | cut -d&rsquo;/&rsquo; -f3)</p>
+<p>export LB_HOSTED_ZONE_ID=$(aws elbv2 describe-load-balancers <br>
+&ndash;region us-west-2 <br>
+&ndash;names $LB_NAME <br>
+&ndash;query &ldquo;LoadBalancers[0].CanonicalHostedZoneId&rdquo; <br>
+&ndash;output text)</p>
+<p>aws route53 change-resource-record-sets <br>
+&ndash;hosted-zone-id $HOSTED_ZONE_ID <br>
+&ndash;change-batch &lsquo;{
+&ldquo;Comment&rdquo;: &ldquo;Create alias record to NLB&rdquo;,
+&ldquo;Changes&rdquo;: [{
+&ldquo;Action&rdquo;: &ldquo;UPSERT&rdquo;,
+&ldquo;ResourceRecordSet&rdquo;: {
+&ldquo;Name&rdquo;: &ldquo;kong-dp.kong-demo.com&rdquo;,
+&ldquo;Type&rdquo;: &ldquo;A&rdquo;,
+&ldquo;AliasTarget&rdquo;: {
+&ldquo;HostedZoneId&rdquo;: &ldquo;&rsquo;&quot;$LB_HOSTED_ZONE_ID&rdquo;&rsquo;&quot;,
+&ldquo;DNSName&rdquo;: &ldquo;&rsquo;&quot;$DATA_PLANE_LB&rdquo;&rsquo;&quot;,
+&ldquo;EvaluateTargetHealth&rdquo;: true
+}
+}
+}]
+}&rsquo;</p>
+<p>You should get a response like this:</p>
+<p>curl http://$DATA_PLANE_LB
+curl <a href="http://kong-dp.kong-demo.com" rel="external" target="_blank">http://kong-dp.kong-demo.com</a>
+curl -i <a href="https://kong-dp.kong-demo.com" rel="external" target="_blank">https://kong-dp.kong-demo.com</a></p>
+<p>HTTP/1.1 404 Not Found
+Date: Tue, 09 Dec 2025 12:55:42 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Content-Length: 103
+X-Kong-Response-Latency: 0
+Server: kong/3.12.0.1-enterprise-edition
+X-Kong-Request-Id: 95b09b2a40dc745d59ea6d684f9c4a13</p>
+<p>{
+&ldquo;message&rdquo;:&ldquo;no Route matched with those values&rdquo;,
+&ldquo;request_id&rdquo;:&ldquo;95b09b2a40dc745d59ea6d684f9c4a13&rdquo;
+}</p>
+<p>Now we can define the Kong Objects necessary to expose and control Bedrock, including Kong Gateway Service, Routes, and Plugins.</p>
+<h3 id="delete-cpdp">Delete CP/DP</h3>
+<p>kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
+kubectl delete konnectextensions.konnect.konghq.com konnect-config-aws -n kong</p>
+<p>kubectl delete konnectaigateway ai-gateway-1 -n kong
+kubectl delete konnectapiauthconfiguration konnect-api-auth-conf -n kong</p>
+<p>//kubectl delete secret konnect-pat -n kong
+kubectl delete namespace kong</p>
+<p>kubectl logs -f $(kubectl get pod -n kong -o json | jq -r &lsquo;.items[].metadata | select(.name | startswith(&ldquo;dataplane-kong-polyapi&rdquo;))&rsquo; | jq -r &lsquo;.name&rsquo;) -n kong</p>
+<p>http <a href="https://kong-dp.kong-demo.com" rel="external" target="_blank">https://kong-dp.kong-demo.com</a></p>
+<p>curl <a href="http://kong-dp.kong-demo.com/llm-route" rel="external" target="_blank">http://kong-dp.kong-demo.com/llm-route</a> <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-H &ldquo;apikey-llm: 12345&rdquo; <br>
+-d &lsquo;{
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;Hello!&rdquo;
+}
+]
+}&rsquo;</p>
+<h2 id="convert-deck-to-kongctl">Convert decK to kongctl</h2>
+<p>kongctl convert ai-gateway ai-a2a-proxy.yaml <br>
+&ndash;from deck <br>
+&ndash;to kongctl <br>
+&ndash;gateway-name ai-gateway-1 <br>
+&ndash;output-file ai-gateway.yaml</p>
+<p>kongctl apply &ndash;pat $PAT -f ai-gateway.yaml &ndash;auto-approve</p>
+<h2 id="observability">Observability</h2>
+<p>Collector
+Cert Manager
+helm install <br>
+cert-manager oci://quay.io/jetstack/charts/cert-manager <br>
+&ndash;version v1.20.1 <br>
+&ndash;namespace cert-manager <br>
+&ndash;create-namespace <br>
+&ndash;set crds.enabled=true</p>
+<p>helm repo add open-telemetry <a href="https://open-telemetry.github.io/opentelemetry-helm-charts" rel="external" target="_blank">https://open-telemetry.github.io/opentelemetry-helm-charts</a>
+helm repo update</p>
+<p>helm install opentelemetry-operator open-telemetry/opentelemetry-operator <br>
+&ndash;namespace opentelemetry-operator-system <br>
+&ndash;create-namespace <br>
+&ndash;set manager.collectorImage.repository=otel/opentelemetry-collector-k8s <br>
+&ndash;set admissionWebhooks.certManager.enabled=true</p>
+<p>kubectl logs -f $(kubectl get pod -n opentelemetry-operator-system -o json | jq &lsquo;.items[].metadata | select(.name | startswith(&ldquo;collector&rdquo;))&rsquo; | jq -r &lsquo;.name&rsquo;) -n opentelemetry-operator-system</p>
+<p>Jaeger</p>
+<p>helm repo add jaegertracing <a href="https://jaegertracing.github.io/helm-charts" rel="external" target="_blank">https://jaegertracing.github.io/helm-charts</a>
+helm repo update</p>
+<p>//wget -O jaeger-values.yaml <a href="https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml" rel="external" target="_blank">https://raw.githubusercontent.com/jaegertracing/helm-charts/refs/heads/v2/charts/jaeger/values.yaml</a></p>
+<p>helm uninstall jaeger -n jaeger
+kubectl delete namespace jaeger</p>
+<p>helm install jaeger jaegertracing/jaeger -n jaeger <br>
+&ndash;create-namespace <br>
+&ndash;set allInOne.image.repository=jaegertracing/jaeger <br>
+&ndash;set allInOne.image.tag=2.17.0 <br>
+&ndash;set livenessProbe.initialDelaySeconds=30 <br>
+&ndash;set livenessProbe.periodSeconds=15 <br>
+&ndash;set readinessProbe.initialDelaySeconds=30 <br>
+&ndash;set readinessProbe.periodSeconds=15 <br>
+&ndash;set provisionDataStore.cassandra=false <br>
+&ndash;set storage.type=memory <br>
+&ndash;set agent.enabled=false <br>
+&ndash;set collector.enabled=false <br>
+&ndash;set query.enabled=false <br>
+&ndash;set service.type=ClusterIP</p>
+<p>Prometheus
+helm repo add prometheus-community <a href="https://prometheus-community.github.io/helm-charts" rel="external" target="_blank">https://prometheus-community.github.io/helm-charts</a>
+helm repo update</p>
+<p>helm uninstall prometheus -n prometheus
+kubectl delete namespace prometheus</p>
+<p>helm install prometheus -n prometheus prometheus-community/kube-prometheus-stack <br>
+&ndash;create-namespace <br>
+&ndash;set alertmanager.enabled=false <br>
+&ndash;set grafana.enabled=false <br>
+&ndash;set prometheus.service.type=ClusterIP <br>
+&ndash;set prometheus.service.port=9090 <br>
+&ndash;set prometheus.prometheusSpec.additionalArgs[0].name=web.enable-otlp-receiver <br>
+&ndash;set prometheus.prometheusSpec.additionalArgs[0].value=&quot;&quot; <br>
+&ndash;set prometheus.prometheusSpec.additionalArgs[1].name=web.enable-remote-write-receiver <br>
+&ndash;set prometheus.prometheusSpec.additionalArgs[1].value=&quot;&quot;</p>
+<p>image:
+registry: quay.io
+repository: prometheus/prometheus
+tag: v3.11.1
+sha: &quot;&quot;
+pullPolicy: IfNotPresent</p>
+<p><br>
+&ndash;set annotations.&ldquo;service.beta.kubernetes.io/aws-load-balancer-type&rdquo;=&ldquo;nlb&rdquo; <br>
+&ndash;set annotations.&ldquo;service.beta.kubernetes.io/aws-load-balancer-scheme&rdquo;=&ldquo;internet-facing&rdquo; <br>
+&ndash;set annotations.&ldquo;service.beta.kubernetes.io/aws-load-balancer-nlb-target-type&rdquo;=&ldquo;ip&rdquo; \</p>
+<p>Loki
+helm repo add grafana <a href="https://grafana.github.io/helm-charts" rel="external" target="_blank">https://grafana.github.io/helm-charts</a>
+helm repo update</p>
+<p>helm uninstall loki -n loki
+kubectl delete namespace loki</p>
+<p>canary:
+enabled: false
+args:
+- -log-output=false</p>
+<p>memberlist:
+enable: false</p>
+<p>cat &gt; loki-values.yaml &laquo; &lsquo;EOF&rsquo;
+deploymentMode: SingleBinary</p>
+<p>singleBinary:
+replicas: 1
+service:
+type: ClusterIP</p>
+<h1 id="type-loadbalancer">type: LoadBalancer</h1>
+<h1 id="annotations">annotations:</h1>
+<h1 id="servicebetakubernetesioaws-load-balancer-type-nlb">&ldquo;service.beta.kubernetes.io/aws-load-balancer-type&rdquo;: &ldquo;nlb&rdquo;</h1>
+<h1 id="servicebetakubernetesioaws-load-balancer-scheme-internet-facing">&ldquo;service.beta.kubernetes.io/aws-load-balancer-scheme&rdquo;: &ldquo;internet-facing&rdquo;</h1>
+<h1 id="servicebetakubernetesioaws-load-balancer-nlb-target-type-ip">&ldquo;service.beta.kubernetes.io/aws-load-balancer-nlb-target-type&rdquo;: &ldquo;ip&rdquo;</h1>
+<p>persistence:
+enabled: false
+extraVolumeMounts:
+- name: loki-storage
+mountPath: /var/loki
+extraVolumes:
+- name: loki-storage
+emptyDir: {}</p>
+<p>loki:
+commonConfig:
+replication_factor: 1
+image:
+tag: 3.7.1
+auth_enabled: false
+storage:
+type: filesystem
+filesystem:
+chunks_directory: /var/loki/chunks
+rules_directory: /var/loki/rules
+schemaConfig:
+configs:
+- from: &ldquo;2024-04-01&rdquo;
+store: tsdb
+object_store: filesystem
+schema: v13
+index:
+prefix: loki_index_
+period: 24h
+limits_config:
+allow_structured_metadata: true
+volume_enabled: true
+ruler:
+enable_api: true
+pattern_ingester:
+enabled: true
+otlp_config:
+resource_attributes:
+attributes_config:
+- action: index_label
+attributes:
+- service.name</p>
+<p>chunksCache:
+enabled: false</p>
+<p>resultsCache:
+enabled: false</p>
+<p>indexGateway:
+enabled: false</p>
+<p>minio:
+enabled: false</p>
+<p>gateway:
+enabled: false</p>
+<p>backend:
+replicas: 0
+read:
+replicas: 0
+write:
+replicas: 0
+ingester:
+replicas: 0
+querier:
+replicas: 0
+queryFrontend:
+replicas: 0
+queryScheduler:
+replicas: 0
+distributor:
+replicas: 0
+compactor:
+replicas: 0
+bloomCompactor:
+replicas: 0
+bloomGateway:
+replicas: 0
+EOF</p>
+<p>helm uninstall loki -n loki
+kubectl delete namespace loki</p>
+<p>helm install loki grafana/loki <br>
+&ndash;namespace=loki &ndash;create-namespace <br>
+-f loki-values.yaml</p>
+<p>helm upgrade &ndash;install loki grafana/loki <br>
+&ndash;namespace loki <br>
+&ndash;create-namespace <br>
+&ndash;set deploymentMode=SingleBinary <br>
+&ndash;set singleBinary.replicas=1 <br>
+&ndash;set singleBinary.persistence.enabled=false <br>
+&ndash;set singleBinary.extraVolumeMounts[0].name=loki-storage <br>
+&ndash;set singleBinary.extraVolumeMounts[0].mountPath=/var/loki <br>
+&ndash;set singleBinary.extraVolumes[0].name=loki-storage <br>
+&ndash;set-json &lsquo;singleBinary.extraVolumes[0].emptyDir={}&rsquo; <br>
+&ndash;set loki.image.tag=3.7.1 <br>
+&ndash;set loki.auth_enabled=false <br>
+&ndash;set loki.commonConfig.replication_factor=1 <br>
+&ndash;set loki.storage.type=filesystem <br>
+&ndash;set loki.useTestSchema=true <br>
+&ndash;set loki.limits_config.allow_structured_metadata=true <br>
+&ndash;set loki.otlp_config.resource_attributes.attributes_config[0].action=index_label <br>
+&ndash;set loki.otlp_config.resource_attributes.attributes_config[0].attributes[0]=service.name <br>
+&ndash;set chunksCache.enabled=false <br>
+&ndash;set resultsCache.enabled=false <br>
+&ndash;set minio.enabled=false <br>
+&ndash;set gateway.enabled=false <br>
+&ndash;set read.replicas=0 <br>
+&ndash;set write.replicas=0 <br>
+&ndash;set backend.replicas=0</p>
+<p>loki.storage.filesystem.chunks_directory — defaults to /var/loki/chunks
+loki.storage.filesystem.rules_directory — defaults to /var/loki/rules
+loki.schemaConfig — defaults to tsdb + v13 in Loki 3.x
+loki.ruler.enable_api — enabled by default
+loki.pattern_ingester.enabled — enabled by default in SingleBinary
+loki.limits_config.volume_enabled — enabled by default in 3.x</p>
+<p>Grafana
+helm repo add grafana <a href="https://grafana.github.io/helm-charts" rel="external" target="_blank">https://grafana.github.io/helm-charts</a>
+helm repo update</p>
+<p>helm uninstall grafana -n grafana
+kubectl delete namespace grafana</p>
+<p>helm upgrade &ndash;install grafana grafana/grafana <br>
+&ndash;namespace grafana <br>
+&ndash;create-namespace <br>
+&ndash;set adminUser=admin <br>
+&ndash;set adminPassword=admin <br>
+&ndash;set service.type=LoadBalancer <br>
+&ndash;set service.port=3000 <br>
+&ndash;set-json &lsquo;service.annotations={&ldquo;service.beta.kubernetes.io/aws-load-balancer-type&rdquo;:&ldquo;nlb&rdquo;,&ldquo;service.beta.kubernetes.io/aws-load-balancer-scheme&rdquo;:&ldquo;internet-facing&rdquo;,&ldquo;service.beta.kubernetes.io/aws-load-balancer-nlb-target-type&rdquo;:&ldquo;ip&rdquo;}&rsquo; <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.apiVersion=1 <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].name=Jaeger <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].type=jaeger <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].url=http://jaeger.jaeger:16686 <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[0].access=proxy <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].name=Prometheus <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].type=prometheus <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].url=http://prometheus-kube-prometheus-prometheus.prometheus:9090 <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[1].access=proxy <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].name=Loki <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].type=loki <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].url=http://loki.loki:3100 <br>
+&ndash;set datasources.&ldquo;datasources.yaml&rdquo;.datasources[2].access=proxy</p>
+<p>export GRAFANA_LB=$(kubectl get service -n grafana grafana &ndash;output=jsonpath=&rsquo;{.status.loadBalancer.ingress[].hostname}&rsquo;)</p>
+<p>open -a &ldquo;Google Chrome&rdquo; &ldquo;http://$GRAFANA_LB:3000&rdquo;</p>
+<p>Collector Configuration
+cat &gt; otelcollector.yaml &laquo; &lsquo;EOF&rsquo;
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+name: collector-kong
+namespace: opentelemetry-operator-system
+spec:
+image: otel/opentelemetry-collector-contrib:0.149.0
+serviceAccount: collector
+mode: deployment
+config:
+receivers:
+otlp:
+protocols:
+grpc:
+endpoint: 0.0.0.0:4317
+http:
+endpoint: 0.0.0.0:4318</p>
+<pre><code>  prometheus:
+    config:
+      scrape_configs:
+        - job_name: 'otel-collector'
+          scrape_interval: 5s
+          kubernetes_sd_configs:
+          - role: pod
+          scheme: http
+          tls_config:
+            ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          authorization:
+            credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+          metrics_path: /metrics
+          relabel_configs:
+          - source_labels: [__meta_kubernetes_namespace]
+            action: keep
+            regex: &quot;kong&quot;
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: keep
+            regex: &quot;dataplane-(.+)&quot;
+          - source_labels: [__meta_kubernetes_pod_container_name]
+            action: keep
+            regex: &quot;proxy&quot;
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            action: keep
+            regex: &quot;8100&quot;
+  tcplog:
+    listen_address: 0.0.0.0:54525
+    operators:
+      - type: json_parser
+
+processors:
+  resource:
+    attributes:
+      - action: upsert
+        key: service.name
+        value: kong-gateway
+        
+exporters:
+  otlphttp/jaeger:
+    endpoint: http://jaeger.jaeger:4318
+  otlphttp/prometheus:
+    endpoint: http://prometheus-kube-prometheus-prometheus.prometheus:9090/api/v1/otlp
+  otlphttp/loki:
+    endpoint: http://loki.loki:3100/otlp
+  prometheus:
+    endpoint: 0.0.0.0:8889
+  #debug:
+  #  verbosity: detailed
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlphttp/jaeger]
+    metrics:
+      receivers: [prometheus]
+      exporters: [otlphttp/prometheus, prometheus]
+    logs:
+      receivers: [tcplog]
+      processors: [resource]
+      exporters: [otlphttp/loki]
+</code></pre>
+<p>EOF</p>
+<p>kubectl delete opentelemetrycollector collector-kong -n opentelemetry-operator-system
+kubectl apply -f otelcollector.yaml</p>
+<p>Kong Objects
+_format_version: &ldquo;3.0&rdquo;
+_info:
+select_tags:</p>
+<ul>
+<li>httpbin-service-route
+services:</li>
+<li>name: httpbin-service
+tags:
+<ul>
+<li>httpbin-service-route
+host: httpbin.kong.svc.cluster.local
+port: 8000
+plugins:</li>
+<li>name: opentelemetry
+instance_name: opentelemetry1
+enabled: true
+config:
+traces_endpoint: <a href="http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces" rel="external" target="_blank">http://collector-kong-collector.opentelemetry-operator-system.svc.cluster.local:4318/v1/traces</a>
+#propagation:
+<h1 id="default_format-w3c">default_format: &ldquo;w3c&rdquo;</h1>
+<h1 id="inject-w3c">inject: [&ldquo;w3c&rdquo;]</h1>
+resource_attributes:
+service.name: &ldquo;kong-otel&rdquo;</li>
+<li>name: prometheus
+instance_name: prometheus1
+enabled: true
+config:
+per_consumer: true
+status_code_metrics: true
+latency_metrics: true
+bandwidth_metrics: true
+upstream_health_metrics: true
+ai_metrics: true</li>
+<li>name: tcp-log
+instance_name: tcp-log1
+enabled: true
+config:
+host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local
+port: 54525
+routes:</li>
+<li>name: httpbin-route
+tags:
+<ul>
+<li>httpbin-service-route
+paths:</li>
+<li>/httpbin-route</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>deck gateway reset &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT -f
+deck gateway sync &ndash;konnect-control-plane-name kong-aws &ndash;konnect-token $PAT httpbin.yaml</p>
+<p>curl $DATA_PLANE_LB/httpbin-route/get</p>
+<p>curl <a href="http://kong-dp.kong-demo.com/httpbin-route/get" rel="external" target="_blank">http://kong-dp.kong-demo.com/httpbin-route/get</a>
+curl <a href="https://kong-dp.kong-demo.com/httpbin-route/get" rel="external" target="_blank">https://kong-dp.kong-demo.com/httpbin-route/get</a></p>
+<p>helm uninstall jaeger -n jaeger
+kubectl delete namespace jaeger</p>
+<p>helm uninstall prometheus -n prometheus
+kubectl delete namespace prometheus</p>
+<p>helm uninstall loki -n loki
+kubectl delete namespace loki</p>
+<p>helm uninstall grafana -n grafana
+kubectl delete namespace grafana</p>
+<p>A2A
+<a href="https://github.com/a2aproject" rel="external" target="_blank">https://github.com/a2aproject</a>
+<a href="https://github.com/a2aproject/a2a-samples" rel="external" target="_blank">https://github.com/a2aproject/a2a-samples</a>
+<a href="https://a2a-protocol.org/latest/" rel="external" target="_blank">https://a2a-protocol.org/latest/</a>
+<a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" rel="external" target="_blank">https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/</a>
+<a href="https://aaif.io/" rel="external" target="_blank">https://aaif.io/</a>
+<a href="https://github.com/a2aproject/a2a-python" rel="external" target="_blank">https://github.com/a2aproject/a2a-python</a></p>
+<p><a href="https://pypi.org/project/python-a2a/" rel="external" target="_blank">https://pypi.org/project/python-a2a/</a></p>
+<p>Pod Identity injects credentials into the pod&rsquo;s environment via the standard credential provider chain — boto3 picks them up automatically, and the boto3 client handles SigV4 signing internally. AWS4Auth is only needed when you&rsquo;re using a third-party HTTP library like requests or httpx that has no AWS awareness.</p>
+<p>Pod Identity puts credentials in the environment — the boto3 client picks them up and signs automatically. You only need SigV4Auth manually when you&rsquo;re constructing raw HTTP outside the boto3 client.
+But you&rsquo;re hitting a raw HTTP URL, so something has to sign it. The question is which layer.
+The cleanest approach — use botocore&rsquo;s built-in endpoint resolver to get a presigned/signed request without touching SigV4Auth directly:
+Actually, no — there&rsquo;s no way around it for raw HTTP. The options are:
+ApproachSigns for you?Raw HTTP?boto3.client(&ldquo;bedrock-agentcore&rdquo;).invoke_agent_runtime()Yes, fully automaticNo — abstracts the URLbotocore.auth.SigV4Auth + AWSRequestYes, using Pod Identity credsYes — you control the URLrequests + AWS4AuthYes, but you own cred refreshYesPlain requests / urllibNo signing at allYes — but 403
+Pod Identity removes the need to provide or manage credentials. It doesn&rsquo;t remove the need to sign requests — that&rsquo;s a separate concern. Every call to an AWS service endpoint must be SigV4-signed regardless of how the credentials arrived.
+So for your case — raw URL, Pod Identity creds — the previous code is actually the right minimal approach:
+python</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><a href="https://developer.konghq.com/dev-portal/#dev-portal" rel="external" target="_blank">Konnect Dev Portal Overview</a></li>
+<li><a href="https://developer.konghq.com/dev-portal/apis/#publish-your-api-to-dev-portal" rel="external" target="_blank">Publish your API to Dev Portal</a></li>
+<li><a href="https://developer.konghq.com/how-to/automate-api-catalog/" rel="external" target="_blank">Automate your API catalog with Dev Portal</a></li>
+<li><a href="https://developer.konghq.com/dev-portal/self-service/" rel="external" target="_blank">Developer Self-Service and App Registration</a></li>
+</ul>
+<hr>
+<p>_defaults:
+kongctl:
+namespace: kong</p>
+<p>ai_gateways:</p>
+<ul>
+<li>ref: ai-gateway-1
+_external:
+selector:
+matchFields:
+name: &ldquo;ai-gateway-1&rdquo;</li>
+</ul>
+<p>ai_gateway_model_providers:</p>
+<ul>
+<li>ref: openai1
+ai_gateway: ai-gateway-1
+name: openai
+display_name: openai
+type: openai
+config:
+auth:
+type: basic
+headers:
+- name: Authorization
+value: !env OPENAI_AUTH_HEADER</li>
+</ul>
+<p>ai_gateway_policies:</p>
+<ul>
+<li>ref: ai-rate-limiting-advanced1
+ai_gateway: ai-gateway-1
+enabled: true
+global: false
+name: ai-rate-limiting-advanced
+display_name: ai-rate-limiting-advanced1
+type: ai-rate-limiting-advanced
+config:
+strategy: local
+policies:
+<ul>
+<li>match:
+<h1 id="--type-ip">- type: ip</h1>
+<ul>
+<li>type: consumer</li>
+<li>type: model
+partition_by: true
+values:
+<ul>
+<li>gpt-4o
+limits:</li>
+</ul>
+</li>
+<li>limit: 500
+window_size: 60</li>
+</ul>
+<h1 id="--limit-1000">- limit: 1000</h1>
+<h1 id="window_size-3600">window_size: 3600</h1>
+</li>
+</ul>
+</li>
+</ul>
+<p>ai_gateway_identity_providers:</p>
+<ul>
+<li>ref: idp1
+ai_gateway: ai-gateway-1
+config:
+hide_credentials: true
+key_in_body: false
+key_in_header: true
+key_in_query: true
+key_names:
+<ul>
+<li>apikey
+display_name: key-auth1
+name: key-auth1
+type: key-auth</li>
+</ul>
+</li>
+</ul>
+<p>ai_gateway_consumers:</p>
+<ul>
+<li>ref: consumer1
+ai_gateway: ai-gateway-1
+display_name: consumer1
+name: consumer1
+type: api-key
+policies:
+<ul>
+<li>!ref ai-rate-limiting-advanced1
+credentials:</li>
+<li>ref: credential1
+name: credential1
+display_name: credential1
+type: api-key
+api_key: !env CONSUMER_CREDENTIAL</li>
+</ul>
+</li>
+</ul>
+<p>ai_gateway_models:</p>
+<ul>
+<li>ref: openai
+ai_gateway: ai-gateway-1
+enabled: true
+name: gpt-4o
+display_name: gpt-4o
+type: model
+formats:
+<ul>
+<li>type: openai
+config:
+route:
+paths:
+<ul>
+<li>/openai-route
+model:
+body_param: model
+values:
+<ul>
+<li>gpt-4o
+targets:</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>name: gpt-4o
+provider: openai
+config:
+type: openai</li>
+</ul>
+<h1 id="policies">policies:</h1>
+<h1 id="--ref-key-auth1">- !ref key-auth1</h1>
+access:
+identity_providers:
+<ul>
+<li>key-auth1
+capabilities:</li>
+<li>generate</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="ai_gateway_identity_providers">ai_gateway_identity_providers:</h1>
+<h1 id="--ref-idp1">- ref: idp1</h1>
+<h1 id="ai_gateway-ai-gateway-1">ai_gateway: ai-gateway-1</h1>
+<h1 id="config">config:</h1>
+<h1 id="hide_credentials-true">hide_credentials: true</h1>
+<h1 id="key_in_body-false">key_in_body: false</h1>
+<h1 id="key_in_header-true">key_in_header: true</h1>
+<h1 id="key_in_query-true">key_in_query: true</h1>
+<h1 id="key_names">key_names:</h1>
+<h1 id="--apikey-a2a">- apikey-a2a</h1>
+<h1 id="--apikey-llm">- apikey-llm</h1>
+<h1 id="display_name-key-auth1">display_name: key-auth1</h1>
+<h1 id="name-key-auth1">name: key-auth1</h1>
+<h1 id="type-key-auth">type: key-auth</h1>
+<h1 id="ai_gateway_consumers">ai_gateway_consumers:</h1>
+<h1 id="--ref-consumer1">- ref: consumer1</h1>
+<h1 id="ai_gateway-ai-gateway-1-1">ai_gateway: ai-gateway-1</h1>
+<h1 id="display_name-consumer1">display_name: consumer1</h1>
+<h1 id="name-consumer1">name: consumer1</h1>
+<h1 id="type-api-key">type: api-key</h1>
+<h1 id="policies-1">policies:</h1>
+<h1 id="--ref-ai-rate-limiting-advanced1">- !ref ai-rate-limiting-advanced1</h1>
+<h1 id="credentials">credentials:</h1>
+<h1 id="--ref-credential1">- ref: credential1</h1>
+<h1 id="name-credential1">name: credential1</h1>
+<h1 id="display_name-credential1">display_name: credential1</h1>
+<h1 id="type-api-key-1">type: api-key</h1>
+<h1 id="api_key-env-consumer_credential">api_key: !env CONSUMER_CREDENTIAL</h1>
+<p>ai_gateways:</p>
+<h1 id="--name-ai-gateway-1">- name: ai-gateway-1</h1>
+<h1 id="-ai_gateway-ai-gateway-1"># ai_gateway: ai-gateway-1</h1>
+<h1 id="display_name-ai-gateway-1">display_name: ai-gateway-1</h1>
+<h1 id="ref-ai-gateway-1">ref: ai-gateway-1</h1>
+<ul>
+<li>ref: ai-gateway-1
+_external:
+selector:
+matchFields:
+name: &ldquo;ai-gateway-1&rdquo;
+identity_providers:
+<ul>
+<li>display_name: key-auth1
+name: key-auth1
+type: key-auth
+ref: idp1
+config:
+hide_credentials: true
+key_in_body: false
+key_in_header: true
+key_in_query: true
+key_names:
+<ul>
+<li>apikey-a2a</li>
+<li>apikey-llm</li>
+</ul>
+</li>
+</ul>
+<h1 id="providers">providers:</h1>
+model_providers:
+<ul>
+<li>display_name: bedrock-mp
+name: bedrock-mp
+ref: bedrock-mp
+type: bedrock
+config:
+auth:
+type: aws
+models:</li>
+<li>name: bedrock-m
+display_name: bedrock-m
+ref: bedrock-m
+type: model
+formats:
+<ul>
+<li>type: openai</li>
+</ul>
+<h1 id="access">access:</h1>
+<h1 id="identity_providers">identity_providers:</h1>
+<h1 id="--key-auth-1">- key-auth-1</h1>
+<h1 id="capabilities-">capabilities: []</h1>
+access:
+identity_providers:
+<ul>
+<li>key-auth1
+capabilities:</li>
+<li>generate
+config:
+route:
+paths:
+<ul>
+<li>/llm-route
+protocols:
+<ul>
+<li>http</li>
+<li>https         <br>
+logging:
+payloads: true</li>
+</ul>
+</li>
+</ul>
+<h1 id="statistics-true">statistics: true</h1>
+</li>
+</ul>
+max_request_body_size: 65536
+policies:
+<ul>
+<li>request-transformer</li>
+</ul>
+<h1 id="--tcp-log">- tcp-log</h1>
+<h1 id="target_models">target_models:</h1>
+targets:
+<ul>
+<li>provider: bedrock-mp
+name: us.anthropic.claude-sonnet-4-6
+<h1 id="name-usanthropicclaude-sonnet-4-20250514-v10">name: us.anthropic.claude-sonnet-4-20250514-v1:0</h1>
+allow_auth_override: false
+config:
+input_cost: 1000
+output_cost: 3000
+region: us-west-2
+type: bedrock
+agents:</li>
+</ul>
+</li>
+<li>name: a2a-agent
+display_name: a2a-agent
+ref: a2a-agent
+type: a2a
+<h1 id="access-1">access:</h1>
+<h1 id="identity_providers-1">identity_providers:</h1>
+<h1 id="--key-auth1">- key-auth1</h1>
+<h1 id="policies-2">policies:</h1>
+<h1 id="--key-auth">- key-auth</h1>
+config:
+url: <a href="https://bedrock-agentcore.us-west-2.amazonaws.com:443/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A481711488351%3Aruntime%2Fkongagentcore_kongagentcore-xRHFSSFpX5/invocations" rel="external" target="_blank">https://bedrock-agentcore.us-west-2.amazonaws.com:443/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A481711488351%3Aruntime%2Fkongagentcore_kongagentcore-xRHFSSFpX5/invocations</a>
+route:
+# name: a2a-route
+paths:
+- /a2a
+protocols:
+- http
+- https
+strip_path: true
+upstream:
+auth:
+type: aws
+logging:
+max_payload_size: 1048576
+payloads: true
+statistics: true
+max_request_body_size: 0
+consumers:</li>
+<li>display_name: a2a-client-1
+name: a2a-client-1
+ref: a2a-client-1
+type: api-key
+credentials:
+<ul>
+<li>display_name: a2a-client-1-credential
+name: a2a-client-1-credential
+ref: a2a-client-1-credential
+type: api-key
+api_key: !env A2A_CREDENTIAL
+<h1 id="api_key-abcde">api_key: &ldquo;abcde&rdquo;</h1>
+</li>
+</ul>
+</li>
+<li>display_name: llm-client-1
+name: llm-client-1
+ref: llm-client-1
+type: api-key
+credentials:
+<ul>
+<li>display_name: llm-client-1-credential
+name: llm-client-1-credential
+ref: llm-client-1-credential
+type: api-key
+api_key: !env LLM_CREDENTIAL
+<h1 id="api_key-12345">api_key: &ldquo;12345&rdquo;</h1>
+</li>
+</ul>
+</li>
+</ul>
+mcp_servers:
+<ul>
+<li>name: mcp-listener
+display_name: mcp-listener
+ref: mcp-listener
+type: listener
+config:
+route:
+paths:
+- /mcp-listener
+protocols:
+- http
+- https
+max_request_body_size: 32768
+logging:
+audits: true
+payloads: true
+# statistics: true
+sources:
+<ul>
+<li>mcp-proxy-marketplace</li>
+</ul>
+</li>
+<li>name: mcp-proxy-agentcore
+display_name: mcp-proxy-agentcore
+ref: mcp-proxy-agentcore
+type: passthrough-listener
+config:
+route:
+# name: agentcore-route
+paths:
+- /agentcore-mcp
+url: <a href="https://bedrock-agentcore.us-west-2.amazonaws.com:443/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A481711488351%3Aruntime%2Fmcp1_mcp1-ytzd3L6RAX/invocations" rel="external" target="_blank">https://bedrock-agentcore.us-west-2.amazonaws.com:443/runtimes/arn%3Aaws%3Abedrock-agentcore%3Aus-west-2%3A481711488351%3Aruntime%2Fmcp1_mcp1-ytzd3L6RAX/invocations</a>
+upstream:
+auth:
+type: aws
+<h1 id="server">server:</h1>
+<h1 id="tags">tags:</h1>
+<h1 id="--mcp-tools">- mcp-tools</h1>
+logging:
+audits: true
+payloads: true
+# statistics: true</li>
+<li>name: mcp-proxy-marketplace
+display_name: mcp-proxy-marketplace
+ref: mcp-proxy-marketplace
+type: conversion-only
+config:
+logging:
+audits: false
+payloads: false
+# statistics: true
+route:
+# name: marketplace-route
+paths:
+- /
+url: http://localhost:32000
+policies:
+<ul>
+<li>mocking
+tools:</li>
+<li>description: Get users
+method: GET
+name: get-users
+parameters:
+<ul>
+<li>description: Optional user ID
+in: query
+name: id
+required: false
+schema:
+type: string
+path: /users</li>
+</ul>
+</li>
+<li>description: Get orders for a user
+method: GET
+name: get-orders
+parameters:
+<ul>
+<li>description: User ID to filter orders
+in: query
+name: userid
+required: true
+schema:
+type: string
+path: /orders
+policies:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="--config">- config:</h1>
+<h1 id="key_names-1">key_names:</h1>
+<h1 id="--apikey-a2a-1">- apikey-a2a</h1>
+<h1 id="display_name-key-auth">display_name: key-auth</h1>
+<h1 id="enabled-false">enabled: false</h1>
+<h1 id="name-key-auth">name: key-auth</h1>
+<h1 id="ref-key-auth">ref: key-auth</h1>
+<h1 id="type-key-auth-1">type: key-auth</h1>
+<ul>
+<li>name: request-transformer
+display_name: request-transformer
+ref: request-transformer
+type: request-transformer
+enabled: false
+config:
+replace:
+body:
+- model:us.anthropic.claude-sonnet-4-20250514-v1:0</li>
+</ul>
+<h1 id="--config-1">- config:</h1>
+<h1 id="host-collector-kong-collectoropentelemetry-operator-systemsvcclusterlocal">host: collector-kong-collector.opentelemetry-operator-system.svc.cluster.local</h1>
+<h1 id="port-54525">port: 54525</h1>
+<h1 id="display_name-tcp-log">display_name: tcp-log</h1>
+<h1 id="enabled-true">enabled: true</h1>
+<h1 id="name-tcp-log">name: tcp-log</h1>
+<h1 id="ref-tcp-log">ref: tcp-log</h1>
+<h1 id="type-tcp-log">type: tcp-log</h1>
+<ul>
+<li>name: mocking
+ref: mocking
+type: mocking
+display_name: mocking
+enabled: true
+config:
+api_specification: |-
+openapi: 3.0.0
+info:
+title: Sample Users API
+version: 1.1.0
+description: A sample API for managing users and orders in a mock marketplace.
+servers:
+- url: http://localhost:3000
+description: Local development server
+paths:
+/:
+get:
+summary: Root endpoint
+description: Returns the name of the API.
+responses:
+&lsquo;200&rsquo;:
+description: API name
+content:
+application/json:
+schema:
+type: object
+properties:
+name:
+type: string
+example: Sample Users API
+examples:
+root:
+summary: API root response
+value:
+name: Sample Users API
+/users:
+get:
+summary: List all users
+description: Retrieves a list of all users.
+responses:
+&lsquo;200&rsquo;:
+description: List of users
+content:
+application/json:
+schema:
+type: array
+items:
+type: object
+properties:
+id:
+type: string
+fullName:
+type: string
+examples:
+allUsers:
+summary: Complete list of all users
+value:
+- id: a1b2c3d4
+fullName: Alice Johnson
+- id: e5f6g7h8
+fullName: Bob Smith
+- id: i9j0k1l2
+fullName: Charlie Lee
+- id: m3n4o5p6
+fullName: Diana Evans
+- id: q7r8s9t0
+fullName: Ethan Brown
+- id: u1v2w3x4
+fullName: Fiona Clark
+- id: y5z6a7b8
+fullName: George Harris
+- id: c9d0e1f2
+fullName: Hannah Lewis
+- id: g3h4i5j6
+fullName: Ian Walker
+- id: k7l8m9n0
+fullName: Julia Turner
+/users/{id}:
+get:
+summary: Get a user by ID
+description: Retrieves details for a specific user by their ID.
+parameters:
+- name: id
+in: path
+required: true
+description: The unique ID of the user
+schema:
+type: string
+responses:
+&lsquo;200&rsquo;:
+description: User details
+content:
+application/json:
+schema:
+type: object
+properties:
+id:
+type: string
+fullName:
+type: string
+examples:
+alice:
+summary: Alice Johnson user
+value:
+id: a1b2c3d4
+fullName: Alice Johnson
+bob:
+summary: Bob Smith user
+value:
+id: e5f6g7h8
+fullName: Bob Smith
+charlie:
+summary: Charlie Lee user
+value:
+id: i9j0k1l2
+fullName: Charlie Lee
+diana:
+summary: Diana Evans user
+value:
+id: m3n4o5p6
+fullName: Diana Evans
+ethan:
+summary: Ethan Brown user
+value:
+id: q7r8s9t0
+fullName: Ethan Brown
+fiona:
+summary: Fiona Clark user
+value:
+id: u1v2w3x4
+fullName: Fiona Clark
+george:
+summary: George Harris user
+value:
+id: y5z6a7b8
+fullName: George Harris
+hannah:
+summary: Hannah Lewis user
+value:
+id: c9d0e1f2
+fullName: Hannah Lewis
+ian:
+summary: Ian Walker user
+value:
+id: g3h4i5j6
+fullName: Ian Walker
+julia:
+summary: Julia Turner user
+value:
+id: k7l8m9n0
+fullName: Julia Turner
+&lsquo;404&rsquo;:
+description: User not found
+content:
+application/json:
+schema:
+type: object
+properties:
+error:
+type: string
+examples:
+notFound:
+summary: Error when user does not exist
+value:
+error: User not found
+/orders:
+get:
+summary: List all orders
+description: Retrieves a list of all orders.
+responses:
+&lsquo;200&rsquo;:
+description: List of all orders
+content:
+application/json:
+schema:
+type: array
+items:
+type: object
+properties:
+id:
+type: string
+name:
+type: string
+userId:
+type: string
+examples:
+allOrders:
+summary: Complete list of all orders
+value:
+- id: ord001
+name: Sugar (50kg)
+userId: a1b2c3d4
+- id: ord002
+name: Cleaning Supplies Pack
+userId: a1b2c3d4
+- id: ord003
+name: Canned Tomatoes (100 cans)
+userId: a1b2c3d4
+- id: ord004
+name: Flour (100kg)
+userId: e5f6g7h8
+- id: ord005
+name: Dish Soap (10 bottles)
+userId: e5f6g7h8
+- id: ord006
+name: Salt (25kg)
+userId: e5f6g7h8
+- id: ord007
+name: Olive Oil (20L)
+userId: i9j0k1l2
+- id: ord008
+name: Baking Powder (10kg)
+userId: i9j0k1l2
+- id: ord009
+name: Rice (200kg)
+userId: m3n4o5p6
+- id: ord010
+name: Vegetable Oil (15L)
+userId: m3n4o5p6
+- id: ord011
+name: Pasta (80kg)
+userId: m3n4o5p6
+- id: ord012
+name: Canned Beans (50 cans)
+userId: m3n4o5p6
+- id: ord013
+name: Toilet Paper (Case of 48)
+userId: q7r8s9t0
+- id: ord014
+name: Hand Sanitizer (20 bottles)
+userId: q7r8s9t0
+- id: ord015
+name: Laundry Detergent (10L)
+userId: u1v2w3x4
+- id: ord016
+name: Trash Bags (100 ct)
+userId: u1v2w3x4
+- id: ord017
+name: Disinfectant Spray (5 bottles)
+userId: u1v2w3x4
+- id: ord018
+name: Coffee Beans (30kg)
+userId: k7l8m9n0
+- id: ord019
+name: Tea Bags (500ct)
+userId: k7l8m9n0
+- id: ord020
+name: Condensed Milk (40 cans)
+userId: k7l8m9n0
+- id: ord021
+name: Paper Towels (24 rolls)
+userId: g3h4i5j6
+- id: ord022
+name: Broom &amp; Mop Set
+userId: g3h4i5j6
+- id: ord023
+name: Cereal (20 boxes)
+userId: c9d0e1f2
+- id: ord024
+name: Powdered Milk (10kg)
+userId: c9d0e1f2
+- id: ord025
+name: Snacks Variety Pack
+userId: c9d0e1f2
+- id: ord026
+name: Cooking Gas Cylinder
+userId: y5z6a7b8
+- id: ord027
+name: Napkins (1000ct)
+userId: y5z6a7b8
+/users/{userId}/orders:
+get:
+summary: List orders for a user
+description: Retrieves all orders for a specific user by their ID.
+parameters:
+- name: userId
+in: path
+required: true
+description: The unique ID of the user
+schema:
+type: string
+responses:
+&lsquo;200&rsquo;:
+description: List of orders for the user
+content:
+application/json:
+schema:
+type: array
+items:
+type: object
+properties:
+id:
+type: string
+name:
+type: string
+userId:
+type: string
+examples:
+aliceOrders:
+summary: &ldquo;Orders for Alice Johnson (userId: a1b2c3d4)&rdquo;
+value:
+- id: ord001
+name: Sugar (50kg)
+userId: a1b2c3d4
+- id: ord002
+name: Cleaning Supplies Pack
+userId: a1b2c3d4
+- id: ord003
+name: Canned Tomatoes (100 cans)
+userId: a1b2c3d4
+bobOrders:
+summary: &ldquo;Orders for Bob Smith (userId: e5f6g7h8)&rdquo;
+value:
+- id: ord004
+name: Flour (100kg)
+userId: e5f6g7h8
+- id: ord005
+name: Dish Soap (10 bottles)
+userId: e5f6g7h8
+- id: ord006
+name: Salt (25kg)
+userId: e5f6g7h8
+charlieOrders:
+summary: &ldquo;Orders for Charlie Lee (userId: i9j0k1l2)&rdquo;
+value:
+- id: ord007
+name: Olive Oil (20L)
+userId: i9j0k1l2
+- id: ord008
+name: Baking Powder (10kg)
+userId: i9j0k1l2
+dianaOrders:
+summary: &ldquo;Orders for Diana Evans (userId: m3n4o5p6)&rdquo;
+value:
+- id: ord009
+name: Rice (200kg)
+userId: m3n4o5p6
+- id: ord010
+name: Vegetable Oil (15L)
+userId: m3n4o5p6
+- id: ord011
+name: Pasta (80kg)
+userId: m3n4o5p6
+- id: ord012
+name: Canned Beans (50 cans)
+userId: m3n4o5p6
+ethanOrders:
+summary: &ldquo;Orders for Ethan Brown (userId: q7r8s9t0)&rdquo;
+value:
+- id: ord013
+name: Toilet Paper (Case of 48)
+userId: q7r8s9t0
+- id: ord014
+name: Hand Sanitizer (20 bottles)
+userId: q7r8s9t0
+fionaOrders:
+summary: &ldquo;Orders for Fiona Clark (userId: u1v2w3x4)&rdquo;
+value:
+- id: ord015
+name: Laundry Detergent (10L)
+userId: u1v2w3x4
+- id: ord016
+name: Trash Bags (100 ct)
+userId: u1v2w3x4
+- id: ord017
+name: Disinfectant Spray (5 bottles)
+userId: u1v2w3x4
+juliaOrders:
+summary: &ldquo;Orders for Julia Turner (userId: k7l8m9n0)&rdquo;
+value:
+- id: ord018
+name: Coffee Beans (30kg)
+userId: k7l8m9n0
+- id: ord019
+name: Tea Bags (500ct)
+userId: k7l8m9n0
+- id: ord020
+name: Condensed Milk (40 cans)
+userId: k7l8m9n0
+ianOrders:
+summary: &ldquo;Orders for Ian Walker (userId: g3h4i5j6)&rdquo;
+value:
+- id: ord021
+name: Paper Towels (24 rolls)
+userId: g3h4i5j6
+- id: ord022
+name: Broom &amp; Mop Set
+userId: g3h4i5j6
+hannahOrders:
+summary: &ldquo;Orders for Hannah Lewis (userId: c9d0e1f2)&rdquo;
+value:
+- id: ord023
+name: Cereal (20 boxes)
+userId: c9d0e1f2
+- id: ord024
+name: Powdered Milk (10kg)
+userId: c9d0e1f2
+- id: ord025
+name: Snacks Variety Pack
+userId: c9d0e1f2
+georgeOrders:
+summary: &ldquo;Orders for George Harris (userId: y5z6a7b8)&rdquo;
+value:
+- id: ord026
+name: Cooking Gas Cylinder
+userId: y5z6a7b8
+- id: ord027
+name: Napkins (1000ct)
+userId: y5z6a7b8
+&lsquo;404&rsquo;:
+description: User not found
+content:
+application/json:
+schema:
+type: object
+properties:
+error:
+type: string
+examples:
+notFound:
+summary: Error when user does not exist
+value:
+error: User not found</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/index.html">
+            <div class="logo-title">API and AI Management with Kong Konnect</div>
+          </a>
+        </div>
+        <search><form action="/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-id="/index.html"><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/10-prerequisites/index.html"><a class="padding" href="/10-prerequisites/index.html">Prerequisites</a><ul id="R-subsections-cdc0df3ea972ffd3a9c45dea986dc8ab" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/architecture/index.html"><a class="padding" href="/architecture/index.html">Kong Konnect Architectural Overview</a></li>
+            <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/14-mcp-gateway/index.html"><a class="padding" href="/14-mcp-gateway/index.html">Kong MCP Gateway</a><ul id="R-subsections-5d5aabb396dd3bc4f970db85174fe81d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/15-observability/index.html"><a class="padding" href="/15-observability/index.html">Konnect Observability</a><ul id="R-subsections-50cd310a4bf775157db9f3a8d7fb370a" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/16-claude-code/index.html"><a class="padding" href="/16-claude-code/index.html">Kong AI/MCP Gateway, Claude Code and Anthropic</a><ul id="R-subsections-dcce5143babd513ab2610d8942e38b71" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/17-kai-kongmcpserver/index.html"><a class="padding" href="/17-kai-kongmcpserver/index.html">Kong AI Assistant &amp; Kong Konnect MCP Server</a></li>
+            <li class="" data-nav-id="/18-apiops-deck/index.html"><a class="padding" href="/18-apiops-deck/index.html">APIOps and decK</a></li>
+            <li class="" data-nav-id="/19-developer-portal/index.html"><a class="padding" href="/19-developer-portal/index.html">Konnect Developer Portal</a><ul id="R-subsections-b3ddf7a05ca63b337fdab6031ebaeb3f" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-id="/20-ai-gateway-2/index.html"><a class="padding" href="/20-ai-gateway-2/index.html">Kong AI Gateway 2</a><ul id="R-subsections-98b73e8584bd32e6140807af65140166" class="collapsible-menu">
+            <li class="alwaysopen " data-nav-id="/20-ai-gateway-2/201-konnect-ui/index.html"><a class="padding" href="/20-ai-gateway-2/201-konnect-ui/index.html">Konnect AI Gateway 2 User Interface</a><ul id="R-subsections-297c55250a54f38b0c2e6805a178cdb1" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/20-ai-gateway-2/204-kongctl/index.html"><a class="padding" href="/20-ai-gateway-2/204-kongctl/index.html">kongctl</a></li>
+            <li class="parent alwaysopen " data-nav-id="/20-ai-gateway-2/206-first-ai-gateway/index.html"><a class="padding" href="/20-ai-gateway-2/206-first-ai-gateway/index.html">Create your first Kong AI Gateway 2 with kongctl</a><ul id="R-subsections-6f2ef4d3ded73281f74a7752d6df582f" class="collapsible-menu">
+            <li class="active " data-nav-id="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane-copy/index.html"><a class="padding" href="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane-copy/index.html">Create AI Gateway entities with kongctl</a></li>
+            <li class="" data-nav-id="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane/index.html"><a class="padding" href="/20-ai-gateway-2/206-first-ai-gateway/206-control_plane_data_plane/index.html">Create AI Gateway entities with kongctl</a></li></ul></li></ul></li>
+            <li class="" data-nav-id="/40-appendix/index.html"><a class="padding" href="/40-appendix/index.html">Appendix</a><ul id="R-subsections-f4dedee72063d60802f3732b96ea60c8" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/js/clipboard/clipboard.min.js?1788032986" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788032986" defer></script>
+    <script src="/js/theme.js?1788032986" defer></script>
+  </body>
+</html>

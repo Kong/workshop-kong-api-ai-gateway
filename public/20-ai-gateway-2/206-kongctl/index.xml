@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kongctl :: API and AI Management with Kong Konnect</title>
+    <link>http://localhost:1313/20-ai-gateway-2/206-kongctl/index.html</link>
+    <description>kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.&#xA;The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/20-ai-gateway-2/206-kongctl/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

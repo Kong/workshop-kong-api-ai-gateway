@@ -16,10 +16,17 @@
     </item>
     <item>
       <title>kongctl</title>
-      <link>http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html</link>
+      <link>http://localhost:1313/20-ai-gateway-2/204-kongctl/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/20-ai-gateway-2/202-kongctl/index.html</guid>
-      <description>This section will explore the Developer self-service and App registration capabilities provided by Konnect Developer Portal.&#xA;So far, you have your API published in the portal. However, there’s no control over the API consumption. Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, developers visiting a Dev Portal can sign up, create an application, register it with an API, and retrieve API keys without intervention from Dev Portal administrators.</description>
+      <guid>http://localhost:1313/20-ai-gateway-2/204-kongctl/index.html</guid>
+      <description>kongctl is a command line tool that enables you to manage Konnect resources programmatically. The tool provides both declarative and imperative style resource management capabilities along with other developer friendly features.&#xA;The declarative configuration feature allows you to define API Platform infrastructure as code using a YAML based syntax and a state free reconciliation system. The tool supports a growing list of Konnect resource types including Dev Portals, control planes, APIs, and more.</description>
+    </item>
+    <item>
+      <title>Create your first Kong AI Gateway 2 with Kong Operator and kongctl</title>
+      <link>http://localhost:1313/20-ai-gateway-2/206-first-ai-gateway/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/20-ai-gateway-2/206-first-ai-gateway/index.html</guid>
+      <description>This section has two parts:&#xA;Create a Kong AI Gateway 2 Control Plane and Data Plane with Kong Operator Create the Kong Entities with kongctl</description>
     </item>
   </channel>
 </rss>
