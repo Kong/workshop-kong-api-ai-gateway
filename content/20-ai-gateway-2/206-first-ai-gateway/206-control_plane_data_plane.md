@@ -23,28 +23,45 @@ helm upgrade --install ko kong/kong-operator \
 --set env.ENABLE_CONTROLLER_AIGATEWAYDATAPLANE=true
 ```
 
-```
-kubectl -n kong-system rollout status deployment/ko-kong-operator-controller-manager
-```
 
 
 You can check the Operator’s log with:
 ```
+kubectl -n kong-system rollout status deployment/ko-kong-operator-controller-manager
+```
+
+or
+
+```
 kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r '.items[].metadata | select(.name | startswith("ko-kong-operator"))' | jq -r '.name') -n kong-system
 ```
 
-Delete Kong Operator
+If you want to delete Kong Operator
 
 ```
 helm uninstall kong-operator -n kong-system
 kubectl delete namespace kong-system
 ```
 
+
+
+## Control Plane
+
+Set your PAT environment variable
+
 ```
 export PAT=<YOUR_PAT>
 ```
 
-## Control Plane
+
+Create the namespace
+
+```
+kubectl create namespace kong
+```
+
+
+Create a Kubernetes Secret with the PAT and the [Authentication Configuration](https://developer.konghq.com/operator/reference/custom-resources/#konnect-konghq-com-v1alpha1-konnectapiauthconfiguration)
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -62,7 +79,7 @@ stringData:
 kind: KonnectAPIAuthConfiguration
 apiVersion: konnect.konghq.com/v1alpha1
 metadata:
-  name: konnect-api-auth
+  name: konnect-api-auth-conf
   namespace: kong
 spec:
   type: secretRef
@@ -72,9 +89,7 @@ spec:
 EOF
 ```
 
-```
-kubectl get konnectapiauthconfiguration konnect-api-auth-conf -n kong -o jsonpath='{.spec.token}'
-```
+
 
 The second CRD creates the new Control Plane:
 
@@ -92,7 +107,7 @@ spec:
     description: AI Gateway Control Plane
   konnect:
     authRef:
-      name: konnect-api-auth
+      name: konnect-api-auth-conf
 EOF
 ```
 
@@ -120,43 +135,28 @@ spec:
         containers:
           - name: aigw
             image: kong/kong-ai-gateway:2.0
-        serviceAccountName: kaigateway-podid-sa
   network:
     services:
       ingress:
-        #name: proxy-kong-aws
         type: LoadBalancer
         ports:
-        - name: https
-          port: 8443
-          targetPort: 8000
-        - name: http
-          port: 8000
-          targetPort: 8000
-        annotations:
-          "service.beta.kubernetes.io/aws-load-balancer-type": "nlb"
-          "service.beta.kubernetes.io/aws-load-balancer-scheme": "internet-facing"
-          "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type": "ip"
-          service.beta.kubernetes.io/aws-load-balancer-ssl-cert: $CERTIFICATE_ARN
-          service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "8443"
-          service.beta.kubernetes.io/aws-load-balancer-listen-ports: '[{"HTTP":8000},{"HTTPS":8443}]'
-          service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-TLS-1-2-2017-01
-          service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+          - name: http
+            port: 8000
+            targetPort: 8000
 EOF
 ```
 
 
-
-
+Check the Data Plane
 
 ```
-kubectl get -n kong dataplane kong-aws-dp \
+kubectl get aigatewaydataplane ai-gateway-1-dp -n kong \
   -o=jsonpath='{.status.conditions[?(@.type=="Ready")]}' | jq
 ```
 
 
 ```
-kubectl describe pod $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-kong-aws"))' | jq -r '.name') -n kong
+kubectl describe pod $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("ai-gateway-1-dp"))' | jq -r '.name') -n kong
 ```
 
 ```
@@ -164,76 +164,47 @@ kubectl logs -f $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | s
 ```
 
 
+
+
+## Consume the Data Plane
+
 ```
-kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
-kubectl delete konnectaigateway ai-gateway-1 -n kong
+export DATA_PLANE_LB=$(kubectl get svc -n kong ai-gateway-1-dp-ingress --output=jsonpath='{.status.loadBalancer.ingress[].ip}'):$(kubectl get svc -n kong ai-gateway-1-dp-ingress --output=jsonpath='{.spec.ports[?(@.name=="http")].port}')
 ```
 
-
-
-
-
+Send a request
+```
+curl -i http://$DATA_PLANE_LB
+```
 
 You should get a response like this:
 
 ```
-curl http://$DATA_PLANE_LB
-curl http://kong-dp.kong-demo.com
-curl -i https://kong-dp.kong-demo.com
-```
-
-```
 HTTP/1.1 404 Not Found
-Date: Tue, 09 Dec 2025 12:55:42 GMT
+Date: Sun, 30 Aug 2026 21:44:48 GMT
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Content-Length: 103
 X-Kong-Response-Latency: 0
-Server: kong/3.12.0.1-enterprise-edition
-X-Kong-Request-Id: 95b09b2a40dc745d59ea6d684f9c4a13
+Server: kong/2.0.2-ai-gateway
+X-Kong-Request-Id: 2a05717da318e834560c161b1fb67e31
 
 {
   "message":"no Route matched with those values",
-  "request_id":"95b09b2a40dc745d59ea6d684f9c4a13"
+  "request_id":"2a05717da318e834560c161b1fb67e31"
 }
 ```
-
-Now we can define the Kong Objects necessary to expose and control Bedrock, including Kong Gateway Service, Routes, and Plugins.
-
 
 
 
 ## Delete CP/DP
 ```
 kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
-kubectl delete konnectextensions.konnect.konghq.com konnect-config-aws -n kong
-
 
 kubectl delete konnectaigateway ai-gateway-1 -n kong
 kubectl delete konnectapiauthconfiguration konnect-api-auth-conf -n kong
 
-//kubectl delete secret konnect-pat -n kong
+kubectl delete secret konnect-api-auth-secret -n kong
 kubectl delete namespace kong
 ```
 
-
-```
-kubectl logs -f $(kubectl get pod -n kong -o json | jq -r '.items[].metadata | select(.name | startswith("dataplane-kong-polyapi"))' | jq -r '.name') -n kong
-```
-
-
-```
-http https://kong-dp.kong-demo.com
-
-curl http://kong-dp.kong-demo.com/llm-route \
-  -H "Content-Type: application/json" \
-  -H "apikey-llm: 12345" \
-  -d '{
-     "messages": [
-       {
-         "role": "user",
-         "content": "Hello!"
-       }
-     ]
-   }'
-```
