@@ -26,10 +26,6 @@ kongctl apply --pat $PAT -f ai-gateway.yaml --auto-approve
 
 
 
-
-
-
-
 ```
 _defaults:
   kongctl:
@@ -138,8 +134,6 @@ ai_gateway_models:
     provider: openai
     config:
       type: openai
-  # policies:
-  # - !ref key-auth1
   access:
     identity_providers:
     - key-auth1

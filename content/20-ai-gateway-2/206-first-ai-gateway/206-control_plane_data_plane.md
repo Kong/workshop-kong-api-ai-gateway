@@ -197,7 +197,10 @@ X-Kong-Request-Id: 2a05717da318e834560c161b1fb67e31
 
 
 
-## Delete CP/DP
+### Delete CP/DP
+
+If you want to delete the CP and DP run:
+
 ```
 kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
 
