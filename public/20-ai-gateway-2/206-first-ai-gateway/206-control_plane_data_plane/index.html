@@ -31,28 +31,28 @@ kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].m
 helm repo add kong https://charts.konghq.com helm repo update helm search repo kong/kong-operator --versions --devel helm upgrade --install ko kong/kong-operator \ -n kong-system \ --create-namespace \ --set image.tag=2.3.0-rc.3 \ --version 1.4.0-rc.2 \ --set env.ENABLE_CONTROLLER_KONNECT=true \ --set env.ENABLE_CONTROLLER_AIGATEWAYDATAPLANE=true You can check the Operator’s log with:
 kubectl -n kong-system rollout status deployment/ko-kong-operator-controller-manager or
 kubectl logs -f $(kubectl get pod -n kong-system -o json | jq -r &#39;.items[].metadata | select(.name | startswith(&#34;ko-kong-operator&#34;))&#39; | jq -r &#39;.name&#39;) -n kong-system If you want to delete Kong Operator">
-    <meta itemprop="wordCount" content="414">
+    <meta itemprop="wordCount" content="424">
     <title>AI Gateway 2 Control Plane and Data Plane :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1788126338" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1788126338" defer></script>
-    <script src="/js/search-lunr.js?1788126338" defer></script>
-    <script src="/js/search.js?1788126338" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1788179363" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788179363" defer></script>
+    <script src="/js/search-lunr.js?1788179363" defer></script>
+    <script src="/js/search.js?1788179363" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1788126338";
+      window.relearn.index_js_url="/searchindex.en.js?1788179363";
     </script>
-    <script src="/js/lunr/lunr.min.js?1788126338" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1788126338" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1788126338" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1788126338" defer></script>
+    <script src="/js/lunr/lunr.min.js?1788179363" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788179363" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788179363" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788179363" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788126338" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788126338" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788126338" rel="stylesheet">
-    <link href="/css/theme.css?1788126338" rel="stylesheet">
-    <link href="/css/format-html.css?1788126338" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179363" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179363" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788179363" rel="stylesheet">
+    <link href="/css/theme.css?1788179363" rel="stylesheet">
+    <link href="/css/format-html.css?1788179363" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -745,8 +745,11 @@ aside#R-sidebar,
     <li><a href="#kong-operator">Kong Operator</a></li>
     <li><a href="#control-plane">Control Plane</a></li>
     <li><a href="#data-plane">Data Plane</a></li>
-    <li><a href="#consume-the-data-plane">Consume the Data Plane</a></li>
-    <li><a href="#delete-cpdp">Delete CP/DP</a></li>
+    <li><a href="#consume-the-data-plane">Consume the Data Plane</a>
+      <ul>
+        <li><a href="#delete-cpdp">Delete CP/DP</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
                 </div>
@@ -895,7 +898,8 @@ X-Kong-Request-Id: 2a05717da318e834560c161b1fb67e31
   &#34;message&#34;:&#34;no Route matched with those values&#34;,
   &#34;request_id&#34;:&#34;2a05717da318e834560c161b1fb67e31&#34;
 }</code></pre></div>
-<h2 id="delete-cpdp">Delete CP/DP</h2>
+<h3 id="delete-cpdp">Delete CP/DP</h3>
+<p>If you want to delete the CP and DP run:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl delete aigatewaydataplane ai-gateway-1-dp -n kong
 
 kubectl delete konnectaigateway ai-gateway-1 -n kong
@@ -985,8 +989,8 @@ kubectl delete namespace kong</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1788126338" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788126338" defer></script>
-    <script src="/js/theme.js?1788126338" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1788179363" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788179363" defer></script>
+    <script src="/js/theme.js?1788179363" defer></script>
   </body>
 </html>
