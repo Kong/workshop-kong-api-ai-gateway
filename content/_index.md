@@ -39,6 +39,7 @@ In this workshop, you will:
         * Securing existing MCP Server
         * Kong AI/MCP Gateway, Claude Code and Anthropic
 
+    * Kong Agent Gateway introduction
 
 * Kong AI Gateway 2 Introduction
     * Create a Kong AI Gateway 2 Control Plane and Data Plane with Kong Operator

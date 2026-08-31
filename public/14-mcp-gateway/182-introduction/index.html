@@ -29,26 +29,26 @@ As described in its official portal, MCP follows a client-server architecture wh
 MCP Host: The AI application (tool, application, agent) that coordinates and manages one or multiple MCP clients MCP Client: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use MCP Server: A program that provides context to MCP clients">
     <meta itemprop="wordCount" content="634">
     <title>MCP Introduction :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1788179481" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1788179481" defer></script>
-    <script src="/js/search-lunr.js?1788179481" defer></script>
-    <script src="/js/search.js?1788179481" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1788179714" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788179714" defer></script>
+    <script src="/js/search-lunr.js?1788179714" defer></script>
+    <script src="/js/search.js?1788179714" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1788179481";
+      window.relearn.index_js_url="/searchindex.en.js?1788179714";
     </script>
-    <script src="/js/lunr/lunr.min.js?1788179481" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1788179481" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1788179481" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1788179481" defer></script>
+    <script src="/js/lunr/lunr.min.js?1788179714" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788179714" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788179714" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788179714" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179481" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179481" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788179481" rel="stylesheet">
-    <link href="/css/theme.css?1788179481" rel="stylesheet">
-    <link href="/css/format-html.css?1788179481" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179714" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788179714" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788179714" rel="stylesheet">
+    <link href="/css/theme.css?1788179714" rel="stylesheet">
+    <link href="/css/format-html.css?1788179714" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -782,8 +782,8 @@ aside#R-sidebar,
 <li><strong>MCP Client</strong>: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use</li>
 <li><strong>MCP Server</strong>: A program that provides context to MCP clients</li>
 </ul>
-<p><a href="#R-image-c87e33dfb69f72630a32c848fa2b3d47" class="lightbox-link"><img alt="MCP Client-Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_client_server.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c87e33dfb69f72630a32c848fa2b3d47"><img alt="MCP Client-Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_client_server.png"></a></p>
+<p><a href="#R-image-1be04d360416f99e2113e5c4e2e4b081" class="lightbox-link"><img alt="MCP Client-Server" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_client_server.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1be04d360416f99e2113e5c4e2e4b081"><img alt="MCP Client-Server" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_client_server.png"></a></p>
 <p>Each MCP Server is responsible for exposing <a href="https://modelcontextprotocol.io/docs/learn/architecture#primitives" rel="external" target="_blank">MCP primitives</a> to the Clients:</p>
 <ul>
 <li><strong>Tools</strong>: functions that a MCP Client can invoke.</li>
@@ -809,8 +809,8 @@ aside#R-sidebar,
 <h2 id="mcp-and-llm-sequence-diagram">MCP and LLM Sequence Diagram</h2>
 <p>With the introduction of MCP, it&rsquo;s important to understand the relationship between the Tools and the GenAI models.</p>
 <p>The diagram below describes what happens when an Agent sends a request like &ldquo;What&rsquo;s the weather in San Francisco today?&rdquo;:</p>
-<p><a href="#R-image-4b1d14898abbe1b5576f5734ab9a0ca7" class="lightbox-link"><img alt="MCP Sequence Diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b1d14898abbe1b5576f5734ab9a0ca7"><img alt="MCP Sequence Diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png"></a></p>
+<p><a href="#R-image-d012fb364829e963052e058d2eae969d" class="lightbox-link"><img alt="MCP Sequence Diagram" class="lazy lightbox figure-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d012fb364829e963052e058d2eae969d"><img alt="MCP Sequence Diagram" class="lazy lightbox lightbox-image" loading="lazy" src="/static/images/mcp_sequence_diagram.png"></a></p>
 <ol>
 <li>The MCP Client, inside the Agent, connects the MCP Server(s) to ensure it has up-to-date tool definitions.</li>
 <li>When the User sends a message (&ldquo;What&rsquo;s the weather in SF?&rdquo;), the MCP Client sends it to the LLM, injecting the tools list it got from the the MCP Server. The LLM, considering the messages and tools, replies back instructing the MCP Client on what tool, including its parameters, the MCP Client should actually call. In our case, <code>get_weather{&quot;city&quot;: &quot;SF&quot;}</code>.</li>
@@ -910,8 +910,8 @@ aside#R-sidebar,
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1788179481" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788179481" defer></script>
-    <script src="/js/theme.js?1788179481" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1788179714" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788179714" defer></script>
+    <script src="/js/theme.js?1788179714" defer></script>
   </body>
 </html>
