@@ -203,7 +203,7 @@ curl -isX POST "http://${DATA_PLANE_LB}/openai-route/chat/completions" \
 
 ## A second declaration
 
-The same AI Gateway Entities can be declare in a single section like this:
+The same AI Gateway Entities can be declared with a single section like this:
 
 
 ```

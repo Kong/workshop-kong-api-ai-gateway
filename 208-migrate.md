@@ -56,7 +56,7 @@ services:
           route_type: "llm/v1/chat"
           auth:
             header_name: Authorization
-            header_value: Bearer abc
+            header_value: !env OPENAI_API_KEY
 EOF
 ```
 
