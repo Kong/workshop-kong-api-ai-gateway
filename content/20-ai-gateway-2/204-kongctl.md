@@ -27,4 +27,3 @@ The declarative configuration feature allows you to define API Platform infrastr
 | `kongctl sync -f konnect.yaml`                            | Sync changes from input configuration (create, update, and delete) |
 | `kongctl diff --plan plan.json`                           | Preview proposed changes from a generated plan                     |
 
-
