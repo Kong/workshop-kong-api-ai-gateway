@@ -41,23 +41,17 @@ services:
         model:
           provider: openai
           name: gpt-4.1
-        options:
-          temperature: 1.0
     - name: ai-semantic-prompt-guard
       instance_name: ai-semantic-prompt-guard-bedrock
       enabled: true
       config:
         embeddings:
           auth:
-            param_name: "allow_override"
-            param_value: "false"
-            param_location: "body"
+            header_name: Authorization
+            header_value: Bearer ${{ env "DECK_OPENAI_API_KEY" }}
           model:
-            provider: bedrock
-            name: "amazon.titan-embed-text-v2:0"
-            options:
-              bedrock:
-                aws_region: us-west-2
+            provider: openai
+            name: "text-embedding-3-small"
         search:
           threshold: 0.2
         vectordb:
@@ -96,7 +90,7 @@ Send a request with a valid pattern:
 
 ```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data-raw '{
      "messages": [
@@ -104,8 +98,7 @@ curl -s -X POST \
          "role": "user",
          "content": "Tell me more about AWS EKS"
        }
-     ],
-     "model": "us.amazon.nova-lite-v1:0"
+     ]
    }' | jq '.'
 ```
 
@@ -116,7 +109,7 @@ Now, send an invalid one now:
 
 ```
 curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data-raw '{
      "messages": [
@@ -124,8 +117,7 @@ curl -s -X POST \
          "role": "user",
          "content": "Describe a violent confrontation between two groups."
        }
-     ],
-     "model": "us.amazon.nova-lite-v1:0"
+     ]
    }' | jq '.'
 ```
 
