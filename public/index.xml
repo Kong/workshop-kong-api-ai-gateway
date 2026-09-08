@@ -9,10 +9,17 @@
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prerequisites</title>
-      <link>http://localhost:1313/10-prerequisites/index.html</link>
+      <link>http://localhost:1313/8-prerequisites/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/10-prerequisites/index.html</guid>
+      <guid>http://localhost:1313/8-prerequisites/index.html</guid>
       <description>Knowledge Attendees should have intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, Prometheus etc.&#xA;Attendees should have basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.&#xA;Kong Academy Complete two badges via Kong Academy: Kong Gateway Foundations and Kong Gateway Operations&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.</description>
+    </item>
+    <item>
+      <title>Konnect Setup</title>
+      <link>http://localhost:1313/10-konnect-setup/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/10-konnect-setup/index.html</guid>
+      <description>This chapter will walk you through&#xA;Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:&#xA;Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:</description>
     </item>
     <item>
       <title>Kong Konnect Architectural Overview</title>
@@ -22,32 +29,18 @@
       <description>The Kong Konnect platform provides a cloud management control plane (CP), which manages all service configurations. Through specific communication channels, it propagates those configurations to all runtime data planes (DP), which store the configurations in a LMDB database. These data plane nodes can be installed anywhere, on-premise or in AWS.&#xA;For today’s workshop, we will be focusing on Kong Gateway. Kong Gateway data plane listen for traffic on the proxy port 443 by default. The data plane evaluates incoming client API requests and routes them to the appropriate backend APIs, MCPs or GenAI models. While routing requests and providing responses, policies can be applied with plugins as necessary.</description>
     </item>
     <item>
-      <title>Konnect Setup</title>
-      <link>http://localhost:1313/11-konnect-setup/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/11-konnect-setup/index.html</guid>
-      <description>This chapter will walk you through&#xA;Konnect Control Plane and Data Plane creation using Kong Operator (KO). Scale Kong data plane nodes on Kubernetes using HPA - Horizontal Pod Autoscaler. Access Kong data plane through Minikube tunnel Here’s a Reference Architecture that will be implemented in this workshop:&#xA;Kong Konnect Control Plane: responsible for managing your APIs Kong Konnect Data Plane: connected to the Control Plane, it is responsible for processing all the incoming requests sent by the consumers. Kong provides a plugin framework, where each one of them is responsible for a specific functionality. As a can see, there are two main collections of plugins: On the left, the historic and regular API Gateway plugins, implementing all sort of policies including, for example, OIDC based Authentication processes with Keycloak, Amazon Cognito and Okta or Observability with Prometheus/Grafana, Amazon CloudWatch and Dynatrace. On the top right, another plugin collection for AI-based use cases. For example, the AI Rate Limiting plugin implements policies like this based on the number of tokens consumed be the requests. Or, as another example is the AI Semantic Cache plugin, which caches data based on the semantics related to the responses coming from the LLM models. On the bottom right, the plugin collection for MCP use cases Kong AI Gateway supports, out of the box, a variety of infrastructures, including not just OpenAI, but also Amazon Bedrock, Google Gemini, Mistral, Anthropic, etc. In order to deal with embeddings, the Gateway also supports also vector databases. Kong Gateway protects not just the LLM Models but also the upstream services, including your applications and microservices. Konnect Control Plane After Konnect registration, you need to create your first Control Plane. There are multiple ways to do it:</description>
-    </item>
-    <item>
       <title>Kong API Gateway</title>
-      <link>http://localhost:1313/12-api-gateway/index.html</link>
+      <link>http://localhost:1313/11-api-gateway/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/12-api-gateway/index.html</guid>
+      <guid>http://localhost:1313/11-api-gateway/index.html</guid>
       <description>With our Control Plane created and Data Plane layer deployed it’s time to create an API and expose an application. In this module, we will:&#xA;Deploy an application to get protected by the Data Plane Use decK to define a Kong Service based on an endpoint provided by the application and a Kong Route on top of the Kong Service to expose the application. Enable Kong Plugins to the Kong Route or Kong Service. Define Kong Consumers to represent the entities sending request to the Gateway and enable Kong Plugin to them. You can now click Next to begin the module.</description>
     </item>
     <item>
       <title>Kong AI Gateway</title>
-      <link>http://localhost:1313/13-ai-gateway/index.html</link>
+      <link>http://localhost:1313/12-ai-gateway/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/13-ai-gateway/index.html</guid>
-      <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. At the same, new MCP standards have emerged to add contexts to AI Agents more easily.&#xA;Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely:&#xA;LLM Gateway: While AI providers don’t conform to a standard API specification, the Kong LLM Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality. MCP Gateway: It sits side-by-side with the Kong LLM Gateway and it is responsible for converting Kong Gateway Services into MCP Servers as well as proxying and protecting existing MCP Servers. You can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin.</description>
-    </item>
-    <item>
-      <title>Kong MCP Gateway</title>
-      <link>http://localhost:1313/14-mcp-gateway/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/14-mcp-gateway/index.html</guid>
-      <description>In this third part of the workshop we are going to explore the MCP capabilities provides by Kong AI Gateway and the specific collection of plugins.&#xA;You can now click Next to begin the module.&#xA;Optional Reading Learn more about Kong AI Gateway</description>
+      <guid>http://localhost:1313/12-ai-gateway/index.html</guid>
+      <description>Introduction With the rapid emergence of multiple AI LLM providers, the AI technology landscape is fragmented and lacking in standards and controls. At the same, new MCP standards have emerged to add contexts to AI Agents more easily.&#xA;Kong AI Gateway is a powerful set of features built on top of Kong Gateway, designed to help developers and organizations effectively adopt AI capabilities quickly and securely:&#xA;LLM Gateway: While AI providers don’t conform to a standard API specification, the Kong LLM Gateway provides a normalized API layer allowing clients to consume multiple AI services from the same client code base. The AI Gateway provides additional capabilities for credential management, AI usage observability, governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich existing API traffic, easily enhancing their existing application functionality. MCP Gateway: It sits side-by-side with the Kong LLM Gateway and it is responsible for converting Kong Gateway Services into MCP Servers as well as proxying and protecting existing MCP Servers. You can enable the AI Gateway features through a set of specialized plugins, using the same model you use for any other Kong Gateway plugin. Agent Gateway: When agents need to communicate with other agents, route the traffic through AI Gateway to apply authentication, rate limiting, observability, and content policies at the gateway layer.</description>
     </item>
     <item>
       <title>Konnect Observability</title>

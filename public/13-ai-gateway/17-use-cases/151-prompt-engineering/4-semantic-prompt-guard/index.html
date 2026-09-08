@@ -23,28 +23,28 @@ Vector databases A vector database can be used to store vector embeddings, or nu
     <meta itemprop="name" content="AI Semantic Prompt Guard :: API and AI Management with Kong Konnect">
     <meta itemprop="description" content="The AI Semantic Prompt Guard plugin extends the AI Prompt Guard plugin by allowing you to permit or block prompts based on a list of similar prompts, helping to prevent misuse of llm/v1/chat or llm/v1/completions requests.
 Vector databases A vector database can be used to store vector embeddings, or numerical representations, of data items. For example, a response would be converted to a numerical representation and stored in the vector database so that it can compare new requests against the stored vectors to find relevant cached items.">
-    <meta itemprop="wordCount" content="446">
+    <meta itemprop="wordCount" content="437">
     <title>AI Semantic Prompt Guard :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1788274975" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1788274975" defer></script>
-    <script src="/js/search-lunr.js?1788274975" defer></script>
-    <script src="/js/search.js?1788274975" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1788865718" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788865718" defer></script>
+    <script src="/js/search-lunr.js?1788865718" defer></script>
+    <script src="/js/search.js?1788865718" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1788274975";
+      window.relearn.index_js_url="/searchindex.en.js?1788865718";
     </script>
-    <script src="/js/lunr/lunr.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1788274975" defer></script>
+    <script src="/js/lunr/lunr.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788865718" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788274975" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788274975" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788274975" rel="stylesheet">
-    <link href="/css/theme.css?1788274975" rel="stylesheet">
-    <link href="/css/format-html.css?1788274975" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788865718" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788865718" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788865718" rel="stylesheet">
+    <link href="/css/theme.css?1788865718" rel="stylesheet">
+    <link href="/css/format-html.css?1788865718" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -806,23 +806,17 @@ services:
         model:
           provider: openai
           name: gpt-4.1
-        options:
-          temperature: 1.0
     - name: ai-semantic-prompt-guard
       instance_name: ai-semantic-prompt-guard-bedrock
       enabled: true
       config:
         embeddings:
           auth:
-            param_name: &#34;allow_override&#34;
-            param_value: &#34;false&#34;
-            param_location: &#34;body&#34;
+            header_name: Authorization
+            header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }}
           model:
-            provider: bedrock
-            name: &#34;amazon.titan-embed-text-v2:0&#34;
-            options:
-              bedrock:
-                aws_region: us-west-2
+            provider: openai
+            name: &#34;text-embedding-3-small&#34;
         search:
           threshold: 0.2
         vectordb:
@@ -849,7 +843,7 @@ deck gateway sync --konnect-token $PAT ai-semantic-prompt-guard.yaml</code></pre
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>kubectl exec -it $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-cli --scan</code></pre></div>
 <p>Send a request with a valid pattern:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header &#39;Content-Type: application/json&#39; \
   --data-raw &#39;{
      &#34;messages&#34;: [
@@ -857,12 +851,11 @@ deck gateway sync --konnect-token $PAT ai-semantic-prompt-guard.yaml</code></pre
          &#34;role&#34;: &#34;user&#34;,
          &#34;content&#34;: &#34;Tell me more about AWS EKS&#34;
        }
-     ],
-     &#34;model&#34;: &#34;us.amazon.nova-lite-v1:0&#34;
+     ]
    }&#39; | jq &#39;.&#39;</code></pre></div>
 <p>Now, send an invalid one now:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>curl -s -X POST \
-  --url $DATA_PLANE_LB/bedrock-route \
+  --url $DATA_PLANE_LB/openai-route \
   --header &#39;Content-Type: application/json&#39; \
   --data-raw &#39;{
      &#34;messages&#34;: [
@@ -870,8 +863,7 @@ deck gateway sync --konnect-token $PAT ai-semantic-prompt-guard.yaml</code></pre
          &#34;role&#34;: &#34;user&#34;,
          &#34;content&#34;: &#34;Describe a violent confrontation between two groups.&#34;
        }
-     ],
-     &#34;model&#34;: &#34;us.amazon.nova-lite-v1:0&#34;
+     ]
    }&#39; | jq &#39;.&#39;</code></pre></div>
 <p>The expect result is:</p>
 <div class="highlight wrap-code" dir="auto"><pre tabindex="0"><code>{
@@ -937,7 +929,6 @@ deck gateway sync --konnect-token $PAT ai-semantic-prompt-guard.yaml</code></pre
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu">
-            <li class="alwaysopen " data-nav-id="/13-ai-gateway/17-konnect-ui/index.html"><a class="padding" href="/13-ai-gateway/17-konnect-ui/index.html">Konnect AI Gateway User Interface</a><ul id="R-subsections-c65ba9a4df7b84e078e89e669ac8ed5f" class="collapsible-menu"></ul></li>
             <li class="parent alwaysopen " data-nav-id="/13-ai-gateway/17-use-cases/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-3181f12d8aeae266b22788c8c07381f4" class="collapsible-menu">
             <li class="" data-nav-id="/13-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy</a></li>
             <li class="parent alwaysopen " data-nav-id="/13-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-619ae6b22afd3ccde62bea0681227871" class="collapsible-menu">
@@ -976,8 +967,8 @@ deck gateway sync --konnect-token $PAT ai-semantic-prompt-guard.yaml</code></pre
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1788274975" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788274975" defer></script>
-    <script src="/js/theme.js?1788274975" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1788865718" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788865718" defer></script>
+    <script src="/js/theme.js?1788865718" defer></script>
   </body>
 </html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prerequisites :: API and AI Management with Kong Konnect</title>
+    <link>http://localhost:1313/8-prerequisites/index.html</link>
+    <description>Knowledge Attendees should have intermediate knowledge of Kubernetes and Docker for installations of Konnect Data Plane and other products like Keycloak, Redis, Prometheus etc.&#xA;Attendees should have basic knowledge of GenAI models, specially LLMs and Embedding models as well as providers like OpenAI, Mistral, Anthropic, AWS, GCP, Azure.&#xA;Kong Academy Complete two badges via Kong Academy: Kong Gateway Foundations and Kong Gateway Operations&#xA;Kong Konnect Subscription You will need a Kong Konnect Subscription to execute this workshop.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/8-prerequisites/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Konnect Subscription</title>
+      <link>http://localhost:1313/8-prerequisites/konnect-subscription/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/8-prerequisites/konnect-subscription/index.html</guid>
+      <description>Konnect Plus Subscription You will need a Konnect subscription. Follow the steps below to obtain a Konnect Plus subscription. Initially $500 of credits are provided for up to 30 days, after the credits have expired or the time has finished Konnect Plus will charge based on Konnect Plus pricing. Following the workshop instructions will use less than $500 credits. After the workshop has finished the Konnect Plus environment can be deleted.</description>
+    </item>
+    <item>
+      <title>Podman and Minikube</title>
+      <link>http://localhost:1313/8-prerequisites/podman_minikube/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/8-prerequisites/podman_minikube/index.html</guid>
+      <description>We are going to deploy our Data Plane in a Minikube Cluster over Podman. This workshop has been created and tested using the following versions. Make sure you have them installed.&#xA;Podman 6.0.2 Minikube 1.38.1 Podman 6.0.2 Here are the instructions to install Podman and the installation package for 6.0.2 version.&#xA;Initialize a machine:&#xA;podman machine init You can start Podman with:&#xA;podman machine set --memory 8196 --rootful podman machine start Check the version:</description>
+    </item>
+    <item>
+      <title>Redis and Ollama</title>
+      <link>http://localhost:1313/8-prerequisites/redis-ollama-keycloak-opa/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/8-prerequisites/redis-ollama-keycloak-opa/index.html</guid>
+      <description>Install Redis Use the redis-stack Helm Charts to install Redis as our vector database.&#xA;helm repo add redis-stack https://redis-stack.github.io/helm-redis-stack helm repo update helm install redis-stack redis-stack/redis-stack -n redis --create-namespace Check the installation:&#xA;$ kubectl exec $(kubectl get pod -n redis -o json | jq -r &#39;.items[].metadata.name&#39;) -n redis -- redis-server --version Redis server v=7.4.7 sha=00000000:0 malloc=libc bits=64 build=35af8276b891a7b7 If you want to uninstall it:&#xA;helm uninstall redis-stack -n redis kubectl delete namespace redis Install Ollama As our Embedding model, we’re going to consume the “mxbai-embed-large:latest” model handled locally by Ollama. Use the Ollama Helm Charts to install it.</description>
+    </item>
+  </channel>
+</rss>

@@ -25,26 +25,26 @@ cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0
 cat &gt; ai-proxy-advanced.yaml &lt;&lt; &#39;EOF&#39; _format_version: &#34;3.0&#34; _info: select_tags: - llm _konnect: control_plane_name: kong-workshop services: - name: ai-proxy-advanced-service host: localhost port: 32000 routes: - name: route1 paths: - /route1 plugins: - name: ai-proxy-advanced instance_name: ai-proxy-advanced1 config: targets: - model: provider: openai name: gpt-4.1 options: temperature: 1.0 route_type: &#34;llm/v1/chat&#34; auth: header_name: Authorization header_value: Bearer ${{ env &#34;DECK_OPENAI_API_KEY&#34; }} weight: 80 - model: provider: llama2 name: llama3.2:1b options: llama2_format: ollama upstream_url: http://ollama.ollama:11434/api/chat route_type: &#34;llm/v1/chat&#34; weight: 20 EOF Apply the declaration with decK:">
     <meta itemprop="wordCount" content="109">
     <title>Weight :: API and AI Management with Kong Konnect</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1788274975" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1788274975" defer></script>
-    <script src="/js/search-lunr.js?1788274975" defer></script>
-    <script src="/js/search.js?1788274975" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1788865718" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1788865718" defer></script>
+    <script src="/js/search-lunr.js?1788865718" defer></script>
+    <script src="/js/search.js?1788865718" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1788274975";
+      window.relearn.index_js_url="/searchindex.en.js?1788865718";
     </script>
-    <script src="/js/lunr/lunr.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1788274975" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1788274975" defer></script>
+    <script src="/js/lunr/lunr.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1788865718" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1788865718" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788274975" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788274975" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788274975" rel="stylesheet">
-    <link href="/css/theme.css?1788274975" rel="stylesheet">
-    <link href="/css/format-html.css?1788274975" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788865718" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1788865718" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1788865718" rel="stylesheet">
+    <link href="/css/theme.css?1788865718" rel="stylesheet">
+    <link href="/css/format-html.css?1788865718" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -858,7 +858,6 @@ deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
             <li class="" data-nav-id="/11-konnect-setup/index.html"><a class="padding" href="/11-konnect-setup/index.html">Konnect Setup</a><ul id="R-subsections-fd457d3a7fac9b2f9cefa5c6c0dae1e7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/12-api-gateway/index.html"><a class="padding" href="/12-api-gateway/index.html">Kong API Gateway</a><ul id="R-subsections-edeba57bcdf65a92672ecb9c5ed9177f" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/13-ai-gateway/index.html"><a class="padding" href="/13-ai-gateway/index.html">Kong AI Gateway</a><ul id="R-subsections-55b0517a25c898445cdd12f5a7c9ac4c" class="collapsible-menu">
-            <li class="alwaysopen " data-nav-id="/13-ai-gateway/17-konnect-ui/index.html"><a class="padding" href="/13-ai-gateway/17-konnect-ui/index.html">Konnect AI Gateway User Interface</a><ul id="R-subsections-c65ba9a4df7b84e078e89e669ac8ed5f" class="collapsible-menu"></ul></li>
             <li class="parent alwaysopen " data-nav-id="/13-ai-gateway/17-use-cases/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/index.html">Use Cases</a><ul id="R-subsections-3181f12d8aeae266b22788c8c07381f4" class="collapsible-menu">
             <li class="" data-nav-id="/13-ai-gateway/17-use-cases/150-ai-proxy/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/150-ai-proxy/index.html">AI Proxy</a></li>
             <li class="alwaysopen " data-nav-id="/13-ai-gateway/17-use-cases/151-prompt-engineering/index.html"><a class="padding" href="/13-ai-gateway/17-use-cases/151-prompt-engineering/index.html">Prompt Engineering</a><ul id="R-subsections-619ae6b22afd3ccde62bea0681227871" class="collapsible-menu"></ul></li>
@@ -897,8 +896,8 @@ deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/clipboard/clipboard.min.js?1788274975" defer></script>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788274975" defer></script>
-    <script src="/js/theme.js?1788274975" defer></script>
+    <script src="/js/clipboard/clipboard.min.js?1788865718" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1788865718" defer></script>
+    <script src="/js/theme.js?1788865718" defer></script>
   </body>
 </html>
