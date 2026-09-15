@@ -30,7 +30,11 @@ podman machine start
 Check the version:
 
 ```
-$ podman --version
+podman --version
+```
+
+Output: 
+```
 podman version 6.0.2
 ```
 
@@ -44,11 +48,13 @@ sudo install minikube-darwin-arm64 /usr/local/bin/minikube
 ```
 
 ```
-$ minikube version
+minikube version
+```
+Output:
+```
 minikube version: v1.38.1
 commit: c93a4cb9311efc66b90d33ea03f75f2c4120e9b0
 ```
-
 
 
 

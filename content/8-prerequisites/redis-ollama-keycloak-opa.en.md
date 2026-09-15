@@ -17,7 +17,10 @@ helm install redis-stack redis-stack/redis-stack -n redis --create-namespace
 
 Check the installation:
 ```
-$ kubectl exec $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-server --version
+kubectl exec $(kubectl get pod -n redis -o json | jq -r '.items[].metadata.name') -n redis -- redis-server --version
+```
+Output: 
+```
 Redis server v=7.4.7 sha=00000000:0 malloc=libc bits=64 build=35af8276b891a7b7
 ```
 
@@ -47,14 +50,22 @@ helm install ollama ollama-helm/ollama \
   --set ollama.models.pull[1]="llama3.2:1b" \
   --set service.type=LoadBalancer
 ```
+>This only works in bash, zsh errors because of the [0]
 
 Check the version and models
 ```
-$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version
+kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version
+```
+Output:
+```
 ollama version is 0.32.4
+```
 
-
-$ kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama list
+```
+kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama list
+```
+Output:
+```
 NAME                        ID              SIZE      MODIFIED
 llama3.2:1b                 baf6a787fdff    1.3 GB    31 minutes ago
 mxbai-embed-large:latest    468836162de7    669 MB    32 minutes ago
@@ -65,7 +76,7 @@ Send request to test it:
 ```
 curl -sX POST http://localhost:11434/api/generate -d '{
   "model": "llama3.2:1b",
-  "prompt": "Tell me about Miles Davis",
+  "prompt": "Tell me about Claudio Acquaviva",
   "stream": false
 }' | jq '.response'
 ```
