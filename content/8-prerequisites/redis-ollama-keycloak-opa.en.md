@@ -46,12 +46,24 @@ helm repo update
 helm install ollama ollama-helm/ollama \
 -n ollama \
   --create-namespace \
-  --set ollama.models.pull[0]="mxbai-embed-large:latest" \
-  --set ollama.models.pull[1]="llama3.2:1b" \
+  --set 'ollama.models.pull[0]=mxbai-embed-large:latest' \
+  --set 'ollama.models.pull[1]=llama3.2:1b' \
   --set service.type=LoadBalancer
 ```
->This only works in bash, zsh errors because of the [0]
+>Zsh fixed now. errors because of the [0]
 
+Additional Models to try IF you have a very fast download connection only (many GB to download)
+```
+helm install ollama ollama-helm/ollama \
+-n ollama \
+  --create-namespace \
+  --set 'ollama.models.pull[0]=mxbai-embed-large:latest' \
+  --set 'ollama.models.pull[1]=llama3.2:1b' \
+  --set 'ollama.models.pull[2]=gemma4:latest' \
+  --set 'ollama.models.pull[3]=qwen3.5:4b' \
+  --set 'ollama.models.pull[4]=mistral:7b' \
+  --set service.type=LoadBalancer
+```
 Check the version and models
 ```
 kubectl exec -it $(kubectl get pod -n ollama -o json | jq -r '.items[].metadata.name') -n ollama -- ollama --version

@@ -101,6 +101,8 @@ Kong AI Gateway provides one API to access all of the LLMs it supports. To accom
 ### Send a request to Kong AI Gateway
 Now, send a request to Kong AI Gateway following the [OpenAI API Chat](https://platform.openai.com/docs/api-reference/chat) specification as a reference:
 
+
+#### OPENAI
 ```
 curl -s -X POST \
   --url http://$DATA_PLANE_LB/openai-route \
@@ -165,7 +167,7 @@ Note the response also complies to the OpenAI API spec:
 }
 ```
 
-
+#### OLLAMA
 You can also consume the Ollama's route
 ```
 curl -s -X POST \
@@ -247,8 +249,8 @@ deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $P
 deck gateway sync --konnect-token $PAT ai-proxy.yaml
 ```
 
-
-Send the request specifing the model:
+#### OPENAI
+Send the request specifing the model on the OPENAI-ROUTE:
 
 ```
 curl -i -X POST \
@@ -265,7 +267,7 @@ curl -i -X POST \
    }'
 ```
 
-or 
+or another model on the OPENAI-ROUTE
 
 ```
 curl -i -X POST \
@@ -284,6 +286,39 @@ curl -i -X POST \
 
 Note the Kong AI Proxy plugin adds a new **X-Kong-LLM-Model** header with the model we consumer: ``openai/gpt-5`` or ``openai/gpt-4``
 
+#### OLLAMA
+Alternatively, choose one of the 2 models available on OLLAMA:
+```
+curl -i -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "what is pi?"
+       }
+     ],
+     "model": "mxbai-embed-large:latest"
+   }'
+```
+or 
+```
+curl -i -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "what is pi?"
+       }
+     ],
+     "model": "llama3.2:1b"
+   }'
+```
+
+
 
 ### Streaming
 
@@ -293,6 +328,7 @@ The ``config`` AI Proxy configuration section has a **response_streaming** param
 
 As an example, if you send the same request with the **stream** parameter as ``true`` you should see a response like this:
 
+#### OPENAI
 ```
 curl -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -329,7 +365,22 @@ data: {"id":"chatcmpl-C3jmyBQgTgsLd421Wg8fBhM0xkOiK","object":"chat.completion.c
 data: [DONE]
 ```
 
-
+#### OLLAMA
+```
+curl -X POST \
+  --url $DATA_PLANE_LB/openai-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "what is pi?"
+       }
+     ],
+     "model": "llama3.2:1b",
+     "stream": true
+   }'
+```
 
 
 ### Extra Model Options

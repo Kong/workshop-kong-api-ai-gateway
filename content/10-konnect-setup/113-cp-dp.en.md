@@ -155,9 +155,15 @@ EOF
 
 It takes some minutes to get the Load Balancer provisioned and avaiable. Get its domain name with:
 
+
+
 {{<highlight>}}
 export DATA_PLANE_LB=$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.status.loadBalancer.ingress[].ip}'):$(kubectl get svc -n kong proxy-kong-workshop --output=jsonpath='{.spec.ports[?(@.name=="http")].port}')
 {{</highlight>}}
+
+** You may need to restart the minikube tunnel process **
+
+
 
 View the load balancer DNS as
 
@@ -170,6 +176,7 @@ Try calling it as
 {{<highlight>}}
 curl -w '\n' $DATA_PLANE_LB
 {{</highlight>}}
+
 
 **Expected Output**
 

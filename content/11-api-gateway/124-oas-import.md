@@ -3,6 +3,7 @@ title : "Import an OpenAPI specification - optional"
 weight : 124
 ---
 
+** Background service endpoint for BANKONG no longer active!! **
 
 For our first Kong Service, we are going to import an OpenAPI spec (OAS) to our Control Plane. The Control Plane will convert the spec into Kong Service and Kong Routes.
 
