@@ -34,6 +34,13 @@ services:
           options:
             llama2_format: ollama
             upstream_url: http://ollama.ollama:11434/api/chat
+    - name: ai-prompt-decorator
+      instance_name: ai-prompt-decorator-ollama
+      config:
+        prompts:
+          prepend:
+          - role: system
+            content: "You will always respond in the Portuguese (Brazil) language."
   - name: openai-route
     paths:
     - /openai-route
@@ -66,6 +73,7 @@ deck gateway sync --konnect-token $PAT ai-prompt-decorator.yaml
 ```
 
 
+### OPENAI
 Send a request now:
 
 ```
@@ -83,7 +91,23 @@ curl -s -X POST \
    }' | jq
 ```
 
+### OLLAMA
+Send a request now:
 
+```
+curl -s -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "what is pi?"
+       }
+     ],
+     "model": "llama3.2:1b"
+   }' | jq
+```
 
 
 You can now click **Next** to proceed further.

@@ -38,6 +38,22 @@ services:
           options:
             llama2_format: ollama
             upstream_url: http://ollama.ollama:11434/api/chat
+    - name: ai-prompt-template
+      instance_name: ai-prompt-template-ollama
+      enabled: true
+      config:
+        allow_untemplated_requests: true
+        templates:
+        - name: template1
+          template: |-
+            {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Explain to me what {{thing}} is."
+                    }
+                ]
+            }
   - name: openai-route
     paths:
     - /openai-route
@@ -82,6 +98,7 @@ deck gateway sync --konnect-token $PAT ai-prompt-template.yaml
 
 Now, send a request referring the template:
 
+### OPENAI
 ```
 curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
@@ -94,6 +111,18 @@ curl -s -X POST \
   }' | jq
 ```
 
+### OLLAMA
+```
+curl -s -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "messages": "{template://template1}",
+     "properties": {
+       "thing": "niilism"
+     }
+  }' | jq
+```
 
 
 

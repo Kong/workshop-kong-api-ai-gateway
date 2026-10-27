@@ -102,7 +102,7 @@ Kong AI Gateway provides one API to access all of the LLMs it supports. To accom
 Now, send a request to Kong AI Gateway following the [OpenAI API Chat](https://platform.openai.com/docs/api-reference/chat) specification as a reference:
 
 
-#### OPENAI
+### OPENAI
 ```
 curl -s -X POST \
   --url http://$DATA_PLANE_LB/openai-route \
@@ -167,7 +167,7 @@ Note the response also complies to the OpenAI API spec:
 }
 ```
 
-#### OLLAMA
+### OLLAMA
 You can also consume the Ollama's route
 ```
 curl -s -X POST \
@@ -249,7 +249,7 @@ deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $P
 deck gateway sync --konnect-token $PAT ai-proxy.yaml
 ```
 
-#### OPENAI
+### OPENAI
 Send the request specifing the model on the OPENAI-ROUTE:
 
 ```
@@ -286,7 +286,7 @@ curl -i -X POST \
 
 Note the Kong AI Proxy plugin adds a new **X-Kong-LLM-Model** header with the model we consumer: ``openai/gpt-5`` or ``openai/gpt-4``
 
-#### OLLAMA
+### OLLAMA
 Alternatively, choose one of the 2 models available on OLLAMA:
 ```
 curl -i -X POST \

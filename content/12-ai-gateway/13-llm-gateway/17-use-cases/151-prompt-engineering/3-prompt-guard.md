@@ -45,6 +45,13 @@ services:
           options:
             llama2_format: ollama
             upstream_url: http://ollama.ollama:11434/api/chat
+    - name: ai-prompt-guard
+      instance_name: ai-prompt-guard-ollama
+      enabled: true
+      config:
+        allow_all_conversation_history: true
+        allow_patterns: 
+        - ".*\\\"card\\\".*\\\"4[0-9]{3}\\*{12}\\\""
   - name: openai-route
     paths:
     - /openai-route
@@ -78,6 +85,7 @@ deck gateway sync --konnect-token $PAT ai-prompt-guard.yaml
 ```
 
 
+### OPENAI
 Send a request with a valid credit card pattern:
 
 ```
@@ -93,9 +101,6 @@ curl -s -X POST \
      ]
    }' | jq '.'
 ```
-
-
-
 
 Now, send a non-valid number:
 
@@ -122,3 +127,49 @@ The expect result is:
   }
 }
 ```
+
+### OLLAMA
+Send a request with a valid credit card pattern:
+
+```
+curl -s -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "Validate this card: {\"card\": \"4111************\", \"cvv\": \"000\"}"
+       }
+     ]
+   }' | jq '.'
+```
+
+Now, send a non-valid number:
+
+```
+curl -s -X POST \
+  --url $DATA_PLANE_LB/ollama-route \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+     "messages": [
+       {
+         "role": "user",
+         "content": "Validate this card: {\"card\": \"4111xyz************\", \"cvv\": \"000\"}"
+       }
+     ]
+   }' | jq '.'
+```
+
+
+The expect result is:
+```
+{
+  "error": {
+    "message": "bad request"
+  }
+}
+```
+
+
+
