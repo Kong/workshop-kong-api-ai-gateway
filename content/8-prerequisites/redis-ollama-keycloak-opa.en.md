@@ -50,7 +50,7 @@ helm install ollama ollama-helm/ollama \
   --set 'ollama.models.pull[1]=llama3.2:1b' \
   --set service.type=LoadBalancer
 ```
->Zsh fixed now. errors because of the [0]
+>Starting the container is dependent on the duration of the 2 model downloads (+-2GB)
 
 Additional Models to try IF you have a very fast download connection only (many GB to download)
 ```

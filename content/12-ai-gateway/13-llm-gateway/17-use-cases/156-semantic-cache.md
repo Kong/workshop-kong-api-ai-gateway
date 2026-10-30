@@ -60,6 +60,25 @@ services:
           options:
             llama2_format: ollama
             upstream_url: http://ollama.ollama:11434/api/chat
+    - name: ai-semantic-cache
+      instance_name: ai-semantic-cache-ollama
+      enabled: true
+      config:
+        embeddings:
+          model:
+            provider: llama2
+            name: "mxbai-embed-large:latest"
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+        vectordb:
+          dimensions: 1024
+          distance_metric: cosine
+          strategy: redis
+          threshold: 0.2
+          redis:
+            host: "redis-stack.redis.svc.cluster.local"
+            port: 6379
   - name: openai-route
     paths:
     - /openai-route
@@ -102,8 +121,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-semantic-cache.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f && deck gateway sync --konnect-token $PAT ai-semantic-cache.yaml
 ```
 
 
@@ -231,7 +249,7 @@ curl -i -X POST \
    "messages": [
      {
        "role": "user",
-       "content": "Tell me more about Jimi Hendrix"
+       "content": "Tell me about Jimi Hendrix"
      }
    ]
  }'

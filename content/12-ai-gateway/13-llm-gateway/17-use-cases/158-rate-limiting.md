@@ -105,7 +105,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f && 
 deck gateway sync --konnect-token $PAT ai-key-auth-rate-limiting-advanced.yaml
 ```
 
@@ -115,7 +115,7 @@ deck gateway sync --konnect-token $PAT ai-key-auth-rate-limiting-advanced.yaml
 If you will, you can inject both keys to your requests.
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
@@ -126,7 +126,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 * Expected output
@@ -205,7 +205,7 @@ X-Kong-Request-Id: 379bd531f3411379f613083969a88c07
 or
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 987654' \
@@ -216,7 +216,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 * Expected output
@@ -300,7 +300,7 @@ Again, test the rate-limiting policy by executing the following command multiple
 Now, let's consume it with the Consumer1's API Key. As you can see the Data Plane is processing the Rate Limiting processes independently.
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
@@ -311,7 +311,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 
@@ -353,7 +353,7 @@ X-Kong-Request-Id: 8b4285448ad3b335f766d33c61a37851
 If we keep sending requests using the first API Key, eventually, as expected, we'll get an error code:
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
@@ -364,7 +364,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 ```
@@ -390,7 +390,7 @@ However, the second API Key is still allowed to consume the Kong Route:
 
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 987654' \
@@ -401,7 +401,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 ```

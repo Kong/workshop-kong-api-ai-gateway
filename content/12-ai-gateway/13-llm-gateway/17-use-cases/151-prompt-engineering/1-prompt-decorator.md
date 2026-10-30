@@ -68,8 +68,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-prompt-decorator.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f && deck gateway sync --konnect-token $PAT ai-prompt-decorator.yaml
 ```
 
 

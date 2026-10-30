@@ -92,8 +92,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-prompt-template.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f && deck gateway sync --konnect-token $PAT ai-prompt-template.yaml
 ```
 
 Now, send a request referring the template:
@@ -106,7 +105,7 @@ curl -s -X POST \
   --data '{
      "messages": "{template://template1}",
      "properties": {
-       "thing": "niilism"
+       "thing": "nihilism"
      }
   }' | jq
 ```
@@ -119,7 +118,7 @@ curl -s -X POST \
   --data '{
      "messages": "{template://template1}",
      "properties": {
-       "thing": "niilism"
+       "thing": "nihilism"
      }
   }' | jq
 ```

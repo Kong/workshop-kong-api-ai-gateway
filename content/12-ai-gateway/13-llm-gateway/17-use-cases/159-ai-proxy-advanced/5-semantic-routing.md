@@ -70,6 +70,14 @@ services:
               upstream_url: http://ollama.ollama:11434/api/chat
           route_type: "llm/v1/chat"
           description: "piano, orchestra, liszt, classical music"
+        - model:
+            provider: llama2
+            name: llama3.2:1b
+            options:
+              llama2_format: ollama
+              upstream_url: http://ollama.ollama:11434/api/chat
+          route_type: "llm/v1/chat"
+          description: "CATCHALL"
 EOF
 ```
 
@@ -77,7 +85,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f &&
 deck gateway sync --konnect-token $PAT ai-proxy-advanced.yaml
 ```
 

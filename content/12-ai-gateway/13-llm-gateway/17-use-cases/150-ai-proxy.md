@@ -253,7 +253,7 @@ deck gateway sync --konnect-token $PAT ai-proxy.yaml
 Send the request specifing the model on the OPENAI-ROUTE:
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data '{
@@ -264,13 +264,13 @@ curl -i -X POST \
        }
      ],
      "model": "gpt-5"
-   }'
+   }' | jq
 ```
 
 or another model on the OPENAI-ROUTE
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --data '{
@@ -281,7 +281,7 @@ curl -i -X POST \
        }
      ],
      "model": "gpt-4"
-   }'
+   }' | jq
 ```
 
 Note the Kong AI Proxy plugin adds a new **X-Kong-LLM-Model** header with the model we consumer: ``openai/gpt-5`` or ``openai/gpt-4``
@@ -289,7 +289,7 @@ Note the Kong AI Proxy plugin adds a new **X-Kong-LLM-Model** header with the mo
 ### OLLAMA
 Alternatively, choose one of the 2 models available on OLLAMA:
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/ollama-route \
   --header 'Content-Type: application/json' \
   --data '{
@@ -300,11 +300,11 @@ curl -i -X POST \
        }
      ],
      "model": "mxbai-embed-large:latest"
-   }'
+   }' | jq
 ```
 or 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/ollama-route \
   --header 'Content-Type: application/json' \
   --data '{
@@ -315,7 +315,7 @@ curl -i -X POST \
        }
      ],
      "model": "llama3.2:1b"
-   }'
+   }' | jq
 ```
 
 
@@ -368,7 +368,7 @@ data: [DONE]
 #### OLLAMA
 ```
 curl -X POST \
-  --url $DATA_PLANE_LB/openai-route \
+  --url $DATA_PLANE_LB/ollama-route \
   --header 'Content-Type: application/json' \
   --data '{
      "messages": [

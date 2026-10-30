@@ -37,6 +37,9 @@ services:
           options:
             llama2_format: ollama
             upstream_url: http://ollama.ollama:11434/api/chat
+    - name: key-auth
+      instance_name: key-auth-ollama
+      enabled: true
   - name: openai-route
     paths:
     - /openai-route
@@ -66,8 +69,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
-deck gateway sync --konnect-token $PAT ai-key-auth.yaml
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f && deck gateway sync --konnect-token $PAT ai-key-auth.yaml
 ```
 
 
@@ -76,7 +78,7 @@ deck gateway sync --konnect-token $PAT ai-key-auth.yaml
 New requests now require authentication
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
    --data '{
@@ -86,7 +88,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 * Expect response
@@ -115,7 +117,7 @@ X-Kong-Request-Id: fd1bc16647271a20b7245b0cc9eb5052
 Use the apikey to pass authentication to access the services.
 
 ```
-curl -i -X POST \
+curl -s -X POST \
   --url $DATA_PLANE_LB/openai-route \
   --header 'Content-Type: application/json' \
   --header 'apikey: 123456' \
@@ -126,7 +128,7 @@ curl -i -X POST \
        "content": "Who is Jimi Hendrix?"
      }
    ]
-  }'
+  }' | jq
 ```
 
 The request should now respond with a  **HTTP/1.1 200 OK**.

@@ -21,7 +21,51 @@ For each plugin the configuration and usage processes are:
 * After receiving the response from the backend, Kong Gateway sets the entire response body as the user message in the LLM chat request, then sends it to the configured LLM service.
 * The LLM service returns a response ``assistant`` message, which is subsequently set as the upstream request body.
 
-The following example is going to apply the plugins to transform both request and reponse when consuming the **httpbin** Upstream Service.
+The following example is going to apply the plugins to transform both request and reponse when consuming the **httpbin** Upstream Service. When the API GW Section is skipped, please load the httpbin service as it is needed for this scenario:
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  namespace: kong
+  labels:
+    app: httpbin
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        version: v1
+    spec:
+      containers:
+      - image: docker.io/kong/httpbin
+        imagePullPolicy: IfNotPresent
+        name: httpbin
+        ports:
+        - containerPort: 8000
+EOF
+```
 
 
 Now, configure both plugins. Keep in mind that the plugins are totally independent from each other so, the configuration depends on your use case.
@@ -78,7 +122,7 @@ EOF
 
 Apply the declaration with decK:
 ```
-deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f
+deck gateway reset --konnect-control-plane-name kong-workshop --konnect-token $PAT -f &&
 deck gateway sync --konnect-token $PAT ai-request-response-tranformer.yaml
 ```
 
